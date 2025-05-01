@@ -1,0 +1,4 @@
+GitPython
+clang~=14.0
+requests
+packaging
