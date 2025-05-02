@@ -5,7 +5,7 @@ ALGOS = {
     'chacha20', 'chacha20poly1305', 'salsa20', 'blowfish', 'twofish', 'serpent', 'cast', 'rc4', 'rc5',
     'rc6', 'idea', 'seed', 'gcm', 'ccm', 'eax', 'hc128', 'hc256', 'rabbit', 'sosemanuk', 'xsalsa20',
     'mars', 'rc2', 'ecies', 'ed25519', 'curve25519', 'x25519', 'poly1305', 'xchacha20', 'ocb', 'ctr',
-    'cbc', 'cfb', 'ofb', 'xts', 'cmac', 'pmac',
+    'cbc', 'cfb', 'ofb', 'xts', 'cmac', 'pmac', 'ecb',
     'sha1', 'sha224', 'sha256', 'sha384', 'sha512', 'sha3_224', 'sha3_256', 'sha3_384', 'sha3_512',
     'hmacsha512256', 'hmacsha512', 'hmacsha256', 'md2', 'md4', 'md5', 'blake2b', 'blake2s', 'blake3',
     'sm3', 'ripemd160', 'ripemd', 'whirlpool', 'tiger', 'keccak', 'shake128', 'shake256', 'streebog',
@@ -16,11 +16,11 @@ ALGOS = {
 }
 
 OPS = {
-    'view', 'encrypt', 'decrypt', 'sign', 'verify', 'hash', 'hmac', 'init', 'init_ex', 'update', 'final',
-    'cleanup', 'free', 'auth', 'new', 'create', 'destroy', 'generate', 'derive', 'derivekey', 'keygen',
-    'load', 'save', 'read', 'write', 'open', 'close', 'pubkey', 'privkey', 'pwdhash', 'compute', 'seal',
-    'open', 'box', 'secretbox', 'pwhash', 'aead', 'keypair', 'randombytes', 'get', 'set', 'seed', 'reseed',
-    'wrap', 'unwrap', 'pad', 'unpad', 'mac', 'authenticate', 'derivebits', 'export', 'import', 'validate',
+    'encrypt', 'decrypt', 'sign', 'verify', 'hash', 'hmac', 'init', 'init_ex', 'update',
+    'cleanup', 'auth', 'create', 'destroy', 'generate', 'derive', 'derivekey', 'keygen', 
+    'pubkey', 'privkey', 'pwdhash', 'compute', 'seal',
+    'open', 'box', 'secretbox', 'pwhash', 'aead', 'keypair', 'randombytes', 'seed', 'reseed',
+    'wrap', 'unwrap', 'pad', 'unpad', 'mac', 'authenticate', 'derivebits', 'validate',
     'rekey', 'rotate', 'split', 'combine', 'exchange', 'verifykey', 'signkey', 'encapsulate', 'decapsulate'
 }
 
