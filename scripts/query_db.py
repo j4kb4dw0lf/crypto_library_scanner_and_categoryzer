@@ -3,7 +3,6 @@ import json
 import os
 from collections import defaultdict
 
-
 OUTPUT_DIR = "output"
 DB_FILE = os.path.join(OUTPUT_DIR, "crypto_primitives.db")
 
@@ -18,11 +17,8 @@ def db_connect(db_path=DB_FILE):
 
 def dump_primitives_with_multiple_categories(db_path=DB_FILE):
     try:
-        # Connect to the database
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-
-        # Step 1: Find all primitive_ids with more than one category
         cursor.execute('''
             SELECT primitive_id
             FROM Primitive_Categories
@@ -35,7 +31,6 @@ def dump_primitives_with_multiple_categories(db_path=DB_FILE):
             print("No primitives found with more than one category.")
             return
 
-        # Step 2: Fetch primitive names, their categories, and category names
         placeholders = ','.join('?' for _ in primitive_ids)
         cursor.execute(f'''
             SELECT pc.primitive_id, p.name, pc.category_id, c.name
@@ -46,13 +41,11 @@ def dump_primitives_with_multiple_categories(db_path=DB_FILE):
             ORDER BY pc.primitive_id
         ''', primitive_ids)
 
-        # Step 3: Organize the data
         primitive_data = defaultdict(lambda: {"name": "", "categories": []})
         for primitive_id, primitive_name, category_id, category_name in cursor.fetchall():
             primitive_data[primitive_id]["name"] = primitive_name
             primitive_data[primitive_id]["categories"].append((category_id, category_name))
 
-        # Step 4: Print it out
         print("Primitives with more than one category:")
         for primitive_id, info in primitive_data.items():
             print(f"- Primitive ID {primitive_id} | Name: {info['name']}")
@@ -60,7 +53,6 @@ def dump_primitives_with_multiple_categories(db_path=DB_FILE):
             for category_id, category_name in info["categories"]:
                 print(f"    - Category ID {category_id} | Name: {category_name}")
 
-        # Clean up
         cursor.close()
         conn.close()
 
@@ -298,4 +290,3 @@ if __name__ == '__main__':
         conn.close()
     else:
         print("Failed to connect to the database.")
-
