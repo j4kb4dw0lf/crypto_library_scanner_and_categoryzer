@@ -1,280 +1,213 @@
 import json
 import os
 import logging
+import sqlite3
 from datetime import datetime, timezone
-from operator import itemgetter
 from .category_matcher import classify, is_quantum_safe
 
 logger = logging.getLogger(__name__)
 
 OUTPUT_DIR = "output"
-PRIMITIVES_FILE = os.path.join(OUTPUT_DIR, "primitives.json")
-UNCATEGORIZED_PRIMITIVES_FILE = os.path.join(OUTPUT_DIR, "uncategorized_primitives.json")
-LIBRARIES_FILE = os.path.join(OUTPUT_DIR, "libraries.json")
+DB_FILE = os.path.join(OUTPUT_DIR, "crypto_primitives.db")
+NON_PQ_COMMENT = "Consider modern, quantum-safe alternatives."
 
-def load_json(filepath: str) -> list | dict:
-    if not os.path.exists(filepath):
-        return []
-    try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            if not isinstance(data, list):
-                logger.warning(f"Data in {filepath} is not a list. Reinitializing as empty list.")
-                return []
-            return data
-    except (json.JSONDecodeError, IOError, Exception) as e:
-        logger.error(f"Error loading JSON from {filepath}: {e}. Returning empty list.")
-        return []
+def setup_database(conn):
+    cursor = conn.cursor()
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Libraries (
+        library_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        version TEXT,
+        source_url TEXT,
+        scan_date TEXT NOT NULL,
+        last_updated TEXT NOT NULL,
+        UNIQUE (name, version)
+    )
+    ''')
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Categories (
+        category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL UNIQUE
+    )
+    ''')
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Primitives (
+        primitive_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        library_id INTEGER NOT NULL,
+        parameters TEXT,
+        return_type TEXT,
+        comment_alternative TEXT,
+        FOREIGN KEY (library_id) REFERENCES Libraries (library_id)
+    )
+    ''')
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_primitive_name_library ON Primitives (name, library_id);
+    ''')
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Primitive_Categories (
+        primitive_id INTEGER NOT NULL,
+        category_id INTEGER NOT NULL,
+        PRIMARY KEY (primitive_id, category_id),
+        FOREIGN KEY (primitive_id) REFERENCES Primitives (primitive_id) ON DELETE CASCADE,
+        FOREIGN KEY (category_id) REFERENCES Categories (category_id) ON DELETE CASCADE
+    )
+    ''')
+    conn.commit()
+    logger.info("Database schema ensured.")
 
-def save_json(data: list | dict, filepath: str):
-    try:
-        os.makedirs(os.path.dirname(filepath), exist_ok=True)
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        logger.debug(f"Successfully saved data to {filepath}")
-    except (IOError, TypeError, Exception) as e:
-        logger.error(f"Error saving JSON to {filepath}: {e}")
 
-def build_database(repo_results: list[dict], external_results: list[dict]):
-    global PRIMITIVES_FILE, UNCATEGORIZED_PRIMITIVES_FILE, LIBRARIES_FILE
-    logger.info(f"Building/Updating JSON database files: {LIBRARIES_FILE}, {PRIMITIVES_FILE}, {UNCATEGORIZED_PRIMITIVES_FILE}")
+def get_or_create_category_ids_db(conn, category_names_str: str) -> list[int] | None:
+    if not category_names_str or category_names_str.lower() == "uncategorized":
+        return None
+    individual_category_names = [name for name in category_names_str.split('_') if name]
+    if not individual_category_names:
+        return None
+    cursor = conn.cursor()
+    ids_list = []
+    for name in individual_category_names:
+        cursor.execute("SELECT category_id FROM Categories WHERE name = ?", (name,))
+        row = cursor.fetchone()
+        if row:
+            ids_list.append(row[0])
+        else:
+            try:
+                cursor.execute("INSERT INTO Categories (name) VALUES (?)", (name,))
+                conn.commit()
+                ids_list.append(cursor.lastrowid)
+            except sqlite3.IntegrityError:
+                logger.warning(f"Integrity error trying to insert category '{name}', refetching.")
+                cursor.execute("SELECT category_id FROM Categories WHERE name = ?", (name,))
+                row = cursor.fetchone()
+                if row: ids_list.append(row[0])
+                else: logger.error(f"Could not get or create category_id for '{name}' after integrity error.")
+    return sorted(list(set(ids_list))) if ids_list else None
 
-    primitives_db = load_json(PRIMITIVES_FILE)
-    uncategorized_db = load_json(UNCATEGORIZED_PRIMITIVES_FILE)
-    libraries_db = load_json(LIBRARIES_FILE)
-
-    existing_libs = {(lib.get('name'), lib.get('version')): index for index, lib in enumerate(libraries_db)}
-    existing_primitives = {
-        (p.get('library'), p.get('name'), tuple(p.get('parameters', []))): index
-        for index, p in enumerate(primitives_db + uncategorized_db)
-    }
-
-    lib_id_counter = max([lib.get('library_id', 0) for lib in libraries_db] + [0]) + 1
-    primitive_id_counter = max([p.get('id', 0) for p in primitives_db + uncategorized_db] + [0]) + 1
-
-    processed_repo_count = new_primitives_count = updated_primitives_count = 0
-    new_libs_count = updated_libs_count = 0
-
-    processed_primitives = {}
-    processed_keys_in_run = set()
-
-    for result in repo_results:
-        repo_name = result.get('repo_name')
-        library_name = result.get('library_name')
-        library_version = result.get('library_version')
-        repo_url = result.get('repo_url')
-        local_repo_path = result.get('local_path')
-        functions = result.get('functions', [])
-
-        if not repo_name or not library_name or not local_repo_path:
-            logger.warning(f"Skipping result due to missing fields: {result.get('repo_url')}")
+def build_database_sqlite(repo_results: list[dict], external_results: list[dict]):
+    global DB_FILE, NON_PQ_COMMENT
+    logger.info(f"Building/Updating SQLite database: {DB_FILE}")
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    conn = sqlite3.connect(DB_FILE)
+    setup_database(conn)
+    cursor = conn.cursor()
+    new_libs_count, updated_libs_count = 0, 0
+    new_primitives_count, updated_primitives_count = 0, 0
+    processed_repo_count = 0
+    all_scan_results = [{'data': res, '_type': 'repo'} for res in repo_results] + \
+                       [{'data': res, '_type': 'external'} for res in external_results]
+    for item in all_scan_results:
+        result_item = item['data']
+        result_type = item['_type']
+        processed_repo_count +=1
+        library_name_from_scan = result_item.get('library_name')
+        library_version_from_scan = result_item.get('library_version')
+        functions_from_scan = result_item.get('functions', [])
+        repo_name_from_scan = result_item.get('repo_name') if result_type == 'repo' else result_item.get('external_lib_name')
+        repo_url_from_scan = result_item.get('repo_url') if result_type == 'repo' else result_item.get('external_lib_path')
+        if not repo_name_from_scan or not library_name_from_scan:
+            logger.warning(f"Skipping result for '{repo_name_from_scan}' due to missing critical fields.")
             continue
-
-        processed_repo_count += 1
-        logger.info(f"Processing: {library_name} (Version: {library_version or 'Unknown'}) from {repo_name}")
-
-        lib_key = (library_name, library_version)
+        logger.info(f"Processing Library: {library_name_from_scan} (Version: {library_version_from_scan or 'Unknown'}) from {repo_name_from_scan} ({len(functions_from_scan)} functions)")
         current_time_iso = datetime.now(timezone.utc).isoformat()
-
-        if lib_key in existing_libs:
-            lib_index = existing_libs[lib_key]
-            current_lib_entry = libraries_db[lib_index]
-            updated = False
-            if current_lib_entry.get('source_url') != repo_url:
-                current_lib_entry['source_url'] = repo_url
-                updated = True
-            current_lib_entry['last_updated'] = current_time_iso
-            if updated: updated_libs_count += 1
-            library_id = current_lib_entry['library_id']
-        else:
-            library_id = lib_id_counter
-            libraries_db.append({
-                "library_id": library_id,
-                "name": library_name,
-                "version": library_version,
-                "source_url": repo_url,
-                "scan_date": current_time_iso,
-                "last_updated": current_time_iso,
-            })
-            existing_libs[lib_key] = len(libraries_db) - 1
-            lib_id_counter += 1
-            new_libs_count += 1
-
-        for func in functions:
-            func_name = func.get('full_name')
-            filepath = func.get('filepath')
-            if not func_name or not filepath:
-                continue
-            if "::operator" in func_name or "operator" in func_name:
-                continue
-
-            params_list = func.get('parameters', [])
-            if not isinstance(params_list, list):
-                params_list = []
-            params_tuple = tuple(params_list)
-            primitive_key = (library_name, func_name, params_tuple)
-            processed_keys_in_run.add(primitive_key)
-
-            header_filename_base = os.path.splitext(os.path.basename(filepath))[0]
-            namespace = func_name.split("::")[0] if "::" in func_name else header_filename_base
-            category = classify(func_name, namespace, library_name)
-            is_post_quantum_safe = is_quantum_safe(func_name, namespace, library_name)
-
-            existing_index = existing_primitives.get(primitive_key)
-            is_update = existing_index is not None
-            target_entry = (primitives_db + uncategorized_db)[existing_index] if is_update else {}
-
-            primitive_data = {
-                "id": target_entry.get('id', primitive_id_counter),
-                "name": func_name,
-                "library": library_name,
-                "library_version_found_in": library_version,
-                "category": category,
-                "primitive_group": namespace,
-                "is_post_quantum_safe": is_post_quantum_safe,
-                "parameters": params_list,
-                "return_type": func.get('return_type'),
-            }
-
-            if is_update:
-                if (target_entry.get('library_version_found_in') != library_version or
-                    target_entry.get('category') != category or
-                    target_entry.get('primitive_group') != namespace):
-                    processed_primitives[primitive_key] = primitive_data
-                    updated_primitives_count += 1
+        current_library_id = None
+        try:
+            cursor.execute("SELECT library_id, source_url FROM Libraries WHERE name = ? AND version = ?",
+                           (library_name_from_scan, library_version_from_scan))
+            lib_row = cursor.fetchone()
+            if lib_row:
+                current_library_id = lib_row[0]
+                db_source_url = lib_row[1]
+                if db_source_url != repo_url_from_scan:
+                    cursor.execute("UPDATE Libraries SET source_url = ?, last_updated = ? WHERE library_id = ?",
+                                   (repo_url_from_scan, current_time_iso, current_library_id))
+                    updated_libs_count += 1
                 else:
-                    processed_primitives[primitive_key] = target_entry
+                    cursor.execute("UPDATE Libraries SET last_updated = ? WHERE library_id = ?",
+                                   (current_time_iso, current_library_id))
             else:
-                processed_primitives[primitive_key] = primitive_data
-                primitive_id_counter += 1
-                new_primitives_count += 1
-
-    for result in external_results:
-        repo_name = result.get('external_lib_name')
-        library_name = result.get('library_name')
-        library_version = result.get('library_version')
-        repo_url = result.get('external_lib_path')
-        local_repo_path = result.get('local_path')
-        functions = result.get('functions', [])
-
-        if not repo_name or not library_name or not local_repo_path:
-            logger.warning(f"Skipping result due to missing fields: {result.get('repo_url')}")
-            continue
-
-        processed_repo_count += 1
-        logger.info(f"Processing: {library_name} (Version: {library_version or 'Unknown'}) from {repo_name}")
-
-        lib_key = (library_name, library_version)
-        current_time_iso = datetime.now(timezone.utc).isoformat()
-
-        if lib_key in existing_libs:
-            lib_index = existing_libs[lib_key]
-            current_lib_entry = libraries_db[lib_index]
-            updated = False
-            if current_lib_entry.get('source_url') != repo_url:
-                current_lib_entry['source_url'] = repo_url
-                updated = True
-            current_lib_entry['last_updated'] = current_time_iso
-            if updated: updated_libs_count += 1
-            library_id = current_lib_entry['library_id']
-        else:
-            library_id = lib_id_counter
-            libraries_db.append({
-                "library_id": library_id,
-                "name": library_name,
-                "version": library_version,
-                "source_url": repo_url,
-                "scan_date": current_time_iso,
-                "last_updated": current_time_iso,
-            })
-            existing_libs[lib_key] = len(libraries_db) - 1
-            lib_id_counter += 1
-            new_libs_count += 1
-
-        for func in functions:
-            func_name = func.get('full_name')
-            filepath = func.get('filepath')
-            if not func_name or not filepath:
-                continue
-            if "::operator" in func_name or "operator" in func_name:
-                continue
-
-            params_list = func.get('parameters', [])
-            if not isinstance(params_list, list):
-                params_list = []
-            params_tuple = tuple(params_list)
-            primitive_key = (library_name, func_name, params_tuple)
-            processed_keys_in_run.add(primitive_key)
-
-            header_filename_base = os.path.splitext(os.path.basename(filepath))[0]
-            namespace = func_name.split("::")[0] if "::" in func_name else header_filename_base
-            category = classify(func_name, namespace, library_name)
-            is_post_quantum_safe = is_quantum_safe(func_name, namespace, library_name)
-
-            existing_index = existing_primitives.get(primitive_key)
-            is_update = existing_index is not None
-            target_entry = (primitives_db + uncategorized_db)[existing_index] if is_update else {}
-
-            primitive_data = {
-                "id": target_entry.get('id', primitive_id_counter),
-                "name": func_name,
-                "library": library_name,
-                "library_version_found_in": library_version,
-                "category": category,
-                "primitive_group": namespace,
-                "is_post_quantum_safe": is_post_quantum_safe,
-                "parameters": params_list,
-                "return_type": func.get('return_type'),
-            }
-
-            if is_update:
-                if (target_entry.get('library_version_found_in') != library_version or
-                    target_entry.get('category') != category or
-                    target_entry.get('primitive_group') != namespace):
-                    processed_primitives[primitive_key] = primitive_data
-                    updated_primitives_count += 1
+                cursor.execute("""
+                    INSERT INTO Libraries (name, version, source_url, scan_date, last_updated)
+                    VALUES (?, ?, ?, ?, ?)
+                """, (library_name_from_scan, library_version_from_scan, repo_url_from_scan, current_time_iso, current_time_iso))
+                current_library_id = cursor.lastrowid
+                new_libs_count += 1
+            conn.commit()
+            for func_data in functions_from_scan:
+                func_name = func_data.get('full_name')
+                filepath = func_data.get('filepath')
+                if not func_name or not filepath: continue
+                if "::operator" in func_name or "operator" in func_name.lower(): continue
+                params_list = func_data.get('parameters', [])
+                if not isinstance(params_list, list): params_list = []
+                params_json_str = json.dumps(params_list)
+                return_type = func_data.get('return_type')
+                header_filename_base = os.path.splitext(os.path.basename(filepath))[0]
+                namespace_group = func_name.split("::")[0] if "::" in func_name else header_filename_base
+                category_name_str = classify(func_name, namespace_group, library_name_from_scan)
+                current_categories_ids = get_or_create_category_ids_db(conn, category_name_str)
+                is_pq_safe_flag = is_quantum_safe(func_name, namespace_group, library_name_from_scan)
+                primitive_comment = NON_PQ_COMMENT if not is_pq_safe_flag else ""
+                cursor.execute("""
+                    SELECT primitive_id, return_type, comment_alternative
+                    FROM Primitives
+                    WHERE name = ? AND library_id = ? AND parameters = ?
+                """, (func_name, current_library_id, params_json_str))
+                primitive_row = cursor.fetchone()
+                current_primitive_id = None
+                if primitive_row:
+                    current_primitive_id = primitive_row[0]
+                    db_return_type = primitive_row[1]
+                    db_comment = primitive_row[2]
+                    updated_needed = False
+                    if db_return_type != return_type: updated_needed = True
+                    if db_comment != primitive_comment: updated_needed = True
+                    cursor.execute("SELECT category_id FROM Primitive_Categories WHERE primitive_id = ?", (current_primitive_id,))
+                    db_category_ids = sorted([r[0] for r in cursor.fetchall()])
+                    if current_categories_ids is None: current_categories_ids = []
+                    if set(db_category_ids) != set(current_categories_ids):
+                        updated_needed = True
+                        cursor.execute("DELETE FROM Primitive_Categories WHERE primitive_id = ?", (current_primitive_id,))
+                        if current_categories_ids:
+                            for cat_id in current_categories_ids:
+                                cursor.execute("INSERT INTO Primitive_Categories (primitive_id, category_id) VALUES (?, ?)",
+                                               (current_primitive_id, cat_id))
+                    if updated_needed:
+                        cursor.execute("""
+                            UPDATE Primitives SET return_type = ?, comment_alternative = ?
+                            WHERE primitive_id = ?
+                        """, (return_type, primitive_comment, current_primitive_id))
+                        updated_primitives_count += 1
                 else:
-                    processed_primitives[primitive_key] = target_entry
-            else:
-                processed_primitives[primitive_key] = primitive_data
-                primitive_id_counter += 1
-                new_primitives_count += 1
-
-    final_primitives = []
-    final_uncategorized = []
-
-    for primitive in processed_primitives.values():
-        if primitive.get("category") == "uncategorized":
-            final_uncategorized.append(primitive)
-        else:
-            final_primitives.append(primitive)
-
-    for key, index in existing_primitives.items():
-        if key not in processed_keys_in_run:
-            old = (primitives_db + uncategorized_db)[index]
-            old.pop('filepath', None)
-            old.pop('line', None)
-            group = old.get('primitive_group', '')
-            if '.' in group:
-                old['primitive_group'] = os.path.splitext(group)[0]
-            elif group == '':
-                old['primitive_group'] = 'unknown'
-            if old.get("category") == "uncategorized":
-                final_uncategorized.append(old)
-            else:
-                final_primitives.append(old)
-
-    final_primitives.sort(key=lambda x: (x.get('library', ''), x.get('primitive_group', ''), x.get('name', '')))
-    final_uncategorized.sort(key=lambda x: (x.get('library', ''), x.get('primitive_group', ''), x.get('name', '')))
-
-    logger.info("Database update summary:")
-    logger.info(f"  Processed {processed_repo_count} repositories")
-    logger.info(f"  Libraries: {new_libs_count} added, {updated_libs_count} updated. Total: {len(libraries_db)}")
-    logger.info(f"  Primitives: {new_primitives_count} new, {updated_primitives_count} updated")
-    logger.info(f"  Final categorized primitives: {len(final_primitives)}")
-    logger.info(f"  Final uncategorized primitives: {len(final_uncategorized)}")
-
-    save_json(libraries_db, LIBRARIES_FILE)
-    save_json(final_primitives, PRIMITIVES_FILE)
-    save_json(final_uncategorized, UNCATEGORIZED_PRIMITIVES_FILE)
-    logger.info("All database files saved.")
+                    cursor.execute("""
+                        INSERT INTO Primitives (name, library_id, parameters, return_type, comment_alternative)
+                        VALUES (?, ?, ?, ?, ?)
+                    """, (func_name, current_library_id, params_json_str, return_type, primitive_comment))
+                    current_primitive_id = cursor.lastrowid
+                    new_primitives_count += 1
+                    if current_categories_ids:
+                        for cat_id in current_categories_ids:
+                            cursor.execute("INSERT INTO Primitive_Categories (primitive_id, category_id) VALUES (?, ?)",
+                                           (current_primitive_id, cat_id))
+                conn.commit()
+        except sqlite3.Error as e:
+            conn.rollback()
+            logger.error(f"SQLite error during processing of {library_name_from_scan}: {e}")
+        except Exception as e:
+            conn.rollback()
+            logger.error(f"General error during processing of {library_name_from_scan}: {e}")
+    cursor.execute("SELECT COUNT(*) FROM Libraries")
+    total_libs_in_db = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM Primitives")
+    total_primitives_in_db = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM Categories")
+    total_categories_in_db = cursor.fetchone()[0]
+    conn.close()
+    logger.info("Database update summary (based on operations):")
+    logger.info(f"  Processed {processed_repo_count} repository/external entries.")
+    logger.info(f"  Libraries: {new_libs_count} added, {updated_libs_count} updated.")
+    logger.info(f"  Primitives: {new_primitives_count} new, {updated_primitives_count} updated.")
+    logger.info("Database state after update:")
+    logger.info(f"  Total libraries in DB: {total_libs_in_db}")
+    logger.info(f"  Total primitives in DB: {total_primitives_in_db}")
+    logger.info(f"  Total categories in DB: {total_categories_in_db}")
+    logger.info(f"SQLite database '{DB_FILE}' updated.")
