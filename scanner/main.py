@@ -9,7 +9,7 @@ from scanner.git_cloner import clone_repo
 from scanner.external_cloner import clone_external_lib
 from scanner.parser import parse_repo_headers, LIBCLANG_INITIALIZED
 from scanner.utils import get_library_info
-from scanner.db_builder import build_database
+from scanner.db_builder import build_database_sqlite as build_database
 
 logger = logging.getLogger("scanner")
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(asctime)s %(name)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S', force=True)
