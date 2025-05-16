@@ -15,7 +15,7 @@ copying the release of libssh form their website under (PATH TO FOLDER)/crypto-s
 
 
 ```
-docker run -it --rm -v "(PATH TO FOLDER)/crypto-scanner/output:/app/output" -v "(PATH TO FOLDER)/crypto-scanner/repos:/app/repos" -v "(PATH TO FOLDER)/crypto-scanner/ext:/app/ext" crypto-scanner -ru https://github.com/openssl/openssl.git https://github.com/weidai11/cryptopp https://github.com/randombit/botan https://github.com/libssh2/libssh2 https://github.com/jedisct1/libsodium https://github.com/wolfSSL/wolfssl -elp /app/ext/libssh-0.11.0
+docker run -it --rm -v "output:/app/output" -v "repos:/app/repos" -v "ext:/app/ext" crypto-scanner -ru https://github.com/openssl/openssl.git https://github.com/weidai11/cryptopp https://github.com/randombit/botan https://github.com/libssh2/libssh2 https://github.com/jedisct1/libsodium https://github.com/wolfSSL/wolfssl -elp /app/ext/libssh-0.11.0
 ```
 
 -elp   stands for external library paths and after there is to be put the patch of the library
