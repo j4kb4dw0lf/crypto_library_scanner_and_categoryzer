@@ -57,7 +57,9 @@ def setup_database(conn):
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Categories (
         category_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL UNIQUE
+        name TEXT NOT NULL UNIQUE,
+        comment_alternative_general TEXT
+
     )
     ''')
     cursor.execute('''
@@ -103,7 +105,7 @@ def get_or_create_category_ids_db(conn, category_names_str: str) -> list[int]:
             ids_list.append(row[0])
         else:
             try:
-                cursor.execute("INSERT INTO Categories (name) VALUES (?)", (name,))
+                cursor.execute("INSERT INTO Categories (name, comment_alternative_general) VALUES (?, ?)", (name, NON_PQ_COMMENT))
                 new_id = cursor.lastrowid
                 if new_id is not None:
                     ids_list.append(new_id)
@@ -275,12 +277,13 @@ def build_database_sqlite(repo_results: list[dict], external_results: list[dict]
             conn.rollback()
             logger.error(f"General error during processing of library {library_name_from_scan} (Source: {source_identifier}): {e}", exc_info=True)
     try:
+        cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM Libraries")
-        total_libs_in_db = cursor.fetchone()[0] if cursor.rowcount > -1 else -1
+        total_libs_in_db = cursor.fetchone()[0]
         cursor.execute("SELECT COUNT(*) FROM Primitives")
-        total_primitives_in_db = cursor.fetchone()[0] if cursor.rowcount > -1 else -1
+        total_primitives_in_db = cursor.fetchone()[0]
         cursor.execute("SELECT COUNT(*) FROM Categories")
-        total_categories_in_db = cursor.fetchone()[0] if cursor.rowcount > -1 else -1
+        total_categories_in_db = cursor.fetchone()[0]
     except sqlite3.Error as e:
         logger.error(f"Error fetching final DB counts: {e}")
         total_libs_in_db, total_primitives_in_db, total_categories_in_db = -1, -1, -1
