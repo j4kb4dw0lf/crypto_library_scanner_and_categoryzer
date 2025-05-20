@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     clang-14 \
     libclang-14-dev \
     ca-certificates \
-    sqlite \
+    sqlite3 \
     && ln -s /usr/lib/llvm-14/lib/libclang.so.1 /usr/lib/libclang.so \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
