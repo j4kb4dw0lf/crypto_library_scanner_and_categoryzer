@@ -15,7 +15,7 @@ copying the release of libssh form their website under /ext said library can now
 
 
 ```
-docker run -it --rm -v "output:/app/output" -v "repos:/app/repos" -v "ext:/app/ext" crypto-scanner -ru https://github.com/openssl/openssl.git https://github.com/weidai11/cryptopp https://github.com/randombit/botan https://github.com/libssh2/libssh2 https://github.com/jedisct1/libsodium https://github.com/wolfSSL/wolfssl -elp /app/ext/libssh-(LIBSSH VERSION)
+docker run -it --rm -v "$PWD/output:/app/output" -v "$PWD/repos:/app/repos" -v "$PWD/ext:/app/ext" crypto-scanner -ru https://github.com/openssl/openssl.git https://github.com/weidai11/cryptopp https://github.com/randombit/botan https://github.com/libssh2/libssh2 https://github.com/jedisct1/libsodium https://github.com/wolfSSL/wolfssl -elp /app/ext/libssh-(LIBSSH VERSION)
 ```
 
 -elp   stands for external library paths and after there is to be put the patch of the library
