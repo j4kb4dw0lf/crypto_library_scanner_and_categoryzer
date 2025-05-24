@@ -90,15 +90,15 @@ ALGOS = {
 }
 
 OPS = {
-    "Core Crypto Operations": {
+    "CoreCryptoOperations": {
         "Encryption": ["encrypt", "seal", "box", "secretbox", "sbox", "aead", "wrap", "encapsulate"],
         "Decryption": ["decrypt", "unwrap", "decapsulate"],
-        "Signing": ["sign", "signkey"],
-        "Verification": ["verify", "verifykey"],
+        "Signing": ["sign", "signkey", "signature", "sig", "sigkey", "cert", "certificate"],
+        "Verification": ["verify", "verifykey", "verifysig", "verifysig"],
         "Hashing": ["hash", "pwdhash", "pwhash", "compute"],
         "Message Authentication": ["hmac", "mac", "authenticate"]
     },
-    "Modes of Operation": {
+    "ModesofOperation": {
         "CTR": ["ctr"],
         "CBC": ["cbc"],
         "CFB": ["cfb"],
@@ -106,32 +106,32 @@ OPS = {
         "XTS-AES": ["xts"],
         "ECB": ["ecb"]
     },
-    "Key Management": {
+    "KeyManagement": {
         "Generation & Derivation": ["generate", "keygen", "keypair", "derive", "derivekey", "derivebits"],
         "Exchange": ["exchange"],
         "Lifecycle": ["create", "destroy", "rekey", "rotate"],
         "Material Handling": ["split", "combine"]
     },
-    "Key Property Access": {
+    "KeyPropertyAccess": {
         "Public Key": ["pubkey"],
         "Private Key": ["privkey"]
     },
-    "Randomness & Seeding": {
+    "RandomnessSeeding": {
         "Random Number Generation": ["randombytes"],
         "Seed Management": ["seed", "reseed"]
     },
-    "Data Processing": {
+    "DataProcessing": {
         "Padding": ["pad"],
         "Unpadding": ["unpad"]
     },
-    "Validation & Integrity": {
+    "ValidationIntegrity": {
         "Data Validation": ["validate"]
     },
-    "Internal Primitives": {
+    "InternalPrimitives": {
         "S-Box Operation": ["sbox"]
     },
     "Others": {
-        "Others": ["tls", "ssl", "x509", "cert", "signature", "keyexchange", "keyagreement"]
+        "Others": ["evp", "tls", "x509", "cert", "keyexchange", "keyagreement"]
     }
 }
 
@@ -163,7 +163,7 @@ LIB_CONFIG = {
     },
     'botan': {
         'prefixes': ['botan_'],
-        'namespaces': ['Botan']
+        'namespaces': ['Botan', 'botan', 'botan::', 'Botan::']
     },
     'cryptopp': {
         'prefixes': [],
@@ -186,6 +186,19 @@ for main_class, subcategories_dict in ALGOS.items():
                     for algo_token in value:
                         if isinstance(algo_token, str):
                             ALGO_TOKEN_TO_MAIN_CLASSES.setdefault(algo_token, set()).add(main_class)
+                elif isinstance(value, dict):
+                    to_process_stack.append(value)
+OP_TOKEN_TO_MAIN_CLASSES = {}
+for main_class, subcategories_dict in OPS.items():
+    to_process_stack = [subcategories_dict]
+    while to_process_stack:
+        current_item = to_process_stack.pop()
+        if isinstance(current_item, dict):
+            for _key, value in current_item.items():
+                if isinstance(value, list):
+                    for op_token in value:
+                        if isinstance(op_token, str):
+                            OP_TOKEN_TO_MAIN_CLASSES.setdefault(op_token, set()).add(main_class)
                 elif isinstance(value, dict):
                     to_process_stack.append(value)
 
@@ -256,34 +269,44 @@ def classify(func_name: str, group: str, library: str) -> str:
     def get_ops_and_algo_classes(name_part_str: str):
         tokens_for_algos_raw = tokenize_and_recombine(name_part_str, ALL_ALGOS_FLAT)
         tokens_for_ops_raw = tokenize_and_recombine(name_part_str, ALL_OPS_FLAT)
-        ops = sorted(list(set(t for t in tokens_for_ops_raw if t in ALL_OPS_FLAT)))
-        algo_classes = set()
+
+        # Get main OPS categories
+        op_main_classes = set()
+        for t_op in tokens_for_ops_raw:
+            if t_op in OP_TOKEN_TO_MAIN_CLASSES:
+                op_main_classes.update(OP_TOKEN_TO_MAIN_CLASSES[t_op])
+        sorted_op_main_classes = sorted(list(op_main_classes))
+
+        # Get main ALGOS categories
+        algo_main_classes = set()
         for t_algo in tokens_for_algos_raw:
-            if t_algo in ALL_ALGOS_FLAT:
-                if t_algo in ALGO_TOKEN_TO_MAIN_CLASSES:
-                    algo_classes.update(ALGO_TOKEN_TO_MAIN_CLASSES[t_algo])
-        sorted_algo_classes = sorted(list(algo_classes))
-        return ops, sorted_algo_classes
-    
+            if t_algo in ALGO_TOKEN_TO_MAIN_CLASSES:
+                algo_main_classes.update(ALGO_TOKEN_TO_MAIN_CLASSES[t_algo])
+        sorted_algo_main_classes = sorted(list(algo_main_classes))
+
+        return sorted_op_main_classes, sorted_algo_main_classes
+
     name_part_f = get_relevant_name_part(func_name, library)
     ops_f, algo_classes_f = get_ops_and_algo_classes(name_part_f)
     if ops_f or algo_classes_f:
         category_parts = []
         if ops_f:
-            category_parts.append("_".join(ops_f))
+            category_parts.append("_".join(ops_f)) # Now this will be higher-level OPS categories
         if algo_classes_f:
             category_parts.append("_".join(algo_classes_f))
         result_str = "_".join(category_parts)
+        # The "_OPERATION" suffix logic might need re-evaluation based on your exact naming preference
+        # If you want "Core_Crypto_Operations" to be the only thing, then remove this suffix
         if ops_f and not algo_classes_f:
             result_str += "_OPERATION"
         return result_str
-    
+
     name_part_g = get_relevant_name_part(group, library)
     ops_g, algo_classes_g = get_ops_and_algo_classes(name_part_g)
     if ops_g or algo_classes_g:
         category_parts = []
         if ops_g:
-            category_parts.append("_".join(ops_g))
+            category_parts.append("_".join(ops_g)) # Now this will be higher-level OPS categories
         if algo_classes_g:
             category_parts.append("_".join(algo_classes_g))
         result_str = "_".join(category_parts)

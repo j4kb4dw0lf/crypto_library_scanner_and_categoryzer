@@ -18,7 +18,7 @@ UNCATEGORIZED_JSON = os.path.join(OUTPUT_DIR, "uncategorized_primitives.json")
 def save_uncategorized_primitive(func_name, lib_name, filepath, params_list, return_type):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     entry = {
-        "name": func_name,
+        "name": func_name,  
         "library": lib_name,
         "filepath": filepath,
         "parameters": params_list,
@@ -36,7 +36,7 @@ def save_uncategorized_primitive(func_name, lib_name, filepath, params_list, ret
 
         with open(UNCATEGORIZED_JSON, "w", encoding="utf-8") as f:
             json.dump(existing, f, indent=2)
-        logger.info(f"Uncategorized primitive '{func_name}' saved locally.")
+        #logger.info(f"Uncategorized primitive '{func_name}' saved locally.")
     except Exception as e:
         logger.error(f"Failed to write uncategorized primitive to file: {e}", exc_info=True)
 
@@ -196,17 +196,14 @@ def build_database_sqlite(repo_results: list[dict], external_results: list[dict]
                 if not func_name:
                     logger.debug(f"Skipping function due to missing 'full_name' in {library_name_from_scan}: {func_data}")
                     continue
-                last_part_of_name = func_name.split("::")[-1]
-                if "operator" in last_part_of_name.lower() and not any(kw in func_name.lower() for kw in ['encrypt', 'decrypt', 'sign', 'hash']):
-                    logger.debug(f"Skipping likely non-crypto operator function: {func_name} in {library_name_from_scan}")
-                    continue
                 params_list = func_data.get('parameters', [])
                 if not isinstance(params_list, list): params_list = []
                 params_json_str = json.dumps(sorted(params_list))
                 return_type = func_data.get('return_type', '')
-                namespace_group = func_name.split("::")[0] if "::" in func_name else \
+                namespace_group = func_name.split("::")[-2] if "::" in func_name else \
                                   (os.path.splitext(os.path.basename(filepath))[0] if filepath else "unknown_group")
                 category_name_str = classify(func_name, namespace_group, library_name_from_scan)
+                func_name = func_name.split("::")[-1]
                 if category_name_str.lower() == "uncategorized":
                     save_uncategorized_primitive(func_name, library_name_from_scan, filepath, params_list, return_type)
                     continue  # Skip DB insert
