@@ -82,9 +82,9 @@ elif platform.system() == "Darwin":
     elif os.path.isdir(xcode_base_sdk):
         SYSTEM_INCLUDE_PATH = xcode_base_sdk
 
-HEADER_EXTENSIONS = {".h", ".hpp", ".hxx", ".hh", ".inl", ".tpp"}
+HEADER_EXTENSIONS = {".h", ".hpp", ".hxx", ".hh", ".inl", ".tpp", ".h++", ".h+", ".cpp", ".cxx", ".cc", ".cppm", ".ixx", ".txx", ".tcc"}
 SKIP_DIRS = {".git", "build", "tests", "test", "testing", "examples", "example", "docs", "doc", "benchmark", "third_party", "external", "contrib", "tools"}
-SKIP_DIR_PREFIXES = (".", "_")
+SKIP_DIR_PREFIXES = (".")
 
 @lru_cache(maxsize=None)
 def find_headers(base_dir: str) -> list[str]:
@@ -139,7 +139,7 @@ def _parse_and_extract_worker(header_path: str, include_paths: tuple[str]) -> li
         processed_signatures = set()
         if tu.cursor:
             for cursor in tu.cursor.walk_preorder():
-                if cursor.kind == cindex.CursorKind.FUNCTION_DECL:
+                if cursor.kind == cindex.CursorKind.FUNCTION_DECL or cursor.kind == cindex.CursorKind.CXX_METHOD or cursor.kind == cindex.CursorKind.CONSTRUCTOR or cursor.kind == cindex.CursorKind.DESTRUCTOR:
                     if not cursor.location or not cursor.location.file:
                         continue
                     if (cursor.location.file.name == header_path and

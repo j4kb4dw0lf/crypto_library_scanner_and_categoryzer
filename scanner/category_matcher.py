@@ -1,139 +1,14 @@
 import re
+import json
+import os
 
-ALGOS = {
-    "BlockCiphers": {
-        "AES": ["aes", "aes128", "aes192", "aes256"],
-        "DES": ["des", "3des", "tdes", "des-x", "des3", "desx"],
-        "Camellia": ["camellia"],
-        "ARIA": ["aria"],
-        "SM4": ["sm4"],
-        "Blowfish": ["blowfish", "blf"],
-        "Twofish": ["twofish", "twf"],
-        "Serpent": ["serpent"],
-        "CAST": ["cast"],
-        "IDEA": ["idea"],
-        "SEED": ["seed"],
-        "MARS": ["mars"],
-        "RC2": ["rc2"]
-    },
-    "StreamCiphers": {
-        "ChaCha": ["chacha", "chacha20", "chacha20poly1305", "xchacha20", "chachapoly", "xchacha20poly1305"],
-        "Salsa20": ["salsa20", "xsalsa20", "xsalsa20poly1305", "salsa20poly1305"],
-        "RC4": ["rc4"],
-        "HC": ["hc128", "hc256"],
-        "Rabbit": ["rabbit"],
-        "Sosemanuk": ["sosemanuk"]
-    },
-    "AEAD": {
-        "GCM": ["gcm"],
-        "CCM": ["ccm"],
-        "EAX": ["eax"],
-        "OCB": ["ocb"],
-    },
-    "HashingAlgorithms": {
-        "SHA-general": ["sha"],
-        "SHA-1": ["sha1"],
-        "SHA-2": ["sha2", "sha224", "sha256", "sha384", "sha512"],
-        "SHA-3": ["sha3", "sha3", "sha3", "sha3"],
-        "MD": ["md2", "md4", "md5"],
-        "BLAKE2": ["blake2b", "blake2s"],
-        "BLAKE3": ["blake3"],
-        "SM3": ["sm3"],
-        "RIPEMD": ["ripemd160", "ripemd"],
-        "Whirlpool": ["whirlpool"],
-        "Tiger": ["tiger"],
-        "Keccak": ["keccak"],
-        "SHAKE": ["shake128", "shake256"],
-        "Streebog": ["streebog"],
-        "GOST Hash": ["gosthash"]
-    },
-    "MACs": {
-        "HMAC": ["hmac", "hmacsha", "hmacsha512256", "hmacsha512", "hmacsha256"],
-        "CMAC": ["cmac"],
-        "PMAC": ["pmac"],
-        "Poly1305": ["poly1305"]
-    },
-    "PublicKeyCryptography": {
-        "Encryption & Key Exchange": {
-            "RSA": ["rsa"],
-            "ECIES": ["ecies"],
-            "DH": ["dh"],
-            "ECDH": ["ecdh"],
-            "Curve25519": ["curve25519", "x25519"]
-        }
-    },
-    "DigitalSignatures": {
-        "RSA": ["rsa"],
-        "DSA": ["dsa"],
-        "ECDSA": ["ecdsa", "ecdsap256", "ecdsap384", "ecdsap521"],
-        "EdDSA": ["eddsa", "ed25519", "ed448", "sc25519"],
-        "SM2": ["sm2"]
-    },
-    "KEMs": {
-        "Crystals-Kyber": ["crystals-kyber", "kyber"],
-        "NewHope": ["newhope"],
-        "FrodoKEM": ["frodokem", "frodo"],
-        "SIKE": ["sike", "sidh"],
-        "McEliece": ["mceliece"],
-        "BIKE": ["bike"],
-        "HQC": ["hqc"]
-    },
-    "DigitalSignaturesPQC": { 
-        "Crystals-Dilithium": ["crystals-dilithium", "dilithium"],
-        "Falcon": ["falcon"],
-        "SPHINCS+": ["sphincs+", "sphincs"],
-        "XMSS": ["xmss"],
-        "LMS": ["lms"],
-        "Picnic": ["picnic"],
-        "Rainbow": ["rainbow"]
-    }
-}
+json_path = os.path.join(os.path.dirname(__file__), "cats_alts.json")
+with open(json_path, "r", encoding="utf-8") as f:
+    cts_data = json.load(f)
 
-OPS = {
-    "CoreCryptoOperations": {
-        "Encryption": ["encrypt", "seal", "box", "secretbox", "sbox", "aead", "wrap", "encapsulate"],
-        "Decryption": ["decrypt", "unwrap", "decapsulate"],
-        "Signing": ["sign", "signkey", "signature", "sig", "sigkey", "cert", "certificate"],
-        "Verification": ["verify", "verifykey", "verifysig", "verifysig"],
-        "Hashing": ["hash", "pwdhash", "pwhash", "compute"],
-        "Message Authentication": ["hmac", "mac", "authenticate"]
-    },
-    "ModesofOperation": {
-        "CTR": ["ctr"],
-        "CBC": ["cbc"],
-        "CFB": ["cfb"],
-        "OFB": ["ofb"],
-        "XTS-AES": ["xts"],
-        "ECB": ["ecb"]
-    },
-    "KeyManagement": {
-        "Generation & Derivation": ["generate", "keygen", "keypair", "derive", "derivekey", "derivebits"],
-        "Exchange": ["exchange"],
-        "Lifecycle": ["create", "destroy", "rekey", "rotate"],
-        "Material Handling": ["split", "combine"]
-    },
-    "KeyPropertyAccess": {
-        "Public Key": ["pubkey"],
-        "Private Key": ["privkey"]
-    },
-    "RandomnessSeeding": {
-        "Random Number Generation": ["randombytes"],
-        "Seed Management": ["seed", "reseed"]
-    },
-    "DataProcessing": {
-        "Padding": ["pad"],
-        "Unpadding": ["unpad"]
-    },
-    "ValidationIntegrity": {
-        "Data Validation": ["validate"]
-    },
-    "InternalPrimitives": {
-        "S-Box Operation": ["sbox"]
-    },
-    "Others": {
-        "Others": ["evp", "tls", "x509", "cert", "keyexchange", "keyagreement"]
-    }
-}
+ALGOS = cts_data.get("ALGOS", {})
+OPS =  cts_data.get("OPS", {})
+ALTS = cts_data.get("ALTS", {})
 
 def flatten_categorized_data(categorized_dict):
     flat_set = set()
@@ -149,45 +24,34 @@ ALL_ALGOS_FLAT = flatten_categorized_data(ALGOS)
 ALL_OPS_FLAT = flatten_categorized_data(OPS)
 
 LIB_CONFIG = {
-    'openssl': {
-        'prefixes': ['EVP_', 'evp_'],
-        'namespaces': []
-    },
-    'libsodium': {
-        'prefixes': ['crypto_', 'sodium_'],
-        'namespaces': []
-    },
-    'libssh2': {
-        'prefixes': ['libssh2_'],
-        'namespaces': []
-    },
-    'botan': {
-        'prefixes': ['botan_'],
-        'namespaces': ['Botan', 'botan', 'botan::', 'Botan::']
-    },
-    'cryptopp': {
-        'prefixes': [],
-        'namespaces': ['CryptoPP']
-    },
-    'wolfssl': {
-        'prefixes': ['wolfSSL_', 'wolfssl_'],
-        'namespaces': []
-    }
+    'openssl': {'prefixes': ['EVP_', 'evp_'], 'namespaces': []},
+    'libsodium': {'prefixes': ['crypto_', 'sodium_'], 'namespaces': []},
+    'libssh2': {'prefixes': ['libssh2_'], 'namespaces': []},
+    'botan': {'prefixes': ['botan_'], 'namespaces': ['Botan', 'botan', 'botan::', 'Botan::']},
+    'cryptopp': {'prefixes': [], 'namespaces': ['CryptoPP']},
+    'wolfssl': {'prefixes': ['wolfSSL_', 'wolfssl_'], 'namespaces': []}
 }
 
-ALGO_TOKEN_TO_MAIN_CLASSES = {}
-for main_class, subcategories_dict in ALGOS.items():
-    to_process_stack = [subcategories_dict]
-    while to_process_stack:
-        current_item = to_process_stack.pop()
-        if isinstance(current_item, dict):
-            for _key, value in current_item.items():
-                if isinstance(value, list):
-                    for algo_token in value:
-                        if isinstance(algo_token, str):
-                            ALGO_TOKEN_TO_MAIN_CLASSES.setdefault(algo_token, set()).add(main_class)
-                elif isinstance(value, dict):
-                    to_process_stack.append(value)
+ALGO_TOKEN_TO_INFO = {}
+
+def build_algo_token_info_map(data, path, info_map):
+    """
+    Recursively builds a map from an algorithm token to its full category path.
+    FIXED: Stores the entire path as a tuple.
+    """
+    if isinstance(data, dict):
+        for key, value in data.items():
+            build_algo_token_info_map(value, path + [key], info_map)
+    elif isinstance(data, list):
+        # The path now contains all keys leading to the token list
+        # e.g., ['PublicKeyCryptography', 'Encryption & Key Exchange', 'DH']
+        for token in data:
+            info_map.setdefault(token, set()).add(tuple(path))
+
+build_algo_token_info_map(ALGOS, [], ALGO_TOKEN_TO_INFO)
+
+
+
 OP_TOKEN_TO_MAIN_CLASSES = {}
 for main_class, subcategories_dict in OPS.items():
     to_process_stack = [subcategories_dict]
@@ -242,108 +106,108 @@ def tokenize_and_recombine(name_part: str, known_tokens: set) -> list[str]:
         found_match = False
         for length in range(min(max_words_to_combine, len(lowercase_tokens) - i), 0, -1):
             current_slice = lowercase_tokens[i : i + length]
-            potential_combo_direct = "".join(current_slice)
-            potential_combo_hyphen = "-".join(current_slice)
-            potential_combo_under = "_".join(current_slice)
-            if potential_combo_direct in known_tokens:
-                recombined.append(potential_combo_direct)
-                i += length
-                found_match = True
-                break
-            elif potential_combo_hyphen in known_tokens:
-                recombined.append(potential_combo_hyphen)
-                i += length
-                found_match = True
-                break
-            elif potential_combo_under in known_tokens:
-                recombined.append(potential_combo_under)
-                i += length
-                found_match = True
+            potential_combos = {
+                "".join(current_slice),
+                "-".join(current_slice),
+                "_".join(current_slice)
+            }
+            for combo in potential_combos:
+                if combo in known_tokens:
+                    recombined.append(combo)
+                    i += length
+                    found_match = True
+                    break
+            if found_match:
                 break
         if not found_match:
             recombined.append(lowercase_tokens[i])
             i += 1
     return recombined
 
+
+
+def get_classification_details(name_part_str: str):
+    """
+    Analyzes a name part and returns its operation classes, algorithm classes, and keys for alt lookups.
+    FIXED: Traverses ALTS using the full path for robust alternative finding.
+    """
+    tokens_for_ops = tokenize_and_recombine(name_part_str, ALL_OPS_FLAT)
+    tokens_for_algos = tokenize_and_recombine(name_part_str, ALL_ALGOS_FLAT)
+
+    # Get main OPS categories (this logic is unchanged)
+    op_main_classes = set()
+    for t_op in tokens_for_ops:
+        op_main_classes.update(OP_TOKEN_TO_MAIN_CLASSES.get(t_op, set()))
+
+    # Get main ALGOS categories and alternatives using the full path
+    algo_main_classes = set()
+    alternatives = set()
+    for t_algo in tokens_for_algos:
+        # ALGO_TOKEN_TO_INFO now contains a set of full paths for each token
+        for path_tuple in ALGO_TOKEN_TO_INFO.get(t_algo, set()):
+            # The main class is the first element in the path
+            algo_main_classes.add(path_tuple[0])
+            
+            # Traverse the ALTS dictionary using the full path
+            current_level_in_alts = ALTS
+            try:
+                for key in path_tuple:
+                    current_level_in_alts = current_level_in_alts[key]
+                
+                # If we successfully traversed the path and found a string, it's an alternative
+                if isinstance(current_level_in_alts, str):
+                    alternatives.add(current_level_in_alts)
+            except (KeyError, TypeError):
+                # This path does not exist in the ALTS dictionary, so we skip it.
+                continue
+
+    return sorted(list(op_main_classes)), sorted(list(algo_main_classes)), sorted(list(alternatives))
+
 def classify(func_name: str, group: str, library: str) -> str:
-    def get_ops_and_algo_classes(name_part_str: str):
-        tokens_for_algos_raw = tokenize_and_recombine(name_part_str, ALL_ALGOS_FLAT)
-        tokens_for_ops_raw = tokenize_and_recombine(name_part_str, ALL_OPS_FLAT)
-
-        # Get main OPS categories
-        op_main_classes = set()
-        for t_op in tokens_for_ops_raw:
-            if t_op in OP_TOKEN_TO_MAIN_CLASSES:
-                op_main_classes.update(OP_TOKEN_TO_MAIN_CLASSES[t_op])
-        sorted_op_main_classes = sorted(list(op_main_classes))
-
-        # Get main ALGOS categories
-        algo_main_classes = set()
-        for t_algo in tokens_for_algos_raw:
-            if t_algo in ALGO_TOKEN_TO_MAIN_CLASSES:
-                algo_main_classes.update(ALGO_TOKEN_TO_MAIN_CLASSES[t_algo])
-        sorted_algo_main_classes = sorted(list(algo_main_classes))
-
-        return sorted_op_main_classes, sorted_algo_main_classes
-
+    ops_classes, algo_classes, alternatives = [], [], []
     name_part_f = get_relevant_name_part(func_name, library)
-    ops_f, algo_classes_f = get_ops_and_algo_classes(name_part_f)
+    ops_f, algo_classes_f, alts_f = get_classification_details(name_part_f)
     if ops_f or algo_classes_f:
-        category_parts = []
-        if ops_f:
-            category_parts.append("_".join(ops_f)) # Now this will be higher-level OPS categories
-        if algo_classes_f:
-            category_parts.append("_".join(algo_classes_f))
-        result_str = "_".join(category_parts)
-        # The "_OPERATION" suffix logic might need re-evaluation based on your exact naming preference
-        # If you want "Core_Crypto_Operations" to be the only thing, then remove this suffix
-        if ops_f and not algo_classes_f:
-            result_str += "_OPERATION"
-        return result_str
-
-    name_part_g = get_relevant_name_part(group, library)
-    ops_g, algo_classes_g = get_ops_and_algo_classes(name_part_g)
-    if ops_g or algo_classes_g:
-        category_parts = []
-        if ops_g:
-            category_parts.append("_".join(ops_g)) # Now this will be higher-level OPS categories
-        if algo_classes_g:
-            category_parts.append("_".join(algo_classes_g))
-        result_str = "_".join(category_parts)
-        if ops_g and not algo_classes_g:
-            result_str += "_OPERATION"
-        return result_str
-    return 'uncategorized'
-
-def get_pqc_algos_from_structure(algos_data_structure):
-    pqc_set = set()
-    kems_main = algos_data_structure.get("KEMs", {})
-    for algo_list in kems_main.values():
-        pqc_set.update(algo_list)
-    sigs_pqc_main = algos_data_structure.get("DigitalSignaturesPQC", {})
-    for algo_list in sigs_pqc_main.values():
-        pqc_set.update(algo_list)
-    return pqc_set
-
-PQC_ALGOS_DERIVED = get_pqc_algos_from_structure(ALGOS)
-
-HEURISTIC_SAFE = {
-    'blake3', 'sha3_256', 'sha3_384', 'sha3_512', 'shake128', 'shake256',
-    'ed25519', 'ed448', 'curve25519', 'x25519',
-}
-
-SAFE_ALGOS_COMBINED = PQC_ALGOS_DERIVED | HEURISTIC_SAFE
+        ops_classes, algo_classes, alternatives = ops_f, algo_classes_f, alts_f
+    else:
+        name_part_g = get_relevant_name_part(group, library)
+        ops_g, algo_classes_g, alts_g = get_classification_details(name_part_g)
+        if ops_g or algo_classes_g:
+            ops_classes, algo_classes, alternatives = ops_g, algo_classes_g, alts_g
+    if not ops_classes and not algo_classes:
+        return 'uncategorized'
+    category_parts = []
+    if ops_classes:
+        category_parts.append("_".join(ops_classes))
+    if algo_classes:
+        category_parts.append("_".join(algo_classes))
+    result_str = "_".join(category_parts)
+    if ops_classes and not algo_classes:
+        result_str += "_OPERATION"
+    if alternatives:
+        alt_str = "_".join(alternatives)
+        return f"{result_str}%{alt_str}"
+    return result_str
 
 def is_quantum_safe(func_name: str, group: str, library: str) -> bool:
-    relevant_safe_algos = SAFE_ALGOS_COMBINED 
+    pqc_set = set()
+    for main_cat in ["KEMs", "DigitalSignaturesPQC"]:
+        for sub_cat in ALGOS.get(main_cat, {}).values():
+            pqc_set.update(sub_cat)
+    safe_algos_combined = pqc_set
     name_part_func = get_relevant_name_part(func_name, library)
-    tokens_func = tokenize_and_recombine(name_part_func, relevant_safe_algos)
-    for token in tokens_func:
-        if token in relevant_safe_algos:
-            return True
+    tokens_func = tokenize_and_recombine(name_part_func, safe_algos_combined)
+    if any(token in safe_algos_combined for token in tokens_func):
+        return True
     name_part_group = get_relevant_name_part(group, library)
-    tokens_group = tokenize_and_recombine(name_part_group, relevant_safe_algos)
-    for token in tokens_group:
-        if token in relevant_safe_algos:
-            return True
+    tokens_group = tokenize_and_recombine(name_part_group, safe_algos_combined)
+    if any(token in safe_algos_combined for token in tokens_group):
+        return True
     return False
+
+
+func_name_1 = "_libssh2_dh_secret"
+group_1 = "..."
+library_1 = "libssh2"
+classification_1 = classify(func_name_1, group_1, library_1)
+print(f"Function: '{func_name_1}'\nClassification: {classification_1}\n")

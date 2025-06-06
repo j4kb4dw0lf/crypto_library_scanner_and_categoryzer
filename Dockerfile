@@ -7,11 +7,13 @@ ENV GIT_TERMINAL_PROMPT=0
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
-    clang-14 \
-    libclang-14-dev \
+    bear \
+    cmake \
+    clang \
+    libclang-dev \
     ca-certificates \
     sqlite3 \
-    && ln -s /usr/lib/llvm-14/lib/libclang.so.1 /usr/lib/libclang.so \
+    && ln -s /usr/lib/llvm-16/lib/libclang.so.1 /usr/lib/libclang.so \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

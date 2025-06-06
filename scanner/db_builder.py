@@ -36,7 +36,6 @@ def save_uncategorized_primitive(func_name, lib_name, filepath, params_list, ret
 
         with open(UNCATEGORIZED_JSON, "w", encoding="utf-8") as f:
             json.dump(existing, f, indent=2)
-        #logger.info(f"Uncategorized primitive '{func_name}' saved locally.")
     except Exception as e:
         logger.error(f"Failed to write uncategorized primitive to file: {e}", exc_info=True)
 
@@ -131,7 +130,7 @@ def get_or_create_category_ids_db(conn, category_names_str: str) -> list[int]:
     return sorted(list(set(ids_list)))
 
 def build_database_sqlite(repo_results: list[dict], external_results: list[dict]):
-    global DB_FILE, NON_PQ_COMMENT
+    global DB_FILE
     logger.info(f"Starting database build/update: {DB_FILE}")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     conn = sqlite3.connect(DB_FILE)
@@ -204,15 +203,20 @@ def build_database_sqlite(repo_results: list[dict], external_results: list[dict]
                                   (os.path.splitext(os.path.basename(filepath))[0] if filepath else "unknown_group")
                 category_name_str = classify(func_name, namespace_group, library_name_from_scan)
                 func_name = func_name.split("::")[-1]
-                if category_name_str.lower() == "uncategorized":
-                    save_uncategorized_primitive(func_name, library_name_from_scan, filepath, params_list, return_type)
-                    continue  # Skip DB insert
+
+                if category_name_str.lower() == "uncategorized" or "operator" in func_name.lower():
+                    #save_uncategorized_primitive(func_name, library_name_from_scan, filepath, params_list, return_type)
+                    continue 
                 need_arg_value = 1 if category_name_str.endswith("_OPERATION") else None
                 if category_name_str.endswith("_OPERATION"):
                     category_name_str = category_name_str[:-len("_OPERATION")]
+                func_comment = NON_PQ_COMMENT
+                if "%" in category_name_str:
+                    func_comment = category_name_str.split("%")[-1].strip()
+                    category_name_str = category_name_str.split("%")[0].strip()
                 current_categories_ids = get_or_create_category_ids_db(conn, category_name_str)
                 is_pq_safe_flag = is_quantum_safe(func_name, namespace_group, library_name_from_scan)
-                primitive_comment = NON_PQ_COMMENT if not is_pq_safe_flag else ""
+                primitive_comment = func_comment if not is_pq_safe_flag else "SAFE"
                 cursor.execute("""
                     SELECT primitive_id, return_type, comment_alternative, need_arg
                     FROM Primitives
