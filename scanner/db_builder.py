@@ -9,6 +9,11 @@ logger = logging.getLogger(__name__)
 if not logger.hasHandlers():
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+json_path = os.path.join(os.path.dirname(__file__), "cats_alts.json")
+with open(json_path, "r", encoding="utf-8") as f:
+    cts_data = json.load(f)
+ALTS_CATS = cts_data.get("ALTS_CATS", {})
+
 OUTPUT_DIR = "output"
 DB_FILE = os.path.join(OUTPUT_DIR, "crypto_primitives.db")
 NON_PQ_COMMENT = "Consider modern, quantum-safe alternatives."
@@ -104,7 +109,7 @@ def get_or_create_category_ids_db(conn, category_names_str: str) -> list[int]:
             ids_list.append(row[0])
         else:
             try:
-                cursor.execute("INSERT INTO Categories (name, comment_alternative_general) VALUES (?, ?)", (name, NON_PQ_COMMENT))
+                cursor.execute("INSERT INTO Categories (name, comment_alternative_general) VALUES (?, ?)", (name, ALTS_CATS.get(name, "")))
                 new_id = cursor.lastrowid
                 if new_id is not None:
                     ids_list.append(new_id)

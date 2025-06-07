@@ -221,5 +221,17 @@
         "Picnic": "SAFE",
         "Rainbow": "SAFE"
     }
+},
+"ALTS_CATS":
+{
+    "BlockCiphers": "AES-256",
+    "StreamCiphers": "chacha20 & AES-CTR",
+    "AEAD": "SAFE",
+    "HashingAlgorithms": "SHA-3-512 & SHA-2-512 & SHAKE-256",
+    "MACs": "HMAC-SHA-2 & CMAC-AES",
+    "PublicKeyCryptography": "ML-KEM-1024", 
+    "DigitalSignatures": "ML-DSA-87",
+    "KEMs": "SAFE",
+    "DigitalSignaturesPQC": "SAFE"
 }
 }
