@@ -1,0 +1,5 @@
+name: your-org/your-query-pack
+version: 1.0.0
+library: false
+dependencies:
+  codeql/cpp-all: ^5.1.0

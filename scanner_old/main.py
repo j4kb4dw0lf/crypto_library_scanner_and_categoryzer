@@ -7,14 +7,14 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from scanner.git_cloner import clone_repo 
 from scanner.external_cloner import clone_external_lib
-from scanner.parser import parse_repo_headers_with_codeql, CODEQL_AVAILABLE
+from scanner.parser import parse_repo_headers, LIBCLANG_INITIALIZED
 from scanner.utils import get_library_info
 from scanner.db_builder import build_database_sqlite as build_database
 
 logger = logging.getLogger("scanner")
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(asctime)s %(name)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S', force=True)
 
-def process_repository(repo_url: str, clone_dir: str) -> dict | None:
+def process_repository(repo_url: str, clone_dir: str, parser_workers: int | None) -> dict | None:
     repo_short_name = repo_url.split('/')[-1].replace('.git','')
     repo_logger = logging.getLogger(f"scanner.repo.{repo_short_name}")
     repo_logger.info(f"--- Starting processing ---")
@@ -30,13 +30,12 @@ def process_repository(repo_url: str, clone_dir: str) -> dict | None:
         library_name, library_version = get_library_info(local_path, repo_name, repo_url)
         repo_logger.info(f"Detected Library: {library_name} Version: {library_version or 'Unknown'}")
 
-        if not CODEQL_AVAILABLE:
+        if not LIBCLANG_INITIALIZED:
              repo_logger.error("Skipping header parsing because libclang failed to initialize.")
              functions = []
         else:
             repo_logger.info(f"Parsing headers...")
-            input(f"Press Enter to start parsing headers for {repo_name}...")  # Wait for user input to continue
-            functions = parse_repo_headers_with_codeql(local_path)
+            functions = parse_repo_headers(local_path, max_workers=parser_workers)
 
         end_time = time.time()
         duration = end_time - start_time
@@ -54,7 +53,7 @@ def process_repository(repo_url: str, clone_dir: str) -> dict | None:
         repo_logger.error(f"Unhandled exception during processing: {e}", exc_info=True)
         return None
 
-def process_external_library(external_lib_path: str, external_libs_dir: str) -> dict | None:
+def process_external_library(external_lib_path: str, external_libs_dir: str, parser_workers: int | None) -> dict | None:
     external_lib_short_name = os.path.basename(os.path.normpath(external_lib_path))
     external_lib_logger = logging.getLogger(f"scanner.external_lib.{external_lib_short_name}")
     external_lib_logger.info(f"--- Starting processing ---")
@@ -79,12 +78,12 @@ def process_external_library(external_lib_path: str, external_libs_dir: str) -> 
 
         external_lib_logger.info(f"Detected Library: {library_name} Version: {library_version}")
 
-        if not CODEQL_AVAILABLE:
+        if not LIBCLANG_INITIALIZED:
              external_lib_logger.error("Skipping header parsing because libclang failed to initialize.")
              functions = []
         else:
             external_lib_logger.info(f"Parsing headers...")
-            functions = parse_repo_headers_with_codeql(local_path)
+            functions = parse_repo_headers(local_path, max_workers=parser_workers)
 
         end_time = time.time()
         duration = end_time - start_time
@@ -154,6 +153,13 @@ def main():
         logger.critical(f"Failed to create necessary directories ({args.clone_dir}, {args.output_dir}): {e}")
         sys.exit(1)
 
+    from scanner import db_builder
+    db_builder.OUTPUT_DIR = args.output_dir
+    db_builder.PRIMITIVES_FILE = os.path.join(args.output_dir, "primitives.json")
+    db_builder.LIBRARIES_FILE = os.path.join(args.output_dir, "libraries.json")
+    db_builder.UNCATEGORIZED_PRIMITIVES_FILE = os.path.join(args.output_dir, "uncategorized_primitives.json")
+    logger.info(f"Database output files: {db_builder.LIBRARIES_FILE}, {db_builder.PRIMITIVES_FILE}, {db_builder.UNCATEGORIZED_PRIMITIVES_FILE}")
+
     overall_start_time = time.time()
     all_results = []
 
@@ -164,35 +170,10 @@ def main():
          sys.exit(0)
 
     logger.info(f"Processing {len(args.repo_urls)} repositories using up to {max_repo_workers} concurrent workers...")
-    with open(os.path.join(os.path.dirname((os.path.abspath(__file__))), "query", "query.ql"), 'w') as f:
-        query_content = f.write(f"""
-/**
- * @name Find Public Function Declarations
- * @description Finds function declarations, their parameters, and locations.
- * @kind table
- * @id cpp/custom/find-function-declarations
- */
-import cpp
 
-from Function f
-where
-    f.getLocation().getFile().getAbsolutePath().matches("%{os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}%")
-select
-    f.getNamespace().getQualifiedName() as namespace,
-    f.getName() as functionName,
-    f.getType().toString() as returnType,
-    f.getParameterString() as parameterString,
-    f.getLocation().getFile().getAbsolutePath() as filePath,
-    f.getLocation().getStartLine() as startLine
-order by
-    filePath, startLine"""
-    )
-        if not query_content:
-            logger.error("Query file is empty or not found. Ensure the query is available.")
-            sys.exit(1)
-    with ThreadPoolExecutor(max_workers=1, thread_name_prefix="RepoWorker") as executor:
+    with ThreadPoolExecutor(max_workers=max_repo_workers, thread_name_prefix="RepoWorker") as executor:
         future_to_url = {
-            executor.submit(process_repository, url, args.clone_dir): url
+            executor.submit(process_repository, url, args.clone_dir, args.parser_workers): url
             for url in args.repo_urls
         }
 
@@ -224,7 +205,7 @@ order by
 
     with ThreadPoolExecutor(max_workers=max_repo_workers, thread_name_prefix="RepoWorker") as executor:
         future_to_url = {
-            executor.submit(process_external_library, url, args.external_libs_dir): url
+            executor.submit(process_external_library, url, args.external_libs_dir, args.parser_workers): url
             for url in args.external_libs_paths
         }
 
