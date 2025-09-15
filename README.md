@@ -12,6 +12,7 @@ docker build -t crypto-scanner .
 for example to analyze libssh as an external library and many major repos from github:
 
 copying the release of libssh form their website under /ext said library can now be scanned
+copying the release of libssh form their website under /ext said library can now be scanned
 
 
 ```
