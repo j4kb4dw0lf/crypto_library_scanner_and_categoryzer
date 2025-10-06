@@ -6,8 +6,7 @@ from datetime import datetime, timezone
 from .category_matcher import classify, is_quantum_safe
 
 logger = logging.getLogger(__name__)
-if not logger.hasHandlers():
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Logging will be configured by main.py with colored formatter
 
 json_path = os.path.join(os.path.dirname(__file__), "cats_alts.json")
 with open(json_path, "r", encoding="utf-8") as f:
@@ -23,7 +22,7 @@ UNCATEGORIZED_JSON = os.path.join(OUTPUT_DIR, "uncategorized_primitives.json")
 def save_uncategorized_primitive(func_name, lib_name, filepath, params_list, return_type):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     entry = {
-        "name": func_name,  
+        "name": func_name,
         "library": lib_name,
         "filepath": filepath,
         "parameters": params_list,
@@ -211,7 +210,7 @@ def build_database_sqlite(repo_results: list[dict], external_results: list[dict]
 
                 if category_name_str.lower() == "uncategorized" or "operator" in func_name.lower():
                     #save_uncategorized_primitive(func_name, library_name_from_scan, filepath, params_list, return_type)
-                    continue 
+                    continue
                 need_arg_value = 1 if category_name_str.endswith("_OPERATION") else None
                 if category_name_str.endswith("_OPERATION"):
                     category_name_str = category_name_str[:-len("_OPERATION")]

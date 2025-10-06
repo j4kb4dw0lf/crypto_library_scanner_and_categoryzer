@@ -49,8 +49,11 @@ def clone_repo(repo_url: str, base_dir: str = REPOS_DIR) -> tuple[str | None, st
         env = os.environ.copy()
         env['GIT_TERMINAL_PROMPT'] = '0'
 
+        git_command = ["git", "clone", "--depth=1", "--no-tags", "--single-branch", repo_url, local_path]
+        logger.info(f"Running command: {' '.join(git_command)}")
+
         process = subprocess.run(
-            ["git", "clone", "--depth=1", "--no-tags", "--single-branch", repo_url, local_path],
+            git_command,
             check=True,
             capture_output=True,
             text=True,

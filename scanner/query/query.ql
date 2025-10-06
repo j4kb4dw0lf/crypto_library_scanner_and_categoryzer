@@ -9,7 +9,7 @@ import cpp
 
 from Function f
 where
-    f.getLocation().getFile().getAbsolutePath().matches("%/home/jakbadwolf/Desktop/crypto-scanner%")
+    f.getLocation().getFile().getAbsolutePath().matches("%/home/user/crypto_library_scanner_and_categoryzer%")
 select
     f.getNamespace().getQualifiedName() as namespace,
     f.getName() as functionName,
