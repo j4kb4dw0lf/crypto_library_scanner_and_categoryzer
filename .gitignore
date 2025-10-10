@@ -2,7 +2,6 @@ ext
 output
 repos/*
 __pycache__
-scanner/repos_builds_cmds/*
 scanner/repos_databases/*
 scanner/repos_analysis/*
 scanner/query/query.ql
