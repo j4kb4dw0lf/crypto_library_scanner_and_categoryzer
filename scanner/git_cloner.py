@@ -30,17 +30,30 @@ def clone_repo(repo_url: str, base_dir: str = REPOS_DIR) -> tuple[str | None, st
     repo_name = get_repo_name_from_url(repo_url)
     local_path = os.path.join(base_dir, repo_name)
 
-    if os.path.exists(local_path) and os.path.isdir(os.path.join(local_path, '.git')):
-        logger.info(f"Repo '{repo_name}' already exists at '{local_path}'. Skipping clone.")
-        return local_path, repo_name
-    elif os.path.exists(local_path):
-        logger.warning(f"Path '{local_path}' exists but doesn't seem to be a git repo. Attempting to remove and clone.")
+    if os.path.exists(local_path):
+        # Check if directory has meaningful content (not just hidden files like .git)
         try:
-            import shutil
-            shutil.rmtree(local_path)
-        except OSError as e:
-            logger.error(f"Failed to remove existing directory '{local_path}': {e}. Skipping clone.")
-            return None, repo_name
+            all_files = os.listdir(local_path)
+            # Filter out hidden files (starting with .)
+            non_hidden_files = [f for f in all_files if not f.startswith('.')]
+            has_meaningful_content = len(non_hidden_files) > 0
+        except OSError:
+            has_meaningful_content = False
+
+        if has_meaningful_content and os.path.isdir(os.path.join(local_path, '.git')):
+            logger.info(f"Repo '{repo_name}' already exists at '{local_path}' with meaningful content. Skipping clone.")
+            return local_path, repo_name
+        else:
+            if not has_meaningful_content:
+                logger.warning(f"Path '{local_path}' exists but has no meaningful content (only hidden files or empty). Attempting clone.")
+            else:
+                logger.warning(f"Path '{local_path}' exists but doesn't seem to be a git repo. Attempting clone.")
+            try:
+                import shutil
+                shutil.rmtree(local_path)
+            except OSError as e:
+                logger.error(f"Failed to remove existing directory '{local_path}': {e}. Skipping clone.")
+                return None, repo_name
 
     os.makedirs(base_dir, exist_ok=True)
 
