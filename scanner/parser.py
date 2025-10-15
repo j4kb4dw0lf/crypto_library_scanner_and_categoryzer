@@ -68,10 +68,12 @@ def _create_codeql_database(repo_path: str, db_path: str, alias: str, build_name
     # Check if database already exists
     if os.path.exists(db_path):
         if overwrite:
-            logger.info(f"Database already exists at {db_path}. Will overwrite (--overwrite-dbs flag is set).")
+            logger.warning("CodeQL DB already existing and will be overwritten")
         else:
-            logger.info(f"Database already exists at {db_path}. Skipping creation (use --overwrite-dbs to overwrite).")
+            logger.warning("CodeQL DB Already existing, skip creation")
             return True
+    else:
+        logger.warning("CodeQL DB not found, creating one")
 
     # Validate that repository path exists
     if not os.path.exists(repo_path):

@@ -1,6 +1,6 @@
 ext
 output
-repos/*
+repos/
 __pycache__
 scanner/repos_databases/*
 scanner/repos_analysis/*
