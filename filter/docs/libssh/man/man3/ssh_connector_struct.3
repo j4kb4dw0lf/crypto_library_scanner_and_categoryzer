@@ -1,0 +1,61 @@
+.TH "ssh_connector_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_connector_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_session\fP \fBsession\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBin_channel\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBout_channel\fP"
+.br
+.ti -1c
+.RI "socket_t \fBin_fd\fP"
+.br
+.ti -1c
+.RI "socket_t \fBout_fd\fP"
+.br
+.ti -1c
+.RI "bool \fBfd_is_socket\fP"
+.br
+.ti -1c
+.RI "\fBssh_poll_handle\fP \fBin_poll\fP"
+.br
+.ti -1c
+.RI "\fBssh_poll_handle\fP \fBout_poll\fP"
+.br
+.ti -1c
+.RI "\fBssh_event\fP \fBevent\fP"
+.br
+.ti -1c
+.RI "int \fBin_available\fP"
+.br
+.ti -1c
+.RI "int \fBout_wontblock\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_channel_callbacks_struct\fP \fBin_channel_cb\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_channel_callbacks_struct\fP \fBout_channel_cb\fP"
+.br
+.ti -1c
+.RI "enum ssh_connector_flags_e \fBin_flags\fP"
+.br
+.ti -1c
+.RI "enum ssh_connector_flags_e \fBout_flags\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

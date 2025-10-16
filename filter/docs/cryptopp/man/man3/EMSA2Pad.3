@@ -1,0 +1,88 @@
+.TH "EMSA2Pad" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EMSA2Pad \- EMSA2 padding method\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <emsa2\&.h>\fP
+.PP
+Inherits \fBEMSA2HashIdLookup< PK_DeterministicSignatureMessageEncodingMethod >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBMinRepresentativeBitLength\fP (size_t hashIdentifierLength, size_t digestLength) const"
+.br
+.ti -1c
+.RI "void \fBComputeMessageRepresentative\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, \fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_DeterministicSignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "bool \fBVerifyMessageRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLength\fP (size_t representativeBitLength, size_t hashIdentifierLength, size_t digestLength) const"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines whether an encoding method requires a random number generator\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "virtual bool \fBRecoverablePartFirst\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessSemisignature\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *semisignature, size_t semisignatureLength) const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessRecoverableMessage\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *presignature, size_t presignatureLength, \fBSecByteBlock\fP &semisignature) const"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromSemisignature\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, const \fBbyte\fP *presignature, size_t presignatureLength, const \fBbyte\fP *semisignature, size_t semisignatureLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+EMSA2 padding method\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void EMSA2Pad::ComputeMessageRepresentative (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * recoverableMessage, size_t recoverableMessageLength, \fBHashTransformation\fP & hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP * representative, size_t representativeBitLength) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_SignatureMessageEncodingMethod\fP\&.
+.SS "size_t EMSA2Pad::MinRepresentativeBitLength (size_t hashIdentifierLength, size_t digestLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBPK_SignatureMessageEncodingMethod\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

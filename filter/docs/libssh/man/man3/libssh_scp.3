@@ -1,0 +1,655 @@
+.TH "libssh_scp" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_scp \- The SSH scp functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_scp\fP \fBssh_scp_new\fP (\fBssh_session\fP session, int mode, const char *\fBlocation\fP)"
+.br
+.RI "Create a new scp session\&. "
+.ti -1c
+.RI "int \fBssh_scp_init\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Initialize the scp channel\&. "
+.ti -1c
+.RI "int \fBssh_scp_close\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Close the scp channel\&. "
+.ti -1c
+.RI "void \fBssh_scp_free\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Free a scp context\&. "
+.ti -1c
+.RI "int \fBssh_scp_push_directory\fP (\fBssh_scp\fP scp, const char *dirname, int mode)"
+.br
+.RI "Create a directory in a scp in sink mode\&. "
+.ti -1c
+.RI "int \fBssh_scp_leave_directory\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Leave a directory\&. "
+.ti -1c
+.RI "int \fBssh_scp_push_file64\fP (\fBssh_scp\fP scp, const char *filename, uint64_t size, int mode)"
+.br
+.RI "Initialize the sending of a file to a scp in sink mode, using a 64-bit size\&. "
+.ti -1c
+.RI "int \fBssh_scp_push_file\fP (\fBssh_scp\fP scp, const char *filename, size_t size, int mode)"
+.br
+.RI "Initialize the sending of a file to a scp in sink mode\&. "
+.ti -1c
+.RI "int \fBssh_scp_response\fP (\fBssh_scp\fP scp, char **response)"
+.br
+.ti -1c
+.RI "int \fBssh_scp_write\fP (\fBssh_scp\fP scp, const void *buffer, size_t len)"
+.br
+.RI "Write into a remote scp file\&. "
+.ti -1c
+.RI "int \fBssh_scp_read_string\fP (\fBssh_scp\fP scp, char *buffer, size_t len)"
+.br
+.RI "Read a string on a channel, terminated by '
+.br
+'\&. "
+.ti -1c
+.RI "int \fBssh_scp_pull_request\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Wait for a scp request (file, directory)\&. "
+.ti -1c
+.RI "int \fBssh_scp_deny_request\fP (\fBssh_scp\fP scp, const char *reason)"
+.br
+.RI "Deny the transfer of a file or creation of a directory coming from the remote party\&. "
+.ti -1c
+.RI "int \fBssh_scp_accept_request\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Accepts transfer of a file or creation of a directory coming from the remote party\&. "
+.ti -1c
+.RI "int \fBssh_scp_read\fP (\fBssh_scp\fP scp, void *buffer, size_t size)"
+.br
+.RI "Read from a remote scp file\&. "
+.ti -1c
+.RI "const char * \fBssh_scp_request_get_filename\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Get the name of the directory or file being pushed from the other party\&. "
+.ti -1c
+.RI "int \fBssh_scp_request_get_permissions\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Get the permissions of the directory or file being pushed from the other party\&. "
+.ti -1c
+.RI "size_t \fBssh_scp_request_get_size\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Get the size of the file being pushed from the other party\&. "
+.ti -1c
+.RI "uint64_t \fBssh_scp_request_get_size64\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Get the size of the file being pushed from the other party\&. "
+.ti -1c
+.RI "int \fBssh_scp_integer_mode\fP (const char *mode)"
+.br
+.RI "Convert a scp text mode to an integer\&. "
+.ti -1c
+.RI "char * \fBssh_scp_string_mode\fP (int mode)"
+.br
+.RI "Convert a unix mode into a scp string\&. "
+.ti -1c
+.RI "const char * \fBssh_scp_request_get_warning\fP (\fBssh_scp\fP scp)"
+.br
+.RI "Get the warning string from a scp handle\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+SCP protocol over SSH functions
+
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_scp_accept_request (\fBssh_scp\fP scp)"
+
+.PP
+Accepts transfer of a file or creation of a directory coming from the remote party\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the message was sent, SSH_ERROR if sending the message failed, or sending it in a bad state\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_close (\fBssh_scp\fP scp)"
+
+.PP
+Close the scp channel\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp context to close\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success or an SSH error code\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_init()\fP 
+.RE
+.PP
+
+.SS "int ssh_scp_deny_request (\fBssh_scp\fP scp, const char * reason)"
+
+.PP
+Deny the transfer of a file or creation of a directory coming from the remote party\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&. 
+.br
+\fIreason\fP A nul-terminated string with a human-readable explanation of the deny\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the message was sent, SSH_ERROR if the sending the message failed, or sending it in a bad state\&. 
+.RE
+.PP
+
+.SS "void ssh_scp_free (\fBssh_scp\fP scp)"
+
+.PP
+Free a scp context\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The context to free\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_new()\fP 
+.RE
+.PP
+
+.SS "int ssh_scp_init (\fBssh_scp\fP scp)"
+
+.PP
+Initialize the scp channel\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp context to initialize\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success or an SSH error code\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_new()\fP 
+.RE
+.PP
+
+.SS "int ssh_scp_integer_mode (const char * mode)"
+
+.PP
+Convert a scp text mode to an integer\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fImode\fP The mode to convert, e\&.g\&. "0644"\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An integer value, e\&.g\&. 420 for "0644"\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_leave_directory (\fBssh_scp\fP scp)"
+
+.PP
+Leave a directory\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the directory has been left, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_push_directory()\fP 
+.RE
+.PP
+
+.SS "\fBssh_scp\fP ssh_scp_new (\fBssh_session\fP session, int mode, const char * location)"
+
+.PP
+Create a new scp session\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to use\&.
+.br
+\fImode\fP One of SSH_SCP_WRITE or SSH_SCP_READ, depending if you need to drop files remotely or read them\&. It is not possible to combine read and write\&. SSH_SCP_RECURSIVE Flag can be or'ed to this to indicate that you're going to use recursion\&. Browsing through directories is not possible without this\&.
+.br
+\fIlocation\fP The directory in which write or read will be done\&. Any push or pull will be relative to this place\&. This can also be a pattern of files to download (read)\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A ssh_scp handle, NULL if the creation was impossible\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_pull_request (\fBssh_scp\fP scp)"
+
+.PP
+Wait for a scp request (file, directory)\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBReturns\fP
+.RS 4
+SSH_SCP_REQUEST_NEWFILE: The other side is sending a file SSH_SCP_REQUEST_NEWDIR: The other side is sending a directory SSH_SCP_REQUEST_ENDDIR: The other side has finished with the current directory SSH_SCP_REQUEST_WARNING: The other side sent us a warning SSH_SCP_REQUEST_EOF: The other side finished sending us files and data\&. SSH_ERROR: Some error happened
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_read()\fP 
+
+.PP
+\fBssh_scp_deny_request()\fP 
+
+.PP
+\fBssh_scp_accept_request()\fP 
+
+.PP
+\fBssh_scp_request_get_warning()\fP 
+.RE
+.PP
+
+.SS "int ssh_scp_push_directory (\fBssh_scp\fP scp, const char * dirname, int mode)"
+
+.PP
+Create a directory in a scp in sink mode\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.br
+\fIdirname\fP The name of the directory being created\&.
+.br
+\fImode\fP The UNIX permissions for the new directory, e\&.g\&. 0755\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the directory has been created, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_leave_directory()\fP 
+.RE
+.PP
+
+.SS "int ssh_scp_push_file (\fBssh_scp\fP scp, const char * filename, size_t size, int mode)"
+
+.PP
+Initialize the sending of a file to a scp in sink mode\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.br
+\fIfilename\fP The name of the file being sent\&. It should not contain any path indicator
+.br
+\fIsize\fP Exact size in bytes of the file being sent\&.
+.br
+\fImode\fP The UNIX permissions for the new file, e\&.g\&. 0644\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the file is ready to be sent, SSH_ERROR if an error occurred\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_push_file64 (\fBssh_scp\fP scp, const char * filename, uint64_t size, int mode)"
+
+.PP
+Initialize the sending of a file to a scp in sink mode, using a 64-bit size\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.br
+\fIfilename\fP The name of the file being sent\&. It should not contain any path indicator
+.br
+\fIsize\fP Exact size in bytes of the file being sent\&.
+.br
+\fImode\fP The UNIX permissions for the new file, e\&.g\&. 0644\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the file is ready to be sent, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_push_file()\fP 
+.RE
+.PP
+
+.SS "int ssh_scp_read (\fBssh_scp\fP scp, void * buffer, size_t size)"
+
+.PP
+Read from a remote scp file\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.br
+\fIbuffer\fP The destination buffer\&.
+.br
+\fIsize\fP The size of the buffer\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes read, SSH_ERROR if an error occurred while reading\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_read_string (\fBssh_scp\fP scp, char * buffer, size_t len)"
+
+.PP
+Read a string on a channel, terminated by '
+.br
+'\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.br
+\fIbuffer\fP A pointer to a buffer to place the string\&.
+.br
+\fIlen\fP The size of the buffer in bytes\&. If the string is bigger than len-1, only len-1 bytes are read and the string is null-terminated\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the string was read, SSH_ERROR if an error occurred while reading\&. 
+.RE
+.PP
+
+.SS "const char * ssh_scp_request_get_filename (\fBssh_scp\fP scp)"
+
+.PP
+Get the name of the directory or file being pushed from the other party\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBReturns\fP
+.RS 4
+The file name, NULL on error\&. The string should not be freed\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_request_get_permissions (\fBssh_scp\fP scp)"
+
+.PP
+Get the permissions of the directory or file being pushed from the other party\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBReturns\fP
+.RS 4
+The UNIX permission, e\&.g 0644, -1 on error\&. 
+.RE
+.PP
+
+.SS "size_t ssh_scp_request_get_size (\fBssh_scp\fP scp)"
+
+.PP
+Get the size of the file being pushed from the other party\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBReturns\fP
+.RS 4
+The numeric size of the file being read\&. 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+The real size may not fit in a 32 bits field and may be truncated\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_scp_request_get_size64()\fP 
+.RE
+.PP
+
+.SS "uint64_t ssh_scp_request_get_size64 (\fBssh_scp\fP scp)"
+
+.PP
+Get the size of the file being pushed from the other party\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBReturns\fP
+.RS 4
+The numeric size of the file being read\&. 
+.RE
+.PP
+
+.SS "const char * ssh_scp_request_get_warning (\fBssh_scp\fP scp)"
+
+.PP
+Get the warning string from a scp handle\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A warning string, or NULL on error\&. The string should not be freed\&. 
+.RE
+.PP
+
+.SS "char * ssh_scp_string_mode (int mode)"
+
+.PP
+Convert a unix mode into a scp string\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fImode\fP The mode to convert, e\&.g\&. 420 or 0644\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to a malloc'ed string containing the scp mode, e\&.g\&. "0644"\&. 
+.RE
+.PP
+
+.SS "int ssh_scp_write (\fBssh_scp\fP scp, const void * buffer, size_t len)"
+
+.PP
+Write into a remote scp file\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use SFTP instead
+.RE
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIscp\fP The scp handle\&.
+.br
+\fIbuffer\fP The buffer to write\&.
+.br
+\fIlen\fP The number of bytes to write\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the write was successful, SSH_ERROR an error occurred while writing\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

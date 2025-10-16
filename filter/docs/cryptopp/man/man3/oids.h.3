@@ -1,0 +1,36 @@
+.TH "/home/mock/cryptopp-master/oids.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/oids.h \- ASN\&.1 object identifiers for algorithms and schemes\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'asn\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBDEFINE_OID\fP(value,  name)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+ASN\&.1 object identifiers for algorithms and schemes\&.
+
+Most OIDs can be found at http://www.oid-info.com/\&. The Chinese OIDs are assigned in GM/T 0006-2012, Cryptographic Application Identifier Criterion Specification\&. A reproduction can be found at http://gmssl.org/docs/oid.html\&. There seems to be some confusion between the text of GmSSL's oid\&.html web page and the actual \fBOID\fP used in the code\&. We used the same OIDs that were detailed in http://github.com/guanzhi/GmSSL/blob/master/crypto/objects/objects.txt\&.
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define DEFINE_OID( value,  name)"
+\fBValue:\fP
+.nf
+inline OID name() {return value;}
+.PP
+.fi
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

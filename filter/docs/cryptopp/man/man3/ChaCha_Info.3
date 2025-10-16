@@ -1,0 +1,69 @@
+.TH "ChaCha_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ChaCha_Info \- \fBChaCha\fP stream cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <chacha\&.h>\fP
+.PP
+Inherits \fBVariableKeyLength< 32, 16, 32, 16, SimpleKeyingInterface::UNIQUE_IV, 8 >\fP\&.
+.PP
+Inherited by \fBChaCha\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBVariableKeyLength< 32, 16, 32, 16, SimpleKeyingInterface::UNIQUE_IV, 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBChaCha\fP stream cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const char * ChaCha_Info::StaticAlgorithmName ()\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&.
+
+.PP
+Bernstein named the cipher variants ChaCha8, ChaCha12 and ChaCha20\&. More generally, Bernstein called the family \fBChaCha\fP{r}\&. AlgorithmName() provides the exact name once rounds are set\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

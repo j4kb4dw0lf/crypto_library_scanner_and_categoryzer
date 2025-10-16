@@ -1,0 +1,685 @@
+.TH "DL_GroupParameters_EC< EC >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_GroupParameters_EC< EC > \- Elliptic Curve Parameters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.PP
+Inherits \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EC \fBEllipticCurve\fP"
+.br
+.ti -1c
+.RI "typedef EllipticCurve::Point \fBPoint\fP"
+.br
+.ti -1c
+.RI "typedef Point \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef \fBIncompatibleCofactorMultiplication\fP \fBDefaultCofactorOption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBEcPrecomputation\fP< EC > \fBGroupPrecomputation\fP"
+.br
+.ti -1c
+.RI "typedef \fBEcPrecomputation\fP< EC >\fB::Element\fP \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_FixedBasePrecomputationImpl\fP< typename \fBEcPrecomputation\fP< EC >\fB::Element\fP > \fBBasePrecomputation\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_GroupParameters< T >\fP
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDL_GroupParameters_EC\fP ()"
+.br
+.RI "Construct an EC GroupParameters\&. "
+.ti -1c
+.RI "\fBDL_GroupParameters_EC\fP (const \fBOID\fP &oid)"
+.br
+.RI "Construct an EC GroupParameters\&. "
+.ti -1c
+.RI "\fBDL_GroupParameters_EC\fP (const EllipticCurve &ec, const Point &G, const \fBInteger\fP &n, const \fBInteger\fP &k=\fBInteger::Zero\fP())"
+.br
+.RI "Construct an EC GroupParameters\&. "
+.ti -1c
+.RI "\fBDL_GroupParameters_EC\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Construct an EC GroupParameters\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (const EllipticCurve &ec, const Point &G, const \fBInteger\fP &n, const \fBInteger\fP &k=\fBInteger::Zero\fP())"
+.br
+.RI "Initialize an EC GroupParameters using {EC,G,n,k}\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBOID\fP &oid)"
+.br
+.RI "Initialize a \fBDL_GroupParameters_EC\fP {EC,G,n,k}\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &alg)"
+.br
+.RI "this implementation doesn't actually generate a curve, it just initializes the parameters with existing values "
+.ti -1c
+.RI "const \fBDL_FixedBasePrecomputation\fP< Element > & \fBGetBasePrecomputation\fP () const"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "\fBDL_FixedBasePrecomputation\fP< Element > & \fBAccessBasePrecomputation\fP ()"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetSubgroupOrder\fP () const"
+.br
+.RI "Retrieves the subgroup order\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBGetCofactor\fP () const"
+.br
+.RI "Retrieves the cofactor\&. "
+.ti -1c
+.RI "bool \fBValidateGroup\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check the group for errors\&. "
+.ti -1c
+.RI "bool \fBValidateElement\fP (unsigned int level, const Element &element, const \fBDL_FixedBasePrecomputation\fP< Element > *precomp) const"
+.br
+.ti -1c
+.RI "bool \fBFastSubgroupCheckAvailable\fP () const"
+.br
+.ti -1c
+.RI "void \fBEncodeElement\fP (bool reversible, const Element &element, \fBbyte\fP *encoded) const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBGetEncodedElementSize\fP (bool reversible) const"
+.br
+.RI "Retrieves the encoded element's size\&. "
+.ti -1c
+.RI "Element \fBDecodeElement\fP (const \fBbyte\fP *encoded, bool checkForGroupMembership) const"
+.br
+.RI "Decodes the element\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBConvertElementToInteger\fP (const Element &element) const"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBGetMaxExponent\fP () const"
+.br
+.RI "Retrieves the maximum exponent for the group\&. "
+.ti -1c
+.RI "bool \fBIsIdentity\fP (const Element &element) const"
+.br
+.ti -1c
+.RI "void \fBSimultaneousExponentiate\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.ti -1c
+.RI "\fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.ti -1c
+.RI "Element \fBMultiplyElements\fP (const Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "Element \fBCascadeExponentiate\fP (const Element &element1, const \fBInteger\fP &exponent1, const Element &element2, const \fBInteger\fP &exponent2) const"
+.br
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "void \fBSetPointCompression\fP (bool compress)"
+.br
+.ti -1c
+.RI "bool \fBGetPointCompression\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetEncodeAsOID\fP (bool encodeAsOID)"
+.br
+.ti -1c
+.RI "bool \fBGetEncodeAsOID\fP () const"
+.br
+.ti -1c
+.RI "const EllipticCurve & \fBGetCurve\fP () const"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBThisClass\fP &rhs) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupPrecomputation\fP< Element > & \fBGetGroupPrecomputation\fP () const"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "const \fBDL_FixedBasePrecomputation\fP< Element > & \fBGetBasePrecomputation\fP () const"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "\fBDL_FixedBasePrecomputation\fP< Element > & \fBAccessBasePrecomputation\fP ()"
+.br
+.RI "Retrieves the group precomputation\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_GroupParameters< T >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "void \fBPrecompute\fP (unsigned int precomputationStorage=16)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "virtual const Element & \fBGetSubgroupGenerator\fP () const"
+.br
+.RI "Retrieves the subgroup generator\&. "
+.ti -1c
+.RI "virtual void \fBSetSubgroupGenerator\fP (const Element &base)"
+.br
+.RI "Sets the subgroup generator\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiateBase\fP (const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates the base\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiateElement\fP (const Element &base, const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates an element\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetGroupOrder\fP () const"
+.br
+.RI "Retrieves the order of the group\&. "
+.ti -1c
+.RI "virtual void \fBEncodeElement\fP (bool reversible, const Element &element, \fBbyte\fP *encoded) const =0"
+.br
+.RI "Encodes the element\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBConvertElementToInteger\fP (const Element &element) const =0"
+.br
+.RI "Converts an element to an \fBInteger\fP\&. "
+.ti -1c
+.RI "virtual bool \fBValidateElement\fP (unsigned int level, const Element &element, const \fBDL_FixedBasePrecomputation\fP< Element > *precomp) const =0"
+.br
+.RI "Check the element for errors\&. "
+.ti -1c
+.RI "virtual bool \fBIsIdentity\fP (const Element &element) const =0"
+.br
+.RI "Determines if an element is an identity\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousExponentiate\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const =0"
+.br
+.RI "Exponentiates a base to multiple exponents\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Saves a key to a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Loads a key from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmNamePrefix\fP ()"
+.br
+.ti -1c
+.RI "static \fBOID\fP CRYPTOPP_API \fBGetNextRecommendedParametersOID\fP (const \fBOID\fP &oid)"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBFieldElementLength\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBExponentLength\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_GroupParameters< T >\fP
+.in +1c
+.ti -1c
+.RI "void \fBParametersChanged\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBOID\fP \fBm_oid\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_n\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_k\fP"
+.br
+.ti -1c
+.RI "bool \fBm_compress\fP"
+.br
+.ti -1c
+.RI "bool \fBm_encodeAsOID\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP
+.in +1c
+.ti -1c
+.RI "\fBEcPrecomputation\fP< EC > \fBm_groupPrecomputation\fP"
+.br
+.ti -1c
+.RI "\fBDL_FixedBasePrecomputationImpl\fP< typename \fBEcPrecomputation\fP< EC >\fB::Element\fP > \fBm_gpc\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC>
+.br
+class DL_GroupParameters_EC< EC >"Elliptic Curve Parameters\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field
+.RE
+.PP
+This class corresponds to the ASN\&.1 sequence of the same name in ANSI X9\&.62 and SEC 1\&. EC is currently defined for \fBECP\fP and \fBEC2N\fP\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class EC> \fBDL_GroupParameters_EC\fP< EC >\fB::DL_GroupParameters_EC\fP (const \fBOID\fP & oid)\fR [inline]\fP"
+
+.PP
+Construct an EC GroupParameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoid\fP the \fBOID\fP of a curve 
+.RE
+.PP
+
+.SS "template<class EC> \fBDL_GroupParameters_EC\fP< EC >\fB::DL_GroupParameters_EC\fP (const EllipticCurve & ec, const Point & G, const \fBInteger\fP & n, const \fBInteger\fP & k = \fR\fBInteger::Zero\fP()\fP)\fR [inline]\fP"
+
+.PP
+Construct an EC GroupParameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIec\fP the elliptic curve 
+.br
+\fIG\fP the base point 
+.br
+\fIn\fP the order of the base point 
+.br
+\fIk\fP the cofactor 
+.RE
+.PP
+
+.SS "template<class EC> \fBDL_GroupParameters_EC\fP< EC >\fB::DL_GroupParameters_EC\fP (\fBBufferedTransformation\fP & bt)\fR [inline]\fP"
+
+.PP
+Construct an EC GroupParameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP with group parameters 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EC> \fBDL_FixedBasePrecomputation\fP< Element > & \fBDL_GroupParameters_EC\fP< EC >::AccessBasePrecomputation ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a non-const reference to the group precomputation using a fixed base 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> void \fBDL_GroupParameters_EC\fP< EC >::AssignFrom (const \fBNameValuePairs\fP & source)\fR [virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Implements \fBCryptoMaterial\fP\&.
+.SS "template<class EC> Element \fBDL_GroupParameters_EC\fP< EC >::DecodeElement (const \fBbyte\fP * encoded, bool checkForGroupMembership) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Decodes the element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIencoded\fP byte array with the encoded element 
+.br
+\fIcheckForGroupMembership\fP flag indicating if the element should be validated 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Element after decoding
+.RE
+.PP
+\fBDecodeElement()\fP must be implemented in a derived class\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(encoded) == \fBGetEncodedElementSize()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> bool \fBDL_GroupParameters_EC\fP< EC >::FastSubgroupCheckAvailable () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> void \fBDL_GroupParameters_EC\fP< EC >::GenerateRandom (\fBRandomNumberGenerator\fP & rng, const \fBNameValuePairs\fP & alg)\fR [virtual]\fP"
+
+.PP
+this implementation doesn't actually generate a curve, it just initializes the parameters with existing values parameters: (Curve, SubgroupGenerator, SubgroupOrder, Cofactor (optional)), or (GroupOID) 
+.PP
+Reimplemented from \fBGeneratableCryptoMaterial\fP\&.
+.SS "template<class EC> const \fBDL_FixedBasePrecomputation\fP< Element > & \fBDL_GroupParameters_EC\fP< EC >::GetBasePrecomputation () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the group precomputation using a fixed base 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> \fBInteger\fP \fBDL_GroupParameters_EC\fP< EC >::GetCofactor () const\fR [virtual]\fP"
+
+.PP
+Retrieves the cofactor\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the cofactor
+.RE
+.PP
+Either \fBGetGroupOrder()\fP or \fBGetCofactor()\fP must be overridden in a derived class\&. 
+.PP
+Reimplemented from \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> virtual unsigned int \fBDL_GroupParameters_EC\fP< EC >::GetEncodedElementSize (bool reversible) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the encoded element's size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreversible\fP flag indicating the encoding format 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+encoded element's size, in bytes
+.RE
+.PP
+The format of the encoded element varies by the underlying type of the element and the reversible flag\&. \fBGetEncodedElementSize()\fP must be implemented in a derived class\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetEncodedElementSize()\fP, EncodeElement(), \fBDecodeElement()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> \fBInteger\fP \fBDL_GroupParameters_EC\fP< EC >::GetMaxExponent () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the maximum exponent for the group\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum exponent for the group 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> const \fBInteger\fP & \fBDL_GroupParameters_EC\fP< EC >::GetSubgroupOrder () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the subgroup order\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the order of subgroup generated by the base element 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> bool \fBDL_GroupParameters_EC\fP< EC >::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class EC> void \fBDL_GroupParameters_EC\fP< EC >::Initialize (const EllipticCurve & ec, const Point & G, const \fBInteger\fP & n, const \fBInteger\fP & k = \fR\fBInteger::Zero\fP()\fP)\fR [inline]\fP"
+
+.PP
+Initialize an EC GroupParameters using {EC,G,n,k}\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIec\fP the elliptic curve 
+.br
+\fIG\fP the base point 
+.br
+\fIn\fP the order of the base point 
+.br
+\fIk\fP the cofactor
+.RE
+.PP
+This \fBInitialize()\fP function overload initializes group parameters from existing parameters\&. 
+.SS "template<class EC> void \fBDL_GroupParameters_EC\fP< EC >::Initialize (const \fBOID\fP & oid)"
+
+.PP
+Initialize a \fBDL_GroupParameters_EC\fP {EC,G,n,k}\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoid\fP the \fBOID\fP of a curve
+.RE
+.PP
+This \fBInitialize()\fP function overload initializes group parameters from existing parameters\&. 
+.SS "template<class EC> bool \fBDL_GroupParameters_EC\fP< EC >::ValidateGroup (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [virtual]\fP"
+
+.PP
+Check the group for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&.
+
+.PP
+\fBValidateGroup()\fP must be implemented in a derived class\&. 
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

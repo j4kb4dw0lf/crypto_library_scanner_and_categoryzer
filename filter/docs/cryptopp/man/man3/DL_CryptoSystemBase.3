@@ -1,0 +1,95 @@
+.TH "DL_CryptoSystemBase< PK, KI >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_CryptoSystemBase< PK, KI > \- Discrete Log (DL) cryptosystem base implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits PK, and \fBDL_Base< KI >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_Base\fP< KI >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBMaxPlaintextLength\fP (size_t ciphertextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBCiphertextLength\fP (size_t plaintextLength) const"
+.br
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual const \fBDL_KeyAgreementAlgorithm\fP< Element > & \fBGetKeyAgreementAlgorithm\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBDL_KeyDerivationAlgorithm\fP< Element > & \fBGetKeyDerivationAlgorithm\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBDL_SymmetricEncryptionAlgorithm\fP & \fBGetSymmetricEncryptionAlgorithm\fP () const =0"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_Base< KI >\fP
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.ti -1c
+.RI "virtual KeyInterface & \fBAccessKeyInterface\fP ()=0"
+.br
+.ti -1c
+.RI "virtual const KeyInterface & \fBGetKeyInterface\fP () const =0"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Types inherited from \fBDL_Base< KI >\fP
+.in +1c
+.ti -1c
+.RI "typedef KI \fBKeyInterface\fP"
+.br
+.ti -1c
+.RI "typedef KI::Element \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class PK, class KI>
+.br
+class DL_CryptoSystemBase< PK, KI >"Discrete Log (DL) cryptosystem base implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPK\fP field element type 
+.br
+\fIKI\fP public or private key interface 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

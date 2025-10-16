@@ -1,0 +1,104 @@
+.TH "EC2NPoint" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EC2NPoint \- Elliptical Curve Point over GF(2^n)  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ecpoint\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEC2NPoint\fP ()"
+.br
+.RI "Construct an \fBEC2NPoint\fP\&. "
+.ti -1c
+.RI "\fBEC2NPoint\fP (const \fBPolynomialMod2\fP &x, const \fBPolynomialMod2\fP &y)"
+.br
+.RI "Construct an \fBEC2NPoint\fP from coordinates\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBEC2NPoint\fP &t) const"
+.br
+.RI "Tests points for equality\&. "
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBEC2NPoint\fP &t) const"
+.br
+.RI "Tests points for ordering\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBx\fP"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBy\fP"
+.br
+.ti -1c
+.RI "bool \fBidentity\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Elliptical Curve Point over GF(2^n) 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EC2NPoint::EC2NPoint ()\fR [inline]\fP"
+
+.PP
+Construct an \fBEC2NPoint\fP\&. identity is set to \fRtrue\fP 
+.SS "EC2NPoint::EC2NPoint (const \fBPolynomialMod2\fP & x, const \fBPolynomialMod2\fP & y)\fR [inline]\fP"
+
+.PP
+Construct an \fBEC2NPoint\fP from coordinates\&. identity is set to \fRfalse\fP 
+.SH "Member Function Documentation"
+.PP 
+.SS "bool EC2NPoint::operator< (const \fBEC2NPoint\fP & t) const\fR [inline]\fP"
+
+.PP
+Tests points for ordering\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other point 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if this point is less than other, false otherwise 
+.RE
+.PP
+
+.SS "bool EC2NPoint::operator== (const \fBEC2NPoint\fP & t) const\fR [inline]\fP"
+
+.PP
+Tests points for equality\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other point 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the points are equal, false otherwise 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

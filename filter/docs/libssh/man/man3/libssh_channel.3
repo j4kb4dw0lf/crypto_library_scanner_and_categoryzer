@@ -1,0 +1,1378 @@
+.TH "libssh_channel" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_channel \- The SSH channel functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_channel_read_termination_struct\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_channel_new\fP (\fBssh_session\fP session)"
+.br
+.RI "Allocate a new channel\&. "
+.ti -1c
+.RI "uint32_t \fBssh_channel_new_id\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_channel_open_conf)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_channel_open_fail)"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_channel_from_local\fP (\fBssh_session\fP session, uint32_t id)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (channel_rcv_change_window)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (channel_rcv_data)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (channel_rcv_eof)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (channel_rcv_close)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (channel_rcv_request)"
+.br
+.ti -1c
+.RI "int \fBchannel_default_bufferize\fP (\fBssh_channel\fP channel, void *data, uint32_t len, bool is_stderr)"
+.br
+.ti -1c
+.RI "int \fBssh_channel_open_session\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Open a session channel (suited for a shell, not TCP forwarding)\&. "
+.ti -1c
+.RI "int \fBssh_channel_open_auth_agent\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Open an agent authentication forwarding channel\&. This type of channel can be opened by a server towards a client in order to provide SSH-Agent services to the server-side process\&. This channel can only be opened if the client claimed support by sending a channel request beforehand\&. "
+.ti -1c
+.RI "int \fBssh_channel_open_forward\fP (\fBssh_channel\fP channel, const char *remotehost, int remoteport, const char *sourcehost, int localport)"
+.br
+.RI "Open a TCP/IP forwarding channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_open_forward_unix\fP (\fBssh_channel\fP channel, const char *remotepath, const char *sourcehost, int localport)"
+.br
+.RI "Open a TCP/IP - UNIX domain socket forwarding channel\&. "
+.ti -1c
+.RI "void \fBssh_channel_free\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Close and free a channel\&. "
+.ti -1c
+.RI "void \fBssh_channel_do_free\fP (\fBssh_channel\fP channel)"
+.br
+.ti -1c
+.RI "int \fBssh_channel_send_eof\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Send an end of file on the channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_close\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Close a channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_flush\fP (\fBssh_channel\fP channel)"
+.br
+.ti -1c
+.RI "uint32_t \fBssh_channel_window_size\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Get the remote window size\&. "
+.ti -1c
+.RI "int \fBssh_channel_write\fP (\fBssh_channel\fP channel, const void *data, uint32_t len)"
+.br
+.RI "Blocking write on a channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_is_open\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Check if the channel is open or not\&. "
+.ti -1c
+.RI "int \fBssh_channel_is_closed\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Check if the channel is closed or not\&. "
+.ti -1c
+.RI "int \fBssh_channel_is_eof\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Check if remote has sent an EOF\&. "
+.ti -1c
+.RI "void \fBssh_channel_set_blocking\fP (\fBssh_channel\fP channel, int blocking)"
+.br
+.RI "Put the channel into blocking or nonblocking mode\&. "
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_channel_success)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_channel_failure)"
+.br
+.ti -1c
+.RI "int \fBssh_channel_request_pty_size_modes\fP (\fBssh_channel\fP channel, const char *terminal, int col, int row, const unsigned char *modes, size_t modes_len)"
+.br
+.RI "Request a pty with a specific type and size\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_pty_size\fP (\fBssh_channel\fP channel, const char *terminal, int col, int row)"
+.br
+.ti -1c
+.RI "int \fBssh_channel_request_pty\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Request a PTY\&. "
+.ti -1c
+.RI "int \fBssh_channel_change_pty_size\fP (\fBssh_channel\fP channel, int cols, int rows)"
+.br
+.RI "Change the size of the terminal associated to a channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_shell\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Request a shell\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_subsystem\fP (\fBssh_channel\fP channel, const char *subsys)"
+.br
+.RI "Request a subsystem (for example "sftp")\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_sftp\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Request sftp subsystem on the channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_x11\fP (\fBssh_channel\fP channel, int single_connection, const char *protocol, const char *cookie, int screen_number)"
+.br
+.RI "Sends the "x11-req" channel request over an existing session channel\&. "
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_channel_accept_x11\fP (\fBssh_channel\fP channel, int timeout_ms)"
+.br
+.RI "Accept an X11 forwarding channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_auth_agent\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Send an "auth-agent-req" channel request over an existing session channel\&. "
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_request_success)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_request_denied)"
+.br
+.ti -1c
+.RI "int \fBssh_global_request\fP (\fBssh_session\fP session, const char *request, \fBssh_buffer\fP buffer, int reply)"
+.br
+.ti -1c
+.RI "int \fBssh_channel_listen_forward\fP (\fBssh_session\fP session, const char *address, int port, int *bound_port)"
+.br
+.RI "Sends the "tcpip-forward" global request to ask the server to begin listening for inbound connections\&. "
+.ti -1c
+.RI "int \fBssh_forward_listen\fP (\fBssh_session\fP session, const char *address, int port, int *bound_port)"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_forward_accept\fP (\fBssh_session\fP session, int timeout_ms)"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_channel_accept_forward\fP (\fBssh_session\fP session, int timeout_ms, int *destination_port)"
+.br
+.RI "Accept an incoming TCP/IP forwarding channel and get some information about incoming connection\&. "
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_channel_open_forward_port\fP (\fBssh_session\fP session, int timeout_ms, int *destination_port, char **originator, int *originator_port)"
+.br
+.RI "Accept an incoming TCP/IP forwarding channel and get information about incoming connection\&. "
+.ti -1c
+.RI "int \fBssh_channel_cancel_forward\fP (\fBssh_session\fP session, const char *address, int port)"
+.br
+.RI "Sends the "cancel-tcpip-forward" global request to ask the server to cancel the tcpip-forward request\&. "
+.ti -1c
+.RI "int \fBssh_forward_cancel\fP (\fBssh_session\fP session, const char *address, int port)"
+.br
+.ti -1c
+.RI "int \fBssh_channel_request_env\fP (\fBssh_channel\fP channel, const char *name, const char *value)"
+.br
+.RI "Set environment variables\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_exec\fP (\fBssh_channel\fP channel, const char *cmd)"
+.br
+.RI "Run a shell command without an interactive shell\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_send_signal\fP (\fBssh_channel\fP channel, const char *sig)"
+.br
+.RI "Send a signal to remote process (as described in RFC 4254, section 6\&.9)\&. "
+.ti -1c
+.RI "int \fBssh_channel_request_send_break\fP (\fBssh_channel\fP channel, uint32_t length)"
+.br
+.RI "Send a break signal to the server (as described in RFC 4335)\&. "
+.ti -1c
+.RI "int \fBchannel_read_buffer\fP (\fBssh_channel\fP channel, \fBssh_buffer\fP buffer, uint32_t count, int is_stderr)"
+.br
+.RI "Read data from a channel into a buffer\&. "
+.ti -1c
+.RI "int \fBssh_channel_read\fP (\fBssh_channel\fP channel, void *dest, uint32_t count, int is_stderr)"
+.br
+.RI "Reads data from a channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_read_timeout\fP (\fBssh_channel\fP channel, void *dest, uint32_t count, int is_stderr, int timeout_ms)"
+.br
+.RI "Reads data from a channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_read_nonblocking\fP (\fBssh_channel\fP channel, void *dest, uint32_t count, int is_stderr)"
+.br
+.RI "Do a nonblocking read on the channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_poll\fP (\fBssh_channel\fP channel, int is_stderr)"
+.br
+.RI "Polls a channel for data to read\&. "
+.ti -1c
+.RI "int \fBssh_channel_poll_timeout\fP (\fBssh_channel\fP channel, int timeout, int is_stderr)"
+.br
+.RI "Polls a channel for data to read, waiting for a certain timeout\&. "
+.ti -1c
+.RI "\fBssh_session\fP \fBssh_channel_get_session\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Recover the session in which belongs a channel\&. "
+.ti -1c
+.RI "int \fBssh_channel_get_exit_state\fP (\fBssh_channel\fP channel, uint32_t *pexit_code, char **pexit_signal, int *pcore_dumped)"
+.br
+.RI "Get the exit state of the channel (error code from the executed instruction or signal)\&. "
+.ti -1c
+.RI "int \fBssh_channel_get_exit_status\fP (\fBssh_channel\fP channel)"
+.br
+.RI "Get the exit status of the channel (error code from the executed instruction)\&. "
+.ti -1c
+.RI "int \fBssh_channel_select\fP (\fBssh_channel\fP *readchans, \fBssh_channel\fP *writechans, \fBssh_channel\fP *exceptchans, struct timeval *timeout)"
+.br
+.RI "Act like the standard select(2) on channels\&. "
+.ti -1c
+.RI "void \fBssh_channel_set_counter\fP (\fBssh_channel\fP channel, \fBssh_counter\fP counter)"
+.br
+.RI "Set the channel data counter\&. "
+.ti -1c
+.RI "int \fBssh_channel_write_stderr\fP (\fBssh_channel\fP channel, const void *data, uint32_t len)"
+.br
+.RI "Blocking write on a channel stderr\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions that manage a SSH channel\&. 
+.SH "Function Documentation"
+.PP 
+.SS "int channel_read_buffer (\fBssh_channel\fP channel, \fBssh_buffer\fP buffer, uint32_t count, int is_stderr)"
+
+.PP
+Read data from a channel into a buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to read from\&.
+.br
+\fIbuffer\fP The buffer which will get the data\&.
+.br
+\fIcount\fP The count of bytes to be read\&. If it is bigger than 0, the exact size will be read, else (bytes=0) it will return once anything is available\&.
+.br
+\fIis_stderr\fP A boolean value to mark reading from the stderr stream\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes read, 0 on end of file, SSH_AGAIN on timeout and SSH_ERROR on error\&. 
+.RE
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use ssh_channel_read instead 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function doesn't work in nonblocking/timeout mode 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_read\fP 
+.RE
+.PP
+
+.SS "\fBssh_channel\fP ssh_channel_accept_forward (\fBssh_session\fP session, int timeout_ms, int * destination_port)"
+
+.PP
+Accept an incoming TCP/IP forwarding channel and get some information about incoming connection\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fItimeout_ms\fP A timeout in milliseconds\&.
+.br
+\fIdestination_port\fP A pointer to destination port or NULL\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Newly created channel, or NULL if no incoming channel request from the server 
+.RE
+.PP
+
+.SS "\fBssh_channel\fP ssh_channel_accept_x11 (\fBssh_channel\fP channel, int timeout_ms)"
+
+.PP
+Accept an X11 forwarding channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP An x11-enabled session channel\&.
+.br
+\fItimeout_ms\fP Timeout in milliseconds\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A newly created channel, or NULL if no X11 request from the server\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_cancel_forward (\fBssh_session\fP session, const char * address, int port)"
+
+.PP
+Sends the "cancel-tcpip-forward" global request to ask the server to cancel the tcpip-forward request\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to send the request\&.
+.br
+\fIaddress\fP The bound address on the server\&.
+.br
+\fIport\fP The bound port on the server\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_change_pty_size (\fBssh_channel\fP channel, int cols, int rows)"
+
+.PP
+Change the size of the terminal associated to a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to change the size\&.
+.br
+\fIcols\fP The new number of columns\&.
+.br
+\fIrows\fP The new number of rows\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Do not call it from a signal handler if you are not sure any other libssh function using the same channel/session is running at the same time (not 100% threadsafe)\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_close (\fBssh_channel\fP channel)"
+
+.PP
+Close a channel\&. This sends an end of file and then closes the channel\&. You won't be able to recover any data the server was going to send or was in buffers\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to close\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_free()\fP 
+
+.PP
+\fBssh_channel_is_eof()\fP 
+.RE
+.PP
+
+.SS "void ssh_channel_free (\fBssh_channel\fP channel)"
+
+.PP
+Close and free a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to free\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Any data unread on this channel will be lost\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_get_exit_state (\fBssh_channel\fP channel, uint32_t * pexit_code, char ** pexit_signal, int * pcore_dumped)"
+
+.PP
+Get the exit state of the channel (error code from the executed instruction or signal)\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to get the status from\&.
+.br
+\fIpexit_code\fP A pointer to an uint32_t to store the exit status\&.
+.br
+\fIpexit_signal\fP A pointer to store the exit signal as a string\&. The signal is without the SIG prefix, e\&.g\&. "TERM" or "KILL")\&. The caller has to free the memory\&.
+.br
+\fIpcore_dumped\fP A pointer to store a boolean value if it dumped a core\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_AGAIN if we don't have a status or an SSH error\&. 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function may block until a timeout (or never) if the other side is not willing to close the channel\&. When a channel is freed the function returns SSH_ERROR immediately\&.
+.RE
+.PP
+If you're looking for an async handling of this register a callback for the exit status!
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_exit_status_callback\fP 
+
+.PP
+\fBssh_channel_exit_signal_callback\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_get_exit_status (\fBssh_channel\fP channel)"
+
+.PP
+Get the exit status of the channel (error code from the executed instruction)\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to get the status from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The exit status, -1 if no exit status has been returned (yet), or SSH_ERROR on error\&. 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function may block until a timeout (or never) if the other side is not willing to close the channel\&. When a channel is freed the function returns SSH_ERROR immediately\&.
+.RE
+.PP
+If you're looking for an async handling of this register a callback for the exit status\&.
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_exit_status_callback\fP 
+.RE
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use ssh_channel_exit_state() 
+.RE
+.PP
+
+.SS "\fBssh_session\fP ssh_channel_get_session (\fBssh_channel\fP channel)"
+
+.PP
+Recover the session in which belongs a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to recover the session from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The session pointer\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_is_closed (\fBssh_channel\fP channel)"
+
+.PP
+Check if the channel is closed or not\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if channel is opened, nonzero otherwise\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_open()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_is_eof (\fBssh_channel\fP channel)"
+
+.PP
+Check if remote has sent an EOF\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if there is no EOF, nonzero otherwise\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_is_open (\fBssh_channel\fP channel)"
+
+.PP
+Check if the channel is open or not\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if channel is closed, nonzero otherwise\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_closed()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_listen_forward (\fBssh_session\fP session, const char * address, int port, int * bound_port)"
+
+.PP
+Sends the "tcpip-forward" global request to ask the server to begin listening for inbound connections\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to send the request\&.
+.br
+\fIaddress\fP The address to bind to on the server\&. Pass NULL to bind to all available addresses on all protocol families supported by the server\&.
+.br
+\fIport\fP The port to bind to on the server\&. Pass 0 to ask the server to allocate the next available unprivileged port number
+.br
+\fIbound_port\fP The pointer to get actual bound port\&. Pass NULL to ignore\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&. 
+.RE
+.PP
+
+.SS "\fBssh_channel\fP ssh_channel_new (\fBssh_session\fP session)"
+
+.PP
+Allocate a new channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to a newly allocated channel, NULL on error\&. The channel needs to be freed with \fBssh_channel_free()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_open_auth_agent (\fBssh_channel\fP channel)"
+
+.PP
+Open an agent authentication forwarding channel\&. This type of channel can be opened by a server towards a client in order to provide SSH-Agent services to the server-side process\&. This channel can only be opened if the client claimed support by sending a channel request beforehand\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP An allocated channel\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_open_forward()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_open_forward (\fBssh_channel\fP channel, const char * remotehost, int remoteport, const char * sourcehost, int localport)"
+
+.PP
+Open a TCP/IP forwarding channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP An allocated channel\&.
+.br
+\fIremotehost\fP The remote host to connected (host name or IP)\&.
+.br
+\fIremoteport\fP The remote port\&.
+.br
+\fIsourcehost\fP The numeric IP address of the machine from where the connection request originates\&. This is mostly for logging purposes\&.
+.br
+\fIlocalport\fP The port on the host from where the connection originated\&. This is mostly for logging purposes\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function does not bind the local port and does not automatically forward the content of a socket to the channel\&. You still have to use ssh_channel_read and ssh_channel_write for this\&. 
+.RE
+.PP
+
+.SS "\fBssh_channel\fP ssh_channel_open_forward_port (\fBssh_session\fP session, int timeout_ms, int * destination_port, char ** originator, int * originator_port)"
+
+.PP
+Accept an incoming TCP/IP forwarding channel and get information about incoming connection\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fItimeout_ms\fP A timeout in milliseconds\&.
+.br
+\fIdestination_port\fP A pointer to destination port or NULL\&.
+.br
+\fIoriginator\fP A pointer to a pointer to a string of originator host or NULL\&. That the caller is responsible for to \fBssh_string_free_char()\fP\&.
+.br
+\fIoriginator_port\fP A pointer to originator port or NULL\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Newly created channel, or NULL if no incoming channel request from the server
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_open_forward_unix (\fBssh_channel\fP channel, const char * remotepath, const char * sourcehost, int localport)"
+
+.PP
+Open a TCP/IP - UNIX domain socket forwarding channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP An allocated channel\&.
+.br
+\fIremotepath\fP The UNIX socket path on the remote machine
+.br
+\fIsourcehost\fP The numeric IP address of the machine from where the connection request originates\&. This is mostly for logging purposes\&.
+.br
+\fIlocalport\fP The port on the host from where the connection originated\&. This is mostly for logging purposes\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function does not bind the local port and does not automatically forward the content of a socket to the channel\&. You still have to use ssh_channel_read and ssh_channel_write for this\&. 
+
+.PP
+Requires support of OpenSSH for UNIX domain socket forwarding\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_open_session (\fBssh_channel\fP channel)"
+
+.PP
+Open a session channel (suited for a shell, not TCP forwarding)\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP An allocated channel\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_open_forward()\fP 
+
+.PP
+\fBssh_channel_request_env()\fP 
+
+.PP
+\fBssh_channel_request_shell()\fP 
+
+.PP
+\fBssh_channel_request_exec()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_poll (\fBssh_channel\fP channel, int is_stderr)"
+
+.PP
+Polls a channel for data to read\&. If callbacks are set on the channel, they will be called\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to poll\&.
+.br
+\fIis_stderr\fP A boolean to select the stderr stream\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes available for reading, 0 if nothing is available or SSH_ERROR on error\&. When a channel is freed the function returns SSH_ERROR immediately\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+When the channel is in EOF state, the function returns SSH_EOF\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_eof()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_poll_timeout (\fBssh_channel\fP channel, int timeout, int is_stderr)"
+
+.PP
+Polls a channel for data to read, waiting for a certain timeout\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to poll\&. 
+.br
+\fItimeout\fP Set an upper limit on the time for which this function will block, in milliseconds\&. Specifying a negative value means an infinite timeout\&. This parameter is passed to the poll() function\&. 
+.br
+\fIis_stderr\fP A boolean to select the stderr stream\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes available for reading, 0 if nothing is available (timeout elapsed), SSH_EOF on end of file, SSH_ERROR on error\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+When the channel is in EOF state, the function returns SSH_EOF\&. When a channel is freed the function returns SSH_ERROR immediately\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_eof()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_read (\fBssh_channel\fP channel, void * dest, uint32_t count, int is_stderr)"
+
+.PP
+Reads data from a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to read from\&.
+.br
+\fIdest\fP The destination buffer which will get the data\&.
+.br
+\fIcount\fP The count of bytes to be read\&.
+.br
+\fIis_stderr\fP A boolean value to mark reading from the stderr flow\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes read, 0 on end of file, SSH_AGAIN on timeout and SSH_ERROR on error\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function may return less than count bytes of data, and won't block until count bytes have been read\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_read_nonblocking (\fBssh_channel\fP channel, void * dest, uint32_t count, int is_stderr)"
+
+.PP
+Do a nonblocking read on the channel\&. A nonblocking read on the specified channel\&. it will return <= count bytes of data read atomically\&. It will also trigger any callbacks set on the channel\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to read from\&.
+.br
+\fIdest\fP A pointer to a destination buffer\&.
+.br
+\fIcount\fP The count of bytes of data to be read\&.
+.br
+\fIis_stderr\fP A boolean to select the stderr stream\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes read, SSH_AGAIN if nothing is available, SSH_ERROR on error, and SSH_EOF if the channel is EOF\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_eof()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_read_timeout (\fBssh_channel\fP channel, void * dest, uint32_t count, int is_stderr, int timeout_ms)"
+
+.PP
+Reads data from a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to read from\&.
+.br
+\fIdest\fP The destination buffer which will get the data\&.
+.br
+\fIcount\fP The count of bytes to be read\&.
+.br
+\fIis_stderr\fP A boolean value to mark reading from the stderr flow\&.
+.br
+\fItimeout_ms\fP A timeout in milliseconds\&. A value of -1 means infinite timeout\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes read, 0 on end of file, SSH_AGAIN on timeout, SSH_ERROR on error\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function may return less than count bytes of data, and won't block until count bytes have been read\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_auth_agent (\fBssh_channel\fP channel)"
+
+.PP
+Send an "auth-agent-req" channel request over an existing session channel\&. This client-side request will enable forwarding the agent over an secure tunnel\&. When the server is ready to open one authentication agent channel, an \fBssh_channel_open_request_auth_agent_callback\fP event will be generated\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send signal\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred 
+.RE
+.PP
+
+.SS "int ssh_channel_request_env (\fBssh_channel\fP channel, const char * name, const char * value)"
+
+.PP
+Set environment variables\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to set the environment variables\&.
+.br
+\fIname\fP The name of the variable\&.
+.br
+\fIvalue\fP The value to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&. 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Some environment variables may be refused by security reasons\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_exec (\fBssh_channel\fP channel, const char * cmd)"
+
+.PP
+Run a shell command without an interactive shell\&. This is similar to 'sh -c command'\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to execute the command\&.
+.br
+\fIcmd\fP The command to execute (e\&.g\&. "ls ~/ -al | grep -i reports")\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+Example: 
+.PP
+.nf
+rc = ssh_channel_request_exec(channel, "ps aux");
+if (rc > 0) {
+    return \-1;
+}
+
+while ((rc = ssh_channel_read(channel, buffer, sizeof(buffer), 0)) > 0) {
+    if (fwrite(buffer, 1, rc, stdout) != (unsigned int) rc) {
+        return \-1;
+    }
+}
+
+.fi
+.PP
+
+.PP
+\fBWarning\fP
+.RS 4
+In a single channel, only ONE command can be executed! If you want to executed multiple commands, allocate separate channels for them or consider opening interactive shell\&. Attempting to run multiple consecutive commands in one channel will fail\&. See RFC 4254 Section 6\&.5\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_request_shell()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_request_pty (\fBssh_channel\fP channel)"
+
+.PP
+Request a PTY\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send the request\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+ssh_channel_request_pty_size() 
+.RE
+.PP
+
+.SS "int ssh_channel_request_pty_size_modes (\fBssh_channel\fP channel, const char * terminal, int col, int row, const unsigned char * modes, size_t modes_len)"
+
+.PP
+Request a pty with a specific type and size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send the request\&.
+.br
+\fIterminal\fP The terminal type ("vt100, xterm,\&.\&.\&.")\&.
+.br
+\fIcol\fP The number of columns\&.
+.br
+\fIrow\fP The number of rows\&.
+.br
+\fImodes\fP Encoded SSH terminal modes for the PTY
+.br
+\fImodes_len\fP Number of bytes in 'modes'
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_send_break (\fBssh_channel\fP channel, uint32_t length)"
+
+.PP
+Send a break signal to the server (as described in RFC 4335)\&. Sends a break signal to the remote process\&. Note, that remote system may not support breaks\&. In such a case this request will be silently ignored\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send the break to\&.
+.br
+\fIlength\fP The break-length in milliseconds to send\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred 
+.RE
+.PP
+
+.SS "int ssh_channel_request_send_signal (\fBssh_channel\fP channel, const char * sig)"
+
+.PP
+Send a signal to remote process (as described in RFC 4254, section 6\&.9)\&. Sends a signal 'sig' to the remote process\&. Note, that remote system may not support signals concept\&. In such a case this request will be silently ignored\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send signal\&.
+.br
+\fIsig\fP The signal to send (without SIG prefix) 
+.br
+
+.br
+ SIGABRT -> ABRT 
+.br
+ SIGALRM -> ALRM 
+.br
+ SIGFPE -> FPE 
+.br
+ SIGHUP -> HUP 
+.br
+ SIGILL -> ILL 
+.br
+ SIGINT -> INT 
+.br
+ SIGKILL -> KILL 
+.br
+ SIGPIPE -> PIPE 
+.br
+ SIGQUIT -> QUIT 
+.br
+ SIGSEGV -> SEGV 
+.br
+ SIGTERM -> TERM 
+.br
+ SIGUSR1 -> USR1 
+.br
+ SIGUSR2 -> USR2 
+.br
+ 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_sftp (\fBssh_channel\fP channel)"
+
+.PP
+Request sftp subsystem on the channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to request the sftp subsystem\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+You should use \fBsftp_new()\fP which does this for you\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_shell (\fBssh_channel\fP channel)"
+
+.PP
+Request a shell\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send the request\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_subsystem (\fBssh_channel\fP channel, const char * subsys)"
+
+.PP
+Request a subsystem (for example "sftp")\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send the request\&.
+.br
+\fIsubsys\fP The subsystem to request (for example "sftp")\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+You normally don't have to call it for sftp, see \fBsftp_new()\fP\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_request_x11 (\fBssh_channel\fP channel, int single_connection, const char * protocol, const char * cookie, int screen_number)"
+
+.PP
+Sends the "x11-req" channel request over an existing session channel\&. This will enable redirecting the display of the remote X11 applications to local X server over a secure tunnel\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP An existing session channel where the remote X11 applications are going to be executed\&.
+.br
+\fIsingle_connection\fP A boolean to mark only one X11 app will be redirected\&.
+.br
+\fIprotocol\fP A x11 authentication protocol\&. Pass NULL to use the default value MIT-MAGIC-COOKIE-1\&.
+.br
+\fIcookie\fP A x11 authentication cookie\&. Pass NULL to generate a random cookie\&.
+.br
+\fIscreen_number\fP The screen number\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred, SSH_AGAIN if in nonblocking mode and call has to be done again\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_select (\fBssh_channel\fP * readchans, \fBssh_channel\fP * writechans, \fBssh_channel\fP * exceptchans, struct timeval * timeout)"
+
+.PP
+Act like the standard select(2) on channels\&. The list of pointers are then actualized and will only contain pointers to channels that are respectively readable, writable or have an exception to trap\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIreadchans\fP A NULL pointer or an array of channel pointers, terminated by a NULL\&.
+.br
+\fIwritechans\fP A NULL pointer or an array of channel pointers, terminated by a NULL\&.
+.br
+\fIexceptchans\fP A NULL pointer or an array of channel pointers, terminated by a NULL\&.
+.br
+\fItimeout\fP Timeout as defined by select(2)\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on a successful operation, SSH_EINTR if the select(2) syscall was interrupted, then relaunch the function, or SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_send_eof (\fBssh_channel\fP channel)"
+
+.PP
+Send an end of file on the channel\&. This doesn't close the channel\&. You may still read from it but not write\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to send the eof to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+Example: 
+.PP
+.nf
+rc = ssh_channel_send_eof(channel);
+if (rc == SSH_ERROR) {
+    return \-1;
+}
+while(!ssh_channel_is_eof(channel)) {
+    rc = ssh_channel_read(channel, buf, sizeof(buf), 0);
+    if (rc == SSH_ERROR) {
+        return \-1;
+    }
+}
+ssh_channel_close(channel);
+
+.fi
+.PP
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_close()\fP 
+
+.PP
+\fBssh_channel_free()\fP 
+
+.PP
+\fBssh_channel_is_eof()\fP 
+.RE
+.PP
+
+.SS "void ssh_channel_set_blocking (\fBssh_channel\fP channel, int blocking)"
+
+.PP
+Put the channel into blocking or nonblocking mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to use\&.
+.br
+\fIblocking\fP A boolean for blocking or nonblocking\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+A side-effect of this is to put the whole session in non-blocking mode\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_set_blocking()\fP 
+.RE
+.PP
+
+.SS "void ssh_channel_set_counter (\fBssh_channel\fP channel, \fBssh_counter\fP counter)"
+
+.PP
+Set the channel data counter\&. 
+.PP
+.nf
+struct ssh_counter_struct counter = {
+    \&.in_bytes = 0,
+    \&.out_bytes = 0,
+    \&.in_packets = 0,
+    \&.out_packets = 0
+};
+
+ssh_channel_set_counter(channel, &counter);
+
+.fi
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The SSH channel\&.
+.br
+\fIcounter\fP Counter for bytes handled by the channel\&. 
+.RE
+.PP
+
+.SS "uint32_t ssh_channel_window_size (\fBssh_channel\fP channel)"
+
+.PP
+Get the remote window size\&. This is the maximum amount of bytes the remote side expects us to send before growing the window again\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to query\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The remote window size
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+A nonzero return value does not guarantee the socket is ready to send that much data\&. Buffering may happen in the local SSH packet buffer, so beware of really big window sizes\&.
+
+.PP
+A zero return value means ssh_channel_write (default settings) will block until the window grows back\&. 
+.RE
+.PP
+
+.SS "int ssh_channel_write (\fBssh_channel\fP channel, const void * data, uint32_t len)"
+
+.PP
+Blocking write on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to write to\&.
+.br
+\fIdata\fP A pointer to the data to write\&.
+.br
+\fIlen\fP The length of the buffer to write to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes written, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_read()\fP 
+.RE
+.PP
+
+.SS "int ssh_channel_write_stderr (\fBssh_channel\fP channel, const void * data, uint32_t len)"
+
+.PP
+Blocking write on a channel stderr\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP The channel to write to\&.
+.br
+\fIdata\fP A pointer to the data to write\&.
+.br
+\fIlen\fP The length of the buffer to write to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of bytes written, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_read()\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

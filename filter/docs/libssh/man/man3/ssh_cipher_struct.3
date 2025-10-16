@@ -1,0 +1,73 @@
+.TH "ssh_cipher_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_cipher_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "const char * \fBname\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBblocksize\fP"
+.br
+.ti -1c
+.RI "enum ssh_cipher_e \fBciphertype\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBlenfield_blocksize\fP"
+.br
+.ti -1c
+.RI "size_t \fBkeylen\fP"
+.br
+.ti -1c
+.RI "struct \fBchacha20_poly1305_keysched\fP * \fBchacha20_schedule\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBkeysize\fP"
+.br
+.ti -1c
+.RI "size_t \fBtag_size\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBpackets\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBblocks\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBmax_blocks\fP"
+.br
+.ti -1c
+.RI "int(* \fBset_encrypt_key\fP )(struct \fBssh_cipher_struct\fP *cipher, void *key, void *IV)"
+.br
+.ti -1c
+.RI "int(* \fBset_decrypt_key\fP )(struct \fBssh_cipher_struct\fP *cipher, void *key, void *IV)"
+.br
+.ti -1c
+.RI "void(* \fBencrypt\fP )(struct \fBssh_cipher_struct\fP *cipher, void *in, void *out, size_t len)"
+.br
+.ti -1c
+.RI "void(* \fBdecrypt\fP )(struct \fBssh_cipher_struct\fP *cipher, void *in, void *out, size_t len)"
+.br
+.ti -1c
+.RI "void(* \fBaead_encrypt\fP )(struct \fBssh_cipher_struct\fP *cipher, void *in, void *out, size_t len, uint8_t *mac, uint64_t seq)"
+.br
+.ti -1c
+.RI "int(* \fBaead_decrypt_length\fP )(struct \fBssh_cipher_struct\fP *cipher, void *in, uint8_t *out, size_t len, uint64_t seq)"
+.br
+.ti -1c
+.RI "int(* \fBaead_decrypt\fP )(struct \fBssh_cipher_struct\fP *cipher, void *complete_packet, uint8_t *out, size_t encrypted_size, uint64_t seq)"
+.br
+.ti -1c
+.RI "void(* \fBcleanup\fP )(struct \fBssh_cipher_struct\fP *cipher)"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

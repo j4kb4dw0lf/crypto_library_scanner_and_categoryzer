@@ -1,0 +1,49 @@
+.TH "DeterministicSignatureAlgorithm" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DeterministicSignatureAlgorithm \- Interface for deterministic signers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBDL_Algorithm_DSA_RFC6979< EC::Point, H >\fP, and \fBDL_Algorithm_DSA_RFC6979< T, H >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGenerateRandom\fP (const \fBInteger\fP &x, const \fBInteger\fP &q, const \fBInteger\fP &e) const =0"
+.br
+.RI "Generate k\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for deterministic signers\&. 
+
+RFC 6979 signers which generate k based on the encoded message and private key 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBInteger\fP DeterministicSignatureAlgorithm::GenerateRandom (const \fBInteger\fP & x, const \fBInteger\fP & q, const \fBInteger\fP & e) const\fR [pure virtual]\fP"
+
+.PP
+Generate k\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP private key 
+.br
+\fIq\fP subgroup generator 
+.br
+\fIe\fP encoded message 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_Algorithm_DSA_RFC6979< T, H >\fP, and \fBDL_Algorithm_DSA_RFC6979< EC::Point, H >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,163 @@
+.TH "XSalsa20_Policy" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XSalsa20_Policy \- \fBXSalsa20\fP stream cipher operation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <salsa\&.h>\fP
+.PP
+Inherits \fBSalsa20_Policy\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "void \fBCipherResynchronize\fP (\fBbyte\fP *keystreamBuffer, const \fBbyte\fP *IV, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BYTES_PER_ITERATION=sizeof(\fBWordType\fP) *W)"
+.br
+.RI "Number of bytes for an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetAlignment\fP () const"
+.br
+.RI "Provides data alignment requirements\&. "
+.ti -1c
+.RI "unsigned int \fBGetBytesPerIteration\fP () const"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetIterationsToBuffer\fP () const"
+.br
+.RI "Provides buffer size based on iterations\&. "
+.ti -1c
+.RI "bool \fBCanOperateKeystream\fP () const"
+.br
+.RI "Flag indicating\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherAbstractPolicy\fP
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "virtual void \fBWriteKeystream\fP (\fBbyte\fP *keystream, size_t iterationCount)"
+.br
+.RI "Generate the keystream\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBword32\fP, 8 > \fBm_key\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBSalsa20_Policy\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 16 > \fBm_state\fP"
+.br
+.ti -1c
+.RI "int \fBm_rounds\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBWordType\fP"
+.br
+.RI "\fBWord\fP type for the cipher\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSalsa20_Policy\fP
+.in +1c
+.ti -1c
+.RI "void \fBOperateKeystream\fP (\fBKeystreamOperation\fP operation, \fBbyte\fP *output, const \fBbyte\fP *input, size_t iterationCount)"
+.br
+.RI "Operates the keystream\&. "
+.ti -1c
+.RI "bool \fBCipherIsRandomAccess\fP () const"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "void \fBSeekToIteration\fP (\fBlword\fP iterationCount)"
+.br
+.RI "Seeks to a random position in the stream\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (ROUNDS=20)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBXSalsa20\fP stream cipher operation\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.4 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void XSalsa20_Policy::CipherResynchronize (\fBbyte\fP * keystreamBuffer, const \fBbyte\fP * iv, size_t length)\fR [virtual]\fP"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeystreamBuffer\fP the keystream buffer 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIlength\fP the size of the IV array 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBSalsa20_Policy\fP\&.
+.SS "void XSalsa20_Policy::CipherSetKey (const \fBNameValuePairs\fP & params, const \fBbyte\fP * key, size_t length)\fR [virtual]\fP"
+
+.PP
+Key the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP set of \fBNameValuePairs\fP use to initialize this object 
+.br
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBSalsa20_Policy\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

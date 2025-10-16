@@ -1,0 +1,73 @@
+.TH "BTEA" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BTEA \- \fBBTEA\fP block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tea\&.h>\fP
+.PP
+Inherits \fBBTEA_Info\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBENCRYPTION\fP, Enc > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBDECRYPTION\fP, Dec > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBBTEA_Info\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBBTEA\fP block cipher\&. 
+
+Corrected Block \fBTEA\fP as described in "xxtea"\&. This class hasn't been tested yet\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRCorrection to xtea\fP and \fRCorrected Block TEA\fP\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

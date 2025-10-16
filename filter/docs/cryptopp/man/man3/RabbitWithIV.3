@@ -1,0 +1,80 @@
+.TH "RabbitWithIV" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RabbitWithIV \- \fBRabbit\fP stream cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rabbit\&.h>\fP
+.PP
+Inherits \fBRabbitWithIVInfo\fP, and \fBSymmetricCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBConcretePolicyHolder\fP< \fBRabbitWithIVPolicy\fP, \fBAdditiveCipherTemplate\fP<> >, \fBRabbitWithIVInfo\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBEncryption\fP \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBRabbitWithIVInfo\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16, SimpleKeyingInterface::UNIQUE_IV, 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBRabbit\fP stream cipher\&. 
+
+\fBRabbit\fP is a stream cipher developed by Martin Boesgaard, Mette Vesterager, Thomas Pedersen, Jesper Christiansen and Ove Scavenius\&. \fBRabbit\fP is one of the final four Profile 1 (software) ciphers selected for the eSTREAM portfolio\&.
+
+.PP
+Crypto++ provides \fBRabbit\fP and \fBRabbitWithIV\fP classes\&. Two classes are necessary because the library lacks the means to describe and manage optional IVs\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBRabbit\fP, \fRThe eSTREAM Project | Rabbit\fP and \fRCrypto++ Wiki | Rabbit\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

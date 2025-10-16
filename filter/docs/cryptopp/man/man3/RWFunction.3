@@ -1,0 +1,401 @@
+.TH "RWFunction" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RWFunction \- Rabin-Williams trapdoor function using the public key\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rw\&.h>\fP
+.PP
+Inherits \fBTrapdoorFunction\fP, and \fBPublicKey\fP\&.
+.PP
+Inherited by \fBInvertibleRWFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &n)"
+.br
+.RI "Initialize a Rabin-Williams public key\&. "
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Saves a key to a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Loads a key from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBApplyFunction\fP (const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBPreimageBound\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBImageBound\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied\&. "
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetModulus\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetModulus\fP (const \fBInteger\fP &n)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunction\fP
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBApplyRandomizedFunction\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor function\&. "
+.ti -1c
+.RI "bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the encryption algorithm is randomized\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunctionBounds\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxPreimage\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied bound to a public key\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxImage\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied bound to a public key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (unsigned int precomputationStorage)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBm_n\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Rabin-Williams trapdoor function using the public key\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0, Tweaked roots using \fIe\fP and \fIf\fP since Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBInteger\fP RWFunction::ApplyFunction (const \fBInteger\fP & x) const\fR [virtual]\fP"
+
+.PP
+Applies the trapdoor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the message on which the encryption function is applied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the message x encrypted under the public key
+.RE
+.PP
+ApplyFunction is a generalization of encryption under a public key cryptosystem\&. Derived classes must implement it\&. 
+.PP
+Implements \fBTrapdoorFunction\fP\&.
+.SS "void RWFunction::AssignFrom (const \fBNameValuePairs\fP & source)\fR [virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Implements \fBCryptoMaterial\fP\&.
+.SS "bool RWFunction::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBNameValuePairs\fP\&.
+.SS "\fBInteger\fP RWFunction::ImageBound () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the maximum size of a representation after the trapdoor function is applied\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a representation after the trapdoor function is applied
+.RE
+.PP
+Derived classes must implement \fBImageBound()\fP\&. 
+.PP
+Implements \fBTrapdoorFunctionBounds\fP\&.
+.SS "void RWFunction::Initialize (const \fBInteger\fP & n)\fR [inline]\fP"
+
+.PP
+Initialize a Rabin-Williams public key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the modulus 
+.RE
+.PP
+
+.SS "void RWFunction::Load (\fBBufferedTransformation\fP & bt)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Loads a key from a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP the source \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIKeyingErr\fP 
+.RE
+.PP
+\fBLoad()\fP attempts to read material from a \fBBufferedTransformation\fP\&. If the material is a key that was generated outside the library, then the following usually applies: 
+.PD 0
+.IP "\(bu" 2
+the key should be ASN\&.1 BER encoded 
+.IP "\(bu" 2
+the key should be a "key info" 
+.PP
+
+.PP
+"key info" means the key should have an object identifier with an algorithm id, like a subjectPublicKeyInfo\&.
+
+.PP
+To read a "raw" key without the "key info", then call the key's BERDecode() method\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBLoad()\fP generally does not check that the key is valid\&. Call \fBValidate()\fP, if needed\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "\fBInteger\fP RWFunction::PreimageBound () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the maximum size of a message before the trapdoor function is applied\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a message before the trapdoor function is applied
+.RE
+.PP
+Derived classes must implement \fBPreimageBound()\fP\&. 
+.PP
+Implements \fBTrapdoorFunctionBounds\fP\&.
+.SS "void RWFunction::Save (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Saves a key to a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP the destination \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSave()\fP writes the material to a \fBBufferedTransformation\fP\&.
+
+.PP
+If the material is a key, then the key is written with ASN\&.1 DER encoding\&. The key includes an object identifier with an algorithm id, like a subjectPublicKeyInfo\&.
+
+.PP
+A "raw" key without the "key info" can be saved using a key's DEREncode() method\&.
+
+.PP
+If a derived class does not override \fBSave()\fP, then the base class throws \fBNotImplemented()\fP\&. 
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "bool RWFunction::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThrowIfInvalid()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBCryptoMaterial\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

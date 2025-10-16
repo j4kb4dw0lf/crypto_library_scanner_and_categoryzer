@@ -1,0 +1,155 @@
+.TH "CipherModeFinalTemplate_CipherHolder< CIPHER, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CipherModeFinalTemplate_CipherHolder< CIPHER, BASE > \- Block cipher mode of operation aggregate\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <modes\&.h>\fP
+.PP
+Inherits \fBObjectHolder< CIPHER >\fP, and \fBAlgorithmImpl< BASE, CipherModeFinalTemplate_CipherHolder< CIPHER, BASE > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_CipherHolder\fP ()"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_CipherHolder\fP (const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_CipherHolder\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_CipherHolder\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, int feedbackSize)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< BASE, CipherModeFinalTemplate_CipherHolder< CIPHER, BASE > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "Provides the name of this algorithm\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< BASE, CipherModeFinalTemplate_CipherHolder< CIPHER, BASE > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBAlgorithmImpl< BASE, CipherModeFinalTemplate_CipherHolder< CIPHER, BASE > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Static Protected Member Functions inherited from \fBAlgorithmImpl< BASE, CipherModeFinalTemplate_CipherHolder< CIPHER, BASE > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Attributes inherited from \fBObjectHolder< CIPHER >\fP
+.in +1c
+.ti -1c
+.RI "CIPHER \fBm_object\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class CIPHER, class BASE>
+.br
+class CipherModeFinalTemplate_CipherHolder< CIPHER, BASE >"Block cipher mode of operation aggregate\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class CIPHER, class BASE> \fBCipherModeFinalTemplate_CipherHolder\fP< CIPHER, BASE >\fB::CipherModeFinalTemplate_CipherHolder\fP (const \fBbyte\fP * key, size_t length)\fR [inline]\fP"
+
+.PP
+Construct a CipherModeFinalTemplate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP size of the key in bytes
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+.SS "template<class CIPHER, class BASE> \fBCipherModeFinalTemplate_CipherHolder\fP< CIPHER, BASE >\fB::CipherModeFinalTemplate_CipherHolder\fP (const \fBbyte\fP * key, size_t length, const \fBbyte\fP * iv)\fR [inline]\fP"
+
+.PP
+Construct a CipherModeFinalTemplate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP size of the key in bytes 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. iv must be IVSize() or BLOCKSIZE in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+.SS "template<class CIPHER, class BASE> \fBCipherModeFinalTemplate_CipherHolder\fP< CIPHER, BASE >\fB::CipherModeFinalTemplate_CipherHolder\fP (const \fBbyte\fP * key, size_t length, const \fBbyte\fP * iv, int feedbackSize)\fR [inline]\fP"
+
+.PP
+Construct a CipherModeFinalTemplate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP size of the key in bytes 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIfeedbackSize\fP the feedback size, in bytes
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. iv must be IVSize() or BLOCKSIZE in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class CIPHER, class BASE> std::string CRYPTOPP_API \fBCipherModeFinalTemplate_CipherHolder\fP< CIPHER, BASE >::StaticAlgorithmName ()\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name
+.RE
+.PP
+The standard algorithm name can be a name like \fIAES\fP or \fIAES/GCM\fP\&. Some algorithms do not have standard names yet\&. For example, there is no standard algorithm name for Shoup's \fBECIES\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

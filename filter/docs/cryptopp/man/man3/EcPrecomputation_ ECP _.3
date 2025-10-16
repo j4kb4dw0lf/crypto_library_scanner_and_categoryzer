@@ -1,0 +1,198 @@
+.TH "EcPrecomputation< ECP >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EcPrecomputation< ECP > \- \fBECP\fP precomputation specialization\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ecp\&.h>\fP
+.PP
+Inherits \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBECP\fP \fBEllipticCurve\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_GroupPrecomputation< ECP::Point >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBECP::Point\fP \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBNeedConversions\fP () const"
+.br
+.RI "Determines if elements needs conversion\&. "
+.ti -1c
+.RI "\fBElement\fP \fBConvertIn\fP (const \fBElement\fP &P) const"
+.br
+.RI "Converts an element between representations\&. "
+.ti -1c
+.RI "\fBElement\fP \fBConvertOut\fP (const \fBElement\fP &P) const"
+.br
+.RI "Converts an element between representations\&. "
+.ti -1c
+.RI "const \fBAbstractGroup\fP< \fBElement\fP > & \fBGetGroup\fP () const"
+.br
+.RI "Retrieves \fBAbstractGroup\fP interface\&. "
+.ti -1c
+.RI "\fBElement\fP \fBBERDecodeElement\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Decodes element in DER format\&. "
+.ti -1c
+.RI "void \fBDEREncodeElement\fP (\fBBufferedTransformation\fP &bt, const \fBElement\fP &v) const"
+.br
+.RI "Encodes element in DER format\&. "
+.ti -1c
+.RI "void \fBSetCurve\fP (const \fBECP\fP &ec)"
+.br
+.RI "Set the elliptic curve\&. "
+.ti -1c
+.RI "const \fBECP\fP & \fBGetCurve\fP () const"
+.br
+.RI "Get the elliptic curve\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBECP\fP precomputation specialization\&. 
+
+Implementation of \fR\fBDL_GroupPrecomputation<ECP::Point>\fP\fP with input and output conversions for Montgomery modular multiplication\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDL_GroupPrecomputation\fP, \fBModularArithmetic\fP, \fBMontgomeryRepresentation\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBElement\fP \fBEcPrecomputation\fP< \fBECP\fP >::BERDecodeElement (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Decodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+element in the group 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "\fBElement\fP \fBEcPrecomputation\fP< \fBECP\fP >::ConvertIn (const \fBElement\fP & v) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Converts an element between representations\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP element to convert 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an element converted to an alternate representation for internal use
+.RE
+.PP
+ConvertIn is used when an element must convert between representations\&. 
+.PP
+Reimplemented from \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "\fBElement\fP \fBEcPrecomputation\fP< \fBECP\fP >::ConvertOut (const \fBElement\fP & v) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Converts an element between representations\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP element to convert 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an element converted from an alternate representation 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "void \fBEcPrecomputation\fP< \fBECP\fP >::DEREncodeElement (\fBBufferedTransformation\fP & bt, const \fBElement\fP & P) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Encodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIP\fP Element to encode 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "const \fBECP\fP & \fBEcPrecomputation\fP< \fBECP\fP >::GetCurve () const\fR [inline]\fP"
+
+.PP
+Get the elliptic curve\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBECP\fP curve
+.RE
+.PP
+\fBGetCurve()\fP is not inherited 
+.SS "const \fBAbstractGroup\fP< \fBElement\fP > & \fBEcPrecomputation\fP< \fBECP\fP >::GetGroup () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves \fBAbstractGroup\fP interface\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBGetGroup()\fP returns the \fBAbstractGroup\fP interface 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "bool \fBEcPrecomputation\fP< \fBECP\fP >::NeedConversions () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if elements needs conversion\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the element needs conversion, false otherwise
+.RE
+.PP
+NeedConversions determines if an element must convert between representations\&. 
+.PP
+Reimplemented from \fBDL_GroupPrecomputation< ECP::Point >\fP\&.
+.SS "void \fBEcPrecomputation\fP< \fBECP\fP >::SetCurve (const \fBECP\fP & ec)\fR [inline]\fP"
+
+.PP
+Set the elliptic curve\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIec\fP \fBECP\fP derived class
+.RE
+.PP
+\fBSetCurve()\fP is not inherited 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

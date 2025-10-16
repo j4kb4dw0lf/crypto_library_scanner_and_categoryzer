@@ -1,0 +1,125 @@
+.TH "SIMON64" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SIMON64 \- SIMON 64-bit block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simon\&.h>\fP
+.PP
+Inherits \fBSIMON_Info< 8, 12, 12, 16 >\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBase\fP"
+.br
+.RI "\fBSIMON64\fP block cipher base implementation\&. "
+.ti -1c
+.RI "class \fBDec\fP"
+.br
+.RI "\fBSIMON64\fP decryption transformation\&. "
+.ti -1c
+.RI "class \fBEnc\fP"
+.br
+.RI "\fBSIMON64\fP encryption transformation\&. "
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBENCRYPTION\fP, \fBEnc\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBDECRYPTION\fP, \fBDec\fP > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< L >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< D, N, M, Q, IV_REQ, IV_L >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=M)"
+.br
+.RI "The maximum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=D)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH_MULTIPLE=Q)"
+.br
+.RI "The key length multiple used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_REQUIREMENT=IV_REQ)"
+.br
+.RI "The default IV requirements for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_LENGTH=IV_L)"
+.br
+.RI "The default initialization vector length for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBSIMON_Info< 8, 12, 12, 16 >\fP
+.in +1c
+.ti -1c
+.RI "static const std::string \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+SIMON 64-bit block cipher\&. 
+
+Simon is a block cipher designed by Ray Beaulieu, Douglas Shors, Jason Smith, Stefan Treatman-Clark, Bryan Weeks and Louis Wingers\&.
+
+.PP
+\fBSIMON64\fP provides 64-bit block size\&. The valid key sizes are 96-bit and 128-bit\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSIMON64\fP, \fBSIMON128\fP, \fRThe SIMON and SIMON Families of Lightweight Block Ciphers\fP, \fRThe Simon and Speck GitHub\fP, \fRSIMON\fP on the Crypto++ wiki 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

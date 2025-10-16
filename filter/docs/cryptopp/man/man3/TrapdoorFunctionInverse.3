@@ -1,0 +1,105 @@
+.TH "TrapdoorFunctionInverse" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TrapdoorFunctionInverse \- Applies the inverse of the trapdoor function\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBRandomizedTrapdoorFunctionInverse\fP\&.
+.PP
+Inherited by \fBInvertibleLUCFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRWFunction\fP, and \fBInvertibleRabinFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBCalculateRandomizedInverse\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const"
+.br
+.RI "Applies the inverse of the trapdoor function\&. "
+.ti -1c
+.RI "bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the decryption algorithm is randomized\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBCalculateInverse\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const =0"
+.br
+.RI "Calculates the inverse of an element\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Applies the inverse of the trapdoor function\&. 
+
+\fBCalculateInverse()\fP is the foundation for decrypting a message under a private key in a public key cryptosystem\&. Derived classes will override it at some point\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBTrapdoorFunctionBounds()\fP, \fBRandomizedTrapdoorFunction()\fP, \fBTrapdoorFunction()\fP, \fBRandomizedTrapdoorFunctionInverse()\fP and \fBTrapdoorFunctionInverse()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBInteger\fP TrapdoorFunctionInverse::CalculateInverse (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & x) const\fR [pure virtual]\fP"
+
+.PP
+Calculates the inverse of an element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIx\fP the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the inverse of the element in the group 
+.RE
+.PP
+
+.PP
+Implemented in \fBInvertibleLUCFunction\fP, \fBInvertibleRabinFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRSAFunction_ISO\fP, and \fBInvertibleRWFunction\fP\&.
+.SS "\fBInteger\fP TrapdoorFunctionInverse::CalculateRandomizedInverse (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & x) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Applies the inverse of the trapdoor function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIx\fP the message on which the decryption function is applied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the message x decrypted under the private key
+.RE
+.PP
+CalculateRandomizedInverse is a generalization of decryption using the private key
+
+.PP
+Internally, \fBCalculateRandomizedInverse()\fP calls \fBCalculateInverse()\fP without the \fBRandomNumberGenerator\fP\&. 
+.PP
+Implements \fBRandomizedTrapdoorFunctionInverse\fP\&.
+.SS "bool TrapdoorFunctionInverse::IsRandomized () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if the decryption algorithm is randomized\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the decryption algorithm is randomized, false otherwise
+.RE
+.PP
+If \fBIsRandomized()\fP returns false, then \fBNullRNG()\fP can be used\&. 
+.PP
+Reimplemented from \fBRandomizedTrapdoorFunctionInverse\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

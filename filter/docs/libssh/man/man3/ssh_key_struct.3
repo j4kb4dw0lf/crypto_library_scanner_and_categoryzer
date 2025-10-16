@@ -1,0 +1,52 @@
+.TH "ssh_key_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_key_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "enum ssh_keytypes_e \fBtype\fP"
+.br
+.ti -1c
+.RI "int \fBflags\fP"
+.br
+.ti -1c
+.RI "const char * \fBtype_c\fP"
+.br
+.ti -1c
+.RI "int \fBecdsa_nid\fP"
+.br
+.ti -1c
+.RI "ed25519_pubkey * \fBed25519_pubkey\fP"
+.br
+.ti -1c
+.RI "ed25519_privkey * \fBed25519_privkey\fP"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBsk_application\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBcert\fP"
+.br
+.ti -1c
+.RI "enum ssh_keytypes_e \fBcert_type\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBsk_flags\fP"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBsk_key_handle\fP"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBsk_reserved\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

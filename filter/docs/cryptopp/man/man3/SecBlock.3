@@ -1,0 +1,1063 @@
+.TH "SecBlock< T, A >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SecBlock< T, A > \- Secure memory block with allocator and cleanup\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.PP
+Inherited by \fBFixedSizeSecBlock< word32, Blocks >\fP, \fBFixedSizeSecBlock< word64, Blocks >\fP, \fBFixedSizeSecBlock< word64, 4 >\fP, \fBFixedSizeSecBlock< word64, 2 >\fP, \fBFixedSizeSecBlock< byte, 8 >\fP, \fBFixedSizeSecBlock< word32, 8 >\fP, \fBFixedSizeSecBlock< word32, 4 >\fP, \fBFixedSizeSecBlock< word32, ROUNDS+2 >\fP, \fBFixedSizeSecBlock< word32, 4 *256 >\fP, \fBFixedSizeSecBlock< word32, 32 >\fP, \fBFixedSizeSecBlock< word32, 3 >\fP, \fBFixedSizeSecBlock< word32, 8 *12 >\fP, \fBFixedSizeSecBlock< word16, 4 >\fP, \fBFixedSizeSecBlock< byte, BLOCKSIZE >\fP, \fBFixedSizeSecBlock< unsigned int, 286 >\fP, \fBFixedSizeSecBlock< unsigned int, 30 >\fP, \fBFixedSizeSecBlock< word32, 16 >\fP, \fBFixedSizeSecBlock< byte, 136 >\fP, \fBFixedSizeSecBlock< Word, 6 *ROUNDS+4 >\fP, \fBFixedSizeSecBlock< T_HashWordType, Blocks >\fP, \fBFixedSizeSecBlock< word64, 25 >\fP, \fBFixedSizeSecBlock< word32, 80+2 >\fP, \fBFixedSizeSecBlock< word64, 80+2 >\fP, \fBFixedSizeSecBlock< byte, 256 >\fP, \fBFixedSizeSecBlock< word32, 40 >\fP, \fBFixedSizeSecBlock< word32, N+1 >\fP, \fBFixedSizeSecBlock< word16, 64 >\fP, \fBFixedSizeSecBlock< word32, 12 >\fP, \fBFixedSizeSecBlock< word32, 512 >\fP, \fBFixedSizeSecBlock< word32, 256 >\fP, \fBFixedSizeSecBlock< word16, ROUNDS >\fP, \fBFixedSizeSecBlock< word16, 5 >\fP, \fBFixedSizeSecBlock< word32, ROUNDS >\fP, \fBFixedSizeSecBlock< word32, 5 >\fP, \fBFixedSizeSecBlock< byte, 10 *256 >\fP, \fBFixedSizeSecBlock< word32, 33 *4 >\fP, \fBFixedSizeSecBlock< word32, 25 *4 >\fP, \fBFixedSizeSecBlock< word32, 4 *(ROUNDS+1)>\fP, \fBFixedSizeSecBlock< word32, 10 >\fP, \fBFixedSizeSecBlock< byte, SECRET_KEYLENGTH >\fP, \fBFixedSizeSecBlock< byte, PUBLIC_KEYLENGTH >\fP, \fBFixedSizeSecBlock< T, S, A >\fP, and \fBSecBlockWithHint< T, S, A >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef A::value_type \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef A::pointer \fBiterator\fP"
+.br
+.ti -1c
+.RI "typedef A::const_pointer \fBconst_iterator\fP"
+.br
+.ti -1c
+.RI "typedef A::size_type \fBsize_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSecBlock\fP (size_type \fBsize\fP=0)"
+.br
+.RI "Construct a \fBSecBlock\fP with space for size elements\&. "
+.ti -1c
+.RI "\fBSecBlock\fP (const \fBSecBlock\fP< T, A > &t)"
+.br
+.RI "Copy construct a \fBSecBlock\fP from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "\fBSecBlock\fP (const T *ptr, size_type len)"
+.br
+.RI "Construct a \fBSecBlock\fP from an array of elements\&. "
+.ti -1c
+.RI "\fBoperator const void *\fP () const"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "\fBoperator void *\fP ()"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "\fBoperator const T *\fP () const"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "\fBoperator T*\fP ()"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "iterator \fBbegin\fP ()"
+.br
+.RI "Provides an iterator pointing to the first element in the memory block\&. "
+.ti -1c
+.RI "const_iterator \fBbegin\fP () const"
+.br
+.RI "Provides a constant iterator pointing to the first element in the memory block\&. "
+.ti -1c
+.RI "iterator \fBend\fP ()"
+.br
+.RI "Provides an iterator pointing beyond the last element in the memory block\&. "
+.ti -1c
+.RI "const_iterator \fBend\fP () const"
+.br
+.RI "Provides a constant iterator pointing beyond the last element in the memory block\&. "
+.ti -1c
+.RI "A::pointer \fBdata\fP ()"
+.br
+.RI "Provides a pointer to the first element in the memory block\&. "
+.ti -1c
+.RI "A::const_pointer \fBdata\fP () const"
+.br
+.RI "Provides a pointer to the first element in the memory block\&. "
+.ti -1c
+.RI "size_type \fBsize\fP () const"
+.br
+.RI "Provides the count of elements in the \fBSecBlock\fP\&. "
+.ti -1c
+.RI "bool \fBempty\fP () const"
+.br
+.RI "Determines if the \fBSecBlock\fP is empty\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBBytePtr\fP ()"
+.br
+.RI "Provides a byte pointer to the first element in the memory block\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBBytePtr\fP () const"
+.br
+.RI "Return a byte pointer to the first element in the memory block\&. "
+.ti -1c
+.RI "size_type \fBSizeInBytes\fP () const"
+.br
+.RI "Provides the number of bytes in the \fBSecBlock\fP\&. "
+.ti -1c
+.RI "void \fBAssign\fP (const T *ptr, size_type len)"
+.br
+.RI "Set contents and size from an array\&. "
+.ti -1c
+.RI "void \fBAssign\fP (size_type count, T value)"
+.br
+.RI "Set contents from a value\&. "
+.ti -1c
+.RI "void \fBAssign\fP (const \fBSecBlock\fP< T, A > &t)"
+.br
+.RI "Copy contents from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "void \fBAppend\fP (const T *ptr, size_type len)"
+.br
+.RI "Append contents from an array\&. "
+.ti -1c
+.RI "void \fBAppend\fP (const \fBSecBlock\fP< T, A > &t)"
+.br
+.RI "Append contents from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "void \fBAppend\fP (size_type count, T value)"
+.br
+.RI "Append contents from a value\&. "
+.ti -1c
+.RI "void \fBSetMark\fP (size_t count)"
+.br
+.RI "Sets the number of elements to zeroize\&. "
+.ti -1c
+.RI "\fBSecBlock\fP< T, A > & \fBoperator=\fP (const \fBSecBlock\fP< T, A > &t)"
+.br
+.RI "Assign contents from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "\fBSecBlock\fP< T, A > & \fBoperator+=\fP (const \fBSecBlock\fP< T, A > &t)"
+.br
+.RI "Append contents from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "\fBSecBlock\fP< T, A > \fBoperator+\fP (const \fBSecBlock\fP< T, A > &t)"
+.br
+.RI "Construct a \fBSecBlock\fP from this and another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBSecBlock\fP< T, A > &t) const"
+.br
+.RI "Bitwise compare two SecBlocks\&. "
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBSecBlock\fP< T, A > &t) const"
+.br
+.RI "Bitwise compare two SecBlocks\&. "
+.ti -1c
+.RI "void \fBNew\fP (size_type newSize)"
+.br
+.RI "Change size without preserving contents\&. "
+.ti -1c
+.RI "void \fBCleanNew\fP (size_type newSize)"
+.br
+.RI "Change size without preserving contents\&. "
+.ti -1c
+.RI "void \fBGrow\fP (size_type newSize)"
+.br
+.RI "Change size and preserve contents\&. "
+.ti -1c
+.RI "void \fBCleanGrow\fP (size_type newSize)"
+.br
+.RI "Change size and preserve contents\&. "
+.ti -1c
+.RI "void \fBresize\fP (size_type newSize)"
+.br
+.RI "Change size and preserve contents\&. "
+.ti -1c
+.RI "void \fBswap\fP (\fBSecBlock\fP< T, A > &b)"
+.br
+.RI "Swap contents with another \fBSecBlock\fP\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const size_type \fBELEMS_MAX\fP = SIZE_MAX/sizeof(T)"
+.br
+.RI "Returns the maximum number of elements the block can hold\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "A \fBm_alloc\fP"
+.br
+.ti -1c
+.RI "size_type \fBm_mark\fP"
+.br
+.ti -1c
+.RI "size_type \fBm_size\fP"
+.br
+.ti -1c
+.RI "T * \fBm_ptr\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>>
+.br
+class SecBlock< T, A >"Secure memory block with allocator and cleanup\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP a class or type 
+.br
+\fIA\fP \fBAllocatorWithCleanup\fP derived class for allocation and cleanup 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRSecBlock\fP on the Crypto++ wiki\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >\fB::SecBlock\fP (size_type size = \fR0\fP)\fR [inline]\fP, \fR [explicit]\fP"
+
+.PP
+Construct a \fBSecBlock\fP with space for size elements\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the size of the allocation, in elements 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIstd::bad_alloc\fP 
+.RE
+.PP
+The elements are not initialized\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+size is the count of elements, and not the number of bytes 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >\fB::SecBlock\fP (const \fBSecBlock\fP< T, A > & t)\fR [inline]\fP"
+
+.PP
+Copy construct a \fBSecBlock\fP from another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIstd::bad_alloc\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >\fB::SecBlock\fP (const T * ptr, size_type len)\fR [inline]\fP"
+
+.PP
+Construct a \fBSecBlock\fP from an array of elements\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP a pointer to an array of T 
+.br
+\fIlen\fP the number of elements in the memory block 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIstd::bad_alloc\fP 
+.RE
+.PP
+If \fRptr!=NULL\fP and \fRlen!=0\fP, then the block is initialized from the pointer \fRptr\fP\&. If \fRptr==NULL\fP and \fRlen!=0\fP, then the block is initialized to 0\&. Otherwise, the block is empty and not initialized\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+size is the count of elements, and not the number of bytes 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Append (const \fBSecBlock\fP< T, A > & t)\fR [inline]\fP"
+
+.PP
+Append contents from another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if resulting size would overflow
+.RE
+.PP
+Internally, this \fBSecBlock\fP calls \fBGrow()\fP and then appends t\&.
+
+.PP
+\fBAppend()\fP may be less efficient than a \fBByteQueue\fP because \fBAppend()\fP must \fBGrow()\fP the internal array and then copy elements\&. The \fBByteQueue\fP can copy elements without growing\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBByteQueue\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.6 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Append (const T * ptr, size_type len)\fR [inline]\fP"
+
+.PP
+Append contents from an array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP a pointer to an array of T 
+.br
+\fIlen\fP the number of elements in the memory block 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if resulting size would overflow
+.RE
+.PP
+The array pointed to by \fRptr\fP must be distinct from this \fBSecBlock\fP because \fBAppend()\fP calls \fBGrow()\fP and then std::memcpy()\&. The call to \fBGrow()\fP will invalidate all pointers and iterators, like the pointer returned from \fBdata()\fP\&.
+
+.PP
+\fBAppend()\fP may be less efficient than a \fBByteQueue\fP because \fBAppend()\fP must \fBGrow()\fP the internal array and then copy elements\&. The \fBByteQueue\fP can copy elements without growing\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBByteQueue\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.6 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Append (size_type count, T value)\fR [inline]\fP"
+
+.PP
+Append contents from a value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcount\fP the number of values to copy 
+.br
+\fIvalue\fP the value, repeated count times 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if resulting size would overflow
+.RE
+.PP
+Internally, this \fBSecBlock\fP calls \fBGrow()\fP and then appends value\&.
+
+.PP
+\fBAppend()\fP may be less efficient than a \fBByteQueue\fP because \fBAppend()\fP must \fBGrow()\fP the internal array and then copy elements\&. The \fBByteQueue\fP can copy elements without growing\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBByteQueue\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.6 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Assign (const \fBSecBlock\fP< T, A > & t)\fR [inline]\fP"
+
+.PP
+Copy contents from another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP
+.RE
+.PP
+Assign checks for self assignment\&.
+
+.PP
+If the memory block is reduced in size, then the reclaimed memory is set to 0\&. If an assignment occurs, then \fBAssign()\fP resets the element count after the previous block is zeroized\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Assign (const T * ptr, size_type len)\fR [inline]\fP"
+
+.PP
+Set contents and size from an array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP a pointer to an array of T 
+.br
+\fIlen\fP the number of elements in the memory block
+.RE
+.PP
+The array pointed to by \fRptr\fP must be distinct from this \fBSecBlock\fP because \fBAssign()\fP calls \fBNew()\fP and then std::memcpy()\&. The call to \fBNew()\fP will invalidate all pointers and iterators, like the pointer returned from \fBdata()\fP\&.
+
+.PP
+If the memory block is reduced in size, then the reclaimed memory is set to 0\&. If an assignment occurs, then \fBAssign()\fP resets the element count after the previous block is zeroized\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Assign (size_type count, T value)\fR [inline]\fP"
+
+.PP
+Set contents from a value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcount\fP the number of values to copy 
+.br
+\fIvalue\fP the value, repeated count times
+.RE
+.PP
+If the memory block is reduced in size, then the reclaimed memory is set to 0\&. If an assignment occurs, then \fBAssign()\fP resets the element count after the previous block is zeroized\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> iterator \fBSecBlock\fP< T, A >::begin ()\fR [inline]\fP"
+
+.PP
+Provides an iterator pointing to the first element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+iterator pointing to the first element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> const_iterator \fBSecBlock\fP< T, A >::begin () const\fR [inline]\fP"
+
+.PP
+Provides a constant iterator pointing to the first element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+constant iterator pointing to the first element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBbyte\fP * \fBSecBlock\fP< T, A >::BytePtr ()\fR [inline]\fP"
+
+.PP
+Provides a byte pointer to the first element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+byte pointer to the first element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> const \fBbyte\fP * \fBSecBlock\fP< T, A >::BytePtr () const\fR [inline]\fP"
+
+.PP
+Return a byte pointer to the first element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+constant byte pointer to the first element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::CleanGrow (size_type newSize)\fR [inline]\fP"
+
+.PP
+Change size and preserve contents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInewSize\fP the new size of the memory block
+.RE
+.PP
+Old content is preserved\&. New content is initialized to 0\&.
+
+.PP
+Internally, this \fBSecBlock\fP calls reallocate() when size must increase\&. If the size does not increase, then \fBCleanGrow()\fP does not take action\&. If the size must change, then use \fBresize()\fP\&. \fBCleanGrow()\fP resets the element count after the previous block is zeroized\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNew()\fP, \fBCleanNew()\fP, \fBGrow()\fP, \fBCleanGrow()\fP, \fBresize()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::CleanNew (size_type newSize)\fR [inline]\fP"
+
+.PP
+Change size without preserving contents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInewSize\fP the new size of the memory block
+.RE
+.PP
+Old content is not preserved\&. If the memory block is reduced in size, then the reclaimed content is set to 0\&. If the memory block grows in size, then the new memory is initialized to 0\&. \fBCleanNew()\fP resets the element count after the previous block is zeroized\&.
+
+.PP
+Internally, this \fBSecBlock\fP calls \fBNew()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNew()\fP, \fBCleanNew()\fP, \fBGrow()\fP, \fBCleanGrow()\fP, \fBresize()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> A::pointer \fBSecBlock\fP< T, A >::data ()\fR [inline]\fP"
+
+.PP
+Provides a pointer to the first element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the first element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> A::const_pointer \fBSecBlock\fP< T, A >::data () const\fR [inline]\fP"
+
+.PP
+Provides a pointer to the first element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+constant pointer to the first element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> bool \fBSecBlock\fP< T, A >::empty () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBSecBlock\fP is empty\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if number of elements in the memory block is 0, false otherwise 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> iterator \fBSecBlock\fP< T, A >::end ()\fR [inline]\fP"
+
+.PP
+Provides an iterator pointing beyond the last element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+iterator pointing beyond the last element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> const_iterator \fBSecBlock\fP< T, A >::end () const\fR [inline]\fP"
+
+.PP
+Provides a constant iterator pointing beyond the last element in the memory block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+constant iterator pointing beyond the last element in the memory block 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::Grow (size_type newSize)\fR [inline]\fP"
+
+.PP
+Change size and preserve contents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInewSize\fP the new size of the memory block
+.RE
+.PP
+Old content is preserved\&. New content is not initialized\&.
+
+.PP
+Internally, this \fBSecBlock\fP calls reallocate() when size must increase\&. If the size does not increase, then \fBCleanGrow()\fP does not take action\&. If the size must change, then use \fBresize()\fP\&. \fBCleanGrow()\fP resets the element count after the previous block is zeroized\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNew()\fP, \fBCleanNew()\fP, \fBGrow()\fP, \fBCleanGrow()\fP, \fBresize()\fP 
+
+.PP
+\fBNew()\fP, \fBCleanNew()\fP, \fBGrow()\fP, \fBCleanGrow()\fP, \fBresize()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::New (size_type newSize)\fR [inline]\fP"
+
+.PP
+Change size without preserving contents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInewSize\fP the new size of the memory block
+.RE
+.PP
+Old content is not preserved\&. If the memory block is reduced in size, then the reclaimed content is set to 0\&. If the memory block grows in size, then the new memory is initialized to 0\&. \fBNew()\fP resets the element count after the previous block is zeroized\&.
+
+.PP
+Internally, this \fBSecBlock\fP calls reallocate()\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNew()\fP, \fBCleanNew()\fP, \fBGrow()\fP, \fBCleanGrow()\fP, \fBresize()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >::operator const T * () const\fR [inline]\fP"
+
+.PP
+Cast operator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+block pointer cast to \fRconst T *\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >::operator const void * () const\fR [inline]\fP"
+
+.PP
+Cast operator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+block pointer cast to \fRconst void *\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >::operator T* ()\fR [inline]\fP"
+
+.PP
+Cast operator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+block pointer cast to non-const \fRT *\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A >::operator void * ()\fR [inline]\fP"
+
+.PP
+Cast operator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+block pointer cast to non-const \fRvoid *\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> bool \fBSecBlock\fP< T, A >::operator!= (const \fBSecBlock\fP< T, A > & t) const\fR [inline]\fP"
+
+.PP
+Bitwise compare two SecBlocks\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the size and bits are equal, false otherwise
+.RE
+.PP
+Uses a constant time compare if the arrays are equal size\&. The constant time compare is VerifyBufsEqual() found in \fR\fBmisc\&.h\fP\fP\&.
+
+.PP
+Internally, \fBoperator!=()\fP returns the inverse of \fBoperator==()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBoperator==()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A > \fBSecBlock\fP< T, A >::operator+ (const \fBSecBlock\fP< T, A > & t)\fR [inline]\fP"
+
+.PP
+Construct a \fBSecBlock\fP from this and another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a newly constructed \fBSecBlock\fP that is a concatenation of this and t\&.
+.RE
+.PP
+Internally, a new \fBSecBlock\fP is created from this and a concatenation of t\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A > & \fBSecBlock\fP< T, A >::operator+= (const \fBSecBlock\fP< T, A > & t)\fR [inline]\fP"
+
+.PP
+Append contents from another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to this \fBSecBlock\fP
+.RE
+.PP
+Internally, \fBoperator+=()\fP calls \fBAppend()\fP\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> \fBSecBlock\fP< T, A > & \fBSecBlock\fP< T, A >::operator= (const \fBSecBlock\fP< T, A > & t)\fR [inline]\fP"
+
+.PP
+Assign contents from another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to this \fBSecBlock\fP
+.RE
+.PP
+Internally, \fBoperator=()\fP calls \fBAssign()\fP\&.
+
+.PP
+If the memory block is reduced in size, then the reclaimed memory is set to 0\&. If an assignment occurs, then \fBAssign()\fP resets the element count after the previous block is zeroized\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> bool \fBSecBlock\fP< T, A >::operator== (const \fBSecBlock\fP< T, A > & t) const\fR [inline]\fP"
+
+.PP
+Bitwise compare two SecBlocks\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBSecBlock\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the size and bits are equal, false otherwise
+.RE
+.PP
+Uses a constant time compare if the arrays are equal size\&. The constant time compare is VerifyBufsEqual() found in \fR\fBmisc\&.h\fP\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBoperator!=()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::resize (size_type newSize)\fR [inline]\fP"
+
+.PP
+Change size and preserve contents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInewSize\fP the new size of the memory block
+.RE
+.PP
+Old content is preserved\&. If the memory block grows in size, then new memory is not initialized\&. \fBresize()\fP resets the element count after the previous block is zeroized\&.
+
+.PP
+Internally, this \fBSecBlock\fP calls reallocate()\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNew()\fP, \fBCleanNew()\fP, \fBGrow()\fP, \fBCleanGrow()\fP, \fBresize()\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::SetMark (size_t count)\fR [inline]\fP"
+
+.PP
+Sets the number of elements to zeroize\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcount\fP the number of elements
+.RE
+.PP
+SetMark is a remediation for Issue 346/CVE-2016-9939 while preserving the streaming interface\&. The \fRcount\fP controls the number of elements zeroized, which can be less than \fRsize\fP or 0\&.
+
+.PP
+An internal variable, \fRm_mark\fP, is initialized to the maximum number of elements\&. The maximum number of elements is \fRELEMS_MAX\fP\&. Deallocation triggers a zeroization, and the number of elements zeroized is \fRSTDMIN(m_size, m_mark)\fP\&. After zeroization, the memory is returned to the system\&.
+
+.PP
+The ASN\&.1 decoder uses \fBSetMark()\fP to set the element count to 0 before throwing an exception\&. In this case, the attacker provides a large BER encoded length (say 64MB) but only a small number of content octets (say 16)\&. If the allocator zeroized all 64MB, then a transient DoS could occur as CPU cycles are spent zeroizing uninitialized memory\&.
+
+.PP
+Generally speaking, any operation which changes the size of the \fBSecBlock\fP results in the mark being reset to \fRELEMS_MAX\fP\&. In particular, if \fBAssign()\fP, \fBNew()\fP, \fBGrow()\fP, \fBCleanNew()\fP, \fBCleanGrow()\fP are called, then the count is reset to \fRELEMS_MAX\fP\&. The list is not exhaustive\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 346/CVE-2016-9939\fP 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> size_type \fBSecBlock\fP< T, A >::size () const\fR [inline]\fP"
+
+.PP
+Provides the count of elements in the \fBSecBlock\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+number of elements in the memory block 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+the return value is the count of elements, and not the number of bytes 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> size_type \fBSecBlock\fP< T, A >::SizeInBytes () const\fR [inline]\fP"
+
+.PP
+Provides the number of bytes in the \fBSecBlock\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes in the memory block 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+the return value is the number of bytes, and not count of elements\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SS "template<class T, class A = AllocatorWithCleanup<T>> void \fBSecBlock\fP< T, A >::swap (\fBSecBlock\fP< T, A > & b)\fR [inline]\fP"
+
+.PP
+Swap contents with another \fBSecBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb\fP the other \fBSecBlock\fP
+.RE
+.PP
+Internally, std::swap() is called on m_alloc, m_size and m_ptr\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class T, class A = AllocatorWithCleanup<T>> const size_type \fBSecBlock\fP< T, A >::ELEMS_MAX = SIZE_MAX/sizeof(T)\fR [static]\fP"
+
+.PP
+Returns the maximum number of elements the block can hold\&. \fRELEMS_MAX\fP is the maximum number of elements the \fR\fBSecBlock\fP\fP can hold\&. The value of \fRELEMS_MAX\fP is \fRSIZE_MAX/sizeof(T)\fP\&. \fRstd::numeric_limits\fP was avoided due to lack of \fRconstexpr\fP-ness in C++03 and below\&. 
+.PP
+\fBNote\fP
+.RS 4
+In C++03 and below \fRELEMS_MAX\fP is a static data member of type \fRsize_type\fP\&. In C++11 and above \fRELEMS_MAX\fP is an \fRenum\fP inheriting from \fRsize_type\fP\&. In both cases \fRELEMS_MAX\fP can be used before objects are fully constructed, and it does not suffer the limitations of class methods like \fRmax_size\fP\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 346/CVE-2016-9939\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

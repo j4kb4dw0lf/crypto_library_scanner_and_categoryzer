@@ -1,0 +1,35 @@
+.TH "SafeShifter< overflow >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SafeShifter< overflow > \- Safely shift values when undefined behavior could occur\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SH "Detailed Description"
+.PP 
+
+.SS "template<bool overflow>
+.br
+struct SafeShifter< overflow >"Safely shift values when undefined behavior could occur\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIoverflow\fP boolean flag indicating if overflow is present
+.RE
+.PP
+\fBSafeShifter\fP safely shifts values when undefined behavior could occur under C/C++ rules\&. The class behaves much like a saturating arithmetic class, clamping values rather than allowing the compiler to remove undefined behavior\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSafeShifter<true>\fP, \fBSafeShifter<false>\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

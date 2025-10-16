@@ -1,0 +1,2193 @@
+.TH "libssh_sftp" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_sftp \- The libssh SFTP API
+.PP
+ \- SFTP handling functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBsftp_session_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_packet_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_file_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_dir_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_message_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_client_message_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_request_queue_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_status_message_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_attributes_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBsftp_statvfs_struct\fP"
+.br
+.RI "SFTP statvfs structure\&. "
+.ti -1c
+.RI "struct \fBsftp_limits_struct\fP"
+.br
+.RI "SFTP limits structure\&. "
+.ti -1c
+.RI "struct \fBsftp_name_id_map_struct\fP"
+.br
+.RI "SFTP names map structure to store the mapping between ids and names\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBLIBSFTP_VERSION\fP   3"
+.br
+.ti -1c
+.RI "#define \fBSFTP_AIO_FREE\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_INIT\fP   1"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_VERSION\fP   2"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_OPEN\fP   3"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_CLOSE\fP   4"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_READ\fP   5"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_WRITE\fP   6"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_LSTAT\fP   7"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_FSTAT\fP   8"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_SETSTAT\fP   9"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_FSETSTAT\fP   10"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_OPENDIR\fP   11"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_READDIR\fP   12"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_REMOVE\fP   13"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_MKDIR\fP   14"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_RMDIR\fP   15"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_REALPATH\fP   16"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_STAT\fP   17"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_RENAME\fP   18"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_READLINK\fP   19"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_SYMLINK\fP   20"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_STATUS\fP   101"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_HANDLE\fP   102"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_DATA\fP   103"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_NAME\fP   104"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_ATTRS\fP   105"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_EXTENDED\fP   200"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXP_EXTENDED_REPLY\fP   201"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_SIZE\fP   0x00000001"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_PERMISSIONS\fP   0x00000004"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_ACCESSTIME\fP   0x00000008"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_ACMODTIME\fP   0x00000008"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_CREATETIME\fP   0x00000010"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_MODIFYTIME\fP   0x00000020"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_ACL\fP   0x00000040"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_OWNERGROUP\fP   0x00000080"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_SUBSECOND_TIMES\fP   0x00000100"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_EXTENDED\fP   0x80000000"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_ATTR_UIDGID\fP   0x00000002"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_TYPE_REGULAR\fP   1"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_TYPE_DIRECTORY\fP   2"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_TYPE_SYMLINK\fP   3"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_TYPE_SPECIAL\fP   4"
+.br
+.ti -1c
+.RI "#define \fBSSH_FILEXFER_TYPE_UNKNOWN\fP   5"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_READ\fP   0x01"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_WRITE\fP   0x02"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_APPEND\fP   0x04"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_CREAT\fP   0x08"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_TRUNC\fP   0x10"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_EXCL\fP   0x20"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_TEXT\fP   0x40"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFMT\fP   00170000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFSOCK\fP   0140000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFLNK\fP   0120000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFREG\fP   0100000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFBLK\fP   0060000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFDIR\fP   0040000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFCHR\fP   0020000"
+.br
+.ti -1c
+.RI "#define \fBSSH_S_IFIFO\fP   0010000"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_RENAME_OVERWRITE\fP   0x00000001"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_RENAME_ATOMIC\fP   0x00000002"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXF_RENAME_NATIVE\fP   0x00000004"
+.br
+.ti -1c
+.RI "#define \fBSFTP_OPEN\fP   SSH_FXP_OPEN"
+.br
+.ti -1c
+.RI "#define \fBSFTP_CLOSE\fP   SSH_FXP_CLOSE"
+.br
+.ti -1c
+.RI "#define \fBSFTP_READ\fP   SSH_FXP_READ"
+.br
+.ti -1c
+.RI "#define \fBSFTP_WRITE\fP   SSH_FXP_WRITE"
+.br
+.ti -1c
+.RI "#define \fBSFTP_LSTAT\fP   SSH_FXP_LSTAT"
+.br
+.ti -1c
+.RI "#define \fBSFTP_FSTAT\fP   SSH_FXP_FSTAT"
+.br
+.ti -1c
+.RI "#define \fBSFTP_SETSTAT\fP   SSH_FXP_SETSTAT"
+.br
+.ti -1c
+.RI "#define \fBSFTP_FSETSTAT\fP   SSH_FXP_FSETSTAT"
+.br
+.ti -1c
+.RI "#define \fBSFTP_OPENDIR\fP   SSH_FXP_OPENDIR"
+.br
+.ti -1c
+.RI "#define \fBSFTP_READDIR\fP   SSH_FXP_READDIR"
+.br
+.ti -1c
+.RI "#define \fBSFTP_REMOVE\fP   SSH_FXP_REMOVE"
+.br
+.ti -1c
+.RI "#define \fBSFTP_MKDIR\fP   SSH_FXP_MKDIR"
+.br
+.ti -1c
+.RI "#define \fBSFTP_RMDIR\fP   SSH_FXP_RMDIR"
+.br
+.ti -1c
+.RI "#define \fBSFTP_REALPATH\fP   SSH_FXP_REALPATH"
+.br
+.ti -1c
+.RI "#define \fBSFTP_STAT\fP   SSH_FXP_STAT"
+.br
+.ti -1c
+.RI "#define \fBSFTP_RENAME\fP   SSH_FXP_RENAME"
+.br
+.ti -1c
+.RI "#define \fBSFTP_READLINK\fP   SSH_FXP_READLINK"
+.br
+.ti -1c
+.RI "#define \fBSFTP_SYMLINK\fP   SSH_FXP_SYMLINK"
+.br
+.ti -1c
+.RI "#define \fBSFTP_EXTENDED\fP   SSH_FXP_EXTENDED"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXE_STATVFS_ST_RDONLY\fP   0x1 /* read\-only */"
+.br
+.ti -1c
+.RI "#define \fBSSH_FXE_STATVFS_ST_NOSUID\fP   0x2 /* no setuid */"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBsftp_attributes_struct\fP * \fBsftp_attributes\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_client_message_struct\fP * \fBsftp_client_message\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_dir_struct\fP * \fBsftp_dir\fP"
+.br
+.ti -1c
+.RI "typedef struct sftp_ext_struct * \fBsftp_ext\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_file_struct\fP * \fBsftp_file\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_message_struct\fP * \fBsftp_message\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_packet_struct\fP * \fBsftp_packet\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_request_queue_struct\fP * \fBsftp_request_queue\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_session_struct\fP * \fBsftp_session\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_status_message_struct\fP * \fBsftp_status_message\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_statvfs_struct\fP * \fBsftp_statvfs_t\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_limits_struct\fP * \fBsftp_limits_t\fP"
+.br
+.ti -1c
+.RI "typedef struct sftp_aio_struct * \fBsftp_aio\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBsftp_name_id_map_struct\fP * \fBsftp_name_id_map\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "LIBSSH_API \fBsftp_session\fP \fBsftp_new\fP (\fBssh_session\fP session)"
+.br
+.RI "Creates a new sftp session\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_session\fP \fBsftp_new_channel\fP (\fBssh_session\fP session, \fBssh_channel\fP channel)"
+.br
+.RI "Start a new sftp session with an existing channel\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_free\fP (\fBsftp_session\fP sftp)"
+.br
+.RI "Close and deallocate a sftp session\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_init\fP (\fBsftp_session\fP sftp)"
+.br
+.RI "Initialize the sftp protocol with the server\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_get_error\fP (\fBsftp_session\fP sftp)"
+.br
+.RI "Get the last sftp error\&. "
+.ti -1c
+.RI "LIBSSH_API unsigned int \fBsftp_extensions_get_count\fP (\fBsftp_session\fP sftp)"
+.br
+.RI "Get the count of extensions provided by the server\&. "
+.ti -1c
+.RI "LIBSSH_API const char * \fBsftp_extensions_get_name\fP (\fBsftp_session\fP sftp, unsigned int indexn)"
+.br
+.RI "Get the name of the extension provided by the server\&. "
+.ti -1c
+.RI "LIBSSH_API const char * \fBsftp_extensions_get_data\fP (\fBsftp_session\fP sftp, unsigned int indexn)"
+.br
+.RI "Get the data of the extension provided by the server\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_extension_supported\fP (\fBsftp_session\fP sftp, const char *name, const char *data)"
+.br
+.RI "Check if the given extension is supported\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_dir\fP \fBsftp_opendir\fP (\fBsftp_session\fP session, const char *path)"
+.br
+.RI "Open a directory used to obtain directory entries\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_attributes\fP \fBsftp_readdir\fP (\fBsftp_session\fP session, \fBsftp_dir\fP dir)"
+.br
+.RI "Get a single file attributes structure of a directory\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_dir_eof\fP (\fBsftp_dir\fP dir)"
+.br
+.RI "Tell if the directory has reached EOF (End Of File)\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_attributes\fP \fBsftp_stat\fP (\fBsftp_session\fP session, const char *path)"
+.br
+.RI "Get information about a file or directory\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_attributes\fP \fBsftp_lstat\fP (\fBsftp_session\fP session, const char *path)"
+.br
+.RI "Get information about a file or directory\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_attributes\fP \fBsftp_fstat\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Get information about a file or directory from a file handle\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_attributes_free\fP (\fBsftp_attributes\fP \fBfile\fP)"
+.br
+.RI "Free a sftp attribute structure\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_closedir\fP (\fBsftp_dir\fP dir)"
+.br
+.RI "Close a directory handle opened by \fBsftp_opendir()\fP\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_close\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Close an open file handle\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_file\fP \fBsftp_open\fP (\fBsftp_session\fP session, const char *\fBfile\fP, int accesstype, mode_t mode)"
+.br
+.RI "Open a file on the server\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_file_set_nonblocking\fP (\fBsftp_file\fP handle)"
+.br
+.RI "Make the sftp communication for this file handle non blocking\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_file_set_blocking\fP (\fBsftp_file\fP handle)"
+.br
+.RI "Make the sftp communication for this file handle blocking\&. "
+.ti -1c
+.RI "LIBSSH_API ssize_t \fBsftp_read\fP (\fBsftp_file\fP \fBfile\fP, void *buf, size_t count)"
+.br
+.RI "Read from a file using an opened sftp file handle\&. "
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBsftp_async_read_begin\fP (\fBsftp_file\fP \fBfile\fP, uint32_t len)"
+.br
+.RI "Start an asynchronous read from a file using an opened sftp file handle\&. "
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBsftp_async_read\fP (\fBsftp_file\fP \fBfile\fP, void *data, uint32_t len, uint32_t id)"
+.br
+.RI "Wait for an asynchronous read to complete and save the data\&. "
+.ti -1c
+.RI "LIBSSH_API ssize_t \fBsftp_write\fP (\fBsftp_file\fP \fBfile\fP, const void *buf, size_t count)"
+.br
+.RI "Write to a file using an opened sftp file handle\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_aio_free\fP (sftp_aio aio)"
+.br
+.RI "Deallocate memory corresponding to a sftp aio handle\&. "
+.ti -1c
+.RI "LIBSSH_API ssize_t \fBsftp_aio_begin_read\fP (\fBsftp_file\fP \fBfile\fP, size_t len, sftp_aio *aio)"
+.br
+.RI "Start an asynchronous read from a file using an opened sftp file handle\&. "
+.ti -1c
+.RI "LIBSSH_API ssize_t \fBsftp_aio_wait_read\fP (sftp_aio *aio, void *buf, size_t buf_size)"
+.br
+.RI "Wait for an asynchronous read to complete and store the read data in the supplied buffer\&. "
+.ti -1c
+.RI "LIBSSH_API ssize_t \fBsftp_aio_begin_write\fP (\fBsftp_file\fP \fBfile\fP, const void *buf, size_t len, sftp_aio *aio)"
+.br
+.RI "Start an asynchronous write to a file using an opened sftp file handle\&. "
+.ti -1c
+.RI "LIBSSH_API ssize_t \fBsftp_aio_wait_write\fP (sftp_aio *aio)"
+.br
+.RI "Wait for an asynchronous write to complete\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_seek\fP (\fBsftp_file\fP \fBfile\fP, uint32_t new_offset)"
+.br
+.RI "Seek to a specific location in a file\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_seek64\fP (\fBsftp_file\fP \fBfile\fP, uint64_t new_offset)"
+.br
+.RI "Seek to a specific location in a file\&. This is the 64bit version\&. "
+.ti -1c
+.RI "LIBSSH_API unsigned long \fBsftp_tell\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Report current byte position in file\&. "
+.ti -1c
+.RI "LIBSSH_API uint64_t \fBsftp_tell64\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Report current byte position in file\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_rewind\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Rewinds the position of the file pointer to the beginning of the file\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_unlink\fP (\fBsftp_session\fP sftp, const char *\fBfile\fP)"
+.br
+.RI "Unlink (delete) a file\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_rmdir\fP (\fBsftp_session\fP sftp, const char *directory)"
+.br
+.RI "Remove a directory\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_mkdir\fP (\fBsftp_session\fP sftp, const char *directory, mode_t mode)"
+.br
+.RI "Create a directory\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_rename\fP (\fBsftp_session\fP sftp, const char *original, const char *newname)"
+.br
+.RI "Rename or move a file or directory\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_setstat\fP (\fBsftp_session\fP sftp, const char *\fBfile\fP, \fBsftp_attributes\fP attr)"
+.br
+.RI "Set file attributes on a file, directory or symbolic link\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_lsetstat\fP (\fBsftp_session\fP sftp, const char *\fBfile\fP, \fBsftp_attributes\fP attr)"
+.br
+.RI "This request is like setstat (excluding mode and size) but sets file attributes on symlinks themselves\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_chown\fP (\fBsftp_session\fP sftp, const char *\fBfile\fP, uid_t owner, gid_t group)"
+.br
+.RI "Change the file owner and group\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_chmod\fP (\fBsftp_session\fP sftp, const char *\fBfile\fP, mode_t mode)"
+.br
+.RI "Change permissions of a file\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_utimes\fP (\fBsftp_session\fP sftp, const char *\fBfile\fP, const struct timeval *times)"
+.br
+.RI "Change the last modification and access time of a file\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_symlink\fP (\fBsftp_session\fP sftp, const char *target, const char *dest)"
+.br
+.RI "Create a symbolic link\&. "
+.ti -1c
+.RI "LIBSSH_API char * \fBsftp_readlink\fP (\fBsftp_session\fP sftp, const char *path)"
+.br
+.RI "Read the value of a symbolic link\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_hardlink\fP (\fBsftp_session\fP sftp, const char *oldpath, const char *newpath)"
+.br
+.RI "Create a hard link\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_statvfs_t\fP \fBsftp_statvfs\fP (\fBsftp_session\fP sftp, const char *path)"
+.br
+.RI "Get information about a mounted file system\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_statvfs_t\fP \fBsftp_fstatvfs\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Get information about a mounted file system\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_statvfs_free\fP (\fBsftp_statvfs_t\fP statvfs_o)"
+.br
+.RI "Free the memory of an allocated statvfs\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_fsync\fP (\fBsftp_file\fP \fBfile\fP)"
+.br
+.RI "Synchronize a file's in-core state with storage device\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_limits_t\fP \fBsftp_limits\fP (\fBsftp_session\fP sftp)"
+.br
+.RI "Get information about the various limits the server might impose\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_limits_free\fP (\fBsftp_limits_t\fP limits)"
+.br
+.RI "Free the memory of an allocated limits\&. "
+.ti -1c
+.RI "LIBSSH_API char * \fBsftp_canonicalize_path\fP (\fBsftp_session\fP sftp, const char *path)"
+.br
+.RI "Canonicalize a sftp path\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_server_version\fP (\fBsftp_session\fP sftp)"
+.br
+.RI "Get the version of the SFTP protocol supported by the server\&. "
+.ti -1c
+.RI "LIBSSH_API char * \fBsftp_expand_path\fP (\fBsftp_session\fP sftp, const char *path)"
+.br
+.RI "Canonicalize path using expand-path@openssh.com extension\&. "
+.ti -1c
+.RI "LIBSSH_API char * \fBsftp_home_directory\fP (\fBsftp_session\fP sftp, const char *username)"
+.br
+.RI "Get the specified user's home directory\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_name_id_map\fP \fBsftp_name_id_map_new\fP (uint32_t count)"
+.br
+.RI "Create a new sftp_name_id_map struct\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_name_id_map_free\fP (\fBsftp_name_id_map\fP map)"
+.br
+.RI "Free the memory of an allocated \fRsftp_name_id_map\fP struct\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_get_users_groups_by_id\fP (\fBsftp_session\fP sftp, \fBsftp_name_id_map\fP users_map, \fBsftp_name_id_map\fP groups_map)"
+.br
+.RI "Retrieves usernames and group names based on provided user and group IDs\&. "
+.ti -1c
+.RI "LIBSSH_API \fBsftp_client_message\fP \fBsftp_get_client_message\fP (\fBsftp_session\fP sftp)"
+.br
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_client_message_free\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API uint8_t \fBsftp_client_message_get_type\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBsftp_client_message_get_filename\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_client_message_set_filename\fP (\fBsftp_client_message\fP msg, const char *newname)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBsftp_client_message_get_data\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API uint32_t \fBsftp_client_message_get_flags\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBsftp_client_message_get_submessage\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_send_client_message\fP (\fBsftp_session\fP sftp, \fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_name\fP (\fBsftp_client_message\fP msg, const char *name, \fBsftp_attributes\fP attr)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_handle\fP (\fBsftp_client_message\fP msg, \fBssh_string\fP handle)"
+.br
+.ti -1c
+.RI "LIBSSH_API \fBssh_string\fP \fBsftp_handle_alloc\fP (\fBsftp_session\fP sftp, void *info)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_attr\fP (\fBsftp_client_message\fP msg, \fBsftp_attributes\fP attr)"
+.br
+.ti -1c
+.RI "LIBSSH_API void * \fBsftp_handle\fP (\fBsftp_session\fP sftp, \fBssh_string\fP handle)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_status\fP (\fBsftp_client_message\fP msg, uint32_t status, const char *message)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_names_add\fP (\fBsftp_client_message\fP msg, const char *\fBfile\fP, const char *longname, \fBsftp_attributes\fP attr)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_names\fP (\fBsftp_client_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_reply_data\fP (\fBsftp_client_message\fP msg, const void *data, int len)"
+.br
+.ti -1c
+.RI "LIBSSH_API void \fBsftp_handle_remove\fP (\fBsftp_session\fP sftp, void *handle)"
+.br
+.in -1c
+.SS "Server responses"
+Responses returned by the sftp server\&. 
+.in +1c
+.ti -1c
+.RI "#define \fBSSH_FX_OK\fP   0"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_EOF\fP   1"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_NO_SUCH_FILE\fP   2"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_PERMISSION_DENIED\fP   3"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_FAILURE\fP   4"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_BAD_MESSAGE\fP   5"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_NO_CONNECTION\fP   6"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_CONNECTION_LOST\fP   7"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_OP_UNSUPPORTED\fP   8"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_INVALID_HANDLE\fP   9"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_NO_SUCH_PATH\fP   10"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_FILE_ALREADY_EXISTS\fP   11"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_WRITE_PROTECT\fP   12"
+.br
+.ti -1c
+.RI "#define \fBSSH_FX_NO_MEDIA\fP   13"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+SFTP handling functions\&. 
+
+SFTP commands are channeled by the ssh sftp subsystem\&. Every packet is sent/read using a sftp_packet type structure\&. Related to these packets, most of the server answers are messages having an ID and a message specific part\&. It is described by sftp_message when reading a message, the sftp system puts it into the queue, so the process having asked for it can fetch it, while continuing to read for other messages (it is unspecified in which order messages may be sent back to the client 
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define SFTP_AIO_FREE( x)"
+\fBValue:\fP
+.nf
+    do { if(x != NULL) {sftp_aio_free(x); x = NULL;} } while(0)
+.PP
+.fi
+
+.SS "#define SSH_FX_BAD_MESSAGE   5"
+Garbage received from server 
+.SS "#define SSH_FX_CONNECTION_LOST   7"
+There was a connection, but we lost it 
+.SS "#define SSH_FX_EOF   1"
+End-of-file encountered 
+.SS "#define SSH_FX_FAILURE   4"
+Generic failure 
+.SS "#define SSH_FX_FILE_ALREADY_EXISTS   11"
+An attempt to create an already existing file or directory has been made 
+.SS "#define SSH_FX_INVALID_HANDLE   9"
+Invalid file handle 
+.SS "#define SSH_FX_NO_CONNECTION   6"
+No connection has been set up 
+.SS "#define SSH_FX_NO_MEDIA   13"
+No media in remote drive 
+.SS "#define SSH_FX_NO_SUCH_FILE   2"
+File doesn't exist 
+.SS "#define SSH_FX_NO_SUCH_PATH   10"
+No such file or directory path exists 
+.SS "#define SSH_FX_OK   0"
+No error 
+.SS "#define SSH_FX_OP_UNSUPPORTED   8"
+Operation not supported by the server 
+.SS "#define SSH_FX_PERMISSION_DENIED   3"
+Permission denied 
+.SS "#define SSH_FX_WRITE_PROTECT   12"
+We are trying to write on a write-protected filesystem 
+.SH "Function Documentation"
+.PP 
+.SS "LIBSSH_API ssize_t sftp_aio_begin_read (\fBsftp_file\fP file, size_t len, sftp_aio * aio)"
+
+.PP
+Start an asynchronous read from a file using an opened sftp file handle\&. Its goal is to avoid the slowdowns related to the request/response pattern of a synchronous read\&. To do so, you must call 2 functions :
+
+.PP
+\fBsftp_aio_begin_read()\fP and \fBsftp_aio_wait_read()\fP\&.
+
+.PP
+.IP "\(bu" 2
+The first step is to call \fBsftp_aio_begin_read()\fP\&. This function sends a read request to the sftp server, dynamically allocates memory to store information about the sent request and provides the caller an sftp aio handle to that memory\&.
+.IP "\(bu" 2
+The second step is to call \fBsftp_aio_wait_read()\fP and pass it the address of a location storing the sftp aio handle provided by \fBsftp_aio_begin_read()\fP\&.
+.PP
+
+.PP
+These two functions do not close the open sftp file handle passed to \fBsftp_aio_begin_read()\fP irrespective of whether they fail or not\&.
+
+.PP
+It is the responsibility of the caller to ensure that the open sftp file handle passed to \fBsftp_aio_begin_read()\fP must not be closed before the corresponding call to \fBsftp_aio_wait_read()\fP\&. After \fBsftp_aio_wait_read()\fP returns, it is caller's decision whether to immediately close the file by calling \fBsftp_close()\fP or to keep it open and perform some more operations on it\&.
+
+.PP
+This function caps the length a user is allowed to read from an sftp file, the value of len parameter after capping is returned on success\&.
+
+.PP
+The value used for the cap is same as the value of the max_read_length field of the sftp_limits_t returned by \fBsftp_limits()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The opened sftp file handle to be read from\&.
+.br
+\fIlen\fP Number of bytes to read\&.
+.br
+\fIaio\fP Pointer to a location where the sftp aio handle (corresponding to the sent request) should be stored\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, the number of bytes the server is requested to read (value of len parameter after capping)\&. On error, SSH_ERROR with sftp and ssh errors set\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+When calling this function, the internal file offset is updated corresponding to the number of bytes requested to read\&.
+
+.PP
+A call to \fBsftp_aio_begin_read()\fP sends a request to the server\&. When the server answers, libssh allocates memory to store it until \fBsftp_aio_wait_read()\fP is called\&. Not calling \fBsftp_aio_wait_read()\fP will lead to memory leaks\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_aio_wait_read()\fP 
+
+.PP
+\fBsftp_aio_free()\fP 
+
+.PP
+\fBsftp_open()\fP 
+
+.PP
+\fBsftp_close()\fP 
+
+.PP
+\fBsftp_get_error()\fP 
+
+.PP
+\fBssh_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API ssize_t sftp_aio_begin_write (\fBsftp_file\fP file, const void * buf, size_t len, sftp_aio * aio)"
+
+.PP
+Start an asynchronous write to a file using an opened sftp file handle\&. Its goal is to avoid the slowdowns related to the request/response pattern of a synchronous write\&. To do so, you must call 2 functions :
+
+.PP
+\fBsftp_aio_begin_write()\fP and \fBsftp_aio_wait_write()\fP\&.
+
+.PP
+.IP "\(bu" 2
+The first step is to call \fBsftp_aio_begin_write()\fP\&. This function sends a write request to the sftp server, dynamically allocates memory to store information about the sent request and provides the caller an sftp aio handle to that memory\&.
+.IP "\(bu" 2
+The second step is to call \fBsftp_aio_wait_write()\fP and pass it the address of a location storing the sftp aio handle provided by \fBsftp_aio_begin_write()\fP\&.
+.PP
+
+.PP
+These two functions do not close the open sftp file handle passed to \fBsftp_aio_begin_write()\fP irrespective of whether they fail or not\&.
+
+.PP
+It is the responsibility of the caller to ensure that the open sftp file handle passed to \fBsftp_aio_begin_write()\fP must not be closed before the corresponding call to \fBsftp_aio_wait_write()\fP\&. After \fBsftp_aio_wait_write()\fP returns, it is caller's decision whether to immediately close the file by calling \fBsftp_close()\fP or to keep it open and perform some more operations on it\&.
+
+.PP
+This function caps the length a user is allowed to write to an sftp file, the value of len parameter after capping is returned on success\&.
+
+.PP
+The value used for the cap is same as the value of the max_write_length field of the sftp_limits_t returned by \fBsftp_limits()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The opened sftp file handle to write to\&.
+.br
+\fIbuf\fP Pointer to the buffer containing data to write\&.
+.br
+\fIlen\fP Number of bytes to write\&.
+.br
+\fIaio\fP Pointer to a location where the sftp aio handle (corresponding to the sent request) should be stored\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, the number of bytes the server is requested to write (value of len parameter after capping)\&. On error, SSH_ERROR with sftp and ssh errors set\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+When calling this function, the internal file offset is updated corresponding to the number of bytes requested to write\&.
+
+.PP
+A call to \fBsftp_aio_begin_write()\fP sends a request to the server\&. When the server answers, libssh allocates memory to store it until \fBsftp_aio_wait_write()\fP is called\&. Not calling \fBsftp_aio_wait_write()\fP will lead to memory leaks\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_aio_wait_write()\fP 
+
+.PP
+\fBsftp_aio_free()\fP 
+
+.PP
+\fBsftp_open()\fP 
+
+.PP
+\fBsftp_close()\fP 
+
+.PP
+\fBsftp_get_error()\fP 
+
+.PP
+\fBssh_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_aio_free (sftp_aio aio)"
+
+.PP
+Deallocate memory corresponding to a sftp aio handle\&. This function deallocates memory corresponding to the aio handle returned by the sftp_aio_begin_*() functions\&. Users can use this function to free memory corresponding to an aio handle for an outstanding async i/o request on encountering some error\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIaio\fP sftp aio handle corresponding to which memory has to be deallocated\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_aio_begin_read()\fP 
+
+.PP
+\fBsftp_aio_wait_read()\fP 
+
+.PP
+\fBsftp_aio_begin_write()\fP 
+
+.PP
+\fBsftp_aio_wait_write()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API ssize_t sftp_aio_wait_read (sftp_aio * aio, void * buf, size_t buf_size)"
+
+.PP
+Wait for an asynchronous read to complete and store the read data in the supplied buffer\&. A pointer to an sftp aio handle should be passed while calling this function\&. Except when the return value is SSH_AGAIN, this function releases the memory corresponding to the supplied aio handle and assigns NULL to that aio handle using the passed pointer to that handle\&.
+
+.PP
+If the file is opened in non-blocking mode and the request hasn't been executed yet, this function returns SSH_AGAIN and must be called again using the same sftp aio handle\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIaio\fP Pointer to the sftp aio handle returned by \fBsftp_aio_begin_read()\fP\&.
+.br
+\fIbuf\fP Pointer to the buffer in which read data will be stored\&.
+.br
+\fIbuf_size\fP Size of the buffer in bytes\&. It should be bigger or equal to the length parameter of the \fBsftp_aio_begin_read()\fP call\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes read, 0 on EOF, SSH_ERROR if an error occurred, SSH_AGAIN if the file is opened in nonblocking mode and the request hasn't been executed yet\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+A call to this function with an invalid sftp aio handle may never return\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_aio_begin_read()\fP 
+
+.PP
+\fBsftp_aio_free()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API ssize_t sftp_aio_wait_write (sftp_aio * aio)"
+
+.PP
+Wait for an asynchronous write to complete\&. A pointer to an sftp aio handle should be passed while calling this function\&. Except when the return value is SSH_AGAIN, this function releases the memory corresponding to the supplied aio handle and assigns NULL to that aio handle using the passed pointer to that handle\&.
+
+.PP
+If the file is opened in non-blocking mode and the request hasn't been executed yet, this function returns SSH_AGAIN and must be called again using the same sftp aio handle\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIaio\fP Pointer to the sftp aio handle returned by \fBsftp_aio_begin_write()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes written on success, SSH_ERROR if an error occurred, SSH_AGAIN if the file is opened in nonblocking mode and the request hasn't been executed yet\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+A call to this function with an invalid sftp aio handle may never return\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_aio_begin_write()\fP 
+
+.PP
+\fBsftp_aio_free()\fP 
+.RE
+.PP
+
+.SS "SSH_DEPRECATED LIBSSH_API int sftp_async_read (\fBsftp_file\fP file, void * data, uint32_t len, uint32_t id)"
+
+.PP
+Wait for an asynchronous read to complete and save the data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The opened sftp file handle to be read from\&.
+.br
+\fIdata\fP Pointer to buffer to receive read data\&.
+.br
+\fIlen\fP Size of the buffer in bytes\&. It should be bigger or equal to the length parameter of the \fBsftp_async_read_begin()\fP call\&.
+.br
+\fIid\fP The identifier returned by the \fBsftp_async_read_begin()\fP function\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes read, 0 on EOF, SSH_ERROR if an error occurred, SSH_AGAIN if the file is opened in nonblocking mode and the request hasn't been executed yet\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+A call to this function with an invalid identifier will never return\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_async_read_begin()\fP 
+.RE
+.PP
+
+.SS "SSH_DEPRECATED LIBSSH_API int sftp_async_read_begin (\fBsftp_file\fP file, uint32_t len)"
+
+.PP
+Start an asynchronous read from a file using an opened sftp file handle\&. Its goal is to avoid the slowdowns related to the request/response pattern of a synchronous read\&. To do so, you must call 2 functions:
+
+.PP
+\fBsftp_async_read_begin()\fP and \fBsftp_async_read()\fP\&.
+
+.PP
+The first step is to call \fBsftp_async_read_begin()\fP\&. This function returns a request identifier\&. The second step is to call \fBsftp_async_read()\fP using the returned identifier\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The opened sftp file handle to be read from\&.
+.br
+\fIlen\fP Size to read in bytes\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An identifier corresponding to the sent request, < 0 on error\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+When calling this function, the internal offset is updated corresponding to the len parameter\&.
+
+.PP
+A call to \fBsftp_async_read_begin()\fP sends a request to the server\&. When the server answers, libssh allocates memory to store it until \fBsftp_async_read()\fP is called\&. Not calling \fBsftp_async_read()\fP will lead to memory leaks\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_async_read()\fP 
+
+.PP
+\fBsftp_open()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_attributes_free (\fBsftp_attributes\fP file)"
+
+.PP
+Free a sftp attribute structure\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The sftp attribute structure to free\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API char * sftp_canonicalize_path (\fBsftp_session\fP sftp, const char * path)"
+
+.PP
+Canonicalize a sftp path\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIpath\fP The path to be canonicalized\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to the newly allocated canonicalized path, NULL on error\&. The caller needs to free the memory using \fBssh_string_free_char()\fP\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_chmod (\fBsftp_session\fP sftp, const char * file, mode_t mode)"
+
+.PP
+Change permissions of a file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIfile\fP The file which owner and group should be changed\&.
+.br
+\fImode\fP Specifies the permissions to use\&. It is modified by the process's umask in the usual way: The permissions of the created file are (mode & ~umask)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_chown (\fBsftp_session\fP sftp, const char * file, uid_t owner, gid_t group)"
+
+.PP
+Change the file owner and group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIfile\fP The file which owner and group should be changed\&.
+.br
+\fIowner\fP The new owner which should be set\&.
+.br
+\fIgroup\fP The new group which should be set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_close (\fBsftp_file\fP file)"
+
+.PP
+Close an open file handle\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The open sftp file handle to close\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns SSH_NO_ERROR or SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_open()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_closedir (\fBsftp_dir\fP dir)"
+
+.PP
+Close a directory handle opened by \fBsftp_opendir()\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdir\fP The sftp directory handle to close\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns SSH_NO_ERROR or SSH_ERROR if an error occurred\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_dir_eof (\fBsftp_dir\fP dir)"
+
+.PP
+Tell if the directory has reached EOF (End Of File)\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdir\fP The sftp directory handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the directory is EOF, 0 if not\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_readdir()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API char * sftp_expand_path (\fBsftp_session\fP sftp, const char * path)"
+
+.PP
+Canonicalize path using expand-path@openssh.com extension\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIpath\fP The path to be canonicalized\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to the newly allocated canonicalized path, NULL on error\&. The caller needs to free the memory using \fBssh_string_free_char()\fP\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_extension_supported (\fBsftp_session\fP sftp, const char * name, const char * data)"
+
+.PP
+Check if the given extension is supported\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session to use\&.
+.br
+\fIname\fP The name of the extension\&.
+.br
+\fIdata\fP The data of the extension\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if supported, 0 if not\&.
+.RE
+.PP
+Example:
+
+.PP
+.PP
+.nf
+sftp_extension_supported(sftp, "statvfs@openssh\&.com", "2");
+.fi
+.PP
+ 
+.SS "LIBSSH_API unsigned int sftp_extensions_get_count (\fBsftp_session\fP sftp)"
+
+.PP
+Get the count of extensions provided by the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The count of extensions provided by the server, 0 on error or not available\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API const char * sftp_extensions_get_data (\fBsftp_session\fP sftp, unsigned int indexn)"
+
+.PP
+Get the data of the extension provided by the server\&. This is normally the version number of the extension\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session to use\&.
+.br
+\fIindexn\fP The index number of the extension data you want\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The data of the extension\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API const char * sftp_extensions_get_name (\fBsftp_session\fP sftp, unsigned int indexn)"
+
+.PP
+Get the name of the extension provided by the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session to use\&.
+.br
+\fIindexn\fP The index number of the extension name you want\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The name of the extension\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_file_set_blocking (\fBsftp_file\fP handle)"
+
+.PP
+Make the sftp communication for this file handle blocking\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhandle\fP The file handle to set blocking\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_file_set_nonblocking (\fBsftp_file\fP handle)"
+
+.PP
+Make the sftp communication for this file handle non blocking\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhandle\fP The file handle to set non blocking\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_free (\fBsftp_session\fP sftp)"
+
+.PP
+Close and deallocate a sftp session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle to free\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_attributes\fP sftp_fstat (\fBsftp_file\fP file)"
+
+.PP
+Get information about a file or directory from a file handle\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The sftp file handle to get the stat information\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sftp attributes structure of the file or directory, NULL on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_statvfs_t\fP sftp_fstatvfs (\fBsftp_file\fP file)"
+
+.PP
+Get information about a mounted file system\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP An opened file\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A statvfs structure or NULL on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_fsync (\fBsftp_file\fP file)"
+
+.PP
+Synchronize a file's in-core state with storage device\&. This calls the "fsync@openssh\&.com" extension\&. You should check if the extensions is supported using:
+
+.PP
+.PP
+.nf
+int supported = sftp_extension_supported(sftp, "fsync@openssh\&.com", "1");
+.fi
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The opened sftp file handle to sync
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_get_error (\fBsftp_session\fP sftp)"
+
+.PP
+Get the last sftp error\&. Use this function to get the latest error set by a posix like sftp function\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session where the error is saved\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The saved error (see server responses), < 0 if an error in the function occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+Server responses 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_get_users_groups_by_id (\fBsftp_session\fP sftp, \fBsftp_name_id_map\fP users_map, \fBsftp_name_id_map\fP groups_map)"
+
+.PP
+Retrieves usernames and group names based on provided user and group IDs\&. The retrieved names are stored in the \fRnames\fP field of the \fRsftp_name_id_map\fP structure\&. In case a uid or gid is not found, an empty string is stored\&.
+
+.PP
+This calls the "users-groups-by-id@openssh\&.com" extension\&. You should check if the extension is supported using:
+
+.PP
+.PP
+.nf
+int supported = sftp_extension_supported(sftp,
+"users\-groups\-by\-id@openssh\&.com", "1");
+.fi
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The SFTP session handle\&.
+.br
+\fIusers_map\fP A pointer to a \fRsftp_name_id_map\fP struct with the user IDs\&. Can be NULL if only group names are needed\&.
+.br
+\fIgroups_map\fP A pointer to a \fRsftp_name_id_map\fP struct with the group IDs\&. Can be NULL if only user names are needed\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+The caller needs to free the memory used for the maps later using \fR\fBsftp_name_id_map_free()\fP\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_hardlink (\fBsftp_session\fP sftp, const char * oldpath, const char * newpath)"
+
+.PP
+Create a hard link\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIoldpath\fP Specifies the pathname of the file for which the new hardlink is to be created\&.
+.br
+\fInewpath\fP Specifies the pathname of the hardlink to be created\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API char * sftp_home_directory (\fBsftp_session\fP sftp, const char * username)"
+
+.PP
+Get the specified user's home directory\&. This calls the "home-directory" extension\&. You should check if the extension is supported using:
+
+.PP
+.PP
+.nf
+int supported  = sftp_extension_supported(sftp, "home\-directory", "1");
+.fi
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIusername\fP username of the user whose home directory is requested\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+On success, a newly allocated string containing the absolute real-path of the home directory of the user\&. NULL on error\&. The caller needs to free the memory using \fBssh_string_free_char()\fP\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_init (\fBsftp_session\fP sftp)"
+
+.PP
+Initialize the sftp protocol with the server\&. This function involves the SFTP protocol initialization (as described in the SFTP specification), including the version and extensions negotiation\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session to initialize\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_new()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_limits_t\fP sftp_limits (\fBsftp_session\fP sftp)"
+
+.PP
+Get information about the various limits the server might impose\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A limits structure or NULL on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_limits_free (\fBsftp_limits_t\fP limits)"
+
+.PP
+Free the memory of an allocated limits\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlimits\fP The limits to free\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_lsetstat (\fBsftp_session\fP sftp, const char * file, \fBsftp_attributes\fP attr)"
+
+.PP
+This request is like setstat (excluding mode and size) but sets file attributes on symlinks themselves\&. Note, that this function can only set time values using 32 bit values due to the restrictions in the SFTP protocol version 3 implemented by libssh\&. The support for 64 bit time values was introduced in SFTP version 5, which is not implemented by libssh nor any major SFTP servers\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIfile\fP The symbolic link which attributes should be changed\&.
+.br
+\fIattr\fP The file attributes structure with the attributes set which should be changed\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_attributes\fP sftp_lstat (\fBsftp_session\fP session, const char * path)"
+
+.PP
+Get information about a file or directory\&. Identical to sftp_stat, but if the file or directory is a symbolic link, then the link itself is stated, not the file that it refers to\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The sftp session handle\&. 
+.br
+\fIpath\fP The path to the file or directory to obtain the information\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sftp attributes structure of the file or directory, NULL on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_mkdir (\fBsftp_session\fP sftp, const char * directory, mode_t mode)"
+
+.PP
+Create a directory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIdirectory\fP The directory to create\&.
+.br
+\fImode\fP Specifies the permissions to use\&. It is modified by the process's umask in the usual way: The permissions of the created file are (mode & ~umask)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_name_id_map_free (\fBsftp_name_id_map\fP map)"
+
+.PP
+Free the memory of an allocated \fRsftp_name_id_map\fP struct\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImap\fP A pointer to the \fRsftp_name_id_map\fP struct to free\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_name_id_map\fP sftp_name_id_map_new (uint32_t count)"
+
+.PP
+Create a new sftp_name_id_map struct\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcount\fP The number of ids/names to store in the map\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to the newly allocated sftp_name_id_map struct\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_session\fP sftp_new (\fBssh_session\fP session)"
+
+.PP
+Creates a new sftp session\&. This function creates a new sftp session and allocates a new sftp channel with the server inside of the provided ssh session\&. This function call is usually followed by the \fBsftp_init()\fP, which initializes SFTP protocol itself\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&. The session \fImust\fP be in blocking mode since most \fRsftp_*\fP functions do not support the non-blocking API\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A new sftp session or NULL on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_free()\fP 
+
+.PP
+\fBsftp_init()\fP 
+
+.PP
+\fBssh_set_blocking()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_session\fP sftp_new_channel (\fBssh_session\fP session, \fBssh_channel\fP channel)"
+
+.PP
+Start a new sftp session with an existing channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&. The session \fImust\fP be in blocking mode since most \fRsftp_*\fP functions do not support the non-blocking API\&. 
+.br
+\fIchannel\fP An open session channel with subsystem already allocated
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A new sftp session or NULL on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_free()\fP 
+
+.PP
+\fBssh_set_blocking()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_file\fP sftp_open (\fBsftp_session\fP session, const char * file, int accesstype, mode_t mode)"
+
+.PP
+Open a file on the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The sftp session handle\&.
+.br
+\fIfile\fP The file to be opened\&.
+.br
+\fIaccesstype\fP Is one of O_RDONLY, O_WRONLY or O_RDWR which request opening the file read-only,write-only or read/write\&. Acesss may also be bitwise-or'd with one or more of the following: O_CREAT - If the file does not exist it will be created\&. O_EXCL - When used with O_CREAT, if the file already exists it is an error and the open will fail\&. O_TRUNC - If the file already exists it will be truncated\&.
+.br
+\fImode\fP Mode specifies the permissions to use if a new file is created\&. It is modified by the process's umask in the usual way: The permissions of the created file are (mode & ~umask)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A sftp file handle, NULL on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_dir\fP sftp_opendir (\fBsftp_session\fP session, const char * path)"
+
+.PP
+Open a directory used to obtain directory entries\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The sftp session handle to open the directory\&. 
+.br
+\fIpath\fP The path of the directory to open\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A sftp directory handle or NULL on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_readdir\fP 
+
+.PP
+\fBsftp_closedir\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API ssize_t sftp_read (\fBsftp_file\fP file, void * buf, size_t count)"
+
+.PP
+Read from a file using an opened sftp file handle\&. This function caps the length a user is allowed to read from an sftp file\&.
+
+.PP
+The value used for the cap is same as the value of the max_read_length field of the sftp_limits_t returned by \fBsftp_limits()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP The opened sftp file handle to be read from\&.
+.br
+\fIbuf\fP Pointer to buffer to receive read data\&.
+.br
+\fIcount\fP Size of the buffer in bytes\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes read, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_attributes\fP sftp_readdir (\fBsftp_session\fP session, \fBsftp_dir\fP dir)"
+
+.PP
+Get a single file attributes structure of a directory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The sftp session handle to read the directory entry\&. 
+.br
+\fIdir\fP The opened sftp directory handle to read from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A file attribute structure or NULL at the end of the directory\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_opendir()\fP 
+
+.PP
+sftp_attribute_free() 
+
+.PP
+\fBsftp_closedir()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API char * sftp_readlink (\fBsftp_session\fP sftp, const char * path)"
+
+.PP
+Read the value of a symbolic link\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIpath\fP Specifies the path name of the symlink to be read\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The target of the link, NULL on error\&. The caller needs to free the memory using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_rename (\fBsftp_session\fP sftp, const char * original, const char * newname)"
+
+.PP
+Rename or move a file or directory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIoriginal\fP The original url (source url) of file or directory to be moved\&.
+.br
+\fInewname\fP The new url (destination url) of the file or directory after the move\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_rewind (\fBsftp_file\fP file)"
+
+.PP
+Rewinds the position of the file pointer to the beginning of the file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP Open sftp file handle\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_rmdir (\fBsftp_session\fP sftp, const char * directory)"
+
+.PP
+Remove a directory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIdirectory\fP The directory to remove\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_seek (\fBsftp_file\fP file, uint32_t new_offset)"
+
+.PP
+Seek to a specific location in a file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP Open sftp file handle to seek in\&.
+.br
+\fInew_offset\fP Offset in bytes to seek\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_seek64 (\fBsftp_file\fP file, uint64_t new_offset)"
+
+.PP
+Seek to a specific location in a file\&. This is the 64bit version\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP Open sftp file handle to seek in\&.
+.br
+\fInew_offset\fP Offset in bytes to seek\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_server_version (\fBsftp_session\fP sftp)"
+
+.PP
+Get the version of the SFTP protocol supported by the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The server version\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_setstat (\fBsftp_session\fP sftp, const char * file, \fBsftp_attributes\fP attr)"
+
+.PP
+Set file attributes on a file, directory or symbolic link\&. Note, that this function can only set time values using 32 bit values due to the restrictions in the SFTP protocol version 3 implemented by libssh\&. The support for 64 bit time values was introduced in SFTP version 5, which is not implemented by libssh nor any major SFTP servers\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIfile\fP The file which attributes should be changed\&.
+.br
+\fIattr\fP The file attributes structure with the attributes set which should be changed\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_attributes\fP sftp_stat (\fBsftp_session\fP session, const char * path)"
+
+.PP
+Get information about a file or directory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The sftp session handle\&. 
+.br
+\fIpath\fP The path to the file or directory to obtain the information\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sftp attributes structure of the file or directory, NULL on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API \fBsftp_statvfs_t\fP sftp_statvfs (\fBsftp_session\fP sftp, const char * path)"
+
+.PP
+Get information about a mounted file system\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIpath\fP The pathname of any file within the mounted file system\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A statvfs structure or NULL on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API void sftp_statvfs_free (\fBsftp_statvfs_t\fP statvfs_o)"
+
+.PP
+Free the memory of an allocated statvfs\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstatvfs_o\fP The statvfs to free\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_symlink (\fBsftp_session\fP sftp, const char * target, const char * dest)"
+
+.PP
+Create a symbolic link\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fItarget\fP Specifies the target of the symlink\&.
+.br
+\fIdest\fP Specifies the path name of the symlink to be created\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API unsigned long sftp_tell (\fBsftp_file\fP file)"
+
+.PP
+Report current byte position in file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP Open sftp file handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The offset of the current byte relative to the beginning of the file associated with the file descriptor\&. < 0 on error\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API uint64_t sftp_tell64 (\fBsftp_file\fP file)"
+
+.PP
+Report current byte position in file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP Open sftp file handle\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The offset of the current byte relative to the beginning of the file associated with the file descriptor\&. 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_unlink (\fBsftp_session\fP sftp, const char * file)"
+
+.PP
+Unlink (delete) a file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIfile\fP The file to unlink/delete\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API int sftp_utimes (\fBsftp_session\fP sftp, const char * file, const struct timeval * times)"
+
+.PP
+Change the last modification and access time of a file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsftp\fP The sftp session handle\&.
+.br
+\fIfile\fP The file which owner and group should be changed\&.
+.br
+\fItimes\fP A timeval structure which contains the desired access and modification time\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_get_error()\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API ssize_t sftp_write (\fBsftp_file\fP file, const void * buf, size_t count)"
+
+.PP
+Write to a file using an opened sftp file handle\&. This function caps the length a user is allowed to write to an sftp file\&.
+
+.PP
+The value used for the cap is same as the value of the max_write_length field of the sftp_limits_t returned by \fBsftp_limits()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP Open sftp file handle to write to\&.
+.br
+\fIbuf\fP Pointer to buffer to write data\&.
+.br
+\fIcount\fP Size of buffer in bytes\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes written, < 0 on error with ssh and sftp error set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBsftp_open()\fP 
+
+.PP
+\fBsftp_read()\fP 
+
+.PP
+\fBsftp_close()\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

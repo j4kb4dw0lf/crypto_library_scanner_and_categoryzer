@@ -1,0 +1,63 @@
+.TH "/home/mock/cryptopp-master/esign.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/esign.h \- Classes providing \fBESIGN\fP signature schemes as defined in IEEE P1363a\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'asn\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBESIGNFunction\fP"
+.br
+.RI "\fBESIGN\fP trapdoor function using the public key\&. "
+.ti -1c
+.RI "class \fBInvertibleESIGNFunction\fP"
+.br
+.RI "\fBESIGN\fP trapdoor function using the private key\&. "
+.ti -1c
+.RI "class \fBEMSA5Pad< T >\fP"
+.br
+.RI "EMSA5 padding method\&. "
+.ti -1c
+.RI "struct \fBP1363_EMSA5\fP"
+.br
+.RI "EMSA5 padding method, for use with \fBESIGN\fP\&. "
+.ti -1c
+.RI "struct \fBESIGN_Keys\fP"
+.br
+.RI "\fBESIGN\fP keys\&. "
+.ti -1c
+.RI "struct \fBESIGN< H, STANDARD >\fP"
+.br
+.RI "\fBESIGN\fP signature scheme, IEEE P1363a\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes providing \fBESIGN\fP signature schemes as defined in IEEE P1363a\&.
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

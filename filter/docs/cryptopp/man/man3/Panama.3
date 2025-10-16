@@ -1,0 +1,48 @@
+.TH "Panama< B >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Panama< B >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBPanamaCipherPolicy< B >\fP\fR [protected]\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.ti -1c
+.RI "void \fBReset\fP ()"
+.br
+.ti -1c
+.RI "void \fBIterate\fP (size_t count, const \fBword32\fP *p=NULLPTR, \fBbyte\fP *output=NULLPTR, const \fBbyte\fP *input=NULLPTR, \fBKeystreamOperation\fP operation=\fBWRITE_KEYSTREAM\fP)"
+.br
+.in -1c
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBStage\fP[8]"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (STAGES=32)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 20+8 *32 > \fBm_state\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

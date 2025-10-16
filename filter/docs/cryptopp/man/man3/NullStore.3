@@ -1,0 +1,616 @@
+.TH "NullStore" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NullStore \- \fBEmpty\fP store\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <filters\&.h>\fP
+.PP
+Inherits \fBStore\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNullStore\fP (\fBlword\fP size=ULONG_MAX)"
+.br
+.ti -1c
+.RI "void \fBStoreInitialize\fP (const \fBNameValuePairs\fP &parameters)"
+.br
+.ti -1c
+.RI "\fBlword\fP \fBMaxRetrievable\fP () const"
+.br
+.RI "Provides the number of bytes ready for retrieval\&. "
+.ti -1c
+.RI "size_t \fBTransferTo2\fP (\fBBufferedTransformation\fP &target, \fBlword\fP &transferBytes, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true)"
+.br
+.RI "Transfer bytes from this object to another \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "size_t \fBCopyRangeTo2\fP (\fBBufferedTransformation\fP &target, \fBlword\fP &begin, \fBlword\fP end=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true) const"
+.br
+.RI "Copy bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBStore\fP
+.in +1c
+.ti -1c
+.RI "\fBStore\fP ()"
+.br
+.RI "Construct a \fBStore\fP\&. "
+.ti -1c
+.RI "void \fBIsolatedInitialize\fP (const \fBNameValuePairs\fP &parameters)"
+.br
+.RI "Initialize or reinitialize this object, without signal propagation\&. "
+.ti -1c
+.RI "unsigned int \fBNumberOfMessages\fP () const"
+.br
+.RI "Provides the number of meesages processed by this object\&. "
+.ti -1c
+.RI "bool \fBGetNextMessage\fP ()"
+.br
+.RI "Start retrieving the next message\&. "
+.ti -1c
+.RI "unsigned int \fBCopyMessagesTo\fP (\fBBufferedTransformation\fP &target, unsigned int count=UINT_MAX, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAutoSignaling< InputRejecting< BufferedTransformation > >\fP
+.in +1c
+.ti -1c
+.RI "\fBAutoSignaling\fP (int propagation=\-1)"
+.br
+.RI "Construct an \fBAutoSignaling\fP\&. "
+.ti -1c
+.RI "void \fBSetAutoSignalPropagation\fP (int propagation)"
+.br
+.RI "Set propagation of automatically generated and transferred signals\&. "
+.ti -1c
+.RI "int \fBGetAutoSignalPropagation\fP () const"
+.br
+.RI "Retrieve automatic signal propagation value\&. "
+.in -1c
+
+Public Member Functions inherited from \fBInputRejecting< BufferedTransformation >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBPut2\fP (const \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input a byte array for processing\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "bool \fBIsolatedFlush\fP (bool hardFlush, bool blocking)"
+.br
+.RI "Flushes data buffered by this object, without signal propagation\&. "
+.ti -1c
+.RI "bool \fBIsolatedMessageSeriesEnd\fP (bool blocking)"
+.br
+.RI "Marks the end of a series of messages, without signal propagation\&. "
+.ti -1c
+.RI "size_t \fBChannelPut2\fP (const std::string &channel, const \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes for processing on a channel\&. "
+.ti -1c
+.RI "bool \fBChannelMessageSeriesEnd\fP (const std::string &channel, int messageEnd, bool blocking)"
+.br
+.RI "Marks the end of a series of messages on a channel\&. "
+.in -1c
+
+Public Member Functions inherited from \fBBufferedTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBBufferedTransformation\fP ()"
+.br
+.RI "Construct a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBBufferedTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBAttachable\fP ()"
+.br
+.RI "Determines whether the object allows attachment\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBBufferedTransformation\fP * \fBAttachedTransformation\fP ()"
+.br
+.RI "Returns the object immediately attached to this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual const \fBBufferedTransformation\fP * \fBAttachedTransformation\fP () const"
+.br
+.RI "Returns the object immediately attached to this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBDetach\fP (\fBBufferedTransformation\fP *newAttachment=NULLPTR)"
+.br
+.RI "Delete the current attachment chain and attach a new one\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBAttach\fP (\fBBufferedTransformation\fP *newAttachment)"
+.br
+.RI "Add newAttachment to the end of attachment chain\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPut\fP (\fBbyte\fP inByte, bool blocking=true)"
+.br
+.RI "Input a byte for processing\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPut\fP (const \fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input a byte buffer for processing\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutWord16\fP (\fBword16\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutWord32\fP (\fBword32\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutWord64\fP (word64 value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreatePutSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBCanModifyInput\fP () const"
+.br
+.RI "Determines whether input can be modified by the callee\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutModifiable\fP (\fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input multiple bytes that may be modified by callee\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "bool \fBMessageEnd\fP (int propagation=\-1, bool blocking=true)"
+.br
+.RI "Signals the end of messages to the object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutMessageEnd\fP (const \fBbyte\fP *inString, size_t length, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Input multiple bytes for processing and signal the end of a message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBPutModifiable2\fP (\fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes that may be modified by callee\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "unsigned int \fBGetMaxWaitObjectCount\fP () const"
+.br
+.RI "Retrieves the maximum number of waitable objects\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBGetWaitObjects\fP (WaitObjectContainer &container, CallStack const &callStack)"
+.br
+.RI "Retrieves waitable objects\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBInitialize\fP (const \fBNameValuePairs\fP &parameters=g_nullNameValuePairs, int propagation=\-1)"
+.br
+.RI "Initialize or reinitialize this object, with signal propagation\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBFlush\fP (bool hardFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output, with signal propagation\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBMessageSeriesEnd\fP (int propagation=\-1, bool blocking=true)"
+.br
+.RI "Marks the end of a series of messages, with signal propagation\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBAnyRetrievable\fP () const"
+.br
+.RI "Determines whether bytes are ready for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBGet\fP (\fBbyte\fP &outByte)"
+.br
+.RI "Retrieve a 8-bit byte\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBGet\fP (\fBbyte\fP *outString, size_t getMax)"
+.br
+.RI "Retrieve a block of bytes\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBPeek\fP (\fBbyte\fP &outByte) const"
+.br
+.RI "Peek a 8-bit byte\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBPeek\fP (\fBbyte\fP *outString, size_t peekMax) const"
+.br
+.RI "Peek a block of bytes\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBGetWord16\fP (\fBword16\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Retrieve a 16-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBGetWord32\fP (\fBword32\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Retrieve a 32-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBGetWord64\fP (word64 &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Retrieve a 64-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPeekWord16\fP (\fBword16\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP) const"
+.br
+.RI "Peek a 16-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPeekWord32\fP (\fBword32\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP) const"
+.br
+.RI "Peek a 32-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPeekWord64\fP (word64 &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP) const"
+.br
+.RI "Peek a 64-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBlword\fP \fBTransferTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP transferMax=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.RI "move transferMax bytes of the buffered output to target as input "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBlword\fP \fBSkip\fP (\fBlword\fP skipMax=\fBLWORD_MAX\fP)"
+.br
+.RI "Discard skipMax bytes from the output buffer\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBlword\fP \fBCopyTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP copyMax=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBlword\fP \fBCopyRangeTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP position, \fBlword\fP copyMax=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy bytes from this object using an index to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBlword\fP \fBTotalBytesRetrievable\fP () const"
+.br
+.RI "Provides the number of bytes ready for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBAnyMessages\fP () const"
+.br
+.RI "Determines if any messages are available for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBSkipMessages\fP (unsigned int count=UINT_MAX)"
+.br
+.RI "Skip a number of meessages\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "unsigned int \fBTransferMessagesTo\fP (\fBBufferedTransformation\fP &target, unsigned int count=UINT_MAX, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.RI "Transfer messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "unsigned int \fBCopyMessagesTo\fP (\fBBufferedTransformation\fP &target, unsigned int count=UINT_MAX, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBSkipAll\fP ()"
+.br
+.RI "Skip all messages in the series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBTransferAllTo\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.RI "Transfer all bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBCopyAllTo\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBGetNextMessageSeries\fP ()"
+.br
+.RI "Retrieve the next message in a series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBNumberOfMessagesInThisSeries\fP () const"
+.br
+.RI "Provides the number of messages in a series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBNumberOfMessageSeries\fP () const"
+.br
+.RI "Provides the number of messages in a series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBTransferMessagesTo2\fP (\fBBufferedTransformation\fP &target, unsigned int &messageCount, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true)"
+.br
+.RI "Transfer messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBTransferAllTo2\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true)"
+.br
+.RI "Transfer all bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPut\fP (const std::string &channel, \fBbyte\fP inByte, bool blocking=true)"
+.br
+.RI "Input a byte for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPut\fP (const std::string &channel, const \fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input a byte buffer for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutModifiable\fP (const std::string &channel, \fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input multiple bytes that may be modified by callee on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutWord16\fP (const std::string &channel, \fBword16\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.RI "Input a 16-bit word for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutWord32\fP (const std::string &channel, \fBword32\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.RI "Input a 32-bit word for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutWord64\fP (const std::string &channel, word64 value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.RI "Input a 64-bit word for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "bool \fBChannelMessageEnd\fP (const std::string &channel, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Signal the end of a message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutMessageEnd\fP (const std::string &channel, const \fBbyte\fP *inString, size_t length, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Input multiple bytes for processing and signal the end of a message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBChannelCreatePutSpace\fP (const std::string &channel, size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBChannelPutModifiable2\fP (const std::string &channel, \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes that may be modified by callee on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBChannelFlush\fP (const std::string &channel, bool hardFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBSetRetrievalChannel\fP (const std::string &channel)"
+.br
+.RI "Sets the default retrieval channel\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBWaitable\fP
+.in +1c
+.ti -1c
+.RI "bool \fBWait\fP (unsigned long milliseconds, CallStack const &callStack)"
+.br
+.RI "Wait on this object\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+.in +1c
+.ti -1c
+.RI "static int \fBDecrementPropagation\fP (int propagation)"
+.br
+.RI "Decrements the propagation count while clamping at 0\&. "
+.in -1c
+
+Protected Attributes inherited from \fBStore\fP
+.in +1c
+.ti -1c
+.RI "bool \fBm_messageEnd\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBEmpty\fP store\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "size_t NullStore::CopyRangeTo2 (\fBBufferedTransformation\fP & target, \fBlword\fP & begin, \fBlword\fP end = \fR\fBLWORD_MAX\fP\fP, const std::string & channel = \fRDEFAULT_CHANNEL\fP, bool blocking = \fRtrue\fP) const\fR [virtual]\fP"
+
+.PP
+Copy bytes from this object to another \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP the destination \fBBufferedTransformation\fP 
+.br
+\fIbegin\fP the 0-based index of the first byte to copy in the stream 
+.br
+\fIend\fP the 0-based index of the last byte to copy in the stream 
+.br
+\fIchannel\fP the channel on which the transfer should occur 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain in the copy block (i\&.e\&., bytes not copied)
+.RE
+.PP
+CopyRangeTo2 copies bytes from this object to the destination\&. The bytes are not removed from this object\&. Copying begins at the index position in the current stream, and not from an absolute position in the stream\&.
+
+.PP
+begin is an \fIIN\fP and \fIOUT\fP parameter\&. When the call is made, begin is the starting position of the copy\&. When the call returns, begin is the position of the first byte that was \fInot\fP copied (which may be different than end)\&. begin can be used for subsequent calls to \fBCopyRangeTo2()\fP\&. 
+.PP
+Implements \fBBufferedTransformation\fP\&.
+.SS "\fBlword\fP NullStore::MaxRetrievable () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the number of bytes ready for retrieval\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes ready for retrieval
+.RE
+.PP
+The number of bytes available are dependent on the source\&. If an exact value is available, then the exact value is returned\&. The exact value can include 0 if the source is exhausted\&.
+
+.PP
+Some stream-based sources do not allow seeking() on the underlying stream, such as some \fBFileSource()\fP\&. If the stream does not allow seeking() then \fBMaxRetrievable()\fP returns LWORD_MAX to indicate there are still bytes to be retrieved\&. 
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "void NullStore::StoreInitialize (const \fBNameValuePairs\fP & parameters)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBStore\fP\&.
+.SS "size_t NullStore::TransferTo2 (\fBBufferedTransformation\fP & target, \fBlword\fP & byteCount, const std::string & channel = \fRDEFAULT_CHANNEL\fP, bool blocking = \fRtrue\fP)\fR [virtual]\fP"
+
+.PP
+Transfer bytes from this object to another \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP the destination \fBBufferedTransformation\fP 
+.br
+\fIbyteCount\fP the number of bytes to transfer 
+.br
+\fIchannel\fP the channel on which the transfer should occur 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain in the transfer block (i\&.e\&., bytes not transferred)
+.RE
+.PP
+\fBTransferTo2()\fP removes bytes from this object and moves them to the destination\&. Transfer begins at the index position in the current stream, and not from an absolute position in the stream\&.
+
+.PP
+byteCount is an \fIIN\fP and \fIOUT\fP parameter\&. When the call is made, byteCount is the requested size of the transfer\&. When the call returns, byteCount is the number of bytes that were transferred\&. 
+.PP
+Implements \fBBufferedTransformation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

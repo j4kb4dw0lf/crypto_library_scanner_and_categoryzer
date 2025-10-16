@@ -1,0 +1,406 @@
+.TH "DH2" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DH2 \- Unified Diffie-Hellman in GF(p)  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <dh2\&.h>\fP
+.PP
+Inherits \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDH2\fP (\fBSimpleKeyAgreementDomain\fP &domain)"
+.br
+.RI "Construct a \fBDH2\fP\&. "
+.ti -1c
+.RI "\fBDH2\fP (\fBSimpleKeyAgreementDomain\fP &staticDomain, \fBSimpleKeyAgreementDomain\fP &ephemeralDomain)"
+.br
+.RI "Construct a \fBDH2\fP\&. "
+.ti -1c
+.RI "\fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "unsigned int \fBAgreedValueLength\fP () const"
+.br
+.RI "Provides the size of the agreed value\&. "
+.ti -1c
+.RI "unsigned int \fBStaticPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the static private key\&. "
+.ti -1c
+.RI "unsigned int \fBStaticPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the static public key\&. "
+.ti -1c
+.RI "void \fBGenerateStaticPrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate static private key in this domain\&. "
+.ti -1c
+.RI "void \fBGenerateStaticPublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a static public key from a private key in this domain\&. "
+.ti -1c
+.RI "void \fBGenerateStaticKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a static private/public key pair\&. "
+.ti -1c
+.RI "unsigned int \fBEphemeralPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of ephemeral private key\&. "
+.ti -1c
+.RI "unsigned int \fBEphemeralPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of ephemeral public key\&. "
+.ti -1c
+.RI "void \fBGenerateEphemeralPrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate ephemeral private key\&. "
+.ti -1c
+.RI "void \fBGenerateEphemeralPublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate ephemeral public key\&. "
+.ti -1c
+.RI "void \fBGenerateEphemeralKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate private/public key pair\&. "
+.ti -1c
+.RI "bool \fBAgree\fP (\fBbyte\fP *agreedValue, const \fBbyte\fP *staticPrivateKey, const \fBbyte\fP *ephemeralPrivateKey, const \fBbyte\fP *staticOtherPublicKey, const \fBbyte\fP *ephemeralOtherPublicKey, bool validateStaticOtherPublicKey=true) const"
+.br
+.RI "Derive agreed value\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyAgreementAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSimpleKeyAgreementDomain\fP & \fBd1\fP"
+.br
+.ti -1c
+.RI "\fBSimpleKeyAgreementDomain\fP & \fBd2\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Unified Diffie-Hellman in GF(p) 
+
+A Diffie-Hellman domain is a set of parameters that must be shared by two parties in a key agreement protocol, along with the algorithms for generating key pairs and deriving agreed values\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBAuthenticatedKeyAgreementDomain\fP, \fRUnified Diffie-Hellman\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCryptoParameters\fP & DH2::AccessCryptoParameters ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implements \fBKeyAgreementAlgorithm\fP\&.
+.SS "bool DH2::Agree (\fBbyte\fP * agreedValue, const \fBbyte\fP * staticPrivateKey, const \fBbyte\fP * ephemeralPrivateKey, const \fBbyte\fP * staticOtherPublicKey, const \fBbyte\fP * ephemeralOtherPublicKey, bool validateStaticOtherPublicKey = \fRtrue\fP) const\fR [virtual]\fP"
+
+.PP
+Derive agreed value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIagreedValue\fP a byte buffer for the shared secret 
+.br
+\fIstaticPrivateKey\fP a byte buffer with your static private key in this domain 
+.br
+\fIephemeralPrivateKey\fP a byte buffer with your ephemeral private key in this domain 
+.br
+\fIstaticOtherPublicKey\fP a byte buffer with the other party's static public key in this domain 
+.br
+\fIephemeralOtherPublicKey\fP a byte buffer with the other party's ephemeral public key in this domain 
+.br
+\fIvalidateStaticOtherPublicKey\fP a flag indicating if the other party's public key should be validated 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true upon success, false in case of failure
+.RE
+.PP
+\fBAgree()\fP derives an agreed value from your private keys and couterparty's public keys\&.
+
+.PP
+The other party's ephemeral public key is validated by default\&. If you have previously validated the static public key, use \fRvalidateStaticOtherPublicKey=false\fP to save time\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(agreedValue) == \fBAgreedValueLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(staticPrivateKey) == \fBStaticPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(ephemeralPrivateKey) == \fBEphemeralPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(staticOtherPublicKey) == \fBStaticPublicKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(ephemeralOtherPublicKey) == \fBEphemeralPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "unsigned int DH2::AgreedValueLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the agreed value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of agreed value produced in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "unsigned int DH2::EphemeralPrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of ephemeral private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the size of ephemeral private key in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "unsigned int DH2::EphemeralPublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of ephemeral public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the size of ephemeral public key in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "void DH2::GenerateEphemeralKeyPair (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate private/public key pair\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain
+.RE
+.PP
+\fBGenerateEphemeralKeyPair()\fP is equivalent to calling \fBGenerateEphemeralPrivateKey()\fP and then \fBGenerateEphemeralPublicKey()\fP 
+.PP
+Reimplemented from \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "void DH2::GenerateEphemeralPrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate ephemeral private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == PrivateEphemeralKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "void DH2::GenerateEphemeralPublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate ephemeral public key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == PublicEphemeralKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "void DH2::GenerateStaticKeyPair (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate a static private/public key pair\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain
+.RE
+.PP
+\fBGenerateStaticKeyPair()\fP is equivalent to calling \fBGenerateStaticPrivateKey()\fP and then \fBGenerateStaticPublicKey()\fP\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == PrivateStaticKeyLength()\fP 
+
+.PP
+\fRCOUNTOF(publicKey) == PublicStaticKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "void DH2::GenerateStaticPrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate static private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == PrivateStaticKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "void DH2::GenerateStaticPublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate a static public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == PublicStaticKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "unsigned int DH2::StaticPrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the static private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of static private keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "unsigned int DH2::StaticPublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the static public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of static public keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,260 @@
+.TH "/home/mock/cryptopp-master/config_int.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/config_int.h \- Library configuration file\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config_ns\&.h'\fP
+.br
+\fR#include 'config_ver\&.h'\fP
+.br
+\fR#include 'config_misc\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_NO_GLOBAL_BYTE\fP   1"
+.br
+.RI "Library byte guard\&. "
+.ti -1c
+.RI "#define \fBSW64LIT\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBW64LIT\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_NATIVE_DWORD_AVAILABLE\fP   1"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BOOL_SLOW_WORD64\fP   1"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned char \fBbyte\fP"
+.br
+.RI "8-bit unsigned datatype "
+.ti -1c
+.RI "typedef unsigned short \fBword16\fP"
+.br
+.RI "16-bit unsigned datatype "
+.ti -1c
+.RI "typedef unsigned int \fBword32\fP"
+.br
+.RI "32-bit unsigned datatype "
+.ti -1c
+.RI "typedef signed char \fBsbyte\fP"
+.br
+.RI "8-bit signed datatype "
+.ti -1c
+.RI "typedef signed short \fBsword16\fP"
+.br
+.RI "16-bit signed datatype "
+.ti -1c
+.RI "typedef signed int \fBsword32\fP"
+.br
+.RI "32-bit signed datatype "
+.ti -1c
+.RI "typedef signed long long \fBsword64\fP"
+.br
+.ti -1c
+.RI "typedef unsigned long long \fBword64\fP"
+.br
+.ti -1c
+.RI "typedef word64 \fBlword\fP"
+.br
+.RI "Large word type\&. "
+.ti -1c
+.RI "typedef \fBword16\fP \fBhword\fP"
+.br
+.ti -1c
+.RI "typedef \fBword32\fP \fBword\fP"
+.br
+.ti -1c
+.RI "typedef word64 \fBdword\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_CONST_OR_CONSTEXPR \fBlword\fP \fBLWORD_MAX\fP = W64LIT(0xffffffffffffffff)"
+.br
+.RI "Large word type max value\&. "
+.ti -1c
+.RI "CRYPTOPP_CONST_OR_CONSTEXPR unsigned int \fBWORD_SIZE\fP = sizeof(word)"
+.br
+.RI "Size of a platform word in bytes\&. "
+.ti -1c
+.RI "CRYPTOPP_CONST_OR_CONSTEXPR unsigned int \fBWORD_BITS\fP = \fBWORD_SIZE\fP * 8"
+.br
+.RI "Size of a platform word in bits\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Library configuration file\&.
+
+\fR\fBconfig_int\&.h\fP\fP provides defines and typedefs for fixed size integers\&. The library's choices for fixed size integers predates other standard-based integers by about 5 years\&. After fixed sizes were made standard, the library continued to use its own definitions for compatibility with previous versions of the library\&.
+
+.PP
+\fR\fBconfig\&.h\fP\fP was split into components in May 2019 to better integrate with Autoconf and its feature tests\&. The splitting occurred so users could continue to include \fR\fBconfig\&.h\fP\fP while allowing Autoconf to write new \fR\fBconfig_asm\&.h\fP\fP and new \fR\fBconfig_cxx\&.h\fP\fP using its feature tests\&.
+.PP
+\fBNote\fP
+.RS 4
+You should include \fR\fBconfig\&.h\fP\fP rather than \fR\fBconfig_int\&.h\fP\fP directly\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 835, Make config\&.h more autoconf friendly\fP, \fRConfigure\&.sh script\fP on the Crypto++ wiki
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_NO_GLOBAL_BYTE   1"
+
+.PP
+Library byte guard\&. CRYPTOPP_NO_GLOBAL_BYTE indicates \fRbyte\fP is in the Crypto++ namespace\&.
+
+.PP
+The Crypto++ \fRbyte\fP was originally in global namespace to avoid ambiguity with other byte typedefs\&. \fRbyte\fP was moved to CryptoPP namespace at Crypto++ 6\&.0 due to C++17, \fRstd::byte\fP and potential compile problems\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 442\fP, \fRstd::byte\fP on the Crypto++ wiki
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "#define SW64LIT( x)"
+\fBValue:\fP
+.nf
+x##LL
+.PP
+.fi
+
+.SS "#define W64LIT( x)"
+\fBValue:\fP
+.nf
+x##ULL
+.PP
+.fi
+
+.SH "Typedef Documentation"
+.PP
+.SS "typedef unsigned char \fBbyte\fP"
+
+.PP
+8-bit unsigned datatype The Crypto++ \fRbyte\fP was originally in global namespace to avoid ambiguity with other byte typedefs\&. \fRbyte\fP was moved to CryptoPP namespace at Crypto++ 6\&.0 due to C++17, \fRstd::byte\fP and potential compile problems\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBCRYPTOPP_NO_GLOBAL_BYTE\fP, \fRIssue 442\fP, \fRstd::byte\fP on the Crypto++ wiki
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0, CryptoPP namespace since Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "typedef word64 \fBlword\fP"
+
+.PP
+Large word type\&. lword is a typedef for large word types\&. It is used for file offsets and such\&.
+.SS "typedef signed char \fBsbyte\fP"
+
+.PP
+8-bit signed datatype The 8-bit signed datatype was added to support constant time implementations for curve25519, X25519 key agreement and \fBed25519\fP signatures\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SS "typedef signed short \fBsword16\fP"
+
+.PP
+16-bit signed datatype The 32-bit signed datatype was added to support constant time implementations for curve25519, X25519 key agreement and \fBed25519\fP signatures\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SS "typedef signed int \fBsword32\fP"
+
+.PP
+32-bit signed datatype The 32-bit signed datatype was added to support constant time implementations for curve25519, X25519 key agreement and \fBed25519\fP signatures\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SS "typedef unsigned short \fBword16\fP"
+
+.PP
+16-bit unsigned datatype
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "typedef unsigned int \fBword32\fP"
+
+.PP
+32-bit unsigned datatype
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP
+.SS "CRYPTOPP_CONST_OR_CONSTEXPR \fBlword\fP LWORD_MAX = W64LIT(0xffffffffffffffff)"
+
+.PP
+Large word type max value\&. LWORD_MAX is the maximum value for large word types\&. Since an \fRlword\fP is an unsigned type, the value is \fR0xffffffffffffffff\fP\&. W64LIT will append the proper suffix\&.
+.SS "CRYPTOPP_CONST_OR_CONSTEXPR unsigned int WORD_BITS = \fBWORD_SIZE\fP * 8"
+
+.PP
+Size of a platform word in bits\&. The size of a platform word, in bits
+.PP
+\fBSee also\fP
+.RS 4
+https://github.com/weidai11/cryptopp/issues/1185
+.RE
+.PP
+
+.SS "CRYPTOPP_CONST_OR_CONSTEXPR unsigned int WORD_SIZE = sizeof(word)"
+
+.PP
+Size of a platform word in bytes\&. The size of a platform word, in bytes
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

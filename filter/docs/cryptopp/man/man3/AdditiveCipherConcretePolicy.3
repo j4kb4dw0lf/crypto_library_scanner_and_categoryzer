@@ -1,0 +1,206 @@
+.TH "AdditiveCipherConcretePolicy< WT, W, X, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AdditiveCipherConcretePolicy< WT, W, X, BASE > \- Base class for additive stream ciphers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherits \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef WT \fBWordType\fP"
+.br
+.RI "\fBWord\fP type for the cipher\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BYTES_PER_ITERATION=sizeof(\fBWordType\fP) *W)"
+.br
+.RI "Number of bytes for an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetAlignment\fP () const"
+.br
+.RI "Provides data alignment requirements\&. "
+.ti -1c
+.RI "unsigned int \fBGetBytesPerIteration\fP () const"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetIterationsToBuffer\fP () const"
+.br
+.RI "Provides buffer size based on iterations\&. "
+.ti -1c
+.RI "bool \fBCanOperateKeystream\fP () const"
+.br
+.RI "Flag indicating\&. "
+.ti -1c
+.RI "virtual void \fBOperateKeystream\fP (\fBKeystreamOperation\fP operation, \fBbyte\fP *output, const \fBbyte\fP *input, size_t iterationCount)=0"
+.br
+.RI "Operates the keystream\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherAbstractPolicy\fP
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "virtual void \fBWriteKeystream\fP (\fBbyte\fP *keystream, size_t iterationCount)"
+.br
+.RI "Generate the keystream\&. "
+.ti -1c
+.RI "virtual void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)=0"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "virtual void \fBCipherResynchronize\fP (\fBbyte\fP *keystreamBuffer, const \fBbyte\fP *iv, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "virtual bool \fBCipherIsRandomAccess\fP () const =0"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "virtual void \fBSeekToIteration\fP (\fBlword\fP iterationCount)"
+.br
+.RI "Seeks to a random position in the stream\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy>
+.br
+struct AdditiveCipherConcretePolicy< WT, W, X, BASE >"Base class for additive stream ciphers\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIWT\fP word type 
+.br
+\fIW\fP count of words 
+.br
+\fIX\fP bytes per iteration count 
+.br
+\fIBASE\fP \fBAdditiveCipherAbstractPolicy\fP derived base class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy> bool \fBAdditiveCipherConcretePolicy\fP< WT, W, X, BASE >::CanOperateKeystream () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the stream can be generated independent of the transformation input, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBCanOperateKeystream()\fP, \fBOperateKeystream()\fP, \fBWriteKeystream()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.PP
+Reimplemented in \fBHC128Policy\fP, \fBHC256Policy\fP, \fBRabbitPolicy\fP, and \fBRabbitWithIVPolicy\fP\&.
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy> \fBAdditiveCipherConcretePolicy\fP< WT, W, X, BASE >::CRYPTOPP_CONSTANT (BYTES_PER_ITERATION  = \fRsizeof(\fBWordType\fP) *W\fP)"
+
+.PP
+Number of bytes for an iteration\&. BYTES_PER_ITERATION is the product \fRsizeof(WordType) * W\fP\&. For example, \fBChaCha\fP uses 16 each \fR\fBword32\fP\fP, and the value of BYTES_PER_ITERATION is 64\&. Each invocation of the \fBChaCha\fP block function produces 64 bytes of keystream\&. 
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy> unsigned int \fBAdditiveCipherConcretePolicy\fP< WT, W, X, BASE >::GetAlignment () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides data alignment requirements\&. 
+.PP
+\fBReturns\fP
+.RS 4
+data alignment requirements, in bytes
+.RE
+.PP
+Internally, the default implementation returns 1\&. If the stream cipher is implemented using an SSE2 ASM or intrinsics, then the value returned is usually 16\&. 
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.PP
+Reimplemented in \fBChaCha_Policy\fP, \fBChaChaTLS_Policy\fP, \fBPanamaCipherPolicy< B >\fP, and \fBXChaCha20_Policy\fP\&.
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy> unsigned int \fBAdditiveCipherConcretePolicy\fP< WT, W, X, BASE >::GetBytesPerIteration () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides number of bytes operated upon during an iteration\&. 
+.PP
+\fBReturns\fP
+.RS 4
+bytes operated upon during an iteration, in bytes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetOptimalBlockSize()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy> unsigned int \fBAdditiveCipherConcretePolicy\fP< WT, W, X, BASE >::GetIterationsToBuffer () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides buffer size based on iterations\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the buffer size based on iterations, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "template<typename WT, unsigned int W, unsigned int X = 1, class BASE = AdditiveCipherAbstractPolicy> virtual void \fBAdditiveCipherConcretePolicy\fP< WT, W, X, BASE >::OperateKeystream (\fBKeystreamOperation\fP operation, \fBbyte\fP * output, const \fBbyte\fP * input, size_t iterationCount)\fR [pure virtual]\fP"
+
+.PP
+Operates the keystream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoperation\fP the operation with additional flags 
+.br
+\fIoutput\fP the output buffer 
+.br
+\fIinput\fP the input buffer 
+.br
+\fIiterationCount\fP the number of iterations to perform on the input
+.RE
+.PP
+\fBOperateKeystream()\fP will attempt to operate upon \fBGetOptimalBlockSize()\fP buffer, which will be derived from \fBGetBytesPerIteration()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCanOperateKeystream()\fP, \fBOperateKeystream()\fP, \fBWriteKeystream()\fP, \fBKeystreamOperation()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.PP
+Implemented in \fBChaCha_Policy\fP, \fBChaChaTLS_Policy\fP, \fBHC128Policy\fP, \fBHC256Policy\fP, \fBPanamaCipherPolicy< B >\fP, \fBRabbitPolicy\fP, \fBRabbitWithIVPolicy\fP, \fBSalsa20_Policy\fP, \fBSEAL_Policy< B >\fP, \fBSosemanukPolicy\fP, \fBWAKE_Policy< B >\fP, and \fBXChaCha20_Policy\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

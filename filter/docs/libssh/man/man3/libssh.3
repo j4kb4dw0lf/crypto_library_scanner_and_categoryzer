@@ -1,0 +1,138 @@
+.TH "libssh" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh \- The libssh API
+.SH SYNOPSIS
+.br
+.PP
+.SS "Topics"
+
+.in +1c
+.ti -1c
+.RI "\fBThe libssh callbacks\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH authentication functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH buffer functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH channel functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH error functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH logging functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH message functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH helper functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH Public Key Infrastructure\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH poll functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH scp functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH session functions\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH socket functions\&.\fP"
+.br
+.ti -1c
+.RI "\fBThe SSH string functions\fP"
+.br
+.RI "String manipulations used in libssh\&. "
+.ti -1c
+.RI "\fBThe SSH threading functions\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBssh_init\fP (void)"
+.br
+.RI "Initialize global cryptographic data structures\&. "
+.ti -1c
+.RI "void \fBlibssh_destructor\fP (void)"
+.br
+.RI "Finalize and clean up all libssh and cryptographic data structures\&. "
+.ti -1c
+.RI "int \fBssh_finalize\fP (void)"
+.br
+.RI "Finalize and clean up all libssh and cryptographic data structures\&. "
+.ti -1c
+.RI "bool \fBis_ssh_initialized\fP (void)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The libssh library is implementing the SSH protocols and some of its extensions\&. This group of functions is mostly used to implement an SSH client\&. Some functions are needed to implement an SSH server too\&. 
+.SH "Function Documentation"
+.PP 
+.SS "void libssh_destructor (void )"
+
+.PP
+Finalize and clean up all libssh and cryptographic data structures\&. This function is automatically called when the library is unloaded\&. 
+.SS "int ssh_finalize (void )"
+
+.PP
+Finalize and clean up all libssh and cryptographic data structures\&. Since version 0\&.8\&.0, when libssh is dynamically linked, it is not necessary to call this function, since it is automatically called when the library is unloaded\&.
+
+.PP
+If libssh is statically linked, it is necessary to explicitly call \fBssh_init()\fP before calling any other provided API, and it is necessary to explicitly call \fBssh_finalize()\fP to free the allocated resources before exiting\&.
+
+.PP
+If \fBssh_init()\fP is called explicitly, then \fBssh_finalize()\fP must be called explicitly\&.
+
+.PP
+When called, decrements the counter _ssh_initialized\&. If the counter reaches zero, then the libssh and cryptographic data structures are cleaned up\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_init()\fP 
+.RE
+.PP
+
+.SS "int ssh_init (void )"
+
+.PP
+Initialize global cryptographic data structures\&. Since version 0\&.8\&.0, when libssh is dynamically linked, it is not necessary to call this function on systems that fully support threading (that is, systems with pthreads available)\&.
+
+.PP
+If libssh is statically linked, it is necessary to explicitly call \fBssh_init()\fP before calling any other provided API, and it is necessary to explicitly call \fBssh_finalize()\fP to free the allocated resources before exiting\&.
+
+.PP
+If the library is already initialized, increments the _ssh_initialized counter and return the error code cached in _ssh_init_ret\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_finalize()\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

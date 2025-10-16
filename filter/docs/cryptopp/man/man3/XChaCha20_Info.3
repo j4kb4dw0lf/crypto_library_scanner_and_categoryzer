@@ -1,0 +1,69 @@
+.TH "XChaCha20_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XChaCha20_Info \- IETF \fBXChaCha20\fP stream cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <chacha\&.h>\fP
+.PP
+Inherits \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 24 >\fP\&.
+.PP
+Inherited by \fBXChaCha20\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 24 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+IETF \fBXChaCha20\fP stream cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const char * XChaCha20_Info::StaticAlgorithmName ()\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&.
+
+.PP
+This is the IETF's XChaCha from draft-arciszewski-xchacha\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

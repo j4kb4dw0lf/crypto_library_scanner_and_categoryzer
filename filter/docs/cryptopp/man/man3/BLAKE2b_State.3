@@ -1,0 +1,62 @@
+.TH "BLAKE2b_State" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BLAKE2b_State \- \fBBLAKE2b\fP state information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <blake2\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBReset\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBh\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBt\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBf\fP ()"
+.br
+.ti -1c
+.RI "\fBbyte\fP * \fBdata\fP ()"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=BLAKE2b_Info::BLOCKSIZE)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< word64, 8+2+2, true > \fBm_hft\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBbyte\fP, BLOCKSIZE, true > \fBm_buf\fP"
+.br
+.ti -1c
+.RI "size_t \fBm_len\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBBLAKE2b\fP state information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

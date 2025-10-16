@@ -1,0 +1,62 @@
+.TH "ObjectFactoryRegistry< AbstractClass, instance >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ObjectFactoryRegistry< AbstractClass, instance > \- Object factory registry\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <factory\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBFactoryNotFound\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBRegisterFactory\fP (const std::string &name, \fBObjectFactory\fP< AbstractClass > *factory)"
+.br
+.ti -1c
+.RI "const \fBObjectFactory\fP< AbstractClass > * \fBGetFactory\fP (const char *name) const"
+.br
+.ti -1c
+.RI "AbstractClass * \fBCreateObject\fP (const char *name) const"
+.br
+.ti -1c
+.RI "std::vector< std::string > \fBGetFactoryNames\fP () const"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_NOINLINE \fBObjectFactoryRegistry\fP< AbstractClass, instance > & \fBRegistry\fP (CRYPTOPP_NOINLINE_DOTDOTDOT)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class AbstractClass, int instance = 0>
+.br
+class ObjectFactoryRegistry< AbstractClass, instance >"Object factory registry\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIAbstractClass\fP Base class interface of the object 
+.br
+\fIinstance\fP unique identifier 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

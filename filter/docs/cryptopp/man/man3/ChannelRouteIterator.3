@@ -1,0 +1,85 @@
+.TH "ChannelRouteIterator" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ChannelRouteIterator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBChannelSwitchTypedefs\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBChannelRouteIterator\fP (\fBChannelSwitch\fP &cs)"
+.br
+.ti -1c
+.RI "void \fBReset\fP (const std::string &channel)"
+.br
+.ti -1c
+.RI "bool \fBEnd\fP () const"
+.br
+.ti -1c
+.RI "void \fBNext\fP ()"
+.br
+.ti -1c
+.RI "\fBBufferedTransformation\fP & \fBDestination\fP ()"
+.br
+.ti -1c
+.RI "const std::string & \fBChannel\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBChannelSwitch\fP & \fBm_cs\fP"
+.br
+.ti -1c
+.RI "std::string \fBm_channel\fP"
+.br
+.ti -1c
+.RI "bool \fBm_useDefault\fP"
+.br
+.ti -1c
+.RI "MapIterator \fBm_itMapCurrent\fP"
+.br
+.ti -1c
+.RI "MapIterator \fBm_itMapEnd\fP"
+.br
+.ti -1c
+.RI "ListIterator \fBm_itListCurrent\fP"
+.br
+.ti -1c
+.RI "ListIterator \fBm_itListEnd\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBChannelSwitchTypedefs\fP
+.in +1c
+.ti -1c
+.RI "typedef std::pair< \fBBufferedTransformation\fP *, std::string > \fBRoute\fP"
+.br
+.ti -1c
+.RI "typedef std::multimap< std::string, Route > \fBRouteMap\fP"
+.br
+.ti -1c
+.RI "typedef std::pair< \fBBufferedTransformation\fP *, \fBvalue_ptr\fP< std::string > > \fBDefaultRoute\fP"
+.br
+.ti -1c
+.RI "typedef std::list< DefaultRoute > \fBDefaultRouteList\fP"
+.br
+.ti -1c
+.RI "typedef RouteMap::iterator \fBMapIterator\fP"
+.br
+.ti -1c
+.RI "typedef DefaultRouteList::iterator \fBListIterator\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

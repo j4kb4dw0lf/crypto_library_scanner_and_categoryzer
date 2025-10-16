@@ -1,0 +1,129 @@
+.TH "BlockCipherFinal< DIR, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BlockCipherFinal< DIR, BASE > \- Provides class member functions to key a block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherits \fBClonableImpl< BlockCipherFinal< DIR, BASE >, BASE >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBlockCipherFinal\fP ()"
+.br
+.RI "Construct a default \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBBlockCipherFinal\fP (const \fBbyte\fP *key)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBBlockCipherFinal\fP (const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBBlockCipherFinal\fP (const \fBbyte\fP *key, size_t length, unsigned int rounds)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "bool \fBIsForwardTransformation\fP () const"
+.br
+.RI "Provides the direction of the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonableImpl< BlockCipherFinal< DIR, BASE >, BASE >\fP
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<\fBCipherDir\fP DIR, class BASE>
+.br
+class BlockCipherFinal< DIR, BASE >"Provides class member functions to key a block cipher\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIDIR\fP a \fBCipherDir\fP 
+.br
+\fIBASE\fP a \fBBlockCipherImpl\fP derived class 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBCipherDir\fP DIR, class BASE> \fBBlockCipherFinal\fP< DIR, BASE >\fB::BlockCipherFinal\fP ()\fR [inline]\fP"
+
+.PP
+Construct a default \fBBlockCipherFinal\fP\&. The cipher is not keyed\&. 
+.SS "template<\fBCipherDir\fP DIR, class BASE> \fBBlockCipherFinal\fP< DIR, BASE >\fB::BlockCipherFinal\fP (const \fBbyte\fP * key)\fR [inline]\fP"
+
+.PP
+Construct a \fBBlockCipherFinal\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+.SS "template<\fBCipherDir\fP DIR, class BASE> \fBBlockCipherFinal\fP< DIR, BASE >\fB::BlockCipherFinal\fP (const \fBbyte\fP * key, size_t length)\fR [inline]\fP"
+
+.PP
+Construct a \fBBlockCipherFinal\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the length of the byte array
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+.SS "template<\fBCipherDir\fP DIR, class BASE> \fBBlockCipherFinal\fP< DIR, BASE >\fB::BlockCipherFinal\fP (const \fBbyte\fP * key, size_t length, unsigned int rounds)\fR [inline]\fP"
+
+.PP
+Construct a \fBBlockCipherFinal\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the length of the byte array 
+.br
+\fIrounds\fP the number of rounds
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKeyWithRounds\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBCipherDir\fP DIR, class BASE> bool \fBBlockCipherFinal\fP< DIR, BASE >::IsForwardTransformation () const\fR [inline]\fP"
+
+.PP
+Provides the direction of the cipher\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if DIR is ENCRYPTION, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetCipherDirection(), IsPermutation() 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,220 @@
+.TH "EncodedPoint< Point >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EncodedPoint< Point > \- Abstract class for encoding and decoding ellicptic curve points\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ecpoint\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBDecodePoint\fP (Point &P, \fBBufferedTransformation\fP &bt, size_t len) const =0"
+.br
+.RI "Decodes an elliptic curve point\&. "
+.ti -1c
+.RI "virtual bool \fBDecodePoint\fP (Point &P, const \fBbyte\fP *encodedPoint, size_t len) const =0"
+.br
+.RI "Decodes an elliptic curve point\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyPoint\fP (const Point &P) const =0"
+.br
+.RI "Verifies points on elliptic curve\&. "
+.ti -1c
+.RI "virtual unsigned int \fBEncodedPointSize\fP (bool compressed=false) const =0"
+.br
+.RI "Determines encoded point size\&. "
+.ti -1c
+.RI "virtual void \fBEncodePoint\fP (\fBbyte\fP *encodedPoint, const Point &P, bool compressed) const =0"
+.br
+.RI "Encodes an elliptic curve point\&. "
+.ti -1c
+.RI "virtual void \fBEncodePoint\fP (\fBBufferedTransformation\fP &bt, const Point &P, bool compressed) const =0"
+.br
+.RI "Encodes an elliptic curve point\&. "
+.ti -1c
+.RI "virtual Point \fBBERDecodePoint\fP (\fBBufferedTransformation\fP &bt) const =0"
+.br
+.RI "BER Decodes an elliptic curve point\&. "
+.ti -1c
+.RI "virtual void \fBDEREncodePoint\fP (\fBBufferedTransformation\fP &bt, const Point &P, bool compressed) const =0"
+.br
+.RI "DER Encodes an elliptic curve point\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class Point>
+.br
+class EncodedPoint< Point >"Abstract class for encoding and decoding ellicptic curve points\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPoint\fP ellicptic curve point
+.RE
+.PP
+\fBEncodedPoint\fP is an interface for encoding and decoding elliptic curve points\&. The template parameter \fRPoint\fP should be a class like \fBECP\fP or \fBEC2N\fP\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class Point> virtual Point \fBEncodedPoint\fP< Point >::BERDecodePoint (\fBBufferedTransformation\fP & bt) const\fR [pure virtual]\fP"
+
+.PP
+BER Decodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP source \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the decoded elliptic curve point 
+.RE
+.PP
+
+.PP
+Implemented in \fBEC2N\fP, and \fBECP\fP\&.
+.SS "template<class Point> virtual bool \fBEncodedPoint\fP< Point >::DecodePoint (Point & P, \fBBufferedTransformation\fP & bt, size_t len) const\fR [pure virtual]\fP"
+
+.PP
+Decodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point which is decoded 
+.br
+\fIbt\fP source \fBBufferedTransformation\fP 
+.br
+\fIlen\fP number of bytes to read from the \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if a point was decoded, false otherwise 
+.RE
+.PP
+
+.PP
+Implemented in \fBEC2N\fP, and \fBECP\fP\&.
+.SS "template<class Point> virtual bool \fBEncodedPoint\fP< Point >::DecodePoint (Point & P, const \fBbyte\fP * encodedPoint, size_t len) const\fR [pure virtual]\fP"
+
+.PP
+Decodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point which is decoded 
+.br
+\fIencodedPoint\fP byte array with the encoded point 
+.br
+\fIlen\fP the size of the array 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if a point was decoded, false otherwise 
+.RE
+.PP
+
+.SS "template<class Point> virtual void \fBEncodedPoint\fP< Point >::DEREncodePoint (\fBBufferedTransformation\fP & bt, const Point & P, bool compressed) const\fR [pure virtual]\fP"
+
+.PP
+DER Encodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP target \fBBufferedTransformation\fP 
+.br
+\fIP\fP point which is encoded 
+.br
+\fIcompressed\fP flag indicating if the point is compressed 
+.RE
+.PP
+
+.PP
+Implemented in \fBEC2N\fP, and \fBECP\fP\&.
+.SS "template<class Point> virtual unsigned int \fBEncodedPoint\fP< Point >::EncodedPointSize (bool compressed = \fRfalse\fP) const\fR [pure virtual]\fP"
+
+.PP
+Determines encoded point size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcompressed\fP flag indicating if the point is compressed 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of bytes required to encode the point 
+.RE
+.PP
+
+.PP
+Implemented in \fBEC2N\fP, and \fBECP\fP\&.
+.SS "template<class Point> virtual void \fBEncodedPoint\fP< Point >::EncodePoint (\fBBufferedTransformation\fP & bt, const Point & P, bool compressed) const\fR [pure virtual]\fP"
+
+.PP
+Encodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP target \fBBufferedTransformation\fP 
+.br
+\fIP\fP point which is encoded 
+.br
+\fIcompressed\fP flag indicating if the point is compressed 
+.RE
+.PP
+
+.SS "template<class Point> virtual void \fBEncodedPoint\fP< Point >::EncodePoint (\fBbyte\fP * encodedPoint, const Point & P, bool compressed) const\fR [pure virtual]\fP"
+
+.PP
+Encodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point which is decoded 
+.br
+\fIencodedPoint\fP byte array for the encoded point 
+.br
+\fIcompressed\fP flag indicating if the point is compressed
+.RE
+.PP
+\fRencodedPoint\fP must be at least \fBEncodedPointSize()\fP in length 
+.PP
+Implemented in \fBEC2N\fP, and \fBECP\fP\&.
+.SS "template<class Point> virtual bool \fBEncodedPoint\fP< Point >::VerifyPoint (const Point & P) const\fR [pure virtual]\fP"
+
+.PP
+Verifies points on elliptic curve\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point to verify 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the point is valid, false otherwise 
+.RE
+.PP
+
+.PP
+Implemented in \fBEC2N\fP, and \fBECP\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

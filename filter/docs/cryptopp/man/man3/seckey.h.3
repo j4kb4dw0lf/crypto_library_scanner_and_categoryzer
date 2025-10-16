@@ -1,0 +1,114 @@
+.TH "/home/mock/cryptopp-master/seckey.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/seckey.h \- Classes and functions for implementing secret key algorithms\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'simple\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBFixedBlockSize< N >\fP"
+.br
+.RI "Inherited by algorithms with fixed block size\&. "
+.ti -1c
+.RI "class \fBFixedRounds< R >\fP"
+.br
+.RI "Inherited by algorithms with fixed number of rounds\&. "
+.ti -1c
+.RI "class \fBVariableRounds< D, N, M >\fP"
+.br
+.RI "Inherited by algorithms with variable number of rounds\&. "
+.ti -1c
+.RI "class \fBFixedKeyLength< N, IV_REQ, IV_L >\fP"
+.br
+.RI "Inherited by keyed algorithms with fixed key length\&. "
+.ti -1c
+.RI "class \fBVariableKeyLength< D, N, M, Q, IV_REQ, IV_L >\fP"
+.br
+.RI "Inherited by keyed algorithms with variable key length\&. "
+.ti -1c
+.RI "class \fBSameKeyLengthAs< T, IV_REQ, IV_L >\fP"
+.br
+.RI "Provides key lengths based on another class's key length\&. "
+.ti -1c
+.RI "class \fBSimpleKeyingInterfaceImpl< BASE, INFO >\fP"
+.br
+.RI "Provides a base implementation of \fBSimpleKeyingInterface\fP\&. "
+.ti -1c
+.RI "class \fBBlockCipherImpl< INFO, BASE >\fP"
+.br
+.RI "Provides a base implementation of \fBAlgorithm\fP and \fBSimpleKeyingInterface\fP for block ciphers\&. "
+.ti -1c
+.RI "class \fBBlockCipherFinal< DIR, BASE >\fP"
+.br
+.RI "Provides class member functions to key a block cipher\&. "
+.ti -1c
+.RI "class \fBMessageAuthenticationCodeImpl< BASE, INFO >\fP"
+.br
+.RI "Provides a base implementation of \fBAlgorithm\fP and \fBSimpleKeyingInterface\fP for message authentication codes\&. "
+.ti -1c
+.RI "class \fBMessageAuthenticationCodeFinal< BASE >\fP"
+.br
+.RI "Provides class member functions to key a message authentication code\&. "
+.ti -1c
+.RI "struct \fBBlockCipherDocumentation\fP"
+.br
+.RI "Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement a block cipher\&. "
+.ti -1c
+.RI "struct \fBSymmetricCipherDocumentation\fP"
+.br
+.RI "Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement a symmetric cipher\&. "
+.ti -1c
+.RI "struct \fBAuthenticatedSymmetricCipherDocumentation\fP"
+.br
+.RI "Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement an authenticated encryption cipher\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCipherDir\fP \fBReverseCipherDir\fP (\fBCipherDir\fP dir)"
+.br
+.RI "Inverts the cipher's direction\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for implementing secret key algorithms\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "\fBCipherDir\fP ReverseCipherDir (\fBCipherDir\fP dir)\fR [inline]\fP"
+
+.PP
+Inverts the cipher's direction\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIdir\fP the cipher's direction
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+DECRYPTION if \fBdir\fP is ENCRYPTION, DECRYPTION otherwise
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

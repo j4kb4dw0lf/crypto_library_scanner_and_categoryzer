@@ -1,0 +1,63 @@
+.TH "/home/mock/cryptopp-master/factory.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/factory.h \- Classes and functions for registering and locating library objects\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBObjectFactory< AbstractClass >\fP"
+.br
+.RI "Object factory interface for registering objects\&. "
+.ti -1c
+.RI "class \fBDefaultObjectFactory< AbstractClass, ConcreteClass >\fP"
+.br
+.RI "Object factory for registering objects\&. "
+.ti -1c
+.RI "class \fBObjectFactoryRegistry< AbstractClass, instance >\fP"
+.br
+.RI "Object factory registry\&. "
+.ti -1c
+.RI "class \fBObjectFactoryRegistry< AbstractClass, instance >::FactoryNotFound\fP"
+.br
+.ti -1c
+.RI "struct \fBRegisterDefaultFactoryFor< AbstractClass, ConcreteClass, instance >\fP"
+.br
+.RI "Object factory registry helper\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class SchemeClass> void \fBRegisterAsymmetricCipherDefaultFactories\fP (const char *name=NULLPTR)"
+.br
+.ti -1c
+.RI "template<class SchemeClass> void \fBRegisterSignatureSchemeDefaultFactories\fP (const char *name=NULLPTR)"
+.br
+.ti -1c
+.RI "template<class SchemeClass> void \fBRegisterSymmetricCipherDefaultFactories\fP (const char *name=NULLPTR)"
+.br
+.ti -1c
+.RI "template<class SchemeClass> void \fBRegisterAuthenticatedSymmetricCipherDefaultFactories\fP (const char *name=NULLPTR)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for registering and locating library objects\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

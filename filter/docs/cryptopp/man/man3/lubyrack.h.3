@@ -1,0 +1,62 @@
+.TH "/home/mock/cryptopp-master/lubyrack.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/lubyrack.h \- Classes for the Luby-Rackoff block cipher\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'simple\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBLR_Info< T >\fP"
+.br
+.RI "Luby-Rackoff block cipher information\&. "
+.ti -1c
+.RI "class \fBLR< T >\fP"
+.br
+.RI "Luby-Rackoff block cipher\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBKL\fP   this\->key"
+.br
+.ti -1c
+.RI "#define \fBKR\fP   this\->key+this\->L"
+.br
+.ti -1c
+.RI "#define \fBBL\fP   this\->buffer"
+.br
+.ti -1c
+.RI "#define \fBBR\fP   this\->buffer+this\->S"
+.br
+.ti -1c
+.RI "#define \fBIL\fP   inBlock"
+.br
+.ti -1c
+.RI "#define \fBIR\fP   inBlock+this\->S"
+.br
+.ti -1c
+.RI "#define \fBOL\fP   outBlock"
+.br
+.ti -1c
+.RI "#define \fBOR\fP   outBlock+this\->S"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the Luby-Rackoff block cipher\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

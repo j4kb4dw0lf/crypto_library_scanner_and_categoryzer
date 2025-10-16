@@ -1,0 +1,85 @@
+.TH "AutoSignaling< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AutoSignaling< T > \- Provides auto signaling support\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits T\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAutoSignaling\fP (int propagation=\-1)"
+.br
+.RI "Construct an \fBAutoSignaling\fP\&. "
+.ti -1c
+.RI "void \fBSetAutoSignalPropagation\fP (int propagation)"
+.br
+.RI "Set propagation of automatically generated and transferred signals\&. "
+.ti -1c
+.RI "int \fBGetAutoSignalPropagation\fP () const"
+.br
+.RI "Retrieve automatic signal propagation value\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class AutoSignaling< T >"Provides auto signaling support\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP \fBBufferedTransformation\fP derived class 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T> \fBAutoSignaling\fP< T >\fB::AutoSignaling\fP (int propagation = \fR\-1\fP)\fR [inline]\fP"
+
+.PP
+Construct an \fBAutoSignaling\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpropagation\fP the propagation count 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> int \fBAutoSignaling\fP< T >::GetAutoSignalPropagation () const\fR [inline]\fP"
+
+.PP
+Retrieve automatic signal propagation value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the number of attached transformations the signal is propagated to\&. 0 indicates the signal is only witnessed by this object 
+.RE
+.PP
+
+.SS "template<class T> void \fBAutoSignaling\fP< T >::SetAutoSignalPropagation (int propagation)\fR [inline]\fP"
+
+.PP
+Set propagation of automatically generated and transferred signals\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpropagation\fP then new value
+.RE
+.PP
+Setting propagation to \fR0\fP means do not automatically generate signals\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,93 @@
+.TH "RC2" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RC2 \- \fBRC2\fP block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rc2\&.h>\fP
+.PP
+Inherits \fBRC2_Info\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDecryption\fP"
+.br
+.RI "Class specific methods used to operate the cipher in the reverse direction\&. "
+.ti -1c
+.RI "class \fBEncryption\fP"
+.br
+.RI "Class specific methods used to operate the cipher in the forward direction\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+
+Public Member Functions inherited from \fBRC2_Info\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_EFFECTIVE_KEYLENGTH=1024)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_EFFECTIVE_KEYLENGTH=1024)"
+.br
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedBlockSize< 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 16, 1, 128 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBRC2\fP block cipher\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fRRC2\fP on the Crypto Lounge\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

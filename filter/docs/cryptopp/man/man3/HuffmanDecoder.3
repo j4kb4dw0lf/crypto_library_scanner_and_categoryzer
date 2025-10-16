@@ -1,0 +1,70 @@
+.TH "HuffmanDecoder" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HuffmanDecoder \- Huffman Decoder\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <zinflate\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBErr\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBMAX_CODE_BITS\fP = sizeof(code_t)*8 }"
+.br
+.ti -1c
+.RI "typedef unsigned int \fBcode_t\fP"
+.br
+.ti -1c
+.RI "typedef unsigned int \fBvalue_t\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHuffmanDecoder\fP (const unsigned int *codeBitLengths, unsigned int nCodes)"
+.br
+.ti -1c
+.RI "void \fBInitialize\fP (const unsigned int *codeBitLengths, unsigned int nCodes)"
+.br
+.ti -1c
+.RI "unsigned int \fBDecode\fP (code_t code, value_t &value) const"
+.br
+.ti -1c
+.RI "bool \fBDecode\fP (\fBLowFirstBitReader\fP &reader, value_t &value) const"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "struct \fBCodeLessThan\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Huffman Decoder\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,667 @@
+.TH "ssh::Session" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh::Session
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <libsshpp\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void_throwable \fBsetOption\fP (enum ssh_options_e type, const char *option)"
+.br
+.RI "sets an SSH session options "
+.ti -1c
+.RI "void_throwable \fBsetOption\fP (enum ssh_options_e type, long int option)"
+.br
+.RI "sets an SSH session options "
+.ti -1c
+.RI "void_throwable \fBsetOption\fP (enum ssh_options_e type, void *option)"
+.br
+.RI "sets an SSH session options "
+.ti -1c
+.RI "void_throwable \fBconnect\fP ()"
+.br
+.RI "connects to the remote host "
+.ti -1c
+.RI "int \fBuserauthPublickeyAuto\fP (void)"
+.br
+.RI "Authenticates automatically using public key\&. "
+.ti -1c
+.RI "int \fBuserauthNone\fP ()"
+.br
+.RI "Authenticates using the "none" method\&. Prefer using autopubkey if possible\&. "
+.ti -1c
+.RI "int \fBuserauthKbdint\fP (const char *username, const char *submethods)"
+.br
+.RI "Authenticate through the "keyboard-interactive" method\&. "
+.ti -1c
+.RI "int \fBuserauthKbdintGetNPrompts\fP ()"
+.br
+.RI "Get the number of prompts (questions) the server has given\&. "
+.ti -1c
+.RI "int \fBuserauthKbdintSetAnswer\fP (unsigned int index, const char *answer)"
+.br
+.RI "Set the answer for a question from a message block\&. "
+.ti -1c
+.RI "int \fBuserauthPassword\fP (const char *password)"
+.br
+.RI "Authenticates using the password method\&. "
+.ti -1c
+.RI "int \fBuserauthTryPublickey\fP (\fBssh_key\fP pubkey)"
+.br
+.RI "Try to authenticate using the publickey method\&. "
+.ti -1c
+.RI "int \fBuserauthPublickey\fP (\fBssh_key\fP privkey)"
+.br
+.RI "Authenticates using the publickey method\&. "
+.ti -1c
+.RI "int \fBgetAuthList\fP ()"
+.br
+.RI "Returns the available authentication methods from the server\&. "
+.ti -1c
+.RI "void \fBdisconnect\fP ()"
+.br
+.RI "Disconnects from the SSH server and closes connection\&. "
+.ti -1c
+.RI "const char * \fBgetDisconnectMessage\fP ()"
+.br
+.RI "Returns the disconnect message from the server, if any\&. "
+.ti -1c
+.RI "const char * \fBgetError\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetErrorCode\fP ()"
+.br
+.ti -1c
+.RI "socket_t \fBgetSocket\fP ()"
+.br
+.RI "returns the file descriptor used for the communication "
+.ti -1c
+.RI "std::string \fBgetIssueBanner\fP ()"
+.br
+.RI "gets the Issue banner from the ssh server "
+.ti -1c
+.RI "int \fBgetOpensshVersion\fP ()"
+.br
+.RI "returns the OpenSSH version (server) if possible "
+.ti -1c
+.RI "int \fBgetVersion\fP ()"
+.br
+.RI "returns the version of the SSH protocol being used "
+.ti -1c
+.RI "int \fBisServerKnown\fP ()"
+.br
+.RI "verifies that the server is known "
+.ti -1c
+.RI "void \fBlog\fP (int priority, const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void_throwable \fBoptionsCopy\fP (const \fBSession\fP &source)"
+.br
+.RI "copies options from a session to another "
+.ti -1c
+.RI "void_throwable \fBoptionsParseConfig\fP (const char *\fBfile\fP)"
+.br
+.RI "parses a configuration file for options "
+.ti -1c
+.RI "void \fBsilentDisconnect\fP ()"
+.br
+.RI "silently disconnect from remote host "
+.ti -1c
+.RI "int \fBwriteKnownhost\fP ()"
+.br
+.RI "Writes the known host file with current host key\&. "
+.ti -1c
+.RI "\fBChannel\fP * \fBacceptForward\fP (int timeout_ms)"
+.br
+.RI "accept an incoming forward connection "
+.ti -1c
+.RI "void_throwable \fBcancelForward\fP (const char *address, int port)"
+.br
+.ti -1c
+.RI "void_throwable \fBlistenForward\fP (const char *address, int port, int &boundport)"
+.br
+.ti -1c
+.RI "\fBssh_session\fP \fBgetCSession\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_session\fP \fBc_session\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBChannel\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBssh::Session\fP class contains the state of a SSH connection\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBChannel\fP * ssh::Session::acceptForward (int timeout_ms)\fR [inline]\fP"
+
+.PP
+accept an incoming forward connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fItimeout_ms\fP timeout for waiting, in ms 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+new \fBChannel\fP pointer on the forward connection 
+
+.PP
+NULL in case of error 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+you have to delete this pointer after use 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+ssh_channel_forward_accept 
+
+.PP
+Session::listenForward 
+.RE
+.PP
+
+.SS "void_throwable ssh::Session::connect ()\fR [inline]\fP"
+
+.PP
+connects to the remote host 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_connect\fP 
+.RE
+.PP
+
+.SS "void ssh::Session::disconnect ()\fR [inline]\fP"
+
+.PP
+Disconnects from the SSH server and closes connection\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_disconnect\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::getAuthList ()\fR [inline]\fP"
+
+.PP
+Returns the available authentication methods from the server\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Bitfield of available methods\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_list\fP 
+.RE
+.PP
+
+.SS "const char * ssh::Session::getDisconnectMessage ()\fR [inline]\fP"
+
+.PP
+Returns the disconnect message from the server, if any\&. 
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the message, or NULL\&. Do not attempt to free the pointer\&. 
+.RE
+.PP
+
+.SS "std::string ssh::Session::getIssueBanner ()\fR [inline]\fP"
+
+.PP
+gets the Issue banner from the ssh server 
+.PP
+\fBReturns\fP
+.RS 4
+the issue banner\&. This is generally a MOTD from server 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_issue_banner\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::getOpensshVersion ()\fR [inline]\fP"
+
+.PP
+returns the OpenSSH version (server) if possible 
+.PP
+\fBReturns\fP
+.RS 4
+openssh version code 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_openssh_version\fP 
+.RE
+.PP
+
+.SS "socket_t ssh::Session::getSocket ()\fR [inline]\fP"
+
+.PP
+returns the file descriptor used for the communication 
+.PP
+\fBReturns\fP
+.RS 4
+the file descriptor 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+if a proxycommand is used, this function will only return one of the two file descriptors being used 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_fd\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::getVersion ()\fR [inline]\fP"
+
+.PP
+returns the version of the SSH protocol being used 
+.PP
+\fBReturns\fP
+.RS 4
+the SSH protocol version 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_version\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::isServerKnown ()\fR [inline]\fP"
+
+.PP
+verifies that the server is known 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Integer value depending on the knowledge of the server key 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_session_update_known_hosts\fP 
+.RE
+.PP
+
+.SS "void_throwable ssh::Session::optionsCopy (const \fBSession\fP & source)\fR [inline]\fP"
+
+.PP
+copies options from a session to another 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_options_copy\fP 
+.RE
+.PP
+
+.SS "void_throwable ssh::Session::optionsParseConfig (const char * file)\fR [inline]\fP"
+
+.PP
+parses a configuration file for options 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIfile\fP configuration file name 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_options_parse_config\fP 
+.RE
+.PP
+
+.SS "void_throwable ssh::Session::setOption (enum ssh_options_e type, const char * option)\fR [inline]\fP"
+
+.PP
+sets an SSH session options 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP Type of option 
+.br
+\fIoption\fP cstring containing the value of option 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_options_set\fP 
+.RE
+.PP
+
+.SS "void_throwable ssh::Session::setOption (enum ssh_options_e type, long int option)\fR [inline]\fP"
+
+.PP
+sets an SSH session options 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP Type of option 
+.br
+\fIoption\fP long integer containing the value of option 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_options_set\fP 
+.RE
+.PP
+
+.SS "void_throwable ssh::Session::setOption (enum ssh_options_e type, void * option)\fR [inline]\fP"
+
+.PP
+sets an SSH session options 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP Type of option 
+.br
+\fIoption\fP void pointer containing the value of option 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_options_set\fP 
+.RE
+.PP
+
+.SS "void ssh::Session::silentDisconnect ()\fR [inline]\fP"
+
+.PP
+silently disconnect from remote host 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_silent_disconnect\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthKbdint (const char * username, const char * submethods)\fR [inline]\fP"
+
+.PP
+Authenticate through the "keyboard-interactive" method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIusername\fP The username to authenticate\&. You can specify NULL if ssh_option_set_username() has been used\&. You cannot try two different logins in a row\&.
+.br
+\fIsubmethods\fP Undocumented\&. Set it to NULL\&.
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_SUCCESS, SSH_AUTH_PARTIAL, SSH_AUTH_DENIED, SSH_AUTH_ERROR, SSH_AUTH_INFO, SSH_AUTH_AGAIN
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_kbdint\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthKbdintGetNPrompts ()\fR [inline]\fP"
+
+.PP
+Get the number of prompts (questions) the server has given\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The number of prompts\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_kbdint_getnprompts\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthKbdintSetAnswer (unsigned int index, const char * answer)\fR [inline]\fP"
+
+.PP
+Set the answer for a question from a message block\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIindex\fP The index number of the prompt\&. 
+.br
+\fIanswer\fP The answer to give to the server\&. The answer MUST be encoded UTF-8\&. It is up to the server how to interpret the value and validate it\&. However, if you read the answer in some other encoding, you MUST convert it to UTF-8\&.
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_kbdint_setanswer\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthNone ()\fR [inline]\fP"
+
+.PP
+Authenticates using the "none" method\&. Prefer using autopubkey if possible\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_SUCCESS, SSH_AUTH_PARTIAL, SSH_AUTH_DENIED 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_none\fP 
+
+.PP
+Session::userauthAutoPubkey 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthPassword (const char * password)\fR [inline]\fP"
+
+.PP
+Authenticates using the password method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpassword\fP password to use for authentication 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_SUCCESS, SSH_AUTH_PARTIAL, SSH_AUTH_DENIED 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_password\fP 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthPublickey (\fBssh_key\fP privkey)\fR [inline]\fP"
+
+.PP
+Authenticates using the publickey method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprivkey\fP private key to use for authentication 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_SUCCESS, SSH_AUTH_PARTIAL, SSH_AUTH_DENIED 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+ssh_userauth_pubkey 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthPublickeyAuto (void )\fR [inline]\fP"
+
+.PP
+Authenticates automatically using public key\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_SUCCESS, SSH_AUTH_PARTIAL, SSH_AUTH_DENIED 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+ssh_userauth_autopubkey 
+.RE
+.PP
+
+.SS "int ssh::Session::userauthTryPublickey (\fBssh_key\fP pubkey)\fR [inline]\fP"
+
+.PP
+Try to authenticate using the publickey method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpubkey\fP public key to use for authentication 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_SUCCESS if the pubkey is accepted, 
+
+.PP
+SSH_AUTH_DENIED if the pubkey is denied 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+ssh_userauth_try_pubkey 
+.RE
+.PP
+
+.SS "int ssh::Session::writeKnownhost ()\fR [inline]\fP"
+
+.PP
+Writes the known host file with current host key\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_write_knownhost\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

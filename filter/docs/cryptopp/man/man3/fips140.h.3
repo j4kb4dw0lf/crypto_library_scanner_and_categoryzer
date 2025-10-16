@@ -1,0 +1,224 @@
+.TH "/home/mock/cryptopp-master/fips140.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/fips140.h \- Classes and functions for the FIPS 140-2 validated library\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBSelfTestFailure\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_DUMMY_DLL_MAC\fP   'MAC_51f34b8db820ae8'"
+.br
+.RI "The placeholder used prior to embedding the actual MAC in the module\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBPowerUpSelfTestStatus\fP(CRYPTOPP_API * \fBPGetPowerUpSelfTestStatus\fP) ()"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBPowerUpSelfTestStatus\fP { \fBPOWER_UP_SELF_TEST_NOT_DONE\fP, \fBPOWER_UP_SELF_TEST_FAILED\fP, \fBPOWER_UP_SELF_TEST_PASSED\fP }"
+.br
+.RI "Status of the power-up self test\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBFIPS_140_2_ComplianceEnabled\fP ()"
+.br
+.RI "Determines whether the library provides FIPS validated cryptography\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBDoPowerUpSelfTest\fP (const char *moduleFilename, const \fBbyte\fP *expectedModuleMac)"
+.br
+.RI "Performs the power-up self test\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBDoDllPowerUpSelfTest\fP ()"
+.br
+.RI "Performs the power-up self test on the DLL\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBSimulatePowerUpSelfTestFailure\fP ()"
+.br
+.RI "Sets the power-up self test status to POWER_UP_SELF_TEST_FAILED\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBPowerUpSelfTestStatus\fP CRYPTOPP_API \fBGetPowerUpSelfTestStatus\fP ()"
+.br
+.RI "Provides the current power-up self test status\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBMessageAuthenticationCode\fP *CRYPTOPP_API \fBNewIntegrityCheckingMAC\fP ()"
+.br
+.RI "Class object that calculates the MAC on the module\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIntegrityCheckModule\fP (const char *moduleFilename, const \fBbyte\fP *expectedModuleMac, \fBSecByteBlock\fP *pActualMac=NULLPTR, unsigned long *pMacFileLocation=NULLPTR)"
+.br
+.RI "Verifies the MAC on the module\&. "
+.ti -1c
+.RI "bool \fBPowerUpSelfTestInProgressOnThisThread\fP ()"
+.br
+.ti -1c
+.RI "void \fBSetPowerUpSelfTestInProgressOnThisThread\fP (bool inProgress)"
+.br
+.ti -1c
+.RI "void \fBSignaturePairwiseConsistencyTest\fP (const \fBPK_Signer\fP &signer, const \fBPK_Verifier\fP &verifier)"
+.br
+.ti -1c
+.RI "void \fBEncryptionPairwiseConsistencyTest\fP (const \fBPK_Encryptor\fP &encryptor, const \fBPK_Decryptor\fP &decryptor)"
+.br
+.ti -1c
+.RI "void \fBSignaturePairwiseConsistencyTest_FIPS_140_Only\fP (const \fBPK_Signer\fP &signer, const \fBPK_Verifier\fP &verifier)"
+.br
+.ti -1c
+.RI "void \fBEncryptionPairwiseConsistencyTest_FIPS_140_Only\fP (const \fBPK_Encryptor\fP &encryptor, const \fBPK_Decryptor\fP &decryptor)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for the FIPS 140-2 validated library\&.
+
+The FIPS validated library is only available on Windows as a DLL\&. Once compiled, the library is always in FIPS mode contingent upon successful execution of \fBDoPowerUpSelfTest()\fP or \fBDoDllPowerUpSelfTest()\fP\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRVisual Studio\fP and \fRconfig\&.h\fP on the Crypto++ wiki\&.
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_DUMMY_DLL_MAC   'MAC_51f34b8db820ae8'"
+
+.PP
+The placeholder used prior to embedding the actual MAC in the module\&. After the DLL is built but before it is MAC'd, the string CRYPTOPP_DUMMY_DLL_MAC is used as a placeholder for the actual MAC\&. A post-build step is performed which calculates the MAC of the DLL and embeds it in the module\&. The actual MAC is written by the \fRcryptest\&.exe\fP program using the \fRmac_dll\fP subcommand\&.
+.SH "Enumeration Type Documentation"
+.PP
+.SS "enum \fBPowerUpSelfTestStatus\fP"
+
+.PP
+Status of the power-up self test\&.
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIPOWER_UP_SELF_TEST_NOT_DONE \fP
+The self tests have not been performed\&.
+.TP
+\f(BIPOWER_UP_SELF_TEST_FAILED \fP
+The self tests were executed via \fBDoPowerUpSelfTest()\fP or \fBDoDllPowerUpSelfTest()\fP, but the result was failure\&.
+.TP
+\f(BIPOWER_UP_SELF_TEST_PASSED \fP
+The self tests were executed via \fBDoPowerUpSelfTest()\fP or \fBDoDllPowerUpSelfTest()\fP, and the result was success\&.
+.SH "Function Documentation"
+.PP
+.SS "CRYPTOPP_DLL void CRYPTOPP_API DoDllPowerUpSelfTest ()"
+
+.PP
+Performs the power-up self test on the DLL\&. Performs the power-up self test using the filename of this DLL and the embedded module MAC, and sets the self test status to POWER_UP_SELF_TEST_PASSED or POWER_UP_SELF_TEST_FAILED\&.
+
+.PP
+The self tests for an algorithm are performed by the \fBAlgorithm\fP class when CRYPTOPP_ENABLE_COMPLIANCE_WITH_FIPS_140_2 is defined\&.
+.SS "CRYPTOPP_DLL void CRYPTOPP_API DoPowerUpSelfTest (const char * moduleFilename, const \fBbyte\fP * expectedModuleMac)"
+
+.PP
+Performs the power-up self test\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fImoduleFilename\fP the fully qualified name of the module
+.br
+\fIexpectedModuleMac\fP the expected MAC of the components protected by the integrity check
+.RE
+.PP
+Performs the power-up self test, and sets the self test status to POWER_UP_SELF_TEST_PASSED or POWER_UP_SELF_TEST_FAILED\&.
+
+.PP
+The self tests for an algorithm are performed by the \fBAlgorithm\fP class when CRYPTOPP_ENABLE_COMPLIANCE_WITH_FIPS_140_2 is defined\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API FIPS_140_2_ComplianceEnabled ()"
+
+.PP
+Determines whether the library provides FIPS validated cryptography\&.
+.PP
+\fBReturns\fP
+.RS 4
+true if FIPS 140-2 validated features were enabled at compile time\&.
+.RE
+.PP
+true if FIPS 140-2 validated features were enabled at compile time, false otherwise\&.
+.PP
+\fBNote\fP
+.RS 4
+FIPS mode is enabled at compile time\&. A program or other module cannot arbitrarily enter or exit the mode\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBPowerUpSelfTestStatus\fP CRYPTOPP_API GetPowerUpSelfTestStatus ()"
+
+.PP
+Provides the current power-up self test status\&.
+.PP
+\fBReturns\fP
+.RS 4
+the current power-up self test status
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IntegrityCheckModule (const char * moduleFilename, const \fBbyte\fP * expectedModuleMac, \fBSecByteBlock\fP * pActualMac = \fRNULLPTR\fP, unsigned long * pMacFileLocation = \fRNULLPTR\fP)"
+
+.PP
+Verifies the MAC on the module\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fImoduleFilename\fP the fully qualified name of the module
+.br
+\fIexpectedModuleMac\fP the expected MAC of the components protected by the integrity check
+.br
+\fIpActualMac\fP the actual MAC of the components calculated by the integrity check
+.br
+\fIpMacFileLocation\fP the offset of the MAC in the PE/PE+ module
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the MAC is valid, false otherwise
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBMessageAuthenticationCode\fP *CRYPTOPP_API NewIntegrityCheckingMAC ()"
+
+.PP
+Class object that calculates the MAC on the module\&.
+.PP
+\fBReturns\fP
+.RS 4
+the MAC for the module
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API SimulatePowerUpSelfTestFailure ()"
+
+.PP
+Sets the power-up self test status to POWER_UP_SELF_TEST_FAILED\&. Sets the power-up self test status to POWER_UP_SELF_TEST_FAILED to simulate failure\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

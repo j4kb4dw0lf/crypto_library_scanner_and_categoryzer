@@ -1,0 +1,91 @@
+.TH "pkd_daemon_args" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pkd_daemon_args
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "enum pkd_hostkey_type_e \fBtype\fP"
+.br
+.ti -1c
+.RI "const char * \fBhostkeypath\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   const uint8_t * \fBbuf\fP"
+.br
+.ti -1c
+.RI "   size_t \fBlen\fP"
+.br
+.ti -1c
+.RI "} \fBpayload\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBrekey_data_limit\fP"
+.br
+.ti -1c
+.RI "int \fBoriginal_dir_fd\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   int \fBlist\fP"
+.br
+.ti -1c
+.RI "   int \fBlog_stdout\fP"
+.br
+.ti -1c
+.RI "   int \fBlog_stderr\fP"
+.br
+.ti -1c
+.RI "   int \fBlibssh_log_level\fP"
+.br
+.ti -1c
+.RI "   const char * \fBtestname\fP"
+.br
+.ti -1c
+.RI "   const char * \fBtestmatch\fP"
+.br
+.ti -1c
+.RI "   unsigned int \fBiterations\fP"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      const char * \fBargv_mkdtemp_str\fP"
+.br
+.ti -1c
+.RI "      char * \fBmkdtemp_str\fP"
+.br
+.ti -1c
+.RI "   } \fBsocket_wrapper\fP"
+.br
+.ti -1c
+.RI "   struct {"
+.br
+.ti -1c
+.RI "      const char * \fBargv_mkdtemp_str\fP"
+.br
+.ti -1c
+.RI "      char * \fBmkdtemp_str\fP"
+.br
+.ti -1c
+.RI "   } \fBtemp_dir\fP"
+.br
+.ti -1c
+.RI "} \fBopts\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

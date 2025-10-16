@@ -1,0 +1,191 @@
+.TH "DL_PublicKey< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_PublicKey< T > \- Interface for Discrete Log (DL) public keys\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_Key< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Initialize or reinitialize this key\&. "
+.ti -1c
+.RI "virtual const Element & \fBGetPublicElement\fP () const"
+.br
+.RI "Retrieves the public element\&. "
+.ti -1c
+.RI "virtual void \fBSetPublicElement\fP (const Element &y)"
+.br
+.RI "Sets the public element\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiatePublicElement\fP (const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates this element\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeExponentiateBaseAndPublicElement\fP (const \fBInteger\fP &baseExp, const \fBInteger\fP &publicExp) const"
+.br
+.RI "Exponentiates an element\&. "
+.ti -1c
+.RI "virtual const \fBDL_FixedBasePrecomputation\fP< T > & \fBGetPublicPrecomputation\fP () const =0"
+.br
+.RI "Accesses the public precomputation\&. "
+.ti -1c
+.RI "virtual \fBDL_FixedBasePrecomputation\fP< T > & \fBAccessPublicPrecomputation\fP ()=0"
+.br
+.RI "Accesses the public precomputation\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_Key< T >\fP
+.in +1c
+.ti -1c
+.RI "virtual const \fBDL_GroupParameters\fP< T > & \fBGetAbstractGroupParameters\fP () const =0"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "virtual \fBDL_GroupParameters\fP< T > & \fBAccessAbstractGroupParameters\fP ()=0"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_PublicKey< T >"Interface for Discrete Log (DL) public keys\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual \fBDL_FixedBasePrecomputation\fP< T > & \fBDL_PublicKey\fP< T >::AccessPublicPrecomputation ()\fR [pure virtual]\fP"
+
+.PP
+Accesses the public precomputation\&. GetPublicPrecomputation returns a const reference, while AccessPublicPrecomputation returns a non-const reference\&. Must be overridden in derived classes\&. 
+.PP
+Implemented in \fBDL_PublicKeyImpl< GP >\fP, and \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+.SS "template<class T> void \fBDL_PublicKey\fP< T >::AssignFrom (const \fBNameValuePairs\fP & source)"
+
+.PP
+Initialize or reinitialize this key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsource\fP \fBNameValuePairs\fP to assign 
+.RE
+.PP
+
+.SS "template<class T> virtual Element \fBDL_PublicKey\fP< T >::CascadeExponentiateBaseAndPublicElement (const \fBInteger\fP & baseExp, const \fBInteger\fP & publicExp) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Exponentiates an element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbaseExp\fP the first exponent 
+.br
+\fIpublicExp\fP the second exponent 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the public element raised to the exponent
+.RE
+.PP
+CascadeExponentiateBaseAndPublicElement raises the public element to the base element and precomputation\&. 
+.SS "template<class T> virtual Element \fBDL_PublicKey\fP< T >::ExponentiatePublicElement (const \fBInteger\fP & exponent) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Exponentiates this element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIexponent\fP the exponent to raise the base 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the public element raised to the exponent 
+.RE
+.PP
+
+.SS "template<class T> virtual const Element & \fBDL_PublicKey\fP< T >::GetPublicElement () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the public element\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the public element 
+.RE
+.PP
+
+.SS "template<class T> virtual const \fBDL_FixedBasePrecomputation\fP< T > & \fBDL_PublicKey\fP< T >::GetPublicPrecomputation () const\fR [pure virtual]\fP"
+
+.PP
+Accesses the public precomputation\&. GetPublicPrecomputation returns a const reference, while AccessPublicPrecomputation returns a non-const reference\&. Must be overridden in derived classes\&. 
+.PP
+Implemented in \fBDL_PublicKeyImpl< GP >\fP, and \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+.SS "template<class T> bool \fBDL_PublicKey\fP< T >::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [inline]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetValue(), GetValueWithDefault(), GetIntValue(), GetIntValueWithDefault(), GetRequiredParameter() and GetRequiredIntParameter() 
+.RE
+.PP
+
+.SS "template<class T> virtual void \fBDL_PublicKey\fP< T >::SetPublicElement (const Element & y)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Sets the public element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIy\fP the public element 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

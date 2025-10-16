@@ -1,0 +1,53 @@
+.TH "/home/mock/cryptopp-master/randpool.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/randpool.h \- Class file for Randomness Pool\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'filters\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'aes\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRandomPool\fP"
+.br
+.RI "Randomness Pool based on AES-256\&. "
+.ti -1c
+.RI "class \fBOldRandomPool\fP"
+.br
+.RI "Randomness Pool based on PGP 2\&.6\&.x with \fBMDC\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Class file for Randomness Pool\&.
+
+\fBRandomPool\fP can be used to generate cryptographic quality pseudorandom bytes after seeding the pool with IncorporateEntropy()\&. Internally, the generator uses AES-256 to produce the stream\&. Entropy is stirred in using SHA-256\&.
+
+.PP
+\fBRandomPool\fP used to follow the design of randpool in PGP 2\&.6\&.x\&. At version 5\&.5 \fBRandomPool\fP was redesigned to reduce the risk of reusing random numbers after state rollback (which may occur when running in a virtual machine like VMware or a hosted environment)\&.
+
+.PP
+If you need the pre-Crypto++ 5\&.5 generator then use \fBOldRandomPool\fP class\&. You should migrate away from \fBOldRandomPool\fP at the earliest opportunity\&. Use \fBRandomPool\fP or AutoSeededRandomPool instead\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 4\&.0 (PGP 2\&.6\&.x style), Crypto++ 5\&.5 (AES-256 based)
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

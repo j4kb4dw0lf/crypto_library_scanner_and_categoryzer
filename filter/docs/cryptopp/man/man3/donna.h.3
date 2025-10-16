@@ -1,0 +1,230 @@
+.TH "/home/mock/cryptopp-master/donna.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/donna.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_CURVE25519_32BIT\fP   1"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcurve25519_mult\fP (\fBbyte\fP publicKey[32], const \fBbyte\fP secretKey[32])"
+.br
+.RI "Generate a public key\&. "
+.ti -1c
+.RI "int \fBcurve25519_mult\fP (\fBbyte\fP sharedKey[32], const \fBbyte\fP secretKey[32], const \fBbyte\fP othersKey[32])"
+.br
+.RI "Generate a shared key\&. "
+.ti -1c
+.RI "int \fBed25519_publickey\fP (\fBbyte\fP publicKey[32], const \fBbyte\fP secretKey[32])"
+.br
+.RI "Creates a public key from a secret key\&. "
+.ti -1c
+.RI "int \fBed25519_sign\fP (const \fBbyte\fP *message, size_t messageLength, const \fBbyte\fP secretKey[32], const \fBbyte\fP publicKey[32], \fBbyte\fP signature[64])"
+.br
+.RI "Creates a signature on a message\&. "
+.ti -1c
+.RI "int \fBed25519_sign\fP (std::istream &stream, const \fBbyte\fP secretKey[32], const \fBbyte\fP publicKey[32], \fBbyte\fP signature[64])"
+.br
+.RI "Creates a signature on a message\&. "
+.ti -1c
+.RI "int \fBed25519_sign_open\fP (const \fBbyte\fP *message, size_t messageLength, const \fBbyte\fP publicKey[32], const \fBbyte\fP signature[64])"
+.br
+.RI "Verifies a signature on a message\&. "
+.ti -1c
+.RI "int \fBed25519_sign_open\fP (std::istream &stream, const \fBbyte\fP publicKey[32], const \fBbyte\fP signature[64])"
+.br
+.RI "Verifies a signature on a message\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Functions for curve25519 and \fBed25519\fP operations
+
+.PP
+This header provides the entry points into Andrew Moon's curve25519 and \fBed25519\fP curve functions\&. The Crypto++ classes \fBx25519\fP and \fBed25519\fP use the functions\&. The functions are in the \fRDonna\fP namespace and are \fBcurve25519_mult()\fP, \fBed25519_publickey()\fP, \fBed25519_sign()\fP and \fBed25519_sign_open()\fP\&.
+
+.PP
+At the moment the hash function for signing is fixed at \fBSHA512\fP\&.
+.SH "Function Documentation"
+.PP
+.SS "int curve25519_mult (\fBbyte\fP publicKey[32], const \fBbyte\fP secretKey[32])"
+
+.PP
+Generate a public key\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIpublicKey\fP byte array for the public key
+.br
+\fIsecretKey\fP byte array with the private key
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBcurve25519_mult()\fP generates a public key from an existing secret key\&. Internally \fBcurve25519_mult()\fP performs a scalar multiplication using the base point and writes the result to \fRpubkey\fP\&.
+.SS "int curve25519_mult (\fBbyte\fP sharedKey[32], const \fBbyte\fP secretKey[32], const \fBbyte\fP othersKey[32])"
+
+.PP
+Generate a shared key\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIsharedKey\fP byte array for the shared secret
+.br
+\fIsecretKey\fP byte array with the private key
+.br
+\fIothersKey\fP byte array with the peer's public key
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBcurve25519_mult()\fP generates a shared key from an existing secret key and the other party's public key\&. Internally \fBcurve25519_mult()\fP performs a scalar multiplication using the two keys and writes the result to \fRsharedKey\fP\&.
+.SS "int ed25519_publickey (\fBbyte\fP publicKey[32], const \fBbyte\fP secretKey[32])"
+
+.PP
+Creates a public key from a secret key\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIpublicKey\fP byte array for the public key
+.br
+\fIsecretKey\fP byte array with the private key
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBed25519_publickey()\fP generates a public key from a secret key\&. Internally \fBed25519_publickey()\fP performs a scalar multiplication using the secret key and then writes the result to \fRpublicKey\fP\&.
+.SS "int ed25519_sign (const \fBbyte\fP * message, size_t messageLength, const \fBbyte\fP secretKey[32], const \fBbyte\fP publicKey[32], \fBbyte\fP signature[64])"
+
+.PP
+Creates a signature on a message\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fImessage\fP byte array with the message
+.br
+\fImessageLength\fP size of the message, in bytes
+.br
+\fIpublicKey\fP byte array with the public key
+.br
+\fIsecretKey\fP byte array with the private key
+.br
+\fIsignature\fP byte array for the signature
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBed25519_sign()\fP generates a signature on a message using the public and private keys\&. The various buffers can be exact sizes, and do not require extra space like when using the NaCl library functions\&.
+
+.PP
+At the moment the hash function for signing is fixed at \fBSHA512\fP\&.
+.SS "int ed25519_sign (std::istream & stream, const \fBbyte\fP secretKey[32], const \fBbyte\fP publicKey[32], \fBbyte\fP signature[64])"
+
+.PP
+Creates a signature on a message\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstream\fP std::istream derived class
+.br
+\fIpublicKey\fP byte array with the public key
+.br
+\fIsecretKey\fP byte array with the private key
+.br
+\fIsignature\fP byte array for the signature
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBed25519_sign()\fP generates a signature on a message using the public and private keys\&. The various buffers can be exact sizes, and do not require extra space like when using the NaCl library functions\&.
+
+.PP
+This \fBed25519_sign()\fP overload handles large streams\&. It was added for signing and verifying files that are too large for a memory allocation\&.
+
+.PP
+At the moment the hash function for signing is fixed at \fBSHA512\fP\&.
+.SS "int ed25519_sign_open (const \fBbyte\fP * message, size_t messageLength, const \fBbyte\fP publicKey[32], const \fBbyte\fP signature[64])"
+
+.PP
+Verifies a signature on a message\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fImessage\fP byte array with the message
+.br
+\fImessageLength\fP size of the message, in bytes
+.br
+\fIpublicKey\fP byte array with the public key
+.br
+\fIsignature\fP byte array with the signature
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBed25519_sign_open()\fP verifies a signature on a message using the public key\&. The various buffers can be exact sizes, and do not require extra space like when using the NaCl library functions\&.
+
+.PP
+At the moment the hash function for signing is fixed at \fBSHA512\fP\&.
+.SS "int ed25519_sign_open (std::istream & stream, const \fBbyte\fP publicKey[32], const \fBbyte\fP signature[64])"
+
+.PP
+Verifies a signature on a message\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstream\fP std::istream derived class
+.br
+\fIpublicKey\fP byte array with the public key
+.br
+\fIsignature\fP byte array with the signature
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, non-0 otherwise
+.RE
+.PP
+\fBed25519_sign_open()\fP verifies a signature on a message using the public key\&. The various buffers can be exact sizes, and do not require extra space like when using the NaCl library functions\&.
+
+.PP
+This \fBed25519_sign_open()\fP overload handles large streams\&. It was added for signing and verifying files that are too large for a memory allocation\&.
+
+.PP
+At the moment the hash function for signing is fixed at \fBSHA512\fP\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

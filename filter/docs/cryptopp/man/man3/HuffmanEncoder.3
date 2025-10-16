@@ -1,0 +1,107 @@
+.TH "HuffmanEncoder" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HuffmanEncoder \- Huffman Encoder\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <zdeflate\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBCode\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned int \fBcode_t\fP"
+.br
+.ti -1c
+.RI "typedef unsigned int \fBvalue_t\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHuffmanEncoder\fP ()"
+.br
+.RI "Construct a \fBHuffmanEncoder\fP\&. "
+.ti -1c
+.RI "\fBHuffmanEncoder\fP (const unsigned int *codeBits, unsigned int nCodes)"
+.br
+.RI "Construct a \fBHuffmanEncoder\fP\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (const unsigned int *codeBits, unsigned int nCodes)"
+.br
+.RI "Initialize or reinitialize this object\&. "
+.ti -1c
+.RI "void \fBEncode\fP (\fBLowFirstBitWriter\fP &writer, value_t value) const"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBGenerateCodeLengths\fP (unsigned int *codeBits, unsigned int maxCodeBits, const unsigned int *codeCounts, size_t nCodes)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSecBlock\fP< \fBCode\fP > \fBm_valueToCode\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Huffman Encoder\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "HuffmanEncoder::HuffmanEncoder (const unsigned int * codeBits, unsigned int nCodes)"
+
+.PP
+Construct a \fBHuffmanEncoder\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcodeBits\fP a table of code bits 
+.br
+\fInCodes\fP the number of codes in the table 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void HuffmanEncoder::Initialize (const unsigned int * codeBits, unsigned int nCodes)"
+
+.PP
+Initialize or reinitialize this object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcodeBits\fP a table of code bits 
+.br
+\fInCodes\fP the number of codes in the table 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,245 @@
+.TH "MersenneTwister< K, M, N, F, S >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MersenneTwister< K, M, N, F, S > \- Mersenne Twister class for Monte-Carlo simulations\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <mersenne\&.h>\fP
+.PP
+Inherits \fBRandomNumberGenerator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBMersenneTwister\fP (\fBword32\fP seed=S)"
+.br
+.RI "Construct a Mersenne Twister\&. "
+.ti -1c
+.RI "bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.ti -1c
+.RI "void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "\fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffL)"
+.br
+.RI "Generate a random 32-bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBReset\fP (\fBword32\fP seed)"
+.br
+.ti -1c
+.RI "\fBword32\fP \fBNextMersenneWord\fP ()"
+.br
+.RI "Returns the next 32-bit word from the state array\&. "
+.ti -1c
+.RI "void \fBTwist\fP ()"
+.br
+.RI "Performs the twist operation on the state array\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S>
+.br
+class MersenneTwister< K, M, N, F, S >"Mersenne Twister class for Monte-Carlo simulations\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIK\fP Magic constant 
+.br
+\fIM\fP Period parameter 
+.br
+\fIN\fP Size of the state vector 
+.br
+\fIF\fP Multiplier constant 
+.br
+\fIS\fP Initial seed
+.RE
+.PP
+Provides the \fBMersenneTwister\fP implementation\&. The class is a header-only implementation\&.
+
+.PP
+You should reseed the generator after a fork() to avoid multiple generators with the same internal state\&. 
+.PP
+\fBWarning\fP
+.RS 4
+\fBMersenneTwister\fP is suitable for simulations, where uniformaly distributed numbers are required quickly\&. It should not be used for cryptographic purposes\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBMT19937\fP, \fBMT19937ar\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.3 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> \fBMersenneTwister\fP< K, M, N, F, S >\fB::MersenneTwister\fP (\fBword32\fP seed = \fRS\fP)\fR [inline]\fP"
+
+.PP
+Construct a Mersenne Twister\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIseed\fP 32-bit seed
+.RE
+.PP
+Defaults to template parameter S due to changing algorithm parameters over time 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> bool \fBMersenneTwister\fP< K, M, N, F, S >::CanIncorporateEntropy () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if a generator can accept additional entropy\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if \fBIncorporateEntropy()\fP is implemented 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> void \fBMersenneTwister\fP< K, M, N, F, S >::DiscardBytes (size_t n)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate and discard n bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number of bytes to discard, rounded up to a \fR\fBword32\fP\fP size
+.RE
+.PP
+If n is not a multiple of \fR\fBword32\fP\fP, then unused bytes are not accumulated for subsequent calls to GenerateBlock\&. Rather, the unused tail bytes are discarded, and the stream is continued at the next \fR\fBword32\fP\fP boundary from the state array\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> void \fBMersenneTwister\fP< K, M, N, F, S >::GenerateBlock (\fBbyte\fP * output, size_t size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate random array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP byte buffer 
+.br
+\fIsize\fP length of the buffer, in bytes
+.RE
+.PP
+Bytes are written to output in big endian order\&. If output length is not a multiple of \fBword32\fP, then unused bytes are not accumulated for subsequent calls to GenerateBlock\&. Rather, the unused tail bytes are discarded, and the stream is continued at the next \fBword32\fP boundary from the state array\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> \fBword32\fP \fBMersenneTwister\fP< K, M, N, F, S >::GenerateWord32 (\fBword32\fP min = \fR0\fP, \fBword32\fP max = \fR0xffffffffL\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate a random 32-bit word in the range min to max, inclusive\&. 
+.PP
+\fBReturns\fP
+.RS 4
+random 32-bit word in the range min to max, inclusive
+.RE
+.PP
+If the 32-bit candidate is not within the range, then it is discarded and a new candidate is used\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> void \fBMersenneTwister\fP< K, M, N, F, S >::IncorporateEntropy (const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Update RNG state with additional unpredictable values\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP the entropy to add to the generator 
+.br
+\fIlength\fP the size of the input buffer
+.RE
+.PP
+\fBMersenneTwister\fP uses the first 32-bits of \fRinput\fP to reseed the generator\&. If fewer bytes are provided, then the seed is padded with 0's\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "template<unsigned int K, unsigned int M, unsigned int N, unsigned int F, \fBword32\fP S> \fBword32\fP \fBMersenneTwister\fP< K, M, N, F, S >::NextMersenneWord ()\fR [inline]\fP, \fR [protected]\fP"
+
+.PP
+Returns the next 32-bit word from the state array\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the next 32-bit word from the state array
+.RE
+.PP
+fetches the next word frm the state array, performs bit operations on it, and then returns the value to the caller\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

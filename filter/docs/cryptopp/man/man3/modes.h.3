@@ -1,0 +1,213 @@
+.TH "/home/mock/cryptopp-master/modes.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/modes.h \- Classes for block cipher modes of operation\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'strciphr\&.h'\fP
+.br
+\fR#include 'argnames\&.h'\fP
+.br
+\fR#include 'algparam\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBCipherModeDocumentation\fP"
+.br
+.RI "Block cipher mode of operation information\&. "
+.ti -1c
+.RI "class \fBCipherModeBase\fP"
+.br
+.RI "Block cipher mode of operation information\&. "
+.ti -1c
+.RI "class \fBModePolicyCommonTemplate< POLICY_INTERFACE >\fP"
+.br
+.RI "Block cipher mode of operation common operations\&. "
+.ti -1c
+.RI "class \fBCFB_ModePolicy\fP"
+.br
+.RI "CFB block cipher mode of operation\&. "
+.ti -1c
+.RI "class \fBOFB_ModePolicy\fP"
+.br
+.RI "OFB block cipher mode of operation\&. "
+.ti -1c
+.RI "class \fBCTR_ModePolicy\fP"
+.br
+.RI "CTR block cipher mode of operation\&. "
+.ti -1c
+.RI "class \fBBlockOrientedCipherModeBase\fP"
+.br
+.RI "Block cipher mode of operation default implementation\&. "
+.ti -1c
+.RI "class \fBECB_OneWay\fP"
+.br
+.RI "ECB block cipher mode of operation default implementation\&. "
+.ti -1c
+.RI "class \fBCBC_ModeBase\fP"
+.br
+.RI "CBC block cipher mode of operation default implementation\&. "
+.ti -1c
+.RI "class \fBCBC_Encryption\fP"
+.br
+.RI "CBC block cipher mode of operation encryption operation\&. "
+.ti -1c
+.RI "class \fBCBC_CTS_Encryption\fP"
+.br
+.RI "CBC-CTS block cipher mode of operation encryption operation\&. "
+.ti -1c
+.RI "class \fBCBC_Decryption\fP"
+.br
+.RI "CBC block cipher mode of operation decryption operation\&. "
+.ti -1c
+.RI "class \fBCBC_CTS_Decryption\fP"
+.br
+.RI "CBC-CTS block cipher mode of operation decryption operation\&. "
+.ti -1c
+.RI "class \fBCipherModeFinalTemplate_CipherHolder< CIPHER, BASE >\fP"
+.br
+.RI "Block cipher mode of operation aggregate\&. "
+.ti -1c
+.RI "class \fBCipherModeFinalTemplate_ExternalCipher< BASE >\fP"
+.br
+.ti -1c
+.RI "struct \fBCFB_Mode< CIPHER >\fP"
+.br
+.RI "CFB block cipher mode of operation\&. "
+.ti -1c
+.RI "struct \fBCFB_Mode_ExternalCipher\fP"
+.br
+.RI "CFB mode, external cipher\&. "
+.ti -1c
+.RI "struct \fBCFB_FIPS_Mode< CIPHER >\fP"
+.br
+.RI "CFB block cipher mode of operation providing FIPS validated cryptography\&. "
+.ti -1c
+.RI "struct \fBCFB_FIPS_Mode_ExternalCipher\fP"
+.br
+.RI "CFB mode, external cipher, providing FIPS validated cryptography\&. "
+.ti -1c
+.RI "struct \fBOFB_Mode< CIPHER >\fP"
+.br
+.RI "OFB block cipher mode of operation\&. "
+.ti -1c
+.RI "struct \fBOFB_Mode_ExternalCipher\fP"
+.br
+.RI "OFB mode, external cipher\&. "
+.ti -1c
+.RI "struct \fBCTR_Mode< CIPHER >\fP"
+.br
+.RI "CTR block cipher mode of operation\&. "
+.ti -1c
+.RI "struct \fBCTR_Mode_ExternalCipher\fP"
+.br
+.RI "CTR mode, external cipher\&. "
+.ti -1c
+.RI "struct \fBECB_Mode< CIPHER >\fP"
+.br
+.RI "ECB block cipher mode of operation\&. "
+.ti -1c
+.RI "struct \fBECB_Mode_ExternalCipher\fP"
+.br
+.RI "ECB mode, external cipher\&. "
+.ti -1c
+.RI "struct \fBCBC_Mode< CIPHER >\fP"
+.br
+.RI "CBC block cipher mode of operation\&. "
+.ti -1c
+.RI "struct \fBCBC_Mode_ExternalCipher\fP"
+.br
+.RI "CBC mode, external cipher\&. "
+.ti -1c
+.RI "struct \fBCBC_CTS_Mode< CIPHER >\fP"
+.br
+.RI "CBC-CTS block cipher mode of operation\&. "
+.ti -1c
+.RI "struct \fBCBC_CTS_Mode_ExternalCipher\fP"
+.br
+.RI "CBC mode with ciphertext stealing, external cipher\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBCopyOrZero\fP (void *dest, size_t dsize, const void *src, size_t ssize)"
+.br
+.RI "Initialize a block of memory\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCFB_CipherTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCFB_EncryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCFB_DecryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, OFB_ModePolicy > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, CTR_ModePolicy > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, CTR_ModePolicy > > > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCipherModeFinalTemplate_ExternalCipher< ECB_OneWay >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCipherModeFinalTemplate_ExternalCipher< CBC_Encryption >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCipherModeFinalTemplate_ExternalCipher< CBC_Decryption >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCipherModeFinalTemplate_ExternalCipher< CBC_CTS_Encryption >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBCipherModeFinalTemplate_ExternalCipher< CBC_CTS_Decryption >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for block cipher modes of operation\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "void CopyOrZero (void * dest, size_t dsize, const void * src, size_t ssize)\fR [inline]\fP"
+
+.PP
+Initialize a block of memory\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIdest\fP the destination block of memory
+.br
+\fIdsize\fP the size of the destination block, in bytes
+.br
+\fIsrc\fP the source block of memory
+.br
+\fIssize\fP the size of the source block, in bytes
+.RE
+.PP
+CopyOrZero copies ssize bytes from source to destination if src is not NULL\&. If src is NULL then dest is zero'd\&. Bounds are not checked at runtime\&. Debug builds assert if ssize exceeds dsize\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

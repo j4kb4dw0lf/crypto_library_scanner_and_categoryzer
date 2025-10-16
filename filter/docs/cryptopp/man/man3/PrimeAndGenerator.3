@@ -1,0 +1,155 @@
+.TH "PrimeAndGenerator" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PrimeAndGenerator \- Generator of prime numbers of special forms\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <nbtheory\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPrimeAndGenerator\fP ()"
+.br
+.RI "Construct a \fBPrimeAndGenerator\fP\&. "
+.ti -1c
+.RI "\fBPrimeAndGenerator\fP (signed int delta, \fBRandomNumberGenerator\fP &rng, unsigned int pbits)"
+.br
+.RI "Construct a \fBPrimeAndGenerator\fP\&. "
+.ti -1c
+.RI "\fBPrimeAndGenerator\fP (signed int delta, \fBRandomNumberGenerator\fP &rng, unsigned int pbits, unsigned qbits)"
+.br
+.RI "Construct a \fBPrimeAndGenerator\fP\&. "
+.ti -1c
+.RI "void \fBGenerate\fP (signed int delta, \fBRandomNumberGenerator\fP &rng, unsigned int pbits, unsigned qbits)"
+.br
+.RI "Generate a Prime and Generator\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBPrime\fP () const"
+.br
+.RI "Retrieve first prime\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBSubPrime\fP () const"
+.br
+.RI "Retrieve second prime\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGenerator\fP () const"
+.br
+.RI "Retrieve the generator\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Generator of prime numbers of special forms\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "PrimeAndGenerator::PrimeAndGenerator (signed int delta, \fBRandomNumberGenerator\fP & rng, unsigned int pbits)\fR [inline]\fP"
+
+.PP
+Construct a \fBPrimeAndGenerator\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdelta\fP +1 or -1 
+.br
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIpbits\fP the number of bits in the prime p
+.RE
+.PP
+\fBPrimeAndGenerator()\fP generates a random prime p of the form \fR2*q+delta\fP, where delta is 1 or -1 and q is also prime\&. Internally the constructor calls \fRGenerate(delta, rng, pbits, pbits-1)\fP\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRpbits > 5\fP 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This \fBPrimeAndGenerator()\fP is slow because primes of this form are harder to find\&. 
+.RE
+.PP
+
+.SS "PrimeAndGenerator::PrimeAndGenerator (signed int delta, \fBRandomNumberGenerator\fP & rng, unsigned int pbits, unsigned qbits)\fR [inline]\fP"
+
+.PP
+Construct a \fBPrimeAndGenerator\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdelta\fP +1 or -1 
+.br
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIpbits\fP the number of bits in the prime p 
+.br
+\fIqbits\fP the number of bits in the prime q
+.RE
+.PP
+\fBPrimeAndGenerator()\fP generates a random prime p of the form \fR2*r*q+delta\fP, where q is also prime\&. Internally the constructor calls \fRGenerate(delta, rng, pbits, qbits)\fP\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRqbits > 4 && pbits > qbits\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void PrimeAndGenerator::Generate (signed int delta, \fBRandomNumberGenerator\fP & rng, unsigned int pbits, unsigned qbits)"
+
+.PP
+Generate a Prime and Generator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdelta\fP +1 or -1 
+.br
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIpbits\fP the number of bits in the prime p 
+.br
+\fIqbits\fP the number of bits in the prime q
+.RE
+.PP
+\fBGenerate()\fP generates a random prime p of the form \fR2*r*q+delta\fP, where q is also prime\&. 
+.SS "const \fBInteger\fP & PrimeAndGenerator::Generator () const\fR [inline]\fP"
+
+.PP
+Retrieve the generator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBGenerator()\fP returns the generator g\&. 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & PrimeAndGenerator::Prime () const\fR [inline]\fP"
+
+.PP
+Retrieve first prime\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBPrime()\fP returns the prime p\&. 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & PrimeAndGenerator::SubPrime () const\fR [inline]\fP"
+
+.PP
+Retrieve second prime\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBSubPrime()\fP returns the prime q\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

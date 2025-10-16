@@ -1,0 +1,192 @@
+.TH "PolynomialOver< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PolynomialOver< T > \- represents single-variable polynomials over arbitrary rings  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <polynomi\&.h>\fP
+.PP
+Inherited by \fBPolynomialOverFixedRing< T, instance >\fP\fR [private]\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDivideByZero\fP"
+.br
+.RI "division by zero exception "
+.ti -1c
+.RI "class \fBRandomizationParameter\fP"
+.br
+.RI "specify the distribution for randomization functions "
+.in -1c
+.SS "ENUMS, EXCEPTIONS, and TYPEDEFS"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBRing\fP"
+.br
+.ti -1c
+.RI "typedef T::Element \fBCoefficientType\fP"
+.br
+.in -1c
+.SS "INPUT/OUTPUT"
+
+.in +1c
+.ti -1c
+.RI "std::istream & \fBInput\fP (std::istream &in, const Ring &ring)"
+.br
+.ti -1c
+.RI "std::ostream & \fBOutput\fP (std::ostream &out, const Ring &ring) const"
+.br
+.in -1c
+.SS "CREATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialOver\fP ()"
+.br
+.RI "creates the zero polynomial "
+.ti -1c
+.RI "\fBPolynomialOver\fP (const Ring &ring, unsigned int count)"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP (const \fBPolynomialOver\fP< Ring > &t)"
+.br
+.RI "copy constructor "
+.ti -1c
+.RI "\fBPolynomialOver\fP (const CoefficientType &element)"
+.br
+.RI "construct constant polynomial "
+.ti -1c
+.RI "template<typename Iterator> \fBPolynomialOver\fP (Iterator begin, Iterator end)"
+.br
+.RI "construct polynomial with specified coefficients, starting from coefficient of x^0 "
+.ti -1c
+.RI "\fBPolynomialOver\fP (const char *str, const Ring &ring)"
+.br
+.RI "convert from string "
+.ti -1c
+.RI "\fBPolynomialOver\fP (const \fBbyte\fP *encodedPolynomialOver, unsigned int byteCount)"
+.br
+.RI "convert from big-endian byte array "
+.ti -1c
+.RI "\fBPolynomialOver\fP (const \fBbyte\fP *BEREncodedPolynomialOver)"
+.br
+.RI "convert from Basic Encoding Rules encoded byte array "
+.ti -1c
+.RI "\fBPolynomialOver\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "convert from BER encoded byte array stored in a \fBBufferedTransformation\fP object "
+.ti -1c
+.RI "\fBPolynomialOver\fP (\fBRandomNumberGenerator\fP &rng, const \fBRandomizationParameter\fP &parameter, const Ring &ring)"
+.br
+.RI "create a random \fBPolynomialOver<T>\fP "
+.in -1c
+.SS "ACCESSORS"
+
+.in +1c
+.ti -1c
+.RI "int \fBDegree\fP (const Ring &ring) const"
+.br
+.RI "the zero polynomial will return a degree of -1 "
+.ti -1c
+.RI "unsigned int \fBCoefficientCount\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "CoefficientType \fBGetCoefficient\fP (unsigned int i, const Ring &ring) const"
+.br
+.RI "return coefficient for x^i "
+.in -1c
+.SS "MANIPULATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > & \fBoperator=\fP (const \fBPolynomialOver\fP< Ring > &t)"
+.br
+.ti -1c
+.RI "void \fBRandomize\fP (\fBRandomNumberGenerator\fP &rng, const \fBRandomizationParameter\fP &parameter, const Ring &ring)"
+.br
+.ti -1c
+.RI "void \fBSetCoefficient\fP (unsigned int i, const CoefficientType &value, const Ring &ring)"
+.br
+.RI "set the coefficient for x^i to value "
+.ti -1c
+.RI "void \fBNegate\fP (const Ring &ring)"
+.br
+.ti -1c
+.RI "void \fBswap\fP (\fBPolynomialOver\fP< Ring > &t)"
+.br
+.in -1c
+.SS "BASIC ARITHMETIC ON POLYNOMIALS"
+
+.in +1c
+.ti -1c
+.RI "bool \fBEquals\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring) const"
+.br
+.ti -1c
+.RI "bool \fBIsZero\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBPlus\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBMinus\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBInverse\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBTimes\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBDividedBy\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBModulo\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBMultiplicativeInverse\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "bool \fBIsUnit\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > & \fBAccumulate\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring)"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > & \fBReduce\fP (const \fBPolynomialOver\fP< Ring > &t, const Ring &ring)"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBDoubled\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > \fBSquared\fP (const Ring &ring) const"
+.br
+.ti -1c
+.RI "CoefficientType \fBEvaluateAt\fP (const CoefficientType &x, const Ring &ring) const"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > & \fBShiftLeft\fP (unsigned int n, const Ring &ring)"
+.br
+.ti -1c
+.RI "\fBPolynomialOver\fP< Ring > & \fBShiftRight\fP (unsigned int n, const Ring &ring)"
+.br
+.ti -1c
+.RI "static void \fBDivide\fP (\fBPolynomialOver\fP< Ring > &r, \fBPolynomialOver\fP< Ring > &q, const \fBPolynomialOver\fP< Ring > &a, const \fBPolynomialOver\fP< Ring > &d, const Ring &ring)"
+.br
+.RI "calculate r and q such that (a == d*q + r) && (0 <= degree of r < degree of d) "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class PolynomialOver< T >"represents single-variable polynomials over arbitrary rings 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

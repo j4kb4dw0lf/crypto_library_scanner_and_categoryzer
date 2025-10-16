@@ -1,0 +1,43 @@
+.TH "libssh_tutor_threads" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_tutor_threads \- Chapter 8: Threads with libssh 
+.PP
+
+.SH "How to use libssh with threads"
+.PP
+libssh may be used in multithreaded applications, but under several conditions :
+.IP "\(bu" 2
+Your system must support libpthread or, in Windows environment, CriticalSection based mutex control\&.
+.IP "\(bu" 2
+Since version 0\&.8\&.0, threads initialization is called automatically in the library constructor if libssh is dynamically linked\&. This means it is no longer necessary to call \fBssh_init()\fP/ssh_finalize()\&.
+.IP "\(bu" 2
+If libssh is statically linked, threading must be initialized by calling \fBssh_init()\fP before using any of libssh provided functions\&. This initialization must be done outside of any threading context\&. Don't forget to call \fBssh_finalize()\fP to avoid memory leak
+.IP "\(bu" 2
+At all times, you may use different sessions inside threads, make parallel connections, read/write on different sessions and so on\&. You \fIcannot\fP use a single session (or channels for a single session) in several threads at the same time\&. This will most likely lead to internal state corruption\&. This limitation is being worked out and will maybe disappear later\&.
+.PP
+.SS "Initialization of threads"
+Since version 0\&.8\&.0, it is no longer necessary to call \fBssh_init()\fP/ssh_finalize() if libssh is dynamically linked\&.
+
+.PP
+If libssh is statically linked, call \fBssh_init()\fP before using any of libssh provided functions\&.
+.SS "Using libpthread with libssh"
+Since version 0\&.8\&.0, libpthread is the default threads library used by libssh\&.
+
+.PP
+To use libpthread, simply link it to you application\&.
+
+.PP
+If you are using libssh statically linked, don't forget to call \fBssh_init()\fP before using any of libssh provided functions (and \fBssh_finalize()\fP in the end)\&.
+.SS "Using another threading library"
+Since version 0\&.8\&.0, libssh does not support custom threading libraries\&. The change makes sense since the newer versions for libcrypto (OpenSSL) and libgcrypt don't support custom threading libraries\&.
+
+.PP
+The default used threading library is libpthread\&. Alternatively, in Windows environment, CriticalSection based mutex control can be used\&.
+
+.PP
+If your system does not support libpthread nor CriticalSection based mutex control, unfortunately, you cannot use libssh in multithreaded scenarios\&.
+
+.PP
+Good luck ! 

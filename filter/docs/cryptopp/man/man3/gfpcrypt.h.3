@@ -1,0 +1,179 @@
+.TH "/home/mock/cryptopp-master/gfpcrypt.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/gfpcrypt.h \- Classes and functions for schemes based on Discrete Logs (DL) over GF(p)
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'modexppc\&.h'\fP
+.br
+\fR#include 'algparam\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'sha\&.h'\fP
+.br
+\fR#include 'asn\&.h'\fP
+.br
+\fR#include 'hmac\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDL_GroupParameters_IntegerBased\fP"
+.br
+.RI "Integer-based GroupParameters specialization\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP"
+.br
+.RI "Integer-based GroupParameters default implementation\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_GFP\fP"
+.br
+.RI "GF(p) group parameters\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_GFP_DefaultSafePrime\fP"
+.br
+.RI "GF(p) group parameters that default to safe primes\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_ElGamal\fP"
+.br
+.ti -1c
+.RI "class \fBDL_Algorithm_GDSA< T >\fP"
+.br
+.RI "\fBGDSA\fP algorithm\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_DSA_RFC6979< T, H >\fP"
+.br
+.RI "\fBDSA\fP signature algorithm based on RFC 6979\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_GDSA_ISO15946< T >\fP"
+.br
+.RI "German Digital Signature \fBAlgorithm\fP\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_NR< T >\fP"
+.br
+.RI "\fBNR\fP algorithm\&. "
+.ti -1c
+.RI "class \fBDL_PublicKey_GFP< GP >\fP"
+.br
+.RI "Discrete Log (DL) public key in GF(p) groups\&. "
+.ti -1c
+.RI "class \fBDL_PrivateKey_GFP< GP >\fP"
+.br
+.RI "Discrete Log (DL) private key in GF(p) groups\&. "
+.ti -1c
+.RI "struct \fBDL_SignatureKeys_GFP\fP"
+.br
+.RI "Discrete Log (DL) signing/verification keys in GF(p) groups\&. "
+.ti -1c
+.RI "struct \fBDL_CryptoKeys_GFP\fP"
+.br
+.RI "Discrete Log (DL) encryption/decryption keys in GF(p) groups\&. "
+.ti -1c
+.RI "struct \fBDL_CryptoKeys_ElGamal\fP"
+.br
+.ti -1c
+.RI "struct \fBGDSA< H >\fP"
+.br
+.RI "\fBDSA\fP signature scheme\&. "
+.ti -1c
+.RI "struct \fBNR< H >\fP"
+.br
+.RI "\fBNR\fP signature scheme\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_DSA\fP"
+.br
+.RI "\fBDSA\fP group parameters\&. "
+.ti -1c
+.RI "struct \fBDL_Keys_DSA\fP"
+.br
+.RI "\fBDSA\fP keys\&. "
+.ti -1c
+.RI "class \fBDSA2< H >\fP"
+.br
+.RI "\fBDSA\fP signature scheme\&. "
+.ti -1c
+.RI "struct \fBDSA_RFC6979< H >\fP"
+.br
+.RI "\fBDSA\fP deterministic signature scheme\&. "
+.ti -1c
+.RI "class \fBDL_EncryptionAlgorithm_Xor< MAC, DHAES_MODE, LABEL_OCTETS >\fP"
+.br
+.RI "P1363 based XOR Encryption Method\&. "
+.ti -1c
+.RI "class \fBDL_KeyDerivationAlgorithm_P1363< T, DHAES_MODE, KDF >\fP"
+.br
+.RI "P1363 based Key Derivation Method\&. "
+.ti -1c
+.RI "struct \fBDLIES< HASH, COFACTOR_OPTION, DHAES_MODE, LABEL_OCTETS >\fP"
+.br
+.RI "Discrete Log Integrated Encryption Scheme\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDSA2\fP< \fBSHA1\fP > \fBDSA\fP"
+.br
+.RI "\fBDSA\fP with SHA-1, typedef'd for backwards compatibility\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_GroupParameters< Integer >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_GDSA< Integer >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_DSA_RFC6979< Integer, SHA1 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_DSA_RFC6979< Integer, SHA224 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_DSA_RFC6979< Integer, SHA256 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_DSA_RFC6979< Integer, SHA384 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_DSA_RFC6979< Integer, SHA512 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKey_GFP< DL_GroupParameters_DSA >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_GFP< DL_GroupParameters_DSA >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest< DL_PrivateKey_GFP< DL_GroupParameters_DSA >, DSA2< SHA1 > >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for schemes based on Discrete Logs (DL) over GF(p)
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,471 @@
+.TH "/home/mock/cryptopp-master/cryptlib.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/cryptlib.h \- Abstract base classes that provide a uniform interface to this library\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+\fR#include 'trap\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBEnumToType< ENUM_TYPE, VALUE >\fP"
+.br
+.RI "Converts an enumeration to a type suitable for use as a template parameter\&. "
+.ti -1c
+.RI "class \fBException\fP"
+.br
+.RI "Base class for all exceptions thrown by the library\&. "
+.ti -1c
+.RI "class \fBInvalidArgument\fP"
+.br
+.RI "An invalid argument was detected\&. "
+.ti -1c
+.RI "class \fBInvalidDataFormat\fP"
+.br
+.RI "Input data was received that did not conform to expected format\&. "
+.ti -1c
+.RI "class \fBInvalidCiphertext\fP"
+.br
+.RI "A decryption filter encountered invalid ciphertext\&. "
+.ti -1c
+.RI "class \fBNotImplemented\fP"
+.br
+.RI "A method was called which was not implemented\&. "
+.ti -1c
+.RI "class \fBCannotFlush\fP"
+.br
+.RI "Flush(true) was called but it can't completely flush its buffers\&. "
+.ti -1c
+.RI "class \fBOS_Error\fP"
+.br
+.RI "The operating system reported an error\&. "
+.ti -1c
+.RI "struct \fBDecodingResult\fP"
+.br
+.RI "Returns a decoding results\&. "
+.ti -1c
+.RI "class \fBNameValuePairs\fP"
+.br
+.RI "Interface for retrieving values given their names\&. "
+.ti -1c
+.RI "class \fBNameValuePairs::ValueTypeMismatch\fP"
+.br
+.RI "Thrown when an unexpected type is encountered\&. "
+.ti -1c
+.RI "class \fBClonable\fP"
+.br
+.RI "Namespace containing NaCl library functions\&. "
+.ti -1c
+.RI "class \fBAlgorithm\fP"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "class \fBSimpleKeyingInterface\fP"
+.br
+.RI "Interface for algorithms that take byte strings as keys\&. "
+.ti -1c
+.RI "class \fBBlockTransformation\fP"
+.br
+.RI "Interface for the data processing part of block ciphers\&. "
+.ti -1c
+.RI "class \fBStreamTransformation\fP"
+.br
+.RI "Interface for the data processing portion of stream ciphers\&. "
+.ti -1c
+.RI "class \fBHashTransformation\fP"
+.br
+.RI "Interface for hash functions and data processing part of MACs\&. "
+.ti -1c
+.RI "class \fBBlockCipher\fP"
+.br
+.RI "Interface for one direction (encryption or decryption) of a block cipher\&. "
+.ti -1c
+.RI "class \fBSymmetricCipher\fP"
+.br
+.RI "Interface for one direction (encryption or decryption) of a stream cipher or cipher mode\&. "
+.ti -1c
+.RI "class \fBMessageAuthenticationCode\fP"
+.br
+.RI "Interface for message authentication codes\&. "
+.ti -1c
+.RI "class \fBAuthenticatedSymmetricCipher\fP"
+.br
+.RI "Interface for authenticated encryption modes of operation\&. "
+.ti -1c
+.RI "class \fBAuthenticatedSymmetricCipher::BadState\fP"
+.br
+.RI "\fBException\fP thrown when the object is in the wrong state for the operation\&. "
+.ti -1c
+.RI "class \fBRandomNumberGenerator\fP"
+.br
+.RI "Interface for random number generators\&. "
+.ti -1c
+.RI "class \fBKeyDerivationFunction\fP"
+.br
+.RI "Interface for key derivation functions\&. "
+.ti -1c
+.RI "struct \fBPasswordBasedKeyDerivationFunction\fP"
+.br
+.RI "Interface for password based key derivation functions\&. "
+.ti -1c
+.RI "class \fBWaitable\fP"
+.br
+.RI "Interface for objects that can be waited on\&. "
+.ti -1c
+.RI "class \fBBufferedTransformation\fP"
+.br
+.RI "Interface for buffered transformations\&. "
+.ti -1c
+.RI "struct \fBBufferedTransformation::BlockingInputOnly\fP"
+.br
+.RI "\fBException\fP thrown by objects that have \fInot\fP implemented nonblocking input processing\&. "
+.ti -1c
+.RI "struct \fBBufferedTransformation::NoChannelSupport\fP"
+.br
+.RI "\fBException\fP thrown when a filter does not support named channels\&. "
+.ti -1c
+.RI "struct \fBBufferedTransformation::InvalidChannelName\fP"
+.br
+.RI "\fBException\fP thrown when a filter does not recognize a named channel\&. "
+.ti -1c
+.RI "class \fBCryptoMaterial\fP"
+.br
+.RI "Interface for crypto material\&. "
+.ti -1c
+.RI "class \fBCryptoMaterial::InvalidMaterial\fP"
+.br
+.RI "\fBException\fP thrown when invalid crypto material is detected\&. "
+.ti -1c
+.RI "class \fBGeneratableCryptoMaterial\fP"
+.br
+.RI "Interface for crypto material\&. "
+.ti -1c
+.RI "class \fBPublicKey\fP"
+.br
+.RI "Interface for public keys\&. "
+.ti -1c
+.RI "class \fBPrivateKey\fP"
+.br
+.RI "Interface for private keys\&. "
+.ti -1c
+.RI "class \fBCryptoParameters\fP"
+.br
+.RI "Interface for crypto parameters\&. "
+.ti -1c
+.RI "class \fBCertificate\fP"
+.br
+.RI "Interface for certificates\&. "
+.ti -1c
+.RI "class \fBAsymmetricAlgorithm\fP"
+.br
+.RI "Interface for asymmetric algorithms\&. "
+.ti -1c
+.RI "class \fBPublicKeyAlgorithm\fP"
+.br
+.RI "Interface for asymmetric algorithms using public keys\&. "
+.ti -1c
+.RI "class \fBPrivateKeyAlgorithm\fP"
+.br
+.RI "Interface for asymmetric algorithms using private keys\&. "
+.ti -1c
+.RI "class \fBKeyAgreementAlgorithm\fP"
+.br
+.RI "Interface for key agreement algorithms\&. "
+.ti -1c
+.RI "class \fBPK_CryptoSystem\fP"
+.br
+.RI "Interface for public-key encryptors and decryptors\&. "
+.ti -1c
+.RI "class \fBPK_Encryptor\fP"
+.br
+.RI "Interface for public-key encryptors\&. "
+.ti -1c
+.RI "class \fBPK_Encryptor::InvalidPlaintextLength\fP"
+.br
+.RI "\fBException\fP thrown when trying to encrypt plaintext of invalid length\&. "
+.ti -1c
+.RI "class \fBPK_Decryptor\fP"
+.br
+.RI "Interface for public-key decryptors\&. "
+.ti -1c
+.RI "class \fBPK_SignatureScheme\fP"
+.br
+.RI "Interface for public-key signers and verifiers\&. "
+.ti -1c
+.RI "class \fBPK_SignatureScheme::InvalidKeyLength\fP"
+.br
+.RI "\fBException\fP throw when the private or public key has a length that can't be used\&. "
+.ti -1c
+.RI "class \fBPK_SignatureScheme::KeyTooShort\fP"
+.br
+.RI "\fBException\fP throw when the private or public key is too short to sign or verify\&. "
+.ti -1c
+.RI "class \fBPK_MessageAccumulator\fP"
+.br
+.RI "Interface for accumulating messages to be signed or verified\&. "
+.ti -1c
+.RI "class \fBPK_Signer\fP"
+.br
+.RI "Interface for public-key signers\&. "
+.ti -1c
+.RI "class \fBPK_Verifier\fP"
+.br
+.RI "Interface for public-key signature verifiers\&. "
+.ti -1c
+.RI "class \fBSimpleKeyAgreementDomain\fP"
+.br
+.RI "Interface for domains of simple key agreement protocols\&. "
+.ti -1c
+.RI "class \fBAuthenticatedKeyAgreementDomain\fP"
+.br
+.RI "Interface for domains of authenticated key agreement protocols\&. "
+.ti -1c
+.RI "class \fBBERDecodeErr\fP"
+.br
+.RI "\fBException\fP thrown when an ASN\&.1 BER decoing error is encountered\&. "
+.ti -1c
+.RI "class \fBASN1Object\fP"
+.br
+.RI "Interface for encoding and decoding ASN1 objects\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBEnumToType\fP< \fBByteOrder\fP, \fBLITTLE_ENDIAN_ORDER\fP > \fBLittleEndian\fP"
+.br
+.RI "Provides a constant for \fBLittleEndian\fP\&. "
+.ti -1c
+.RI "typedef \fBEnumToType\fP< \fBByteOrder\fP, \fBBIG_ENDIAN_ORDER\fP > \fBBigEndian\fP"
+.br
+.RI "Provides a constant for \fBBigEndian\fP\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBCipherDir\fP { \fBENCRYPTION\fP, \fBDECRYPTION\fP }"
+.br
+.RI "Specifies a direction for a cipher to operate\&. "
+.ti -1c
+.RI "enum \fBByteOrder\fP { \fBLITTLE_ENDIAN_ORDER\fP = 0, \fBBIG_ENDIAN_ORDER\fP = 1 }"
+.br
+.RI "Provides the byte ordering\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL \fBRandomNumberGenerator\fP &CRYPTOPP_API \fBNullRNG\fP ()"
+.br
+.RI "Random Number Generator that does not produce random numbers\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBBufferedTransformation\fP & \fBTheBitBucket\fP ()"
+.br
+.RI "An input discarding \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "int \fBLibraryVersion\fP (CRYPTOPP_NOINLINE_DOTDOTDOT)"
+.br
+.RI "Specifies the build-time version of the library\&. "
+.ti -1c
+.RI "int \fBHeaderVersion\fP ()"
+.br
+.RI "Specifies the runtime version of the library\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_CONST_OR_CONSTEXPR unsigned long \fBINFINITE_TIME\fP = ULONG_MAX"
+.br
+.RI "Represents infinite time\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL const std::string \fBDEFAULT_CHANNEL\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL const std::string \fBAAD_CHANNEL\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL const \fBNameValuePairs\fP & \fBg_nullNameValuePairs\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Abstract base classes that provide a uniform interface to this library\&.
+
+
+.SH "Enumeration Type Documentation"
+.PP
+.SS "enum \fBByteOrder\fP"
+
+.PP
+Provides the byte ordering\&. Big-endian and little-endian modes are supported\&. Bi-endian and PDP-endian modes are not supported\&.
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BILITTLE_ENDIAN_ORDER \fP
+byte order is little-endian
+.TP
+\f(BIBIG_ENDIAN_ORDER \fP
+byte order is big-endian
+.SS "enum \fBCipherDir\fP"
+
+.PP
+Specifies a direction for a cipher to operate\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBBlockTransformation::IsForwardTransformation()\fP, \fBBlockTransformation::IsPermutation()\fP, \fBBlockTransformation::GetCipherDirection()\fP
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIENCRYPTION \fP
+the cipher is performing encryption
+.TP
+\f(BIDECRYPTION \fP
+the cipher is performing decryption
+.SH "Function Documentation"
+.PP
+.SS "int HeaderVersion ()\fR [inline]\fP"
+
+.PP
+Specifies the runtime version of the library\&.
+.PP
+\fBReturns\fP
+.RS 4
+integer representing the runtime version
+.RE
+.PP
+\fBHeaderVersion()\fP can help detect inadvertent mixing and matching of library versions\&. When using Crypto++ distributed by a third party, \fBHeaderVersion()\fP records the version of the headers used by the app when the app is compiled\&.
+
+.PP
+\fBHeaderVersion()\fP is declared with C linkage (\fRextern "C"\fP) within the CryptoPP namespace to help programs locate the symbol\&. If the symbol is present, then the library version is 5\&.7 or above\&. If it is missing, then the library version is 5\&.6\&.5 or below\&.
+
+.PP
+The function could be used as shown below\&.
+.PP
+.nf
+  if (\fBLibraryVersion()\fP != \fBHeaderVersion()\fP)
+  {
+     cout << "Potential version mismatch" << endl;
+
+     const int lmaj = (\fBLibraryVersion()\fP / 100U) % 10;
+     const int lmin = (\fBLibraryVersion()\fP / 10U) % 10;
+     const int hmaj = (\fBHeaderVersion()\fP / 100U) % 10;
+     const int hmin = (\fBHeaderVersion()\fP / 10U) % 10;
+
+     if(lmaj != hmaj)
+        cout << "Major version mismatch" << endl;
+     else if(lmin != hmin)
+        cout << "Minor version mismatch" << endl;
+  }
+.fi
+.PP
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBLibraryVersion()\fP, \fRGitHub Issue 371\fP\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "int LibraryVersion (CRYPTOPP_NOINLINE_DOTDOTDOT )"
+
+.PP
+Specifies the build-time version of the library\&.
+.PP
+\fBReturns\fP
+.RS 4
+integer representing the build-time version
+.RE
+.PP
+LibraryVersion can help detect inadvertent mixing and matching of library versions\&. When using Crypto++ distributed by a third party, \fBLibraryVersion()\fP records the version of the shared object that was built by the third party\&. The \fBLibraryVersion()\fP record resides in \fRcryptlib\&.o\fP on Unix compatibles and \fRcryptlib\&.obj\fP on Windows\&. It does not change when an app links to the library\&.
+
+.PP
+\fBLibraryVersion()\fP is declared with C linkage (\fRextern "C"\fP) within the CryptoPP namespace to help programs locate the symbol\&. If the symbol is present, then the library version is 5\&.7 or above\&. If it is missing, then the library version is 5\&.6\&.5 or below\&.
+
+.PP
+The function could be used as shown below\&.
+.PP
+.nf
+  if (\fBLibraryVersion()\fP != \fBHeaderVersion()\fP)
+  {
+     cout << "Potential version mismatch" << endl;
+
+     const int lmaj = (\fBLibraryVersion()\fP / 100U) % 10;
+     const int lmin = (\fBLibraryVersion()\fP / 10U) % 10;
+     const int hmaj = (\fBHeaderVersion()\fP / 100U) % 10;
+     const int hmin = (\fBHeaderVersion()\fP / 10U) % 10;
+
+     if(lmaj != hmaj)
+        cout << "Major version mismatch" << endl;
+     else if(lmin != hmin)
+        cout << "Minor version mismatch" << endl;
+  }
+.fi
+.PP
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBHeaderVersion()\fP, \fRGitHub Issue 371\fP\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBRandomNumberGenerator\fP &CRYPTOPP_API NullRNG ()"
+
+.PP
+Random Number Generator that does not produce random numbers\&.
+.PP
+\fBReturns\fP
+.RS 4
+reference that can be passed to functions that require a \fBRandomNumberGenerator\fP
+.RE
+.PP
+\fBNullRNG()\fP returns a reference that can be passed to functions that require a \fBRandomNumberGenerator\fP but don't actually use it\&. The \fBNullRNG()\fP throws \fBNotImplemented\fP when a generation function is called\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBClassNullRNG\fP, \fBPK_SignatureScheme::IsProbabilistic()\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBBufferedTransformation\fP & TheBitBucket ()"
+
+.PP
+An input discarding \fBBufferedTransformation\fP\&.
+.PP
+\fBReturns\fP
+.RS 4
+a reference to a \fBBufferedTransformation\fP object that discards all input
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

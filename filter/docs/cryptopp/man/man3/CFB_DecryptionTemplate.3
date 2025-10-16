@@ -1,0 +1,91 @@
+.TH "CFB_DecryptionTemplate< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFB_DecryptionTemplate< BASE > \- Base class for feedback based stream ciphers in the reverse direction with \fBSymmetricCipher\fP interface\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherits \fBCFB_CipherTemplate< BASE >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBCFB_CipherTemplate< BASE >\fP
+.in +1c
+.ti -1c
+.RI "typedef BASE::PolicyInterface \fBPolicyInterface\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBCFB_CipherTemplate< BASE >\fP
+.in +1c
+.ti -1c
+.RI "void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Apply keystream to data\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *iv, int length=\-1)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "unsigned int \fBGetOptimalNextBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides number of ideal data alignment\&. "
+.ti -1c
+.RI "bool \fBIsRandomAccess\fP () const"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "bool \fBIsSelfInverting\fP () const"
+.br
+.RI "Determines if the cipher is self inverting\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBCFB_CipherTemplate< BASE >\fP
+.in +1c
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBCFB_CipherTemplate< BASE >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBm_leftOver\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE = AbstractPolicyHolder<CFB_CipherAbstractPolicy, SymmetricCipher>>
+.br
+class CFB_DecryptionTemplate< BASE >"Base class for feedback based stream ciphers in the reverse direction with \fBSymmetricCipher\fP interface\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP \fBAbstractPolicyHolder\fP base class 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

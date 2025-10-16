@@ -1,0 +1,40 @@
+.TH "/home/mock/cryptopp-master/secblockfwd.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/secblockfwd.h \- Forward declarations for \fBSecBlock\fP\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSecBlock\fP< \fBbyte\fP, \fBAllocatorWithCleanup\fP< \fBbyte\fP, false > > \fBSecByteBlock\fP"
+.br
+.ti -1c
+.RI "typedef \fBSecBlock\fP< word, \fBAllocatorWithCleanup\fP< word, false > > \fBSecWordBlock\fP"
+.br
+.ti -1c
+.RI "typedef \fBSecBlock\fP< \fBbyte\fP, \fBAllocatorWithCleanup\fP< \fBbyte\fP, true > > \fBAlignedSecByteBlock\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Forward declarations for \fBSecBlock\fP\&.
+
+\fBsecblock\&.h\fP and \fBmisc\&.h\fP have a circular dependency\&. \fBsecblockfwd\&.h\fP allows the library to sidestep the circular dependency, and reference \fBSecBlock\fP classes without the full implementation\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,321 @@
+.TH "DL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE > \- Base implementation of Discrete Log (DL) group parameters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_GroupParameters< T >\fP\&.
+.PP
+Inherited by \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP, and \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef GROUP_PRECOMP \fBGroupPrecomputation\fP"
+.br
+.ti -1c
+.RI "typedef GROUP_PRECOMP::Element \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef BASE_PRECOMP \fBBasePrecomputation\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_GroupParameters< T >\fP
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupPrecomputation\fP< Element > & \fBGetGroupPrecomputation\fP () const"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "const \fBDL_FixedBasePrecomputation\fP< Element > & \fBGetBasePrecomputation\fP () const"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "\fBDL_FixedBasePrecomputation\fP< Element > & \fBAccessBasePrecomputation\fP ()"
+.br
+.RI "Retrieves the group precomputation\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_GroupParameters< T >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "void \fBPrecompute\fP (unsigned int precomputationStorage=16)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "virtual const Element & \fBGetSubgroupGenerator\fP () const"
+.br
+.RI "Retrieves the subgroup generator\&. "
+.ti -1c
+.RI "virtual void \fBSetSubgroupGenerator\fP (const Element &base)"
+.br
+.RI "Sets the subgroup generator\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiateBase\fP (const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates the base\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiateElement\fP (const Element &base, const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates an element\&. "
+.ti -1c
+.RI "virtual const \fBInteger\fP & \fBGetSubgroupOrder\fP () const =0"
+.br
+.RI "Retrieves the subgroup order\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetMaxExponent\fP () const =0"
+.br
+.RI "Retrieves the maximum exponent for the group\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetGroupOrder\fP () const"
+.br
+.RI "Retrieves the order of the group\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetCofactor\fP () const"
+.br
+.RI "Retrieves the cofactor\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetEncodedElementSize\fP (bool reversible) const =0"
+.br
+.RI "Retrieves the encoded element's size\&. "
+.ti -1c
+.RI "virtual void \fBEncodeElement\fP (bool reversible, const Element &element, \fBbyte\fP *encoded) const =0"
+.br
+.RI "Encodes the element\&. "
+.ti -1c
+.RI "virtual Element \fBDecodeElement\fP (const \fBbyte\fP *encoded, bool checkForGroupMembership) const =0"
+.br
+.RI "Decodes the element\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBConvertElementToInteger\fP (const Element &element) const =0"
+.br
+.RI "Converts an element to an \fBInteger\fP\&. "
+.ti -1c
+.RI "virtual bool \fBValidateGroup\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const =0"
+.br
+.RI "Check the group for errors\&. "
+.ti -1c
+.RI "virtual bool \fBValidateElement\fP (unsigned int level, const Element &element, const \fBDL_FixedBasePrecomputation\fP< Element > *precomp) const =0"
+.br
+.RI "Check the element for errors\&. "
+.ti -1c
+.RI "virtual bool \fBFastSubgroupCheckAvailable\fP () const =0"
+.br
+.ti -1c
+.RI "virtual bool \fBIsIdentity\fP (const Element &element) const =0"
+.br
+.RI "Determines if an element is an identity\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousExponentiate\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const =0"
+.br
+.RI "Exponentiates a base to multiple exponents\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)=0"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Saves a key to a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Loads a key from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "GROUP_PRECOMP \fBm_groupPrecomputation\fP"
+.br
+.ti -1c
+.RI "BASE_PRECOMP \fBm_gpc\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBDL_GroupParameters< T >\fP
+.in +1c
+.ti -1c
+.RI "void \fBParametersChanged\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class GROUP_PRECOMP, class BASE_PRECOMP = DL_FixedBasePrecomputationImpl<typename GROUP_PRECOMP::Element>, class BASE = DL_GroupParameters<typename GROUP_PRECOMP::Element>>
+.br
+class DL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >"Base implementation of Discrete Log (DL) group parameters\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIGROUP_PRECOMP\fP group precomputation class 
+.br
+\fIBASE_PRECOMP\fP fixed base precomputation class 
+.br
+\fIBASE\fP class or type of an element 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class GROUP_PRECOMP, class BASE_PRECOMP = DL_FixedBasePrecomputationImpl<typename GROUP_PRECOMP::Element>, class BASE = DL_GroupParameters<typename GROUP_PRECOMP::Element>> \fBDL_FixedBasePrecomputation\fP< Element > & \fBDL_GroupParametersImpl\fP< GROUP_PRECOMP, BASE_PRECOMP, BASE >::AccessBasePrecomputation ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a non-const reference to the group precomputation using a fixed base 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class GROUP_PRECOMP, class BASE_PRECOMP = DL_FixedBasePrecomputationImpl<typename GROUP_PRECOMP::Element>, class BASE = DL_GroupParameters<typename GROUP_PRECOMP::Element>> const \fBDL_FixedBasePrecomputation\fP< Element > & \fBDL_GroupParametersImpl\fP< GROUP_PRECOMP, BASE_PRECOMP, BASE >::GetBasePrecomputation () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the group precomputation using a fixed base 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+.SS "template<class GROUP_PRECOMP, class BASE_PRECOMP = DL_FixedBasePrecomputationImpl<typename GROUP_PRECOMP::Element>, class BASE = DL_GroupParameters<typename GROUP_PRECOMP::Element>> const \fBDL_GroupPrecomputation\fP< Element > & \fBDL_GroupParametersImpl\fP< GROUP_PRECOMP, BASE_PRECOMP, BASE >::GetGroupPrecomputation () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the group precomputation 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupParameters< T >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

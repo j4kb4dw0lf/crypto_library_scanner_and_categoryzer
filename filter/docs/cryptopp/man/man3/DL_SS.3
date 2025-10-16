@@ -1,0 +1,59 @@
+.TH "DL_SS< KEYS, SA, MEM, H, ALG_INFO >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_SS< KEYS, SA, MEM, H, ALG_INFO > \- Discrete Log (DL) signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits KEYS\&.
+.PP
+Inherited by \fBDSA2< SHA1 >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class KEYS, class SA, class MEM, class H, class ALG_INFO = DL_SS<KEYS, SA, MEM, H, int>>
+.br
+class DL_SS< KEYS, SA, MEM, H, ALG_INFO >"Discrete Log (DL) signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIKEYS\fP keys used in the signature scheme 
+.br
+\fISA\fP signature algorithm 
+.br
+\fIMEM\fP message encoding method 
+.br
+\fIH\fP hash function 
+.br
+\fIALG_INFO\fP algorithm information 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

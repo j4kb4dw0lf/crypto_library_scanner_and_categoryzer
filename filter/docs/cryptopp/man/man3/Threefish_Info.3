@@ -1,0 +1,66 @@
+.TH "Threefish_Info< BS >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Threefish_Info< BS > \- Threefish block cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <threefish\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< BS >\fP, and \fBFixedKeyLength< BS >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< BS >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< BS >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int BS>
+.br
+struct Threefish_Info< BS >"Threefish block cipher information\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBS\fP block size of the cipher, in bytes 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

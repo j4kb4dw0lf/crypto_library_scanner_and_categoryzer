@@ -1,0 +1,275 @@
+.TH "Scrypt" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Scrypt \- \fBScrypt\fP key derivation function\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <scrypt\&.h>\fP
+.PP
+Inherits \fBKeyDerivationFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxDerivedKeyLength\fP () const"
+.br
+.RI "Determine maximum number of bytes\&. "
+.ti -1c
+.RI "size_t \fBGetValidDerivedLength\fP (size_t keylength) const"
+.br
+.RI "Returns a valid key length for the derivation function\&. "
+.ti -1c
+.RI "size_t \fBDeriveKey\fP (\fBbyte\fP *derived, size_t derivedLen, const \fBbyte\fP *secret, size_t secretLen, const \fBNameValuePairs\fP &params) const"
+.br
+.RI "Derive a key from a seed\&. "
+.ti -1c
+.RI "size_t \fBDeriveKey\fP (\fBbyte\fP *derived, size_t derivedLen, const \fBbyte\fP *secret, size_t secretLen, const \fBbyte\fP *salt, size_t saltLen, word64 cost=2, word64 blockSize=8, word64 parallelization=1) const"
+.br
+.RI "Derive a key from a seed\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyDerivationFunction\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMinDerivedKeyLength\fP () const"
+.br
+.RI "Determine minimum number of bytes\&. "
+.ti -1c
+.RI "virtual bool \fBIsValidDerivedLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetParameters\fP (const \fBNameValuePairs\fP &params)"
+.br
+.RI "Set or change parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBdefaultCost\fP =2, \fBdefaultBlockSize\fP =8, \fBdefaultParallelization\fP =1 }"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.ti -1c
+.RI "void \fBValidateParameters\fP (size_t derivedlen, word64 cost, word64 blockSize, word64 parallelization) const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBKeyDerivationFunction\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidDerivedKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the derived key length\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBScrypt\fP key derivation function\&. 
+
+The Crypto++ implementation uses OpenMP to accelerate the derivation when available\&.
+
+.PP
+The Crypto++ implementation of \fBScrypt\fP is limited by C++ datatypes\&. For example, the library is limited to a derived key length of \fRSIZE_MAX\fP, and not \fR(2^32 - 1) * 32\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRStronger Key Derivation via Sequential Memory-Hard Functions\fP, \fRThe scrypt key derivation function\fP and \fRRFC 7914, The scrypt Password-Based Key Derivation Function\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 7\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string Scrypt::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name 
+.RE
+.PP
+
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "size_t Scrypt::DeriveKey (\fBbyte\fP * derived, size_t derivedLen, const \fBbyte\fP * secret, size_t secretLen, const \fBbyte\fP * salt, size_t saltLen, word64 cost = \fR2\fP, word64 blockSize = \fR8\fP, word64 parallelization = \fR1\fP) const"
+
+.PP
+Derive a key from a seed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIderived\fP the derived output buffer 
+.br
+\fIderivedLen\fP the size of the derived buffer, in bytes 
+.br
+\fIsecret\fP the seed input buffer 
+.br
+\fIsecretLen\fP the size of the secret buffer, in bytes 
+.br
+\fIsalt\fP the salt input buffer 
+.br
+\fIsaltLen\fP the size of the salt buffer, in bytes 
+.br
+\fIcost\fP the CPU/memory cost factor 
+.br
+\fIblockSize\fP the block size 
+.br
+\fIparallelization\fP the parallelization factor 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of iterations performed 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidDerivedKeyLength\fP\fP if \fRderivedLen\fP is invalid for the scheme
+.RE
+.PP
+\fBDeriveKey()\fP provides a standard interface to derive a key from a seed and other parameters\&. Each class that derives from \fBKeyDerivationFunction\fP provides an overload that accepts most parameters used by the derivation function\&.
+
+.PP
+The CPU/Memory \fRcost\fP parameter ("N" in the documents) must be larger than 1, a power of 2, and less than \fR2^(128 * r / 8)\fP\&.
+
+.PP
+The parameter \fRblockSize\fP ("r" in the documents) specifies the block size\&.
+
+.PP
+The \fRparallelization\fP parameter ("p" in the documents) is a positive integer less than or equal to \fR((2^32-1) * 32) / (128 * r)\fP\&. Due to Microsoft and its OpenMP 2\&.0 implementation \fRparallelization\fP is limited to \fRstd::numeric_limits<int>::max()\fP\&.
+
+.PP
+\fBScrypt\fP always returns 1 because it only performs 1 iteration\&. Other derivation functions, like PBKDF's, will return more interesting values\&.
+
+.PP
+The Crypto++ implementation of \fBScrypt\fP is limited by C++ datatypes\&. For example, the library is limited to a derived key length of \fRSIZE_MAX\fP, and not \fR(2^32 - 1) * 32\fP\&. 
+.SS "size_t Scrypt::DeriveKey (\fBbyte\fP * derived, size_t derivedLen, const \fBbyte\fP * secret, size_t secretLen, const \fBNameValuePairs\fP & params) const\fR [virtual]\fP"
+
+.PP
+Derive a key from a seed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIderived\fP the derived output buffer 
+.br
+\fIderivedLen\fP the size of the derived buffer, in bytes 
+.br
+\fIsecret\fP the seed input buffer 
+.br
+\fIsecretLen\fP the size of the secret buffer, in bytes 
+.br
+\fIparams\fP additional initialization parameters to configure this object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of iterations performed 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidDerivedKeyLength\fP\fP if \fRderivedLen\fP is invalid for the scheme
+.RE
+.PP
+\fBDeriveKey()\fP provides a standard interface to derive a key from a secret seed and other parameters\&. Each class that derives from \fBKeyDerivationFunction\fP provides an overload that accepts most parameters used by the derivation function\&.
+
+.PP
+the number of iterations performed by \fBDeriveKey()\fP may be 1\&. For example, a scheme like \fBHKDF\fP does not use the iteration count so it returns 1\&. 
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "const \fBAlgorithm\fP & Scrypt::GetAlgorithm () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the base class \fBAlgorithm\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the base class \fBAlgorithm\fP 
+.RE
+.PP
+
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "ANONYMOUS_NAMESPACE_END size_t Scrypt::GetValidDerivedLength (size_t keylength) const\fR [virtual]\fP"
+
+.PP
+Returns a valid key length for the derivation function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the derived key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "size_t Scrypt::MaxDerivedKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determine maximum number of bytes\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Maximum number of bytes which can be derived 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBKeyDerivationFunction\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

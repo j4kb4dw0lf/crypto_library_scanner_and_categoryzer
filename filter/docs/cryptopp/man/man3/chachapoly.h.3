@@ -1,0 +1,66 @@
+.TH "/home/mock/cryptopp-master/chachapoly.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/chachapoly.h \- IETF ChaCha20/Poly1305 AEAD scheme\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'authenc\&.h'\fP
+.br
+\fR#include 'chacha\&.h'\fP
+.br
+\fR#include 'poly1305\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBChaCha20Poly1305_Base\fP"
+.br
+.RI "IETF \fBChaCha20Poly1305\fP cipher base implementation\&. "
+.ti -1c
+.RI "class \fBChaCha20Poly1305_Final< T_IsEncryption >\fP"
+.br
+.RI "IETF \fBChaCha20Poly1305\fP cipher final implementation\&. "
+.ti -1c
+.RI "struct \fBChaCha20Poly1305\fP"
+.br
+.RI "IETF ChaCha20/Poly1305 AEAD scheme\&. "
+.ti -1c
+.RI "class \fBXChaCha20Poly1305_Base\fP"
+.br
+.RI "IETF \fBXChaCha20Poly1305\fP cipher base implementation\&. "
+.ti -1c
+.RI "class \fBXChaCha20Poly1305_Final< T_IsEncryption >\fP"
+.br
+.RI "IETF \fBXChaCha20Poly1305\fP cipher final implementation\&. "
+.ti -1c
+.RI "struct \fBXChaCha20Poly1305\fP"
+.br
+.RI "IETF XChaCha20/Poly1305 AEAD scheme\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+IETF ChaCha20/Poly1305 AEAD scheme\&.
+
+\fBChaCha20Poly1305\fP is an authenticated encryption scheme that combines ChaCha20TLS and Poly1305TLS\&. The scheme is defined in RFC 8439, section 2\&.8, AEAD_CHACHA20_POLY1305 construction, and uses the IETF versions of ChaCha20 and \fBPoly1305\fP\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 8439, ChaCha20 and Poly1305 for IETF Protocols\fP\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

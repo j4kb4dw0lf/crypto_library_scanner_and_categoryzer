@@ -1,0 +1,69 @@
+.TH "XTS< CIPHER >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XTS< CIPHER > \- \fBXTS\fP block cipher mode of operation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xts\&.h>\fP
+.PP
+Inherits \fBCipherModeDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBCipherModeFinalTemplate_CipherHolder\fP< typename CIPHER::Encryption, \fBXTS_Final\fP< CIPHER > > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBCipherModeFinalTemplate_CipherHolder\fP< typename CIPHER::Decryption, \fBXTS_Final\fP< CIPHER > > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class CIPHER>
+.br
+struct XTS< CIPHER >"\fBXTS\fP block cipher mode of operation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fICIPHER\fP \fBBlockCipher\fP derived class or type
+.RE
+.PP
+\fBXTS\fP mode is a wide block mode defined by IEEE P1619-2008\&. NIST SP-800-38E approves the mode for storage devices citing IEEE 1619-2007\&. IEEE 1619-2007 provides both a reference implementation and test vectors\&. The IEEE reference implementation fails to arrive at the expected result for some test vectors\&.
+
+.PP
+\fBXTS\fP is only defined for AES\&. The library can support wide block ciphers like Kaylna and Threefish since we know the polynomials\&. There is risk involved with using \fBXTS\fP with wider block ciphers\&. According to Phillip Rogaway, "The narrow width of the underlying PRP and the poor treatment of fractional final blocks are problems\&." To enable wide block cipher support define \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP to non-zero\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRModes of Operation\fP on the Crypto++ wiki, \fREvaluation of Some Blockcipher Modes of Operation\fP, \fRRecommendation for Block Cipher Modes of Operation: The XTS-AES Mode for Confidentiality on Storage Devices\fP, \fRIEEE P1619-2007\fP and \fRIEEE P1619/XTS, inconsistent reference implementation and test vectors\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

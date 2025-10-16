@@ -1,0 +1,45 @@
+.TH "PK_EncryptionMessageEncodingMethod" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PK_EncryptionMessageEncodingMethod \- Message encoding method for public key encryption\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBOAEP_Base\fP, and \fBPKCS_EncryptionPaddingScheme\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "virtual size_t \fBMaxUnpaddedLength\fP (size_t paddedLength) const =0"
+.br
+.RI "max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) "
+.ti -1c
+.RI "virtual void \fBPad\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *raw, size_t inputLength, \fBbyte\fP *padded, size_t paddedBitLength, const \fBNameValuePairs\fP &parameters) const =0"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBUnpad\fP (const \fBbyte\fP *padded, size_t paddedBitLength, \fBbyte\fP *raw, const \fBNameValuePairs\fP &parameters) const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Message encoding method for public key encryption\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual size_t PK_EncryptionMessageEncodingMethod::MaxUnpaddedLength (size_t paddedLength) const\fR [pure virtual]\fP"
+
+.PP
+max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) 
+.PP
+Implemented in \fBOAEP_Base\fP, and \fBPKCS_EncryptionPaddingScheme\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

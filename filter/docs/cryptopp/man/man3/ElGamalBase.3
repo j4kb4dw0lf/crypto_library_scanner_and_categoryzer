@@ -1,0 +1,125 @@
+.TH "ElGamalBase" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ElGamalBase \- \fBElGamal\fP key agreement and encryption schemes base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <elgamal\&.h>\fP
+.PP
+Inherits \fBDL_KeyAgreementAlgorithm_DH< Integer, NoCofactorMultiplication >\fP, \fBDL_KeyDerivationAlgorithm< Integer >\fP, and \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.PP
+Inherited by \fBElGamalObjectImpl< BASE, SCHEME_OPTIONS, KEY >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBDerive\fP (const \fBDL_GroupParameters\fP< \fBInteger\fP > &groupParams, \fBbyte\fP *derivedKey, size_t derivedLength, const \fBInteger\fP &agreedElement, const \fBInteger\fP &ephemeralPublicKey, const \fBNameValuePairs\fP &derivationParams) const"
+.br
+.ti -1c
+.RI "size_t \fBGetSymmetricKeyLength\fP (size_t plainTextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBGetSymmetricCiphertextLength\fP (size_t plainTextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBGetMaxSymmetricPlaintextLength\fP (size_t cipherTextLength) const"
+.br
+.ti -1c
+.RI "void \fBSymmetricEncrypt\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *key, const \fBbyte\fP *plainText, size_t plainTextLength, \fBbyte\fP *cipherText, const \fBNameValuePairs\fP &parameters) const"
+.br
+.ti -1c
+.RI "\fBDecodingResult\fP \fBSymmetricDecrypt\fP (const \fBbyte\fP *key, const \fBbyte\fP *cipherText, size_t cipherTextLength, \fBbyte\fP *plainText, const \fBNameValuePairs\fP &parameters) const"
+.br
+.ti -1c
+.RI "virtual const \fBDL_GroupParameters_GFP\fP & \fBGetGroupParameters\fP () const =0"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_KeyAgreementAlgorithm_DH< Integer, NoCofactorMultiplication >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBElement\fP \fBAgreeWithEphemeralPrivateKey\fP (const \fBDL_GroupParameters\fP< \fBElement\fP > &params, const \fBDL_FixedBasePrecomputation\fP< \fBElement\fP > &publicPrecomputation, const \fBInteger\fP &privateExponent) const"
+.br
+.ti -1c
+.RI "\fBElement\fP \fBAgreeWithStaticPrivateKey\fP (const \fBDL_GroupParameters\fP< \fBElement\fP > &params, const \fBElement\fP &publicElement, bool validateOtherPublicKey, const \fBInteger\fP &privateExponent) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_KeyDerivationAlgorithm< Integer >\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBParameterSupported\fP (const char *name) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_SymmetricEncryptionAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBParameterSupported\fP (const char *name) const"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_KeyAgreementAlgorithm_DH< Integer, NoCofactorMultiplication >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_KeyAgreementAlgorithm< Integer >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBElGamal\fP key agreement and encryption schemes base class\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void ElGamalBase::Derive (const \fBDL_GroupParameters\fP< \fBInteger\fP > & groupParams, \fBbyte\fP * derivedKey, size_t derivedLength, const \fBInteger\fP & agreedElement, const \fBInteger\fP & ephemeralPublicKey, const \fBNameValuePairs\fP & derivationParams) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_KeyDerivationAlgorithm< Integer >\fP\&.
+.SS "size_t ElGamalBase::GetMaxSymmetricPlaintextLength (size_t cipherTextLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "size_t ElGamalBase::GetSymmetricCiphertextLength (size_t plainTextLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "size_t ElGamalBase::GetSymmetricKeyLength (size_t plainTextLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "\fBDecodingResult\fP ElGamalBase::SymmetricDecrypt (const \fBbyte\fP * key, const \fBbyte\fP * cipherText, size_t cipherTextLength, \fBbyte\fP * plainText, const \fBNameValuePairs\fP & parameters) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "void ElGamalBase::SymmetricEncrypt (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * key, const \fBbyte\fP * plainText, size_t plainTextLength, \fBbyte\fP * cipherText, const \fBNameValuePairs\fP & parameters) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

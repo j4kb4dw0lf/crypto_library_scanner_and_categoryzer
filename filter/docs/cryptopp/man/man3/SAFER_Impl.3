@@ -1,0 +1,68 @@
+.TH "SAFER_Impl< BASE, INFO, STR >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SAFER_Impl< BASE, INFO, STR > \- \fBSAFER\fP block cipher default implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <safer\&.h>\fP
+.PP
+Inherits \fBBlockCipherImpl< INFO, BASE >\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBStrengthened\fP () const"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBBlockCipherImpl< INFO, BASE >\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BASE, INFO > > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BASE, INFO > > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class INFO, bool STR>
+.br
+class SAFER_Impl< BASE, INFO, STR >"\fBSAFER\fP block cipher default implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP \fBSAFER::Enc\fP or \fBSAFER::Dec\fP derived base class 
+.br
+\fIINFO\fP SAFER_Info derived class 
+.br
+\fISTR\fP flag indicating a strengthened implementation
+.RE
+.PP
+SAFER-K is not strengthened; while SAFER-SK is strengthened\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

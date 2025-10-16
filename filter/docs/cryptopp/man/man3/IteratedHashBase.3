@@ -1,0 +1,231 @@
+.TH "IteratedHashBase< T, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IteratedHashBase< T, BASE > \- Iterated hash base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <iterhash\&.h>\fP
+.PP
+Inherits BASE\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBHashWordType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIteratedHashBase\fP ()"
+.br
+.RI "Construct an \fBIteratedHashBase\fP\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Requests space which can be written into by the caller\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *digest, size_t digestSize)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "T \fBGetBitCountHi\fP () const"
+.br
+.ti -1c
+.RI "T \fBGetBitCountLo\fP () const"
+.br
+.ti -1c
+.RI "void \fBPadLastBlock\fP (unsigned int lastBlockSize, \fBbyte\fP padFirst=0x80)"
+.br
+.ti -1c
+.RI "virtual void \fBInit\fP ()=0"
+.br
+.ti -1c
+.RI "virtual \fBByteOrder\fP \fBGetByteOrder\fP () const =0"
+.br
+.ti -1c
+.RI "virtual void \fBHashEndianCorrectedBlock\fP (const HashWordType *data)=0"
+.br
+.ti -1c
+.RI "virtual size_t \fBHashMultipleBlocks\fP (const T *input, size_t length)"
+.br
+.ti -1c
+.RI "void \fBHashBlock\fP (const HashWordType *input)"
+.br
+.ti -1c
+.RI "virtual T * \fBDataBuf\fP ()=0"
+.br
+.ti -1c
+.RI "virtual T * \fBStateBuf\fP ()=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, class BASE>
+.br
+class IteratedHashBase< T, BASE >"Iterated hash base class\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Hash word type 
+.br
+\fIBASE\fP \fBHashTransformation\fP derived class
+.RE
+.PP
+\fBIteratedHashBase\fP provides an interface for block-based iterated hashes 
+.PP
+\fBSee also\fP
+.RS 4
+\fBHashTransformation\fP, \fBMessageAuthenticationCode\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, class BASE> virtual std::string \fBIteratedHashBase\fP< T, BASE >::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBSHA1\fP, \fBSHA224\fP, \fBSHA256\fP, \fBSHA384\fP, \fBSHA512\fP, \fBTiger\fP, \fBVMAC_Base\fP, \fBWeak::PanamaHash< B >\fP, \fBWeak::PanamaHash< LittleEndian >\fP, and \fBWhirlpool\fP\&.
+.SS "template<class T, class BASE> \fBbyte\fP * \fBIteratedHashBase\fP< T, BASE >::CreateUpdateSpace (size_t & size)"
+
+.PP
+Requests space which can be written into by the caller\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the requested size of the buffer
+.RE
+.PP
+The purpose of this method is to help avoid extra memory allocations\&.
+
+.PP
+size is an \fIIN\fP and \fIOUT\fP parameter and used as a hint\&. When the call is made, size is the requested size of the buffer\&. When the call returns, size is the size of the array returned to the caller\&.
+
+.PP
+The base class implementation sets size to 0 and returns NULL\&. 
+.PP
+\fBNote\fP
+.RS 4
+Some objects, like \fBArraySink\fP, cannot create a space because its fixed\&. 
+.RE
+.PP
+
+.SS "template<class T, class BASE> virtual \fBByteOrder\fP \fBIteratedHashBase\fP< T, BASE >::GetByteOrder () const\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBIteratedHash< T_HashWordType, T_Endianness, T_BlockSize, T_Base >\fP, \fBIteratedHash< word32, BigEndian, T_BlockSize >\fP, \fBIteratedHash< word32, LittleEndian, 64, MessageAuthenticationCode >\fP, \fBIteratedHash< word32, LittleEndian, T_BlockSize >\fP, \fBIteratedHash< word32, NativeByteOrder, 32 >\fP, \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP, and \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP\&.
+.SS "template<class T, class BASE> unsigned int \fBIteratedHashBase\fP< T, BASE >::OptimalBlockSize () const\fR [inline]\fP"
+
+.PP
+Provides the input block size most efficient for this cipher\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The input block size that is most efficient for the cipher
+.RE
+.PP
+The base class implementation returns MandatoryBlockSize()\&. 
+.PP
+\fBNote\fP
+.RS 4
+Optimal input length is \fRn * \fBOptimalBlockSize()\fP - GetOptimalBlockSizeUsed()\fP for any \fRn > 0\fP\&. 
+.RE
+.PP
+
+.SS "template<class T, class BASE> unsigned int \fBIteratedHashBase\fP< T, BASE >::OptimalDataAlignment () const\fR [inline]\fP"
+
+.PP
+Provides input and output data alignment for optimal performance\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the input data alignment that provides optimal performance
+.RE
+.PP
+OptimalDataAlignment returns the natural alignment of the hash word\&. 
+.PP
+Reimplemented in \fBVMAC_Base\fP\&.
+.SS "template<class T, class BASE> void \fBIteratedHashBase\fP< T, BASE >::Restart ()"
+
+.PP
+Restart the hash\&. Discards the current state, and restart for a new message 
+.SS "template<class T, class BASE> void \fBIteratedHashBase\fP< T, BASE >::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls Final() and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+Reimplemented in \fBTiger\fP, \fBTTMAC_Base\fP, \fBVMAC_Base\fP, \fBWeak::PanamaHash< B >\fP, \fBWeak::PanamaHash< LittleEndian >\fP, and \fBWhirlpool\fP\&.
+.SS "template<class T, class BASE> void \fBIteratedHashBase\fP< T, BASE >::Update (const \fBbyte\fP * input, size_t length)"
+
+.PP
+Updates a hash with additional input\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

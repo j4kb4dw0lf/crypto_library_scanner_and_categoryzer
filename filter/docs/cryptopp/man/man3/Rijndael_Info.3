@@ -1,0 +1,60 @@
+.TH "Rijndael_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Rijndael_Info \- \fBRijndael\fP block cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rijndael\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< 16 >\fP, and \fBVariableKeyLength< 16, 16, 32, 8 >\fP\&.
+.PP
+Inherited by \fBTwoBases< BlockCipher, Rijndael_Info >\fP, and \fBRijndael\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 16, 16, 32, 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBRijndael\fP block cipher information\&. 
+
+All key sizes are supported\&. The library only provides \fBRijndael\fP with 128-bit blocks, and not 192-bit or 256-bit blocks 
+.PP
+\fBSince\fP
+.RS 4
+\fBRijndael\fP since Crypto++ 3\&.1, Intel AES-NI since Crypto++ 5\&.6\&.1, ARMv8 AES since Crypto++ 6\&.0, Power8 AES since Crypto++ 6\&.0, ARMv7 AES since Crypto++ 8\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

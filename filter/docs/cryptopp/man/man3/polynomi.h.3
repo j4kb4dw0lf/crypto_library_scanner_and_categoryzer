@@ -1,0 +1,109 @@
+.TH "/home/mock/cryptopp-master/polynomi.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/polynomi.h \- Classes for polynomial basis and operations\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include <iosfwd>\fP
+.br
+\fR#include <vector>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPolynomialOver< T >\fP"
+.br
+.RI "represents single-variable polynomials over arbitrary rings "
+.ti -1c
+.RI "class \fBPolynomialOver< T >::DivideByZero\fP"
+.br
+.RI "division by zero exception "
+.ti -1c
+.RI "class \fBPolynomialOver< T >::RandomizationParameter\fP"
+.br
+.RI "specify the distribution for randomization functions "
+.ti -1c
+.RI "class \fBPolynomialOverFixedRing< T, instance >\fP"
+.br
+.RI "Polynomials over a fixed ring\&. "
+.ti -1c
+.RI "class \fBRingOfPolynomialsOver< T >\fP"
+.br
+.RI "Ring of polynomials over another ring\&. "
+.ti -1c
+.RI "class \fBRingOfPolynomialsOver< T >::InterpolationFailed\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class Ring, class \fBElement\fP> void \fBPrepareBulkPolynomialInterpolation\fP (const Ring &ring, \fBElement\fP *w, const \fBElement\fP x[], unsigned int n)"
+.br
+.ti -1c
+.RI "template<class Ring, class \fBElement\fP> void \fBPrepareBulkPolynomialInterpolationAt\fP (const Ring &ring, \fBElement\fP *v, const \fBElement\fP &position, const \fBElement\fP x[], const \fBElement\fP w[], unsigned int n)"
+.br
+.ti -1c
+.RI "template<class Ring, class \fBElement\fP> \fBElement\fP \fBBulkPolynomialInterpolateAt\fP (const Ring &ring, const \fBElement\fP y[], const \fBElement\fP v[], unsigned int n)"
+.br
+.ti -1c
+.RI "template<class T, int instance> bool \fBoperator==\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> bool \fBoperator!=\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> bool \fBoperator>\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> bool \fBoperator>=\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> bool \fBoperator<\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> bool \fBoperator<=\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> CryptoPP::PolynomialOverFixedRing< T, instance > \fBoperator+\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> CryptoPP::PolynomialOverFixedRing< T, instance > \fBoperator\-\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> CryptoPP::PolynomialOverFixedRing< T, instance > \fBoperator*\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> CryptoPP::PolynomialOverFixedRing< T, instance > \fBoperator/\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T, int instance> CryptoPP::PolynomialOverFixedRing< T, instance > \fBoperator%\fP (const CryptoPP::PolynomialOverFixedRing< T, instance > &a, const CryptoPP::PolynomialOverFixedRing< T, instance > &b)"
+.br
+.ti -1c
+.RI "template<class T> NAMESPACE_END void \fBswap\fP (CryptoPP::PolynomialOver< T > &a, CryptoPP::PolynomialOver< T > &b)"
+.br
+.ti -1c
+.RI "template<class T, int i> void \fBswap\fP (CryptoPP::PolynomialOverFixedRing< T, i > &a, CryptoPP::PolynomialOverFixedRing< T, i > &b)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for polynomial basis and operations\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

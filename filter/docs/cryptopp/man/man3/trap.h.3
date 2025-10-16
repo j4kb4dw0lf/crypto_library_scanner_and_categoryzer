@@ -1,0 +1,54 @@
+.TH "/home/mock/cryptopp-master/trap.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/trap.h \- Debugging and diagnostic assertions\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_ASSERT\fP(exp)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Debugging and diagnostic assertions\&.
+
+\fRCRYPTOPP_ASSERT\fP is the library's debugging and diagnostic assertion\&. \fRCRYPTOPP_ASSERT\fP is enabled by \fRCRYPTOPP_DEBUG\fP, \fRDEBUG\fP or \fR_DEBUG\fP\&.
+
+.PP
+\fRCRYPTOPP_ASSERT\fP raises a \fRSIGTRAP\fP (Unix) or calls \fRDebugBreak()\fP (Windows)\&.
+
+.PP
+\fRCRYPTOPP_ASSERT\fP is only in effect when the user requests a debug configuration\&. \fRNDEBUG\fP (or failure to define it) does not affect \fRCRYPTOPP_ASSERT\fP\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.5
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+DebugTrapHandler, \fRIssue 277\fP, \fRCVE-2016-7420\fP
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_ASSERT( exp)"
+\fBValue:\fP
+.nf
+(void)0
+.PP
+.fi
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

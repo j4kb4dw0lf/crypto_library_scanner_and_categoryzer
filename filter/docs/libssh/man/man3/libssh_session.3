@@ -1,0 +1,1654 @@
+.TH "libssh_session" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_session \- The SSH session functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBKNOWNHOSTS_MAXTYPES\fP   10"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBssh_service_request\fP (\fBssh_session\fP session, const char *service)"
+.br
+.ti -1c
+.RI "int \fBssh_connect\fP (\fBssh_session\fP session)"
+.br
+.RI "Connect to the ssh server\&. "
+.ti -1c
+.RI "char * \fBssh_get_issue_banner\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the issue banner from the server\&. "
+.ti -1c
+.RI "int \fBssh_get_openssh_version\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the version of the OpenSSH server, if it is not an OpenSSH server then 0 will be returned\&. "
+.ti -1c
+.RI "int \fBssh_request_no_more_sessions\fP (\fBssh_session\fP session)"
+.br
+.RI "Most SSH connections will only ever request a single session, but an attacker may abuse a running ssh client to surreptitiously open additional sessions under their control\&. OpenSSH provides a global request "no-more-sessions@openssh\&.com" to mitigate this attack\&. "
+.ti -1c
+.RI "int \fBssh_session_set_disconnect_message\fP (\fBssh_session\fP session, const char *message)"
+.br
+.RI "Add disconnect message when ssh_session is disconnected To add a disconnect message to give peer a better hint\&. "
+.ti -1c
+.RI "void \fBssh_disconnect\fP (\fBssh_session\fP session)"
+.br
+.RI "Disconnect from a session (client or server)\&. "
+.ti -1c
+.RI "const char * \fBssh_copyright\fP (void)"
+.br
+.RI "Copyright information\&. "
+.ti -1c
+.RI "int \fBssh_select\fP (\fBssh_channel\fP *channels, \fBssh_channel\fP *outchannels, socket_t maxfd, fd_set *readfds, struct timeval *timeout)"
+.br
+.RI "A wrapper for the select syscall\&. "
+.ti -1c
+.RI "bool \fBssh_dh_is_known_group\fP (bignum modulus, bignum generator)"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBssh_dh_get_current_server_publickey\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "int \fBssh_dh_get_current_server_publickey_blob\fP (\fBssh_session\fP session, \fBssh_string\fP *pubkey_blob)"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBssh_dh_get_next_server_publickey\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "int \fBssh_dh_get_next_server_publickey_blob\fP (\fBssh_session\fP session, \fBssh_string\fP *pubkey_blob)"
+.br
+.ti -1c
+.RI "char * \fBssh_get_fingerprint_hash\fP (enum ssh_publickey_hash_type type, unsigned char *hash, size_t len)"
+.br
+.RI "Get a hash as a human-readable hex- or base64-string\&. "
+.ti -1c
+.RI "void \fBssh_print_hash\fP (enum ssh_publickey_hash_type type, unsigned char *hash, size_t len)"
+.br
+.RI "Print a hash as a human-readable hex- or base64-string\&. "
+.ti -1c
+.RI "int \fBssh_is_server_known\fP (\fBssh_session\fP session)"
+.br
+.RI "This function is deprecated\&. "
+.ti -1c
+.RI "char * \fBssh_dump_knownhost\fP (\fBssh_session\fP session)"
+.br
+.RI "This function is deprecated\&. "
+.ti -1c
+.RI "int \fBssh_write_knownhost\fP (\fBssh_session\fP session)"
+.br
+.RI "This function is deprecated\&. "
+.ti -1c
+.RI "void \fBssh_knownhosts_entry_free\fP (struct \fBssh_knownhosts_entry\fP *entry)"
+.br
+.RI "Free an allocated \fBssh_knownhosts_entry\fP\&. "
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBssh_known_hosts_get_algorithms\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "char * \fBssh_known_hosts_get_algorithms_names\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "int \fBssh_known_hosts_parse_line\fP (const char *hostname, const char *line, struct \fBssh_knownhosts_entry\fP **entry)"
+.br
+.RI "Parse a line from a known_hosts entry into a structure\&. "
+.ti -1c
+.RI "enum ssh_known_hosts_e \fBssh_session_has_known_hosts_entry\fP (\fBssh_session\fP session)"
+.br
+.RI "Check if the set hostname and port match an entry in known_hosts\&. "
+.ti -1c
+.RI "int \fBssh_session_export_known_hosts_entry\fP (\fBssh_session\fP session, char **pentry_string)"
+.br
+.RI "Export the current session information to a known_hosts string\&. "
+.ti -1c
+.RI "int \fBssh_session_update_known_hosts\fP (\fBssh_session\fP session)"
+.br
+.RI "Adds the currently connected server to the user known_hosts file\&. "
+.ti -1c
+.RI "enum ssh_known_hosts_e \fBssh_session_get_known_hosts_entry\fP (\fBssh_session\fP session, struct \fBssh_knownhosts_entry\fP **pentry)"
+.br
+.RI "Get the known_hosts entry for the currently connected session\&. "
+.ti -1c
+.RI "enum ssh_known_hosts_e \fBssh_session_get_known_hosts_entry_file\fP (\fBssh_session\fP session, const char *filename, struct \fBssh_knownhosts_entry\fP **pentry)"
+.br
+.RI "Get the known_hosts entry for the current connected session from the given known_hosts file\&. "
+.ti -1c
+.RI "enum ssh_known_hosts_e \fBssh_session_is_known_server\fP (\fBssh_session\fP session)"
+.br
+.RI "Check if the servers public key for the connected session is known\&. "
+.ti -1c
+.RI "int \fBssh_options_copy\fP (\fBssh_session\fP src, \fBssh_session\fP *dest)"
+.br
+.RI "Duplicate the options of a session structure\&. "
+.ti -1c
+.RI "int \fBssh_options_set_algo\fP (\fBssh_session\fP session, enum ssh_kex_types_e algo, const char *list, char **place)"
+.br
+.ti -1c
+.RI "int \fBssh_options_set\fP (\fBssh_session\fP session, enum ssh_options_e type, const void *value)"
+.br
+.RI "This function can set all possible ssh options\&. "
+.ti -1c
+.RI "char * \fBssh_options_get_algo\fP (\fBssh_session\fP session, enum ssh_kex_types_e algo)"
+.br
+.RI "This function returns the current algorithms used for algorithm negotiation\&. It is either libssh default, option manually set or option read from configuration file\&. "
+.ti -1c
+.RI "int \fBssh_options_get_port\fP (\fBssh_session\fP session, unsigned int *port_target)"
+.br
+.RI "This function can get ssh the ssh port\&. It must only be used on a valid ssh session\&. This function is useful when the session options have been automatically inferred from the environment or configuration files and one\&. "
+.ti -1c
+.RI "int \fBssh_options_get\fP (\fBssh_session\fP session, enum ssh_options_e type, char **value)"
+.br
+.RI "This function can get ssh options, it does not support all options provided for ssh options set, but mostly those which a user-space program may care about having trusted the ssh driver to infer these values from underlying configuration files\&. It operates only on those SSH_OPTIONS_* which return char*\&. If you wish to receive the port then please use \fBssh_options_get_port()\fP which returns an unsigned int\&. "
+.ti -1c
+.RI "int \fBssh_options_getopt\fP (\fBssh_session\fP session, int *argcptr, char **argv)"
+.br
+.RI "Parse command line arguments\&. "
+.ti -1c
+.RI "int \fBssh_options_parse_config\fP (\fBssh_session\fP session, const char *filename)"
+.br
+.RI "Parse the ssh config file\&. "
+.ti -1c
+.RI "int \fBssh_options_apply\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "\fBssh_session\fP \fBssh_new\fP (void)"
+.br
+.RI "Create a new ssh session\&. "
+.ti -1c
+.RI "void \fBssh_free\fP (\fBssh_session\fP session)"
+.br
+.RI "Deallocate a SSH session handle\&. "
+.ti -1c
+.RI "const char * \fBssh_get_clientbanner\fP (\fBssh_session\fP session)"
+.br
+.RI "get the client banner "
+.ti -1c
+.RI "const char * \fBssh_get_serverbanner\fP (\fBssh_session\fP session)"
+.br
+.RI "get the server banner "
+.ti -1c
+.RI "const char * \fBssh_get_kex_algo\fP (\fBssh_session\fP session)"
+.br
+.RI "get the name of the current key exchange algorithm\&. "
+.ti -1c
+.RI "const char * \fBssh_get_cipher_in\fP (\fBssh_session\fP session)"
+.br
+.RI "get the name of the input cipher for the given session\&. "
+.ti -1c
+.RI "const char * \fBssh_get_cipher_out\fP (\fBssh_session\fP session)"
+.br
+.RI "get the name of the output cipher for the given session\&. "
+.ti -1c
+.RI "const char * \fBssh_get_hmac_in\fP (\fBssh_session\fP session)"
+.br
+.RI "get the name of the input HMAC algorithm for the given session\&. "
+.ti -1c
+.RI "const char * \fBssh_get_hmac_out\fP (\fBssh_session\fP session)"
+.br
+.RI "get the name of the output HMAC algorithm for the given session\&. "
+.ti -1c
+.RI "void \fBssh_session_socket_close\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "void \fBssh_silent_disconnect\fP (\fBssh_session\fP session)"
+.br
+.RI "Disconnect impolitely from a remote host by closing the socket\&. "
+.ti -1c
+.RI "void \fBssh_set_blocking\fP (\fBssh_session\fP session, int blocking)"
+.br
+.RI "Set the session in blocking/nonblocking mode\&. "
+.ti -1c
+.RI "int \fBssh_is_blocking\fP (\fBssh_session\fP session)"
+.br
+.RI "Return the blocking mode of libssh\&. "
+.ti -1c
+.RI "int \fBssh_blocking_flush\fP (\fBssh_session\fP session, int timeout)"
+.br
+.RI "Blocking flush of the outgoing buffer\&. "
+.ti -1c
+.RI "int \fBssh_is_connected\fP (\fBssh_session\fP session)"
+.br
+.RI "Check if we are connected\&. "
+.ti -1c
+.RI "socket_t \fBssh_get_fd\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the fd of a connection\&. "
+.ti -1c
+.RI "void \fBssh_set_fd_toread\fP (\fBssh_session\fP session)"
+.br
+.RI "Tell the session it has data to read on the file descriptor without blocking\&. "
+.ti -1c
+.RI "void \fBssh_set_fd_towrite\fP (\fBssh_session\fP session)"
+.br
+.RI "Tell the session it may write to the file descriptor without blocking\&. "
+.ti -1c
+.RI "void \fBssh_set_fd_except\fP (\fBssh_session\fP session)"
+.br
+.RI "Tell the session it has an exception to catch on the file descriptor\&. "
+.ti -1c
+.RI "int \fBssh_handle_packets\fP (\fBssh_session\fP session, int timeout)"
+.br
+.ti -1c
+.RI "int \fBssh_handle_packets_termination\fP (\fBssh_session\fP session, int timeout, ssh_termination_function fct, void *user)"
+.br
+.ti -1c
+.RI "int \fBssh_get_status\fP (\fBssh_session\fP session)"
+.br
+.RI "Get session status\&. "
+.ti -1c
+.RI "int \fBssh_get_poll_flags\fP (\fBssh_session\fP session)"
+.br
+.RI "Get poll flags for an external mainloop\&. "
+.ti -1c
+.RI "const char * \fBssh_get_disconnect_message\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the disconnect message from the server\&. "
+.ti -1c
+.RI "int \fBssh_get_version\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the protocol version of the session\&. "
+.ti -1c
+.RI "void \fBssh_socket_exception_callback\fP (int code, int errno_code, void *user)"
+.br
+.ti -1c
+.RI "int \fBssh_send_ignore\fP (\fBssh_session\fP session, const char *data)"
+.br
+.RI "Send a message that should be ignored\&. "
+.ti -1c
+.RI "int \fBssh_send_debug\fP (\fBssh_session\fP session, const char *message, int always_display)"
+.br
+.RI "Send a debug message\&. "
+.ti -1c
+.RI "void \fBssh_set_counters\fP (\fBssh_session\fP session, \fBssh_counter\fP scounter, \fBssh_counter\fP rcounter)"
+.br
+.RI "Set the session data counters\&. "
+.ti -1c
+.RI "int \fBssh_get_pubkey_hash\fP (\fBssh_session\fP session, unsigned char **hash)"
+.br
+.ti -1c
+.RI "void \fBssh_clean_pubkey_hash\fP (unsigned char **hash)"
+.br
+.RI "Deallocate the hash obtained by ssh_get_pubkey_hash\&. "
+.ti -1c
+.RI "int \fBssh_get_server_publickey\fP (\fBssh_session\fP session, \fBssh_key\fP *key)"
+.br
+.RI "Get the server public key from a session\&. "
+.ti -1c
+.RI "int \fBssh_get_publickey\fP (\fBssh_session\fP session, \fBssh_key\fP *key)"
+.br
+.ti -1c
+.RI "int \fBssh_get_publickey_hash\fP (const \fBssh_key\fP key, enum ssh_publickey_hash_type type, unsigned char **hash, size_t *hlen)"
+.br
+.RI "Allocates a buffer with the hash of the public key\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions that manage a session\&.
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_blocking_flush (\fBssh_session\fP session, int timeout)"
+
+.PP
+Blocking flush of the outgoing buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session 
+.br
+\fItimeout\fP Set an upper limit on the time for which this function will block, in milliseconds\&. Specifying -1 means an infinite timeout\&. This parameter is passed to the poll() function\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_AGAIN if timeout occurred, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "void ssh_clean_pubkey_hash (unsigned char ** hash)"
+
+.PP
+Deallocate the hash obtained by ssh_get_pubkey_hash\&. This is required under Microsoft platform as this library might use a different C library than your software, hence a different heap\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIhash\fP The buffer to deallocate\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_pubkey_hash()\fP 
+.RE
+.PP
+
+.SS "int ssh_connect (\fBssh_session\fP session)"
+
+.PP
+Connect to the ssh server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to connect\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+
+.PP
+SSH_AGAIN, if the session is in nonblocking mode, and call must be done again\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_new()\fP 
+
+.PP
+\fBssh_disconnect()\fP 
+.RE
+.PP
+
+.SS "const char * ssh_copyright (void )"
+
+.PP
+Copyright information\&. Returns copyright information
+
+.PP
+\fBReturns\fP
+.RS 4
+SSH_STRING copyright 
+.RE
+.PP
+
+.SS "void ssh_disconnect (\fBssh_session\fP session)"
+
+.PP
+Disconnect from a session (client or server)\&. The session can then be reused to open a new session\&.
+
+.PP
+\fBNote\fP
+.RS 4
+Note that this function won't close the socket if it was set with ssh_options_set and SSH_OPTIONS_FD\&. You're responsible for closing the socket\&. This is new behavior in libssh 0\&.10\&.
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to use\&. 
+.RE
+.PP
+
+.SS "char * ssh_dump_knownhost (\fBssh_session\fP session)"
+
+.PP
+This function is deprecated\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use \fBssh_session_export_known_hosts_entry()\fP 
+.RE
+.PP
+
+.SS "void ssh_free (\fBssh_session\fP session)"
+
+.PP
+Deallocate a SSH session handle\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to free\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_disconnect()\fP 
+
+.PP
+\fBssh_new()\fP 
+.RE
+.PP
+
+.SS "const char * ssh_get_cipher_in (\fBssh_session\fP session)"
+
+.PP
+get the name of the input cipher for the given session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns cipher name or NULL\&. 
+.RE
+.PP
+
+.SS "const char * ssh_get_cipher_out (\fBssh_session\fP session)"
+
+.PP
+get the name of the output cipher for the given session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns cipher name or NULL\&. 
+.RE
+.PP
+
+.SS "const char * ssh_get_clientbanner (\fBssh_session\fP session)"
+
+.PP
+get the client banner 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the client banner string or NULL\&. 
+.RE
+.PP
+
+.SS "const char * ssh_get_disconnect_message (\fBssh_session\fP session)"
+
+.PP
+Get the disconnect message from the server\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The message sent by the server along with the disconnect, or NULL in which case the reason of the disconnect may be found with ssh_get_error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_error()\fP 
+.RE
+.PP
+
+.SS "socket_t ssh_get_fd (\fBssh_session\fP session)"
+
+.PP
+Get the fd of a connection\&. In case you'd need the file descriptor of the connection to the server/client\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The file descriptor of the connection, or -1 if it is not connected 
+.RE
+.PP
+
+.SS "char * ssh_get_fingerprint_hash (enum ssh_publickey_hash_type type, unsigned char * hash, size_t len)"
+
+.PP
+Get a hash as a human-readable hex- or base64-string\&. This gets an allocated fingerprint hash\&. If it is a SHA sum, it will return an unpadded base64 string\&. If it is a MD5 sum, it will return a hex string\&. Either way, the output is prepended by the hash-type\&.
+
+.PP
+\fBWarning\fP
+.RS 4
+Do NOT use MD5 or SHA1! Those hash functions are being deprecated\&.
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP Which sort of hash is given, use SSH_PUBLICKEY_HASH_SHA256 or better\&.
+.br
+\fIhash\fP The hash to be converted to fingerprint\&.
+.br
+\fIlen\fP Length of the buffer to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the allocated fingerprint hash or NULL on error\&. The caller needs to free the memory using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "const char * ssh_get_hmac_in (\fBssh_session\fP session)"
+
+.PP
+get the name of the input HMAC algorithm for the given session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns HMAC algorithm name or NULL if unknown\&. 
+.RE
+.PP
+
+.SS "const char * ssh_get_hmac_out (\fBssh_session\fP session)"
+
+.PP
+get the name of the output HMAC algorithm for the given session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns HMAC algorithm name or NULL if unknown\&. 
+.RE
+.PP
+
+.SS "char * ssh_get_issue_banner (\fBssh_session\fP session)"
+
+.PP
+Get the issue banner from the server\&. This is the banner showing a disclaimer to users who log in, typically their right or the fact that they will be monitored\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A newly allocated string with the banner, NULL on error\&. 
+.RE
+.PP
+
+.SS "const char * ssh_get_kex_algo (\fBssh_session\fP session)"
+
+.PP
+get the name of the current key exchange algorithm\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the key exchange algorithm string or NULL\&. 
+.RE
+.PP
+
+.SS "int ssh_get_openssh_version (\fBssh_session\fP session)"
+
+.PP
+Get the version of the OpenSSH server, if it is not an OpenSSH server then 0 will be returned\&. You can use the SSH_VERSION_INT macro to compare version numbers\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The version number if available, 0 otherwise\&.
+.RE
+.PP
+.PP
+.nf
+int openssh = ssh_get_openssh_version();
+
+if (openssh == SSH_INT_VERSION(6, 1, 0)) {
+    printf("Version match!\\m");
+}
+.fi
+.PP
+ 
+.SS "int ssh_get_poll_flags (\fBssh_session\fP session)"
+
+.PP
+Get poll flags for an external mainloop\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A bitmask including SSH_READ_PENDING or SSH_WRITE_PENDING\&. For SSH_READ_PENDING, your invocation of poll() should include POLLIN\&. For SSH_WRITE_PENDING, your invocation of poll() should include POLLOUT\&. 
+.RE
+.PP
+
+.SS "int ssh_get_pubkey_hash (\fBssh_session\fP session, unsigned char ** hash)"
+
+.PP
+\fBDeprecated\fP
+.RS 4
+Use \fBssh_get_publickey_hash()\fP 
+.RE
+.PP
+
+.SS "int ssh_get_publickey (\fBssh_session\fP session, \fBssh_key\fP * key)"
+
+.PP
+\fBDeprecated\fP
+.RS 4
+Use \fBssh_get_server_publickey()\fP 
+.RE
+.PP
+
+.SS "int ssh_get_publickey_hash (const \fBssh_key\fP key, enum ssh_publickey_hash_type type, unsigned char ** hash, size_t * hlen)"
+
+.PP
+Allocates a buffer with the hash of the public key\&. This function allows you to get a hash of the public key\&. You can then print this hash in a human-readable form to the user so that he is able to verify it\&. Use \fBssh_get_hexa()\fP or \fBssh_print_hash()\fP to display it\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The public key to create the hash for\&.
+.br
+\fItype\fP The type of the hash you want\&.
+.br
+\fIhash\fP A pointer to store the allocated buffer\&. It can be freed using \fBssh_clean_pubkey_hash()\fP\&.
+.br
+\fIhlen\fP The length of the hash\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 if an error occurred\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+It is very important that you verify at some moment that the hash matches a known server\&. If you don't do it, cryptography won't help you at making things secure\&. OpenSSH uses SHA256 to print public key digests\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_session_update_known_hosts()\fP 
+
+.PP
+\fBssh_get_hexa()\fP 
+
+.PP
+\fBssh_print_hash()\fP 
+
+.PP
+\fBssh_clean_pubkey_hash()\fP 
+.RE
+.PP
+
+.SS "int ssh_get_server_publickey (\fBssh_session\fP session, \fBssh_key\fP * key)"
+
+.PP
+Get the server public key from a session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to get the key from\&.
+.br
+\fIkey\fP A pointer to store the allocated key\&. You need to free the key using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "const char * ssh_get_serverbanner (\fBssh_session\fP session)"
+
+.PP
+get the server banner 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the server banner string or NULL\&. 
+.RE
+.PP
+
+.SS "int ssh_get_status (\fBssh_session\fP session)"
+
+.PP
+Get session status\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A bitmask including SSH_CLOSED, SSH_READ_PENDING, SSH_WRITE_PENDING or SSH_CLOSED_ERROR which respectively means the session is closed, has data to read on the connection socket and session was closed due to an error\&. 
+.RE
+.PP
+
+.SS "int ssh_get_version (\fBssh_session\fP session)"
+
+.PP
+Get the protocol version of the session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The SSH version as integer, < 0 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_is_blocking (\fBssh_session\fP session)"
+
+.PP
+Return the blocking mode of libssh\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if the session is nonblocking, 
+
+.PP
+1 if the functions may block\&. 
+.RE
+.PP
+
+.SS "int ssh_is_connected (\fBssh_session\fP session)"
+
+.PP
+Check if we are connected\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to check if it is connected\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if we are connected, 0 if not\&. 
+.RE
+.PP
+
+.SS "int ssh_is_server_known (\fBssh_session\fP session)"
+
+.PP
+This function is deprecated\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use \fBssh_session_is_known_server()\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_session_is_known_server()\fP 
+.RE
+.PP
+
+.SS "int ssh_known_hosts_parse_line (const char * hostname, const char * line, struct \fBssh_knownhosts_entry\fP ** entry)"
+
+.PP
+Parse a line from a known_hosts entry into a structure\&. This parses a known_hosts entry into a structure with the key in a libssh consumeable form\&. You can use the PKI key function to further work with it\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIhostname\fP The hostname to match the line to
+.br
+\fIline\fP The line to compare and parse if we have a hostname match\&.
+.br
+\fIentry\fP A pointer to store the allocated known_hosts entry structure\&. The user needs to free the memory using SSH_KNOWNHOSTS_ENTRY_FREE()\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "void ssh_knownhosts_entry_free (struct \fBssh_knownhosts_entry\fP * entry)"
+
+.PP
+Free an allocated \fBssh_knownhosts_entry\fP\&. Use SSH_KNOWNHOSTS_ENTRY_FREE() to set the pointer to NULL\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIentry\fP The entry to free\&. 
+.RE
+.PP
+
+.SS "\fBssh_session\fP ssh_new (void )"
+
+.PP
+Create a new ssh session\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A new ssh_session pointer, NULL on error\&. 
+.RE
+.PP
+
+.SS "int ssh_options_copy (\fBssh_session\fP src, \fBssh_session\fP * dest)"
+
+.PP
+Duplicate the options of a session structure\&. If you make several sessions with the same options this is useful\&. You cannot use twice the same option structure in ssh_connect\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsrc\fP The session to use to copy the options\&.
+.br
+\fIdest\fP A pointer to store the allocated session with duplicated options\&. You have to free the memory using \fBssh_free()\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 on error with errno set\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_connect()\fP 
+
+.PP
+\fBssh_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_options_get (\fBssh_session\fP session, enum ssh_options_e type, char ** value)"
+
+.PP
+This function can get ssh options, it does not support all options provided for ssh options set, but mostly those which a user-space program may care about having trusted the ssh driver to infer these values from underlying configuration files\&. It operates only on those SSH_OPTIONS_* which return char*\&. If you wish to receive the port then please use \fBssh_options_get_port()\fP which returns an unsigned int\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP An allocated SSH session structure\&.
+.br
+\fItype\fP The option type to get\&. This could be one of the following:
+.RE
+.PP
+.IP "\(bu" 2
+SSH_OPTIONS_HOST: The hostname or ip address to connect to (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_USER: The username for authentication (const char *)\&.
+.br
+ 
+.br
+ when not explicitly set this will be inferred from the ~/\&.ssh/config file\&.
+.IP "\(bu" 2
+SSH_OPTIONS_IDENTITY: Get the first identity file name (const char *)\&.
+.br
+ 
+.br
+ By default id_rsa, id_ecdsa and id_ed25519 files are used\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PROXYCOMMAND: Get the proxycommand necessary to log into the remote host\&. When not explicitly set, it will be read from the ~/\&.ssh/config file\&.
+.IP "\(bu" 2
+SSH_OPTIONS_GLOBAL_KNOWNHOSTS: Get the path to the global known_hosts file being used\&.
+.IP "\(bu" 2
+SSH_OPTIONS_KNOWNHOSTS: Get the path to the known_hosts file being used\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CONTROL_PATH: Get the path to the control socket being used for connection multiplexing\&.
+.IP "\(bu" 2
+SSH_OPTIONS_KEY_EXCHANGE: Get the key exchange methods to be used\&. If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_HOSTKEYS: Get the preferred server host key types\&. If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PUBLICKEY_ACCEPTED_TYPES: Get the preferred public key algorithms to be used for authentication\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CIPHERS_C_S: Get the symmetric cipher client to server\&. If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CIPHERS_S_C: Get the symmetric cipher server to client\&. If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_HMAC_C_S: Get the Message Authentication Code algorithm client to server If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_HMAC_S_C: Get the Message Authentication Code algorithm server to client If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_COMPRESSION_C_S: Get the compression to use for client to server communication If the option has not been set, returns the defaults\&.
+.IP "\(bu" 2
+SSH_OPTIONS_COMPRESSION_S_C: Get the compression to use for server to client communication If the option has not been set, returns the defaults\&.
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP The value to get into\&. As a char**, space will be allocated by the function for the value, it is your responsibility to free the memory using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "char * ssh_options_get_algo (\fBssh_session\fP session, enum ssh_kex_types_e algo)"
+
+.PP
+This function returns the current algorithms used for algorithm negotiation\&. It is either libssh default, option manually set or option read from configuration file\&. This function will return NULL on error
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP An allocated SSH session structure\&. 
+.br
+\fIalgo\fP One of the ssh_kex_types_e values\&. 
+.RE
+.PP
+
+.SS "int ssh_options_get_port (\fBssh_session\fP session, unsigned int * port_target)"
+
+.PP
+This function can get ssh the ssh port\&. It must only be used on a valid ssh session\&. This function is useful when the session options have been automatically inferred from the environment or configuration files and one\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP An allocated SSH session structure\&.
+.br
+\fIport_target\fP An unsigned integer into which the port will be set from the ssh session\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_options_getopt (\fBssh_session\fP session, int * argcptr, char ** argv)"
+
+.PP
+Parse command line arguments\&. This is a helper for your application to generate the appropriate options from the command line arguments\&.
+.br
+The argv array and argc value are changed so that the parsed arguments won't appear anymore in them\&.
+.br
+The single arguments (without switches) are not parsed\&. thus, myssh -l user localhost
+.br
+The command won't set the hostname value of options to localhost\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to configure\&.
+.br
+\fIargcptr\fP The pointer to the argument count\&.
+.br
+\fIargv\fP The arguments list pointer\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+ssh_session_new() 
+.RE
+.PP
+
+.SS "int ssh_options_parse_config (\fBssh_session\fP session, const char * filename)"
+
+.PP
+Parse the ssh config file\&. This should be the last call of all options, it may overwrite options which are already set\&. It requires that the host name is already set with ssh_options_set(SSH_OPTIONS_HOST)\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP SSH session handle
+.br
+\fIfilename\fP The options file to use, if NULL the default ~/\&.ssh/config and /etc/ssh/ssh_config will be used\&. If complied with support for hermetic-usr, /usr/etc/ssh/ssh_config will be used last\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_options_set()\fP 
+.RE
+.PP
+
+.SS "int ssh_options_set (\fBssh_session\fP session, enum ssh_options_e type, const void * value)"
+
+.PP
+This function can set all possible ssh options\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP An allocated SSH session structure\&.
+.br
+\fItype\fP The option type to set\&. This could be one of the following:
+.RE
+.PP
+.IP "\(bu" 2
+SSH_OPTIONS_HOST: The hostname or ip address to connect to\&. It can be also in the format of URI, containing also username, such as [username@]hostname\&. The IPv6 addresses can be enclosed within square braces, for example [::1]\&. The IPv4 address supports any format supported by OS\&. The hostname needs to be encoded to match RFC1035, so for IDN it needs to be encoded in punycode\&. (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PORT: The port to connect to (unsigned int)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PORT_STR: The port to connect to (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_FD: The file descriptor to use (socket_t)\&.
+.br
+ 
+.br
+ If you wish to open the socket yourself for a reason or another, set the file descriptor and take care of closing it (this is new behavior in libssh 0\&.10)\&. Don't forget to set the hostname as the hostname is used as a key in the known_host mechanism\&.
+.IP "\(bu" 2
+SSH_OPTIONS_BINDADDR: The address to bind the client to (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_USER: The username for authentication (const char *)\&.
+.br
+ 
+.br
+ If the value is NULL, the username is set to the default username\&.
+.IP "\(bu" 2
+SSH_OPTIONS_SSH_DIR: Set the ssh directory (const char *,format string)\&.
+.br
+ 
+.br
+ If the value is NULL, the directory is set to the default ssh directory\&.
+.br
+ 
+.br
+ The ssh directory is used for files like known_hosts and identity (private and public key)\&. It may include "%s" which will be replaced by the user home directory\&.
+.IP "\(bu" 2
+SSH_OPTIONS_KNOWNHOSTS: Set the known hosts file name (const char *,format string)\&.
+.br
+ 
+.br
+ If the value is NULL, the directory is set to the default known hosts file, normally ~/\&.ssh/known_hosts\&.
+.br
+ 
+.br
+ The known hosts file is used to certify remote hosts are genuine\&. It may include "%d" which will be replaced by the user home directory\&.
+.IP "\(bu" 2
+SSH_OPTIONS_GLOBAL_KNOWNHOSTS: Set the global known hosts file name (const char *,format string)\&.
+.br
+ 
+.br
+ If the value is NULL, the directory is set to the default global known hosts file, normally /etc/ssh/ssh_known_hosts\&.
+.br
+ 
+.br
+ The known hosts file is used to certify remote hosts are genuine\&.
+.IP "\(bu" 2
+SSH_OPTIONS_ADD_IDENTITY (or SSH_OPTIONS_IDENTITY): Add a new identity file (const char *, format string) to the identity list\&.
+.br
+ 
+.br
+ By default id_rsa, id_ecdsa and id_ed25519 files are used\&.
+.br
+ 
+.br
+ The identity used to authenticate with public key will be prepended to the list\&. It may include "%s" which will be replaced by the user home directory\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CERTIFICATE: Add a new certificate file (const char *, format string) to the certificate list\&.
+.br
+ 
+.br
+ By default id_rsa-cert\&.pub, id_ecdsa-cert\&.pub and id_ed25519-cert\&.pub files are used, when the underlying private key is present\&.
+.br
+ 
+.br
+ The certificate itself can not be used to authenticate to remote server so it needs to be paired with private key (aka identity file) provided with separate option, from agent or from PKCS#11 token\&. It may include "%s" which will be replaced by the user home directory\&.
+.IP "\(bu" 2
+SSH_OPTIONS_TIMEOUT: Set a timeout for the connection in seconds (long)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_TIMEOUT_USEC: Set a timeout for the connection in micro seconds (long)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_SSH1: Deprecated
+.IP "\(bu" 2
+SSH_OPTIONS_SSH2: Unused
+.IP "\(bu" 2
+SSH_OPTIONS_LOG_VERBOSITY: Set the session logging verbosity (int)\&.
+.br
+ 
+.br
+ The verbosity of the messages\&. Every log smaller or equal to verbosity will be shown\&.
+.IP "  \(bu" 4
+SSH_LOG_NOLOG: No logging
+.IP "  \(bu" 4
+SSH_LOG_WARNING: Only warnings
+.IP "  \(bu" 4
+SSH_LOG_PROTOCOL: High level protocol information
+.IP "  \(bu" 4
+SSH_LOG_PACKET: Lower level protocol information, packet level
+.IP "  \(bu" 4
+SSH_LOG_FUNCTIONS: Every function path The default is SSH_LOG_NOLOG\&.
+.PP
+
+.IP "\(bu" 2
+SSH_OPTIONS_LOG_VERBOSITY_STR: Set the session logging verbosity via a string that will be converted to a numerical value (e\&.g\&. "3") and interpreted according to the values of SSH_OPTIONS_LOG_VERBOSITY above (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CIPHERS_C_S: Set the symmetric cipher client to server (const char *, comma-separated list)\&. The list can be prepended by +,-,^ which can append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CIPHERS_S_C: Set the symmetric cipher server to client (const char *, comma-separated list)\&. The list can be prepended by +,-,^ which can append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_KEY_EXCHANGE: Set the key exchange method to be used (const char *, comma-separated list)\&. ex: "ecdh-sha2-nistp256,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1" The list can be prepended by +,-,^ which will append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_HMAC_C_S: Set the Message Authentication Code algorithm client to server (const char *, comma-separated list)\&. The list can be prepended by +,-,^ which will append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_HMAC_S_C: Set the Message Authentication Code algorithm server to client (const char *, comma-separated list)\&. The list can be prepended by +,-,^ which will append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_HOSTKEYS: Set the preferred server host key types (const char *, comma-separated list)\&. ex: "ssh-rsa,ecdh-sha2-nistp256"\&. The list can be prepended by +,-,^ which will append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PUBLICKEY_ACCEPTED_TYPES: Set the preferred public key algorithms to be used for authentication (const char *, comma-separated list)\&. ex: "ssh-rsa,rsa-sha2-256,ecdh-sha2-nistp256" The list can be prepended by +,-,^ which will append, remove or move to the beginning (prioritizing) of the default list respectively\&. Giving an empty list after + and ^ will cause error\&.
+.IP "\(bu" 2
+SSH_OPTIONS_COMPRESSION_C_S: Set the compression to use for client to server communication (const char *, "yes", "no" or a specific algorithm name if needed ("zlib","zlib@openssh\&.com","none")\&.
+.IP "\(bu" 2
+SSH_OPTIONS_COMPRESSION_S_C: Set the compression to use for server to client communication (const char *, "yes", "no" or a specific algorithm name if needed ("zlib","zlib@openssh\&.com","none")\&.
+.IP "\(bu" 2
+SSH_OPTIONS_COMPRESSION: Set the compression to use for both directions communication (const char *, "yes", "no" or a specific algorithm name if needed ("zlib","zlib@openssh\&.com","none")\&.
+.IP "\(bu" 2
+SSH_OPTIONS_COMPRESSION_LEVEL: Set the compression level to use for zlib functions\&. (int, value from 1 to 9, 9 being the most efficient but slower)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_STRICTHOSTKEYCHECK: Set the parameter StrictHostKeyChecking to avoid asking about a fingerprint (int, 0 = false)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PROXYCOMMAND: Set the command to be executed in order to connect to server (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PROXYJUMP: Set the comma separated jump hosts in order to connect to server (const char *)\&. Set to "none" to disable\&. Example: "alice@127\&.0\&.0\&.1:5555,bob@127\&.0\&.0\&.2"
+
+.PP
+If environment variable OPENSSH_PROXYJUMP is set to 1 then proxyjump will be handled by the OpenSSH binary\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PROXYJUMP_CB_LIST_APPEND: Append the callbacks struct for a jump in order of SSH_OPTIONS_PROXYJUMP\&. Append as many times as the number of jumps (struct \fBssh_jump_callbacks_struct\fP *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_GSSAPI_SERVER_IDENTITY Set it to specify the GSSAPI server identity that libssh should expect when connecting to the server (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_GSSAPI_CLIENT_IDENTITY Set it to specify the GSSAPI client identity that libssh should expect when connecting to the server (const char *)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_GSSAPI_DELEGATE_CREDENTIALS Set it to specify that GSSAPI should delegate credentials to the server (int, 0 = false)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PASSWORD_AUTH Set it if password authentication should be used in ssh_userauth_auto_pubkey()\&. (int, 0=false)\&. Currently without effect (ssh_userauth_auto_pubkey doesn't use password authentication)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_PUBKEY_AUTH Set it if pubkey authentication should be used in ssh_userauth_auto_pubkey()\&. (int, 0=false)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_KBDINT_AUTH Set it if keyboard-interactive authentication should be used in ssh_userauth_auto_pubkey()\&. (int, 0=false)\&. Currently without effect (ssh_userauth_auto_pubkey doesn't use keyboard-interactive authentication)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_GSSAPI_AUTH Set it if gssapi authentication should be used in ssh_userauth_auto_pubkey()\&. (int, 0=false)\&. Currently without effect (ssh_userauth_auto_pubkey doesn't use gssapi authentication)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_NODELAY Set it to disable Nagle's Algorithm (TCP_NODELAY) on the session socket\&. (int, 0=false)
+.IP "\(bu" 2
+SSH_OPTIONS_PROCESS_CONFIG Set it to false to disable automatic processing of per-user and system-wide OpenSSH configuration files\&. LibSSH automatically uses these configuration files unless you provide it with this option or with different file (bool)\&.
+.IP "\(bu" 2
+SSH_OPTIONS_REKEY_DATA Set the data limit that can be transferred with a single key in bytes\&. RFC 4253 Section 9 recommends 1GB of data, while RFC 4344 provides more specific restrictions, that are applied automatically\&. When specified, the lower value will be used\&. (uint64_t, 0=default)
+.IP "\(bu" 2
+SSH_OPTIONS_REKEY_TIME Set the time limit for a session before initializing a rekey in seconds\&. RFC 4253 Section 9 recommends one hour\&. (uint32_t, 0=off)
+.IP "\(bu" 2
+SSH_OPTIONS_RSA_MIN_SIZE Set the minimum RSA key size in bits to be accepted by the client for both authentication and hostkey verification\&. The values under 768 bits are not accepted even with this configuration option as they are considered completely broken\&. Setting 0 will revert the value to defaults\&. Default is 1024 bits or 2048 bits in FIPS mode\&. (int)
+.IP "\(bu" 2
+SSH_OPTIONS_IDENTITY_AGENT Set the path to the SSH agent socket\&. If unset, the SSH_AUTH_SOCK environment is consulted\&. (const char *)
+.IP "\(bu" 2
+SSH_OPTIONS_IDENTITIES_ONLY Use only keys specified in the SSH config, even if agent offers more\&. (bool)
+.IP "\(bu" 2
+SSH_OPTIONS_CONTROL_MASTER Set the option to enable the sharing of multiple sessions over a single network connection using connection multiplexing (int)\&.
+
+.PP
+The possible options are among the following:
+.IP "  \(bu" 4
+SSH_CONTROL_MASTER_AUTO: enable connection sharing if possible
+.IP "  \(bu" 4
+SSH_CONTROL_MASTER_YES: enable connection sharing unconditionally
+.IP "  \(bu" 4
+SSH_CONTROL_MASTER_ASK: ask for confirmation if connection sharing is to be enabled
+.IP "  \(bu" 4
+SSH_CONTROL_MASTER_AUTOASK: enable connection sharing if possible, but ask for confirmation
+.IP "  \(bu" 4
+SSH_CONTROL_MASTER_NO: disable connection sharing unconditionally
+.PP
+
+.PP
+The default is SSH_CONTROL_MASTER_NO\&.
+.IP "\(bu" 2
+SSH_OPTIONS_CONTROL_PATH Set the path to the control socket used for connection sharing\&. Set to "none" to disable connection sharing\&. (const char *)
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP The value to set\&. This is a generic pointer and the datatype which is used should be set according to the type set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+When the option value to set is represented via a pointer (e\&.g const char * in case of strings, ssh_key in case of a libssh key), the value parameter should be that pointer\&. Do NOT pass a pointer to a pointer (const char **, ssh_key *)
+
+.PP
+When the option value to set is not a pointer (e\&.g int, unsigned int, bool, long), the value parameter should be a pointer to the location storing the value to set (int *, unsigned int *, bool *, long *)
+
+.PP
+If the value parameter has an invalid type (e\&.g if its not a pointer when it should have been a pointer, or if its a pointer to a pointer when it should have just been a pointer), then the behaviour is undefined\&. 
+.RE
+.PP
+
+.SS "void ssh_print_hash (enum ssh_publickey_hash_type type, unsigned char * hash, size_t len)"
+
+.PP
+Print a hash as a human-readable hex- or base64-string\&. This prints an unpadded base64 strings for SHA sums and hex strings for MD5 sum\&. Either way, the output is prepended by the hash-type\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP Which sort of hash is given\&. Use SSH_PUBLICKEY_HASH_SHA256 or better\&.
+.br
+\fIhash\fP The hash to be converted to fingerprint\&.
+.br
+\fIlen\fP Length of the buffer to convert\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_publickey_hash()\fP 
+
+.PP
+\fBssh_get_fingerprint_hash()\fP 
+.RE
+.PP
+
+.SS "int ssh_request_no_more_sessions (\fBssh_session\fP session)"
+
+.PP
+Most SSH connections will only ever request a single session, but an attacker may abuse a running ssh client to surreptitiously open additional sessions under their control\&. OpenSSH provides a global request "no-more-sessions@openssh\&.com" to mitigate this attack\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+
+.PP
+SSH_AGAIN, if the session is in nonblocking mode, and call must be done again\&. 
+.RE
+.PP
+
+.SS "int ssh_select (\fBssh_channel\fP * channels, \fBssh_channel\fP * outchannels, socket_t maxfd, fd_set * readfds, struct timeval * timeout)"
+
+.PP
+A wrapper for the select syscall\&. This function acts more or less like the select(2) syscall\&.
+.br
+There is no support for writing or exceptions\&.
+.br
+ 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannels\fP Arrays of channels pointers terminated by a NULL\&. It is never rewritten\&.
+.br
+\fIoutchannels\fP Arrays of the same size as "channels", there is no need to initialize it\&.
+.br
+\fImaxfd\fP Maximum +1 file descriptor from readfds\&.
+.br
+\fIreadfds\fP A fd_set of file descriptors to be select'ed for reading\&.
+.br
+\fItimeout\fP The timeout in milliseconds\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error, SSH_EINTR if it was interrupted\&. In that case, just restart it\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+libssh is not reentrant here\&. That means that if a signal is caught during the processing of this function, you cannot call libssh functions on sessions that are busy with \fBssh_select()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+select(2) 
+.RE
+.PP
+
+.SS "int ssh_send_debug (\fBssh_session\fP session, const char * message, int always_display)"
+
+.PP
+Send a debug message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session 
+.br
+\fImessage\fP Data to be sent 
+.br
+\fIalways_display\fP Message SHOULD be displayed by the server\&. It SHOULD NOT be displayed unless debugging information has been explicitly requested\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "int ssh_send_ignore (\fBssh_session\fP session, const char * data)"
+
+.PP
+Send a message that should be ignored\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session 
+.br
+\fIdata\fP Data to be sent
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "int ssh_session_export_known_hosts_entry (\fBssh_session\fP session, char ** pentry_string)"
+
+.PP
+Export the current session information to a known_hosts string\&. This exports the current information of a session which is connected so a ssh server into an entry line which can be added to a known_hosts file\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session with information to export\&.
+.br
+\fIpentry_string\fP A pointer to a string to store the allocated line of the entry\&. The user must free it using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "enum ssh_known_hosts_e ssh_session_get_known_hosts_entry (\fBssh_session\fP session, struct \fBssh_knownhosts_entry\fP ** pentry)"
+
+.PP
+Get the known_hosts entry for the currently connected session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to validate\&.
+.br
+\fIpentry\fP A pointer to store the allocated known hosts entry\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_KNOWN_HOSTS_OK: The server is known and has not changed\&.
+.br
+ SSH_KNOWN_HOSTS_CHANGED: The server key has changed\&. Either you are under attack or the administrator changed the key\&. You HAVE to warn the user about a possible attack\&.
+.br
+ SSH_KNOWN_HOSTS_OTHER: The server gave use a key of a type while we had an other type recorded\&. It is a possible attack\&.
+.br
+ SSH_KNOWN_HOSTS_UNKNOWN: The server is unknown\&. User should confirm the public key hash is correct\&.
+.br
+ SSH_KNOWN_HOSTS_NOT_FOUND: The known host file does not exist\&. The host is thus unknown\&. File will be created if host key is accepted\&.
+.br
+ SSH_KNOWN_HOSTS_ERROR: There had been an error checking the host\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_knownhosts_entry_free()\fP 
+.RE
+.PP
+
+.SS "enum ssh_known_hosts_e ssh_session_get_known_hosts_entry_file (\fBssh_session\fP session, const char * filename, struct \fBssh_knownhosts_entry\fP ** pentry)"
+
+.PP
+Get the known_hosts entry for the current connected session from the given known_hosts file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to validate\&.
+.br
+\fIfilename\fP The filename to parse\&.
+.br
+\fIpentry\fP A pointer to store the allocated known hosts entry\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_KNOWN_HOSTS_OK: The server is known and has not changed\&.
+.br
+ SSH_KNOWN_HOSTS_CHANGED: The server key has changed\&. Either you are under attack or the administrator changed the key\&. You HAVE to warn the user about a possible attack\&.
+.br
+ SSH_KNOWN_HOSTS_OTHER: The server gave use a key of a type while we had an other type recorded\&. It is a possible attack\&.
+.br
+ SSH_KNOWN_HOSTS_UNKNOWN: The server is unknown\&. User should confirm the public key hash is correct\&.
+.br
+ SSH_KNOWN_HOSTS_NOT_FOUND: The known host file does not exist\&. The host is thus unknown\&. File will be created if host key is accepted\&.
+.br
+ SSH_KNOWN_HOSTS_ERROR: There had been an error checking the host\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_knownhosts_entry_free()\fP 
+.RE
+.PP
+
+.SS "enum ssh_known_hosts_e ssh_session_has_known_hosts_entry (\fBssh_session\fP session)"
+
+.PP
+Check if the set hostname and port match an entry in known_hosts\&. This check if the set hostname and port have an entry in the known_hosts file\&. You need to set at least the hostname using \fBssh_options_set()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session with the values set to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A ssh_known_hosts_e return value\&. 
+.RE
+.PP
+
+.SS "enum ssh_known_hosts_e ssh_session_is_known_server (\fBssh_session\fP session)"
+
+.PP
+Check if the servers public key for the connected session is known\&. This checks if we already know the public key of the server we want to connect to\&. This allows to detect if there is a MITM attach going on of if there have been changes on the server we don't know about\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH to validate\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_KNOWN_HOSTS_OK: The server is known and has not changed\&.
+.br
+ SSH_KNOWN_HOSTS_CHANGED: The server key has changed\&. Either you are under attack or the administrator changed the key\&. You HAVE to warn the user about a possible attack\&.
+.br
+ SSH_KNOWN_HOSTS_OTHER: The server gave use a key of a type while we had an other type recorded\&. It is a possible attack\&.
+.br
+ SSH_KNOWN_HOSTS_UNKNOWN: The server is unknown\&. User should confirm the public key hash is correct\&.
+.br
+ SSH_KNOWN_HOSTS_NOT_FOUND: The known host file does not exist\&. The host is thus unknown\&. File will be created if host key is accepted\&.
+.br
+ SSH_KNOWN_HOSTS_ERROR: There had been an error checking the host\&. 
+.RE
+.PP
+
+.SS "int ssh_session_set_disconnect_message (\fBssh_session\fP session, const char * message)"
+
+.PP
+Add disconnect message when ssh_session is disconnected To add a disconnect message to give peer a better hint\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to use\&. 
+.br
+\fImessage\fP The message to send after the session is disconnected\&. If no message is passed then a default message i\&.e "Bye Bye" will be sent\&. 
+.RE
+.PP
+
+.SS "int ssh_session_update_known_hosts (\fBssh_session\fP session)"
+
+.PP
+Adds the currently connected server to the user known_hosts file\&. This adds the currently connected server to the known_hosts file by appending a new line at the end\&. The global known_hosts file is considered read-only so it is not touched by this function\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to use to write the entry\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "void ssh_set_blocking (\fBssh_session\fP session, int blocking)"
+
+.PP
+Set the session in blocking/nonblocking mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to change\&.
+.br
+\fIblocking\fP Zero for nonblocking mode\&. 
+.RE
+.PP
+
+.SS "void ssh_set_counters (\fBssh_session\fP session, \fBssh_counter\fP scounter, \fBssh_counter\fP rcounter)"
+
+.PP
+Set the session data counters\&. This function sets the counter structures to be used to calculate data which comes in and goes out through the session at different levels\&.
+
+.PP
+.PP
+.nf
+struct ssh_counter_struct scounter = {
+    \&.in_bytes = 0,
+    \&.out_bytes = 0,
+    \&.in_packets = 0,
+    \&.out_packets = 0
+};
+
+struct ssh_counter_struct rcounter = {
+    \&.in_bytes = 0,
+    \&.out_bytes = 0,
+    \&.in_packets = 0,
+    \&.out_packets = 0
+};
+
+ssh_set_counters(session, &scounter, &rcounter);
+.fi
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.br
+\fIscounter\fP Counter for byte data handled by the session sockets\&.
+.br
+\fIrcounter\fP Counter for byte and packet data handled by the session, prior compression and SSH overhead\&. 
+.RE
+.PP
+
+.SS "void ssh_set_fd_except (\fBssh_session\fP session)"
+
+.PP
+Tell the session it has an exception to catch on the file descriptor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&. 
+.RE
+.PP
+
+.SS "void ssh_set_fd_toread (\fBssh_session\fP session)"
+
+.PP
+Tell the session it has data to read on the file descriptor without blocking\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&. 
+.RE
+.PP
+
+.SS "void ssh_set_fd_towrite (\fBssh_session\fP session)"
+
+.PP
+Tell the session it may write to the file descriptor without blocking\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&. 
+.RE
+.PP
+
+.SS "void ssh_silent_disconnect (\fBssh_session\fP session)"
+
+.PP
+Disconnect impolitely from a remote host by closing the socket\&. Suitable if you forked and want to destroy this session\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to disconnect\&. 
+.RE
+.PP
+
+.SS "int ssh_write_knownhost (\fBssh_session\fP session)"
+
+.PP
+This function is deprecated\&. 
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use \fBssh_session_update_known_hosts()\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

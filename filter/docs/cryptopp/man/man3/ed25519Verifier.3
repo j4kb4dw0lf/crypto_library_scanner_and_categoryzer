@@ -1,0 +1,523 @@
+.TH "ed25519Verifier" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ed25519Verifier \- Ed25519 signature verification algorithm\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xed25519\&.h>\fP
+.PP
+Inherits \fBPK_Verifier\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (PUBLIC_KEYLENGTH=32)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SIGNATURE_LENGTH=64)"
+.br
+.ti -1c
+.RI "\fBed25519Verifier\fP ()"
+.br
+.RI "Create an \fBed25519Verifier\fP object\&. "
+.ti -1c
+.RI "\fBed25519Verifier\fP (const \fBbyte\fP y[PUBLIC_KEYLENGTH])"
+.br
+.RI "Create an \fBed25519Verifier\fP object\&. "
+.ti -1c
+.RI "\fBed25519Verifier\fP (const \fBInteger\fP &y)"
+.br
+.RI "Create an \fBed25519Verifier\fP object\&. "
+.ti -1c
+.RI "\fBed25519Verifier\fP (const \fBX509PublicKey\fP &key)"
+.br
+.RI "Create an \fBed25519Verifier\fP object\&. "
+.ti -1c
+.RI "\fBed25519Verifier\fP (\fBBufferedTransformation\fP &params)"
+.br
+.RI "Create an \fBed25519Verifier\fP object\&. "
+.ti -1c
+.RI "\fBed25519Verifier\fP (const \fBed25519Signer\fP &signer)"
+.br
+.RI "Create an \fBed25519Verifier\fP object\&. "
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessKey\fP ()"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessPublicKey\fP ()"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "const \fBPublicKey\fP & \fBGetKey\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "size_t \fBSignatureLength\fP () const"
+.br
+.RI "Provides the signature length if it only depends on the key\&. "
+.ti -1c
+.RI "size_t \fBMaxRecoverableLength\fP () const"
+.br
+.RI "Provides the length of longest message that can be recovered\&. "
+.ti -1c
+.RI "size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const"
+.br
+.RI "Provides the length of longest message that can be recovered from a signature of given length\&. "
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines whether a signature scheme requires a random number generator\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.RI "Determines whether the non-recoverable message part can be signed\&. "
+.ti -1c
+.RI "bool \fBRecoverablePartFirst\fP () const"
+.br
+.RI "Determines whether the recoverable part must be input before the non-recoverable part\&. "
+.ti -1c
+.RI "\fBed25519_MessageAccumulator\fP * \fBNewVerificationAccumulator\fP () const"
+.br
+.RI "Create a new \fBHashTransformation\fP to accumulate the message to be verified\&. "
+.ti -1c
+.RI "void \fBInputSignature\fP (\fBPK_MessageAccumulator\fP &messageAccumulator, const \fBbyte\fP *signature, size_t signatureLength) const"
+.br
+.RI "Input signature into a message accumulator\&. "
+.ti -1c
+.RI "bool \fBVerifyAndRestart\fP (\fBPK_MessageAccumulator\fP &messageAccumulator) const"
+.br
+.RI "Check whether messageAccumulator contains a valid signature and message, and restart messageAccumulator\&. "
+.ti -1c
+.RI "bool \fBVerifyStream\fP (std::istream &stream, const \fBbyte\fP *signature, size_t signatureLen) const"
+.br
+.RI "Check whether input signature is a valid signature for input message\&. "
+.ti -1c
+.RI "\fBDecodingResult\fP \fBRecoverAndRestart\fP (\fBbyte\fP *recoveredMessage, \fBPK_MessageAccumulator\fP &messageAccumulator) const"
+.br
+.RI "Recover a message from its signature\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_Verifier\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBVerify\fP (\fBPK_MessageAccumulator\fP *messageAccumulator) const"
+.br
+.RI "Check whether messageAccumulator contains a valid signature and message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyMessage\fP (const \fBbyte\fP *message, size_t messageLen, const \fBbyte\fP *signature, size_t signatureLen) const"
+.br
+.RI "Check whether input signature is a valid signature for input message\&. "
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecover\fP (\fBbyte\fP *recoveredMessage, \fBPK_MessageAccumulator\fP *messageAccumulator) const"
+.br
+.RI "Recover a message from its signature\&. "
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessage\fP (\fBbyte\fP *recoveredMessage, const \fBbyte\fP *nonrecoverableMessage, size_t nonrecoverableMessageLength, const \fBbyte\fP *signature, size_t signatureLength) const"
+.br
+.RI "Recover a message from its signature\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureScheme\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxSignatureLength\fP (size_t recoverablePartLength=0) const"
+.br
+.RI "Provides the maximum signature length produced given the length of the recoverable message part\&. "
+.ti -1c
+.RI "virtual bool \fBSignatureUpfront\fP () const"
+.br
+.RI "Determines whether the signature must be input before the message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPublicKeyAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBed25519PublicKey\fP \fBm_key\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Ed25519 signature verification algorithm\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ed25519Verifier::ed25519Verifier (const \fBbyte\fP y[PUBLIC_KEYLENGTH])"
+
+.PP
+Create an \fBed25519Verifier\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIy\fP public key
+.RE
+.PP
+This constructor creates an \fBed25519Verifier\fP object using existing parameters\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SS "ed25519Verifier::ed25519Verifier (const \fBInteger\fP & y)"
+
+.PP
+Create an \fBed25519Verifier\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIy\fP public key
+.RE
+.PP
+This constructor creates an \fBed25519Verifier\fP object using existing parameters\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SS "ed25519Verifier::ed25519Verifier (const \fBX509PublicKey\fP & key)"
+
+.PP
+Create an \fBed25519Verifier\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP X509 public key
+.RE
+.PP
+This constructor creates an \fBed25519Verifier\fP object using an existing public key\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.6 
+.RE
+.PP
+
+.SS "ed25519Verifier::ed25519Verifier (\fBBufferedTransformation\fP & params)"
+
+.PP
+Create an \fBed25519Verifier\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP public and private key
+.RE
+.PP
+This constructor creates an \fBed25519Verifier\fP object using existing parameters\&. The \fRparams\fP can be created with \fRSave\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SS "ed25519Verifier::ed25519Verifier (const \fBed25519Signer\fP & signer)"
+
+.PP
+Create an \fBed25519Verifier\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsigner\fP \fBed25519\fP signer object
+.RE
+.PP
+This constructor creates an \fBed25519Verifier\fP object using existing parameters\&. The \fRparams\fP can be created with \fRSave\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBPublicKey\fP & ed25519Verifier::AccessKey ()\fR [inline]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. \fBAccessKey()\fP retrieves a non-const reference to a public key\&. 
+.SS "\fBPublicKey\fP & ed25519Verifier::AccessPublicKey ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference to the public key 
+.RE
+.PP
+
+.PP
+Implements \fBPublicKeyAlgorithm\fP\&.
+.SS "bool ed25519Verifier::AllowNonrecoverablePart () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether the non-recoverable message part can be signed\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the non-recoverable message part can be signed 
+.RE
+.PP
+
+.PP
+Implements \fBPK_SignatureScheme\fP\&.
+.SS "const \fBPublicKey\fP & ed25519Verifier::GetKey () const\fR [inline]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. \fBGetKey()\fP retrieves a const reference to a public key\&. 
+.SS "const \fBPublicKey\fP & ed25519Verifier::GetPublicKey () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference the public key 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBPublicKeyAlgorithm\fP\&.
+.SS "void ed25519Verifier::InputSignature (\fBPK_MessageAccumulator\fP & messageAccumulator, const \fBbyte\fP * signature, size_t signatureLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Input signature into a message accumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImessageAccumulator\fP a pointer to a \fBPK_MessageAccumulator\fP derived class 
+.br
+\fIsignature\fP the signature on the message 
+.br
+\fIsignatureLength\fP the size of the signature 
+.RE
+.PP
+
+.PP
+Implements \fBPK_Verifier\fP\&.
+.SS "bool ed25519Verifier::IsProbabilistic () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether a signature scheme requires a random number generator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature scheme requires a \fBRandomNumberGenerator()\fP to sign
+.RE
+.PP
+if \fBIsProbabilistic()\fP returns false, then \fBNullRNG()\fP can be passed to functions that take \fBRandomNumberGenerator()\fP\&. 
+.PP
+Implements \fBPK_SignatureScheme\fP\&.
+.SS "size_t ed25519Verifier::MaxRecoverableLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the length of longest message that can be recovered\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the length of longest message that can be recovered, in bytes
+.RE
+.PP
+\fBMaxRecoverableLength()\fP returns the length of longest message that can be recovered, or 0 if this signature scheme does not support message recovery\&. 
+.PP
+Implements \fBPK_SignatureScheme\fP\&.
+.SS "size_t ed25519Verifier::MaxRecoverableLengthFromSignatureLength (size_t signatureLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the length of longest message that can be recovered from a signature of given length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsignatureLength\fP the length of the signature, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the length of longest message that can be recovered from a signature of given length, in bytes
+.RE
+.PP
+\fBMaxRecoverableLengthFromSignatureLength()\fP returns the length of longest message that can be recovered from a signature of given length, or 0 if this signature scheme does not support message recovery\&. 
+.PP
+Implements \fBPK_SignatureScheme\fP\&.
+.SS "\fBed25519_MessageAccumulator\fP * ed25519Verifier::NewVerificationAccumulator () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Create a new \fBHashTransformation\fP to accumulate the message to be verified\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a \fBPK_MessageAccumulator\fP
+.RE
+.PP
+\fBNewVerificationAccumulator()\fP can be used with all verification methods\&. \fBVerify()\fP will automatically delete the accumulator pointer\&. The caller is responsible for deletion if a method is called that takes a reference\&. 
+.PP
+Implements \fBPK_Verifier\fP\&.
+.SS "bool ed25519Verifier::RecoverablePartFirst () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether the recoverable part must be input before the non-recoverable part\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the recoverable part must be input before the non-recoverable part during signing
+.RE
+.PP
+\fBRecoverablePartFirst()\fP determines whether you must input the recoverable part before the non-recoverable part during signing 
+.PP
+Implements \fBPK_SignatureScheme\fP\&.
+.SS "\fBDecodingResult\fP ed25519Verifier::RecoverAndRestart (\fBbyte\fP * recoveredMessage, \fBPK_MessageAccumulator\fP & messageAccumulator) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Recover a message from its signature\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrecoveredMessage\fP a pointer to the recoverable message part to be verified 
+.br
+\fImessageAccumulator\fP a pointer to a \fBPK_MessageAccumulator\fP derived class 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of the verification operation
+.RE
+.PP
+\fBRecoverAndRestart()\fP restarts the messageAccumulator 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(recoveredMessage) == MaxRecoverableLengthFromSignatureLength(signatureLength)\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPK_Verifier\fP\&.
+.SS "size_t ed25519Verifier::SignatureLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the signature length if it only depends on the key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the signature length if it only depends on the key, in bytes
+.RE
+.PP
+\fBSignatureLength()\fP returns the signature length if it only depends on the key, otherwise 0\&. 
+.PP
+Implements \fBPK_SignatureScheme\fP\&.
+.SS "bool ed25519Verifier::VerifyAndRestart (\fBPK_MessageAccumulator\fP & messageAccumulator) const\fR [virtual]\fP"
+
+.PP
+Check whether messageAccumulator contains a valid signature and message, and restart messageAccumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImessageAccumulator\fP a reference to a \fBPK_MessageAccumulator\fP derived class 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature is valid, false otherwise
+.RE
+.PP
+\fBVerifyAndRestart()\fP restarts the messageAccumulator 
+.PP
+Implements \fBPK_Verifier\fP\&.
+.SS "bool ed25519Verifier::VerifyStream (std::istream & stream, const \fBbyte\fP * signature, size_t signatureLen) const"
+
+.PP
+Check whether input signature is a valid signature for input message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstream\fP an std::istream derived class 
+.br
+\fIsignature\fP a pointer to the signature over the message 
+.br
+\fIsignatureLen\fP the size of the signature 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature is valid, false otherwise
+.RE
+.PP
+\fBVerifyStream()\fP handles large streams\&. The Stream functions were added to \fBed25519\fP for signing and verifying files that are too large for a memory allocation\&. The functions are not present in other library signers and verifiers\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

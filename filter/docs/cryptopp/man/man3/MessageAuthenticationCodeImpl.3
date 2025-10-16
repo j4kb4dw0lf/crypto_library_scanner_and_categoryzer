@@ -1,0 +1,61 @@
+.TH "MessageAuthenticationCodeImpl< BASE, INFO >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MessageAuthenticationCodeImpl< BASE, INFO > \- Provides a base implementation of \fBAlgorithm\fP and \fBSimpleKeyingInterface\fP for message authentication codes\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherits \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BASE, BASE >, BASE >\fP\&.
+.PP
+Inherited by \fBHMAC< LegacyHashModule >\fP, and \fBHMAC< DefaultHashModule >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BASE, BASE >, BASE >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BASE, BASE >, BASE >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class INFO = BASE>
+.br
+class MessageAuthenticationCodeImpl< BASE, INFO >"Provides a base implementation of \fBAlgorithm\fP and \fBSimpleKeyingInterface\fP for message authentication codes\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIINFO\fP a \fBSimpleKeyingInterface\fP derived class 
+.br
+\fIBASE\fP a \fBSimpleKeyingInterface\fP derived class
+.RE
+.PP
+\fBMessageAuthenticationCodeImpl()\fP provides a default implementation for message authentication codes using \fBAlgorithmImpl()\fP and \fBSimpleKeyingInterfaceImpl()\fP\&. Functions are virtual and not subject to C++11 \fRconstexpr\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlgorithm()\fP, \fBSimpleKeyingInterface()\fP, \fBAlgorithmImpl()\fP, \fBSimpleKeyingInterfaceImpl()\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,103 @@
+.TH "OS_Error" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OS_Error \- The operating system reported an error\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBException\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOS_Error\fP (\fBErrorType\fP errorType, const std::string &s, const std::string &operation, int errorCode)"
+.br
+.RI "Construct an \fBOS_Error\fP\&. "
+.ti -1c
+.RI "const std::string & \fBGetOperation\fP () const"
+.br
+.RI "Retrieve the operating system API that reported the error\&. "
+.ti -1c
+.RI "int \fBGetErrorCode\fP () const"
+.br
+.RI "Retrieve the error code returned by the operating system\&. "
+.in -1c
+
+Public Member Functions inherited from \fBException\fP
+.in +1c
+.ti -1c
+.RI "\fBException\fP (\fBErrorType\fP errorType, const std::string &s)"
+.br
+.RI "Construct a new \fBException\fP\&. "
+.ti -1c
+.RI "const char * \fBwhat\fP () const  throw ()"
+.br
+.RI "Retrieves a C-string describing the exception\&. "
+.ti -1c
+.RI "const std::string & \fBGetWhat\fP () const"
+.br
+.RI "Retrieves a string describing the exception\&. "
+.ti -1c
+.RI "void \fBSetWhat\fP (const std::string &s)"
+.br
+.RI "Sets the error string for the exception\&. "
+.ti -1c
+.RI "\fBErrorType\fP \fBGetErrorType\fP () const"
+.br
+.RI "Retrieves the error type for the exception\&. "
+.ti -1c
+.RI "void \fBSetErrorType\fP (\fBErrorType\fP errorType)"
+.br
+.RI "Sets the error type for the exceptions\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBm_operation\fP"
+.br
+.ti -1c
+.RI "int \fBm_errorCode\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBException\fP
+.in +1c
+.ti -1c
+.RI "enum \fBErrorType\fP { \fBNOT_IMPLEMENTED\fP, \fBINVALID_ARGUMENT\fP, \fBCANNOT_FLUSH\fP, \fBDATA_INTEGRITY_CHECK_FAILED\fP, \fBINVALID_DATA_FORMAT\fP, \fBIO_ERROR\fP, \fBOTHER_ERROR\fP }"
+.br
+.RI "Error types or categories\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+The operating system reported an error\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "OS_Error::OS_Error (\fBErrorType\fP errorType, const std::string & s, const std::string & operation, int errorCode)\fR [inline]\fP"
+
+.PP
+Construct an \fBOS_Error\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerrorType\fP the error type 
+.br
+\fIs\fP the message for the exception 
+.br
+\fIoperation\fP the operation for the exception 
+.br
+\fIerrorCode\fP the error code
+.RE
+.PP
+The member function \fR\fBwhat()\fP\fP returns \fRs\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

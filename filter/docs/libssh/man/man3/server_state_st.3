@@ -1,0 +1,76 @@
+.TH "server_state_st" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+server_state_st
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "char * \fBaddress\fP"
+.br
+.ti -1c
+.RI "int \fBport\fP"
+.br
+.ti -1c
+.RI "char * \fBecdsa_key\fP"
+.br
+.ti -1c
+.RI "char * \fBed25519_key\fP"
+.br
+.ti -1c
+.RI "char * \fBrsa_key\fP"
+.br
+.ti -1c
+.RI "char * \fBhost_key\fP"
+.br
+.ti -1c
+.RI "int \fBverbosity\fP"
+.br
+.ti -1c
+.RI "int \fBauth_methods\fP"
+.br
+.ti -1c
+.RI "bool \fBwith_pcap\fP"
+.br
+.ti -1c
+.RI "char * \fBpcap_file\fP"
+.br
+.ti -1c
+.RI "char * \fBexpected_username\fP"
+.br
+.ti -1c
+.RI "char * \fBexpected_password\fP"
+.br
+.ti -1c
+.RI "char * \fBconfig_file\fP"
+.br
+.ti -1c
+.RI "bool \fBparse_global_config\fP"
+.br
+.ti -1c
+.RI "char * \fBlog_file\fP"
+.br
+.ti -1c
+.RI "int \fBmax_tries\fP"
+.br
+.ti -1c
+.RI "int \fBerror\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_server_callbacks_struct\fP * \fBserver_cb\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_channel_callbacks_struct\fP * \fBchannel_cb\fP"
+.br
+.ti -1c
+.RI "void(* \fBhandle_session\fP )(\fBssh_event\fP event, \fBssh_session\fP session, struct \fBserver_state_st\fP *state)"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

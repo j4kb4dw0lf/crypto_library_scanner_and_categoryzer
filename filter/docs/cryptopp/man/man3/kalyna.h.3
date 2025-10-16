@@ -1,0 +1,87 @@
+.TH "/home/mock/cryptopp-master/kalyna.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/kalyna.h \- Classes for the Kalyna block cipher\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'seckey\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBKalyna128_Info\fP"
+.br
+.RI "Kalyna-128 block cipher information\&. "
+.ti -1c
+.RI "struct \fBKalyna256_Info\fP"
+.br
+.RI "Kalyna-256 block cipher information\&. "
+.ti -1c
+.RI "struct \fBKalyna512_Info\fP"
+.br
+.RI "Kalyna-512 block cipher information\&. "
+.ti -1c
+.RI "class \fBKalyna_Base\fP"
+.br
+.RI "Kalyna block cipher base class\&. "
+.ti -1c
+.RI "class \fBKalyna128\fP"
+.br
+.RI "Kalyna 128-bit block cipher\&. "
+.ti -1c
+.RI "class \fBKalyna128::Base\fP"
+.br
+.ti -1c
+.RI "class \fBKalyna256\fP"
+.br
+.RI "Kalyna 256-bit block cipher\&. "
+.ti -1c
+.RI "class \fBKalyna256::Base\fP"
+.br
+.ti -1c
+.RI "class \fBKalyna512\fP"
+.br
+.RI "Kalyna 512-bit block cipher\&. "
+.ti -1c
+.RI "class \fBKalyna512::Base\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBKalyna128::Encryption\fP \fBKalyna128Encryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBKalyna128::Decryption\fP \fBKalyna128Decryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBKalyna256::Encryption\fP \fBKalyna256Encryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBKalyna256::Decryption\fP \fBKalyna256Decryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBKalyna512::Encryption\fP \fBKalyna512Encryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBKalyna512::Decryption\fP \fBKalyna512Decryption\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the Kalyna block cipher\&.
+
+The Crypto++ implementation relied upon three sources\&. First was Oliynykov, Gorbenko, Kazymyrov, Ruzhentsev, Kuznetsov, Gorbenko, Dyrda, Dolgov, Pushkaryov, Mordvinov and Kaidalov's "A New Encryption  Standard of Ukraine: The Kalyna Block Cipher" (http://eprint.iacr.org/2015/650.pdf)\&. Second was Roman Oliynykov and Oleksandr Kazymyrov's GitHub with the reference implementation (http://github.com/Roman-Oliynykov/Kalyna-reference)\&. The third resource was Keru Kuro's implementation of Kalyna in CppCrypto (http://sourceforge.net/projects/cppcrypto/)\&. Kuro has an outstanding implementation that performed better than the reference implementation and our initial attempts\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

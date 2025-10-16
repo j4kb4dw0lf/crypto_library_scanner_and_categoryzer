@@ -1,0 +1,58 @@
+.TH "Kalyna_Base" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Kalyna_Base \- Kalyna block cipher base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <kalyna\&.h>\fP
+.PP
+Inherited by \fBKalyna128::Base\fP, \fBKalyna256::Base\fP, and \fBKalyna512::Base\fP\&.
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSecBlock\fP< word64, \fBAllocatorWithCleanup\fP< word64, true > > \fBAlignedSecBlock64\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAlignedSecBlock64\fP \fBm_wspace\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecBlock64\fP \fBm_mkey\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecBlock64\fP \fBm_rkeys\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_kl\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_nb\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_nk\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Kalyna block cipher base class\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

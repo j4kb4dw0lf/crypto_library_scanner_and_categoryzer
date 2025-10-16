@@ -1,0 +1,114 @@
+.TH "DL_BasePrecomputation_LUC" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_BasePrecomputation_LUC \- \fBLUC\fP Precomputation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <luc\&.h>\fP
+.PP
+Inherits \fBDL_FixedBasePrecomputation< Integer >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBIsInitialized\fP () const"
+.br
+.RI "Determines whether this object is initialized\&. "
+.ti -1c
+.RI "void \fBSetBase\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, const \fBInteger\fP &base)"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetBase\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group) const"
+.br
+.ti -1c
+.RI "void \fBPrecompute\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, unsigned int maxExpBits, unsigned int storage)"
+.br
+.ti -1c
+.RI "void \fBLoad\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, \fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.ti -1c
+.RI "void \fBSave\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, \fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBExponentiate\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, const \fBInteger\fP &exponent) const"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBCascadeExponentiate\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, const \fBInteger\fP &exponent, const \fBDL_FixedBasePrecomputation\fP< \fBInteger\fP > &pc2, const \fBInteger\fP &exponent2) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_FixedBasePrecomputation< Integer >\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBSetBase\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, const \fBElement\fP &base)=0"
+.br
+.RI "Set the base element\&. "
+.ti -1c
+.RI "virtual const \fBElement\fP & \fBGetBase\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group) const=0"
+.br
+.RI "Get the base element\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, unsigned int maxExpBits, unsigned int storage)=0"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, \fBBufferedTransformation\fP &storedPrecomputation)=0"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, \fBBufferedTransformation\fP &storedPrecomputation) const=0"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBExponentiate\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &group, const \fBInteger\fP &exponent) const=0"
+.br
+.RI "Exponentiates an element\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBCascadeExponentiate\fP (const \fBDL_GroupPrecomputation\fP< \fBElement\fP > &pc1, const \fBInteger\fP &exponent1, const \fBDL_FixedBasePrecomputation\fP< \fBElement\fP > &pc2, const \fBInteger\fP &exponent2) const=0"
+.br
+.RI "Exponentiates an element\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_FixedBasePrecomputation< Integer >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBLUC\fP Precomputation\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool DL_BasePrecomputation_LUC::IsInitialized () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether this object is initialized\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if this object is initialized, false otherwise 
+.RE
+.PP
+
+.PP
+Implements \fBDL_FixedBasePrecomputation< Integer >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

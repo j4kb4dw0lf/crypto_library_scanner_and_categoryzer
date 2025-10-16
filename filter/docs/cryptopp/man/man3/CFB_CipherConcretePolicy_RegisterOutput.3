@@ -1,0 +1,74 @@
+.TH "CFB_CipherConcretePolicy< WT, W, BASE >::RegisterOutput< B >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFB_CipherConcretePolicy< WT, W, BASE >::RegisterOutput< B > \- Provides alternate access to a feedback register\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRegisterOutput\fP (\fBbyte\fP *output, const \fBbyte\fP *input, \fBCipherDir\fP dir)"
+.br
+.ti -1c
+.RI "\fBRegisterOutput\fP & \fBoperator()\fP (WordType &registerWord)"
+.br
+.RI "XOR feedback register with data\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBbyte\fP * \fBm_output\fP"
+.br
+.ti -1c
+.RI "const \fBbyte\fP * \fBm_input\fP"
+.br
+.ti -1c
+.RI "\fBCipherDir\fP \fBm_dir\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy>
+.br
+template<class B>
+.br
+struct CFB_CipherConcretePolicy< WT, W, BASE >::RegisterOutput< B >"Provides alternate access to a feedback register\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIB\fP enumeration indicating endianness
+.RE
+.PP
+RegisterOutput() provides alternate access to the feedback register\&. The enumeration B is \fBBigEndian\fP or \fBLittleEndian\fP\&. Repeatedly applying operator() results in advancing in the register\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy> template<class B> \fBRegisterOutput\fP & \fBCFB_CipherConcretePolicy\fP< WT, W, BASE >::RegisterOutput< B >::operator() (WordType & registerWord)\fR [inline]\fP"
+
+.PP
+XOR feedback register with data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIregisterWord\fP data represented as a word type 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to the next feedback register word 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

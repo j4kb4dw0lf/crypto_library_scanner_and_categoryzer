@@ -1,0 +1,42 @@
+.TH "sftp_limits_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sftp_limits_struct \- SFTP limits structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sftp\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint64_t \fBmax_packet_length\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBmax_read_length\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBmax_write_length\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBmax_open_handles\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+SFTP limits structure\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "uint64_t sftp_limits_struct::max_open_handles"
+maximum length in a SSH_FXP_WRITE packet 
+.SS "uint64_t sftp_limits_struct::max_read_length"
+maximum number of bytes in a single sftp packet 
+.SS "uint64_t sftp_limits_struct::max_write_length"
+maximum length in a SSH_FXP_READ packet 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

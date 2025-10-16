@@ -1,0 +1,116 @@
+.TH "FilterPutSpaceHelper" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FilterPutSpaceHelper \- Create a working space in a \fBBufferedTransformation\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <filters\&.h>\fP
+.PP
+Inherited by \fBFileStore\fP\fR [private]\fP, \fBHashFilter\fP\fR [private]\fP, and \fBStreamTransformationFilter\fP\fR [private]\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbyte\fP * \fBHelpCreatePutSpace\fP (\fBBufferedTransformation\fP &target, const std::string &channel, size_t minSize, size_t desiredSize, size_t &bufferSize)"
+.br
+.RI "Create a working space in a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBHelpCreatePutSpace\fP (\fBBufferedTransformation\fP &target, const std::string &channel, size_t minSize)"
+.br
+.RI "Create a working space in a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBHelpCreatePutSpace\fP (\fBBufferedTransformation\fP &target, const std::string &channel, size_t minSize, size_t bufferSize)"
+.br
+.RI "Create a working space in a \fBBufferedTransformation\fP\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBm_tempSpace\fP"
+.br
+.RI "Temporary working space\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Create a working space in a \fBBufferedTransformation\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbyte\fP * FilterPutSpaceHelper::HelpCreatePutSpace (\fBBufferedTransformation\fP & target, const std::string & channel, size_t minSize)\fR [inline]\fP"
+
+.PP
+Create a working space in a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP the \fBBufferedTransformation\fP for the working space 
+.br
+\fIchannel\fP channel for the working space 
+.br
+\fIminSize\fP minimum size of the allocation, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the created space
+.RE
+.PP
+Internally, the overload calls \fBHelpCreatePutSpace()\fP using minSize for missing arguments\&.
+
+.PP
+The filter will delete the space\&. The caller does not need to delete the space\&. 
+.SS "\fBbyte\fP * FilterPutSpaceHelper::HelpCreatePutSpace (\fBBufferedTransformation\fP & target, const std::string & channel, size_t minSize, size_t bufferSize)\fR [inline]\fP"
+
+.PP
+Create a working space in a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP the \fBBufferedTransformation\fP for the working space 
+.br
+\fIchannel\fP channel for the working space 
+.br
+\fIminSize\fP minimum size of the allocation, in bytes 
+.br
+\fIbufferSize\fP the actual size of the allocation, in bytes
+.RE
+.PP
+Internally, the overload calls \fBHelpCreatePutSpace()\fP using minSize for missing arguments\&.
+
+.PP
+The filter will delete the space\&. The caller does not need to delete the space\&. 
+.SS "\fBbyte\fP * FilterPutSpaceHelper::HelpCreatePutSpace (\fBBufferedTransformation\fP & target, const std::string & channel, size_t minSize, size_t desiredSize, size_t & bufferSize)\fR [inline]\fP"
+
+.PP
+Create a working space in a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP \fBBufferedTransformation\fP for the working space 
+.br
+\fIchannel\fP channel for the working space 
+.br
+\fIminSize\fP minimum size of the allocation, in bytes 
+.br
+\fIdesiredSize\fP preferred size of the allocation, in bytes 
+.br
+\fIbufferSize\fP actual size of the allocation, in bytes 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRdesiredSize >= minSize\fP and \fRbufferSize >= minSize\fP\&.
+.RE
+.PP
+bufferSize is an IN and OUT parameter\&. If \fBHelpCreatePutSpace()\fP returns a non-NULL value, then bufferSize is valid and provides the size of the working space created for the caller\&.
+
+.PP
+Internally, \fBHelpCreatePutSpace()\fP calls \fBChannelCreatePutSpace()\fP using desiredSize\&. If the target returns desiredSize with a size less than minSize (i\&.e\&., the request could not be fulfilled), then an internal SecByteBlock called m_tempSpace is resized and used for the caller\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

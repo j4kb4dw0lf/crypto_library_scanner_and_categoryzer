@@ -1,0 +1,81 @@
+.TH "ElGamal" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ElGamal \- \fBElGamal\fP encryption scheme with non-standard padding\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <elgamal\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_CryptoSchemeOptions\fP< \fBElGamal\fP, \fBElGamalKeys\fP, int, int, int > \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef SchemeOptions::PrivateKey \fBPrivateKey\fP"
+.br
+.ti -1c
+.RI "typedef SchemeOptions::PublicKey \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef SchemeOptions::GroupParameters \fBGroupParameters\fP"
+.br
+.RI "Implements \fBDL_GroupParameters\fP interface\&. "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBElGamalObjectImpl\fP< \fBDL_EncryptorBase\fP< \fBInteger\fP >, \fBSchemeOptions\fP, SchemeOptions::PublicKey > > \fBEncryptor\fP"
+.br
+.RI "Implements \fBPK_Encryptor\fP interface\&. "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBElGamalObjectImpl\fP< \fBDL_DecryptorBase\fP< \fBInteger\fP >, \fBSchemeOptions\fP, SchemeOptions::PrivateKey > > \fBDecryptor\fP"
+.br
+.RI "Implements \fBPK_Encryptor\fP interface\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBElGamal\fP encryption scheme with non-standard padding\&. 
+
+\fBElGamal\fP provide the algorithm implementation \fBElGamal\fP key agreement and encryption schemes\&.
+
+.PP
+The \fBElGamal\fP class [mistakenly] used the \fBOID\fP for \fBDSA\fP from about Crypto++ 1\&.0 through Crypto++ 8\&.2\&. At Crypto++ 8\&.3 the \fBOID\fP was fixed and now uses \fBElGamal\fP encryption, which is 1\&.3\&.14\&.7\&.2\&.1\&.1\&. If you need to \fRLoad\fP an \fBElGamal\fP key with the wrong \fBOID\fP then see \fRElGamal\fP on the Crypto++ wiki\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 876\fP, \fRIssue 567\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "CRYPTOPP_STATIC_CONSTEXPR const char * ElGamal::StaticAlgorithmName ()\fR [inline]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

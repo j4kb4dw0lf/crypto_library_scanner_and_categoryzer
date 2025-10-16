@@ -1,0 +1,227 @@
+.TH "PolynomialOverFixedRing< T, instance >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PolynomialOverFixedRing< T, instance > \- Polynomials over a fixed ring\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <polynomi\&.h>\fP
+.PP
+Inherits \fBPolynomialOver< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBRing\fP"
+.br
+.ti -1c
+.RI "typedef T::Element \fBCoefficientType\fP"
+.br
+.ti -1c
+.RI "typedef \fBB::DivideByZero\fP \fBDivideByZero\fP"
+.br
+.ti -1c
+.RI "typedef \fBB::RandomizationParameter\fP \fBRandomizationParameter\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.PP
+.RI "\fBACCESSORS\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "int \fBDegree\fP () const"
+.br
+.RI "the zero polynomial will return a degree of -1 "
+.ti -1c
+.RI "unsigned int \fBCoefficientCount\fP () const"
+.br
+.RI "degree + 1 "
+.ti -1c
+.RI "CoefficientType \fBGetCoefficient\fP (unsigned int i) const"
+.br
+.RI "return coefficient for x^i "
+.ti -1c
+.RI "CoefficientType \fBoperator[]\fP (unsigned int i) const"
+.br
+.RI "return coefficient for x^i "
+.in -1c
+.in -1c
+.PP
+.RI "\fBMANIPULATORS\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator=\fP (const \fBThisType\fP &t)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator+=\fP (const \fBThisType\fP &t)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator\-=\fP (const \fBThisType\fP &t)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator*=\fP (const \fBThisType\fP &t)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator/=\fP (const \fBThisType\fP &t)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator%=\fP (const \fBThisType\fP &t)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator<<=\fP (unsigned int n)"
+.br
+.ti -1c
+.RI "\fBThisType\fP & \fBoperator>>=\fP (unsigned int n)"
+.br
+.ti -1c
+.RI "void \fBSetCoefficient\fP (unsigned int i, const CoefficientType &value)"
+.br
+.RI "set the coefficient for x^i to value "
+.ti -1c
+.RI "void \fBRandomize\fP (\fBRandomNumberGenerator\fP &rng, const \fBRandomizationParameter\fP &parameter)"
+.br
+.ti -1c
+.RI "void \fBNegate\fP ()"
+.br
+.ti -1c
+.RI "void \fBswap\fP (\fBThisType\fP &t)"
+.br
+.in -1c
+.in -1c
+.PP
+.RI "\fBUNARY OPERATORS\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "bool \fBoperator!\fP () const"
+.br
+.ti -1c
+.RI "\fBThisType\fP \fBoperator+\fP () const"
+.br
+.ti -1c
+.RI "\fBThisType\fP \fBoperator\-\fP () const"
+.br
+.in -1c
+.in -1c
+.SS "Friends"
+
+.PP
+.RI "\fBBINARY OPERATORS\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "\fBThisType\fP \fBoperator>>\fP (\fBThisType\fP a, unsigned int n)"
+.br
+.ti -1c
+.RI "\fBThisType\fP \fBoperator<<\fP (\fBThisType\fP a, unsigned int n)"
+.br
+.in -1c
+.in -1c
+.SS "INPUT/OUTPUT"
+
+.in +1c
+.ti -1c
+.RI "std::istream & \fBoperator>>\fP (std::istream &in, \fBThisType\fP &a)"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBThisType\fP &a)"
+.br
+.in -1c
+.SS "CREATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (unsigned int count=0)"
+.br
+.RI "creates the zero polynomial "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (const \fBThisType\fP &t)"
+.br
+.RI "copy constructor "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (const \fBB\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (const CoefficientType &element)"
+.br
+.RI "construct constant polynomial "
+.ti -1c
+.RI "template<typename Iterator> \fBPolynomialOverFixedRing\fP (Iterator first, Iterator last)"
+.br
+.RI "construct polynomial with specified coefficients, starting from coefficient of x^0 "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (const char *str)"
+.br
+.RI "convert from string "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (const \fBbyte\fP *encodedPoly, unsigned int byteCount)"
+.br
+.RI "convert from big-endian byte array "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (const \fBbyte\fP *BEREncodedPoly)"
+.br
+.RI "convert from Basic Encoding Rules encoded byte array "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "convert from BER encoded byte array stored in a \fBBufferedTransformation\fP object "
+.ti -1c
+.RI "\fBPolynomialOverFixedRing\fP (\fBRandomNumberGenerator\fP &rng, const \fBRandomizationParameter\fP &parameter)"
+.br
+.RI "create a random \fBPolynomialOverFixedRing\fP "
+.ti -1c
+.RI "static const \fBThisType\fP & \fBZero\fP ()"
+.br
+.ti -1c
+.RI "static const \fBThisType\fP & \fBOne\fP ()"
+.br
+.in -1c
+.SS "OTHER ARITHMETIC FUNCTIONS"
+
+.in +1c
+.ti -1c
+.RI "\fBThisType\fP \fBMultiplicativeInverse\fP () const"
+.br
+.ti -1c
+.RI "bool \fBIsUnit\fP () const"
+.br
+.ti -1c
+.RI "\fBThisType\fP \fBDoubled\fP () const"
+.br
+.ti -1c
+.RI "\fBThisType\fP \fBSquared\fP () const"
+.br
+.ti -1c
+.RI "CoefficientType \fBEvaluateAt\fP (const CoefficientType &x) const"
+.br
+.ti -1c
+.RI "static void \fBDivide\fP (\fBThisType\fP &r, \fBThisType\fP &q, const \fBThisType\fP &a, const \fBThisType\fP &d)"
+.br
+.RI "calculate r and q such that (a == d*q + r) && (0 <= r < abs(d)) "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, int instance>
+.br
+class PolynomialOverFixedRing< T, instance >"Polynomials over a fixed ring\&. 
+
+Having a fixed ring allows overloaded operators 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

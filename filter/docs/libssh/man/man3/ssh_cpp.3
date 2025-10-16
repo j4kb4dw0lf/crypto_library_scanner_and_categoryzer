@@ -1,0 +1,40 @@
+.TH "ssh_cpp" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_cpp \- The libssh C++ wrapper
+.SH SYNOPSIS
+.br
+.PP
+.SH "Detailed Description"
+.PP 
+The C++ bindings for libssh are completely embedded in a single \&.hpp file, and this for two reasons:
+.IP "\(bu" 2
+C++ is hard to keep binary compatible, C is easy\&. We try to keep libssh C version as much as possible binary compatible between releases, while this would be hard for C++\&. If you compile your program with these headers, you will only link to the C version of libssh which will be kept ABI compatible\&. No need to recompile your C++ program each time a new binary-compatible version of libssh is out
+.IP "\(bu" 2
+Most of the functions in this file are really short and are probably worth the "inline" linking mode, which the compiler can decide to do in some case\&. There would be nearly no performance penalty of using the wrapper rather than native calls\&.
+.PP
+
+.PP
+Please visit the documentation of \fBssh::Session\fP and \fBssh::Channel\fP 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh::Session\fP 
+
+.PP
+\fBssh::Channel\fP
+.RE
+.PP
+If you wish not to use C++ exceptions, please define SSH_NO_CPP_EXCEPTIONS: 
+.PP
+.nf
+#define SSH_NO_CPP_EXCEPTIONS
+#include <libssh/libsshpp\&.hpp>
+
+.fi
+.PP
+ All functions will then return SSH_ERROR in case of error\&. 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

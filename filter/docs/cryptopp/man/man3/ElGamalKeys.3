@@ -1,0 +1,57 @@
+.TH "ElGamalKeys" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ElGamalKeys \- \fBElGamal\fP key agreement and encryption schemes keys\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <elgamal\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_CryptoKeys_ElGamal::GroupParameters\fP \fBGroupParameters\fP"
+.br
+.RI "Implements \fBDL_GroupParameters\fP interface\&. "
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_ElGamal\fP< \fBDL_CryptoKeys_ElGamal::PrivateKey\fP > \fBPrivateKey\fP"
+.br
+.RI "Implements \fBDL_PrivateKey\fP interface\&. "
+.ti -1c
+.RI "typedef \fBDL_PublicKey_ElGamal\fP< \fBDL_CryptoKeys_ElGamal::PublicKey\fP > \fBPublicKey\fP"
+.br
+.RI "Implements \fBDL_PublicKey\fP interface\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBElGamal\fP key agreement and encryption schemes keys\&. 
+
+\fBElGamalKeys\fP provide the algorithm implementation \fBElGamal\fP key agreement and encryption schemes\&.
+
+.PP
+The \fBElGamalKeys\fP class used \fRDL_PrivateKey_GFP_OldFormat\fP and \fRDL_PublicKey_GFP_OldFormat\fP for the \fR\fBPrivateKey\fP\fP and \fR\fBPublicKey\fP\fP from about Crypto++ 1\&.0 through Crypto++ 5\&.6\&.5\&. At Crypto++ 6\&.0 the serialization format was cutover to standard PKCS8 and X509 encodings\&.
+
+.PP
+The \fBElGamalKeys\fP class [mistakenly] used the \fBOID\fP for \fBDSA\fP from about Crypto++ 1\&.0 through Crypto++ 8\&.2\&. At Crypto++ 8\&.3 the \fBOID\fP was fixed and now uses \fBElGamal\fP encryption, which is 1\&.3\&.14\&.7\&.2\&.1\&.1\&. If you need to \fRLoad\fP an \fBElGamal\fP key with the wrong \fBOID\fP then see \fRElGamal\fP on the Crypto++ wiki\&.
+
+.PP
+At Crypto++ 8\&.6 \fBElGamalKeys\fP were changed to use \fBDL_CryptoKeys_ElGamal\fP due to Issue 1069 and CVE-2021-40530\&. \fBDL_CryptoKeys_ElGamal\fP group parameters use the subgroup order, and not an estimated work factor\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 876\fP, \fRIssue 567\fP, \fRIssue 1059\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

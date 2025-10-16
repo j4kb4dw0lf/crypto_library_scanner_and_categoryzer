@@ -1,0 +1,264 @@
+.TH "GF2NT" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GF2NT \- GF(2^n) with Trinomial Basis\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gf2n\&.h>\fP
+.PP
+Inherits \fBGF2NP\fP\&.
+.PP
+Inherited by \fBGF2NT233\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGF2NT\fP (unsigned int t0, unsigned int t1, unsigned int t2)"
+.br
+.ti -1c
+.RI "\fBGF2NP\fP * \fBClone\fP () const"
+.br
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "const \fBElement\fP & \fBMultiply\fP (const \fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.ti -1c
+.RI "const \fBElement\fP & \fBSquare\fP (const \fBElement\fP &a) const"
+.br
+.ti -1c
+.RI "const \fBElement\fP & \fBMultiplicativeInverse\fP (const \fBElement\fP &a) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBGF2NP\fP
+.in +1c
+.ti -1c
+.RI "\fBGF2NP\fP (const \fBPolynomialMod2\fP &modulus)"
+.br
+.ti -1c
+.RI "void \fBDEREncodeElement\fP (\fBBufferedTransformation\fP &out, const \fBElement\fP &a) const"
+.br
+.ti -1c
+.RI "void \fBBERDecodeElement\fP (\fBBufferedTransformation\fP &in, \fBElement\fP &a) const"
+.br
+.ti -1c
+.RI "bool \fBEqual\fP (const \fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.ti -1c
+.RI "bool \fBIsUnit\fP (const \fBElement\fP &a) const"
+.br
+.ti -1c
+.RI "unsigned int \fBMaxElementBitLength\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBMaxElementByteLength\fP () const"
+.br
+.ti -1c
+.RI "\fBElement\fP \fBSquareRoot\fP (const \fBElement\fP &a) const"
+.br
+.ti -1c
+.RI "\fBElement\fP \fBHalfTrace\fP (const \fBElement\fP &a) const"
+.br
+.ti -1c
+.RI "\fBElement\fP \fBSolveQuadraticEquation\fP (const \fBElement\fP &a) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBQuotientRing< EuclideanDomainOf< PolynomialMod2 > >\fP
+.in +1c
+.ti -1c
+.RI "\fBQuotientRing\fP (const \fBEuclideanDomain\fP &domain, const Element &modulus)"
+.br
+.ti -1c
+.RI "const \fBEuclideanDomain\fP & \fBGetDomain\fP () const"
+.br
+.ti -1c
+.RI "const Element & \fBGetModulus\fP () const"
+.br
+.ti -1c
+.RI "bool \fBEqual\fP (const Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "const Element & \fBIdentity\fP () const"
+.br
+.RI "Provides the Identity element\&. "
+.ti -1c
+.RI "const Element & \fBAdd\fP (const Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "Element & \fBAccumulate\fP (Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "const Element & \fBInverse\fP (const Element &a) const"
+.br
+.ti -1c
+.RI "const Element & \fBSubtract\fP (const Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "Element & \fBReduce\fP (Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "const Element & \fBDouble\fP (const Element &a) const"
+.br
+.ti -1c
+.RI "bool \fBIsUnit\fP (const Element &a) const"
+.br
+.ti -1c
+.RI "const Element & \fBMultiplicativeIdentity\fP () const"
+.br
+.RI "Retrieves the multiplicative identity\&. "
+.ti -1c
+.RI "const Element & \fBMultiply\fP (const Element &a, const Element &b) const"
+.br
+.ti -1c
+.RI "const Element & \fBSquare\fP (const Element &a) const"
+.br
+.ti -1c
+.RI "const Element & \fBMultiplicativeInverse\fP (const Element &a) const"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBQuotientRing\fP< \fBEuclideanDomainOf\fP< \fBPolynomialMod2\fP > > &rhs) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAbstractRing< EuclideanDomainOf< PolynomialMod2 >::Element >\fP
+.in +1c
+.ti -1c
+.RI "\fBAbstractRing\fP ()"
+.br
+.RI "Construct an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "\fBAbstractRing\fP & \fBoperator=\fP (const \fBAbstractRing\fP &source)"
+.br
+.RI "Assign an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "virtual const Element & \fBMultiplicativeInverse\fP (const Element &a) const=0"
+.br
+.RI "Calculate the multiplicative inverse of an element in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBDivide\fP (const Element &a, const Element &b) const"
+.br
+.RI "Divides elements in the group\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiate\fP (const Element &a, const \fBInteger\fP &e) const"
+.br
+.RI "Raises a base to an exponent in the group\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeExponentiate\fP (const Element &x, const \fBInteger\fP &e1, const Element &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousExponentiate\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Exponentiates a base to multiple exponents in the Ring\&. "
+.ti -1c
+.RI "virtual const \fBAbstractGroup\fP< \fBEuclideanDomainOf\fP< \fBPolynomialMod2\fP >\fB::Element\fP > & \fBMultiplicativeGroup\fP () const"
+.br
+.RI "Retrieves the multiplicative group\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAbstractGroup< EuclideanDomainOf< PolynomialMod2 >::Element >\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBInversionIsFast\fP () const"
+.br
+.RI "Determine if inversion is fast\&. "
+.ti -1c
+.RI "virtual Element \fBScalarMultiply\fP (const Element &a, const \fBInteger\fP &e) const"
+.br
+.RI "Performs a scalar multiplication\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeScalarMultiply\fP (const Element &x, const \fBInteger\fP &e1, const Element &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousMultiply\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Multiplies a base to multiple exponents in a group\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBElement\fP & \fBReduced\fP (const \fBElement\fP &a) const"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBt0\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBt1\fP"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBresult\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBGF2NP\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBm\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBQuotientRing< EuclideanDomainOf< PolynomialMod2 > >\fP
+.in +1c
+.ti -1c
+.RI "\fBEuclideanDomain\fP \fBm_domain\fP"
+.br
+.ti -1c
+.RI "Element \fBm_modulus\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBQuotientRing< EuclideanDomainOf< PolynomialMod2 > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBEuclideanDomainOf\fP< \fBPolynomialMod2\fP > \fBEuclideanDomain\fP"
+.br
+.ti -1c
+.RI "typedef \fBEuclideanDomainOf\fP< \fBPolynomialMod2\fP >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAbstractRing< EuclideanDomainOf< PolynomialMod2 >::Element >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBEuclideanDomainOf\fP< \fBPolynomialMod2\fP >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAbstractGroup< EuclideanDomainOf< PolynomialMod2 >::Element >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBEuclideanDomainOf\fP< \fBPolynomialMod2\fP >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+GF(2^n) with Trinomial Basis\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBGF2NP\fP * GF2NT::Clone () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBGF2NP\fP\&.
+.SS "void GF2NT::DEREncode (\fBBufferedTransformation\fP & bt) const\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBGF2NP\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

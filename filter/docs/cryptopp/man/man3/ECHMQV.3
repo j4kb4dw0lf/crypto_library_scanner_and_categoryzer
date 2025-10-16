@@ -1,0 +1,46 @@
+.TH "ECHMQV< EC, COFACTOR_OPTION, HASH >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECHMQV< EC, COFACTOR_OPTION, HASH > \- Hashed Elliptic Curve Menezes-Qu-Vanstone\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBHMQV_Domain\fP< \fBDL_GroupParameters_EC\fP< EC >, COFACTOR_OPTION, HASH > \fBDomain\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC, class COFACTOR_OPTION = typename DL_GroupParameters_EC<EC>::DefaultCofactorOption, class HASH = SHA256>
+.br
+struct ECHMQV< EC, COFACTOR_OPTION, HASH >"Hashed Elliptic Curve Menezes-Qu-Vanstone\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.br
+\fICOFACTOR_OPTION\fP cofactor multiplication option
+.RE
+.PP
+This implementation follows Hugo Krawczyk's \fRHMQV: A High-Performance Secure Diffie-Hellman Protocol\fP\&. Note: this implements \fBHMQV\fP only\&. HMQV-C with Key Confirmation is not provided\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCofactorMultiplicationOption\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

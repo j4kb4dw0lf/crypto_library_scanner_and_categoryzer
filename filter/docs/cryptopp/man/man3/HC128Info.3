@@ -1,0 +1,50 @@
+.TH "HC128Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HC128Info \- HC-128 stream cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <hc128\&.h>\fP
+.PP
+Inherits \fBFixedKeyLength< 16, SimpleKeyingInterface::UNIQUE_IV, 16 >\fP\&.
+.PP
+Inherited by \fBHC128\fP, and \fBHC128Policy\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16, SimpleKeyingInterface::UNIQUE_IV, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+HC-128 stream cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,72 @@
+.TH "DL_Key< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_Key< T > \- Base class for a Discrete Log (DL) key\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBDL_PrivateKey< T >\fP, and \fBDL_PublicKey< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual const \fBDL_GroupParameters\fP< T > & \fBGetAbstractGroupParameters\fP () const =0"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "virtual \fBDL_GroupParameters\fP< T > & \fBAccessAbstractGroupParameters\fP ()=0"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_Key< T >"Base class for a Discrete Log (DL) key\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type of an element
+.RE
+.PP
+The element is usually an \fBInteger\fP, \fBECP::Point\fP or \fBEC2N::Point\fP 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual \fBDL_GroupParameters\fP< T > & \fBDL_Key\fP< T >::AccessAbstractGroupParameters ()\fR [pure virtual]\fP"
+
+.PP
+Retrieves abstract group parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a non-const reference to the group parameters 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, and \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+.SS "template<class T> virtual const \fBDL_GroupParameters\fP< T > & \fBDL_Key\fP< T >::GetAbstractGroupParameters () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves abstract group parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the group parameters 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, and \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

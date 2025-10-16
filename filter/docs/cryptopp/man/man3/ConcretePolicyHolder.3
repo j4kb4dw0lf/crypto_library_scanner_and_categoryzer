@@ -1,0 +1,46 @@
+.TH "ConcretePolicyHolder< POLICY, BASE, POLICY_INTERFACE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ConcretePolicyHolder< POLICY, BASE, POLICY_INTERFACE > \- Stream cipher policy object\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherits BASE, and POLICY\&.
+.PP
+Inherited by \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, CFB_EncryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > >\fP, \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, CFB_DecryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > >\fP, \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, CFB_RequireFullDataBlocks< CFB_EncryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > > >\fP, \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, CFB_RequireFullDataBlocks< CFB_DecryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > > >\fP, \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, OFB_ModePolicy > > > >\fP, and \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, CTR_ModePolicy > > > >\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const POLICY_INTERFACE & \fBGetPolicy\fP () const"
+.br
+.ti -1c
+.RI "POLICY_INTERFACE & \fBAccessPolicy\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class POLICY, class BASE, class POLICY_INTERFACE = typename BASE::PolicyInterface>
+.br
+class ConcretePolicyHolder< POLICY, BASE, POLICY_INTERFACE >"Stream cipher policy object\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPOLICY\fP class implementing \fBAbstractPolicyHolder\fP 
+.br
+\fIBASE\fP class or type to use as a base class 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

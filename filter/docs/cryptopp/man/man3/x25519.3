@@ -1,0 +1,953 @@
+.TH "x25519" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+x25519 \- \fBx25519\fP with key validation  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xed25519\&.h>\fP
+.PP
+Inherits \fBSimpleKeyAgreementDomain\fP, \fBCryptoParameters\fP, and \fBPKCS8PrivateKey\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SECRET_KEYLENGTH=32)"
+.br
+.RI "Size of the private key\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (PUBLIC_KEYLENGTH=32)"
+.br
+.RI "Size of the public key\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SHARED_KEYLENGTH=32)"
+.br
+.RI "Size of the shared key\&. "
+.ti -1c
+.RI "\fBx25519\fP ()"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (const \fBbyte\fP y[PUBLIC_KEYLENGTH], const \fBbyte\fP x[SECRET_KEYLENGTH])"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (const \fBbyte\fP x[SECRET_KEYLENGTH])"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (const \fBInteger\fP &y, const \fBInteger\fP &x)"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (const \fBInteger\fP &x)"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (\fBRandomNumberGenerator\fP &rng)"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (\fBBufferedTransformation\fP &params)"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "\fBx25519\fP (const \fBOID\fP &oid)"
+.br
+.RI "Create a \fBx25519\fP object\&. "
+.ti -1c
+.RI "void \fBClampKey\fP (\fBbyte\fP x[SECRET_KEYLENGTH]) const"
+.br
+.RI "Clamp a private key\&. "
+.ti -1c
+.RI "bool \fBIsClamped\fP (const \fBbyte\fP x[SECRET_KEYLENGTH]) const"
+.br
+.RI "Determine if private key is clamped\&. "
+.ti -1c
+.RI "bool \fBIsSmallOrder\fP (const \fBbyte\fP y[PUBLIC_KEYLENGTH]) const"
+.br
+.RI "Test if a key has small order\&. "
+.ti -1c
+.RI "\fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.RI "Get the Object Identifier\&. "
+.ti -1c
+.RI "void \fBSetAlgorithmID\fP (const \fBOID\fP &oid)"
+.br
+.RI "Set the Object Identifier\&. "
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "\fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt, bool v1) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBBERDecodePrivateKey\fP (\fBBufferedTransformation\fP &bt, bool parametersPresent, size_t size)"
+.br
+.RI "Decode privateKey part of privateKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncodePrivateKey\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode privateKey part of privateKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt, int version) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBBERDecodeAndCheckAlgorithmID\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Determine if \fBOID\fP is valid for this object\&. "
+.ti -1c
+.RI "void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.ti -1c
+.RI "unsigned int \fBAgreedValueLength\fP () const"
+.br
+.RI "Provides the size of the agreed value\&. "
+.ti -1c
+.RI "unsigned int \fBPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the private key\&. "
+.ti -1c
+.RI "unsigned int \fBPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the public key\&. "
+.ti -1c
+.RI "void \fBGeneratePrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate private key in this domain\&. "
+.ti -1c
+.RI "void \fBGeneratePublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a public key from a private key in this domain\&. "
+.ti -1c
+.RI "bool \fBAgree\fP (\fBbyte\fP *agreedValue, const \fBbyte\fP *privateKey, const \fBbyte\fP *otherPublicKey, bool validateOtherPublicKey=true) const"
+.br
+.RI "Derive agreed value\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyAgreementDomain\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a private/public key pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyAgreementAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (unsigned int precomputationStorage)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPKCS8PrivateKey\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBBERDecodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode optional parameters\&. "
+.ti -1c
+.RI "virtual bool \fBDEREncodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode optional parameters\&. "
+.ti -1c
+.RI "virtual void \fBBERDecodeOptionalAttributes\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode optional attributes\&. "
+.ti -1c
+.RI "virtual void \fBDEREncodeOptionalAttributes\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode optional attributes\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSecretToPublicKey\fP (\fBbyte\fP y[PUBLIC_KEYLENGTH], const \fBbyte\fP x[SECRET_KEYLENGTH]) const"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBbyte\fP, SECRET_KEYLENGTH > \fBm_sk\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBbyte\fP, PUBLIC_KEYLENGTH > \fBm_pk\fP"
+.br
+.ti -1c
+.RI "\fBOID\fP \fBm_oid\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBPKCS8PrivateKey\fP
+.in +1c
+.ti -1c
+.RI "\fBByteQueue\fP \fBm_optionalAttributes\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBx25519\fP with key validation 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "x25519::x25519 ()\fR [inline]\fP"
+
+.PP
+Create a \fBx25519\fP object\&. This constructor creates an empty \fBx25519\fP object\&. It is intended for use in loading existing parameters, like CryptoBox parameters\&. If you are performing key agreement you should use a constructor that generates random parameters on construction\&. 
+.SS "ANONYMOUS_NAMESPACE_END x25519::x25519 (const \fBbyte\fP y[PUBLIC_KEYLENGTH], const \fBbyte\fP x[SECRET_KEYLENGTH])"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIy\fP public key 
+.br
+\fIx\fP private key
+.RE
+.PP
+This constructor creates a \fBx25519\fP object using existing parameters\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SS "x25519::x25519 (const \fBbyte\fP x[SECRET_KEYLENGTH])"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP private key
+.RE
+.PP
+This constructor creates a \fBx25519\fP object using existing parameters\&. The public key is calculated from the private key\&. 
+.SS "x25519::x25519 (const \fBInteger\fP & y, const \fBInteger\fP & x)"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIy\fP public key 
+.br
+\fIx\fP private key
+.RE
+.PP
+This constructor creates a \fBx25519\fP object using existing parameters\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SS "x25519::x25519 (const \fBInteger\fP & x)"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP private key
+.RE
+.PP
+This constructor creates a \fBx25519\fP object using existing parameters\&. The public key is calculated from the private key\&. 
+.SS "x25519::x25519 (\fBRandomNumberGenerator\fP & rng)"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP derived class
+.RE
+.PP
+This constructor creates a new \fBx25519\fP using the random number generator\&. 
+.SS "x25519::x25519 (\fBBufferedTransformation\fP & params)"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP public and private key
+.RE
+.PP
+This constructor creates a \fBx25519\fP object using existing parameters\&. The \fRparams\fP can be created with \fRSave\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+The public key is not validated\&. 
+.RE
+.PP
+
+.SS "x25519::x25519 (const \fBOID\fP & oid)"
+
+.PP
+Create a \fBx25519\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoid\fP an object identifier
+.RE
+.PP
+This constructor creates a new \fBx25519\fP using the specified \fBOID\fP\&. The public and private points are uninitialized\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCryptoParameters\fP & x25519::AccessCryptoParameters ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implements \fBKeyAgreementAlgorithm\fP\&.
+.SS "bool x25519::Agree (\fBbyte\fP * agreedValue, const \fBbyte\fP * privateKey, const \fBbyte\fP * otherPublicKey, bool validateOtherPublicKey = \fRtrue\fP) const\fR [virtual]\fP"
+
+.PP
+Derive agreed value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIagreedValue\fP a byte buffer for the shared secret 
+.br
+\fIprivateKey\fP a byte buffer with your private key in this domain 
+.br
+\fIotherPublicKey\fP a byte buffer with the other party's public key in this domain 
+.br
+\fIvalidateOtherPublicKey\fP a flag indicating if the other party's public key should be validated 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true upon success, false in case of failure
+.RE
+.PP
+\fBAgree()\fP derives an agreed value from your private keys and couterparty's public keys\&.
+
+.PP
+The other party's public key is validated by default\&. If you have previously validated the static public key, use \fRvalidateStaticOtherPublicKey=false\fP to save time\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(agreedValue) == \fBAgreedValueLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(privateKey) == \fBPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(otherPublicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "unsigned int x25519::AgreedValueLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the agreed value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of agreed value produced in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "void x25519::AssignFrom (const \fBNameValuePairs\fP & source)\fR [virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Implements \fBCryptoMaterial\fP\&.
+.SS "void x25519::BERDecode (\fBBufferedTransformation\fP & bt)\fR [virtual]\fP"
+
+.PP
+Decode this object from a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Basic Encoding Rules (BER) 
+.PP
+Reimplemented from \fBPKCS8PrivateKey\fP\&.
+.SS "void x25519::BERDecodeAndCheckAlgorithmID (\fBBufferedTransformation\fP & bt)"
+
+.PP
+Determine if \fBOID\fP is valid for this object\&. \fBBERDecodeAndCheckAlgorithmID()\fP parses the \fBOID\fP from \fRbt\fP and determines if it valid for this object\&. The problem in practice is there are multiple OIDs available to denote curve25519 operations\&. The OIDs include an old GNU \fBOID\fP used by SSH, OIDs specified in draft-josefsson-pkix-newcurves, and OIDs specified in draft-ietf-curdle-pkix\&.
+
+.PP
+By default \fBBERDecodeAndCheckAlgorithmID()\fP accepts an \fBOID\fP set by the user, \fRASN1::curve25519()\fP and \fRASN1::X25519()\fP\&. \fRASN1::curve25519()\fP is generic and says "this key is valid for curve25519 operations"\&. \fRASN1::X25519()\fP is specific and says "this key is valid for x25519 key exchange\&." 
+.SS "void x25519::BERDecodePrivateKey (\fBBufferedTransformation\fP & bt, bool parametersPresent, size_t size)\fR [virtual]\fP"
+
+.PP
+Decode privateKey part of privateKeyInfo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIparametersPresent\fP flag indicating if algorithm parameters are present 
+.br
+\fIsize\fP number of octets to read for the parameters, in bytes
+.RE
+.PP
+\fBBERDecodePrivateKey()\fP the decodes privateKey part of privateKeyInfo, without the OCTET STRING header\&.
+
+.PP
+When \fRparametersPresent = true\fP then \fBBERDecodePrivateKey()\fP calls \fBBERDecodeAlgorithmParameters()\fP to parse algorithm parameters\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBBERDecodeAlgorithmParameters\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPKCS8PrivateKey\fP\&.
+.SS "void x25519::ClampKey (\fBbyte\fP x[SECRET_KEYLENGTH]) const"
+
+.PP
+Clamp a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP private key
+.RE
+.PP
+ClampKeys() clamps a private key and then regenerates the public key from the private key\&. 
+.SS "x25519::CRYPTOPP_CONSTANT (PUBLIC_KEYLENGTH  = \fR32\fP)"
+
+.PP
+Size of the public key\&. PUBLIC_KEYLENGTH is the size of the public key, in bytes\&. 
+.SS "x25519::CRYPTOPP_CONSTANT (SECRET_KEYLENGTH  = \fR32\fP)"
+
+.PP
+Size of the private key\&. SECRET_KEYLENGTH is the size of the private key, in bytes\&. 
+.SS "x25519::CRYPTOPP_CONSTANT (SHARED_KEYLENGTH  = \fR32\fP)"
+
+.PP
+Size of the shared key\&. SHARED_KEYLENGTH is the size of the shared key, in bytes\&. 
+.SS "void x25519::DEREncode (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Encode this object into a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Distinguished Encoding Rules (DER) 
+.PP
+Reimplemented from \fBPKCS8PrivateKey\fP\&.
+.SS "void x25519::DEREncode (\fBBufferedTransformation\fP & bt, int version) const"
+
+.PP
+DER encode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIversion\fP indicates version
+.RE
+.PP
+\fBDEREncode()\fP will write the \fBOID\fP associated with algorithm or scheme\&. In the case of public and private keys, this function writes the subjectPublicKeyInfo parts\&.
+
+.PP
+The default \fBOID\fP is from RFC 8410 using \fRid-X25519\fP\&. The default private key format is RFC 5208\&.
+
+.PP
+The value of version is written as the INTEGER\&. INTEGER 0 means RFC 5208 format, which is the old format\&. The old format provides the best interop, and keys will work with OpenSSL\&. The INTEGER 1 means RFC 5958 format, which is the new format\&. 
+.SS "void x25519::DEREncodePrivateKey (\fBBufferedTransformation\fP & bt) const\fR [virtual]\fP"
+
+.PP
+Encode privateKey part of privateKeyInfo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+\fBDEREncodePrivateKey()\fP encodes the privateKey part of privateKeyInfo, without the OCTET STRING header\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDEREncodeAlgorithmParameters\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPKCS8PrivateKey\fP\&.
+.SS "void x25519::GeneratePrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [virtual]\fP"
+
+.PP
+Generate private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == \fBPrivateKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "void x25519::GeneratePublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [virtual]\fP"
+
+.PP
+Generate a public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "void x25519::GenerateRandom (\fBRandomNumberGenerator\fP & rng, const \fBNameValuePairs\fP & params)\fR [virtual]\fP"
+
+.PP
+Generate a random key or crypto parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP to produce keying material 
+.br
+\fIparams\fP additional initialization parameters 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIKeyingErr\fP if a key can't be generated or algorithm parameters are invalid
+.RE
+.PP
+If a derived class does not override \fBGenerateRandom()\fP, then the base class throws \fBNotImplemented\fP\&. 
+.PP
+Reimplemented from \fBGeneratableCryptoMaterial\fP\&.
+.SS "\fBOID\fP x25519::GetAlgorithmID () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Get the Object Identifier\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the Object Identifier
+.RE
+.PP
+The default \fBOID\fP is from RFC 8410 using \fRid-X25519\fP\&. The default private key format is RFC 5208\&. 
+.PP
+Implements \fBPKCS8PrivateKey\fP\&.
+.SS "bool x25519::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBNameValuePairs\fP\&.
+.SS "bool x25519::IsClamped (const \fBbyte\fP x[SECRET_KEYLENGTH]) const"
+
+.PP
+Determine if private key is clamped\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP private key 
+.RE
+.PP
+
+.SS "bool x25519::IsSmallOrder (const \fBbyte\fP y[PUBLIC_KEYLENGTH]) const"
+
+.PP
+Test if a key has small order\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIy\fP public key 
+.RE
+.PP
+
+.SS "void x25519::Load (\fBBufferedTransformation\fP & bt)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+BER decode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 5958, Asymmetric Key Packages\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "unsigned int x25519::PrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of private keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "unsigned int x25519::PublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of public keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "void x25519::Save (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+DER encode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+\fBSave()\fP will write the \fBOID\fP associated with algorithm or scheme\&. In the case of public and private keys, this function writes the subjectPublicKeyInfo parts\&.
+
+.PP
+The default \fBOID\fP is from RFC 8410 using \fRid-X25519\fP\&. The default private key format is RFC 5208, which is the old format\&. The old format provides the best interop, and keys will work with OpenSSL\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 5958, Asymmetric Key Packages\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "void x25519::Save (\fBBufferedTransformation\fP & bt, bool v1) const\fR [inline]\fP"
+
+.PP
+DER encode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIv1\fP flag indicating v1
+.RE
+.PP
+\fBSave()\fP will write the \fBOID\fP associated with algorithm or scheme\&. In the case of public and private keys, this function writes the subjectPublicKeyInfo parts\&.
+
+.PP
+The default \fBOID\fP is from RFC 8410 using \fRid-X25519\fP\&. The default private key format is RFC 5208\&.
+
+.PP
+v1 means INTEGER 0 is written\&. INTEGER 0 means RFC 5208 format, which is the old format\&. The old format provides the best interop, and keys will work with OpenSSL\&. The other option uses INTEGER 1\&. INTEGER 1 means RFC 5958 format, which is the new format\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 5958, Asymmetric Key Packages\fP 
+.RE
+.PP
+
+.SS "void x25519::SetAlgorithmID (const \fBOID\fP & oid)\fR [inline]\fP"
+
+.PP
+Set the Object Identifier\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoid\fP the new Object Identifier 
+.RE
+.PP
+
+.SS "bool x25519::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThrowIfInvalid()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBCryptoMaterial\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,66 @@
+.TH "CustomSignalPropagation< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CustomSignalPropagation< T > \- Interface for custom flush signals\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits \fBCustomFlushPropagation< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBInitialize\fP (const \fBNameValuePairs\fP &parameters=g_nullNameValuePairs, int propagation=\-1)=0"
+.br
+.RI "Initialize or reinitialize this object, with signal propagation\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBFlush\fP (bool hardFlush, int propagation=\-1, bool blocking=true)=0"
+.br
+.RI "Flush buffered input and/or output, with signal propagation\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class CustomSignalPropagation< T >"Interface for custom flush signals\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP \fBBufferedTransformation\fP derived class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual void \fBCustomSignalPropagation\fP< T >::Initialize (const \fBNameValuePairs\fP & parameters = \fRg_nullNameValuePairs\fP, int propagation = \fR\-1\fP)\fR [pure virtual]\fP"
+
+.PP
+Initialize or reinitialize this object, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparameters\fP a set of \fBNameValuePairs\fP to initialize or reinitialize this object 
+.br
+\fIpropagation\fP the number of attached transformations the \fBInitialize()\fP signal should be passed
+.RE
+.PP
+\fBInitialize()\fP is used to initialize or reinitialize an object using a variable number of arbitrarily typed arguments\&. The function avoids the need for multiple constructors providing all possible combintations of configurable parameters\&.
+
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+Implemented in \fBOutputProxy\fP, and \fBRedirector\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

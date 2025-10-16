@@ -1,0 +1,107 @@
+.TH "DL_PrivateKey_ElGamal< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_PrivateKey_ElGamal< BASE > \- \fBElGamal\fP Private Key adapter\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <elgamal\&.h>\fP
+.PP
+Inherits BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.RI "Retrieves the \fBOID\fP of the algorithm\&. "
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check the key for errors\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE>
+.br
+struct DL_PrivateKey_ElGamal< BASE >"\fBElGamal\fP Private Key adapter\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP \fBPrivateKey\fP derived class
+.RE
+.PP
+\fBDL_PrivateKey_ElGamal\fP provides an override for \fBGetAlgorithmID()\fP to utilize 1\&.3\&.14\&.7\&.2\&.1\&.1\&. Prior to \fBDL_PrivateKey_ElGamal\fP, the \fBElGamal\fP keys [mistakenly] used the \fBOID\fP from \fBDSA\fP due to DL_GroupParmaters_GFP()\&. If you need to \fRLoad\fP an \fBElGamal\fP key with the wrong \fBOID\fP then see \fRElGamal\fP on the Crypto++ wiki\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 876\fP, \fRIssue 567\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE> virtual \fBOID\fP \fBDL_PrivateKey_ElGamal\fP< BASE >::GetAlgorithmID () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the \fBOID\fP of the algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBOID\fP of the algorithm
+.RE
+.PP
+\fBDL_PrivateKey_ElGamal\fP provides an override for \fBGetAlgorithmID()\fP to utilize 1\&.3\&.14\&.7\&.2\&.1\&.1\&. Prior to \fBDL_PrivateKey_ElGamal\fP, the \fBElGamal\fP keys [mistakenly] used the \fBOID\fP from \fBDSA\fP due to DL_GroupParmaters_GFP()\&. If you need to \fRLoad\fP an \fBElGamal\fP key with the wrong \fBOID\fP then see \fRElGamal\fP on the Crypto++ wiki\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 876\fP, \fRIssue 567\fP 
+.RE
+.PP
+
+.SS "template<class BASE> bool \fBDL_PrivateKey_ElGamal\fP< BASE >::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [inline]\fP"
+
+.PP
+Check the key for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

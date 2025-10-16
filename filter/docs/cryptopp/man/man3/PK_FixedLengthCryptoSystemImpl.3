@@ -1,0 +1,48 @@
+.TH "PK_FixedLengthCryptoSystemImpl< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PK_FixedLengthCryptoSystemImpl< BASE > \- Public key trapdoor function default implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBMaxPlaintextLength\fP (size_t ciphertextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBCiphertextLength\fP (size_t plaintextLength) const"
+.br
+.ti -1c
+.RI "virtual size_t \fBFixedMaxPlaintextLength\fP () const =0"
+.br
+.ti -1c
+.RI "virtual size_t \fBFixedCiphertextLength\fP () const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE>
+.br
+class PK_FixedLengthCryptoSystemImpl< BASE >"Public key trapdoor function default implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP public key cryptosystem with a fixed length 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

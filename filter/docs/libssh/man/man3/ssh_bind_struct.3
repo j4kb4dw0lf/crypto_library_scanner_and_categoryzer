@@ -1,0 +1,82 @@
+.TH "ssh_bind_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_bind_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_common_struct\fP \fBcommon\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_bind_callbacks_struct\fP * \fBbind_callbacks\fP"
+.br
+.ti -1c
+.RI "void * \fBbind_callbacks_userdata\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_poll_handle_struct\fP * \fBpoll\fP"
+.br
+.ti -1c
+.RI "char * \fBwanted_methods\fP [SSH_KEX_METHODS]"
+.br
+.ti -1c
+.RI "char * \fBbanner\fP"
+.br
+.ti -1c
+.RI "char * \fBecdsakey\fP"
+.br
+.ti -1c
+.RI "char * \fBrsakey\fP"
+.br
+.ti -1c
+.RI "char * \fBed25519key\fP"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBecdsa\fP"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBrsa\fP"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBed25519\fP"
+.br
+.ti -1c
+.RI "char * \fBbindaddr\fP"
+.br
+.ti -1c
+.RI "socket_t \fBbindfd\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBbindport\fP"
+.br
+.ti -1c
+.RI "int \fBblocking\fP"
+.br
+.ti -1c
+.RI "int \fBtoaccept\fP"
+.br
+.ti -1c
+.RI "bool \fBconfig_processed\fP"
+.br
+.ti -1c
+.RI "char * \fBconfig_dir\fP"
+.br
+.ti -1c
+.RI "char * \fBpubkey_accepted_key_types\fP"
+.br
+.ti -1c
+.RI "char * \fBmoduli_file\fP"
+.br
+.ti -1c
+.RI "int \fBrsa_min_size\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

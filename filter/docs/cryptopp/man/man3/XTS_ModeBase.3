@@ -1,0 +1,745 @@
+.TH "XTS_ModeBase" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XTS_ModeBase \- \fBXTS\fP block cipher mode of operation default implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xts\&.h>\fP
+.PP
+Inherits \fBBlockOrientedCipherModeBase\fP\&.
+.PP
+Inherited by \fBXTS_Final< CIPHER >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t n) const"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBMinLastBlockSize\fP () const"
+.br
+.RI "Provides the size of the last block\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidBlockSize\fP (size_t length)"
+.br
+.RI "Validates the block size\&. "
+.ti -1c
+.RI "void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "\fBIV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt an array of bytes\&. "
+.ti -1c
+.RI "size_t \fBProcessLastBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.RI "Encrypt or decrypt the last block of data\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (word64 sector, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Resynchronize the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBBlockOrientedCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "unsigned int \fBMandatoryBlockSize\fP () const"
+.br
+.RI "Provides the mandatory block size of the cipher\&. "
+.ti -1c
+.RI "bool \fBIsRandomAccess\fP () const"
+.br
+.RI "Determines whether the cipher supports random access\&. "
+.ti -1c
+.RI "bool \fBIsSelfInverting\fP () const"
+.br
+.RI "Determines whether the cipher is self-inverting\&. "
+.ti -1c
+.RI "bool \fBIsForwardTransformation\fP () const"
+.br
+.RI "Determines if the cipher is being operated in its forward direction\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "void \fBSetCipher\fP (\fBBlockCipher\fP &cipher)"
+.br
+.RI "Set external block cipher\&. "
+.ti -1c
+.RI "void \fBSetCipherWithIV\fP (\fBBlockCipher\fP &cipher, const \fBbyte\fP *iv, int feedbackSize=0)"
+.br
+.RI "Set external block cipher and IV\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBStreamTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBStreamTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSizeUsed\fP () const"
+.br
+.RI "Provides the number of bytes used in the current block when processing at optimal block size\&. "
+.ti -1c
+.RI "virtual bool \fBIsLastBlockSpecial\fP () const"
+.br
+.RI "Determines if the last block receives special processing\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *inoutString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBProcessByte\fP (\fBbyte\fP input)"
+.br
+.RI "Encrypt or decrypt a byte\&. "
+.ti -1c
+.RI "virtual void \fBSeek\fP (\fBlword\fP pos)"
+.br
+.RI "Seek to an absolute position\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBParallelBlocks\fP = 12 }"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBResizeBuffers\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBProcessLastPlainBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.ti -1c
+.RI "size_t \fBProcessLastCipherBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.ti -1c
+.RI "virtual \fBBlockCipher\fP & \fBAccessBlockCipher\fP ()=0"
+.br
+.ti -1c
+.RI "virtual \fBBlockCipher\fP & \fBAccessTweakCipher\fP ()=0"
+.br
+.ti -1c
+.RI "const \fBBlockCipher\fP & \fBGetBlockCipher\fP () const"
+.br
+.ti -1c
+.RI "const \fBBlockCipher\fP & \fBGetTweakCipher\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBBlockOrientedCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "bool \fBRequireAlignedInput\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBSetFeedbackSize\fP (unsigned int feedbackSize)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBSymmetricCipher\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAlignedSecByteBlock\fP \fBm_xregister\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecByteBlock\fP \fBm_xworkspace\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBBlockOrientedCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBm_buffer\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "\fBBlockCipher\fP * \fBm_cipher\fP"
+.br
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBm_register\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBXTS\fP block cipher mode of operation default implementation\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string XTS_ModeBase::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name
+.RE
+.PP
+The standard algorithm name can be a name like \fRAES\fP or \fRAES/GCM\fP\&. Some algorithms do not have standard names yet\&. For example, there is no standard algorithm name for Shoup's \fBECIES\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+AlgorithmName is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "std::string XTS_ModeBase::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "unsigned int XTS_ModeBase::BlockSize () const\fR [inline]\fP"
+Provides the block size of the cipher 
+.PP
+\fBReturns\fP
+.RS 4
+the block size of the cipher, in bytes 
+.RE
+.PP
+
+.SS "size_t XTS_ModeBase::DefaultKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns default key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the default key length, in bytes 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "unsigned int XTS_ModeBase::GetOptimalBlockSize () const\fR [inline]\fP"
+
+.PP
+Provides the input block size most efficient for this cipher\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The input block size that is most efficient for the cipher
+.RE
+.PP
+The base class implementation returns \fBMandatoryBlockSize()\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+Optimal input length is \fRn * \fBOptimalBlockSize()\fP - \fBGetOptimalBlockSizeUsed()\fP\fP for any \fRn > 0\fP\&. 
+.RE
+.PP
+
+.SS "size_t XTS_ModeBase::GetValidKeyLength (size_t keylength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns a valid key length for the algorithm\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes
+.RE
+.PP
+keylength is provided in bytes, not bits\&. If keylength is less than MIN_KEYLENGTH, then the function returns MIN_KEYLENGTH\&. If keylength is greater than MAX_KEYLENGTH, then the function returns MAX_KEYLENGTH\&. if If keylength is a multiple of KEYLENGTH_MULTIPLE, then keylength is returned\&. Otherwise, the function returns a \fIlower\fP multiple of KEYLENGTH_MULTIPLE\&. 
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "bool XTS_ModeBase::IsValidKeyLength (size_t keylength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns whether keylength is a valid key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the requested keylength 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if keylength is valid, false otherwise
+.RE
+.PP
+Internally the function calls \fBGetValidKeyLength()\fP 
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "\fBIV_Requirement\fP XTS_ModeBase::IVRequirement () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Minimal requirement for secure IVs\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the secure IV requirement of the algorithm 
+.RE
+.PP
+
+.PP
+Implements \fBCipherModeBase\fP\&.
+.SS "size_t XTS_ModeBase::MaxKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns largest valid key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum key length, in bytes 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "size_t XTS_ModeBase::MinKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns smallest valid key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the minimum key length, in bytes 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "unsigned int XTS_ModeBase::MinLastBlockSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the last block\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the minimum size of the last block
+.RE
+.PP
+\fBMinLastBlockSize()\fP returns the minimum size of the last block\&. 0 indicates the last block is not special\&.
+
+.PP
+\fBMandatoryBlockSize()\fP enlists one of two behaviors\&. First, if \fBMandatoryBlockSize()\fP returns 1, then the cipher can be streamed and \fBProcessData()\fP is called with the tail bytes\&. Second, if \fBMandatoryBlockSize()\fP returns non-0, then the string of bytes is padded to \fBMandatoryBlockSize()\fP according to the padding mode\&. Then, \fBProcessData()\fP is called with the padded string of bytes\&.
+
+.PP
+Some authenticated encryption modes are not expressed well with \fBMandatoryBlockSize()\fP and \fBMinLastBlockSize()\fP\&. For example, AES/OCB uses 16-byte blocks (MandatoryBlockSize = 16) and the last block requires special processing (MinLastBlockSize = 0)\&. However, 0 is a valid last block size for OCB and the special processing is custom padding, and not standard PKCS padding\&. In response an unambiguous \fBIsLastBlockSpecial()\fP was added\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBProcessData\fP, \fBProcessLastBlock\fP, \fBMandatoryBlockSize\fP, \fBMinLastBlockSize\fP, \fBBlockPaddingSchemeDef\fP, \fBIsLastBlockSpecial\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBStreamTransformation\fP\&.
+.SS "unsigned int XTS_ModeBase::OptimalDataAlignment () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides input and output data alignment for optimal performance\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the input data alignment that provides optimal performance 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetAlignment() and \fBOptimalBlockSize()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCipherModeBase\fP\&.
+.SS "void XTS_ModeBase::ProcessData (\fBbyte\fP * outString, const \fBbyte\fP * inString, size_t length)\fR [virtual]\fP"
+
+.PP
+Encrypt or decrypt an array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutString\fP the output byte buffer 
+.br
+\fIinString\fP the input byte buffer 
+.br
+\fIlength\fP the size of the input and output byte buffers, in bytes
+.RE
+.PP
+ProcessData is called with a string of bytes whose size depends on MandatoryBlockSize\&. Either \fRinString == outString\fP, or they must not overlap\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBProcessData\fP, \fBProcessLastBlock\fP, \fBMandatoryBlockSize\fP, \fBMinLastBlockSize\fP, \fBBlockPaddingSchemeDef\fP, \fBIsLastBlockSpecial\fP 
+.RE
+.PP
+
+.PP
+Implements \fBStreamTransformation\fP\&.
+.SS "size_t XTS_ModeBase::ProcessLastBlock (\fBbyte\fP * outString, size_t outLength, const \fBbyte\fP * inString, size_t inLength)\fR [virtual]\fP"
+
+.PP
+Encrypt or decrypt the last block of data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutString\fP the output byte buffer 
+.br
+\fIoutLength\fP the size of the output byte buffer, in bytes 
+.br
+\fIinString\fP the input byte buffer 
+.br
+\fIinLength\fP the size of the input byte buffer, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes used in outString
+.RE
+.PP
+ProcessLastBlock is used when the last block of data is special and requires handling by the cipher\&. The current implementation provides an output buffer with a size \fRinLength+2*MandatoryBlockSize()\fP\&. The return value allows the cipher to expand cipher text during encryption or shrink plain text during decryption\&.
+
+.PP
+This member function is used by CBC-CTS and OCB modes\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBProcessData\fP, \fBProcessLastBlock\fP, \fBMandatoryBlockSize\fP, \fBMinLastBlockSize\fP, \fBBlockPaddingSchemeDef\fP, \fBIsLastBlockSpecial\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBStreamTransformation\fP\&.
+.SS "void XTS_ModeBase::ResizeBuffers ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBBlockOrientedCipherModeBase\fP\&.
+.SS "void XTS_ModeBase::Resynchronize (const \fBbyte\fP * iv, int ivLength = \fR\-1\fP)\fR [virtual]\fP"
+
+.PP
+Resynchronize with an IV\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIiv\fP the initialization vector 
+.br
+\fIivLength\fP the size of the initialization vector, in bytes
+.RE
+.PP
+\fBResynchronize()\fP resynchronizes with an IV provided by the caller\&. \fRivLength=-1\fP means use \fBIVSize()\fP\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented()\fP\fP if the object does not support resynchronization 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBlockOrientedCipherModeBase\fP\&.
+.SS "void XTS_ModeBase::Resynchronize (word64 sector, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsector\fP a 64-bit sector number 
+.br
+\fIorder\fP the endian order the word should be written
+.RE
+.PP
+The \fBResynchronize()\fP overload was provided for API compatibility with the IEEE P1619 paper\&. 
+.SS "void XTS_ModeBase::SetKey (const \fBbyte\fP * key, size_t length, const \fBNameValuePairs\fP & params = \fRg_nullNameValuePairs\fP)\fR [virtual]\fP"
+
+.PP
+Sets or reset the key of this object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the key to use when keying the object 
+.br
+\fIlength\fP the size of the key, in bytes 
+.br
+\fIparams\fP additional initialization parameters to configure this object 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBSimpleKeyingInterface\fP\&.
+.SS "CRYPTOPP_STATIC_CONSTEXPR const char * XTS_ModeBase::StaticAlgorithmName ()\fR [inline]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&. 
+.SS "ANONYMOUS_NAMESPACE_END void XTS_ModeBase::ThrowIfInvalidBlockSize (size_t length)"
+
+.PP
+Validates the block size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP the block size of the cipher, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if the block size is invalid
+.RE
+.PP
+If \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP is 0, then CIPHER must be a 16-byte block cipher\&. If \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP is non-zero then CIPHER can be 16, 32, 64, or 128-byte block cipher\&. 
+.SS "void XTS_ModeBase::ThrowIfInvalidKeyLength (size_t length)"
+
+.PP
+Validates the key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP the size of the keying material, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidKeyLength\fP\fP if the key length is invalid 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,56 @@
+.TH "/home/mock/cryptopp-master/rw.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/rw.h \- Classes for Rabin-Williams signature scheme\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRWFunction\fP"
+.br
+.RI "Rabin-Williams trapdoor function using the public key\&. "
+.ti -1c
+.RI "class \fBInvertibleRWFunction\fP"
+.br
+.RI "Rabin-Williams trapdoor function using the private key\&. "
+.ti -1c
+.RI "struct \fBRW\fP"
+.br
+.RI "Rabin-Williams keys\&. "
+.ti -1c
+.RI "struct \fBRWSS< STANDARD, H >\fP"
+.br
+.RI "Rabin-Williams signature scheme\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for Rabin-Williams signature scheme\&.
+
+The implementation provides Rabin-Williams signature schemes as defined in IEEE P1363\&. It uses Bernstein's tweaked square roots in place of square roots to speedup calculations\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRRSA signatures and Rabin–Williams signatures: the state of the art (20080131)\fP, Section 6, \fIThe tweaks e and f\fP\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

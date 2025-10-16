@@ -1,0 +1,49 @@
+.TH "/home/mock/cryptopp-master/xtr.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/xtr.h \- The XTR public key system\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'modarith\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBGFP2Element\fP"
+.br
+.RI "an element of GF(p^2) "
+.ti -1c
+.RI "class \fBGFP2_ONB< F >\fP"
+.br
+.RI "GF(p^2), optimal normal basis\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBXTR_FindPrimesAndGenerator\fP (\fBRandomNumberGenerator\fP &rng, \fBInteger\fP &p, \fBInteger\fP &q, \fBGFP2Element\fP &g, unsigned int pbits, unsigned int qbits)"
+.br
+.RI "Creates primes p,q and generator g for XTR\&. "
+.ti -1c
+.RI "\fBGFP2Element\fP \fBXTR_Exponentiate\fP (const \fBGFP2Element\fP &b, const \fBInteger\fP &e, const \fBInteger\fP &p)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+The XTR public key system\&.
+
+The XTR public key system by Arjen K\&. Lenstra and Eric R\&. Verheul
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

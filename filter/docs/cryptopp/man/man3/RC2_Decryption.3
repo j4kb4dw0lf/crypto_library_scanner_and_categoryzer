@@ -1,0 +1,64 @@
+.TH "RC2::Decryption" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RC2::Decryption \- Class specific methods used to operate the cipher in the reverse direction\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rc2\&.h>\fP
+.PP
+Inherits \fBBlockCipherFinal< DECRYPTION, Dec >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDecryption\fP (const \fBbyte\fP *key, size_t keyLen=DEFAULT_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBDecryption\fP (const \fBbyte\fP *key, size_t keyLen, int effectiveKeyLen)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBBlockCipherFinal< DECRYPTION, Dec >\fP
+.in +1c
+.ti -1c
+.RI "\fBBlockCipherFinal\fP ()"
+.br
+.RI "Construct a default \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBBlockCipherFinal\fP (const \fBbyte\fP *key)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBBlockCipherFinal\fP (const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBBlockCipherFinal\fP (const \fBbyte\fP *key, size_t length, unsigned int rounds)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "bool \fBIsForwardTransformation\fP () const"
+.br
+.RI "Provides the direction of the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonableImpl< DERIVED, BASE >\fP
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Class specific methods used to operate the cipher in the reverse direction\&. 
+
+Implementations and overrides in \fR\fBDecryption\fP\fP apply to \fRDECRYPTION\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

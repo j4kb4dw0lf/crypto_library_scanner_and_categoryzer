@@ -1,0 +1,77 @@
+.TH "Waitable" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Waitable \- Interface for objects that can be waited on\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBBufferedTransformation\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBGetMaxWaitObjectCount\fP () const =0"
+.br
+.RI "Maximum number of wait objects that this object can return\&. "
+.ti -1c
+.RI "virtual void \fBGetWaitObjects\fP (WaitObjectContainer &container, CallStack const &callStack)=0"
+.br
+.RI "Retrieves waitable objects\&. "
+.ti -1c
+.RI "bool \fBWait\fP (unsigned long milliseconds, CallStack const &callStack)"
+.br
+.RI "Wait on this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for objects that can be waited on\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual unsigned int Waitable::GetMaxWaitObjectCount () const\fR [pure virtual]\fP"
+
+.PP
+Maximum number of wait objects that this object can return\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum number of wait objects 
+.RE
+.PP
+
+.PP
+Implemented in \fBBufferedTransformation\fP, and \fBRedirector\fP\&.
+.SS "virtual void Waitable::GetWaitObjects (WaitObjectContainer & container, CallStack const & callStack)\fR [pure virtual]\fP"
+
+.PP
+Retrieves waitable objects\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcontainer\fP the wait container to receive the references to the objects\&. 
+.br
+\fIcallStack\fP CallStack() object used to select waitable objects
+.RE
+.PP
+\fBGetWaitObjects()\fP is usually called in one of two ways\&. First, it can be called like \fRsomething\&.GetWaitObjects(c, CallStack("my func after X", 0));\fP\&. Second, if in an outer \fBGetWaitObjects()\fP method that itself takes a callStack parameter, it can be called like \fRinnerThing\&.GetWaitObjects(c, CallStack("MyClass::GetWaitObjects at X", &callStack));\fP\&. 
+.PP
+Implemented in \fBBufferedTransformation\fP, and \fBRedirector\fP\&.
+.SS "bool Waitable::Wait (unsigned long milliseconds, CallStack const & callStack)"
+
+.PP
+Wait on this object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the wait succeeded, false otherwise
+.RE
+.PP
+\fBWait()\fP is the same as creating an empty container, calling \fBGetWaitObjects()\fP, and then calling \fBWait()\fP on the container\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

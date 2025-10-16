@@ -1,0 +1,153 @@
+.TH "EcPrecomputation< EC2N >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EcPrecomputation< EC2N > \- \fBEC2N\fP precomputation specialization\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ec2n\&.h>\fP
+.PP
+Inherits \fBDL_GroupPrecomputation< EC2N::Point >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBEC2N\fP \fBEllipticCurve\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_GroupPrecomputation< EC2N::Point >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBEC2N::Point\fP \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBAbstractGroup\fP< \fBElement\fP > & \fBGetGroup\fP () const"
+.br
+.RI "Retrieves \fBAbstractGroup\fP interface\&. "
+.ti -1c
+.RI "\fBElement\fP \fBBERDecodeElement\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Decodes element in DER format\&. "
+.ti -1c
+.RI "void \fBDEREncodeElement\fP (\fBBufferedTransformation\fP &bt, const \fBElement\fP &v) const"
+.br
+.RI "Encodes element in DER format\&. "
+.ti -1c
+.RI "void \fBSetCurve\fP (const \fBEC2N\fP &ec)"
+.br
+.RI "Set the elliptic curve\&. "
+.ti -1c
+.RI "const \fBEC2N\fP & \fBGetCurve\fP () const"
+.br
+.RI "Get the elliptic curve\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_GroupPrecomputation< EC2N::Point >\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBNeedConversions\fP () const"
+.br
+.RI "Determines if elements needs conversion\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBConvertIn\fP (const \fBElement\fP &v) const"
+.br
+.RI "Converts an element between representations\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBConvertOut\fP (const \fBElement\fP &v) const"
+.br
+.RI "Converts an element between representations\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBEC2N\fP precomputation specialization\&. 
+
+Implementation of \fR\fBDL_GroupPrecomputation<EC2N::Point>\fP\fP 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDL_GroupPrecomputation\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBElement\fP \fBEcPrecomputation\fP< \fBEC2N\fP >::BERDecodeElement (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Decodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+element in the group 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< EC2N::Point >\fP\&.
+.SS "void \fBEcPrecomputation\fP< \fBEC2N\fP >::DEREncodeElement (\fBBufferedTransformation\fP & bt, const \fBElement\fP & P) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Encodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIP\fP Element to encode 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< EC2N::Point >\fP\&.
+.SS "const \fBEC2N\fP & \fBEcPrecomputation\fP< \fBEC2N\fP >::GetCurve () const\fR [inline]\fP"
+
+.PP
+Get the elliptic curve\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBEC2N\fP curve
+.RE
+.PP
+\fBGetCurve()\fP is not inherited 
+.SS "const \fBAbstractGroup\fP< \fBElement\fP > & \fBEcPrecomputation\fP< \fBEC2N\fP >::GetGroup () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves \fBAbstractGroup\fP interface\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBGetGroup()\fP returns the \fBAbstractGroup\fP interface 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< EC2N::Point >\fP\&.
+.SS "void \fBEcPrecomputation\fP< \fBEC2N\fP >::SetCurve (const \fBEC2N\fP & ec)\fR [inline]\fP"
+
+.PP
+Set the elliptic curve\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIec\fP \fBECP\fP derived class
+.RE
+.PP
+\fBSetCurve()\fP is not inherited 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,73 @@
+.TH "BufferedTransformation::NoChannelSupport" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BufferedTransformation::NoChannelSupport \- \fBException\fP thrown when a filter does not support named channels\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBNotImplemented\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBNoChannelSupport\fP (const std::string &name)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBNotImplemented\fP
+.in +1c
+.ti -1c
+.RI "\fBNotImplemented\fP (const std::string &s)"
+.br
+.RI "Construct an \fBNotImplemented\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBException\fP
+.in +1c
+.ti -1c
+.RI "\fBException\fP (\fBErrorType\fP errorType, const std::string &s)"
+.br
+.RI "Construct a new \fBException\fP\&. "
+.ti -1c
+.RI "const char * \fBwhat\fP () const  throw ()"
+.br
+.RI "Retrieves a C-string describing the exception\&. "
+.ti -1c
+.RI "const std::string & \fBGetWhat\fP () const"
+.br
+.RI "Retrieves a string describing the exception\&. "
+.ti -1c
+.RI "void \fBSetWhat\fP (const std::string &s)"
+.br
+.RI "Sets the error string for the exception\&. "
+.ti -1c
+.RI "\fBErrorType\fP \fBGetErrorType\fP () const"
+.br
+.RI "Retrieves the error type for the exception\&. "
+.ti -1c
+.RI "void \fBSetErrorType\fP (\fBErrorType\fP errorType)"
+.br
+.RI "Sets the error type for the exceptions\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBException\fP
+.in +1c
+.ti -1c
+.RI "enum \fBErrorType\fP { \fBNOT_IMPLEMENTED\fP, \fBINVALID_ARGUMENT\fP, \fBCANNOT_FLUSH\fP, \fBDATA_INTEGRITY_CHECK_FAILED\fP, \fBINVALID_DATA_FORMAT\fP, \fBIO_ERROR\fP, \fBOTHER_ERROR\fP }"
+.br
+.RI "Error types or categories\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBException\fP thrown when a filter does not support named channels\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

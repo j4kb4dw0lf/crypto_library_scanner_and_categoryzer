@@ -1,0 +1,111 @@
+.TH "/home/mock/cryptopp-master/dsa.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/dsa.h \- Classes for the \fBDSA\fP signature algorithm\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'gfpcrypt\&.h'\fP
+.br
+
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBDSASignatureFormat\fP { \fBDSA_P1363\fP, \fBDSA_DER\fP, \fBDSA_OPENPGP\fP }"
+.br
+.RI "\fBDSA\fP Signature Format\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBDSAConvertSignatureFormat\fP (\fBbyte\fP *buffer, size_t bufferSize, \fBDSASignatureFormat\fP toFormat, const \fBbyte\fP *signature, size_t signatureLen, \fBDSASignatureFormat\fP fromFormat)"
+.br
+.RI "Converts between signature encoding formats\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the \fBDSA\fP signature algorithm\&.
+
+
+.SH "Enumeration Type Documentation"
+.PP
+.SS "enum \fBDSASignatureFormat\fP"
+
+.PP
+\fBDSA\fP Signature Format\&. The \fBDSA\fP signature format used by Crypto++ is as defined by IEEE P1363\&. OpenSSL, Java and \&.Net use the DER format, and OpenPGP uses the OpenPGP format\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRDSAConvertSignatureFormat\fP on the Crypto++ wiki\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIDSA_P1363 \fP
+Crypto++ native signature encoding format\&.
+.TP
+\f(BIDSA_DER \fP
+signature encoding format used by OpenSSL, Java and \&.Net
+.TP
+\f(BIDSA_OPENPGP \fP
+OpenPGP signature encoding format\&.
+.SH "Function Documentation"
+.PP
+.SS "size_t DSAConvertSignatureFormat (\fBbyte\fP * buffer, size_t bufferSize, \fBDSASignatureFormat\fP toFormat, const \fBbyte\fP * signature, size_t signatureLen, \fBDSASignatureFormat\fP fromFormat)"
+
+.PP
+Converts between signature encoding formats\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP byte buffer for the converted signature encoding
+.br
+\fIbufferSize\fP the length of the converted signature encoding buffer
+.br
+\fItoFormat\fP the source signature format
+.br
+\fIsignature\fP byte buffer for the existing signature encoding
+.br
+\fIsignatureLen\fP the length of the existing signature encoding buffer
+.br
+\fIfromFormat\fP the source signature format
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes written during encoding
+.RE
+.PP
+This function converts between these formats, and returns length of signature in the target format\&. If \fRtoFormat == DSA_P1363\fP, then \fRbufferSize\fP must equal \fRpublicKey\&.SignatureLength()\fP or \fRverifier\&.SignatureLength()\fP\&.
+
+.PP
+If the destination buffer is too small then the output of the encoded \fRr\fP and \fRs\fP will be truncated\&. Be sure to provide an adequately sized buffer and check the return value for the number of bytes written\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRDSAConvertSignatureFormat\fP on the Crypto++ wiki\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

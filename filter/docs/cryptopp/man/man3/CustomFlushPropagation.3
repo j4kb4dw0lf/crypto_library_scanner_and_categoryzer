@@ -1,0 +1,71 @@
+.TH "CustomFlushPropagation< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CustomFlushPropagation< T > \- Interface for custom flush signals propagation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits T\&.
+.PP
+Inherited by \fBCustomSignalPropagation< T >\fP, and \fBMultichannel< T >\fP\&.
+.SS "SIGNALS"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBFlush\fP (bool hardFlush, int propagation=\-1, bool blocking=true)=0"
+.br
+.RI "Flush buffered input and/or output, with signal propagation\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class CustomFlushPropagation< T >"Interface for custom flush signals propagation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP \fBBufferedTransformation\fP derived class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual bool \fBCustomFlushPropagation\fP< T >::Flush (bool hardFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [pure virtual]\fP"
+
+.PP
+Flush buffered input and/or output, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhardFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+Hard flushes must be used with care\&. It means try to process and output everything, even if there may not be enough data to complete the action\&. For example, hard flushing a \fBHexDecoder\fP would cause an error if you do it after inputing an odd number of hex encoded characters\&. 
+
+.PP
+For some types of filters, like \fBZlibDecompressor\fP, hard flushes can only be done at "synchronization points"\&. These synchronization points are positions in the data stream that are created by hard flushes on the corresponding reverse filters, in this example \fBZlibCompressor\fP\&. This is useful when zlib compressed data is moved across a network in packets and compression state is preserved across packets, as in the SSH2 protocol\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBInformationDispersal\fP, \fBMultichannel< T >\fP, \fBMultichannel< Filter >\fP, \fBMultichannel< Sink >\fP, \fBOutputProxy\fP, \fBRedirector\fP, \fBSecretSharing\fP, and \fBUnflushable< Multichannel< Filter > >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,107 @@
+.TH "DSA2< H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DSA2< H > \- \fBDSA\fP signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_SS< DL_Keys_DSA, DL_Algorithm_GDSA< Integer >, DL_SignatureMessageEncodingMethod_DSA, H, DSA2< H > >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBDL_SS< DL_Keys_DSA, DL_Algorithm_GDSA< Integer >, DL_SignatureMessageEncodingMethod_DSA, H, DSA2< H > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_SS< DL_Keys_DSA, DL_Algorithm_GDSA< Integer >, DL_SignatureMessageEncodingMethod_DSA, H, DSA2< H > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBDL_Keys_DSA\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_PublicKey_GFP\fP< \fBDL_GroupParameters_DSA\fP > \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest\fP< \fBDL_PrivateKey_GFP\fP< \fBDL_GroupParameters_DSA\fP >, \fBDSA2\fP< \fBSHA1\fP > > \fBPrivateKey\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class H>
+.br
+class DSA2< H >"\fBDSA\fP signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP \fBHashTransformation\fP derived class
+.RE
+.PP
+The class is named \fBDSA2\fP instead of \fBDSA\fP for backwards compatibility because \fBDSA\fP was a non-template class\&.
+
+.PP
+\fBDSA\fP default method GenerateRandom uses a 2048-bit modulus and a 224-bit subgoup by default\&. The modulus can be changed using the following code: 
+.PP
+.nf
+
+ DSA::PrivateKey privateKey;
+ privateKey\&.GenerateRandomWithKeySize(prng, 2048);
+.fi
+.PP
+
+.PP
+The subgroup order can be changed using the following code: 
+.PP
+.nf
+
+ \fBAlgorithmParameters\fP params = MakeParameters
+   (Name::ModulusSize(), 2048)
+   (Name::SubgroupOrderSize(), 256);
+
+ DSA::PrivateKey privateKey;
+ privateKey\&.GenerateRandom(prng, params);
+.fi
+.PP
+ 
+.PP
+\fBSee also\fP
+.RS 4
+\fRDSA\fP, as specified in FIPS 186-3, \fRDigital Signature Algorithm\fP on the wiki, and \fRNameValuePairs\fP on the wiki\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 for \fBDSA\fP, Crypto++ 5\&.6\&.2 for \fBDSA2\fP, Crypto++ 6\&.1 for 2048-bit modulus\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

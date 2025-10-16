@@ -1,0 +1,73 @@
+.TH "LUC_HMP< H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LUC_HMP< H > \- LUC-HMP, based on "Digital signature schemes based on Lucas functions" by Patrick Horster, Markus Michels, Holger Petersen\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <luc\&.h>\fP
+.PP
+Inherits \fBDL_SS< DL_SignatureKeys_LUC, DL_Algorithm_LUC_HMP, DL_SignatureMessageEncodingMethod_DSA, H >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_SS< DL_SignatureKeys_LUC, DL_Algorithm_LUC_HMP, DL_SignatureMessageEncodingMethod_DSA, H >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBDL_SignatureKeys_LUC\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_GroupParameters_LUC\fP \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PublicKey_GFP\fP< \fBGroupParameters\fP > \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_GFP\fP< \fBGroupParameters\fP > \fBPrivateKey\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBDL_SS< DL_SignatureKeys_LUC, DL_Algorithm_LUC_HMP, DL_SignatureMessageEncodingMethod_DSA, H >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class H>
+.br
+struct LUC_HMP< H >"LUC-HMP, based on "Digital signature schemes based on Lucas functions" by Patrick Horster, Markus Michels, Holger Petersen\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP hash transformation
+.RE
+.PP
+This class is here for historical and pedagogical interest\&. It has no practical advantages over other trapdoor functions and probably shouldn't be used in production software\&. The discrete log based \fBLUC\fP schemes defined later in this \&.h file may be of more practical interest\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,82 @@
+.TH "RabinSS< STANDARD, H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RabinSS< STANDARD, H > \- \fBRabin\fP signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rabin\&.h>\fP
+.PP
+Inherits \fBTF_SS< Rabin, STANDARD, H >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBTF_SS< Rabin, STANDARD, H >\fP
+.in +1c
+.ti -1c
+.RI "typedef STANDARD \fBStandard\fP"
+.br
+.RI "see \fBSignatureStandard\fP for a list of standards "
+.ti -1c
+.RI "typedef Standard::SignatureMessageEncodingMethod \fBMessageEncodingMethod\fP"
+.br
+.ti -1c
+.RI "typedef \fBTF_SignatureSchemeOptions\fP< \fBTF_SS\fP< \fBRabin\fP, STANDARD, H, int >, \fBRabin\fP, MessageEncodingMethod, H > \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBTF_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBTF_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBRabin\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBRabinFunction\fP \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBInvertibleRabinFunction\fP \fBPrivateKey\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBTF_SS< Rabin, STANDARD, H >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBRabin\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class STANDARD, class H>
+.br
+struct RabinSS< STANDARD, H >"\fBRabin\fP signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fISTANDARD\fP signature standard 
+.br
+\fIH\fP hash transformation 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

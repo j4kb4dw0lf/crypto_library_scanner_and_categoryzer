@@ -1,0 +1,68 @@
+.TH "DL_KeyImpl< PK, GP, O >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_KeyImpl< PK, GP, O > \- Discrete Log (DL) key base implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits PK\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef GP \fBGroupParameters\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "O \fBGetAlgorithmID\fP () const"
+.br
+.ti -1c
+.RI "bool \fBBERDecodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "bool \fBDEREncodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "const GP & \fBGetGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "GP & \fBAccessGroupParameters\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class PK, class GP, class O = OID>
+.br
+class DL_KeyImpl< PK, GP, O >"Discrete Log (DL) key base implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPK\fP Key class 
+.br
+\fIGP\fP GroupParameters class 
+.br
+\fIO\fP \fBOID\fP class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class PK, class GP, class O = OID> O \fBDL_KeyImpl\fP< PK, GP, O >::GetAlgorithmID () const\fR [inline]\fP"
+
+.PP
+Reimplemented in \fBDL_PrivateKey_ElGamal< DL_CryptoKeys_ElGamal::PrivateKey >\fP, and \fBDL_PublicKey_ElGamal< DL_CryptoKeys_ElGamal::PublicKey >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

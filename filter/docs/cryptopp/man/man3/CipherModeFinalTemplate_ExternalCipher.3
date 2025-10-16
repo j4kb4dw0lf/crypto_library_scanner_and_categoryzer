@@ -1,0 +1,104 @@
+.TH "CipherModeFinalTemplate_ExternalCipher< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CipherModeFinalTemplate_ExternalCipher< BASE >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <modes\&.h>\fP
+.PP
+Inherits BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_ExternalCipher\fP ()"
+.br
+.RI "Construct a default CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_ExternalCipher\fP (\fBBlockCipher\fP &cipher)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_ExternalCipher\fP (\fBBlockCipher\fP &cipher, const \fBbyte\fP *iv, int feedbackSize=0)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE>
+.br
+class CipherModeFinalTemplate_ExternalCipher< BASE >"
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP \fBCipherModeFinalTemplate_CipherHolder\fP base class
+.RE
+.PP
+Base class for external mode cipher combinations 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class BASE> \fBCipherModeFinalTemplate_ExternalCipher\fP< BASE >\fB::CipherModeFinalTemplate_ExternalCipher\fP ()\fR [inline]\fP"
+
+.PP
+Construct a default CipherModeFinalTemplate\&. The cipher is not keyed\&. 
+.SS "template<class BASE> \fBCipherModeFinalTemplate_ExternalCipher\fP< BASE >\fB::CipherModeFinalTemplate_ExternalCipher\fP (\fBBlockCipher\fP & cipher)\fR [inline]\fP"
+
+.PP
+Construct a CipherModeFinalTemplate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcipher\fP An external block cipher
+.RE
+.PP
+The cipher should be keyed\&. 
+.SS "template<class BASE> \fBCipherModeFinalTemplate_ExternalCipher\fP< BASE >\fB::CipherModeFinalTemplate_ExternalCipher\fP (\fBBlockCipher\fP & cipher, const \fBbyte\fP * iv, int feedbackSize = \fR0\fP)\fR [inline]\fP"
+
+.PP
+Construct a CipherModeFinalTemplate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcipher\fP An external block cipher 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIfeedbackSize\fP the feedback size, in bytes
+.RE
+.PP
+The cipher should be keyed\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE> std::string \fBCipherModeFinalTemplate_ExternalCipher\fP< BASE >::AlgorithmName () const\fR [inline]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name
+.RE
+.PP
+The standard algorithm name can be a name like \fIAES\fP or \fIAES/GCM\fP\&. Some algorithms do not have standard names yet\&. For example, there is no standard algorithm name for Shoup's \fBECIES\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+AlgorithmName is not universally implemented yet 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

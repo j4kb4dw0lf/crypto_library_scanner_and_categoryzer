@@ -1,0 +1,118 @@
+.TH "KeyAgreementAlgorithm" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+KeyAgreementAlgorithm \- Interface for key agreement algorithms\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBAsymmetricAlgorithm\fP\&.
+.PP
+Inherited by \fBAuthenticatedKeyAgreementDomain\fP, and \fBSimpleKeyAgreementDomain\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual \fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()=0"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for key agreement algorithms\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBCryptoParameters\fP & KeyAgreementAlgorithm::AccessCryptoParameters ()\fR [pure virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implemented in \fBDH2\fP, \fBDL_SimpleKeyAgreementDomainBase< T >\fP, \fBDL_SimpleKeyAgreementDomainBase< GROUP_PARAMETERS::Element >\fP, \fBDL_SimpleKeyAgreementDomainBase< typename GROUP_PARAMETERS::Element >\fP, \fBFHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fP, \fBFHMQV_Domain< DL_GroupParameters_EC< EC >, COFACTOR_OPTION, HASH >\fP, \fBFHMQV_Domain< DL_GroupParameters_GFP_DefaultSafePrime >\fP, \fBFHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fP, \fBHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fP, \fBHMQV_Domain< DL_GroupParameters_EC< EC >, COFACTOR_OPTION, HASH >\fP, \fBHMQV_Domain< DL_GroupParameters_GFP_DefaultSafePrime >\fP, \fBHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fP, \fBMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >\fP, \fBMQV_Domain< DL_GroupParameters_EC< EC >, COFACTOR_OPTION >\fP, \fBMQV_Domain< DL_GroupParameters_GFP_DefaultSafePrime >\fP, \fBMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >\fP, \fBx25519\fP, and \fBXTR_DH\fP\&.
+.SS "\fBCryptoMaterial\fP & KeyAgreementAlgorithm::AccessMaterial ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implements \fBAsymmetricAlgorithm\fP\&.
+.SS "virtual const \fBCryptoParameters\fP & KeyAgreementAlgorithm::GetCryptoParameters () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference the crypto parameters 
+.RE
+.PP
+
+.SS "const \fBCryptoMaterial\fP & KeyAgreementAlgorithm::GetMaterial () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implements \fBAsymmetricAlgorithm\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

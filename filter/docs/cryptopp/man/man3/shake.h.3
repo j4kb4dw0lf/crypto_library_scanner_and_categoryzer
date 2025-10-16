@@ -1,0 +1,54 @@
+.TH "/home/mock/cryptopp-master/shake.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/shake.h \- Classes for \fBSHAKE\fP message digests\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBSHAKE\fP"
+.br
+.RI "\fBSHAKE\fP message digest base class\&. "
+.ti -1c
+.RI "class \fBSHAKE_Final< T_Strength >\fP"
+.br
+.RI "\fBSHAKE\fP message digest template\&. "
+.ti -1c
+.RI "class \fBSHAKE128\fP"
+.br
+.RI "\fBSHAKE128\fP message digest\&. "
+.ti -1c
+.RI "class \fBSHAKE256\fP"
+.br
+.RI "\fBSHAKE256\fP message digest\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for \fBSHAKE\fP message digests\&.
+
+The library provides byte oriented \fBSHAKE128\fP and \fBSHAKE256\fP using F1600\&. FIPS 202 allows nearly unlimited output sizes, but Crypto++ limits the output size to \fRUINT_MAX\fP due underlying data types\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBKeccak\fP, \fBSHA3\fP, \fBSHAKE128\fP, \fBSHAKE256\fP, \fRFIPS 202, SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

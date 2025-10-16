@@ -1,0 +1,108 @@
+.TH "/home/mock/cryptopp-master/dh.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/dh.h \- Classes for Diffie-Hellman key exchange\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'gfpcrypt\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDH_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >\fP"
+.br
+.RI "Diffie-Hellman domain\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDH_Domain\fP< \fBDL_GroupParameters_GFP_DefaultSafePrime\fP > \fBDH\fP"
+.br
+.RI "Diffie-Hellman in GF(p) "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDH_Domain< DL_GroupParameters_GFP_DefaultSafePrime >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for Diffie-Hellman key exchange\&.
+
+
+.SH "Typedef Documentation"
+.PP
+.SS "typedef \fBDH_Domain\fP<\fBDL_GroupParameters_GFP_DefaultSafePrime\fP> \fBDH\fP"
+
+.PP
+Diffie-Hellman in GF(p) \fBDH()\fP class is a typedef of \fBDH_Domain()\fP\&. The documentation that follows does not exist\&. Rather the documentation was created in response to \fRIssue 328, Diffie-Hellman example code not compiling\fP\&.
+
+.PP
+Generally speaking, a \fBDH()\fP object is ephemeral and is intended to execute one instance of the Diffie-Hellman protocol\&. The private and public key parts are not intended to be set or persisted\&. Rather, a new set of domain parameters are generated each time an object is created\&.
+
+.PP
+Once a \fBDH()\fP object is created, once can retrieve the ephemeral public key for the other party with code similar to the following\&.
+.PP
+.nf
+   AutoSeededRandomPool prng;
+  \fBInteger\fP p, q, g;
+  \fBPrimeAndGenerator\fP pg;
+
+  pg\&.Generate(1, prng, 512, 511);
+  p = pg\&.Prime();
+  q = pg\&.SubPrime();
+  g = pg\&.Generator();
+
+  \fBDH\fP dh(p, q, g);
+  SecByteBlock t1(dh\&.PrivateKeyLength()), t2(dh\&.PublicKeyLength());
+  dh\&.GenerateKeyPair(prng, t1, t2);
+  \fBInteger\fP k1(t1, t1\&.size()), k2(t2, t2\&.size());
+
+  cout << "Private key:\\n";
+  cout << hex << k1 << endl;
+
+  cout << "Public key:\\n";
+  cout << hex << k2 << endl;
+.fi
+.PP
+
+.PP
+Output of the program above will be similar to the following\&.
+.PP
+.nf
+   $ \&./cryptest\&.exe
+  Private key:
+  72b45a42371545e9d4880f48589aefh
+  Public key:
+  45fdb13f97b1840626f0250cec1dba4a23b894100b51fb5d2dd13693d789948f8bfc88f9200014b2
+  ba8dd8a6debc471c69ef1e2326c61184a2eca88ec866346bh
+.fi
+.PP
+
+.PP
+\fBSee also\fP
+.RS 4
+\fRDiffie-Hellman on the Crypto++ wiki\fP and \fRDiffie-Hellman\fP in GF(p) with key validation
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

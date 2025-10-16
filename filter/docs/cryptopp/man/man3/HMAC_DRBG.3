@@ -1,0 +1,512 @@
+.TH "HMAC_DRBG< HASH, STRENGTH, SEEDLENGTH >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HMAC_DRBG< HASH, STRENGTH, SEEDLENGTH > \- \fBHMAC_DRBG\fP from SP 800-90A Rev 1 (June 2015)  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <drbg\&.h>\fP
+.PP
+Inherits \fBNIST_DRBG\fP, and \fBNotCopyable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SECURITY_STRENGTH=STRENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SEED_LENGTH=SEEDLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MINIMUM_ENTROPY=STRENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MINIMUM_NONCE=0)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MINIMUM_ADDITIONAL=0)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MINIMUM_PERSONALIZATION=0)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAXIMUM_ENTROPY=INT_MAX)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAXIMUM_NONCE=INT_MAX)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAXIMUM_ADDITIONAL=INT_MAX)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAXIMUM_PERSONALIZATION=INT_MAX)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAXIMUM_BYTES_PER_REQUEST=65536)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAXIMUM_REQUESTS_BEFORE_RESEED=INT_MAX)"
+.br
+.ti -1c
+.RI "\fBHMAC_DRBG\fP (const \fBbyte\fP *entropy=NULLPTR, size_t entropyLength=STRENGTH, const \fBbyte\fP *nonce=NULLPTR, size_t nonceLength=0, const \fBbyte\fP *personalization=NULLPTR, size_t personalizationLength=0)"
+.br
+.RI "Construct a \fBHMAC\fP DRBG\&. "
+.ti -1c
+.RI "unsigned int \fBSecurityStrength\fP () const"
+.br
+.RI "Provides the security strength\&. "
+.ti -1c
+.RI "unsigned int \fBSeedLength\fP () const"
+.br
+.RI "Provides the seed length\&. "
+.ti -1c
+.RI "unsigned int \fBMinEntropyLength\fP () const"
+.br
+.RI "Provides the minimum entropy size\&. "
+.ti -1c
+.RI "unsigned int \fBMaxEntropyLength\fP () const"
+.br
+.RI "Provides the maximum entropy size\&. "
+.ti -1c
+.RI "unsigned int \fBMinNonceLength\fP () const"
+.br
+.RI "Provides the minimum nonce size\&. "
+.ti -1c
+.RI "unsigned int \fBMaxNonceLength\fP () const"
+.br
+.RI "Provides the maximum nonce size\&. "
+.ti -1c
+.RI "unsigned int \fBMaxBytesPerRequest\fP () const"
+.br
+.RI "Provides the maximum size of a request to GenerateBlock\&. "
+.ti -1c
+.RI "unsigned int \fBMaxRequestBeforeReseed\fP () const"
+.br
+.RI "Provides the maximum number of requests before a reseed\&. "
+.ti -1c
+.RI "void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "void \fBIncorporateEntropy\fP (const \fBbyte\fP *entropy, size_t entropyLength, const \fBbyte\fP *additional, size_t additionaLength)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "void \fBGenerateBlock\fP (const \fBbyte\fP *additional, size_t additionaLength, \fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNIST_DRBG\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual \fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffUL)"
+.br
+.RI "Generate a random 32 bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBDRBG_Instantiate\fP (const \fBbyte\fP *entropy, size_t entropyLength, const \fBbyte\fP *nonce, size_t nonceLength, const \fBbyte\fP *personalization, size_t personalizationLength)"
+.br
+.ti -1c
+.RI "void \fBDRBG_Reseed\fP (const \fBbyte\fP *entropy, size_t entropyLength, const \fBbyte\fP *additional, size_t additionaLength)"
+.br
+.ti -1c
+.RI "void \fBHMAC_Generate\fP (const \fBbyte\fP *additional, size_t additionaLength, \fBbyte\fP *output, size_t size)"
+.br
+.ti -1c
+.RI "void \fBHMAC_Update\fP (const \fBbyte\fP *input1, size_t inlen1, const \fBbyte\fP *input2, size_t inlen2, const \fBbyte\fP *input3, size_t inlen3)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8>
+.br
+class HMAC_DRBG< HASH, STRENGTH, SEEDLENGTH >"\fBHMAC_DRBG\fP from SP 800-90A Rev 1 (June 2015) 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIHASH\fP NIST approved hash derived from \fBHashTransformation\fP 
+.br
+\fISTRENGTH\fP security strength, in bytes 
+.br
+\fISEEDLENGTH\fP seed length, in bytes
+.RE
+.PP
+The NIST \fBHMAC\fP DRBG is instantiated with a number of parameters\&. Two of the parameters, Security Strength and Seed Length, depend on the hash and are specified as template parameters\&. The remaining parameters are included in the class\&. The parameters and their values are listed in NIST SP 800-90A Rev\&. 1, Table 2: Definitions for Hash-Based DRBG Mechanisms (p\&.38)\&.
+
+.PP
+Some parameters have been reduce to fit C++ datatypes\&. For example, NIST allows upto 2\*{48\*}  requests before a reseed\&. However, \fBHMAC_DRBG\fP limits it to \fRINT_MAX\fP due to the limited data range of an int\&.
+
+.PP
+You should reseed the generator after a fork() to avoid multiple generators with the same internal state\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRRecommendation for Random Number Generation Using Deterministic Random Bit Generators, Rev 1 (June 2015)\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >\fB::HMAC_DRBG\fP (const \fBbyte\fP * entropy = \fRNULLPTR\fP, size_t entropyLength = \fRSTRENGTH\fP, const \fBbyte\fP * nonce = \fRNULLPTR\fP, size_t nonceLength = \fR0\fP, const \fBbyte\fP * personalization = \fRNULLPTR\fP, size_t personalizationLength = \fR0\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBHMAC\fP DRBG\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentropy\fP the entropy to instantiate the generator 
+.br
+\fIentropyLength\fP the size of the entropy buffer 
+.br
+\fInonce\fP additional input to instantiate the generator 
+.br
+\fInonceLength\fP the size of the nonce buffer 
+.br
+\fIpersonalization\fP additional input to instantiate the generator 
+.br
+\fIpersonalizationLength\fP the size of the personalization buffer 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNIST_DRBG::Err\fP\fP if the generator is instantiated with insufficient entropy
+.RE
+.PP
+All NIST DRBGs must be instaniated with at least \fRMINIMUM_ENTROPY\fP bytes of entropy\&. The byte array for \fRentropy\fP must meet \fRNIST SP 800-90B or SP 800-90C\fP requirements\&.
+
+.PP
+The \fRnonce\fP and \fRpersonalization\fP are optional byte arrays\&. If \fRnonce\fP is supplied, then it should be at least \fRMINIMUM_NONCE\fP bytes of entropy\&.
+
+.PP
+An example of instantiating a \fBSHA256\fP generator is shown below\&. The example provides more entropy than required for \fBSHA256\fP\&. The \fRNonblockingRng\fP meets the requirements of \fRNIST SP 800-90B or SP 800-90C\fP\&. \fBRDRAND()\fP and \fBRDSEED()\fP generators would work as well\&. 
+.PP
+.nf
+
+  SecByteBlock entropy(48), result(128);
+  NonblockingRng prng;
+  \fBRandomNumberSource\fP rns(prng, entropy\&.size(), new \fBArraySink\fP(entropy, entropy\&.size()));
+
+  \fBHMAC_DRBG\fP<\fBSHA256\fP, 128/8, 440/8> drbg(entropy, 32, entropy+32, 16);
+  drbg\&.GenerateBlock(result, result\&.size());
+.fi
+.PP
+ 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> std::string \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "template<typename HASH, unsigned int STRENGTH, unsigned int SEEDLENGTH> void \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::DRBG_Instantiate (const \fBbyte\fP * entropy, size_t entropyLength, const \fBbyte\fP * nonce, size_t nonceLength, const \fBbyte\fP * personalization, size_t personalizationLength)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH, unsigned int STRENGTH, unsigned int SEEDLENGTH> void \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::DRBG_Reseed (const \fBbyte\fP * entropy, size_t entropyLength, const \fBbyte\fP * additional, size_t additionaLength)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> void \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::GenerateBlock (\fBbyte\fP * output, size_t size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate random array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the byte buffer 
+.br
+\fIsize\fP the length of the buffer, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNIST_DRBG::Err\fP\fP if a reseed is required 
+.br
+\fI\fBNIST_DRBG::Err\fP\fP if the size exceeds \fRMAXIMUM_BYTES_PER_REQUEST\fP 
+.RE
+.PP
+
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> void \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::GenerateBlock (const \fBbyte\fP * additional, size_t additionaLength, \fBbyte\fP * output, size_t size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate random array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIadditional\fP additional input to add to the generator 
+.br
+\fIadditionaLength\fP the size of the additional input buffer 
+.br
+\fIoutput\fP the byte buffer 
+.br
+\fIsize\fP the length of the buffer, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNIST_DRBG::Err\fP\fP if a reseed is required 
+.br
+\fI\fBNIST_DRBG::Err\fP\fP if the size exceeds \fRMAXIMUM_BYTES_PER_REQUEST\fP
+.RE
+.PP
+\fBGenerateBlock()\fP is an overload provided to match NIST requirements\&. The byte array for \fRadditional\fP input is optional\&. If present the additional randomness is mixed before generating the output bytes\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> void \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::IncorporateEntropy (const \fBbyte\fP * entropy, size_t entropyLength, const \fBbyte\fP * additional, size_t additionaLength)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Update RNG state with additional unpredictable values\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentropy\fP the entropy to add to the generator 
+.br
+\fIentropyLength\fP the size of the input buffer 
+.br
+\fIadditional\fP additional input to add to the generator 
+.br
+\fIadditionaLength\fP the size of the additional input buffer 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNIST_DRBG::Err\fP\fP if the generator is reseeded with insufficient entropy
+.RE
+.PP
+\fBIncorporateEntropy()\fP is an overload provided to match NIST requirements\&. NIST instantiation and reseed requirements demand the generator is constructed with at least \fRMINIMUM_ENTROPY\fP entropy\&. The byte array for \fRentropy\fP must meet \fRNIST SP 800-90B or SP 800-90C\fP requirements\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> void \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::IncorporateEntropy (const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Update RNG state with additional unpredictable values\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP the entropy to add to the generator 
+.br
+\fIlength\fP the size of the input buffer 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNIST_DRBG::Err\fP\fP if the generator is reseeded with insufficient entropy
+.RE
+.PP
+NIST instantiation and reseed requirements demand the generator is constructed with at least \fRMINIMUM_ENTROPY\fP entropy\&. The byte array for \fRinput\fP must meet \fRNIST SP 800-90B or SP 800-90C\fP requirements\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::MaxBytesPerRequest () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum size of a request to GenerateBlock\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The maximum size of a request to \fBGenerateBlock()\fP, in bytes
+.RE
+.PP
+The equivalent class constant is \fRMAXIMUM_BYTES_PER_REQUEST\fP 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::MaxEntropyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum entropy size\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The maximum entropy size that can be consumed by the generator, in bytes
+.RE
+.PP
+The equivalent class constant is \fRMAXIMUM_ENTROPY\fP\&. The bytes must meet \fRNIST SP 800-90B or SP 800-90C\fP requirements\&. \fRMAXIMUM_ENTROPY\fP has been reduced from 2\*{35\*}  to \fRINT_MAX\fP to fit the underlying C++ datatype\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::MaxNonceLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum nonce size\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The maximum nonce that can be consumed by the generator, in bytes
+.RE
+.PP
+The equivalent class constant is \fRMAXIMUM_NONCE\fP\&. \fRMAXIMUM_NONCE\fP has been reduced from 2\*{35\*}  to \fRINT_MAX\fP to fit the underlying C++ datatype\&. If a nonce is not required then \fRMINIMUM_NONCE\fP is 0\&. \fR\fBHash_DRBG\fP\fP does not require a nonce, while \fR\fBHMAC_DRBG\fP\fP and \fRCTR_DRBG\fP require a nonce\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::MaxRequestBeforeReseed () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum number of requests before a reseed\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The maximum number of requests before a reseed, in bytes
+.RE
+.PP
+The equivalent class constant is \fRMAXIMUM_REQUESTS_BEFORE_RESEED\fP\&. \fRMAXIMUM_REQUESTS_BEFORE_RESEED\fP has been reduced from 2\*{48\*}  to \fRINT_MAX\fP to fit the underlying C++ datatype\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::MinEntropyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the minimum entropy size\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The minimum entropy size required by the generator, in bytes
+.RE
+.PP
+The equivalent class constant is \fRMINIMUM_ENTROPY\fP\&. All NIST DRBGs must be instaniated with at least \fRMINIMUM_ENTROPY\fP bytes of entropy\&. The bytes must meet \fRNIST SP 800-90B or SP 800-90C\fP requirements\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::MinNonceLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the minimum nonce size\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The minimum nonce size recommended for the generator, in bytes
+.RE
+.PP
+The equivalent class constant is \fRMINIMUM_NONCE\fP\&. If a nonce is not required then \fRMINIMUM_NONCE\fP is 0\&. \fR\fBHash_DRBG\fP\fP does not require a nonce, while \fR\fBHMAC_DRBG\fP\fP and \fRCTR_DRBG\fP require a nonce\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::SecurityStrength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the security strength\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The security strength of the generator, in bytes
+.RE
+.PP
+The equivalent class constant is \fRSECURITY_STRENGTH\fP 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+.SS "template<typename HASH = SHA256, unsigned int STRENGTH = 128/8, unsigned int SEEDLENGTH = 440/8> unsigned int \fBHMAC_DRBG\fP< HASH, STRENGTH, SEEDLENGTH >::SeedLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the seed length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The seed size of the generator, in bytes
+.RE
+.PP
+The equivalent class constant is \fRSEED_LENGTH\fP\&. The size is used to maintain internal state of \fRV\fP and \fRC\fP\&. 
+.PP
+Implements \fBNIST_DRBG\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

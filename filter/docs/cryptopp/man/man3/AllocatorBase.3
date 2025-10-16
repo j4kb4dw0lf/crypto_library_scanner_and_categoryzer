@@ -1,0 +1,161 @@
+.TH "AllocatorBase< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AllocatorBase< T > \- Base class for all allocators used by \fBSecBlock\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.PP
+Inherited by \fBAllocatorWithCleanup< V, T_Align16 >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, AllocatorWithCleanup< T > >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, A, false >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, A, true >\fP, \fBAllocatorWithCleanup< T, T_Align16 >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, A, T_Align16 >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, A, false >\fP, \fBFixedSizeAllocatorWithCleanup< T, S, A, true >\fP, and \fBNullAllocator< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef size_t \fBsize_type\fP"
+.br
+.ti -1c
+.RI "typedef std::ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "typedef T * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef const T * \fBconst_pointer\fP"
+.br
+.ti -1c
+.RI "typedef T & \fBreference\fP"
+.br
+.ti -1c
+.RI "typedef const T & \fBconst_reference\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "pointer \fBaddress\fP (reference r) const"
+.br
+.ti -1c
+.RI "const_pointer \fBaddress\fP (const_reference r) const"
+.br
+.ti -1c
+.RI "void \fBconstruct\fP (pointer p, const T &val)"
+.br
+.ti -1c
+.RI "void \fBdestroy\fP (pointer p)"
+.br
+.ti -1c
+.RI "CRYPTOPP_CONSTEXPR size_type \fBmax_size\fP () const"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const size_type \fBELEMS_MAX\fP = SIZE_MAX/sizeof(T)"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+.SS "Static Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBCheckSize\fP (size_t size)"
+.br
+.RI "Verifies the allocator can satisfy a request based on size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class AllocatorBase< T >"Base class for all allocators used by \fBSecBlock\fP\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> void \fBAllocatorBase\fP< T >::CheckSize (size_t size)\fR [inline]\fP, \fR [static]\fP, \fR [protected]\fP"
+
+.PP
+Verifies the allocator can satisfy a request based on size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the size of the allocation, in elements 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP 
+.RE
+.PP
+CheckSize verifies the number of elements requested is valid\&.
+
+.PP
+If size is greater than \fBmax_size()\fP, then \fBInvalidArgument\fP is thrown\&. The library throws \fBInvalidArgument\fP if the size is too large to satisfy\&.
+
+.PP
+Internally, preprocessor macros are used rather than std::numeric_limits because the latter is not a constexpr\&. Some compilers, like Clang, do not optimize it well under all circumstances\&. Compilers like GCC, ICC and MSVC appear to optimize it well in either form\&.
+
+.PP
+The \fRsizeof(T) != 1\fP in the condition attempts to help the compiler optimize the check for byte types\&. Coverity findings for CONSTANT_EXPRESSION_RESULT were generated without it\&. For byte types, size never exceeded ELEMS_MAX but the code was not removed\&. 
+.PP
+\fBNote\fP
+.RS 4
+size is the count of elements, and not the number of bytes 
+.RE
+.PP
+
+.SS "template<class T> CRYPTOPP_CONSTEXPR size_type \fBAllocatorBase\fP< T >::max_size () const\fR [inline]\fP"
+
+.PP
+Returns the maximum number of elements the allocator can provide\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum number of elements the allocator can provide
+.RE
+.PP
+Internally, preprocessor macros are used rather than std::numeric_limits because the latter is not a constexpr\&. Some compilers, like Clang, do not optimize it well under all circumstances\&. Compilers like GCC, ICC and MSVC appear to optimize it well in either form\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "template<class T> const size_type \fBAllocatorBase\fP< T >::ELEMS_MAX = SIZE_MAX/sizeof(T)\fR [static]\fP"
+
+.PP
+Returns the maximum number of elements the allocator can provide\&. \fRELEMS_MAX\fP is the maximum number of elements the \fRAllocator\fP can provide\&. The value of \fRELEMS_MAX\fP is \fRSIZE_MAX/sizeof(T)\fP\&. \fRstd::numeric_limits\fP was avoided due to lack of \fRconstexpr\fP-ness in C++03 and below\&. 
+.PP
+\fBNote\fP
+.RS 4
+In C++03 and below \fRELEMS_MAX\fP is a static data member of type \fRsize_type\fP\&. In C++11 and above \fRELEMS_MAX\fP is an \fRenum\fP inheriting from \fRsize_type\fP\&. In both cases \fRELEMS_MAX\fP can be used before objects are fully constructed, and it does not suffer the limitations of class methods like \fRmax_size\fP\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 346/CVE-2016-9939\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

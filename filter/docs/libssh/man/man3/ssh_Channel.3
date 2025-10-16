@@ -1,0 +1,278 @@
+.TH "ssh::Channel" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh::Channel \- the \fBssh::Channel\fP class describes the state of an SSH channel\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <libsshpp\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBChannel\fP (\fBSession\fP &\fBssh_session\fP)"
+.br
+.ti -1c
+.RI "\fBChannel\fP * \fBacceptX11\fP (int timeout_ms)"
+.br
+.RI "accept an incoming X11 connection "
+.ti -1c
+.RI "void_throwable \fBchangePtySize\fP (int cols, int rows)"
+.br
+.RI "change the size of a pseudoterminal "
+.ti -1c
+.RI "void_throwable \fBclose\fP ()"
+.br
+.RI "closes a channel "
+.ti -1c
+.RI "int \fBgetExitStatus\fP ()"
+.br
+.ti -1c
+.RI "void_throwable \fBgetExitState\fP (uint32_t &pexit_code, char **pexit_signal, int &pcore_dumped)"
+.br
+.ti -1c
+.RI "\fBSession\fP & \fBgetSession\fP ()"
+.br
+.ti -1c
+.RI "bool \fBisClosed\fP ()"
+.br
+.RI "returns true if channel is in closed state "
+.ti -1c
+.RI "bool \fBisEof\fP ()"
+.br
+.RI "returns true if channel is in EOF state "
+.ti -1c
+.RI "bool \fBisOpen\fP ()"
+.br
+.RI "returns true if channel is in open state "
+.ti -1c
+.RI "int \fBopenForward\fP (const char *remotehost, int remoteport, const char *sourcehost, int localport=0)"
+.br
+.ti -1c
+.RI "void_throwable \fBopenSession\fP ()"
+.br
+.ti -1c
+.RI "int \fBpoll\fP (bool is_stderr=false)"
+.br
+.ti -1c
+.RI "int \fBread\fP (void *dest, size_t count)"
+.br
+.ti -1c
+.RI "int \fBread\fP (void *dest, size_t count, int timeout)"
+.br
+.ti -1c
+.RI "int \fBread\fP (void *dest, size_t count, bool is_stderr=false, int timeout=\-1)"
+.br
+.ti -1c
+.RI "int \fBreadNonblocking\fP (void *dest, size_t count, bool is_stderr=false)"
+.br
+.ti -1c
+.RI "void_throwable \fBrequestEnv\fP (const char *name, const char *value)"
+.br
+.ti -1c
+.RI "void_throwable \fBrequestExec\fP (const char *cmd)"
+.br
+.ti -1c
+.RI "void_throwable \fBrequestPty\fP (const char *term=NULL, int cols=0, int rows=0, const unsigned char *modes=NULL, size_t modes_len=0)"
+.br
+.ti -1c
+.RI "void_throwable \fBrequestShell\fP ()"
+.br
+.ti -1c
+.RI "void_throwable \fBrequestSendSignal\fP (const char *signum)"
+.br
+.ti -1c
+.RI "void_throwable \fBrequestSubsystem\fP (const char *subsystem)"
+.br
+.ti -1c
+.RI "int \fBrequestX11\fP (bool single_connection, const char *protocol, const char *cookie, int screen_number)"
+.br
+.ti -1c
+.RI "void_throwable \fBsendEof\fP ()"
+.br
+.ti -1c
+.RI "int \fBwrite\fP (const void *data, size_t len, bool is_stderr=false)"
+.br
+.RI "Writes on a channel\&. "
+.ti -1c
+.RI "\fBssh_session\fP \fBgetCSession\fP ()"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBgetCChannel\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSession\fP * \fBsession\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBchannel\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBSession\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+the \fBssh::Channel\fP class describes the state of an SSH channel\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+ssh_channel 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBChannel\fP * ssh::Channel::acceptX11 (int timeout_ms)\fR [inline]\fP"
+
+.PP
+accept an incoming X11 connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fItimeout_ms\fP timeout for waiting, in ms 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+new \fBChannel\fP pointer on the X11 connection 
+
+.PP
+NULL in case of error 
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+you have to delete this pointer after use 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_accept_x11\fP 
+
+.PP
+Channel::requestX11 
+.RE
+.PP
+
+.SS "void_throwable ssh::Channel::changePtySize (int cols, int rows)\fR [inline]\fP"
+
+.PP
+change the size of a pseudoterminal 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcols\fP number of columns 
+.br
+\fIrows\fP number of rows 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_change_pty_size\fP 
+.RE
+.PP
+
+.SS "void_throwable ssh::Channel::close ()\fR [inline]\fP"
+
+.PP
+closes a channel 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP on error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_close\fP 
+.RE
+.PP
+
+.SS "bool ssh::Channel::isClosed ()\fR [inline]\fP"
+
+.PP
+returns true if channel is in closed state 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_closed\fP 
+.RE
+.PP
+
+.SS "bool ssh::Channel::isEof ()\fR [inline]\fP"
+
+.PP
+returns true if channel is in EOF state 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_eof\fP 
+.RE
+.PP
+
+.SS "bool ssh::Channel::isOpen ()\fR [inline]\fP"
+
+.PP
+returns true if channel is in open state 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_is_open\fP 
+.RE
+.PP
+
+.SS "int ssh::Channel::write (const void * data, size_t len, bool is_stderr = \fRfalse\fP)\fR [inline]\fP"
+
+.PP
+Writes on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP data to write\&. 
+.br
+\fIlen\fP number of bytes to write\&. 
+.br
+\fIis_stderr\fP write should be done on the stderr channel (server only) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+number of bytes written 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBSshException\fP\fP in case of error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_channel_write\fP 
+
+.PP
+\fBssh_channel_write_stderr\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

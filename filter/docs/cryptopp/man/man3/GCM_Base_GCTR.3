@@ -1,0 +1,56 @@
+.TH "GCM_Base::GCTR" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GCM_Base::GCTR
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, CTR_ModePolicy > > > >\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBIncrementCounterBy256\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBConcretePolicyHolder< POLICY, BASE, POLICY_INTERFACE >\fP
+.in +1c
+.ti -1c
+.RI "const POLICY_INTERFACE & \fBGetPolicy\fP () const"
+.br
+.ti -1c
+.RI "POLICY_INTERFACE & \fBAccessPolicy\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBCipherModeFinalTemplate_ExternalCipher< ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, CTR_ModePolicy > > > >\fP
+.in +1c
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_ExternalCipher\fP ()"
+.br
+.RI "Construct a default CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_ExternalCipher\fP (\fBBlockCipher\fP &cipher)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "\fBCipherModeFinalTemplate_ExternalCipher\fP (\fBBlockCipher\fP &cipher, const \fBbyte\fP *iv, int feedbackSize=0)"
+.br
+.RI "Construct a CipherModeFinalTemplate\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

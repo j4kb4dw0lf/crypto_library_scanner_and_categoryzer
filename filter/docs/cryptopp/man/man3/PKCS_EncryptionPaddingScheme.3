@@ -1,0 +1,69 @@
+.TH "PKCS_EncryptionPaddingScheme" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PKCS_EncryptionPaddingScheme \- PKCS #1 v1\&.5 Encryption Padding Scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pkcspad\&.h>\fP
+.PP
+Inherits \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBMaxUnpaddedLength\fP (size_t paddedLength) const"
+.br
+.RI "max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) "
+.ti -1c
+.RI "void \fBPad\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *raw, size_t inputLength, \fBbyte\fP *padded, size_t paddedLength, const \fBNameValuePairs\fP &parameters) const"
+.br
+.ti -1c
+.RI "\fBDecodingResult\fP \fBUnpad\fP (const \fBbyte\fP *padded, size_t paddedLength, \fBbyte\fP *raw, const \fBNameValuePairs\fP &parameters) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_EncryptionMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBParameterSupported\fP (const char *name) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+PKCS #1 v1\&.5 Encryption Padding Scheme\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fREME-PKCS1-v1_5\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "size_t PKCS_EncryptionPaddingScheme::MaxUnpaddedLength (size_t paddedLength) const\fR [virtual]\fP"
+
+.PP
+max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) 
+.PP
+Implements \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.SS "void PKCS_EncryptionPaddingScheme::Pad (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * raw, size_t inputLength, \fBbyte\fP * padded, size_t paddedLength, const \fBNameValuePairs\fP & parameters) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.SS "\fBDecodingResult\fP PKCS_EncryptionPaddingScheme::Unpad (const \fBbyte\fP * padded, size_t paddedLength, \fBbyte\fP * raw, const \fBNameValuePairs\fP & parameters) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_EncryptionMessageEncodingMethod\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

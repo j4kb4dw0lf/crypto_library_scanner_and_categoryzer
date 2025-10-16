@@ -1,0 +1,604 @@
+.TH "AuthenticatedSymmetricCipher" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AuthenticatedSymmetricCipher \- Interface for authenticated encryption modes of operation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBMessageAuthenticationCode\fP, and \fBStreamTransformation\fP\&.
+.PP
+Inherited by \fBAuthenticatedSymmetricCipherBase\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBadState\fP"
+.br
+.RI "\fBException\fP thrown when the object is in the wrong state for the operation\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBlword\fP \fBMaxHeaderLength\fP () const =0"
+.br
+.RI "Provides the maximum length of AAD that can be input\&. "
+.ti -1c
+.RI "virtual \fBlword\fP \fBMaxMessageLength\fP () const =0"
+.br
+.RI "Provides the maximum length of encrypted data\&. "
+.ti -1c
+.RI "virtual \fBlword\fP \fBMaxFooterLength\fP () const"
+.br
+.RI "Provides the maximum length of AAD\&. "
+.ti -1c
+.RI "virtual bool \fBNeedsPrespecifiedDataLengths\fP () const"
+.br
+.RI "Determines if data lengths must be specified prior to inputting data\&. "
+.ti -1c
+.RI "void \fBSpecifyDataLengths\fP (\fBlword\fP headerLength, \fBlword\fP messageLength, \fBlword\fP footerLength=0)"
+.br
+.RI "Prescribes the data lengths\&. "
+.ti -1c
+.RI "virtual void \fBEncryptAndAuthenticate\fP (\fBbyte\fP *ciphertext, \fBbyte\fP *mac, size_t macSize, const \fBbyte\fP *iv, int ivLength, const \fBbyte\fP *header, size_t headerLength, const \fBbyte\fP *message, size_t messageLength)"
+.br
+.RI "Encrypts and calculates a MAC in one call\&. "
+.ti -1c
+.RI "virtual bool \fBDecryptAndVerify\fP (\fBbyte\fP *message, const \fBbyte\fP *mac, size_t macSize, const \fBbyte\fP *iv, int ivLength, const \fBbyte\fP *header, size_t headerLength, const \fBbyte\fP *ciphertext, size_t ciphertextLength)"
+.br
+.RI "Decrypts and verifies a MAC in one call\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMinKeyLength\fP () const =0"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxKeyLength\fP () const =0"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBDefaultKeyLength\fP () const =0"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "virtual size_t \fBGetValidKeyLength\fP (size_t keylength) const =0"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "virtual \fBIV_Requirement\fP \fBIVRequirement\fP () const =0"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "virtual unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)=0"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "virtual unsigned int \fBDigestSize\fP () const =0"
+.br
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBTruncatedFinal\fP (\fBbyte\fP *digest, size_t digestSize)=0"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBStreamTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBStreamTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMandatoryBlockSize\fP () const"
+.br
+.RI "Provides the mandatory block size of the cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSizeUsed\fP () const"
+.br
+.RI "Provides the number of bytes used in the current block when processing at optimal block size\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)=0"
+.br
+.RI "Encrypt or decrypt an array of bytes\&. "
+.ti -1c
+.RI "virtual size_t \fBProcessLastBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.RI "Encrypt or decrypt the last block of data\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinLastBlockSize\fP () const"
+.br
+.RI "Provides the size of the last block\&. "
+.ti -1c
+.RI "virtual bool \fBIsLastBlockSpecial\fP () const"
+.br
+.RI "Determines if the last block receives special processing\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *inoutString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBProcessByte\fP (\fBbyte\fP input)"
+.br
+.RI "Encrypt or decrypt a byte\&. "
+.ti -1c
+.RI "virtual bool \fBIsRandomAccess\fP () const =0"
+.br
+.RI "Determines whether the cipher supports random access\&. "
+.ti -1c
+.RI "virtual void \fBSeek\fP (\fBlword\fP pos)"
+.br
+.RI "Seek to an absolute position\&. "
+.ti -1c
+.RI "virtual bool \fBIsSelfInverting\fP () const =0"
+.br
+.RI "Determines whether the cipher is self-inverting\&. "
+.ti -1c
+.RI "virtual bool \fBIsForwardTransformation\fP () const =0"
+.br
+.RI "Determines if the cipher is being operated in its forward direction\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.ti -1c
+.RI "virtual void \fBUncheckedSpecifyDataLengths\fP (\fBlword\fP headerLength, \fBlword\fP messageLength, \fBlword\fP footerLength)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBMessageAuthenticationCode\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)=0"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for authenticated encryption modes of operation\&. 
+
+\fBAuthenticatedSymmetricCipher()\fP provides the interface for one direction (encryption or decryption) of a stream cipher or block cipher mode with authentication\&. The \fBStreamTransformation()\fP part of this interface is used to encrypt or decrypt the data\&. The \fBMessageAuthenticationCode()\fP part of the interface is used to input additional authenticated data (AAD), which is MAC'ed but not encrypted\&. The \fBMessageAuthenticationCode()\fP part is also used to generate and verify the MAC\&.
+
+.PP
+Crypto++ provides four authenticated encryption modes of operation - \fBCCM\fP, \fBEAX\fP, \fBGCM\fP and OCB mode\&. All modes implement \fBAuthenticatedSymmetricCipher()\fP and the motivation for the API, like calling AAD a "header", can be found in Bellare, Rogaway and Wagner's \fRThe EAX Mode of Operation\fP\&. The \fBEAX\fP paper suggested a basic API to help standardize AEAD schemes in software and promote adoption of the modes\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRAuthenticated Encryption\fP on the Crypto++ wiki\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string AuthenticatedSymmetricCipher::AlgorithmName () const\fR [virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name
+.RE
+.PP
+The standard algorithm name can be a name like \fIAES\fP or \fIAES/GCM\fP\&. Some algorithms do not have standard names yet\&. For example, there is no standard algorithm name for Shoup's \fBECIES\fP\&. 
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.PP
+Reimplemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual std::string AuthenticatedSymmetricCipher::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.PP
+Reimplemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBEAX_Base\fP, \fBEAX_Final< T_BlockCipher, T_IsEncryption >\fP, \fBEAX_Final< T_BlockCipher, false >\fP, \fBEAX_Final< T_BlockCipher, true >\fP, \fBGCM_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "bool AuthenticatedSymmetricCipher::DecryptAndVerify (\fBbyte\fP * message, const \fBbyte\fP * mac, size_t macSize, const \fBbyte\fP * iv, int ivLength, const \fBbyte\fP * header, size_t headerLength, const \fBbyte\fP * ciphertext, size_t ciphertextLength)\fR [virtual]\fP"
+
+.PP
+Decrypts and verifies a MAC in one call\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImessage\fP the decryption buffer 
+.br
+\fImac\fP the mac buffer 
+.br
+\fImacSize\fP the size of the MAC buffer, in bytes 
+.br
+\fIiv\fP the iv buffer 
+.br
+\fIivLength\fP the size of the IV buffer, in bytes 
+.br
+\fIheader\fP the AAD buffer 
+.br
+\fIheaderLength\fP the size of the AAD buffer, in bytes 
+.br
+\fIciphertext\fP the ciphertext buffer 
+.br
+\fIciphertextLength\fP the size of the ciphertext buffer, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the MAC is valid and the decoding succeeded, false otherwise
+.RE
+.PP
+\fBDecryptAndVerify()\fP decrypts and verifies the MAC in one call\&. \fRmessage\fP is a decryption buffer and should be at least as large as the ciphertext buffer\&.
+
+.PP
+The function returns true iff MAC is valid\&. \fBDecryptAndVerify()\fP assumes the MAC is truncated if \fRmacLength < \fBTagSize()\fP\fP\&. 
+.PP
+Reimplemented in \fBChaCha20Poly1305_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "void AuthenticatedSymmetricCipher::EncryptAndAuthenticate (\fBbyte\fP * ciphertext, \fBbyte\fP * mac, size_t macSize, const \fBbyte\fP * iv, int ivLength, const \fBbyte\fP * header, size_t headerLength, const \fBbyte\fP * message, size_t messageLength)\fR [virtual]\fP"
+
+.PP
+Encrypts and calculates a MAC in one call\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIciphertext\fP the encryption buffer 
+.br
+\fImac\fP the mac buffer 
+.br
+\fImacSize\fP the size of the MAC buffer, in bytes 
+.br
+\fIiv\fP the iv buffer 
+.br
+\fIivLength\fP the size of the IV buffer, in bytes 
+.br
+\fIheader\fP the AAD buffer 
+.br
+\fIheaderLength\fP the size of the AAD buffer, in bytes 
+.br
+\fImessage\fP the message buffer 
+.br
+\fImessageLength\fP the size of the messagetext buffer, in bytes
+.RE
+.PP
+\fBEncryptAndAuthenticate()\fP encrypts and generates the MAC in one call\&. The function truncates the MAC if \fRmacSize < \fBTagSize()\fP\fP\&. 
+.PP
+Reimplemented in \fBChaCha20Poly1305_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "const \fBAlgorithm\fP & AuthenticatedSymmetricCipher::GetAlgorithm () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the base class \fBAlgorithm\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the base class \fBAlgorithm\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "virtual \fBlword\fP AuthenticatedSymmetricCipher::MaxFooterLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum length of AAD\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum length of AAD that can be input after the encrypted data 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBChaCha20Poly1305_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual \fBlword\fP AuthenticatedSymmetricCipher::MaxHeaderLength () const\fR [pure virtual]\fP"
+
+.PP
+Provides the maximum length of AAD that can be input\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum length of AAD that can be input before the encrypted data 
+.RE
+.PP
+
+.PP
+Implemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual \fBlword\fP AuthenticatedSymmetricCipher::MaxMessageLength () const\fR [pure virtual]\fP"
+
+.PP
+Provides the maximum length of encrypted data\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum length of encrypted data 
+.RE
+.PP
+
+.PP
+Implemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual bool AuthenticatedSymmetricCipher::NeedsPrespecifiedDataLengths () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if data lengths must be specified prior to inputting data\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the data lengths are required before inputting data, false otherwise
+.RE
+.PP
+if this function returns true, \fBSpecifyDataLengths()\fP must be called before attempting to input data\&. This is the case for some schemes, such as \fBCCM\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSpecifyDataLengths()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCCM_Base\fP\&.
+.SS "void AuthenticatedSymmetricCipher::SpecifyDataLengths (\fBlword\fP headerLength, \fBlword\fP messageLength, \fBlword\fP footerLength = \fR0\fP)"
+
+.PP
+Prescribes the data lengths\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIheaderLength\fP size of data before message is input, in bytes 
+.br
+\fImessageLength\fP size of the message, in bytes 
+.br
+\fIfooterLength\fP size of data after message is input, in bytes
+.RE
+.PP
+\fBSpecifyDataLengths()\fP only needs to be called if \fBNeedsPrespecifiedDataLengths()\fP returns \fRtrue\fP\&. If \fRtrue\fP, then \fRheaderLength\fP will be validated against \fR\fBMaxHeaderLength()\fP\fP, \fRmessageLength\fP will be validated against \fR\fBMaxMessageLength()\fP\fP, and \fRfooterLength\fP will be validated against \fR\fBMaxFooterLength()\fP\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNeedsPrespecifiedDataLengths()\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

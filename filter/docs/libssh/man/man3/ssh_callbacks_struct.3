@@ -1,0 +1,68 @@
+.TH "ssh_callbacks_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_callbacks_struct
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <callbacks\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.ti -1c
+.RI "void * \fBuserdata\fP"
+.br
+.ti -1c
+.RI "\fBssh_auth_callback\fP \fBauth_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_log_callback\fP \fBlog_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_connect_status_callback\fP \fBconnect_status_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_global_request_callback\fP \fBglobal_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_open_request_x11_callback\fP \fBchannel_open_request_x11_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_open_request_auth_agent_callback\fP \fBchannel_open_request_auth_agent_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_open_request_forwarded_tcpip_callback\fP \fBchannel_open_request_forwarded_tcpip_function\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The structure to replace libssh functions with appropriate callbacks\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBssh_auth_callback\fP ssh_callbacks_struct::auth_function"
+This functions will be called if e\&.g\&. a keyphrase is needed\&. 
+.SS "\fBssh_channel_open_request_auth_agent_callback\fP ssh_callbacks_struct::channel_open_request_auth_agent_function"
+This function will be called when an incoming "auth-agent" request is received\&. 
+.SS "\fBssh_channel_open_request_forwarded_tcpip_callback\fP ssh_callbacks_struct::channel_open_request_forwarded_tcpip_function"
+This function will be called when an incoming "forwarded-tcpip" request is received\&. 
+.SS "\fBssh_channel_open_request_x11_callback\fP ssh_callbacks_struct::channel_open_request_x11_function"
+This function will be called when an incoming X11 request is received\&. 
+.SS "\fBssh_connect_status_callback\fP ssh_callbacks_struct::connect_status_function"
+This function gets called during connection time to indicate the percentage of connection steps completed\&. 
+.SS "\fBssh_global_request_callback\fP ssh_callbacks_struct::global_request_function"
+This function will be called each time a global request is received\&. 
+.SS "\fBssh_log_callback\fP ssh_callbacks_struct::log_function"
+This function will be called each time a loggable event happens\&. 
+.SS "size_t ssh_callbacks_struct::size"
+DON'T SET THIS use \fBssh_callbacks_init()\fP instead\&. 
+.SS "void* ssh_callbacks_struct::userdata"
+User-provided data\&. User is free to set anything he wants here 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,79 @@
+.TH "DL_Algorithm_ECDSA< EC >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_Algorithm_ECDSA< EC > \- Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature algorithm\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.PP
+Inherits \fBDL_Algorithm_GDSA< EC::Point >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_Algorithm_GDSA< EC::Point >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "void \fBSign\fP (const \fBDL_GroupParameters\fP< EC::Point > &params, const \fBInteger\fP &x, const \fBInteger\fP &k, const \fBInteger\fP &e, \fBInteger\fP &r, \fBInteger\fP &s) const"
+.br
+.RI "Sign a message using a private key\&. "
+.ti -1c
+.RI "bool \fBVerify\fP (const \fBDL_GroupParameters\fP< EC::Point > &params, const \fBDL_PublicKey\fP< EC::Point > &publicKey, const \fBInteger\fP &e, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Verify a message using a public key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_ElgamalLikeSignatureAlgorithm< EC::Point >\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBRecoverPresignature\fP (const \fBDL_GroupParameters\fP< EC::Point > &params, const \fBDL_PublicKey\fP< EC::Point > &publicKey, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Recover a Presignature\&. "
+.ti -1c
+.RI "virtual size_t \fBRLen\fP (const \fBDL_GroupParameters\fP< EC::Point > &params) const"
+.br
+.RI "Retrieve R length\&. "
+.ti -1c
+.RI "virtual size_t \fBSLen\fP (const \fBDL_GroupParameters\fP< EC::Point > &params) const"
+.br
+.RI "Retrieve S length\&. "
+.ti -1c
+.RI "virtual bool \fBIsDeterministic\fP () const"
+.br
+.RI "Signature scheme flag\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC>
+.br
+class DL_Algorithm_ECDSA< EC >"Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature algorithm\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.2 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

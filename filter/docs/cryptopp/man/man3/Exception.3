@@ -1,0 +1,90 @@
+.TH "Exception" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Exception \- Base class for all exceptions thrown by the library\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits std::exception\&.
+.PP
+Inherited by \fBAlgorithmParametersBase::ParameterNotUsed\fP, \fBAuthenticatedSymmetricCipher::BadState\fP, \fBCannotFlush\fP, \fBDARN_Err\fP, \fBDataDecryptorErr\fP, \fBEqualityComparisonFilter::MismatchDetected\fP, \fBFileSink::Err\fP, \fBFileStore::Err\fP, \fBHashVerificationFilter::HashVerificationFailed\fP, \fBHuffmanDecoder::Err\fP, \fBInflator::Err\fP, \fBInteger::DivideByZero\fP, \fBInteger::OpenPGPDecodeErr\fP, \fBInteger::RandomNumberNotFound\fP, \fBInvalidArgument\fP, \fBInvalidDataFormat\fP, \fBNIST_DRBG::Err\fP, \fBNotImplemented\fP, \fBOS_Error\fP, \fBObjectFactoryRegistry< AbstractClass, instance >::FactoryNotFound\fP, \fBPK_Encryptor::InvalidPlaintextLength\fP, \fBPK_SignatureScheme::InvalidKeyLength\fP, \fBPadlockRNG_Err\fP, \fBPolynomialMod2::DivideByZero\fP, \fBPolynomialOver< T >::DivideByZero\fP, \fBRDRAND_Err\fP, \fBRDSEED_Err\fP, \fBRingOfPolynomialsOver< T >::InterpolationFailed\fP, \fBSelfTestFailure\fP, \fBSignatureVerificationFilter::SignatureVerificationFailed\fP, and \fBTestFailure\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBErrorType\fP { \fBNOT_IMPLEMENTED\fP, \fBINVALID_ARGUMENT\fP, \fBCANNOT_FLUSH\fP, \fBDATA_INTEGRITY_CHECK_FAILED\fP, \fBINVALID_DATA_FORMAT\fP, \fBIO_ERROR\fP, \fBOTHER_ERROR\fP }"
+.br
+.RI "Error types or categories\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBException\fP (\fBErrorType\fP errorType, const std::string &s)"
+.br
+.RI "Construct a new \fBException\fP\&. "
+.ti -1c
+.RI "const char * \fBwhat\fP () const  throw ()"
+.br
+.RI "Retrieves a C-string describing the exception\&. "
+.ti -1c
+.RI "const std::string & \fBGetWhat\fP () const"
+.br
+.RI "Retrieves a string describing the exception\&. "
+.ti -1c
+.RI "void \fBSetWhat\fP (const std::string &s)"
+.br
+.RI "Sets the error string for the exception\&. "
+.ti -1c
+.RI "\fBErrorType\fP \fBGetErrorType\fP () const"
+.br
+.RI "Retrieves the error type for the exception\&. "
+.ti -1c
+.RI "void \fBSetErrorType\fP (\fBErrorType\fP errorType)"
+.br
+.RI "Sets the error type for the exceptions\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Base class for all exceptions thrown by the library\&. 
+
+All library exceptions directly or indirectly inherit from the \fBException\fP class\&. The \fBException\fP class itself inherits from std::exception\&. The library does not use std::runtime_error derived classes\&. 
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBException::ErrorType\fP"
+
+.PP
+Error types or categories\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BINOT_IMPLEMENTED \fP
+A method was called which was not implemented\&. 
+.TP
+\f(BIINVALID_ARGUMENT \fP
+An invalid argument was detected\&. 
+.TP
+\f(BICANNOT_FLUSH \fP
+\fBBufferedTransformation\fP received a Flush(true) signal but can't flush buffers\&. 
+.TP
+\f(BIDATA_INTEGRITY_CHECK_FAILED \fP
+Data integerity check, such as CRC or MAC, failed\&. 
+.TP
+\f(BIINVALID_DATA_FORMAT \fP
+Input data was received that did not conform to expected format\&. 
+.TP
+\f(BIIO_ERROR \fP
+Error reading from input device or writing to output device\&. 
+.TP
+\f(BIOTHER_ERROR \fP
+Some other error occurred not belonging to other categories\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

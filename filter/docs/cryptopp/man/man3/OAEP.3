@@ -1,0 +1,104 @@
+.TH "OAEP< H, MGF >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OAEP< H, MGF > \- \fBOAEP\fP padding\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <oaep\&.h>\fP
+.PP
+Inherits \fBOAEP_Base\fP, and \fBEncryptionStandard\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBOAEP\fP< H, MGF > \fBEncryptionMessageEncodingMethod\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "\fBHashTransformation\fP * \fBNewHash\fP () const"
+.br
+.ti -1c
+.RI "\fBMaskGeneratingFunction\fP * \fBNewMGF\fP () const"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBOAEP_Base\fP
+.in +1c
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "size_t \fBMaxUnpaddedLength\fP (size_t paddedLength) const"
+.br
+.RI "max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) "
+.ti -1c
+.RI "void \fBPad\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *raw, size_t inputLength, \fBbyte\fP *padded, size_t paddedLength, const \fBNameValuePairs\fP &parameters) const"
+.br
+.ti -1c
+.RI "\fBDecodingResult\fP \fBUnpad\fP (const \fBbyte\fP *padded, size_t paddedLength, \fBbyte\fP *raw, const \fBNameValuePairs\fP &parameters) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class H, class MGF = P1363_MGF1>
+.br
+class OAEP< H, MGF >"\fBOAEP\fP padding\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP \fBHashTransformation\fP derived class 
+.br
+\fIMGF\fP \fBMaskGeneratingFunction\fP derived class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fREME-OAEP\fP, for use with classes derived from \fBTF_ES\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class H, class MGF = P1363_MGF1> unsigned int \fBOAEP\fP< H, MGF >::DigestSize () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBOAEP_Base\fP\&.
+.SS "template<class H, class MGF = P1363_MGF1> \fBHashTransformation\fP * \fBOAEP\fP< H, MGF >::NewHash () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBOAEP_Base\fP\&.
+.SS "template<class H, class MGF = P1363_MGF1> \fBMaskGeneratingFunction\fP * \fBOAEP\fP< H, MGF >::NewMGF () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBOAEP_Base\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

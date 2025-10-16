@@ -1,0 +1,106 @@
+.TH "SIMON_Info< L, D, N, M >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SIMON_Info< L, D, N, M > \- SIMON block cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simon\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< L >\fP, and \fBVariableKeyLength< D, N, M, Q, IV_REQ, IV_L >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const std::string \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< L >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< D, N, M, Q, IV_REQ, IV_L >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=M)"
+.br
+.RI "The maximum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=D)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH_MULTIPLE=Q)"
+.br
+.RI "The key length multiple used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_REQUIREMENT=IV_REQ)"
+.br
+.RI "The default IV requirements for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_LENGTH=IV_L)"
+.br
+.RI "The default initialization vector length for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int L, unsigned int D, unsigned int N, unsigned int M>
+.br
+struct SIMON_Info< L, D, N, M >"SIMON block cipher information\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIL\fP block size of the cipher, in bytes 
+.br
+\fID\fP default key length, in bytes 
+.br
+\fIN\fP minimum key length, in bytes 
+.br
+\fIM\fP maximum key length, in bytes 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<unsigned int L, unsigned int D, unsigned int N, unsigned int M> const std::string \fBSIMON_Info\fP< L, D, N, M >::StaticAlgorithmName ()\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

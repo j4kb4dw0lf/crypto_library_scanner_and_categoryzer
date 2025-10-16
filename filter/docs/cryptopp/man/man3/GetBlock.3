@@ -1,0 +1,95 @@
+.TH "GetBlock< T, B, A >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GetBlock< T, B, A > \- Access a block of memory\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <misc\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGetBlock\fP (const void *block)"
+.br
+.RI "Construct a \fBGetBlock\fP\&. "
+.ti -1c
+.RI "template<class U> \fBGetBlock\fP< T, B, A > & \fBoperator()\fP (U &x)"
+.br
+.RI "Access a block of memory\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, class B, bool A = false>
+.br
+class GetBlock< T, B, A >"Access a block of memory\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.br
+\fIB\fP enumeration indicating endianness 
+.br
+\fIA\fP flag indicating alignment
+.RE
+.PP
+\fBGetBlock()\fP provides alternate read access to a block of memory\&. The enumeration B is \fBBigEndian\fP or \fBLittleEndian\fP\&. The flag A indicates if the memory block is aligned for class or type T\&. Repeatedly applying operator() results in advancing in the block of memory\&.
+
+.PP
+An example of reading two \fBword32\fP values from a block of memory is shown below\&. \fRw1\fP will be \fR0x03020100\fP and \fRw1\fP will be \fR0x07060504\fP\&. 
+.PP
+.nf
+
+  \fBword32\fP w1, w2;
+  byte buffer[8] = {0,1,2,3,4,5,6,7};
+  \fBGetBlock<word32, LittleEndian>\fP block(buffer);
+  block(w1)(w2);
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T, class B, bool A = false> \fBGetBlock\fP< T, B, A >\fB::GetBlock\fP (const void * block)\fR [inline]\fP"
+
+.PP
+Construct a \fBGetBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIblock\fP the memory block 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, class B, bool A = false> template<class U> \fBGetBlock\fP< T, B, A > & \fBGetBlock\fP< T, B, A >::operator() (U & x)\fR [inline]\fP"
+
+.PP
+Access a block of memory\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIU\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to read 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the remainder of the block after reading x 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

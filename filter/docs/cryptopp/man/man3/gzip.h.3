@@ -1,0 +1,54 @@
+.TH "/home/mock/cryptopp-master/gzip.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/gzip.h \- GZIP compression and decompression (RFC 1952)
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'zdeflate\&.h'\fP
+.br
+\fR#include 'zinflate\&.h'\fP
+.br
+\fR#include 'crc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBGzip\fP"
+.br
+.RI "GZIP Compression (RFC 1952) "
+.ti -1c
+.RI "class \fBGunzip\fP"
+.br
+.RI "GZIP Decompression (RFC 1952) "
+.ti -1c
+.RI "class \fBGunzip::HeaderErr\fP"
+.br
+.RI "\fBException\fP thrown when a header decoding error occurs\&. "
+.ti -1c
+.RI "class \fBGunzip::TailErr\fP"
+.br
+.RI "\fBException\fP thrown when the tail is too short\&. "
+.ti -1c
+.RI "class \fBGunzip::CrcErr\fP"
+.br
+.RI "\fBException\fP thrown when a CRC error occurs\&. "
+.ti -1c
+.RI "class \fBGunzip::LengthErr\fP"
+.br
+.RI "\fBException\fP thrown when a length error occurs\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+GZIP compression and decompression (RFC 1952)
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

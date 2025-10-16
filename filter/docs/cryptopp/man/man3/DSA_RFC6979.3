@@ -1,0 +1,83 @@
+.TH "DSA_RFC6979< H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DSA_RFC6979< H > \- \fBDSA\fP deterministic signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_SS< DL_SignatureKeys_GFP, DL_Algorithm_DSA_RFC6979< Integer, H >, DL_SignatureMessageEncodingMethod_DSA, H, DSA_RFC6979< H > >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBDL_SS< DL_SignatureKeys_GFP, DL_Algorithm_DSA_RFC6979< Integer, H >, DL_SignatureMessageEncodingMethod_DSA, H, DSA_RFC6979< H > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_SS< DL_SignatureKeys_GFP, DL_Algorithm_DSA_RFC6979< Integer, H >, DL_SignatureMessageEncodingMethod_DSA, H, DSA_RFC6979< H > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBDL_SignatureKeys_GFP\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_GroupParameters_GFP\fP \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PublicKey_GFP\fP< \fBGroupParameters\fP > \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_GFP\fP< \fBGroupParameters\fP > \fBPrivateKey\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class H>
+.br
+struct DSA_RFC6979< H >"\fBDSA\fP deterministic signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP \fBHashTransformation\fP derived class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRDSA-1363\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 for \fBDSA\fP, Crypto++ 5\&.6\&.2 for \fBDSA2\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

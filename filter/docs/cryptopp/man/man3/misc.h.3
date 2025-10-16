@@ -1,0 +1,3267 @@
+.TH "/home/mock/cryptopp-master/misc.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/misc.h \- Utility functions for the Crypto++ library\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblockfwd\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+\fR#include 'trap\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBCompileAssert< b >\fP"
+.br
+.ti -1c
+.RI "class \fBEmpty\fP"
+.br
+.RI "An \fBEmpty\fP class\&. "
+.ti -1c
+.RI "class \fBTwoBases< BASE1, BASE2 >\fP"
+.br
+.ti -1c
+.RI "class \fBThreeBases< BASE1, BASE2, BASE3 >\fP"
+.br
+.ti -1c
+.RI "class \fBObjectHolder< T >\fP"
+.br
+.RI "Uses encapsulation to hide an object in derived classes\&. "
+.ti -1c
+.RI "class \fBNotCopyable\fP"
+.br
+.RI "Ensures an object is not copyable\&. "
+.ti -1c
+.RI "struct \fBNewObject< T >\fP"
+.br
+.RI "An object factory function\&. "
+.ti -1c
+.RI "class \fBSingleton< T, F, instance >\fP"
+.br
+.RI "Restricts the instantiation of a class to one static object without locks\&. "
+.ti -1c
+.RI "class \fBGetBlock< T, B, A >\fP"
+.br
+.RI "Access a block of memory\&. "
+.ti -1c
+.RI "class \fBPutBlock< T, B, A >\fP"
+.br
+.RI "Access a block of memory\&. "
+.ti -1c
+.RI "struct \fBBlockGetAndPut< T, B, GA, PA >\fP"
+.br
+.RI "Access a block of memory\&. "
+.ti -1c
+.RI "struct \fBSafeShifter< true >\fP"
+.br
+.RI "Shifts a value in the presence of overflow\&. "
+.ti -1c
+.RI "struct \fBSafeShifter< false >\fP"
+.br
+.RI "Shifts a value in the absence of overflow\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_FAST_ROTATE\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBSIZE_MAX\fP   ((std::numeric_limits<size_t>::max)())"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_COMPILE_ASSERT\fP(assertion)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_ASSERT_JOIN\fP(X,  Y)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_DO_ASSERT_JOIN\fP(X,  Y)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_COMPILE_ASSERT_INSTANCE\fP(assertion,  instance)"
+.br
+.ti -1c
+.RI "#define \fBCOUNTOF\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBMEMORY_BARRIER\fP()"
+.br
+.ti -1c
+.RI "#define \fBEnumToInt\fP(v)"
+.br
+.RI "\fBInteger\fP value\&. "
+.ti -1c
+.RI "#define \fBRETURN_IF_NONZERO\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBGETBYTE\fP(x,  y)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_GET_BYTE_AS_BYTE\fP(x,  y)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_1\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_2\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_3\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_4\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_5\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_6\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_7\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCK_8\fP(n,  t,  s)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_BLOCKS_END\fP(i)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBLittleEndian\fP \fBNativeByteOrder\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename PTR, typename OFF> PTR \fBPtrAdd\fP (PTR pointer, OFF offset)"
+.br
+.RI "Create a pointer with an offset\&. "
+.ti -1c
+.RI "template<typename PTR, typename OFF> PTR \fBPtrSub\fP (PTR pointer, OFF offset)"
+.br
+.RI "Create a pointer with an offset\&. "
+.ti -1c
+.RI "template<typename PTR> ptrdiff_t \fBPtrDiff\fP (const PTR pointer1, const PTR pointer2)"
+.br
+.RI "Determine pointer difference\&. "
+.ti -1c
+.RI "template<typename PTR> size_t \fBPtrByteDiff\fP (const PTR pointer1, const PTR pointer2)"
+.br
+.RI "Determine pointer difference\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBBytePtr\fP (std::string &str)"
+.br
+.RI "Pointer to the first element of a string\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBBytePtr\fP (\fBSecByteBlock\fP &str)"
+.br
+.RI "Pointer to the first element of a string\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBConstBytePtr\fP (const std::string &str)"
+.br
+.RI "Const pointer to the first element of a string\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBConstBytePtr\fP (const \fBSecByteBlock\fP &str)"
+.br
+.RI "Const pointer to the first element of a string\&. "
+.ti -1c
+.RI "size_t \fBBytePtrSize\fP (const std::string &str)"
+.br
+.RI "Size of a string\&. "
+.ti -1c
+.RI "size_t \fBBytePtrSize\fP (const \fBSecByteBlock\fP &str)"
+.br
+.RI "Size of a string\&. "
+.ti -1c
+.RI "void \fBmemcpy_s\fP (void *dest, size_t sizeInBytes, const void *src, size_t count)"
+.br
+.RI "Bounds checking replacement for memcpy() "
+.ti -1c
+.RI "void \fBmemmove_s\fP (void *dest, size_t sizeInBytes, const void *src, size_t count)"
+.br
+.RI "Bounds checking replacement for memmove() "
+.ti -1c
+.RI "template<class T> void \fBvec_swap\fP (T &a, T &b)"
+.br
+.RI "Swaps two variables which are arrays\&. "
+.ti -1c
+.RI "void * \fBmemset_z\fP (void *ptr, int val, size_t num)"
+.br
+.RI "Memory block initializer\&. "
+.ti -1c
+.RI "template<class T> const T & \fBSTDMIN\fP (const T &a, const T &b)"
+.br
+.RI "Replacement function for std::min\&. "
+.ti -1c
+.RI "template<class T> const T & \fBSTDMAX\fP (const T &a, const T &b)"
+.br
+.RI "Replacement function for std::max\&. "
+.ti -1c
+.RI "template<class T1, class T2> const T1 \fBUnsignedMin\fP (const T1 &a, const T2 &b)"
+.br
+.RI "Safe comparison of values that could be negative and incorrectly promoted\&. "
+.ti -1c
+.RI "template<class T1, class T2> bool \fBSafeConvert\fP (T1 from, T2 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (sword64 from, word64 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (\fBword32\fP from, word64 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (\fBsword32\fP from, word64 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (word64 from, sword64 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (\fBword32\fP from, sword64 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (\fBsword32\fP from, sword64 &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (word64 from, \fBword32\fP &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (sword64 from, \fBword32\fP &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (\fBsword32\fP from, \fBword32\fP &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (word64 from, \fBsword32\fP &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (sword64 from, \fBsword32\fP &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<> bool \fBSafeConvert\fP (\fBword32\fP from, \fBsword32\fP &to)"
+.br
+.RI "Perform a conversion from \fRfrom\fP to \fRto\fP\&. "
+.ti -1c
+.RI "template<class T> std::string \fBIntToString\fP (T value, unsigned int base=10)"
+.br
+.RI "Converts a value to a string\&. "
+.ti -1c
+.RI "template<> CRYPTOPP_DLL std::string \fBIntToString< word64 >\fP (word64 value, unsigned int base)"
+.br
+.RI "Converts an unsigned value to a string\&. "
+.ti -1c
+.RI "template<> CRYPTOPP_DLL std::string \fBIntToString< Integer >\fP (\fBInteger\fP value, unsigned int base)"
+.br
+.RI "Converts an \fBInteger\fP to a string\&. "
+.ti -1c
+.RI "template<class T> unsigned int \fBParity\fP (T value)"
+.br
+.RI "Returns the parity of a value\&. "
+.ti -1c
+.RI "template<class T> unsigned int \fBBytePrecision\fP (const T &value)"
+.br
+.RI "Returns the number of 8-bit bytes or octets required for a value\&. "
+.ti -1c
+.RI "template<class T> unsigned int \fBBitPrecision\fP (const T &value)"
+.br
+.RI "Returns the number of bits required for a value\&. "
+.ti -1c
+.RI "unsigned int \fBTrailingZeros\fP (\fBword32\fP v)"
+.br
+.ti -1c
+.RI "unsigned int \fBTrailingZeros\fP (word64 v)"
+.br
+.ti -1c
+.RI "template<class T> T \fBCrop\fP (T value, size_t bits)"
+.br
+.RI "Truncates the value to the specified number of bits\&. "
+.ti -1c
+.RI "size_t \fBBitsToBytes\fP (size_t bitCount)"
+.br
+.RI "Returns the number of 8-bit bytes or octets required for the specified number of bits\&. "
+.ti -1c
+.RI "size_t \fBBytesToWords\fP (size_t byteCount)"
+.br
+.RI "Returns the number of words required for the specified number of bytes\&. "
+.ti -1c
+.RI "size_t \fBBitsToWords\fP (size_t bitCount)"
+.br
+.RI "Returns the number of words required for the specified number of bits\&. "
+.ti -1c
+.RI "size_t \fBBitsToDwords\fP (size_t bitCount)"
+.br
+.RI "Returns the number of double words required for the specified number of bits\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBxorbuf\fP (\fBbyte\fP *buf, const \fBbyte\fP *mask, size_t count)"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBxorbuf\fP (\fBbyte\fP *output, const \fBbyte\fP *input, const \fBbyte\fP *mask, size_t count)"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBVerifyBufsEqual\fP (const \fBbyte\fP *buf1, const \fBbyte\fP *buf2, size_t count)"
+.br
+.RI "Performs a near constant-time comparison of two equally sized buffers\&. "
+.ti -1c
+.RI "template<class T> bool \fBIsPowerOf2\fP (const T &value)"
+.br
+.RI "Tests whether a value is a power of 2\&. "
+.ti -1c
+.RI "template<class T> T \fBNumericLimitsMin\fP ()"
+.br
+.RI "Provide the minimum value for a type\&. "
+.ti -1c
+.RI "template<class T> T \fBNumericLimitsMax\fP ()"
+.br
+.RI "Provide the maximum value for a type\&. "
+.ti -1c
+.RI "template<class T1, class T2> T1 \fBSaturatingSubtract\fP (const T1 &a, const T2 &b)"
+.br
+.RI "Performs a saturating subtract clamped at 0\&. "
+.ti -1c
+.RI "template<class T1, class T2> T1 \fBSaturatingSubtract1\fP (const T1 &a, const T2 &b)"
+.br
+.RI "Performs a saturating subtract clamped at 1\&. "
+.ti -1c
+.RI "template<class T1, class T2> T2 \fBModPowerOf2\fP (const T1 &a, const T2 &b)"
+.br
+.RI "Reduces a value to a power of 2\&. "
+.ti -1c
+.RI "template<class T1, class T2> T1 \fBRoundDownToMultipleOf\fP (const T1 &n, const T2 &m)"
+.br
+.RI "Rounds a value down to a multiple of a second value\&. "
+.ti -1c
+.RI "template<class T1, class T2> T1 \fBRoundUpToMultipleOf\fP (const T1 &n, const T2 &m)"
+.br
+.RI "Rounds a value up to a multiple of a second value\&. "
+.ti -1c
+.RI "template<class T> unsigned int \fBGetAlignmentOf\fP ()"
+.br
+.RI "Returns the minimum alignment requirements of a type\&. "
+.ti -1c
+.RI "bool \fBIsAlignedOn\fP (const void *ptr, unsigned int alignment)"
+.br
+.RI "Determines whether ptr is aligned to a minimum value\&. "
+.ti -1c
+.RI "template<class T> bool \fBIsAligned\fP (const void *ptr)"
+.br
+.RI "Determines whether ptr is minimally aligned\&. "
+.ti -1c
+.RI "\fBByteOrder\fP \fBGetNativeByteOrder\fP ()"
+.br
+.RI "Returns NativeByteOrder as an enumerated \fBByteOrder\fP value\&. "
+.ti -1c
+.RI "bool \fBNativeByteOrderIs\fP (\fBByteOrder\fP order)"
+.br
+.RI "Determines whether order follows native byte ordering\&. "
+.ti -1c
+.RI "template<class T> \fBCipherDir\fP \fBGetCipherDir\fP (const T &obj)"
+.br
+.RI "Returns the direction the cipher is being operated\&. "
+.ti -1c
+.RI "void \fBIncrementCounterByOne\fP (\fBbyte\fP *inout, unsigned int size)"
+.br
+.RI "Performs an addition with carry on a block of bytes\&. "
+.ti -1c
+.RI "void \fBIncrementCounterByOne\fP (\fBbyte\fP *output, const \fBbyte\fP *input, unsigned int size)"
+.br
+.RI "Performs an addition with carry on a block of bytes\&. "
+.ti -1c
+.RI "template<class T> void \fBConditionalSwap\fP (bool c, T &a, T &b)"
+.br
+.RI "Performs a branch-less swap of values a and b if condition c is true\&. "
+.ti -1c
+.RI "template<class T> void \fBConditionalSwapPointers\fP (bool c, T &a, T &b)"
+.br
+.RI "Performs a branch-less swap of pointers a and b if condition c is true\&. "
+.ti -1c
+.RI "template<class T> void \fBSecureWipeBuffer\fP (T *buf, size_t n)"
+.br
+.RI "Sets each element of an array to 0\&. "
+.ti -1c
+.RI "template<class T> void \fBSecureWipeArray\fP (T *buf, size_t n)"
+.br
+.RI "Sets each element of an array to 0\&. "
+.ti -1c
+.RI "std::string \fBStringNarrow\fP (const wchar_t *str, bool throwOnError=true)"
+.br
+.RI "Converts a wide character C-string to a multibyte string\&. "
+.ti -1c
+.RI "std::wstring \fBStringWiden\fP (const char *str, bool throwOnError=true)"
+.br
+.RI "Converts a multibyte C-string to a wide character string\&. "
+.ti -1c
+.RI "template<unsigned int R, class T> T \fBrotlConstant\fP (T x)"
+.br
+.RI "Performs a left rotate\&. "
+.ti -1c
+.RI "template<unsigned int R, class T> T \fBrotrConstant\fP (T x)"
+.br
+.RI "Performs a right rotate\&. "
+.ti -1c
+.RI "template<class T> T \fBrotlFixed\fP (T x, unsigned int y)"
+.br
+.RI "Performs a left rotate\&. "
+.ti -1c
+.RI "template<class T> T \fBrotrFixed\fP (T x, unsigned int y)"
+.br
+.RI "Performs a right rotate\&. "
+.ti -1c
+.RI "template<class T> T \fBrotlVariable\fP (T x, unsigned int y)"
+.br
+.RI "Performs a left rotate\&. "
+.ti -1c
+.RI "template<class T> T \fBrotrVariable\fP (T x, unsigned int y)"
+.br
+.RI "Performs a right rotate\&. "
+.ti -1c
+.RI "template<class T> T \fBrotlMod\fP (T x, unsigned int y)"
+.br
+.RI "Performs a left rotate\&. "
+.ti -1c
+.RI "template<class T> T \fBrotrMod\fP (T x, unsigned int y)"
+.br
+.RI "Performs a right rotate\&. "
+.ti -1c
+.RI "template<class T> unsigned int \fBGetByte\fP (\fBByteOrder\fP order, T value, unsigned int index)"
+.br
+.RI "Gets a byte from a value\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBByteReverse\fP (\fBbyte\fP value)"
+.br
+.RI "Reverses bytes in a 8-bit value\&. "
+.ti -1c
+.RI "\fBword16\fP \fBByteReverse\fP (\fBword16\fP value)"
+.br
+.RI "Reverses bytes in a 16-bit value\&. "
+.ti -1c
+.RI "\fBword32\fP \fBByteReverse\fP (\fBword32\fP value)"
+.br
+.RI "Reverses bytes in a 32-bit value\&. "
+.ti -1c
+.RI "word64 \fBByteReverse\fP (word64 value)"
+.br
+.RI "Reverses bytes in a 64-bit value\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBBitReverse\fP (\fBbyte\fP value)"
+.br
+.RI "Reverses bits in a 8-bit value\&. "
+.ti -1c
+.RI "\fBword16\fP \fBBitReverse\fP (\fBword16\fP value)"
+.br
+.RI "Reverses bits in a 16-bit value\&. "
+.ti -1c
+.RI "\fBword32\fP \fBBitReverse\fP (\fBword32\fP value)"
+.br
+.RI "Reverses bits in a 32-bit value\&. "
+.ti -1c
+.RI "word64 \fBBitReverse\fP (word64 value)"
+.br
+.RI "Reverses bits in a 64-bit value\&. "
+.ti -1c
+.RI "template<class T> T \fBBitReverse\fP (T value)"
+.br
+.RI "Reverses bits in a value\&. "
+.ti -1c
+.RI "template<class T> T \fBConditionalByteReverse\fP (\fBByteOrder\fP order, T value)"
+.br
+.RI "Reverses bytes in a value depending upon endianness\&. "
+.ti -1c
+.RI "template<class T> void \fBByteReverse\fP (T *out, const T *in, size_t byteCount)"
+.br
+.RI "Reverses bytes in an element from an array of elements\&. "
+.ti -1c
+.RI "template<class T> void \fBConditionalByteReverse\fP (\fBByteOrder\fP order, T *out, const T *in, size_t byteCount)"
+.br
+.RI "Conditionally reverses bytes in an element from an array of elements\&. "
+.ti -1c
+.RI "template<class T> void \fBGetUserKey\fP (\fBByteOrder\fP order, T *out, size_t outlen, const \fBbyte\fP *in, size_t inlen)"
+.br
+.RI "Copy bytes in a buffer to an array of elements in big-endian order\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBUnalignedGetWordNonTemplate\fP (\fBByteOrder\fP order, const \fBbyte\fP *block, const \fBbyte\fP *unused)"
+.br
+.RI "Retrieve a byte from an unaligned buffer\&. "
+.ti -1c
+.RI "\fBword16\fP \fBUnalignedGetWordNonTemplate\fP (\fBByteOrder\fP order, const \fBbyte\fP *block, const \fBword16\fP *unused)"
+.br
+.RI "Retrieve a \fBword16\fP from an unaligned buffer\&. "
+.ti -1c
+.RI "\fBword32\fP \fBUnalignedGetWordNonTemplate\fP (\fBByteOrder\fP order, const \fBbyte\fP *block, const \fBword32\fP *unused)"
+.br
+.RI "Retrieve a \fBword32\fP from an unaligned buffer\&. "
+.ti -1c
+.RI "word64 \fBUnalignedGetWordNonTemplate\fP (\fBByteOrder\fP order, const \fBbyte\fP *block, const word64 *unused)"
+.br
+.RI "Retrieve a word64 from an unaligned buffer\&. "
+.ti -1c
+.RI "void \fBUnalignedbyteNonTemplate\fP (\fBByteOrder\fP order, \fBbyte\fP *block, \fBbyte\fP value, const \fBbyte\fP *xorBlock)"
+.br
+.RI "Write a byte to an unaligned buffer\&. "
+.ti -1c
+.RI "void \fBUnalignedbyteNonTemplate\fP (\fBByteOrder\fP order, \fBbyte\fP *block, \fBword16\fP value, const \fBbyte\fP *xorBlock)"
+.br
+.RI "Write a \fBword16\fP to an unaligned buffer\&. "
+.ti -1c
+.RI "void \fBUnalignedbyteNonTemplate\fP (\fBByteOrder\fP order, \fBbyte\fP *block, \fBword32\fP value, const \fBbyte\fP *xorBlock)"
+.br
+.RI "Write a \fBword32\fP to an unaligned buffer\&. "
+.ti -1c
+.RI "void \fBUnalignedbyteNonTemplate\fP (\fBByteOrder\fP order, \fBbyte\fP *block, word64 value, const \fBbyte\fP *xorBlock)"
+.br
+.RI "Write a word64 to an unaligned buffer\&. "
+.ti -1c
+.RI "template<class T> T \fBGetWord\fP (bool assumeAligned, \fBByteOrder\fP order, const \fBbyte\fP *block)"
+.br
+.RI "Access a block of memory\&. "
+.ti -1c
+.RI "template<class T> void \fBGetWord\fP (bool assumeAligned, \fBByteOrder\fP order, T &result, const \fBbyte\fP *block)"
+.br
+.RI "Access a block of memory\&. "
+.ti -1c
+.RI "template<class T> void \fBPutWord\fP (bool assumeAligned, \fBByteOrder\fP order, \fBbyte\fP *block, T value, const \fBbyte\fP *xorBlock=NULLPTR)"
+.br
+.RI "Access a block of memory\&. "
+.ti -1c
+.RI "template<class T> std::string \fBWordToString\fP (T value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Convert a word to a string\&. "
+.ti -1c
+.RI "template<class T> T \fBStringToWord\fP (const std::string &str, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Convert a string to a word\&. "
+.ti -1c
+.RI "template<unsigned int bits, class T> T \fBSafeRightShift\fP (T value)"
+.br
+.RI "Safely right shift values when undefined behavior could occur\&. "
+.ti -1c
+.RI "template<unsigned int bits, class T> T \fBSafeLeftShift\fP (T value)"
+.br
+.RI "Safely left shift values when undefined behavior could occur\&. "
+.ti -1c
+.RI "template<typename InputIt, typename T> InputIt \fBFindIfNot\fP (InputIt first, InputIt last, const T &value)"
+.br
+.RI "Finds first element not in a range\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Utility functions for the Crypto++ library\&.
+
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define COUNTOF( x)"
+\fBValue:\fP
+.nf
+(sizeof(x)/sizeof(x[0]))
+.PP
+.fi
+
+.SS "#define CRYPTOPP_ASSERT_JOIN( X,  Y)"
+\fBValue:\fP
+.nf
+CRYPTOPP_DO_ASSERT_JOIN(X, Y)
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_1( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+0);}     size_t SS1() {return       sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_2( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS1());} size_t SS2() {return SS1()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_3( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS2());} size_t SS3() {return SS2()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_4( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS3());} size_t SS4() {return SS3()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_5( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS4());} size_t SS5() {return SS4()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_6( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS5());} size_t SS6() {return SS5()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_7( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS6());} size_t SS7() {return SS6()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCK_8( n,  t,  s)"
+\fBValue:\fP
+.nf
+t* m_##n() {return (t *)(void *)(m_aggregate+SS7());} size_t SS8() {return SS7()+sizeof(t)*(s);} size_t m_##n##Size() {return (s);}
+.PP
+.fi
+
+.SS "#define CRYPTOPP_BLOCKS_END( i)"
+\fBValue:\fP
+.nf
+size_t SST() {return SS##i();} void AllocateBlocks() {m_aggregate\&.New(SST());} AlignedSecByteBlock m_aggregate;
+.PP
+.fi
+
+.SS "#define CRYPTOPP_COMPILE_ASSERT( assertion)"
+\fBValue:\fP
+.nf
+CRYPTOPP_COMPILE_ASSERT_INSTANCE(assertion, __LINE__)
+.PP
+.fi
+
+.SS "#define CRYPTOPP_COMPILE_ASSERT_INSTANCE( assertion,  instance)"
+\fBValue:\fP
+.nf
+       static CompileAssert<(assertion)> \\
+       CRYPTOPP_ASSERT_JOIN(cryptopp_CRYPTOPP_ASSERT_, instance)
+.PP
+.fi
+
+.SS "#define CRYPTOPP_DO_ASSERT_JOIN( X,  Y)"
+\fBValue:\fP
+.nf
+X##Y
+.PP
+.fi
+
+.SS "#define CRYPTOPP_FAST_ROTATE( x)"
+\fBValue:\fP
+.nf
+0
+.PP
+.fi
+
+.SS "#define CRYPTOPP_GET_BYTE_AS_BYTE( x,  y)"
+\fBValue:\fP
+.nf
+byte((x)>>(8*(y)))
+.PP
+.fi
+
+.SS "#define EnumToInt( v)"
+\fBValue:\fP
+.nf
+static_cast<int>(v)
+.PP
+.fi
+
+.PP
+\fBInteger\fP value\&. EnumToInt avoids C++20 enum-enum conversion warnings under GCC and Clang\&. C++11 and above use a constexpr function\&. C++03 and below use a macro due to [lack of] constexpr-ness in early versions of C++\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.6
+.RE
+.PP
+
+.SS "#define GETBYTE( x,  y)"
+\fBValue:\fP
+.nf
+(unsigned int)byte((x)>>(8*(y)))
+.PP
+.fi
+
+.SS "#define RETURN_IF_NONZERO( x)"
+\fBValue:\fP
+.nf
+size_t returnedValue = x; if (returnedValue) return returnedValue
+.PP
+.fi
+
+.SH "Function Documentation"
+.PP
+.SS "template<class T> unsigned int BitPrecision (const T & value)"
+
+.PP
+Returns the number of bits required for a value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the maximum number of bits required to represent a value\&.
+.RE
+.PP
+
+.SS "\fBbyte\fP BitReverse (\fBbyte\fP value)\fR [inline]\fP"
+
+.PP
+Reverses bits in a 8-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 8-bit value to reverse
+.RE
+.PP
+BitReverse performs a combination of shifts on the byte\&.
+.SS "template<class T> T BitReverse (T value)\fR [inline]\fP"
+
+.PP
+Reverses bits in a value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to reverse
+.RE
+.PP
+The template overload of BitReverse operates on signed and unsigned values\&. Internally the size of T is checked, and then value is cast to a byte, \fBword16\fP, \fBword32\fP or word64\&. After the cast, the appropriate BitReverse overload is called\&.
+.PP
+\fBNote\fP
+.RS 4
+word128 is available on some 64-bit platforms when the compiler supports it\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0, word128 since Crypto++ 8\&.7
+.RE
+.PP
+
+.SS "\fBword16\fP BitReverse (\fBword16\fP value)\fR [inline]\fP"
+
+.PP
+Reverses bits in a 16-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 16-bit value to reverse
+.RE
+.PP
+BitReverse performs a combination of shifts on the \fBword16\fP\&.
+.SS "\fBword32\fP BitReverse (\fBword32\fP value)\fR [inline]\fP"
+
+.PP
+Reverses bits in a 32-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 32-bit value to reverse
+.RE
+.PP
+BitReverse performs a combination of shifts on the \fBword32\fP\&.
+.SS "word64 BitReverse (word64 value)\fR [inline]\fP"
+
+.PP
+Reverses bits in a 64-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 64-bit value to reverse
+.RE
+.PP
+BitReverse performs a combination of shifts on the word64\&.
+.SS "size_t BitsToBytes (size_t bitCount)\fR [inline]\fP"
+
+.PP
+Returns the number of 8-bit bytes or octets required for the specified number of bits\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbitCount\fP the number of bits
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of 8-bit bytes or octets required by bitCount
+.RE
+.PP
+BitsToBytes is effectively a ceiling function based on 8-bit bytes\&.
+.SS "size_t BitsToDwords (size_t bitCount)\fR [inline]\fP"
+
+.PP
+Returns the number of double words required for the specified number of bits\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbitCount\fP the number of bits
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of double words required by bitCount
+.RE
+.PP
+BitsToDwords is effectively a ceiling function based on \fR2*WORD_BITS\fP\&. \fRWORD_BITS\fP is defined in \fBconfig\&.h\fP
+.SS "size_t BitsToWords (size_t bitCount)\fR [inline]\fP"
+
+.PP
+Returns the number of words required for the specified number of bits\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbitCount\fP the number of bits
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of words required by bitCount
+.RE
+.PP
+BitsToWords is effectively a ceiling function based on \fRWORD_BITS\fP\&. \fRWORD_BITS\fP is defined in \fBconfig\&.h\fP
+.SS "template<class T> unsigned int BytePrecision (const T & value)"
+
+.PP
+Returns the number of 8-bit bytes or octets required for a value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of 8-bit bytes or octets required to represent a value
+.RE
+.PP
+
+.SS "\fBbyte\fP * BytePtr (\fBSecByteBlock\fP & str)"
+
+.PP
+Pointer to the first element of a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP SecByteBlock
+.RE
+.PP
+BytePtr returns NULL pointer for an empty string\&.
+.PP
+\fBReturns\fP
+.RS 4
+Pointer to the first element of a string
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "\fBbyte\fP * BytePtr (std::string & str)\fR [inline]\fP"
+
+.PP
+Pointer to the first element of a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP string
+.RE
+.PP
+BytePtr returns NULL pointer for an empty string\&.
+.PP
+\fBReturns\fP
+.RS 4
+Pointer to the first element of a string
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SS "size_t BytePtrSize (const \fBSecByteBlock\fP & str)"
+
+.PP
+Size of a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP SecByteBlock
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+size of a string
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "size_t BytePtrSize (const std::string & str)\fR [inline]\fP"
+
+.PP
+Size of a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP string
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+size of a string
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "\fBbyte\fP ByteReverse (\fBbyte\fP value)\fR [inline]\fP"
+
+.PP
+Reverses bytes in a 8-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 8-bit value to reverse
+.RE
+.PP
+\fBNote\fP
+.RS 4
+ByteReverse returns the value passed to it since there is nothing to reverse\&.
+.RE
+.PP
+
+.SS "template<class T> void ByteReverse (T * out, const T * in, size_t byteCount)"
+
+.PP
+Reverses bytes in an element from an array of elements\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIout\fP the output array of elements
+.br
+\fIin\fP the input array of elements
+.br
+\fIbyteCount\fP the total number of bytes in the array
+.RE
+.PP
+Internally, ByteReverse visits each element in the in array calls ByteReverse on it, and writes the result to out\&.
+
+.PP
+ByteReverse does not process tail byes, or bytes that are not part of a full element\&. If T is int (and int is 4 bytes), then \fRbyteCount = 10\fP means only the first 2 elements or 8 bytes are reversed\&.
+
+.PP
+The following program should help illustrate the behavior\&.
+.PP
+.nf
+vector<word32> v1, v2;
+
+v1\&.push_back(1);
+v1\&.push_back(2);
+v1\&.push_back(3);
+v1\&.push_back(4);
+
+v2\&.resize(v1\&.size());
+ByteReverse<word32>(&v2[0], &v1[0], 16);
+
+cout << "V1: ";
+for(unsigned int i = 0; i < v1\&.size(); i++)
+  cout << std::hex << v1[i] << " ";
+cout << endl;
+
+cout << "V2: ";
+for(unsigned int i = 0; i < v2\&.size(); i++)
+  cout << std::hex << v2[i] << " ";
+cout << endl;
+.fi
+.PP
+ The program above results in the following output\&.
+.PP
+.nf
+V1: 00000001 00000002 00000003 00000004
+V2: 01000000 02000000 03000000 04000000
+.fi
+.PP
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBConditionalByteReverse\fP
+.RE
+.PP
+
+.SS "\fBword16\fP ByteReverse (\fBword16\fP value)\fR [inline]\fP"
+
+.PP
+Reverses bytes in a 16-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 16-bit value to reverse
+.RE
+.PP
+ByteReverse calls bswap if available\&. Otherwise the function performs a 8-bit rotate on the \fBword16\fP\&.
+.SS "\fBword32\fP ByteReverse (\fBword32\fP value)\fR [inline]\fP"
+
+.PP
+Reverses bytes in a 32-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 32-bit value to reverse
+.RE
+.PP
+ByteReverse calls bswap if available\&. Otherwise the function uses a combination of rotates on the \fBword32\fP\&.
+.SS "word64 ByteReverse (word64 value)\fR [inline]\fP"
+
+.PP
+Reverses bytes in a 64-bit value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the 64-bit value to reverse
+.RE
+.PP
+ByteReverse calls bswap if available\&. Otherwise the function uses a combination of rotates on the word64\&.
+.SS "size_t BytesToWords (size_t byteCount)\fR [inline]\fP"
+
+.PP
+Returns the number of words required for the specified number of bytes\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbyteCount\fP the number of bytes
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of words required by byteCount
+.RE
+.PP
+BytesToWords is effectively a ceiling function based on \fRWORD_SIZE\fP\&. \fRWORD_SIZE\fP is defined in \fBconfig\&.h\fP
+.SS "template<class T> void ConditionalByteReverse (\fBByteOrder\fP order, T * out, const T * in, size_t byteCount)\fR [inline]\fP"
+
+.PP
+Conditionally reverses bytes in an element from an array of elements\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIout\fP the output array of elements
+.br
+\fIin\fP the input array of elements
+.br
+\fIbyteCount\fP the byte count of the arrays
+.RE
+.PP
+ConditionalByteReverse visits each element in the in array calls ByteReverse on it depending on the desired endianness, and writes the result to out\&.
+
+.PP
+ByteReverse does not process tail byes, or bytes that are not part of a full element\&. If T is int (and int is 4 bytes), then \fRbyteCount = 10\fP means only the first 2 elements or 8 bytes are reversed\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBByteReverse\fP
+.RE
+.PP
+
+.SS "template<class T> T ConditionalByteReverse (\fBByteOrder\fP order, T value)\fR [inline]\fP"
+
+.PP
+Reverses bytes in a value depending upon endianness\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIvalue\fP the value to conditionally reverse
+.RE
+.PP
+Internally, the ConditionalByteReverse calls NativeByteOrderIs\&. If order matches native byte order, then the original value is returned\&. If not, then ByteReverse is called on the value before returning to the caller\&.
+.SS "template<class T> void ConditionalSwap (bool c, T & a, T & b)\fR [inline]\fP"
+
+.PP
+Performs a branch-less swap of values a and b if condition c is true\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIc\fP the condition to perform the swap
+.br
+\fIa\fP the first value
+.br
+\fIb\fP the second value
+.RE
+.PP
+
+.SS "template<class T> void ConditionalSwapPointers (bool c, T & a, T & b)\fR [inline]\fP"
+
+.PP
+Performs a branch-less swap of pointers a and b if condition c is true\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIc\fP the condition to perform the swap
+.br
+\fIa\fP the first pointer
+.br
+\fIb\fP the second pointer
+.RE
+.PP
+
+.SS "const \fBbyte\fP * ConstBytePtr (const \fBSecByteBlock\fP & str)"
+
+.PP
+Const pointer to the first element of a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP SecByteBlock
+.RE
+.PP
+ConstBytePtr returns non-NULL pointer for an empty string\&.
+.PP
+\fBReturns\fP
+.RS 4
+Pointer to the first element of a string
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "const \fBbyte\fP * ConstBytePtr (const std::string & str)\fR [inline]\fP"
+
+.PP
+Const pointer to the first element of a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP string
+.RE
+.PP
+ConstBytePtr returns non-NULL pointer for an empty string\&.
+.PP
+\fBReturns\fP
+.RS 4
+Pointer to the first element of a string
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SS "template<class T> T Crop (T value, size_t bits)\fR [inline]\fP"
+
+.PP
+Truncates the value to the specified number of bits\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to truncate or mask
+.br
+\fIbits\fP the number of bits to truncate or mask
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the value truncated to the specified number of bits, starting at the least significant bit position
+.RE
+.PP
+This function masks the low-order bits of value and returns the result\&. The mask is created with \fR(1 << bits) - 1\fP\&.
+.SS "template<typename InputIt, typename T> InputIt FindIfNot (InputIt first, InputIt last, const T & value)\fR [inline]\fP"
+
+.PP
+Finds first element not in a range\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIInputIt\fP Input iterator type
+.br
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIfirst\fP iterator to first element
+.br
+\fIlast\fP iterator to last element
+.br
+\fIvalue\fP the value used as a predicate
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+iterator to the first element in the range that is not value
+.RE
+.PP
+
+.SS "template<class T> unsigned int GetAlignmentOf ()\fR [inline]\fP"
+
+.PP
+Returns the minimum alignment requirements of a type\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum alignment requirements of \fRT\fP, in bytes
+.RE
+.PP
+Internally the function calls C++11's \fRalignof\fP if available\&. If not available, then the function uses compiler specific extensions such as \fR__alignof\fP and \fR\fIalignof\fP\fP\&. If an extension is not available, then the function uses \fRsizeof(T)\fP\&.
+.SS "template<class T> unsigned int GetByte (\fBByteOrder\fP order, T value, unsigned int index)\fR [inline]\fP"
+
+.PP
+Gets a byte from a value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the value
+.br
+\fIvalue\fP the value to retrieve the byte
+.br
+\fIindex\fP the location of the byte to retrieve
+.RE
+.PP
+
+.SS "template<class T> \fBCipherDir\fP GetCipherDir (const T & obj)\fR [inline]\fP"
+
+.PP
+Returns the direction the cipher is being operated\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIobj\fP the cipher object being queried
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+ENCRYPTION if the cipher obj is being operated in its forward direction, DECRYPTION otherwise
+.RE
+.PP
+A cipher can be operated in a "forward" direction (encryption) or a "reverse" direction (decryption)\&. The operations do not have to be symmetric, meaning a second application of the transformation does not necessarily return the original message\&. That is, \fRE(D(m))\fP may not equal \fRE(E(m))\fP; and \fRD(E(m))\fP may not equal \fRD(D(m))\fP\&.
+.SS "\fBByteOrder\fP GetNativeByteOrder ()\fR [inline]\fP"
+
+.PP
+Returns NativeByteOrder as an enumerated \fBByteOrder\fP value\&.
+.PP
+\fBReturns\fP
+.RS 4
+\fBLittleEndian\fP if the native byte order is little-endian, and \fBBigEndian\fP if the native byte order is big-endian
+.RE
+.PP
+NativeByteOrder is a typedef depending on the platform\&. If CRYPTOPP_LITTLE_ENDIAN is set in \fBconfig\&.h\fP, then GetNativeByteOrder returns \fBLittleEndian\fP\&. If CRYPTOPP_BIG_ENDIAN is set, then GetNativeByteOrder returns \fBBigEndian\fP\&.
+.PP
+\fBNote\fP
+.RS 4
+There are other byte orders besides little- and big-endian, and they include bi-endian and PDP-endian\&. If a system is neither little-endian nor big-endian, then a compile time error occurs\&.
+.RE
+.PP
+
+.SS "template<class T> void GetUserKey (\fBByteOrder\fP order, T * out, size_t outlen, const \fBbyte\fP * in, size_t inlen)\fR [inline]\fP"
+
+.PP
+Copy bytes in a buffer to an array of elements in big-endian order\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIout\fP the output array of elements
+.br
+\fIoutlen\fP the byte count of the array
+.br
+\fIin\fP the input array of elements
+.br
+\fIinlen\fP the byte count of the array
+.RE
+.PP
+
+.SS "template<class T> T GetWord (bool assumeAligned, \fBByteOrder\fP order, const \fBbyte\fP * block)\fR [inline]\fP"
+
+.PP
+Access a block of memory\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIassumeAligned\fP flag indicating alignment
+.br
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP the byte buffer to be processed
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the word in the specified byte order
+.RE
+.PP
+\fBGetWord()\fP provides alternate read access to a block of memory\&. The flag assumeAligned indicates if the memory block is aligned for class or type T\&. The enumeration \fBByteOrder\fP is BIG_ENDIAN_ORDER or LITTLE_ENDIAN_ORDER\&.
+
+.PP
+An example of reading two \fBword32\fP values from a block of memory is shown below\&. \fRw\fP will be \fR0x03020100\fP\&.
+.PP
+.nf
+
+  \fBword32\fP w;
+  byte buffer[4] = {0,1,2,3};
+  w = GetWord<word32>(false, LITTLE_ENDIAN_ORDER, buffer);
+.fi
+.PP
+
+.SS "template<class T> void GetWord (bool assumeAligned, \fBByteOrder\fP order, T & result, const \fBbyte\fP * block)\fR [inline]\fP"
+
+.PP
+Access a block of memory\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIassumeAligned\fP flag indicating alignment
+.br
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIresult\fP the word in the specified byte order
+.br
+\fIblock\fP the byte buffer to be processed
+.RE
+.PP
+\fBGetWord()\fP provides alternate read access to a block of memory\&. The flag assumeAligned indicates if the memory block is aligned for class or type T\&. The enumeration \fBByteOrder\fP is BIG_ENDIAN_ORDER or LITTLE_ENDIAN_ORDER\&.
+
+.PP
+An example of reading two \fBword32\fP values from a block of memory is shown below\&. \fRw\fP will be \fR0x03020100\fP\&.
+.PP
+.nf
+
+  \fBword32\fP w;
+  byte buffer[4] = {0,1,2,3};
+  w = GetWord<word32>(false, LITTLE_ENDIAN_ORDER, buffer);
+.fi
+.PP
+
+.SS "void IncrementCounterByOne (\fBbyte\fP * inout, unsigned int size)\fR [inline]\fP"
+
+.PP
+Performs an addition with carry on a block of bytes\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIinout\fP the byte block
+.br
+\fIsize\fP the size of the block, in bytes
+.RE
+.PP
+Performs an addition with carry by adding 1 on a block of bytes starting at the least significant byte\&. Once carry is 0, the function terminates and returns to the caller\&.
+.PP
+\fBNote\fP
+.RS 4
+The function is not constant time because it stops processing when the carry is 0\&.
+.RE
+.PP
+
+.SS "void IncrementCounterByOne (\fBbyte\fP * output, const \fBbyte\fP * input, unsigned int size)\fR [inline]\fP"
+
+.PP
+Performs an addition with carry on a block of bytes\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the destination block of bytes
+.br
+\fIinput\fP the source block of bytes
+.br
+\fIsize\fP the size of the block
+.RE
+.PP
+Performs an addition with carry on a block of bytes starting at the least significant byte\&. Once carry is 0, the remaining bytes from input are copied to output using memcpy\&.
+
+.PP
+The function is close to near-constant time because it operates on all the bytes in the blocks\&.
+.SS "template<class T> std::string IntToString (T value, unsigned int base = \fR10\fP)"
+
+.PP
+Converts a value to a string\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to convert
+.br
+\fIbase\fP the base to use during the conversion
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the string representation of value in base\&.
+.RE
+.PP
+
+.SS "template<> CRYPTOPP_DLL std::string \fBIntToString\fP< \fBInteger\fP > (\fBInteger\fP value, unsigned int base)"
+
+.PP
+Converts an \fBInteger\fP to a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the \fBInteger\fP to convert
+.br
+\fIbase\fP the base to use during the conversion
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the string representation of value in base\&.
+.RE
+.PP
+This is a template specialization of \fBIntToString()\fP\&. Use it like \fBIntToString()\fP:
+.PP
+.nf
+
+ // Print integer in base 10
+ \fBInteger\fP n\&.\&.\&.
+ std::string s = IntToString(n, 10);
+.fi
+.PP
+
+.PP
+The string is presented with lowercase letters by default\&. A hack is available to switch to uppercase letters without modifying the function signature\&.
+.PP
+.nf
+
+ // Print integer in base 16, uppercase letters
+ \fBInteger\fP n\&.\&.\&.
+ const unsigned int UPPER = (1 << 31);
+ std::string s = IntToString(n, (UPPER | 16));
+.fi
+.PP
+
+.SS "template<> CRYPTOPP_DLL std::string \fBIntToString\fP< word64 > (word64 value, unsigned int base)"
+
+.PP
+Converts an unsigned value to a string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to convert
+.br
+\fIbase\fP the base to use during the conversion
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the string representation of value in base\&.
+.RE
+.PP
+this template function specialization was added to suppress Coverity findings on \fBIntToString()\fP with unsigned types\&.
+.SS "template<class T> bool IsAligned (const void * ptr)\fR [inline]\fP"
+
+.PP
+Determines whether ptr is minimally aligned\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP the pointer to check for alignment
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if \fRptr\fP is aligned to at least \fRT\fP boundary, false otherwise
+.RE
+.PP
+Internally the function calls IsAlignedOn with a second parameter of GetAlignmentOf<T>\&.
+.SS "bool IsAlignedOn (const void * ptr, unsigned int alignment)\fR [inline]\fP"
+
+.PP
+Determines whether ptr is aligned to a minimum value\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP the pointer being checked for alignment
+.br
+\fIalignment\fP the alignment value to test the pointer against
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if \fRptr\fP is aligned on at least \fRalignment\fP boundary, false otherwise
+.RE
+.PP
+Internally the function tests whether alignment is 1\&. If so, the function returns true\&. If not, then the function effectively performs a modular reduction and returns true if the residue is 0\&.
+.SS "template<class T> bool IsPowerOf2 (const T & value)\fR [inline]\fP"
+
+.PP
+Tests whether a value is a power of 2\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if value is a power of 2, false otherwise
+.RE
+.PP
+The function creates a mask of \fRvalue - 1\fP and returns the result of an AND operation compared to 0\&. If value is 0 or less than 0, then the function returns false\&.
+.SS "void memcpy_s (void * dest, size_t sizeInBytes, const void * src, size_t count)\fR [inline]\fP"
+
+.PP
+Bounds checking replacement for memcpy()
+.PP
+\fBParameters\fP
+.RS 4
+\fIdest\fP pointer to the destination memory block
+.br
+\fIsizeInBytes\fP size of the destination memory block, in bytes
+.br
+\fIsrc\fP pointer to the source memory block
+.br
+\fIcount\fP the number of bytes to copy
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP
+.RE
+.PP
+ISO/IEC TR-24772 provides bounds checking interfaces for potentially unsafe functions like memcpy(), strcpy() and memmove()\&. However, not all standard libraries provides them, like Glibc\&. The library's \fBmemcpy_s()\fP is a near-drop in replacement\&. Its only a near-replacement because the library's version throws an \fBInvalidArgument\fP on a bounds violation\&.
+
+.PP
+\fBmemcpy_s()\fP and \fBmemmove_s()\fP are guarded by \fBSTDC_WANT_SECURE_LIB\fP\&. If \fBSTDC_WANT_SECURE_LIB\fP is not defined or defined to 0, then the library makes \fBmemcpy_s()\fP and \fBmemmove_s()\fP available\&. The library will also optionally make the symbols available if \fRCRYPTOPP_WANT_SECURE_LIB\fP is defined\&. \fRCRYPTOPP_WANT_SECURE_LIB\fP is in \fBconfig\&.h\fP, but it is disabled by default\&.
+
+.PP
+\fBmemcpy_s()\fP will assert the pointers src and dest are not NULL in debug builds\&. Passing NULL for either pointer is undefined behavior\&.
+.SS "void memmove_s (void * dest, size_t sizeInBytes, const void * src, size_t count)\fR [inline]\fP"
+
+.PP
+Bounds checking replacement for memmove()
+.PP
+\fBParameters\fP
+.RS 4
+\fIdest\fP pointer to the destination memory block
+.br
+\fIsizeInBytes\fP size of the destination memory block, in bytes
+.br
+\fIsrc\fP pointer to the source memory block
+.br
+\fIcount\fP the number of bytes to copy
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP
+.RE
+.PP
+ISO/IEC TR-24772 provides bounds checking interfaces for potentially unsafe functions like memcpy(), strcpy() and memmove()\&. However, not all standard libraries provides them, like Glibc\&. The library's \fBmemmove_s()\fP is a near-drop in replacement\&. Its only a near-replacement because the library's version throws an \fBInvalidArgument\fP on a bounds violation\&.
+
+.PP
+\fBmemcpy_s()\fP and \fBmemmove_s()\fP are guarded by \fBSTDC_WANT_SECURE_LIB\fP\&. If \fBSTDC_WANT_SECURE_LIB\fP is not defined or defined to 0, then the library makes \fBmemcpy_s()\fP and \fBmemmove_s()\fP available\&. The library will also optionally make the symbols available if \fRCRYPTOPP_WANT_SECURE_LIB\fP is defined\&. \fRCRYPTOPP_WANT_SECURE_LIB\fP is in \fBconfig\&.h\fP, but it is disabled by default\&.
+
+.PP
+\fBmemmove_s()\fP will assert the pointers src and dest are not NULL in debug builds\&. Passing NULL for either pointer is undefined behavior\&.
+.SS "void * memset_z (void * ptr, int val, size_t num)\fR [inline]\fP"
+
+.PP
+Memory block initializer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP pointer to the memory block being written
+.br
+\fIval\fP the integer value to write for each byte
+.br
+\fInum\fP the size of the source memory block, in bytes
+.RE
+.PP
+Internally the function calls memset with the value \fRval\fP\&. memset_z can be used to initialize a freshly allocated memory block\&. To zeroize a memory block on destruction use \fRSecureWipeBuffer\fP\&.
+.PP
+\fBReturns\fP
+.RS 4
+the pointer to the memory block
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSecureWipeBuffer\fP
+.RE
+.PP
+
+.SS "template<class T1, class T2> T2 ModPowerOf2 (const T1 & a, const T2 & b)\fR [inline]\fP"
+
+.PP
+Reduces a value to a power of 2\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first value
+.br
+\fIb\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBModPowerOf2()\fP returns \fRa & (b-1)\fP\&. \fRb\fP must be a power of 2\&. Use \fBIsPowerOf2()\fP to determine if \fRb\fP is a suitable candidate\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBIsPowerOf2\fP
+.RE
+.PP
+
+.SS "bool NativeByteOrderIs (\fBByteOrder\fP order)\fR [inline]\fP"
+
+.PP
+Determines whether order follows native byte ordering\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the ordering being tested against native byte ordering
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if order follows native byte ordering, false otherwise
+.RE
+.PP
+
+.SS "template<class T> T NumericLimitsMax ()\fR [inline]\fP"
+
+.PP
+Provide the maximum value for a type\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP type of class
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the maximum value of the type or class
+.RE
+.PP
+\fBNumericLimitsMax()\fP was introduced for Clang at \fRIssue 364, Apple Clang 6\&.0 and numeric_limits<word128>::max() returns 0\fP\&.
+
+.PP
+\fBNumericLimitsMax()\fP requires a specialization for \fRT\fP, meaning \fRstd::numeric_limits<T>::is_specialized\fP must return \fRtrue\fP\&. In the case of \fRword128\fP Clang did not specialize \fRnumeric_limits\fP for the type\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1
+.RE
+.PP
+
+.SS "template<class T> T NumericLimitsMin ()\fR [inline]\fP"
+
+.PP
+Provide the minimum value for a type\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP type of class
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum value of the type or class
+.RE
+.PP
+\fBNumericLimitsMin()\fP was introduced for Clang at \fRIssue 364, Apple Clang 6\&.0 and numeric_limits<word128>::max() returns 0\fP\&.
+
+.PP
+\fBNumericLimitsMin()\fP requires a specialization for \fRT\fP, meaning \fRstd::numeric_limits<T>::is_specialized\fP must return \fRtrue\fP\&. In the case of \fRword128\fP Clang did not specialize \fRnumeric_limits\fP for the type\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1
+.RE
+.PP
+
+.SS "template<class T> unsigned int Parity (T value)"
+
+.PP
+Returns the parity of a value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to provide the parity
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the number 1-bits in the value is odd, 0 otherwise
+.RE
+.PP
+
+.SS "template<typename PTR, typename OFF> PTR PtrAdd (PTR pointer, OFF offset)\fR [inline]\fP"
+
+.PP
+Create a pointer with an offset\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPTR\fP a pointer type
+.br
+\fIOFF\fP a size type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpointer\fP a pointer
+.br
+\fIoffset\fP a offset into the pointer
+.RE
+.PP
+PtrAdd can be used to squash Clang and GCC UBsan findings for pointer addition and subtraction\&.
+.SS "template<typename PTR> size_t PtrByteDiff (const PTR pointer1, const PTR pointer2)\fR [inline]\fP"
+
+.PP
+Determine pointer difference\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPTR\fP a pointer type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpointer1\fP the first pointer
+.br
+\fIpointer2\fP the second pointer
+.RE
+.PP
+PtrByteDiff can be used to squash Clang and GCC UBsan findings for pointer addition and subtraction\&. pointer1 and pointer2 must point to the same object or array (or one past the end), and yields the number of bytes (not elements) difference\&.
+.SS "template<typename PTR> ptrdiff_t PtrDiff (const PTR pointer1, const PTR pointer2)\fR [inline]\fP"
+
+.PP
+Determine pointer difference\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPTR\fP a pointer type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpointer1\fP the first pointer
+.br
+\fIpointer2\fP the second pointer
+.RE
+.PP
+PtrDiff can be used to squash Clang and GCC UBsan findings for pointer addition and subtraction\&. pointer1 and pointer2 must point to the same object or array (or one past the end), and yields the number of elements (not bytes) difference\&.
+.SS "template<typename PTR, typename OFF> PTR PtrSub (PTR pointer, OFF offset)\fR [inline]\fP"
+
+.PP
+Create a pointer with an offset\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIPTR\fP a pointer type
+.br
+\fIOFF\fP a size type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpointer\fP a pointer
+.br
+\fIoffset\fP a offset into the pointer
+.RE
+.PP
+PtrSub can be used to squash Clang and GCC UBsan findings for pointer addition and subtraction\&.
+.SS "template<class T> void PutWord (bool assumeAligned, \fBByteOrder\fP order, \fBbyte\fP * block, T value, const \fBbyte\fP * xorBlock = \fRNULLPTR\fP)\fR [inline]\fP"
+
+.PP
+Access a block of memory\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIassumeAligned\fP flag indicating alignment
+.br
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP the destination byte buffer
+.br
+\fIvalue\fP the word in the specified byte order
+.br
+\fIxorBlock\fP an optional byte buffer to xor
+.RE
+.PP
+\fBPutWord()\fP provides alternate write access to a block of memory\&. The flag assumeAligned indicates if the memory block is aligned for class or type T\&. The enumeration \fBByteOrder\fP is BIG_ENDIAN_ORDER or LITTLE_ENDIAN_ORDER\&.
+.SS "template<unsigned int R, class T> T rotlConstant (T x)\fR [inline]\fP"
+
+.PP
+Performs a left rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIR\fP the number of bit positions to rotate the value
+.br
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+R must be in the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&. Use rotlMod if the rotate amount R is outside the range\&.
+
+.PP
+Use rotlConstant when the rotate amount is constant\&. The template function was added because Clang did not propagate the constant when passed as a function parameter\&. Clang's need for a constexpr meant rotlFixed failed to compile on occasion\&.
+.PP
+\fBNote\fP
+.RS 4
+rotlConstant attempts to enlist a \fRrotate IMM\fP instruction because its often faster than a \fRrotate REG\fP\&. Immediate rotates can be up to three times faster than their register counterparts\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "template<class T> T rotlFixed (T x, unsigned int y)\fR [inline]\fP"
+
+.PP
+Performs a left rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.br
+\fIy\fP the number of bit positions to rotate the value
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+y must be in the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&. Use rotlMod if the rotate amount y is outside the range\&.
+.PP
+\fBNote\fP
+.RS 4
+rotlFixed attempts to enlist a \fRrotate IMM\fP instruction because its often faster than a \fRrotate REG\fP\&. Immediate rotates can be up to three times faster than their register counterparts\&. New code should use \fRrotlConstant\fP, which accepts the rotate amount as a template parameter\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "template<class T> T rotlMod (T x, unsigned int y)\fR [inline]\fP"
+
+.PP
+Performs a left rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.br
+\fIy\fP the number of bit positions to rotate the value
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+y is reduced to the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&.
+.PP
+\fBNote\fP
+.RS 4
+rotrVariable will use either \fRrotate IMM\fP or \fRrotate REG\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0
+.RE
+.PP
+
+.SS "template<class T> T rotlVariable (T x, unsigned int y)\fR [inline]\fP"
+
+.PP
+Performs a left rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.br
+\fIy\fP the number of bit positions to rotate the value
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+y must be in the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&. Use rotlMod if the rotate amount y is outside the range\&.
+.PP
+\fBNote\fP
+.RS 4
+rotlVariable attempts to enlist a \fRrotate IMM\fP instruction because its often faster than a \fRrotate REG\fP\&. Immediate rotates can be up to three times faster than their register counterparts\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0
+.RE
+.PP
+
+.SS "template<unsigned int R, class T> T rotrConstant (T x)\fR [inline]\fP"
+
+.PP
+Performs a right rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIR\fP the number of bit positions to rotate the value
+.br
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+R must be in the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&. Use rotrMod if the rotate amount R is outside the range\&.
+
+.PP
+Use rotrConstant when the rotate amount is constant\&. The template function was added because Clang did not propagate the constant when passed as a function parameter\&. Clang's need for a constexpr meant rotrFixed failed to compile on occasion\&.
+.PP
+\fBNote\fP
+.RS 4
+rotrConstant attempts to enlist a \fRrotate IMM\fP instruction because its often faster than a \fRrotate REG\fP\&. Immediate rotates can be up to three times faster than their register counterparts\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+
+.SS "template<class T> T rotrFixed (T x, unsigned int y)\fR [inline]\fP"
+
+.PP
+Performs a right rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.br
+\fIy\fP the number of bit positions to rotate the value
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+y must be in the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&. Use rotrMod if the rotate amount y is outside the range\&.
+.PP
+\fBNote\fP
+.RS 4
+rotrFixed attempts to enlist a \fRrotate IMM\fP instruction because its often faster than a \fRrotate REG\fP\&. Immediate rotates can be up to three times faster than their register counterparts\&. New code should use \fRrotrConstant\fP, which accepts the rotate amount as a template parameter\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0
+.RE
+.PP
+
+.SS "template<class T> T rotrMod (T x, unsigned int y)\fR [inline]\fP"
+
+.PP
+Performs a right rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.br
+\fIy\fP the number of bit positions to rotate the value
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+y is reduced to the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&.
+.PP
+\fBNote\fP
+.RS 4
+rotrVariable will use either \fRrotate IMM\fP or \fRrotate REG\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0
+.RE
+.PP
+
+.SS "template<class T> T rotrVariable (T x, unsigned int y)\fR [inline]\fP"
+
+.PP
+Performs a right rotate\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the word type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to rotate
+.br
+\fIy\fP the number of bit positions to rotate the value
+.RE
+.PP
+This is a portable C/C++ implementation\&. The value x to be rotated can be 8 to 64-bits wide\&.
+
+.PP
+y must be in the range \fR[0, sizeof(T)*8 - 1]\fP to avoid undefined behavior\&. Use rotrMod if the rotate amount y is outside the range\&.
+.PP
+\fBNote\fP
+.RS 4
+rotrVariable attempts to enlist a \fRrotate IMM\fP instruction because its often faster than a \fRrotate REG\fP\&. Immediate rotates can be up to three times faster than their register counterparts\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBrotlConstant\fP, \fBrotrConstant\fP, \fBrotlFixed\fP, \fBrotrFixed\fP, \fBrotlVariable\fP, \fBrotrVariable\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0
+.RE
+.PP
+
+.SS "template<class T1, class T2> T1 RoundDownToMultipleOf (const T1 & n, const T2 & m)\fR [inline]\fP"
+
+.PP
+Rounds a value down to a multiple of a second value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the value to reduce
+.br
+\fIm\fP the value to reduce \fRn\fP to a multiple
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the possibly unmodified value
+.br
+.RE
+.PP
+RoundDownToMultipleOf is effectively a floor function based on m\&. The function returns the value \fRn - n%m\fP\&. If n is a multiple of m, then the original value is returned\&.
+.PP
+\fBNote\fP
+.RS 4
+\fRT1\fP and \fRT2\fP should be unsigned arithmetic types\&. If \fRT1\fP or \fRT2\fP is signed, then the value should be non-negative\&. The library asserts in debug builds when practical, but allows you to perform the operation in release builds\&.
+.RE
+.PP
+
+.SS "template<class T1, class T2> T1 RoundUpToMultipleOf (const T1 & n, const T2 & m)\fR [inline]\fP"
+
+.PP
+Rounds a value up to a multiple of a second value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the value to reduce
+.br
+\fIm\fP the value to reduce \fRn\fP to a multiple
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the possibly unmodified value
+.br
+.RE
+.PP
+RoundUpToMultipleOf is effectively a ceiling function based on m\&. The function returns the value \fRn + n%m\fP\&. If n is a multiple of m, then the original value is returned\&. If the value n would overflow, then an \fBInvalidArgument\fP exception is thrown\&.
+.PP
+\fBNote\fP
+.RS 4
+\fRT1\fP and \fRT2\fP should be unsigned arithmetic types\&. If \fRT1\fP or \fRT2\fP is signed, then the value should be non-negative\&. The library asserts in debug builds when practical, but allows you to perform the operation in release builds\&.
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (\fBsword32\fP from, sword64 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (\fBsword32\fP from, \fBword32\fP & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (\fBsword32\fP from, word64 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (sword64 from, \fBsword32\fP & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (sword64 from, \fBword32\fP & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (sword64 from, word64 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<class T1, class T2> bool SafeConvert (T1 from, T2 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBNote\fP
+.RS 4
+for integral conversions, a template specialization should be provided\&. The specialization will perform more efficiently, and avoid warnings for truncation and sign compares\&.
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (\fBword32\fP from, \fBsword32\fP & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (\fBword32\fP from, sword64 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (\fBword32\fP from, word64 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (word64 from, \fBsword32\fP & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (word64 from, sword64 & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<> bool SafeConvert (word64 from, \fBword32\fP & to)\fR [inline]\fP"
+
+.PP
+Perform a conversion from \fRfrom\fP to \fRto\fP\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIfrom\fP the first value
+.br
+\fIto\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if its safe to convert from \fRfrom\fP to \fRto\fP, false otherwise\&.
+.RE
+.PP
+if the function returns true, then it is safe to use \fRto\fP\&. If the function returns false, then \fRto\fP is undefined and should not be used\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "template<unsigned int bits, class T> T SafeLeftShift (T value)\fR [inline]\fP"
+
+.PP
+Safely left shift values when undefined behavior could occur\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIbits\fP the number of bit positions to shift the value
+.br
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to left shift
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the shifted value or 0
+.RE
+.PP
+SafeLeftShift safely shifts the value to the left when undefined behavior could occur under C/C++ rules\&. SafeLeftShift will return the shifted value or 0 if undefined behavior would occur\&.
+.SS "template<unsigned int bits, class T> T SafeRightShift (T value)\fR [inline]\fP"
+
+.PP
+Safely right shift values when undefined behavior could occur\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIbits\fP the number of bit positions to shift the value
+.br
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the value to right shift
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the shifted value or 0
+.RE
+.PP
+SafeRightShift safely shifts the value to the right when undefined behavior could occur under C/C++ rules\&. SafeRightShift will return the shifted value or 0 if undefined behavior would occur\&.
+.SS "template<class T1, class T2> T1 SaturatingSubtract (const T1 & a, const T2 & b)\fR [inline]\fP"
+
+.PP
+Performs a saturating subtract clamped at 0\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the minuend
+.br
+\fIb\fP the subtrahend
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the difference produced by the saturating subtract
+.RE
+.PP
+Saturating arithmetic restricts results to a fixed range\&. Results that are less than 0 are clamped at 0\&.
+
+.PP
+Use of saturating arithmetic in places can be advantageous because it can avoid a branch by using an instruction like a conditional move (\fRCMOVE\fP)\&.
+.SS "template<class T1, class T2> T1 SaturatingSubtract1 (const T1 & a, const T2 & b)\fR [inline]\fP"
+
+.PP
+Performs a saturating subtract clamped at 1\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the minuend
+.br
+\fIb\fP the subtrahend
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the difference produced by the saturating subtract
+.RE
+.PP
+Saturating arithmetic restricts results to a fixed range\&. Results that are less than 1 are clamped at 1\&.
+
+.PP
+Use of saturating arithmetic in places can be advantageous because it can avoid a branch by using an instruction like a conditional move (\fRCMOVE\fP)\&.
+.SS "template<class T> void SecureWipeArray (T * buf, size_t n)\fR [inline]\fP"
+
+.PP
+Sets each element of an array to 0\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP an array of elements
+.br
+\fIn\fP the number of elements in the array
+.RE
+.PP
+The operation performs a wipe or zeroization\&. The function attempts to survive optimizations and dead code removal\&.
+.SS "template<class T> void SecureWipeBuffer (T * buf, size_t n)"
+
+.PP
+Sets each element of an array to 0\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP an array of elements
+.br
+\fIn\fP the number of elements in the array
+.RE
+.PP
+The operation performs a wipe or zeroization\&. The function attempts to survive optimizations and dead code removal\&.
+.SS "template<class T> const T & STDMAX (const T & a, const T & b)\fR [inline]\fP"
+
+.PP
+Replacement function for std::max\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first value
+.br
+\fIb\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum value based on a comparison of \fRa < b\fP using \fRoperator<\fP
+.RE
+.PP
+STDMAX was provided because the library could not easily use std::min or std::max in Windows or Cygwin 1\&.1\&.0
+.SS "template<class T> const T & STDMIN (const T & a, const T & b)\fR [inline]\fP"
+
+.PP
+Replacement function for std::min\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first value
+.br
+\fIb\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum value based on a comparison of \fRb < a\fP using \fRoperator<\fP
+.RE
+.PP
+STDMIN was provided because the library could not easily use std::min or std::max in Windows or Cygwin 1\&.1\&.0
+.SS "std::string StringNarrow (const wchar_t * str, bool throwOnError = \fRtrue\fP)"
+
+.PP
+Converts a wide character C-string to a multibyte string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP C-string consisting of wide characters
+.br
+\fIthrowOnError\fP flag indicating the function should throw on error
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+str converted to a multibyte string or an empty string\&.
+.RE
+.PP
+\fBStringNarrow()\fP converts a wide string to a narrow string using C++ std::wcstombs() under the executing thread's locale\&. A locale must be set before using this function, and it can be set with std::setlocale() if needed\&. Upon success, the converted string is returned\&.
+
+.PP
+Upon failure with throwOnError as false, the function returns an empty string\&. If throwOnError as true, the function throws an \fBInvalidArgument()\fP exception\&.
+.PP
+\fBNote\fP
+.RS 4
+If you try to convert, say, the Chinese character for "bone" from UTF-16 (0x9AA8) to UTF-8 (0xE9 0xAA 0xA8), then you must ensure the locale is available\&. If the locale is not available, then a 0x21 error is returned on Windows which eventually results in an \fBInvalidArgument()\fP exception\&.
+.RE
+.PP
+
+.SS "template<class T> T StringToWord (const std::string & str, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)"
+
+.PP
+Convert a string to a word\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP the string to convert
+.br
+\fIorder\fP byte order
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a word representing the value of the string
+.RE
+.PP
+
+.SS "std::wstring StringWiden (const char * str, bool throwOnError = \fRtrue\fP)"
+
+.PP
+Converts a multibyte C-string to a wide character string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP C-string consisting of wide characters
+.br
+\fIthrowOnError\fP flag indicating the function should throw on error
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+str converted to a multibyte string or an empty string\&.
+.RE
+.PP
+\fBStringWiden()\fP converts a narrow string to a wide string using C++ std::mbstowcs() under the executing thread's locale\&. A locale must be set before using this function, and it can be set with std::setlocale() if needed\&. Upon success, the converted string is returned\&.
+
+.PP
+Upon failure with throwOnError as false, the function returns an empty string\&. If throwOnError as true, the function throws an \fBInvalidArgument()\fP exception\&.
+.PP
+\fBNote\fP
+.RS 4
+If you try to convert, say, the Chinese character for "bone" from UTF-8 (0xE9 0xAA 0xA8) to UTF-16 (0x9AA8), then you must ensure the locale is available\&. If the locale is not available, then a 0x21 error is returned on Windows which eventually results in an \fBInvalidArgument()\fP exception\&.
+.RE
+.PP
+
+.SS "unsigned int TrailingZeros (\fBword32\fP v)\fR [inline]\fP"
+Determines the number of trailing 0-bits in a value
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP the 32-bit value to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of trailing 0-bits in v, starting at the least significant bit position
+.RE
+.PP
+TrailingZeros returns the number of trailing 0-bits in v, starting at the least significant bit position\&. The return value is undefined if there are no 1-bits set in the value v\&.
+.PP
+\fBNote\fP
+.RS 4
+The function does not return 0 if no 1-bits are set because 0 collides with a 1-bit at the 0-th position\&.
+.RE
+.PP
+
+.SS "unsigned int TrailingZeros (word64 v)\fR [inline]\fP"
+Determines the number of trailing 0-bits in a value
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP the 64-bit value to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of trailing 0-bits in v, starting at the least significant bit position
+.RE
+.PP
+TrailingZeros returns the number of trailing 0-bits in v, starting at the least significant bit position\&. The return value is undefined if there are no 1-bits set in the value v\&.
+.PP
+\fBNote\fP
+.RS 4
+The function does not return 0 if no 1-bits are set because 0 collides with a 1-bit at the 0-th position\&.
+.RE
+.PP
+
+.SS "void UnalignedbyteNonTemplate (\fBByteOrder\fP order, \fBbyte\fP * block, \fBbyte\fP value, const \fBbyte\fP * xorBlock)\fR [inline]\fP"
+
+.PP
+Write a byte to an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned output buffer
+.br
+\fIvalue\fP byte value
+.br
+\fIxorBlock\fP optional unaligned xor buffer
+.RE
+.PP
+UnalignedbyteNonTemplate writes a byte value to an unaligned buffer\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void UnalignedbyteNonTemplate (\fBByteOrder\fP order, \fBbyte\fP * block, \fBword16\fP value, const \fBbyte\fP * xorBlock)\fR [inline]\fP"
+
+.PP
+Write a \fBword16\fP to an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned output buffer
+.br
+\fIvalue\fP \fBword16\fP value
+.br
+\fIxorBlock\fP optional unaligned xor buffer
+.RE
+.PP
+UnalignedbyteNonTemplate writes a \fBword16\fP value to an unaligned buffer\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void UnalignedbyteNonTemplate (\fBByteOrder\fP order, \fBbyte\fP * block, \fBword32\fP value, const \fBbyte\fP * xorBlock)\fR [inline]\fP"
+
+.PP
+Write a \fBword32\fP to an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned output buffer
+.br
+\fIvalue\fP \fBword32\fP value
+.br
+\fIxorBlock\fP optional unaligned xor buffer
+.RE
+.PP
+UnalignedbyteNonTemplate writes a \fBword32\fP value to an unaligned buffer\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void UnalignedbyteNonTemplate (\fBByteOrder\fP order, \fBbyte\fP * block, word64 value, const \fBbyte\fP * xorBlock)\fR [inline]\fP"
+
+.PP
+Write a word64 to an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned output buffer
+.br
+\fIvalue\fP word64 value
+.br
+\fIxorBlock\fP optional unaligned xor buffer
+.RE
+.PP
+UnalignedbyteNonTemplate writes a word64 value to an unaligned buffer\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "\fBbyte\fP UnalignedGetWordNonTemplate (\fBByteOrder\fP order, const \fBbyte\fP * block, const \fBbyte\fP * unused)\fR [inline]\fP"
+
+.PP
+Retrieve a byte from an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned buffer
+.br
+\fIunused\fP dummy parameter
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+byte value
+.RE
+.PP
+UnalignedGetWordNonTemplate accesses an unaligned buffer and returns a byte value\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "\fBword16\fP UnalignedGetWordNonTemplate (\fBByteOrder\fP order, const \fBbyte\fP * block, const \fBword16\fP * unused)\fR [inline]\fP"
+
+.PP
+Retrieve a \fBword16\fP from an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned buffer
+.br
+\fIunused\fP dummy parameter
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+byte value
+.RE
+.PP
+UnalignedGetWordNonTemplate accesses an unaligned buffer and returns a \fBword16\fP value\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "\fBword32\fP UnalignedGetWordNonTemplate (\fBByteOrder\fP order, const \fBbyte\fP * block, const \fBword32\fP * unused)\fR [inline]\fP"
+
+.PP
+Retrieve a \fBword32\fP from an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned buffer
+.br
+\fIunused\fP dummy parameter
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+byte value
+.RE
+.PP
+UnalignedGetWordNonTemplate accesses an unaligned buffer and returns a \fBword32\fP value\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "word64 UnalignedGetWordNonTemplate (\fBByteOrder\fP order, const \fBbyte\fP * block, const word64 * unused)\fR [inline]\fP"
+
+.PP
+Retrieve a word64 from an unaligned buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIorder\fP the \fBByteOrder\fP of the data
+.br
+\fIblock\fP an unaligned buffer
+.br
+\fIunused\fP dummy parameter
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+byte value
+.RE
+.PP
+UnalignedGetWordNonTemplate accesses an unaligned buffer and returns a word64 value\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "template<class T1, class T2> const T1 UnsignedMin (const T1 & a, const T2 & b)\fR [inline]\fP"
+
+.PP
+Safe comparison of values that could be negative and incorrectly promoted\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP class or type
+.br
+\fIT2\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first value
+.br
+\fIb\fP the second value
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum value based on a comparison a and b using \fRoperator<\fP\&.
+.RE
+.PP
+The comparison \fRb < a\fP is performed and the value returned is type T1\&.
+.SS "template<class T> void vec_swap (T & a, T & b)\fR [inline]\fP"
+
+.PP
+Swaps two variables which are arrays\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first value
+.br
+\fIb\fP the second value
+.RE
+.PP
+C++03 does not provide support for \fRstd::swap(__m128i a, __m128i b)\fP because \fR__m128i\fP is an \fRunsigned long long[2]\fP\&. Most compilers support it out of the box, but Sun Studio C++ compilers 12\&.2 and 12\&.3 do not\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRHow to swap two __m128i variables in C++03 given its an opaque type and an array?\fP on Stack Overflow\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API VerifyBufsEqual (const \fBbyte\fP * buf1, const \fBbyte\fP * buf2, size_t count)"
+
+.PP
+Performs a near constant-time comparison of two equally sized buffers\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf1\fP the first buffer
+.br
+\fIbuf2\fP the second buffer
+.br
+\fIcount\fP the size of the buffers, in bytes
+.RE
+.PP
+VerifyBufsEqual performs an XOR of the elements in two equally sized buffers and returns a result based on the XOR operation\&. A count of 0 returns true because two empty buffers are considered equal\&.
+
+.PP
+The function is near constant-time because CPU micro-code timings could affect the "constant-ness"\&. Calling code is responsible for mitigating timing attacks if the buffers are not equally sized\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBModPowerOf2\fP
+.RE
+.PP
+
+.SS "template<class T> std::string WordToString (T value, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)"
+
+.PP
+Convert a word to a string\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP the word to convert
+.br
+\fIorder\fP byte order
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a string representing the value of the word
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API xorbuf (\fBbyte\fP * buf, const \fBbyte\fP * mask, size_t count)"
+Performs an XOR of a buffer with a mask
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP the buffer to XOR with the mask
+.br
+\fImask\fP the mask to XOR with the buffer
+.br
+\fIcount\fP the size of the buffers, in bytes
+.RE
+.PP
+The function effectively visits each element in the buffers and performs \fRbuf[i] ^= mask[i]\fP\&. buf and mask must be of equal size\&.
+.SS "CRYPTOPP_DLL void CRYPTOPP_API xorbuf (\fBbyte\fP * output, const \fBbyte\fP * input, const \fBbyte\fP * mask, size_t count)"
+Performs an XOR of an input buffer with a mask and stores the result in an output buffer
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the destination buffer
+.br
+\fIinput\fP the source buffer to XOR with the mask
+.br
+\fImask\fP the mask buffer to XOR with the input buffer
+.br
+\fIcount\fP the size of the buffers, in bytes
+.RE
+.PP
+The function effectively visits each element in the buffers and performs \fRoutput[i] = input[i] ^ mask[i]\fP\&. output, input and mask must be of equal size\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

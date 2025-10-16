@@ -1,0 +1,281 @@
+.TH "PK_Signer" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PK_Signer \- Interface for public-key signers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBPK_SignatureScheme\fP, and \fBPrivateKeyAlgorithm\fP\&.
+.PP
+Inherited by \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBTF_SignatureSchemeBase< PK_Signer, TF_Base< RandomizedTrapdoorFunctionInverse, PK_SignatureMessageEncodingMethod > >\fP, and \fBed25519Signer\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBPK_MessageAccumulator\fP * \fBNewSignatureAccumulator\fP (\fBRandomNumberGenerator\fP &rng) const =0"
+.br
+.RI "Create a new \fBHashTransformation\fP to accumulate the message to be signed\&. "
+.ti -1c
+.RI "virtual void \fBInputRecoverableMessage\fP (\fBPK_MessageAccumulator\fP &messageAccumulator, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength) const =0"
+.br
+.RI "Input a recoverable message to an accumulator\&. "
+.ti -1c
+.RI "virtual size_t \fBSign\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulator\fP *messageAccumulator, \fBbyte\fP *signature) const"
+.br
+.RI "Sign and delete the messageAccumulator\&. "
+.ti -1c
+.RI "virtual size_t \fBSignAndRestart\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulator\fP &messageAccumulator, \fBbyte\fP *signature, bool restart=true) const =0"
+.br
+.RI "Sign and restart messageAccumulator\&. "
+.ti -1c
+.RI "virtual size_t \fBSignMessage\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *message, size_t messageLen, \fBbyte\fP *signature) const"
+.br
+.RI "Sign a message\&. "
+.ti -1c
+.RI "virtual size_t \fBSignMessageWithRecovery\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *nonrecoverableMessage, size_t nonrecoverableMessageLength, \fBbyte\fP *signature) const"
+.br
+.RI "Sign a recoverable message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureScheme\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBSignatureLength\fP () const =0"
+.br
+.RI "Provides the signature length if it only depends on the key\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxSignatureLength\fP (size_t recoverablePartLength=0) const"
+.br
+.RI "Provides the maximum signature length produced given the length of the recoverable message part\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLength\fP () const =0"
+.br
+.RI "Provides the length of longest message that can be recovered\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const =0"
+.br
+.RI "Provides the length of longest message that can be recovered from a signature of given length\&. "
+.ti -1c
+.RI "virtual bool \fBIsProbabilistic\fP () const =0"
+.br
+.RI "Determines whether a signature scheme requires a random number generator\&. "
+.ti -1c
+.RI "virtual bool \fBAllowNonrecoverablePart\fP () const =0"
+.br
+.RI "Determines whether the non-recoverable message part can be signed\&. "
+.ti -1c
+.RI "virtual bool \fBSignatureUpfront\fP () const"
+.br
+.RI "Determines whether the signature must be input before the message\&. "
+.ti -1c
+.RI "virtual bool \fBRecoverablePartFirst\fP () const =0"
+.br
+.RI "Determines whether the recoverable part must be input before the non-recoverable part\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPrivateKeyAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.ti -1c
+.RI "virtual \fBPrivateKey\fP & \fBAccessPrivateKey\fP ()=0"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.ti -1c
+.RI "virtual const \fBPrivateKey\fP & \fBGetPrivateKey\fP () const"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for public-key signers\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void PK_Signer::InputRecoverableMessage (\fBPK_MessageAccumulator\fP & messageAccumulator, const \fBbyte\fP * recoverableMessage, size_t recoverableMessageLength) const\fR [pure virtual]\fP"
+
+.PP
+Input a recoverable message to an accumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImessageAccumulator\fP a reference to a \fBPK_MessageAccumulator\fP 
+.br
+\fIrecoverableMessage\fP a pointer to the recoverable message part to be signed 
+.br
+\fIrecoverableMessageLength\fP the size of the recoverable message part 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_SignerBase< T >\fP, \fBDL_SignerBase< SCHEME_OPTIONS::Element >\fP, \fBed25519Signer\fP, and \fBTF_SignerBase\fP\&.
+.SS "virtual \fBPK_MessageAccumulator\fP * PK_Signer::NewSignatureAccumulator (\fBRandomNumberGenerator\fP & rng) const\fR [pure virtual]\fP"
+
+.PP
+Create a new \fBHashTransformation\fP to accumulate the message to be signed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a \fBPK_MessageAccumulator\fP
+.RE
+.PP
+\fBNewSignatureAccumulator()\fP can be used with all signing methods\&. \fBSign()\fP will automatically delete the accumulator pointer\&. The caller is responsible for deletion if a method is called that takes a reference\&. 
+.PP
+Implemented in \fBDL_SignerImpl< SCHEME_OPTIONS >\fP, and \fBed25519Signer\fP\&.
+.SS "size_t PK_Signer::Sign (\fBRandomNumberGenerator\fP & rng, \fBPK_MessageAccumulator\fP * messageAccumulator, \fBbyte\fP * signature) const\fR [virtual]\fP"
+
+.PP
+Sign and delete the messageAccumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fImessageAccumulator\fP a pointer to a \fBPK_MessageAccumulator\fP derived class 
+.br
+\fIsignature\fP a block of bytes for the signature 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+actual signature length
+.RE
+.PP
+\fBSign()\fP deletes the messageAccumulator, even if an exception is thrown\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(signature) == \fBMaxSignatureLength()\fP\fP 
+.RE
+.PP
+
+.SS "virtual size_t PK_Signer::SignAndRestart (\fBRandomNumberGenerator\fP & rng, \fBPK_MessageAccumulator\fP & messageAccumulator, \fBbyte\fP * signature, bool restart = \fRtrue\fP) const\fR [pure virtual]\fP"
+
+.PP
+Sign and restart messageAccumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fImessageAccumulator\fP a pointer to a \fBPK_MessageAccumulator\fP derived class 
+.br
+\fIsignature\fP a block of bytes for the signature 
+.br
+\fIrestart\fP flag indicating whether the messageAccumulator should be restarted 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+actual signature length 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(signature) == \fBMaxSignatureLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_SignerBase< T >\fP, \fBDL_SignerBase< SCHEME_OPTIONS::Element >\fP, \fBed25519Signer\fP, and \fBTF_SignerBase\fP\&.
+.SS "size_t PK_Signer::SignMessage (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * message, size_t messageLen, \fBbyte\fP * signature) const\fR [virtual]\fP"
+
+.PP
+Sign a message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fImessage\fP a pointer to the message 
+.br
+\fImessageLen\fP the size of the message to be signed 
+.br
+\fIsignature\fP a block of bytes for the signature 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+actual signature length 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(signature) == \fBMaxSignatureLength()\fP\fP 
+.RE
+.PP
+
+.SS "size_t PK_Signer::SignMessageWithRecovery (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP * nonrecoverableMessage, size_t nonrecoverableMessageLength, \fBbyte\fP * signature) const\fR [virtual]\fP"
+
+.PP
+Sign a recoverable message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIrecoverableMessage\fP a pointer to the recoverable message part to be signed 
+.br
+\fIrecoverableMessageLength\fP the size of the recoverable message part 
+.br
+\fInonrecoverableMessage\fP a pointer to the non-recoverable message part to be signed 
+.br
+\fInonrecoverableMessageLength\fP the size of the non-recoverable message part 
+.br
+\fIsignature\fP a block of bytes for the signature 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+actual signature length 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(signature) == MaxSignatureLength(recoverableMessageLength)\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

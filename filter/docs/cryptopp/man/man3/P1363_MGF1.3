@@ -1,0 +1,82 @@
+.TH "P1363_MGF1" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+P1363_MGF1 \- P1363 mask generation function\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBMaskGeneratingFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.ti -1c
+.RI "void \fBGenerateAndMask\fP (\fBHashTransformation\fP &hash, \fBbyte\fP *output, size_t outputLength, const \fBbyte\fP *input, size_t inputLength, bool mask=true) const"
+.br
+.RI "P1363 mask generation function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+P1363 mask generation function\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBP1363_KDF2\fP, \fBMaskGeneratingFunction\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void P1363_MGF1::GenerateAndMask (\fBHashTransformation\fP & hash, \fBbyte\fP * output, size_t outputLength, const \fBbyte\fP * input, size_t inputLength, bool mask = \fRtrue\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+P1363 mask generation function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhash\fP \fBHashTransformation\fP derived class 
+.br
+\fIoutput\fP the destination byte array 
+.br
+\fIoutputLength\fP the size of the destination byte array 
+.br
+\fIinput\fP the message to hash 
+.br
+\fIinputLength\fP the size of the message 
+.br
+\fImask\fP flag indicating whether to apply the mask 
+.RE
+.PP
+
+.PP
+Implements \fBMaskGeneratingFunction\fP\&.
+.SS "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API P1363_MGF1::StaticAlgorithmName ()\fR [inline]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

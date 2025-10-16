@@ -1,0 +1,299 @@
+.TH "DL_SignerImpl< SCHEME_OPTIONS >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_SignerImpl< SCHEME_OPTIONS > \- Discrete Log (DL) signer implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_ObjectImpl< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP\&.
+.PP
+Inherited by \fBPK_FinalTemplate< DL_SignerImpl< SchemeOptions > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewSignatureAccumulator\fP (\fBRandomNumberGenerator\fP &rng) const"
+.br
+.RI "Create a new \fBHashTransformation\fP to accumulate the message to be signed\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_ObjectImplBase< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "\fBPrivateKey\fP & \fBAccessPrivateKey\fP ()"
+.br
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessPublicKey\fP ()"
+.br
+.ti -1c
+.RI "const SCHEME_OPTIONS::PrivateKey & \fBGetKey\fP () const"
+.br
+.ti -1c
+.RI "SCHEME_OPTIONS::PrivateKey & \fBAccessKey\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_SignerBase< SCHEME_OPTIONS::Element >\fP
+.in +1c
+.ti -1c
+.RI "void \fBRawSign\fP (const \fBInteger\fP &k, const \fBInteger\fP &e, \fBInteger\fP &r, \fBInteger\fP &s) const"
+.br
+.RI "Testing interface\&. "
+.ti -1c
+.RI "void \fBInputRecoverableMessage\fP (\fBPK_MessageAccumulator\fP &messageAccumulator, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength) const"
+.br
+.RI "Input a recoverable message to an accumulator\&. "
+.ti -1c
+.RI "size_t \fBSignAndRestart\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulator\fP &messageAccumulator, \fBbyte\fP *signature, bool restart) const"
+.br
+.RI "Sign and restart messageAccumulator\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBSignatureLength\fP () const"
+.br
+.RI "Provides the signature length\&. "
+.ti -1c
+.RI "size_t \fBMaxRecoverableLength\fP () const"
+.br
+.RI "Provides the maximum recoverable length\&. "
+.ti -1c
+.RI "size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const"
+.br
+.RI "Provides the maximum recoverable length\&. "
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines if the scheme is probabilistic\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.RI "Determines if the scheme has non-recoverable part\&. "
+.ti -1c
+.RI "bool \fBRecoverablePartFirst\fP () const"
+.br
+.RI "Determines if the scheme allows recoverable part first\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_Signer\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBSign\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulator\fP *messageAccumulator, \fBbyte\fP *signature) const"
+.br
+.RI "Sign and delete the messageAccumulator\&. "
+.ti -1c
+.RI "virtual size_t \fBSignMessage\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *message, size_t messageLen, \fBbyte\fP *signature) const"
+.br
+.RI "Sign a message\&. "
+.ti -1c
+.RI "virtual size_t \fBSignMessageWithRecovery\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *nonrecoverableMessage, size_t nonrecoverableMessageLength, \fBbyte\fP *signature) const"
+.br
+.RI "Sign a recoverable message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureScheme\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxSignatureLength\fP (size_t recoverablePartLength=0) const"
+.br
+.RI "Provides the maximum signature length produced given the length of the recoverable message part\&. "
+.ti -1c
+.RI "virtual bool \fBSignatureUpfront\fP () const"
+.br
+.RI "Determines whether the signature must be input before the message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPrivateKeyAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.ti -1c
+.RI "virtual const \fBPrivateKey\fP & \fBGetPrivateKey\fP () const"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_ObjectImpl< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS::PrivateKey::Element \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_ObjectImplBase< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef SCHEME_OPTIONS::PrivateKey::Element \fBElement\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Types inherited from \fBDL_Base< DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_PrivateKey\fP< SCHEME_OPTIONS::Element > \fBKeyInterface\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey\fP< SCHEME_OPTIONS::Element >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_ObjectImpl< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "const \fBDL_ElgamalLikeSignatureAlgorithm\fP< Element > & \fBGetSignatureAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "const \fBDL_KeyAgreementAlgorithm\fP< Element > & \fBGetKeyAgreementAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "const \fBDL_KeyDerivationAlgorithm\fP< Element > & \fBGetKeyDerivationAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "const \fBDL_SymmetricEncryptionAlgorithm\fP & \fBGetSymmetricEncryptionAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "const \fBPK_SignatureMessageEncodingMethod\fP & \fBGetMessageEncodingInterface\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_ObjectImplBase< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "\fBDL_SignerBase\fP< SCHEME_OPTIONS::Element >::KeyInterface & \fBAccessKeyInterface\fP ()"
+.br
+.ti -1c
+.RI "const \fBDL_SignerBase\fP< SCHEME_OPTIONS::Element >::KeyInterface & \fBGetKeyInterface\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBGetDigestSize\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_SignerBase< SCHEME_OPTIONS::Element >\fP
+.in +1c
+.ti -1c
+.RI "void \fBRestartMessageAccumulator\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulatorBase\fP &ma) const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMessageRepresentativeLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMessageRepresentativeBitLength\fP () const"
+.br
+.ti -1c
+.RI "virtual bool \fBIsDeterministic\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_Base< DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class SCHEME_OPTIONS>
+.br
+class DL_SignerImpl< SCHEME_OPTIONS >"Discrete Log (DL) signer implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fISCHEME_OPTIONS\fP options for the scheme 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class SCHEME_OPTIONS> \fBPK_MessageAccumulator\fP * \fBDL_SignerImpl\fP< SCHEME_OPTIONS >::NewSignatureAccumulator (\fBRandomNumberGenerator\fP & rng) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Create a new \fBHashTransformation\fP to accumulate the message to be signed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a \fBPK_MessageAccumulator\fP
+.RE
+.PP
+\fBNewSignatureAccumulator()\fP can be used with all signing methods\&. \fBSign()\fP will automatically delete the accumulator pointer\&. The caller is responsible for deletion if a method is called that takes a reference\&. 
+.PP
+Implements \fBPK_Signer\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

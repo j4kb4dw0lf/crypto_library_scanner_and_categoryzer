@@ -1,0 +1,103 @@
+.TH "/home/mock/cryptopp-master/simple.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/simple.h \- Classes providing basic library services\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBClonableImpl< DERIVED, BASE >\fP"
+.br
+.RI "Base class for identifying algorithm\&. "
+.ti -1c
+.RI "class \fBAlgorithmImpl< BASE, ALGORITHM_INFO >\fP"
+.br
+.RI "Base class information\&. "
+.ti -1c
+.RI "class \fBInvalidKeyLength\fP"
+.br
+.RI "\fBException\fP thrown when an invalid key length is encountered\&. "
+.ti -1c
+.RI "class \fBInvalidRounds\fP"
+.br
+.RI "\fBException\fP thrown when an invalid number of rounds is encountered\&. "
+.ti -1c
+.RI "class \fBInvalidBlockSize\fP"
+.br
+.RI "\fBException\fP thrown when an invalid block size is encountered\&. "
+.ti -1c
+.RI "class \fBInvalidDerivedKeyLength\fP"
+.br
+.RI "\fBException\fP thrown when an invalid derived key length is encountered\&. "
+.ti -1c
+.RI "class \fBInvalidPersonalizationLength\fP"
+.br
+.RI "\fBException\fP thrown when an invalid personalization string length is encountered\&. "
+.ti -1c
+.RI "class \fBInvalidSaltLength\fP"
+.br
+.RI "\fBException\fP thrown when an invalid salt length is encountered\&. "
+.ti -1c
+.RI "class \fBBufferless< T >\fP"
+.br
+.RI "Base class for bufferless filters\&. "
+.ti -1c
+.RI "class \fBUnflushable< T >\fP"
+.br
+.RI "Base class for unflushable filters\&. "
+.ti -1c
+.RI "class \fBInputRejecting< T >\fP"
+.br
+.RI "Base class for input rejecting filters\&. "
+.ti -1c
+.RI "struct \fBInputRejecting< T >::InputRejected\fP"
+.br
+.ti -1c
+.RI "class \fBCustomFlushPropagation< T >\fP"
+.br
+.RI "Interface for custom flush signals propagation\&. "
+.ti -1c
+.RI "class \fBCustomSignalPropagation< T >\fP"
+.br
+.RI "Interface for custom flush signals\&. "
+.ti -1c
+.RI "class \fBMultichannel< T >\fP"
+.br
+.RI "Multiple channels support for custom signal processing\&. "
+.ti -1c
+.RI "class \fBAutoSignaling< T >\fP"
+.br
+.RI "Provides auto signaling support\&. "
+.ti -1c
+.RI "class \fBStore\fP"
+.br
+.RI "Acts as a \fBSource\fP for pre-existing, static data\&. "
+.ti -1c
+.RI "class \fBSink\fP"
+.br
+.RI "Implementation of \fBBufferedTransformation\fP's attachment interface\&. "
+.ti -1c
+.RI "class \fBBitBucket\fP"
+.br
+.RI "Acts as an input discarding \fBFilter\fP or \fBSink\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes providing basic library services\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

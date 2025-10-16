@@ -1,0 +1,956 @@
+.TH "Redirector" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Redirector \- Redirect input to another \fBBufferedTransformation\fP without owning it\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <filters\&.h>\fP
+.PP
+Inherits \fBCustomSignalPropagation< Sink >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBBehavior\fP { \fBDATA_ONLY\fP = 0x00, \fBPASS_SIGNALS\fP = 0x01, \fBPASS_WAIT_OBJECTS\fP = 0x02, \fBPASS_EVERYTHING\fP = PASS_SIGNALS | PASS_WAIT_OBJECTS }"
+.br
+.RI "Controls signal propagation behavior\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRedirector\fP ()"
+.br
+.RI "Construct a \fBRedirector\fP\&. "
+.ti -1c
+.RI "\fBRedirector\fP (\fBBufferedTransformation\fP &target, \fBBehavior\fP behavior=\fBPASS_EVERYTHING\fP)"
+.br
+.RI "Construct a \fBRedirector\fP\&. "
+.ti -1c
+.RI "void \fBRedirect\fP (\fBBufferedTransformation\fP &target)"
+.br
+.RI "Redirect input to another \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBStopRedirection\fP ()"
+.br
+.RI "Stop redirecting input\&. "
+.ti -1c
+.RI "\fBBehavior\fP \fBGetBehavior\fP ()"
+.br
+.RI "Retrieve signal propagation behavior\&. "
+.ti -1c
+.RI "void \fBSetBehavior\fP (\fBBehavior\fP behavior)"
+.br
+.RI "Set signal propagation behavior\&. "
+.ti -1c
+.RI "bool \fBGetPassSignals\fP () const"
+.br
+.RI "Retrieve signal propagation behavior\&. "
+.ti -1c
+.RI "void \fBSetPassSignals\fP (bool pass)"
+.br
+.RI "Set signal propagation behavior\&. "
+.ti -1c
+.RI "bool \fBGetPassWaitObjects\fP () const"
+.br
+.RI "Retrieve signal propagation behavior\&. "
+.ti -1c
+.RI "void \fBSetPassWaitObjects\fP (bool pass)"
+.br
+.RI "Set signal propagation behavior\&. "
+.ti -1c
+.RI "bool \fBCanModifyInput\fP () const"
+.br
+.RI "Determines whether input can be modified by the callee\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBNameValuePairs\fP &parameters, int propagation)"
+.br
+.RI "Initialize or reinitialize this object, with signal propagation\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreatePutSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "size_t \fBPut2\fP (const \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes for processing\&. "
+.ti -1c
+.RI "bool \fBFlush\fP (bool hardFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output, with signal propagation\&. "
+.ti -1c
+.RI "bool \fBMessageSeriesEnd\fP (int propagation=\-1, bool blocking=true)"
+.br
+.RI "Marks the end of a series of messages, with signal propagation\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBChannelCreatePutSpace\fP (const std::string &channel, size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "size_t \fBChannelPut2\fP (const std::string &channel, const \fBbyte\fP *begin, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes for processing on a channel\&. "
+.ti -1c
+.RI "size_t \fBChannelPutModifiable2\fP (const std::string &channel, \fBbyte\fP *begin, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes that may be modified by callee on a channel\&. "
+.ti -1c
+.RI "bool \fBChannelFlush\fP (const std::string &channel, bool completeFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output on a channel\&. "
+.ti -1c
+.RI "bool \fBChannelMessageSeriesEnd\fP (const std::string &channel, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Marks the end of a series of messages on a channel\&. "
+.ti -1c
+.RI "unsigned int \fBGetMaxWaitObjectCount\fP () const"
+.br
+.RI "Retrieves the maximum number of waitable objects\&. "
+.ti -1c
+.RI "void \fBGetWaitObjects\fP (WaitObjectContainer &container, CallStack const &callStack)"
+.br
+.RI "Retrieves waitable objects\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSink\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBTransferTo2\fP (\fBBufferedTransformation\fP &target, \fBlword\fP &transferBytes, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true)"
+.br
+.RI "Transfer bytes from this object to another \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "size_t \fBCopyRangeTo2\fP (\fBBufferedTransformation\fP &target, \fBlword\fP &begin, \fBlword\fP end=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true) const"
+.br
+.RI "Copy bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBBufferedTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBBufferedTransformation\fP ()"
+.br
+.RI "Construct a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBBufferedTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBAttachable\fP ()"
+.br
+.RI "Determines whether the object allows attachment\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBBufferedTransformation\fP * \fBAttachedTransformation\fP ()"
+.br
+.RI "Returns the object immediately attached to this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual const \fBBufferedTransformation\fP * \fBAttachedTransformation\fP () const"
+.br
+.RI "Returns the object immediately attached to this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBDetach\fP (\fBBufferedTransformation\fP *newAttachment=NULLPTR)"
+.br
+.RI "Delete the current attachment chain and attach a new one\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBAttach\fP (\fBBufferedTransformation\fP *newAttachment)"
+.br
+.RI "Add newAttachment to the end of attachment chain\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPut\fP (\fBbyte\fP inByte, bool blocking=true)"
+.br
+.RI "Input a byte for processing\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPut\fP (const \fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input a byte buffer for processing\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutWord16\fP (\fBword16\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutWord32\fP (\fBword32\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutWord64\fP (word64 value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutModifiable\fP (\fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input multiple bytes that may be modified by callee\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "bool \fBMessageEnd\fP (int propagation=\-1, bool blocking=true)"
+.br
+.RI "Signals the end of messages to the object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPutMessageEnd\fP (const \fBbyte\fP *inString, size_t length, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Input multiple bytes for processing and signal the end of a message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBPutModifiable2\fP (\fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes that may be modified by callee\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsolatedMessageSeriesEnd\fP (bool blocking)"
+.br
+.RI "Marks the end of a series of messages, without signal propagation\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBSetAutoSignalPropagation\fP (int propagation)"
+.br
+.RI "Set propagation of automatically generated and transferred signals\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual int \fBGetAutoSignalPropagation\fP () const"
+.br
+.RI "Retrieve automatic signal propagation value\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBlword\fP \fBMaxRetrievable\fP () const"
+.br
+.RI "Provides the number of bytes ready for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBAnyRetrievable\fP () const"
+.br
+.RI "Determines whether bytes are ready for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBGet\fP (\fBbyte\fP &outByte)"
+.br
+.RI "Retrieve a 8-bit byte\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBGet\fP (\fBbyte\fP *outString, size_t getMax)"
+.br
+.RI "Retrieve a block of bytes\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBPeek\fP (\fBbyte\fP &outByte) const"
+.br
+.RI "Peek a 8-bit byte\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBPeek\fP (\fBbyte\fP *outString, size_t peekMax) const"
+.br
+.RI "Peek a block of bytes\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBGetWord16\fP (\fBword16\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Retrieve a 16-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBGetWord32\fP (\fBword32\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Retrieve a 32-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBGetWord64\fP (word64 &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Retrieve a 64-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPeekWord16\fP (\fBword16\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP) const"
+.br
+.RI "Peek a 16-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPeekWord32\fP (\fBword32\fP &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP) const"
+.br
+.RI "Peek a 32-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPeekWord64\fP (word64 &value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP) const"
+.br
+.RI "Peek a 64-bit word\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBlword\fP \fBTransferTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP transferMax=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.RI "move transferMax bytes of the buffered output to target as input "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBlword\fP \fBSkip\fP (\fBlword\fP skipMax=\fBLWORD_MAX\fP)"
+.br
+.RI "Discard skipMax bytes from the output buffer\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBlword\fP \fBCopyTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP copyMax=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBlword\fP \fBCopyRangeTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP position, \fBlword\fP copyMax=\fBLWORD_MAX\fP, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy bytes from this object using an index to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual \fBlword\fP \fBTotalBytesRetrievable\fP () const"
+.br
+.RI "Provides the number of bytes ready for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBNumberOfMessages\fP () const"
+.br
+.RI "Provides the number of meesages processed by this object\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBAnyMessages\fP () const"
+.br
+.RI "Determines if any messages are available for retrieval\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBGetNextMessage\fP ()"
+.br
+.RI "Start retrieving the next message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBSkipMessages\fP (unsigned int count=UINT_MAX)"
+.br
+.RI "Skip a number of meessages\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "unsigned int \fBTransferMessagesTo\fP (\fBBufferedTransformation\fP &target, unsigned int count=UINT_MAX, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.RI "Transfer messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "unsigned int \fBCopyMessagesTo\fP (\fBBufferedTransformation\fP &target, unsigned int count=UINT_MAX, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBSkipAll\fP ()"
+.br
+.RI "Skip all messages in the series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBTransferAllTo\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.RI "Transfer all bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "void \fBCopyAllTo\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.RI "Copy messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual bool \fBGetNextMessageSeries\fP ()"
+.br
+.RI "Retrieve the next message in a series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBNumberOfMessagesInThisSeries\fP () const"
+.br
+.RI "Provides the number of messages in a series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBNumberOfMessageSeries\fP () const"
+.br
+.RI "Provides the number of messages in a series\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBTransferMessagesTo2\fP (\fBBufferedTransformation\fP &target, unsigned int &messageCount, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true)"
+.br
+.RI "Transfer messages from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBTransferAllTo2\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL, bool blocking=true)"
+.br
+.RI "Transfer all bytes from this object to another \fBBufferedTransformation\fP\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPut\fP (const std::string &channel, \fBbyte\fP inByte, bool blocking=true)"
+.br
+.RI "Input a byte for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPut\fP (const std::string &channel, const \fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input a byte buffer for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutModifiable\fP (const std::string &channel, \fBbyte\fP *inString, size_t length, bool blocking=true)"
+.br
+.RI "Input multiple bytes that may be modified by callee on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutWord16\fP (const std::string &channel, \fBword16\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.RI "Input a 16-bit word for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutWord32\fP (const std::string &channel, \fBword32\fP value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.RI "Input a 32-bit word for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutWord64\fP (const std::string &channel, word64 value, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP, bool blocking=true)"
+.br
+.RI "Input a 64-bit word for processing on a channel\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "bool \fBChannelMessageEnd\fP (const std::string &channel, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Signal the end of a message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "size_t \fBChannelPutMessageEnd\fP (const std::string &channel, const \fBbyte\fP *inString, size_t length, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Input multiple bytes for processing and signal the end of a message\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "virtual void \fBSetRetrievalChannel\fP (const std::string &channel)"
+.br
+.RI "Sets the default retrieval channel\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBWaitable\fP
+.in +1c
+.ti -1c
+.RI "bool \fBWait\fP (unsigned long milliseconds, CallStack const &callStack)"
+.br
+.RI "Wait on this object\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+.in +1c
+.ti -1c
+.RI "static int \fBDecrementPropagation\fP (int propagation)"
+.br
+.RI "Decrements the propagation count while clamping at 0\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Redirect input to another \fBBufferedTransformation\fP without owning it\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 4\&.0 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBRedirector::Behavior\fP"
+
+.PP
+Controls signal propagation behavior\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIDATA_ONLY \fP
+Pass data only\&. 
+.TP
+\f(BIPASS_SIGNALS \fP
+Pass signals\&. 
+.TP
+\f(BIPASS_WAIT_OBJECTS \fP
+Pass wait events\&. 
+.TP
+\f(BIPASS_EVERYTHING \fP
+Pass everything\&. PASS_EVERYTHING is default 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Redirector::Redirector (\fBBufferedTransformation\fP & target, \fBBehavior\fP behavior = \fR\fBPASS_EVERYTHING\fP\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBRedirector\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP the destination \fBBufferedTransformation\fP 
+.br
+\fIbehavior\fP \fBBehavior\fP "flags" specifying signal propagation 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool Redirector::CanModifyInput () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether input can be modified by the callee\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if input can be modified, false otherwise
+.RE
+.PP
+The base class implementation returns false\&. 
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "\fBbyte\fP * Redirector::ChannelCreatePutSpace (const std::string & channel, size_t & size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Request space which can be written into by the caller\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data 
+.br
+\fIsize\fP the requested size of the buffer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a memory block with length size
+.RE
+.PP
+The purpose of this method is to help avoid extra memory allocations\&.
+
+.PP
+size is an \fIIN\fP and \fIOUT\fP parameter and used as a hint\&. When the call is made, size is the requested size of the buffer\&. When the call returns, size is the size of the array returned to the caller\&.
+
+.PP
+The base class implementation sets size to 0 and returns NULL\&. 
+.PP
+\fBNote\fP
+.RS 4
+Some objects, like \fBArraySink()\fP, cannot create a space because its fixed\&. In the case of an \fBArraySink()\fP, the pointer to the array is returned and the size is remaining size\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "bool Redirector::ChannelFlush (const std::string & channel, bool hardFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Flush buffered input and/or output on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to flush the data 
+.br
+\fIhardFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBChannelFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true of the Flush was successful
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "bool Redirector::ChannelMessageSeriesEnd (const std::string & channel, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Marks the end of a series of messages on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to signal the end of a series of messages 
+.br
+\fIpropagation\fP the number of attached transformations the \fBChannelMessageSeriesEnd()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the message was successful, false otherwise
+.RE
+.PP
+Each object that receives the signal will perform its processing, decrement propagation, and then pass the signal on to attached transformations if the value is not 0\&.
+
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+There should be a \fBMessageEnd()\fP immediately before \fBMessageSeriesEnd()\fP\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "size_t Redirector::ChannelPut2 (const std::string & channel, const \fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Input multiple bytes for processing on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data\&. 
+.br
+\fIinString\fP the byte buffer to process\&. 
+.br
+\fIlength\fP the size of the string, in bytes\&. 
+.br
+\fImessageEnd\fP means how many filters to signal \fBMessageEnd()\fP to, including this one\&. 
+.br
+\fIblocking\fP specifies whether the object should block when processing input\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed) 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "size_t Redirector::ChannelPutModifiable2 (const std::string & channel, \fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Input multiple bytes that may be modified by callee on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data 
+.br
+\fIinString\fP the byte buffer to process 
+.br
+\fIlength\fP the size of the string, in bytes 
+.br
+\fImessageEnd\fP means how many filters to signal \fBMessageEnd()\fP to, including this one 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed) 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "\fBbyte\fP * Redirector::CreatePutSpace (size_t & size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Request space which can be written into by the caller\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the requested size of the buffer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+byte pointer to the space to input data
+.RE
+.PP
+The purpose of this method is to help avoid extra memory allocations\&.
+
+.PP
+size is an \fIIN\fP and \fIOUT\fP parameter and used as a hint\&. When the call is made, size is the requested size of the buffer\&. When the call returns, size is the size of the array returned to the caller\&.
+
+.PP
+The base class implementation sets size to 0 and returns NULL\&. 
+.PP
+\fBNote\fP
+.RS 4
+Some objects, like \fBArraySink\fP, cannot create a space because its fixed\&. In the case of an \fBArraySink\fP, the pointer to the array is returned and the size is remaining size\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "bool Redirector::Flush (bool hardFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Flush buffered input and/or output, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhardFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+Hard flushes must be used with care\&. It means try to process and output everything, even if there may not be enough data to complete the action\&. For example, hard flushing a \fBHexDecoder\fP would cause an error if you do it after inputing an odd number of hex encoded characters\&. 
+
+.PP
+For some types of filters, like \fBZlibDecompressor\fP, hard flushes can only be done at "synchronization points"\&. These synchronization points are positions in the data stream that are created by hard flushes on the corresponding reverse filters, in this example \fBZlibCompressor\fP\&. This is useful when zlib compressed data is moved across a network in packets and compression state is preserved across packets, as in the SSH2 protocol\&. 
+.RE
+.PP
+
+.PP
+Implements \fBCustomFlushPropagation< Sink >\fP\&.
+.SS "\fBBehavior\fP Redirector::GetBehavior ()\fR [inline]\fP"
+
+.PP
+Retrieve signal propagation behavior\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the current signal propagation behavior 
+.RE
+.PP
+
+.SS "unsigned int Redirector::GetMaxWaitObjectCount () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the maximum number of waitable objects\&. 
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "bool Redirector::GetPassSignals () const\fR [inline]\fP"
+
+.PP
+Retrieve signal propagation behavior\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBRedirector\fP passes signals, false otherwise\&. 
+.RE
+.PP
+
+.SS "bool Redirector::GetPassWaitObjects () const\fR [inline]\fP"
+
+.PP
+Retrieve signal propagation behavior\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBRedirector\fP passes wait objects, false otherwise\&. 
+.RE
+.PP
+
+.SS "void Redirector::GetWaitObjects (WaitObjectContainer & container, CallStack const & callStack)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves waitable objects\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcontainer\fP the wait container to receive the references to the objects 
+.br
+\fIcallStack\fP CallStack() object used to select waitable objects
+.RE
+.PP
+GetWaitObjects is usually called in one of two ways\&. First, it can be called like \fRsomething\&.GetWaitObjects(c, CallStack("my func after X", 0));\fP\&. Second, if in an outer \fBGetWaitObjects()\fP method that itself takes a callStack parameter, it can be called like \fRinnerThing\&.GetWaitObjects(c, CallStack("MyClass::GetWaitObjects at X", &callStack));\fP\&. 
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "void Redirector::Initialize (const \fBNameValuePairs\fP & parameters, int propagation)\fR [virtual]\fP"
+
+.PP
+Initialize or reinitialize this object, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparameters\fP a set of \fBNameValuePairs\fP to initialize or reinitialize this object 
+.br
+\fIpropagation\fP the number of attached transformations the \fBInitialize()\fP signal should be passed
+.RE
+.PP
+\fBInitialize()\fP is used to initialize or reinitialize an object using a variable number of arbitrarily typed arguments\&. The function avoids the need for multiple constructors providing all possible combintations of configurable parameters\&.
+
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+Implements \fBCustomSignalPropagation< Sink >\fP\&.
+.SS "bool Redirector::MessageSeriesEnd (int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Marks the end of a series of messages, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpropagation\fP the number of attached transformations the \fBMessageSeriesEnd()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the message was successful, false otherwise
+.RE
+.PP
+Each object that receives the signal will perform its processing, decrement propagation, and then pass the signal on to attached transformations if the value is not 0\&.
+
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+There should be a \fBMessageEnd()\fP immediately before \fBMessageSeriesEnd()\fP\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBBufferedTransformation\fP\&.
+.SS "size_t Redirector::Put2 (const \fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Input multiple bytes for processing\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinString\fP the byte buffer to process 
+.br
+\fIlength\fP the size of the string, in bytes 
+.br
+\fImessageEnd\fP means how many filters to signal \fBMessageEnd()\fP to, including this one 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed)\&. 0 indicates all bytes were processed\&.
+.RE
+.PP
+Derived classes must implement \fBPut2()\fP\&. 
+.PP
+Implements \fBBufferedTransformation\fP\&.
+.SS "void Redirector::Redirect (\fBBufferedTransformation\fP & target)\fR [inline]\fP"
+
+.PP
+Redirect input to another \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItarget\fP the destination \fBBufferedTransformation\fP 
+.RE
+.PP
+
+.SS "void Redirector::SetBehavior (\fBBehavior\fP behavior)\fR [inline]\fP"
+
+.PP
+Set signal propagation behavior\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbehavior\fP the new signal propagation behavior 
+.RE
+.PP
+
+.SS "void Redirector::SetPassSignals (bool pass)\fR [inline]\fP"
+
+.PP
+Set signal propagation behavior\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpass\fP flag indicating if the \fBRedirector\fP should pass signals 
+.RE
+.PP
+
+.SS "void Redirector::SetPassWaitObjects (bool pass)\fR [inline]\fP"
+
+.PP
+Set signal propagation behavior\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpass\fP flag indicating if the \fBRedirector\fP should pass wait objects 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

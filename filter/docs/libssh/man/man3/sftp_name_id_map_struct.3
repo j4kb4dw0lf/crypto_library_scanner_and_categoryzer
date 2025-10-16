@@ -1,0 +1,36 @@
+.TH "sftp_name_id_map_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sftp_name_id_map_struct \- SFTP names map structure to store the mapping between ids and names\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sftp\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint32_t \fBcount\fP"
+.br
+.RI "Count of name-id pairs in the map\&. "
+.ti -1c
+.RI "uint32_t * \fBids\fP"
+.br
+.RI "Array of ids, ids[i] mapped to names[i]\&. "
+.ti -1c
+.RI "char ** \fBnames\fP"
+.br
+.RI "Array of names, names[i] mapped to ids[i]\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+SFTP names map structure to store the mapping between ids and names\&. 
+
+This is mainly for the use of \fBsftp_get_users_groups_by_id()\fP function\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

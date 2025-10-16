@@ -1,0 +1,176 @@
+.TH "TF_EncryptorBase" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_EncryptorBase \- Trapdoor function cryptosystems encryption base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBTF_CryptoSystemBase< PK_Encryptor, TF_Base< RandomizedTrapdoorFunction, PK_EncryptionMessageEncodingMethod > >\fP\&.
+.PP
+Inherited by \fBAlgorithmImpl< TF_EncryptorBase, SCHEME_OPTIONS::AlgorithmInfo >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBEncrypt\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *plaintext, size_t plaintextLength, \fBbyte\fP *ciphertext, const \fBNameValuePairs\fP &parameters=g_nullNameValuePairs) const"
+.br
+.RI "Encrypt a byte string\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTF_CryptoSystemBase< PK_Encryptor, TF_Base< RandomizedTrapdoorFunction, PK_EncryptionMessageEncodingMethod > >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "size_t \fBFixedMaxPlaintextLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBFixedCiphertextLength\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_FixedLengthCryptoSystemImpl< PK_Encryptor >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMaxPlaintextLength\fP (size_t ciphertextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBCiphertextLength\fP (size_t plaintextLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_Encryptor\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBBufferedTransformation\fP * \fBCreateEncryptionFilter\fP (\fBRandomNumberGenerator\fP &rng, \fBBufferedTransformation\fP *attachment=NULLPTR, const \fBNameValuePairs\fP &parameters=g_nullNameValuePairs) const"
+.br
+.RI "Create a new encryption filter\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPublicKeyAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "virtual \fBPublicKey\fP & \fBAccessPublicKey\fP ()=0"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "virtual const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Types inherited from \fBTF_Base< RandomizedTrapdoorFunction, PK_EncryptionMessageEncodingMethod >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBRandomizedTrapdoorFunction\fP \fBTrapdoorFunctionInterface\fP"
+.br
+.ti -1c
+.RI "typedef \fBPK_EncryptionMessageEncodingMethod\fP \fBMessageEncodingInterface\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBTF_CryptoSystemBase< PK_Encryptor, TF_Base< RandomizedTrapdoorFunction, PK_EncryptionMessageEncodingMethod > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBPaddedBlockByteLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBPaddedBlockBitLength\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBTF_Base< RandomizedTrapdoorFunction, PK_EncryptionMessageEncodingMethod >\fP
+.in +1c
+.ti -1c
+.RI "virtual const \fBTrapdoorFunctionBounds\fP & \fBGetTrapdoorFunctionBounds\fP () const=0"
+.br
+.ti -1c
+.RI "virtual const \fBTrapdoorFunctionInterface\fP & \fBGetTrapdoorFunctionInterface\fP () const=0"
+.br
+.ti -1c
+.RI "virtual const \fBMessageEncodingInterface\fP & \fBGetMessageEncodingInterface\fP () const=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Trapdoor function cryptosystems encryption base class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void TF_EncryptorBase::Encrypt (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * plaintext, size_t plaintextLength, \fBbyte\fP * ciphertext, const \fBNameValuePairs\fP & parameters = \fRg_nullNameValuePairs\fP) const\fR [virtual]\fP"
+
+.PP
+Encrypt a byte string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIplaintext\fP the plaintext byte buffer 
+.br
+\fIplaintextLength\fP the size of the plaintext byte buffer 
+.br
+\fIciphertext\fP a byte buffer to hold the encrypted string 
+.br
+\fIparameters\fP a set of \fBNameValuePairs\fP to initialize this object 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCiphertextLength(plaintextLength) != 0\fP ensures the plaintext isn't too large 
+
+.PP
+\fRCOUNTOF(ciphertext) == CiphertextLength(plaintextLength)\fP ensures the output byte buffer is large enough\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBPK_Decryptor\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPK_Encryptor\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

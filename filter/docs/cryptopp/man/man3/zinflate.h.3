@@ -1,0 +1,59 @@
+.TH "/home/mock/cryptopp-master/zinflate.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/zinflate.h \- DEFLATE compression and decompression (RFC 1951)
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'filters\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBLowFirstBitReader\fP"
+.br
+.ti -1c
+.RI "class \fBHuffmanDecoder\fP"
+.br
+.RI "Huffman Decoder\&. "
+.ti -1c
+.RI "class \fBHuffmanDecoder::Err\fP"
+.br
+.ti -1c
+.RI "class \fBInflator\fP"
+.br
+.RI "DEFLATE decompressor (RFC 1951) "
+.ti -1c
+.RI "class \fBInflator::Err\fP"
+.br
+.ti -1c
+.RI "class \fBInflator::UnexpectedEndErr\fP"
+.br
+.RI "\fBException\fP thrown when a truncated stream is encountered\&. "
+.ti -1c
+.RI "class \fBInflator::BadBlockErr\fP"
+.br
+.RI "\fBException\fP thrown when a bad block is encountered\&. "
+.ti -1c
+.RI "class \fBInflator::BadDistanceErr\fP"
+.br
+.RI "\fBException\fP thrown when an invalid distance is encountered\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+DEFLATE compression and decompression (RFC 1951)
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

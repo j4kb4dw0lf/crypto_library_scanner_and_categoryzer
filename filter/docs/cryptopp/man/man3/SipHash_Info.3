@@ -1,0 +1,56 @@
+.TH "SipHash_Info< T_128bit >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SipHash_Info< T_128bit > \- \fBSipHash\fP message authentication code information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <siphash\&.h>\fP
+.PP
+Inherits \fBFixedKeyLength< 16 >\fP\&.
+.PP
+Inherited by \fBSipHash_Base< 2, 4, false >\fP, and \fBSipHash_Base< C, D, T_128bit >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=(T_128bit ? 16 :8))"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<bool T_128bit>
+.br
+class SipHash_Info< T_128bit >"\fBSipHash\fP message authentication code information\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT_128bit\fP flag indicating 128-bit (true) versus 64-bit (false) digest size 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

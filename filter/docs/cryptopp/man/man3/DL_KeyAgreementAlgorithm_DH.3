@@ -1,0 +1,60 @@
+.TH "DL_KeyAgreementAlgorithm_DH< ELEMENT, COFACTOR_OPTION >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_KeyAgreementAlgorithm_DH< ELEMENT, COFACTOR_OPTION > \- Diffie-Hellman key agreement algorithm\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_KeyAgreementAlgorithm< ELEMENT >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef ELEMENT \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_KeyAgreementAlgorithm< ELEMENT >\fP
+.in +1c
+.ti -1c
+.RI "typedef ELEMENT \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "Element \fBAgreeWithEphemeralPrivateKey\fP (const \fBDL_GroupParameters\fP< Element > &params, const \fBDL_FixedBasePrecomputation\fP< Element > &publicPrecomputation, const \fBInteger\fP &privateExponent) const"
+.br
+.ti -1c
+.RI "Element \fBAgreeWithStaticPrivateKey\fP (const \fBDL_GroupParameters\fP< Element > &params, const Element &publicElement, bool validateOtherPublicKey, const \fBInteger\fP &privateExponent) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class ELEMENT, class COFACTOR_OPTION>
+.br
+class DL_KeyAgreementAlgorithm_DH< ELEMENT, COFACTOR_OPTION >"Diffie-Hellman key agreement algorithm\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class ELEMENT, class COFACTOR_OPTION> Element \fBDL_KeyAgreementAlgorithm_DH\fP< ELEMENT, COFACTOR_OPTION >::AgreeWithEphemeralPrivateKey (const \fBDL_GroupParameters\fP< Element > & params, const \fBDL_FixedBasePrecomputation\fP< Element > & publicPrecomputation, const \fBInteger\fP & privateExponent) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_KeyAgreementAlgorithm< ELEMENT >\fP\&.
+.SS "template<class ELEMENT, class COFACTOR_OPTION> Element \fBDL_KeyAgreementAlgorithm_DH\fP< ELEMENT, COFACTOR_OPTION >::AgreeWithStaticPrivateKey (const \fBDL_GroupParameters\fP< Element > & params, const Element & publicElement, bool validateOtherPublicKey, const \fBInteger\fP & privateExponent) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_KeyAgreementAlgorithm< ELEMENT >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

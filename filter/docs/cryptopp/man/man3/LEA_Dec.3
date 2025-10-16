@@ -1,0 +1,341 @@
+.TH "LEA::Dec" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LEA::Dec \- \fBDecryption\fP transformation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <lea\&.h>\fP
+.PP
+Inherits \fBLEA::Base\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBProcessAndXorBlock\fP (const \fBbyte\fP *inBlock, const \fBbyte\fP *xorBlock, \fBbyte\fP *outBlock) const"
+.br
+.RI "Encrypt or decrypt a block\&. "
+.in -1c
+
+Public Member Functions inherited from \fBBlockCipherImpl< LEA_Info >\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "The minimum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "The maximum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "The default key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Provides a valid key length for the algorithm\&. "
+.ti -1c
+.RI "\fBSimpleKeyingInterface::IV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "The default IV requirements for the algorithm\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "The initialization vector length for the algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBBlockTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBProcessBlock\fP (const \fBbyte\fP *inBlock, \fBbyte\fP *outBlock) const"
+.br
+.RI "Encrypt or decrypt a block\&. "
+.ti -1c
+.RI "void \fBProcessBlock\fP (\fBbyte\fP *inoutBlock) const"
+.br
+.RI "Encrypt or decrypt a block in place\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual bool \fBIsPermutation\fP () const"
+.br
+.RI "Determines if the transformation is a permutation\&. "
+.ti -1c
+.RI "virtual bool \fBIsForwardTransformation\fP () const =0"
+.br
+.RI "Determines if the cipher is being operated in its forward direction\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalNumberOfParallelBlocks\fP () const"
+.br
+.RI "Determines the number of blocks that can be processed in parallel\&. "
+.ti -1c
+.RI "virtual size_t \fBAdvancedProcessBlocks\fP (const \fBbyte\fP *inBlocks, const \fBbyte\fP *xorBlocks, \fBbyte\fP *outBlocks, size_t length, \fBword32\fP flags) const"
+.br
+.RI "Encrypt and xor multiple blocks using additional flags\&. "
+.ti -1c
+.RI "\fBCipherDir\fP \fBGetCipherDirection\fP () const"
+.br
+.RI "Provides the direction of the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedBlockSize< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 16, 16, 32, 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+
+Public Types inherited from \fBBlockTransformation\fP
+.in +1c
+.ti -1c
+.RI "enum \fBFlagsForAdvancedProcessBlocks\fP { \fBBT_InBlockIsCounter\fP =1, \fBBT_DontIncrementInOutPointers\fP =2, \fBBT_XorInput\fP =4, \fBBT_ReverseDirection\fP =8, \fBBT_AllowParallel\fP =16 }"
+.br
+.RI "Bit flags that control \fBAdvancedProcessBlocks()\fP behavior\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBLEA_Info\fP
+.in +1c
+.ti -1c
+.RI "static const std::string \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBLEA::Base\fP
+.in +1c
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *userKey, unsigned int keyLength, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBBlockCipher\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Attributes inherited from \fBLEA::Base\fP
+.in +1c
+.ti -1c
+.RI "\fBSecBlock\fP< \fBword32\fP > \fBm_rkey\fP"
+.br
+.ti -1c
+.RI "\fBSecBlock\fP< \fBword32\fP > \fBm_temp\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_rounds\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBDecryption\fP transformation\&. 
+
+\fBDec\fP provides implementation for decryption transformation\&. All key and block sizes are supported\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void LEA::Dec::ProcessAndXorBlock (const \fBbyte\fP * inBlock, const \fBbyte\fP * xorBlock, \fBbyte\fP * outBlock) const\fR [virtual]\fP"
+
+.PP
+Encrypt or decrypt a block\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinBlock\fP the input message before processing 
+.br
+\fIoutBlock\fP the output message after processing 
+.br
+\fIxorBlock\fP an optional XOR mask
+.RE
+.PP
+ProcessAndXorBlock encrypts or decrypts inBlock, xor with xorBlock, and write to outBlock\&.
+
+.PP
+The size of the block is determined by the block cipher and its documentation\&. Use BLOCKSIZE at compile time, or \fBBlockSize()\fP at runtime\&. 
+.PP
+\fBNote\fP
+.RS 4
+The message can be transformed in-place, or the buffers must \fInot\fP overlap 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBFixedBlockSize\fP, \fBBlockCipherFinal\fP from \fBseckey\&.h\fP and \fBBlockSize()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBBlockTransformation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

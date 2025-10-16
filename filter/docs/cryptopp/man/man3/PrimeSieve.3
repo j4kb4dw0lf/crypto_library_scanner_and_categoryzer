@@ -1,0 +1,54 @@
+.TH "PrimeSieve" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PrimeSieve
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPrimeSieve\fP (const \fBInteger\fP &first, const \fBInteger\fP &last, const \fBInteger\fP &step, signed int delta=0)"
+.br
+.ti -1c
+.RI "bool \fBNextCandidate\fP (\fBInteger\fP &c)"
+.br
+.ti -1c
+.RI "void \fBDoSieve\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBSieveSingle\fP (std::vector< bool > &sieve, \fBword16\fP p, const \fBInteger\fP &first, const \fBInteger\fP &step, \fBword16\fP stepInv)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBm_first\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_last\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_step\fP"
+.br
+.ti -1c
+.RI "signed int \fBm_delta\fP"
+.br
+.ti -1c
+.RI "word \fBm_next\fP"
+.br
+.ti -1c
+.RI "std::vector< bool > \fBm_sieve\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

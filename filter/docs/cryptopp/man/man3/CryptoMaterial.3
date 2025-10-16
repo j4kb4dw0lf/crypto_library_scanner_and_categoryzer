@@ -1,0 +1,378 @@
+.TH "CryptoMaterial" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CryptoMaterial \- Interface for crypto material\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBNameValuePairs\fP\&.
+.PP
+Inherited by \fBCertificate\fP\fR [virtual]\fP, \fBGeneratableCryptoMaterial\fP\fR [virtual]\fP, and \fBPublicKey\fP\fR [virtual]\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBInvalidMaterial\fP"
+.br
+.RI "\fBException\fP thrown when invalid crypto material is detected\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)=0"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "virtual bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const =0"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Saves a key to a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Loads a key from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (unsigned int precomputationStorage)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "virtual CRYPTOPP_DLL bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const =0"
+.br
+.RI "Get a named value\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for crypto material\&. 
+
+\fBCryptoMaterial()\fP is an interface for crypto material, such as public keys, private keys and crypto parameters\&. Derived classes generally do not offer public methods such as GenerateRandom() and GenerateRandomWithKeySize()\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGeneratableCryptoMaterial()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void CryptoMaterial::AssignFrom (const \fBNameValuePairs\fP & source)\fR [pure virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, \fBDL_GroupParameters_IntegerBased\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP, \fBDL_PrivateKey_ECGDSA< EC >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKey_ECGDSA< EC >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBESIGNFunction\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleLUCFunction\fP, \fBInvertibleRabinFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRWFunction\fP, \fBLUCFunction\fP, \fBRabinFunction\fP, \fBRSAFunction\fP, \fBRWFunction\fP, \fBx25519\fP, and \fBXTR_DH\fP\&.
+.SS "void CryptoMaterial::DoQuickSanityCheck () const\fR [inline]\fP"
+
+.PP
+Perform a quick sanity check\&. \fBDoQuickSanityCheck()\fP is for internal library use, and it should not be called by library users\&. 
+.SS "virtual void CryptoMaterial::Load (\fBBufferedTransformation\fP & bt)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Loads a key from a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP the source \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIKeyingErr\fP 
+.RE
+.PP
+\fBLoad()\fP attempts to read material from a \fBBufferedTransformation\fP\&. If the material is a key that was generated outside the library, then the following usually applies: 
+.PD 0
+.IP "\(bu" 2
+the key should be ASN\&.1 BER encoded 
+.IP "\(bu" 2
+the key should be a "key info" 
+.PP
+
+.PP
+"key info" means the key should have an object identifier with an algorithm id, like a subjectPublicKeyInfo\&.
+
+.PP
+To read a "raw" key without the "key info", then call the key's BERDecode() method\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBLoad()\fP generally does not check that the key is valid\&. Call \fBValidate()\fP, if needed\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBASN1CryptoMaterial< DL_GroupParameters< Integer > >\fP, \fBASN1CryptoMaterial< PrivateKey >\fP, \fBASN1CryptoMaterial< PublicKey >\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRWFunction\fP, \fBRWFunction\fP, and \fBx25519\fP\&.
+.SS "virtual void CryptoMaterial::LoadPrecomputation (\fBBufferedTransformation\fP & storedPrecomputation)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve previously saved precomputation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstoredPrecomputation\fP \fBBufferedTransformation\fP with the saved precomputation 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSupportsPrecomputation()\fP, \fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBDL_GroupParameters< T >\fP, \fBDL_GroupParameters< Integer >\fP, \fBDL_GroupParameters< typename EcPrecomputation< EC >::Element >\fP, \fBDL_GroupParameters< typename GROUP_PRECOMP::Element >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, and \fBInvertibleRWFunction\fP\&.
+.SS "virtual void CryptoMaterial::Precompute (unsigned int precomputationStorage)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Perform precomputation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprecomputationStorage\fP the suggested number of objects for the precompute table 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+The exact semantics of \fBPrecompute()\fP varies, but it typically means calculate a table of n objects that can be used later to speed up computation\&.
+
+.PP
+If a derived class does not override \fBPrecompute()\fP, then the base class throws \fBNotImplemented\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSupportsPrecomputation()\fP, \fBLoadPrecomputation()\fP, \fBSavePrecomputation()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBDL_GroupParameters< T >\fP, \fBDL_GroupParameters< Integer >\fP, \fBDL_GroupParameters< typename EcPrecomputation< EC >::Element >\fP, \fBDL_GroupParameters< typename GROUP_PRECOMP::Element >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, and \fBInvertibleRWFunction\fP\&.
+.SS "virtual void CryptoMaterial::Save (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Saves a key to a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP the destination \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSave()\fP writes the material to a \fBBufferedTransformation\fP\&.
+
+.PP
+If the material is a key, then the key is written with ASN\&.1 DER encoding\&. The key includes an object identifier with an algorithm id, like a subjectPublicKeyInfo\&.
+
+.PP
+A "raw" key without the "key info" can be saved using a key's DEREncode() method\&.
+
+.PP
+If a derived class does not override \fBSave()\fP, then the base class throws \fBNotImplemented()\fP\&. 
+.PP
+Reimplemented in \fBASN1CryptoMaterial< DL_GroupParameters< Integer > >\fP, \fBASN1CryptoMaterial< PrivateKey >\fP, \fBASN1CryptoMaterial< PublicKey >\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRWFunction\fP, \fBRWFunction\fP, and \fBx25519\fP\&.
+.SS "virtual void CryptoMaterial::SavePrecomputation (\fBBufferedTransformation\fP & storedPrecomputation) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Save precomputation for later use\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstoredPrecomputation\fP \fBBufferedTransformation\fP to write the precomputation 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSupportsPrecomputation()\fP, \fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBDL_GroupParameters< T >\fP, \fBDL_GroupParameters< Integer >\fP, \fBDL_GroupParameters< typename EcPrecomputation< EC >::Element >\fP, \fBDL_GroupParameters< typename GROUP_PRECOMP::Element >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, and \fBInvertibleRWFunction\fP\&.
+.SS "virtual bool CryptoMaterial::SupportsPrecomputation () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether the object supports precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the object supports precomputation, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBDL_GroupParameters< T >\fP, \fBDL_GroupParameters< Integer >\fP, \fBDL_GroupParameters< typename EcPrecomputation< EC >::Element >\fP, \fBDL_GroupParameters< typename GROUP_PRECOMP::Element >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, and \fBInvertibleRWFunction\fP\&.
+.SS "virtual void CryptoMaterial::ThrowIfInvalid (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidMaterial\fP\fP 
+.RE
+.PP
+Internally, \fBThrowIfInvalid()\fP calls \fBValidate()\fP and throws InvalidMaterial() if validation fails\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBValidate()\fP 
+.RE
+.PP
+
+.SS "virtual bool CryptoMaterial::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [pure virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThrowIfInvalid()\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters< T >\fP, \fBDL_GroupParameters< Integer >\fP, \fBDL_GroupParameters< typename EcPrecomputation< EC >::Element >\fP, \fBDL_GroupParameters< typename GROUP_PRECOMP::Element >\fP, \fBDL_PrivateKey_ElGamal< DL_CryptoKeys_ElGamal::PrivateKey >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBESIGNFunction\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleLUCFunction\fP, \fBInvertibleRabinFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRWFunction\fP, \fBLUCFunction\fP, \fBRabinFunction\fP, \fBRSAFunction\fP, \fBRWFunction\fP, \fBx25519\fP, and \fBXTR_DH\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

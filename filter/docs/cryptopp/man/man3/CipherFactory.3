@@ -1,0 +1,30 @@
+.TH "CipherFactory" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CipherFactory
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBFixedRoundsCipherFactory< E, D >\fP, and \fBVariableRoundsCipherFactory< E, D >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBBlockSize\fP () const =0"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBKeyLength\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBBlockTransformation\fP * \fBNewEncryption\fP (const \fBbyte\fP *keyStr) const =0"
+.br
+.ti -1c
+.RI "virtual \fBBlockTransformation\fP * \fBNewDecryption\fP (const \fBbyte\fP *keyStr) const =0"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,82 @@
+.TH "ECDSA_RFC6979< EC, H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECDSA_RFC6979< EC, H > \- Elliptic Curve \fBDSA\fP (\fBECDSA\fP) deterministic signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.PP
+Inherits \fBDL_SS< DL_Keys_ECDSA< EC >, DL_Algorithm_ECDSA_RFC6979< EC, H >, DL_SignatureMessageEncodingMethod_DSA, H, ECDSA_RFC6979< EC, H > >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBDL_SS< DL_Keys_ECDSA< EC >, DL_Algorithm_ECDSA_RFC6979< EC, H >, DL_SignatureMessageEncodingMethod_DSA, H, ECDSA_RFC6979< EC, H > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_SS< DL_Keys_ECDSA< EC >, DL_Algorithm_ECDSA_RFC6979< EC, H >, DL_SignatureMessageEncodingMethod_DSA, H, ECDSA_RFC6979< EC, H > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBDL_Keys_ECDSA< EC >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_PublicKey_EC\fP< EC > \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest\fP< \fBDL_PrivateKey_EC\fP< EC >, \fBECDSA\fP< EC, \fBSHA256\fP > > \fBPrivateKey\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC, class H>
+.br
+struct ECDSA_RFC6979< EC, H >"Elliptic Curve \fBDSA\fP (\fBECDSA\fP) deterministic signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.br
+\fIH\fP \fBHashTransformation\fP derived class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRDeterministic Usage of the Digital Signature Algorithm (DSA) and Elliptic Curve Digital Signature Algorithm (ECDSA)\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

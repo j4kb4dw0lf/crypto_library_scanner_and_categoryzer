@@ -1,0 +1,41 @@
+.TH "CipherModeDocumentation" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CipherModeDocumentation \- Block cipher mode of operation information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <modes\&.h>\fP
+.PP
+Inherits \fBSymmetricCipherDocumentation\fP\&.
+.PP
+Inherited by \fBCBC_Mode< BC >\fP, \fBCBC_CTS_Mode< CIPHER >\fP, \fBCBC_CTS_Mode_ExternalCipher\fP, \fBCBC_Mode< CIPHER >\fP, \fBCBC_Mode_ExternalCipher\fP, \fBCFB_FIPS_Mode< CIPHER >\fP, \fBCFB_FIPS_Mode_ExternalCipher\fP, \fBCFB_Mode< CIPHER >\fP, \fBCFB_Mode_ExternalCipher\fP, \fBCTR_Mode< CIPHER >\fP, \fBCTR_Mode_ExternalCipher\fP, \fBECB_Mode< CIPHER >\fP, \fBECB_Mode_ExternalCipher\fP, \fBOFB_Mode< CIPHER >\fP, \fBOFB_Mode_ExternalCipher\fP, and \fBXTS< CIPHER >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Block cipher mode of operation information\&. 
+
+Each class derived from this one defines two types, \fBEncryption\fP and \fBDecryption\fP, both of which implement the \fBSymmetricCipher\fP interface\&. For each mode there are two classes, one of which is a template class, and the other one has a name that ends in "_ExternalCipher"\&. The "external cipher" mode objects hold a reference to the underlying block cipher, instead of holding an instance of it\&. The reference must be passed in to the constructor\&. For the "cipher holder" classes, the CIPHER template parameter should be a class derived from \fBBlockCipherDocumentation\fP, for example \fBDES\fP or AES\&.
+
+.PP
+See NIST SP 800-38A for definitions of these modes\&. See \fBAuthenticatedSymmetricCipherDocumentation\fP for authenticated encryption modes\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

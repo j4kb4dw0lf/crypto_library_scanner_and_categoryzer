@@ -1,0 +1,51 @@
+.TH "CFB_FIPS_Mode_ExternalCipher" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFB_FIPS_Mode_ExternalCipher \- CFB mode, external cipher, providing FIPS validated cryptography\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <modes\&.h>\fP
+.PP
+Inherits \fBCipherModeDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBCipherModeFinalTemplate_ExternalCipher\fP< \fBConcretePolicyHolder\fP< \fBEmpty\fP, \fBCFB_RequireFullDataBlocks\fP< \fBCFB_EncryptionTemplate\fP< \fBAbstractPolicyHolder\fP< \fBCFB_CipherAbstractPolicy\fP, \fBCFB_ModePolicy\fP > > > > > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBCipherModeFinalTemplate_ExternalCipher\fP< \fBConcretePolicyHolder\fP< \fBEmpty\fP, \fBCFB_RequireFullDataBlocks\fP< \fBCFB_DecryptionTemplate\fP< \fBAbstractPolicyHolder\fP< \fBCFB_CipherAbstractPolicy\fP, \fBCFB_ModePolicy\fP > > > > > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+CFB mode, external cipher, providing FIPS validated cryptography\&. 
+
+Requires full block plaintext according to FIPS 800-38A 
+.PP
+\fBSee also\fP
+.RS 4
+\fRModes of Operation\fP on the Crypto++ wiki\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

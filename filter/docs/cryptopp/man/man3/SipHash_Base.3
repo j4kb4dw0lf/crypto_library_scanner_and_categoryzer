@@ -1,0 +1,507 @@
+.TH "SipHash_Base< C, D, T_128bit >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SipHash_Base< C, D, T_128bit > \- \fBSipHash\fP message authentication code base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <siphash\&.h>\fP
+.PP
+Inherits \fBMessageAuthenticationCode\fP, and \fBSipHash_Info< T_128bit >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "virtual size_t \fBMinKeyLength\fP () const"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "virtual size_t \fBGetValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "virtual \fBIV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "virtual unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "virtual void \fBTruncatedFinal\fP (\fBbyte\fP *digest, size_t digestSize)"
+.br
+.RI "Computes the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSipHash_Info< T_128bit >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=(T_128bit ? 16 :8))"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "virtual void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "void \fBSIPROUND\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBMessageAuthenticationCode\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int C, unsigned int D, bool T_128bit>
+.br
+class SipHash_Base< C, D, T_128bit >"\fBSipHash\fP message authentication code base class\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIC\fP the number of compression rounds 
+.br
+\fID\fP the number of finalization rounds 
+.br
+\fIT_128bit\fP flag indicating 128-bit (true) versus 64-bit (false) digest size 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual size_t \fBSipHash_Base\fP< C, D, T_128bit >::DefaultKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns default key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the default key length, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual unsigned int \fBSipHash_Base\fP< C, D, T_128bit >::DigestSize () const\fR [inline]\fP, \fR [virtual]\fP"
+Provides the digest size of the hash 
+.PP
+\fBReturns\fP
+.RS 4
+the digest size of the hash\&. 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual size_t \fBSipHash_Base\fP< C, D, T_128bit >::GetValidKeyLength (size_t keylength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns a valid key length for the algorithm\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes
+.RE
+.PP
+keylength is provided in bytes, not bits\&. If keylength is less than MIN_KEYLENGTH, then the function returns MIN_KEYLENGTH\&. If keylength is greater than MAX_KEYLENGTH, then the function returns MAX_KEYLENGTH\&. if If keylength is a multiple of KEYLENGTH_MULTIPLE, then keylength is returned\&. Otherwise, the function returns a \fIlower\fP multiple of KEYLENGTH_MULTIPLE\&. 
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual \fBIV_Requirement\fP \fBSipHash_Base\fP< C, D, T_128bit >::IVRequirement () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Minimal requirement for secure IVs\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the secure IV requirement of the algorithm 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual unsigned int \fBSipHash_Base\fP< C, D, T_128bit >::IVSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns length of the IV accepted by this object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the size of an IV, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented()\fP\fP if the object does not support resynchronization
+.RE
+.PP
+The default implementation throws \fBNotImplemented\fP 
+.PP
+Reimplemented from \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual size_t \fBSipHash_Base\fP< C, D, T_128bit >::MaxKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns largest valid key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum key length, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual size_t \fBSipHash_Base\fP< C, D, T_128bit >::MinKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns smallest valid key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the minimum key length, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual unsigned int \fBSipHash_Base\fP< C, D, T_128bit >::OptimalBlockSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the input block size most efficient for this hash\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The input block size that is most efficient for the cipher
+.RE
+.PP
+The base class implementation returns MandatoryBlockSize()\&.
+
+.PP
+Optimal input length is \fRn * \fBOptimalBlockSize()\fP - GetOptimalBlockSizeUsed()\fP for any \fRn > 0\fP\&. 
+.PP
+Reimplemented from \fBHashTransformation\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> virtual unsigned int \fBSipHash_Base\fP< C, D, T_128bit >::OptimalDataAlignment () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides input and output data alignment for optimal performance\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the input data alignment that provides optimal performance 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetAlignment() and \fBOptimalBlockSize()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBHashTransformation\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> void \fBSipHash_Base\fP< C, D, T_128bit >::Restart ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Restart the hash\&. Discards the current state, and restart for a new message 
+.PP
+Reimplemented from \fBHashTransformation\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> void \fBSipHash_Base\fP< C, D, T_128bit >::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)\fR [virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls \fBFinal()\fP and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) <= \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) <= HASH::DIGESTSIZE\fP ensures the output byte buffer is a valid size\&. 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> void \fBSipHash_Base\fP< C, D, T_128bit >::UncheckedSetKey (const \fBbyte\fP * key, unsigned int length, const \fBNameValuePairs\fP & params)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Sets the key for this object without performing parameter validation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte buffer used to key the cipher 
+.br
+\fIlength\fP the length of the byte buffer 
+.br
+\fIparams\fP additional parameters passed as \fBNameValuePairs\fP
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. 
+.PP
+Implements \fBSimpleKeyingInterface\fP\&.
+.SS "template<unsigned int C, unsigned int D, bool T_128bit> void \fBSipHash_Base\fP< C, D, T_128bit >::Update (const \fBbyte\fP * input, size_t length)\fR [virtual]\fP"
+
+.PP
+Updates a hash with additional input\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

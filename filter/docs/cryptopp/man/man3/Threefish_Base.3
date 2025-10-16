@@ -1,0 +1,69 @@
+.TH "Threefish_Base< BS >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Threefish_Base< BS > \- Threefish block cipher base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <threefish\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSecBlock\fP< word64, \fBAllocatorWithCleanup\fP< word64, true > > \fBAlignedSecBlock64\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSetTweak\fP (const \fBNameValuePairs\fP &params)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAlignedSecBlock64\fP \fBm_wspace\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecBlock64\fP \fBm_rkey\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecBlock64\fP \fBm_tweak\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int BS>
+.br
+struct Threefish_Base< BS >"Threefish block cipher base class\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBS\fP block size of the cipher, in bytes
+.RE
+.PP
+User code should use \fBThreefish256\fP, \fBThreefish512\fP, \fBThreefish1024\fP 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThreefish256\fP, \fBThreefish512\fP, \fBThreefish1024\fP, \fRThreefish\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,93 @@
+.TH "/home/mock/cryptopp-master/dll.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/dll.h \- Functions and definitions required for building the FIPS-140 DLL on Windows\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'aes\&.h'\fP
+.br
+\fR#include 'cbcmac\&.h'\fP
+.br
+\fR#include 'ccm\&.h'\fP
+.br
+\fR#include 'cmac\&.h'\fP
+.br
+\fR#include 'channels\&.h'\fP
+.br
+\fR#include 'des\&.h'\fP
+.br
+\fR#include 'dh\&.h'\fP
+.br
+\fR#include 'dsa\&.h'\fP
+.br
+\fR#include 'ec2n\&.h'\fP
+.br
+\fR#include 'eccrypto\&.h'\fP
+.br
+\fR#include 'ecp\&.h'\fP
+.br
+\fR#include 'files\&.h'\fP
+.br
+\fR#include 'fips140\&.h'\fP
+.br
+\fR#include 'gcm\&.h'\fP
+.br
+\fR#include 'hex\&.h'\fP
+.br
+\fR#include 'hmac\&.h'\fP
+.br
+\fR#include 'modes\&.h'\fP
+.br
+\fR#include 'mqueue\&.h'\fP
+.br
+\fR#include 'nbtheory\&.h'\fP
+.br
+\fR#include 'osrng\&.h'\fP
+.br
+\fR#include 'pkcspad\&.h'\fP
+.br
+\fR#include 'pssr\&.h'\fP
+.br
+\fR#include 'randpool\&.h'\fP
+.br
+\fR#include 'rsa\&.h'\fP
+.br
+\fR#include 'rw\&.h'\fP
+.br
+\fR#include 'sha\&.h'\fP
+.br
+\fR#include 'skipjack\&.h'\fP
+.br
+\fR#include <new>\fP
+.br
+
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef void *(CRYPTOPP_API * \fBPNew\fP) (size_t)"
+.br
+.ti -1c
+.RI "typedef void(CRYPTOPP_API * \fBPDelete\fP) (void *)"
+.br
+.ti -1c
+.RI "typedef void(CRYPTOPP_API * \fBPGetNewAndDelete\fP) (PNew &, PDelete &)"
+.br
+.ti -1c
+.RI "typedef std::new_handler(CRYPTOPP_API * \fBPSetNewHandler\fP) (std::new_handler)"
+.br
+.ti -1c
+.RI "typedef void(CRYPTOPP_API * \fBPSetNewAndDelete\fP) (PNew, PDelete, PSetNewHandler)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Functions and definitions required for building the FIPS-140 DLL on Windows\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

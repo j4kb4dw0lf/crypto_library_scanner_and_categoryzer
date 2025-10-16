@@ -1,0 +1,58 @@
+.TH "XChaCha20Poly1305" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XChaCha20Poly1305 \- IETF XChaCha20/Poly1305 AEAD scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <chachapoly\&.h>\fP
+.PP
+Inherits \fBAuthenticatedSymmetricCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBXChaCha20Poly1305_Final\fP< true > \fBEncryption\fP"
+.br
+.RI "\fBXChaCha20Poly1305\fP encryption\&. "
+.ti -1c
+.RI "typedef \fBXChaCha20Poly1305_Final\fP< false > \fBDecryption\fP"
+.br
+.RI "\fBXChaCha20Poly1305\fP decryption\&. "
+.in -1c
+
+Public Types inherited from \fBAuthenticatedSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBAuthenticatedSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBAuthenticatedSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBAuthenticatedSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBAuthenticatedSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+IETF XChaCha20/Poly1305 AEAD scheme\&. 
+
+\fBXChaCha20Poly1305\fP is an authenticated encryption scheme that combines \fBXChaCha20\fP and Poly1305-TLS\&. The scheme is defined in RFC 8439, section 2\&.8, AEAD_XCHACHA20_POLY1305 construction, and uses the IETF versions of ChaCha20 and \fBPoly1305\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 8439, ChaCha20 and Poly1305 for IETF Protocols\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

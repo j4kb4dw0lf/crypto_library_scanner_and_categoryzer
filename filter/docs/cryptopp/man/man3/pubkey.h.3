@@ -1,0 +1,452 @@
+.TH "/home/mock/cryptopp-master/pubkey.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/pubkey.h \- This file contains helper classes/functions for implementing public key algorithms\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+\fR#include 'modarith\&.h'\fP
+.br
+\fR#include 'filters\&.h'\fP
+.br
+\fR#include 'eprecomp\&.h'\fP
+.br
+\fR#include 'fips140\&.h'\fP
+.br
+\fR#include 'argnames\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBTrapdoorFunctionBounds\fP"
+.br
+.RI "Provides range for plaintext and ciphertext lengths\&. "
+.ti -1c
+.RI "class \fBRandomizedTrapdoorFunction\fP"
+.br
+.RI "Applies the trapdoor function, using random data if required\&. "
+.ti -1c
+.RI "class \fBTrapdoorFunction\fP"
+.br
+.RI "Applies the trapdoor function\&. "
+.ti -1c
+.RI "class \fBRandomizedTrapdoorFunctionInverse\fP"
+.br
+.RI "Applies the inverse of the trapdoor function, using random data if required\&. "
+.ti -1c
+.RI "class \fBTrapdoorFunctionInverse\fP"
+.br
+.RI "Applies the inverse of the trapdoor function\&. "
+.ti -1c
+.RI "class \fBPK_EncryptionMessageEncodingMethod\fP"
+.br
+.RI "Message encoding method for public key encryption\&. "
+.ti -1c
+.RI "class \fBTF_Base< TFI, MEI >\fP"
+.br
+.RI "The base for trapdoor based cryptosystems\&. "
+.ti -1c
+.RI "class \fBPK_FixedLengthCryptoSystemImpl< BASE >\fP"
+.br
+.RI "Public key trapdoor function default implementation\&. "
+.ti -1c
+.RI "class \fBTF_CryptoSystemBase< INTFACE, BASE >\fP"
+.br
+.RI "Trapdoor function cryptosystem base class\&. "
+.ti -1c
+.RI "class \fBTF_DecryptorBase\fP"
+.br
+.RI "Trapdoor function cryptosystems decryption base class\&. "
+.ti -1c
+.RI "class \fBTF_EncryptorBase\fP"
+.br
+.RI "Trapdoor function cryptosystems encryption base class\&. "
+.ti -1c
+.RI "class \fBPK_SignatureMessageEncodingMethod\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "struct \fBPK_SignatureMessageEncodingMethod::HashIdentifierLookup\fP"
+.br
+.ti -1c
+.RI "struct \fBPK_SignatureMessageEncodingMethod::HashIdentifierLookup::HashIdentifierLookup2< H >\fP"
+.br
+.ti -1c
+.RI "class \fBPK_DeterministicSignatureMessageEncodingMethod\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "class \fBPK_RecoverableSignatureMessageEncodingMethod\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "class \fBDL_SignatureMessageEncodingMethod_DSA\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "class \fBDL_SignatureMessageEncodingMethod_NR\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "class \fBPK_MessageAccumulatorBase\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "class \fBPK_MessageAccumulatorImpl< HASH_ALGORITHM >\fP"
+.br
+.RI "Interface for message encoding method for public key signature schemes\&. "
+.ti -1c
+.RI "class \fBTF_SignatureSchemeBase< INTFACE, BASE >\fP"
+.br
+.RI "Trapdoor Function (TF) Signature Scheme base class\&. "
+.ti -1c
+.RI "class \fBTF_SignerBase\fP"
+.br
+.RI "Trapdoor Function (TF) \fBSigner\fP base class\&. "
+.ti -1c
+.RI "class \fBTF_VerifierBase\fP"
+.br
+.RI "Trapdoor Function (TF) \fBVerifier\fP base class\&. "
+.ti -1c
+.RI "struct \fBTF_CryptoSchemeOptions< T1, T2, T3 >\fP"
+.br
+.RI "Trapdoor Function (TF) scheme options\&. "
+.ti -1c
+.RI "struct \fBTF_SignatureSchemeOptions< T1, T2, T3, T4 >\fP"
+.br
+.RI "Trapdoor Function (TF) signature scheme options\&. "
+.ti -1c
+.RI "class \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY_CLASS >\fP"
+.br
+.RI "Trapdoor Function (TF) base implementation\&. "
+.ti -1c
+.RI "class \fBTF_ObjectImplExtRef< BASE, SCHEME_OPTIONS, KEY >\fP"
+.br
+.RI "Trapdoor Function (TF) signature with external reference\&. "
+.ti -1c
+.RI "class \fBTF_ObjectImpl< BASE, SCHEME_OPTIONS, KEY_CLASS >\fP"
+.br
+.RI "Trapdoor Function (TF) signature scheme options\&. "
+.ti -1c
+.RI "class \fBTF_DecryptorImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Trapdoor Function (TF) decryptor options\&. "
+.ti -1c
+.RI "class \fBTF_EncryptorImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Trapdoor Function (TF) encryptor options\&. "
+.ti -1c
+.RI "class \fBTF_SignerImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Trapdoor Function (TF) encryptor options\&. "
+.ti -1c
+.RI "class \fBTF_VerifierImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Trapdoor Function (TF) encryptor options\&. "
+.ti -1c
+.RI "class \fBMaskGeneratingFunction\fP"
+.br
+.RI "Mask generation function interface\&. "
+.ti -1c
+.RI "class \fBP1363_MGF1\fP"
+.br
+.RI "P1363 mask generation function\&. "
+.ti -1c
+.RI "class \fBP1363_KDF2< H >\fP"
+.br
+.RI "P1363 key derivation function\&. "
+.ti -1c
+.RI "class \fBDL_BadElement\fP"
+.br
+.RI "\fBException\fP thrown when an invalid group element is encountered\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters< T >\fP"
+.br
+.RI "Interface for Discrete Log (DL) group parameters\&. "
+.ti -1c
+.RI "class \fBDL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >\fP"
+.br
+.RI "Base implementation of Discrete Log (DL) group parameters\&. "
+.ti -1c
+.RI "class \fBDL_Key< T >\fP"
+.br
+.RI "Base class for a Discrete Log (DL) key\&. "
+.ti -1c
+.RI "class \fBDL_PublicKey< T >\fP"
+.br
+.RI "Interface for Discrete Log (DL) public keys\&. "
+.ti -1c
+.RI "class \fBDL_PrivateKey< T >\fP"
+.br
+.RI "Interface for Discrete Log (DL) private keys\&. "
+.ti -1c
+.RI "class \fBDL_KeyImpl< PK, GP, O >\fP"
+.br
+.RI "Discrete Log (DL) key base implementation\&. "
+.ti -1c
+.RI "class \fBDL_PrivateKeyImpl< GP >\fP"
+.br
+.RI "Discrete Log (DL) private key base implementation\&. "
+.ti -1c
+.RI "class \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest< BASE, SIGNATURE_SCHEME >\fP"
+.br
+.ti -1c
+.RI "class \fBDL_PublicKeyImpl< GP >\fP"
+.br
+.RI "Discrete Log (DL) public key base implementation\&. "
+.ti -1c
+.RI "class \fBDL_ElgamalLikeSignatureAlgorithm< T >\fP"
+.br
+.RI "Interface for Elgamal-like signature algorithms\&. "
+.ti -1c
+.RI "class \fBDeterministicSignatureAlgorithm\fP"
+.br
+.RI "Interface for deterministic signers\&. "
+.ti -1c
+.RI "class \fBDL_KeyAgreementAlgorithm< T >\fP"
+.br
+.RI "Interface for DL key agreement algorithms\&. "
+.ti -1c
+.RI "class \fBDL_KeyDerivationAlgorithm< T >\fP"
+.br
+.RI "Interface for key derivation algorithms used in DL cryptosystems\&. "
+.ti -1c
+.RI "class \fBDL_SymmetricEncryptionAlgorithm\fP"
+.br
+.RI "Interface for symmetric encryption algorithms used in DL cryptosystems\&. "
+.ti -1c
+.RI "class \fBDL_Base< KI >\fP"
+.br
+.RI "Discrete Log (DL) base interface\&. "
+.ti -1c
+.RI "class \fBDL_SignatureSchemeBase< INTFACE, KEY_INTFACE >\fP"
+.br
+.RI "Discrete Log (DL) signature scheme base implementation\&. "
+.ti -1c
+.RI "class \fBDL_SignerBase< T >\fP"
+.br
+.RI "Discrete Log (DL) signature scheme signer base implementation\&. "
+.ti -1c
+.RI "class \fBDL_VerifierBase< T >\fP"
+.br
+.RI "Discret Log (DL) \fBVerifier\fP base class\&. "
+.ti -1c
+.RI "class \fBDL_CryptoSystemBase< PK, KI >\fP"
+.br
+.RI "Discrete Log (DL) cryptosystem base implementation\&. "
+.ti -1c
+.RI "class \fBDL_DecryptorBase< T >\fP"
+.br
+.RI "Discrete Log (DL) decryptor base implementation\&. "
+.ti -1c
+.RI "class \fBDL_EncryptorBase< T >\fP"
+.br
+.RI "Discrete Log (DL) encryptor base implementation\&. "
+.ti -1c
+.RI "struct \fBDL_SchemeOptionsBase< T1, T2 >\fP"
+.br
+.RI "Discrete Log (DL) scheme options\&. "
+.ti -1c
+.RI "struct \fBDL_KeyedSchemeOptions< T1, T2 >\fP"
+.br
+.RI "Discrete Log (DL) key options\&. "
+.ti -1c
+.RI "struct \fBDL_SignatureSchemeOptions< T1, T2, T3, T4, T5 >\fP"
+.br
+.RI "Discrete Log (DL) signature scheme options\&. "
+.ti -1c
+.RI "struct \fBDL_CryptoSchemeOptions< T1, T2, T3, T4, T5 >\fP"
+.br
+.RI "Discrete Log (DL) crypto scheme options\&. "
+.ti -1c
+.RI "class \fBDL_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP"
+.br
+.RI "Discrete Log (DL) base object implementation\&. "
+.ti -1c
+.RI "class \fBDL_ObjectImpl< BASE, SCHEME_OPTIONS, KEY >\fP"
+.br
+.RI "Discrete Log (DL) object implementation\&. "
+.ti -1c
+.RI "class \fBDL_SignerImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Discrete Log (DL) signer implementation\&. "
+.ti -1c
+.RI "class \fBDL_VerifierImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Discrete Log (DL) verifier implementation\&. "
+.ti -1c
+.RI "class \fBDL_EncryptorImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Discrete Log (DL) encryptor implementation\&. "
+.ti -1c
+.RI "class \fBDL_DecryptorImpl< SCHEME_OPTIONS >\fP"
+.br
+.RI "Discrete Log (DL) decryptor implementation\&. "
+.ti -1c
+.RI "class \fBDL_SimpleKeyAgreementDomainBase< T >\fP"
+.br
+.RI "Discrete Log (DL) simple key agreement base implementation\&. "
+.ti -1c
+.RI "class \fBDL_KeyAgreementAlgorithm_DH< ELEMENT, COFACTOR_OPTION >\fP"
+.br
+.RI "Diffie-Hellman key agreement algorithm\&. "
+.ti -1c
+.RI "class \fBPK_FinalTemplate< BASE >\fP"
+.br
+.RI "Template implementing constructors for public key algorithm classes\&. "
+.ti -1c
+.RI "struct \fBEncryptionStandard\fP"
+.br
+.RI "Base class for public key encryption standard classes\&. "
+.ti -1c
+.RI "struct \fBSignatureStandard\fP"
+.br
+.RI "Base class for public key signature standard classes\&. "
+.ti -1c
+.RI "class \fBTF_ES< KEYS, STANDARD, ALG_INFO >\fP"
+.br
+.RI "Trapdoor Function (TF) encryption scheme\&. "
+.ti -1c
+.RI "class \fBTF_SS< KEYS, STANDARD, H, ALG_INFO >\fP"
+.br
+.RI "Trapdoor Function (TF) Signature Scheme\&. "
+.ti -1c
+.RI "class \fBDL_SS< KEYS, SA, MEM, H, ALG_INFO >\fP"
+.br
+.RI "Discrete Log (DL) signature scheme\&. "
+.ti -1c
+.RI "class \fBDL_ES< KEYS, AA, DA, EA, ALG_INFO >\fP"
+.br
+.RI "Discrete Log (DL) encryption scheme\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAYBE_RETURN\fP(x)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef std::pair< const \fBbyte\fP *, unsigned int > \fBHashIdentifier\fP"
+.br
+.ti -1c
+.RI "typedef \fBEnumToType\fP< \fBCofactorMultiplicationOption\fP, \fBNO_COFACTOR_MULTIPLICTION\fP > \fBNoCofactorMultiplication\fP"
+.br
+.ti -1c
+.RI "typedef \fBEnumToType\fP< \fBCofactorMultiplicationOption\fP, \fBCOMPATIBLE_COFACTOR_MULTIPLICTION\fP > \fBCompatibleCofactorMultiplication\fP"
+.br
+.ti -1c
+.RI "typedef \fBEnumToType\fP< \fBCofactorMultiplicationOption\fP, \fBINCOMPATIBLE_COFACTOR_MULTIPLICTION\fP > \fBIncompatibleCofactorMultiplication\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBCofactorMultiplicationOption\fP { \fBNO_COFACTOR_MULTIPLICTION\fP, \fBCOMPATIBLE_COFACTOR_MULTIPLICTION\fP, \fBINCOMPATIBLE_COFACTOR_MULTIPLICTION\fP }"
+.br
+.RI "Methods for avoiding "Small-Subgroup" attacks on Diffie-Hellman Key Agreement\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBP1363_MGF1KDF2_Common\fP (\fBHashTransformation\fP &hash, \fBbyte\fP *output, size_t outputLength, const \fBbyte\fP *input, size_t inputLength, const \fBbyte\fP *derivationParams, size_t derivationParamsLength, bool mask, unsigned int counterStart)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+This file contains helper classes/functions for implementing public key algorithms\&.
+
+The class hierarchies in this header file tend to look like this:
+
+.PP
+.PP
+.nf
+
+                  x1
+                 +--+
+                 |  |
+                y1  z1
+                 |  |
+            x2<y1>  x2<z1>
+                 |  |
+                y2  z2
+                 |  |
+            x3<y2>  x3<z2>
+                 |  |
+                y3  z3
+.fi
+.PP
+
+.PP
+.PD 0
+.IP "\(bu" 2
+x1, y1, z1 are abstract interface classes defined in \fBcryptlib\&.h\fP
+.IP "\(bu" 2
+x2, y2, z2 are implementations of the interfaces using "abstract policies", which are pure virtual functions that should return interfaces to interchangeable algorithms\&. These classes have Base suffixes\&.
+.IP "\(bu" 2
+x3, y3, z3 hold actual algorithms and implement those virtual functions\&. These classes have Impl suffixes\&.
+.PP
+
+.PP
+The TF_ prefix means an implementation using trapdoor functions on integers\&.
+
+.PP
+The DL_ prefix means an implementation using group operations in groups where discrete log is hard\&.
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define MAYBE_RETURN( x)"
+\fBValue:\fP
+.nf
+CRYPTOPP_UNUSED(x)
+.PP
+.fi
+
+.SH "Enumeration Type Documentation"
+.PP
+.SS "enum \fBCofactorMultiplicationOption\fP"
+
+.PP
+Methods for avoiding "Small-Subgroup" attacks on Diffie-Hellman Key Agreement\&. Additional methods exist and include public key validation and choice of prime p\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRMethods for Avoiding the "Small-Subgroup" Attacks on the Diffie-Hellman Key Agreement Method for S/MIME\fP
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BINO_COFACTOR_MULTIPLICTION \fP
+No cofactor multiplication applied\&.
+.TP
+\f(BICOMPATIBLE_COFACTOR_MULTIPLICTION \fP
+Cofactor multiplication compatible with ordinary Diffie-Hellman\&. Modifies the computation of ZZ by including j (the cofactor) in the computations and is compatible with ordinary Diffie-Hellman\&.
+.TP
+\f(BIINCOMPATIBLE_COFACTOR_MULTIPLICTION \fP
+Cofactor multiplication incompatible with ordinary Diffie-Hellman\&. Modifies the computation of ZZ by including j (the cofactor) in the computations but is not compatible with ordinary Diffie-Hellman\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

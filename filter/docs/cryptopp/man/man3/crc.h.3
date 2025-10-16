@@ -1,0 +1,65 @@
+.TH "/home/mock/cryptopp-master/crc.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/crc.h \- Classes for CRC-32 and CRC-32C checksum algorithm\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBCRC32\fP"
+.br
+.RI "CRC-32 Checksum Calculation\&. "
+.ti -1c
+.RI "class \fBCRC32C\fP"
+.br
+.RI "CRC-32C Checksum Calculation\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRC32_INDEX\fP(c)"
+.br
+.ti -1c
+.RI "#define \fBCRC32_SHIFTED\fP(c)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const \fBword32\fP \fBCRC32_NEGL\fP = 0xffffffffL"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for CRC-32 and CRC-32C checksum algorithm\&.
+
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRC32_INDEX( c)"
+\fBValue:\fP
+.nf
+(c & 0xff)
+.PP
+.fi
+
+.SS "#define CRC32_SHIFTED( c)"
+\fBValue:\fP
+.nf
+(c >> 8)
+.PP
+.fi
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

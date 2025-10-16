@@ -1,0 +1,92 @@
+.TH "Singleton< T, F, instance >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Singleton< T, F, instance > \- Restricts the instantiation of a class to one static object without locks\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <misc\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSingleton\fP (F objectFactory=F())"
+.br
+.ti -1c
+.RI "CRYPTOPP_NOINLINE const T & \fBRef\fP (CRYPTOPP_NOINLINE_DOTDOTDOT) const"
+.br
+.RI "Return a reference to the inner \fBSingleton\fP object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, class F = NewObject<T>, int instance = 0>
+.br
+class Singleton< T, F, instance >"Restricts the instantiation of a class to one static object without locks\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type 
+.br
+\fIF\fP the object factory for T 
+.br
+\fIinstance\fP an instance counter for the class object
+.RE
+.PP
+This class safely initializes a static object in a multi-threaded environment\&. For C++03 and below it will do so without using locks for portability\&. If two threads call \fBRef()\fP at the same time, they may get back different references, and one object may end up being memory leaked\&. This is by design and it avoids a subtle initialization problem in a multi-threaded environment with thread local storage on early Windows platforms, like Windows XP and Windows 2003\&.
+
+.PP
+For C++11 and above, a standard double-checked locking pattern with thread fences are used\&. The locks and fences are standard and do not hinder portability\&.
+
+.PP
+Microsoft's C++11 implementation provides the necessary primitive support on Windows Vista and above when using Visual Studio 2015 (\fRcl\&.exe\fP version 19\&.00)\&. If C++11 is desired, you should set \fRWINVER\fP or \fR_WIN32_WINNT\fP to 0x600 (or above), and compile with Visual Studio 2015\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRDouble-Checked Locking is Fixed In C++11\fP, \fRDynamic Initialization and Destruction with Concurrency\fP and \fRThread Local Storage (TLS)\fP on MSDN\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.2 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, class F, int instance> const T & \fBSingleton\fP< T, F, instance >::Ref (CRYPTOPP_NOINLINE_DOTDOTDOT ) const"
+
+.PP
+Return a reference to the inner \fBSingleton\fP object\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type 
+.br
+\fIF\fP the object factory for T 
+.br
+\fIinstance\fP an instance counter for the class object
+.RE
+.PP
+\fBRef()\fP is used to create the object using the object factory\&. The object is only created once with the limitations discussed in the class documentation\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRDouble-Checked Locking is Fixed In C++11\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.2 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

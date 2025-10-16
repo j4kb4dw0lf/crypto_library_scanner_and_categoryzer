@@ -1,0 +1,59 @@
+.TH "/home/mock/cryptopp-master/config_os.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/config_os.h \- Library configuration file\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config_ver\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_FASTCALL\fP"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_NO_VTABLE\fP"
+.br
+.ti -1c
+.RI "#define \fBUSE_MS_CRYPTOAPI\fP"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_INIT_PRIORITY\fP   250"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_USER_PRIORITY\fP   (CRYPTOPP_INIT_PRIORITY+101)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Library configuration file\&.
+
+\fR\fBconfig_os\&.h\fP\fP provides defines for platforms and operating systems\&.
+
+.PP
+\fR\fBconfig\&.h\fP\fP was split into components in May 2019 to better integrate with Autoconf and its feature tests\&. The splitting occurred so users could continue to include \fR\fBconfig\&.h\fP\fP while allowing Autoconf to write new \fR\fBconfig_asm\&.h\fP\fP and new \fR\fBconfig_cxx\&.h\fP\fP using its feature tests\&.
+.PP
+\fBNote\fP
+.RS 4
+You should include \fR\fBconfig\&.h\fP\fP rather than \fR\fBconfig_os\&.h\fP\fP directly\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 835, Make config\&.h more autoconf friendly\fP, \fRConfigure\&.sh script\fP on the Crypto++ wiki
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,30 @@
+.TH "PrimeSelector" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PrimeSelector \- Application callback to signal suitability of a candidate prime\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <nbtheory\&.h>\fP
+.PP
+Inherited by \fBLUCPrimeSelector\fP, and \fBRSAPrimeSelector\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBPrimeSelector\fP * \fBGetSelectorPointer\fP () const"
+.br
+.ti -1c
+.RI "virtual bool \fBIsAcceptable\fP (const \fBInteger\fP &candidate) const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Application callback to signal suitability of a candidate prime\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

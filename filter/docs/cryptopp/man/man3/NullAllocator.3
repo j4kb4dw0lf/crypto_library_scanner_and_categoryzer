@@ -1,0 +1,111 @@
+.TH "NullAllocator< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NullAllocator< T > \- NULL allocator\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.PP
+Inherits \fBAllocatorBase< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "pointer \fBallocate\fP (size_type n, const void *unused=NULLPTR)"
+.br
+.ti -1c
+.RI "void \fBdeallocate\fP (void *p, size_type n)"
+.br
+.ti -1c
+.RI "CRYPTOPP_CONSTEXPR size_type \fBmax_size\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "pointer \fBaddress\fP (reference r) const"
+.br
+.ti -1c
+.RI "const_pointer \fBaddress\fP (const_reference r) const"
+.br
+.ti -1c
+.RI "void \fBconstruct\fP (pointer p, const T &val)"
+.br
+.ti -1c
+.RI "void \fBdestroy\fP (pointer p)"
+.br
+.ti -1c
+.RI "CRYPTOPP_CONSTEXPR size_type \fBmax_size\fP () const"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "typedef T \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef size_t \fBsize_type\fP"
+.br
+.ti -1c
+.RI "typedef std::ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "typedef T * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef const T * \fBconst_pointer\fP"
+.br
+.ti -1c
+.RI "typedef T & \fBreference\fP"
+.br
+.ti -1c
+.RI "typedef const T & \fBconst_reference\fP"
+.br
+.in -1c
+
+Static Public Attributes inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "static const size_type \fBELEMS_MAX\fP = SIZE_MAX/sizeof(T)"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+
+Static Protected Member Functions inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "static void \fBCheckSize\fP (size_t size)"
+.br
+.RI "Verifies the allocator can satisfy a request based on size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class NullAllocator< T >"NULL allocator\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+A \fBNullAllocator\fP is useful for fixed-size, stack based allocations (i\&.e\&., static arrays used by \fBFixedSizeAllocatorWithCleanup\fP)\&.
+
+.PP
+A \fBNullAllocator\fP always returns 0 for \fBmax_size()\fP, and always returns NULL for allocation requests\&. Though the allocator does not allocate at runtime, it does perform a secure wipe or zeroization during cleanup\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

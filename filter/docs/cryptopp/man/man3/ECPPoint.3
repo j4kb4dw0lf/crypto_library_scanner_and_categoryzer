@@ -1,0 +1,104 @@
+.TH "ECPPoint" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECPPoint \- Elliptical Curve Point over GF(p), where p is prime\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ecpoint\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBECPPoint\fP ()"
+.br
+.RI "Construct an \fBECPPoint\fP\&. "
+.ti -1c
+.RI "\fBECPPoint\fP (const \fBInteger\fP &x, const \fBInteger\fP &y)"
+.br
+.RI "Construct an \fBECPPoint\fP from coordinates\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBECPPoint\fP &t) const"
+.br
+.RI "Tests points for equality\&. "
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBECPPoint\fP &t) const"
+.br
+.RI "Tests points for ordering\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBx\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBy\fP"
+.br
+.ti -1c
+.RI "bool \fBidentity\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Elliptical Curve Point over GF(p), where p is prime\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ECPPoint::ECPPoint ()\fR [inline]\fP"
+
+.PP
+Construct an \fBECPPoint\fP\&. identity is set to \fRtrue\fP 
+.SS "ECPPoint::ECPPoint (const \fBInteger\fP & x, const \fBInteger\fP & y)\fR [inline]\fP"
+
+.PP
+Construct an \fBECPPoint\fP from coordinates\&. identity is set to \fRfalse\fP 
+.SH "Member Function Documentation"
+.PP 
+.SS "bool ECPPoint::operator< (const \fBECPPoint\fP & t) const\fR [inline]\fP"
+
+.PP
+Tests points for ordering\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other point 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if this point is less than other, false otherwise 
+.RE
+.PP
+
+.SS "bool ECPPoint::operator== (const \fBECPPoint\fP & t) const\fR [inline]\fP"
+
+.PP
+Tests points for equality\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other point 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the points are equal, false otherwise 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

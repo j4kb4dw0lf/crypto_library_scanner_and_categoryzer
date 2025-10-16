@@ -1,0 +1,148 @@
+.TH "DL_PrivateKey< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_PrivateKey< T > \- Interface for Discrete Log (DL) private keys\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_Key< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBMakePublicKey\fP (\fBDL_PublicKey\fP< T > &pub) const"
+.br
+.RI "Initializes a public key from this key\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Initialize or reinitialize this key\&. "
+.ti -1c
+.RI "virtual const \fBInteger\fP & \fBGetPrivateExponent\fP () const =0"
+.br
+.RI "Retrieves the private exponent\&. "
+.ti -1c
+.RI "virtual void \fBSetPrivateExponent\fP (const \fBInteger\fP &x)=0"
+.br
+.RI "Sets the private exponent\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_Key< T >\fP
+.in +1c
+.ti -1c
+.RI "virtual const \fBDL_GroupParameters\fP< T > & \fBGetAbstractGroupParameters\fP () const =0"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "virtual \fBDL_GroupParameters\fP< T > & \fBAccessAbstractGroupParameters\fP ()=0"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_PrivateKey< T >"Interface for Discrete Log (DL) private keys\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> void \fBDL_PrivateKey\fP< T >::AssignFrom (const \fBNameValuePairs\fP & source)\fR [inline]\fP"
+
+.PP
+Initialize or reinitialize this key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsource\fP \fBNameValuePairs\fP to assign 
+.RE
+.PP
+
+.SS "template<class T> virtual const \fBInteger\fP & \fBDL_PrivateKey\fP< T >::GetPrivateExponent () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the private exponent\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the private exponent
+.RE
+.PP
+Must be overridden in derived classes\&. 
+.PP
+Implemented in \fBDL_PrivateKeyImpl< GP >\fP, and \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+.SS "template<class T> bool \fBDL_PrivateKey\fP< T >::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [inline]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetValue(), GetValueWithDefault(), GetIntValue(), GetIntValueWithDefault(), GetRequiredParameter() and GetRequiredIntParameter() 
+.RE
+.PP
+
+.SS "template<class T> void \fBDL_PrivateKey\fP< T >::MakePublicKey (\fBDL_PublicKey\fP< T > & pub) const\fR [inline]\fP"
+
+.PP
+Initializes a public key from this key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpub\fP reference to a public key 
+.RE
+.PP
+
+.SS "template<class T> virtual void \fBDL_PrivateKey\fP< T >::SetPrivateExponent (const \fBInteger\fP & x)\fR [pure virtual]\fP"
+
+.PP
+Sets the private exponent\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the private exponent
+.RE
+.PP
+Must be overridden in derived classes\&. 
+.PP
+Implemented in \fBDL_PrivateKeyImpl< GP >\fP, and \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

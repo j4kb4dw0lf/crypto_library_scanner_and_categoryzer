@@ -1,0 +1,73 @@
+.TH "/home/mock/cryptopp-master/salsa.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/salsa.h \- Classes for Salsa and \fBSalsa20\fP stream ciphers\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'strciphr\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSalsa20_Info\fP"
+.br
+.RI "\fBSalsa20\fP stream cipher information\&. "
+.ti -1c
+.RI "class \fBSalsa20_Policy\fP"
+.br
+.RI "\fBSalsa20\fP stream cipher operation\&. "
+.ti -1c
+.RI "struct \fBSalsa20\fP"
+.br
+.RI "\fBSalsa20\fP stream cipher\&. "
+.ti -1c
+.RI "struct \fBXSalsa20_Info\fP"
+.br
+.RI "\fBXSalsa20\fP stream cipher information\&. "
+.ti -1c
+.RI "class \fBXSalsa20_Policy\fP"
+.br
+.RI "\fBXSalsa20\fP stream cipher operation\&. "
+.ti -1c
+.RI "struct \fBXSalsa20\fP"
+.br
+.RI "\fBXSalsa20\fP stream cipher\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSalsa20_Core\fP (\fBword32\fP *data, unsigned int rounds)"
+.br
+.RI "\fBSalsa20\fP core transform\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for Salsa and \fBSalsa20\fP stream ciphers\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "void Salsa20_Core (\fBword32\fP * data, unsigned int rounds)"
+
+.PP
+\fBSalsa20\fP core transform\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP the data to transform
+.br
+\fIrounds\fP the number of rounds
+.RE
+.PP
+Several algorithms, like CryptoBox and \fBScrypt\fP, require access to the core \fBSalsa20\fP transform\&. The current Crypto++ implementation does not lend itself to disgorging the \fBSalsa20\fP cipher from the \fBSalsa20\fP core transform\&. Instead Salsa20_Core is provided with customary accelerations\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

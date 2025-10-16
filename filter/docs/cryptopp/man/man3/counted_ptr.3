@@ -1,0 +1,67 @@
+.TH "counted_ptr< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+counted_ptr< T > \- Reference counted pointer\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <smartptr\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcounted_ptr\fP (T *p=NULLPTR)"
+.br
+.ti -1c
+.RI "\fBcounted_ptr\fP (const T &r)"
+.br
+.ti -1c
+.RI "\fBcounted_ptr\fP (const \fBcounted_ptr\fP< T > &rhs)"
+.br
+.ti -1c
+.RI "const T & \fBoperator*\fP () const"
+.br
+.ti -1c
+.RI "T & \fBoperator*\fP ()"
+.br
+.ti -1c
+.RI "const T * \fBoperator\->\fP () const"
+.br
+.ti -1c
+.RI "T * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "const T * \fBget\fP () const"
+.br
+.ti -1c
+.RI "T * \fBget\fP ()"
+.br
+.ti -1c
+.RI "void \fBattach\fP (const T &p)"
+.br
+.ti -1c
+.RI "\fBcounted_ptr\fP< T > & \fBoperator=\fP (const \fBcounted_ptr\fP< T > &rhs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class counted_ptr< T >"Reference counted pointer\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+users should declare \fRm_referenceCount\fP as \fRstd::atomic<unsigned>\fP (or similar) under C++ 11 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

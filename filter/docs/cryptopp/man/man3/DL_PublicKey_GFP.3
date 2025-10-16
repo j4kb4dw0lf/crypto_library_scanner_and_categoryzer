@@ -1,0 +1,371 @@
+.TH "DL_PublicKey_GFP< GP >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_PublicKey_GFP< GP > \- Discrete Log (DL) public key in GF(p) groups\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_PublicKeyImpl< GP >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBDL_GroupParameters_IntegerBased\fP &params, const \fBInteger\fP &y)"
+.br
+.RI "Initialize a public key over GF(p) "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &p, const \fBInteger\fP &g, const \fBInteger\fP &y)"
+.br
+.RI "Initialize a public key over GF(p) "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &p, const \fBInteger\fP &q, const \fBInteger\fP &g, const \fBInteger\fP &y)"
+.br
+.RI "Initialize a public key over GF(p) "
+.ti -1c
+.RI "void \fBBERDecodePublicKey\fP (\fBBufferedTransformation\fP &bt, bool, size_t)"
+.br
+.RI "Decode subjectPublicKey part of subjectPublicKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncodePublicKey\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode subjectPublicKey part of subjectPublicKeyInfo\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_PublicKeyImpl< GP >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "void \fBPrecompute\fP (unsigned int precomputationStorage=16)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "const \fBDL_FixedBasePrecomputation\fP< Element > & \fBGetPublicPrecomputation\fP () const"
+.br
+.RI "Accesses the public precomputation\&. "
+.ti -1c
+.RI "\fBDL_FixedBasePrecomputation\fP< Element > & \fBAccessPublicPrecomputation\fP ()"
+.br
+.RI "Accesses the public precomputation\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBDL_PublicKeyImpl\fP< GP > &rhs) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_PublicKey< GP::Element >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Initialize or reinitialize this key\&. "
+.ti -1c
+.RI "virtual const Element & \fBGetPublicElement\fP () const"
+.br
+.RI "Retrieves the public element\&. "
+.ti -1c
+.RI "virtual void \fBSetPublicElement\fP (const Element &y)"
+.br
+.RI "Sets the public element\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiatePublicElement\fP (const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates this element\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeExponentiateBaseAndPublicElement\fP (const \fBInteger\fP &baseExp, const \fBInteger\fP &publicExp) const"
+.br
+.RI "Exponentiates an element\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_KeyImpl< X509PublicKey, GP >\fP
+.in +1c
+.ti -1c
+.RI "\fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.ti -1c
+.RI "bool \fBBERDecodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "bool \fBDEREncodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "const GP & \fBGetGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "GP & \fBAccessGroupParameters\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBX509PublicKey\fP
+.in +1c
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1CryptoMaterial< PublicKey >\fP
+.in +1c
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_PublicKeyImpl< GP >\fP
+.in +1c
+.ti -1c
+.RI "typedef GP::Element \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_PublicKey< GP::Element >\fP
+.in +1c
+.ti -1c
+.RI "typedef GP::Element \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_KeyImpl< X509PublicKey, GP >\fP
+.in +1c
+.ti -1c
+.RI "typedef GP \fBGroupParameters\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class GP>
+.br
+class DL_PublicKey_GFP< GP >"Discrete Log (DL) public key in GF(p) groups\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIGP\fP GroupParameters derived class
+.RE
+.PP
+\fBDSA\fP public key format is defined in 7\&.3\&.3 of RFC 2459\&. The private key format is defined in 12\&.9 of PKCS #11 v2\&.10\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class GP> void \fBDL_PublicKey_GFP\fP< GP >::BERDecodePublicKey (\fBBufferedTransformation\fP & bt, bool parametersPresent, size_t size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Decode subjectPublicKey part of subjectPublicKeyInfo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIparametersPresent\fP flag indicating if algorithm parameters are present 
+.br
+\fIsize\fP number of octets to read for the parameters, in bytes
+.RE
+.PP
+\fBBERDecodePublicKey()\fP the decodes subjectPublicKey part of subjectPublicKeyInfo, without the BIT STRING header\&.
+
+.PP
+When \fRparametersPresent = true\fP then \fBBERDecodePublicKey()\fP calls BERDecodeAlgorithmParameters() to parse algorithm parameters\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBBERDecodeAlgorithmParameters\fP 
+.RE
+.PP
+
+.PP
+Implements \fBX509PublicKey\fP\&.
+.SS "template<class GP> void \fBDL_PublicKey_GFP\fP< GP >::DEREncodePublicKey (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Encode subjectPublicKey part of subjectPublicKeyInfo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+\fBDEREncodePublicKey()\fP encodes the subjectPublicKey part of subjectPublicKeyInfo, without the BIT STRING header\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDEREncodeAlgorithmParameters\fP 
+.RE
+.PP
+
+.PP
+Implements \fBX509PublicKey\fP\&.
+.SS "template<class GP> void \fBDL_PublicKey_GFP\fP< GP >::Initialize (const \fBDL_GroupParameters_IntegerBased\fP & params, const \fBInteger\fP & y)\fR [inline]\fP"
+
+.PP
+Initialize a public key over GF(p) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP the group parameters 
+.br
+\fIy\fP the public element 
+.RE
+.PP
+
+.SS "template<class GP> void \fBDL_PublicKey_GFP\fP< GP >::Initialize (const \fBInteger\fP & p, const \fBInteger\fP & g, const \fBInteger\fP & y)\fR [inline]\fP"
+
+.PP
+Initialize a public key over GF(p) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP the modulus 
+.br
+\fIg\fP the generator 
+.br
+\fIy\fP the public element 
+.RE
+.PP
+
+.SS "template<class GP> void \fBDL_PublicKey_GFP\fP< GP >::Initialize (const \fBInteger\fP & p, const \fBInteger\fP & q, const \fBInteger\fP & g, const \fBInteger\fP & y)\fR [inline]\fP"
+
+.PP
+Initialize a public key over GF(p) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP the modulus 
+.br
+\fIq\fP the subgroup order 
+.br
+\fIg\fP the generator 
+.br
+\fIy\fP the public element 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

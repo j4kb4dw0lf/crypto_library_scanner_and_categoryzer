@@ -1,0 +1,56 @@
+.TH "DL_KeyAgreementAlgorithm< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_KeyAgreementAlgorithm< T > \- Interface for DL key agreement algorithms\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBDL_KeyAgreementAlgorithm_DH< Element, COFACTOR_OPTION >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual Element \fBAgreeWithEphemeralPrivateKey\fP (const \fBDL_GroupParameters\fP< Element > &params, const \fBDL_FixedBasePrecomputation\fP< Element > &publicPrecomputation, const \fBInteger\fP &privateExponent) const =0"
+.br
+.ti -1c
+.RI "virtual Element \fBAgreeWithStaticPrivateKey\fP (const \fBDL_GroupParameters\fP< Element > &params, const Element &publicElement, bool validateOtherPublicKey, const \fBInteger\fP &privateExponent) const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_KeyAgreementAlgorithm< T >"Interface for DL key agreement algorithms\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Field element type or class
+.RE
+.PP
+Field element \fRT\fP can be \fBInteger\fP, \fBECP\fP or \fBEC2N\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDLIES\fP, \fBECIES\fP, \fBECIES_P1363\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

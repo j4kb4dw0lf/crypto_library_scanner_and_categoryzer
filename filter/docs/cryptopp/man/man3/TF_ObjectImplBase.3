@@ -1,0 +1,116 @@
+.TH "TF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY_CLASS >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY_CLASS > \- Trapdoor Function (TF) base implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP\&.
+.PP
+Inherited by \fBTF_ObjectImpl< BASE, SCHEME_OPTIONS, KEY_CLASS >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef KEY_CLASS \fBKeyClass\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessPublicKey\fP ()"
+.br
+.ti -1c
+.RI "const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.ti -1c
+.RI "\fBPrivateKey\fP & \fBAccessPrivateKey\fP ()"
+.br
+.ti -1c
+.RI "const \fBPrivateKey\fP & \fBGetPrivateKey\fP () const"
+.br
+.ti -1c
+.RI "virtual const KeyClass & \fBGetKey\fP () const =0"
+.br
+.ti -1c
+.RI "virtual KeyClass & \fBAccessKey\fP ()=0"
+.br
+.ti -1c
+.RI "const KeyClass & \fBGetTrapdoorFunction\fP () const"
+.br
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewSignatureAccumulator\fP (\fBRandomNumberGenerator\fP &rng) const"
+.br
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewVerificationAccumulator\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const BASE::MessageEncodingInterface & \fBGetMessageEncodingInterface\fP () const"
+.br
+.ti -1c
+.RI "const \fBTrapdoorFunctionBounds\fP & \fBGetTrapdoorFunctionBounds\fP () const"
+.br
+.ti -1c
+.RI "const BASE::TrapdoorFunctionInterface & \fBGetTrapdoorFunctionInterface\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBGetDigestSize\fP () const"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class SCHEME_OPTIONS, class KEY_CLASS>
+.br
+class TF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY_CLASS >"Trapdoor Function (TF) base implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP base class 
+.br
+\fISCHEME_OPTIONS\fP scheme options class 
+.br
+\fIKEY_CLASS\fP key class 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

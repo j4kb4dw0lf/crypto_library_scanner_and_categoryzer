@@ -1,0 +1,81 @@
+.TH "ssh_server_callbacks_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_server_callbacks_struct
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <callbacks\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.ti -1c
+.RI "void * \fBuserdata\fP"
+.br
+.ti -1c
+.RI "\fBssh_auth_password_callback\fP \fBauth_password_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_auth_none_callback\fP \fBauth_none_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_auth_gssapi_mic_callback\fP \fBauth_gssapi_mic_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_auth_pubkey_callback\fP \fBauth_pubkey_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_service_request_callback\fP \fBservice_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_open_request_session_callback\fP \fBchannel_open_request_session_function\fP"
+.br
+.ti -1c
+.RI "ssh_gssapi_select_oid_callback \fBgssapi_select_oid_function\fP"
+.br
+.ti -1c
+.RI "ssh_gssapi_accept_sec_ctx_callback \fBgssapi_accept_sec_ctx_function\fP"
+.br
+.ti -1c
+.RI "ssh_gssapi_verify_mic_callback \fBgssapi_verify_mic_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_open_request_direct_tcpip_callback\fP \fBchannel_open_request_direct_tcpip_function\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This structure can be used to implement a libssh server, with appropriate callbacks\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBssh_auth_gssapi_mic_callback\fP ssh_server_callbacks_struct::auth_gssapi_mic_function"
+This function gets called when a client tries to authenticate through gssapi-mic method\&. 
+.SS "\fBssh_auth_none_callback\fP ssh_server_callbacks_struct::auth_none_function"
+This function gets called when a client tries to authenticate through none method\&. 
+.SS "\fBssh_auth_password_callback\fP ssh_server_callbacks_struct::auth_password_function"
+This function gets called when a client tries to authenticate through password method\&. 
+.SS "\fBssh_auth_pubkey_callback\fP ssh_server_callbacks_struct::auth_pubkey_function"
+this function gets called when a client tries to authenticate or offer a public key\&. 
+.SS "\fBssh_channel_open_request_direct_tcpip_callback\fP ssh_server_callbacks_struct::channel_open_request_direct_tcpip_function"
+This function will be called when an incoming "direct-tcpip" request is received\&. 
+.SS "\fBssh_channel_open_request_session_callback\fP ssh_server_callbacks_struct::channel_open_request_session_function"
+This functions gets called when a new channel request is issued by the client 
+.SS "ssh_gssapi_accept_sec_ctx_callback ssh_server_callbacks_struct::gssapi_accept_sec_ctx_function"
+This function will be called when a gssapi token comes in\&. 
+.SS "ssh_gssapi_select_oid_callback ssh_server_callbacks_struct::gssapi_select_oid_function"
+This function will be called when a new gssapi authentication is attempted\&. This should select the oid and acquire credential for the server\&. 
+.SS "\fBssh_service_request_callback\fP ssh_server_callbacks_struct::service_request_function"
+This functions gets called when a service request is issued by the client 
+.SS "size_t ssh_server_callbacks_struct::size"
+DON'T SET THIS use \fBssh_callbacks_init()\fP instead\&. 
+.SS "void* ssh_server_callbacks_struct::userdata"
+User-provided data\&. User is free to set anything he wants here 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

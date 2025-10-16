@@ -1,0 +1,128 @@
+.TH "SimpleKeyingInterfaceImpl< BASE, INFO >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SimpleKeyingInterfaceImpl< BASE, INFO > \- Provides a base implementation of \fBSimpleKeyingInterface\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherits BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "The minimum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "The maximum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "The default key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Provides a valid key length for the algorithm\&. "
+.ti -1c
+.RI "\fBSimpleKeyingInterface::IV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "The default IV requirements for the algorithm\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "The initialization vector length for the algorithm\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class INFO = BASE>
+.br
+class SimpleKeyingInterfaceImpl< BASE, INFO >"Provides a base implementation of \fBSimpleKeyingInterface\fP\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP a \fBSimpleKeyingInterface\fP derived class 
+.br
+\fIINFO\fP a \fBSimpleKeyingInterface\fP derived class
+.RE
+.PP
+\fBSimpleKeyingInterfaceImpl()\fP provides a default implementation for ciphers providing a keying interface\&. Functions are virtual and not eligible for C++11 \fRconstexpr\fP-ness\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlgorithm()\fP, \fBSimpleKeyingInterface()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE, class INFO = BASE> size_t \fBSimpleKeyingInterfaceImpl\fP< BASE, INFO >::DefaultKeyLength () const\fR [inline]\fP"
+
+.PP
+The default key length used by the algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+default key length used by the algorithm, in bytes 
+.RE
+.PP
+
+.SS "template<class BASE, class INFO = BASE> size_t \fBSimpleKeyingInterfaceImpl\fP< BASE, INFO >::GetValidKeyLength (size_t keylength) const\fR [inline]\fP"
+
+.PP
+Provides a valid key length for the algorithm\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes
+.RE
+.PP
+keylength is provided in bytes, not bits\&. If keylength is less than MIN_KEYLENGTH, then the function returns MIN_KEYLENGTH\&. If keylength is greater than MAX_KEYLENGTH, then the function returns MAX_KEYLENGTH\&. if If keylength is a multiple of KEYLENGTH_MULTIPLE, then keylength is returned\&. Otherwise, the function returns a \fIlower\fP multiple of KEYLENGTH_MULTIPLE\&. 
+.SS "template<class BASE, class INFO = BASE> \fBSimpleKeyingInterface::IV_Requirement\fP \fBSimpleKeyingInterfaceImpl\fP< BASE, INFO >::IVRequirement () const\fR [inline]\fP"
+
+.PP
+The default IV requirements for the algorithm\&. The default value is NOT_RESYNCHRONIZABLE\&. See IV_Requirement in \fBcryptlib\&.h\fP for allowed values\&. 
+.SS "template<class BASE, class INFO = BASE> unsigned int \fBSimpleKeyingInterfaceImpl\fP< BASE, INFO >::IVSize () const\fR [inline]\fP"
+
+.PP
+The initialization vector length for the algorithm\&. IVSize is provided in bytes, not bits\&. The default implementation uses IV_LENGTH, which is 0\&. 
+.SS "template<class BASE, class INFO = BASE> size_t \fBSimpleKeyingInterfaceImpl\fP< BASE, INFO >::MaxKeyLength () const\fR [inline]\fP"
+
+.PP
+The maximum key length used by the algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+maximum key length used by the algorithm, in bytes 
+.RE
+.PP
+
+.SS "template<class BASE, class INFO = BASE> size_t \fBSimpleKeyingInterfaceImpl\fP< BASE, INFO >::MinKeyLength () const\fR [inline]\fP"
+
+.PP
+The minimum key length used by the algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+minimum key length used by the algorithm, in bytes 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

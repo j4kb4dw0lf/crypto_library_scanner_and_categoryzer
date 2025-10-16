@@ -1,0 +1,93 @@
+.TH "AlgorithmParametersBase" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AlgorithmParametersBase \- Base class for \fBAlgorithmParameters\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <algparam\&.h>\fP
+.PP
+Inherited by \fBAlgorithmParametersTemplate< T >\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBParameterNotUsed\fP"
+.br
+.RI "\fBException\fP thrown when an AlgorithmParameter is unused\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAlgorithmParametersBase\fP (const \fBAlgorithmParametersBase\fP &x)"
+.br
+.ti -1c
+.RI "\fBAlgorithmParametersBase\fP (const char *name, bool throwIfNotUsed)"
+.br
+.RI "Construct a \fBAlgorithmParametersBase\fP\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBoperator=\fP (const \fBAlgorithmParametersBase\fP &rhs)"
+.br
+.ti -1c
+.RI "virtual void \fBAssignValue\fP (const char *name, const std::type_info &valueType, void *pValue) const =0"
+.br
+.ti -1c
+.RI "virtual void \fBMoveInto\fP (void *p) const =0"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "const char * \fBm_name\fP"
+.br
+.ti -1c
+.RI "bool \fBm_throwIfNotUsed\fP"
+.br
+.ti -1c
+.RI "bool \fBm_used\fP"
+.br
+.ti -1c
+.RI "\fBmember_ptr\fP< \fBAlgorithmParametersBase\fP > \fBm_next\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBAlgorithmParameters\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Base class for \fBAlgorithmParameters\fP\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AlgorithmParametersBase::AlgorithmParametersBase (const char * name, bool throwIfNotUsed)\fR [inline]\fP"
+
+.PP
+Construct a \fBAlgorithmParametersBase\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the parameter name 
+.br
+\fIthrowIfNotUsed\fP flags indicating whether an exception should be thrown
+.RE
+.PP
+If throwIfNotUsed is true, then a \fBParameterNotUsed\fP exception will be thrown in the destructor if the parameter is not not retrieved\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

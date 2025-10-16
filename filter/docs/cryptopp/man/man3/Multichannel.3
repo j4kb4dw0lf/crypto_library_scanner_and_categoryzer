@@ -1,0 +1,323 @@
+.TH "Multichannel< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Multichannel< T > \- Multiple channels support for custom signal processing\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits \fBCustomFlushPropagation< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBFlush\fP (bool hardFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output, with signal propagation\&. "
+.ti -1c
+.RI "bool \fBMessageSeriesEnd\fP (int propagation=\-1, bool blocking=true)"
+.br
+.RI "Marks the end of a series of messages, with signal propagation\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreatePutSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "size_t \fBPut2\fP (const \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes for processing\&. "
+.ti -1c
+.RI "size_t \fBPutModifiable2\fP (\fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes that may be modified by callee\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBChannelCreatePutSpace\fP (const std::string &channel, size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "bool \fBChannelPutModifiable\fP (const std::string &channel, \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Input multiple bytes that may be modified by callee on a channel\&. "
+.ti -1c
+.RI "virtual size_t \fBChannelPut2\fP (const std::string &channel, const \fBbyte\fP *begin, size_t length, int messageEnd, bool blocking)=0"
+.br
+.RI "Input multiple bytes for processing on a channel\&. "
+.ti -1c
+.RI "size_t \fBChannelPutModifiable2\fP (const std::string &channel, \fBbyte\fP *begin, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes that may be modified by callee on a channel\&. "
+.ti -1c
+.RI "virtual bool \fBChannelFlush\fP (const std::string &channel, bool hardFlush, int propagation=\-1, bool blocking=true)=0"
+.br
+.RI "Flush buffered input and/or output on a channel\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class Multichannel< T >"Multiple channels support for custom signal processing\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+T should be a \fBBufferedTransformation\fP derived class 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> \fBbyte\fP * \fBMultichannel\fP< T >::ChannelCreatePutSpace (const std::string & channel, size_t & size)\fR [inline]\fP"
+
+.PP
+Request space which can be written into by the caller\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data 
+.br
+\fIsize\fP the requested size of the buffer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to a memory block with length size
+.RE
+.PP
+The purpose of this method is to help avoid extra memory allocations\&.
+
+.PP
+size is an \fIIN\fP and \fIOUT\fP parameter and used as a hint\&. When the call is made, size is the requested size of the buffer\&. When the call returns, size is the size of the array returned to the caller\&.
+
+.PP
+The base class implementation sets size to 0 and returns NULL\&. 
+.PP
+\fBNote\fP
+.RS 4
+Some objects, like \fBArraySink()\fP, cannot create a space because its fixed\&. In the case of an \fBArraySink()\fP, the pointer to the array is returned and the size is remaining size\&. 
+.RE
+.PP
+
+.SS "template<class T> virtual bool \fBMultichannel\fP< T >::ChannelFlush (const std::string & channel, bool hardFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [pure virtual]\fP"
+
+.PP
+Flush buffered input and/or output on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to flush the data 
+.br
+\fIhardFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBChannelFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true of the Flush was successful
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+Implemented in \fBChannelSwitch\fP, and \fBUnflushable< Multichannel< Filter > >\fP\&.
+.SS "template<class T> virtual size_t \fBMultichannel\fP< T >::ChannelPut2 (const std::string & channel, const \fBbyte\fP * begin, size_t length, int messageEnd, bool blocking)\fR [pure virtual]\fP"
+
+.PP
+Input multiple bytes for processing on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data\&. 
+.br
+\fIbegin\fP the byte buffer to process\&. 
+.br
+\fIlength\fP the size of the string, in bytes\&. 
+.br
+\fImessageEnd\fP means how many filters to signal MessageEnd() to, including this one\&. 
+.br
+\fIblocking\fP specifies whether the object should block when processing input\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed) 
+.RE
+.PP
+
+.PP
+Implemented in \fBChannelSwitch\fP, \fBEqualityComparisonFilter\fP, and \fBRawIDA\fP\&.
+.SS "template<class T> bool \fBMultichannel\fP< T >::ChannelPutModifiable (const std::string & channel, \fBbyte\fP * inString, size_t length)\fR [inline]\fP"
+
+.PP
+Input multiple bytes that may be modified by callee on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data\&. 
+.br
+\fIinString\fP the byte buffer to process 
+.br
+\fIlength\fP the size of the string, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if all bytes were processed, false otherwise\&. 
+.RE
+.PP
+
+.SS "template<class T> size_t \fBMultichannel\fP< T >::ChannelPutModifiable2 (const std::string & channel, \fBbyte\fP * begin, size_t length, int messageEnd, bool blocking)\fR [inline]\fP"
+
+.PP
+Input multiple bytes that may be modified by callee on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data 
+.br
+\fIbegin\fP the byte buffer to process 
+.br
+\fIlength\fP the size of the string, in bytes 
+.br
+\fImessageEnd\fP means how many filters to signal MessageEnd() to, including this one 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed) 
+.RE
+.PP
+
+.SS "template<class T> \fBbyte\fP * \fBMultichannel\fP< T >::CreatePutSpace (size_t & size)\fR [inline]\fP"
+
+.PP
+Request space which can be written into by the caller\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the requested size of the buffer
+.RE
+.PP
+The purpose of this method is to help avoid extra memory allocations\&.
+
+.PP
+size is an \fIIN\fP and \fIOUT\fP parameter and used as a hint\&. When the call is made, size is the requested size of the buffer\&. When the call returns, size is the size of the array returned to the caller\&.
+
+.PP
+The base class implementation sets size to 0 and returns NULL\&. 
+.PP
+\fBNote\fP
+.RS 4
+Some objects, like \fBArraySink\fP, cannot create a space because its fixed\&. In the case of an \fBArraySink\fP, the pointer to the array is returned and the size is remaining size\&. 
+.RE
+.PP
+
+.SS "template<class T> bool \fBMultichannel\fP< T >::Flush (bool hardFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Flush buffered input and/or output, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhardFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+Hard flushes must be used with care\&. It means try to process and output everything, even if there may not be enough data to complete the action\&. For example, hard flushing a \fBHexDecoder\fP would cause an error if you do it after inputing an odd number of hex encoded characters\&. 
+
+.PP
+For some types of filters, like \fBZlibDecompressor\fP, hard flushes can only be done at "synchronization points"\&. These synchronization points are positions in the data stream that are created by hard flushes on the corresponding reverse filters, in this example \fBZlibCompressor\fP\&. This is useful when zlib compressed data is moved across a network in packets and compression state is preserved across packets, as in the SSH2 protocol\&. 
+.RE
+.PP
+
+.PP
+Implements \fBCustomFlushPropagation< T >\fP\&.
+.PP
+Reimplemented in \fBUnflushable< Multichannel< Filter > >\fP\&.
+.SS "template<class T> bool \fBMultichannel\fP< T >::MessageSeriesEnd (int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Marks the end of a series of messages, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpropagation\fP the number of attached transformations the \fBMessageSeriesEnd()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input
+.RE
+.PP
+Each object that receives the signal will perform its processing, decrement propagation, and then pass the signal on to attached transformations if the value is not 0\&.
+
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+There should be a MessageEnd() immediately before \fBMessageSeriesEnd()\fP\&. 
+.RE
+.PP
+
+.SS "template<class T> size_t \fBMultichannel\fP< T >::Put2 (const \fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP"
+
+.PP
+Input multiple bytes for processing\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinString\fP the byte buffer to process 
+.br
+\fIlength\fP the size of the string, in bytes 
+.br
+\fImessageEnd\fP means how many filters to signal MessageEnd() to, including this one 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed)
+.RE
+.PP
+Derived classes must implement \fBPut2()\fP\&. 
+.SS "template<class T> size_t \fBMultichannel\fP< T >::PutModifiable2 (\fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP"
+
+.PP
+Input multiple bytes that may be modified by callee\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinString\fP the byte buffer to process\&. 
+.br
+\fIlength\fP the size of the string, in bytes\&. 
+.br
+\fImessageEnd\fP means how many filters to signal MessageEnd() to, including this one\&. 
+.br
+\fIblocking\fP specifies whether the object should block when processing input\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed)
+.RE
+.PP
+Internally, \fBPutModifiable2()\fP calls \fBPut2()\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

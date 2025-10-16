@@ -1,0 +1,175 @@
+.TH "deprecated" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+deprecated \- Deprecated List 
+.PP
+
+
+.PP
+.IP "\fBMember \fBchannel_read_buffer\fP (ssh_channel channel, ssh_buffer buffer, uint32_t count, int is_stderr)
+.IP "" 1c
+Please use ssh_channel_read instead  
+
+.PP
+.IP "\fBModule \fBlibssh_scp\fP 
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_channel_get_exit_status\fP (ssh_channel channel)
+.IP "" 1c
+Please use ssh_channel_exit_state()  
+
+.PP
+.IP "\fBMember \fBssh_dump_knownhost\fP (ssh_session session)
+.IP "" 1c
+Please use \fBssh_session_export_known_hosts_entry()\fP  
+
+.PP
+.IP "\fBMember \fBssh_get_pubkey_hash\fP (ssh_session session, unsigned char **hash)
+.IP "" 1c
+Use \fBssh_get_publickey_hash()\fP  
+
+.PP
+.IP "\fBMember \fBssh_get_publickey\fP (ssh_session session, ssh_key *key)
+.IP "" 1c
+Use \fBssh_get_server_publickey()\fP  
+
+.PP
+.IP "\fBMember \fBssh_is_server_known\fP (ssh_session session)
+.IP "" 1c
+Please use \fBssh_session_is_known_server()\fP  
+
+.PP
+.IP "\fBMember \fBssh_message_auth_password\fP (ssh_message msg)
+.IP "" 1c
+This function should not be used anymore as there is a callback based server implementation now auth_password_function\&.  
+
+.PP
+.IP "\fBMember \fBssh_message_auth_pubkey\fP (ssh_message msg)
+.IP "" 1c
+This function should not be used anymore as there is a callback based server implementation auth_pubkey_function\&.  
+
+.PP
+.IP "\fBMember \fBssh_message_auth_publickey_state\fP (ssh_message msg)
+.IP "" 1c
+This function should not be used anymore as there is a callback based server implementation auth_pubkey_function  
+
+.PP
+.IP "\fBMember \fBssh_print_hexa\fP (const char *descr, const unsigned char *what, size_t len)
+.IP "" 1c
+Please use \fBssh_print_hash()\fP instead  
+
+.PP
+.IP "\fBMember \fBssh_scp_accept_request\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_close\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_deny_request\fP (ssh_scp scp, const char *reason)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_free\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_init\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_integer_mode\fP (const char *mode)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_leave_directory\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_new\fP (ssh_session session, int mode, const char *location)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_pull_request\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_push_directory\fP (ssh_scp scp, const char *dirname, int mode)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_push_file\fP (ssh_scp scp, const char *filename, size_t size, int mode)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_push_file64\fP (ssh_scp scp, const char *filename, uint64_t size, int mode)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_read\fP (ssh_scp scp, void *buffer, size_t size)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_read_string\fP (ssh_scp scp, char *buffer, size_t len)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_request_get_filename\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_request_get_permissions\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_request_get_size\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_request_get_size64\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_request_get_warning\fP (ssh_scp scp)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_string_mode\fP (int mode)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_scp_write\fP (ssh_scp scp, const void *buffer, size_t len)
+.IP "" 1c
+Please use SFTP instead 
+
+.PP
+.IP "\fBMember \fBssh_write_knownhost\fP (ssh_session session)
+.IP "" 1c
+Please use \fBssh_session_update_known_hosts()\fP 
+
+.PP
+

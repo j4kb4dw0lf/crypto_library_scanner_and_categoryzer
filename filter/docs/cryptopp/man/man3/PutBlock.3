@@ -1,0 +1,97 @@
+.TH "PutBlock< T, B, A >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PutBlock< T, B, A > \- Access a block of memory\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <misc\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPutBlock\fP (const void *xorBlock, void *block)"
+.br
+.RI "Construct a \fBPutBlock\fP\&. "
+.ti -1c
+.RI "template<class U> \fBPutBlock\fP< T, B, A > & \fBoperator()\fP (U x)"
+.br
+.RI "Access a block of memory\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, class B, bool A = false>
+.br
+class PutBlock< T, B, A >"Access a block of memory\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.br
+\fIB\fP enumeration indicating endianness 
+.br
+\fIA\fP flag indicating alignment
+.RE
+.PP
+\fBPutBlock()\fP provides alternate write access to a block of memory\&. The enumeration B is \fBBigEndian\fP or \fBLittleEndian\fP\&. The flag A indicates if the memory block is aligned for class or type T\&. Repeatedly applying operator() results in advancing in the block of memory\&.
+
+.PP
+An example of writing two \fBword32\fP values from a block of memory is shown below\&. After the code executes, the byte buffer will be \fR{0,1,2,3,4,5,6,7}\fP\&. 
+.PP
+.nf
+
+  \fBword32\fP w1=0x03020100, w2=0x07060504;
+  byte buffer[8];
+  \fBPutBlock<word32, LittleEndian>\fP block(NULLPTR, buffer);
+  block(w1)(w2);
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T, class B, bool A = false> \fBPutBlock\fP< T, B, A >\fB::PutBlock\fP (const void * xorBlock, void * block)\fR [inline]\fP"
+
+.PP
+Construct a \fBPutBlock\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIblock\fP the memory block 
+.br
+\fIxorBlock\fP optional mask 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, class B, bool A = false> template<class U> \fBPutBlock\fP< T, B, A > & \fBPutBlock\fP< T, B, A >::operator() (U x)\fR [inline]\fP"
+
+.PP
+Access a block of memory\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIU\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the value to write 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the remainder of the block after writing x 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

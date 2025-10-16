@@ -1,0 +1,469 @@
+.TH "InvertibleESIGNFunction" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+InvertibleESIGNFunction \- \fBESIGN\fP trapdoor function using the private key\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <esign\&.h>\fP
+.PP
+Inherits \fBESIGNFunction\fP, \fBRandomizedTrapdoorFunctionInverse\fP, and \fBPrivateKey\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &n, const \fBInteger\fP &e, const \fBInteger\fP &p, const \fBInteger\fP &q)"
+.br
+.RI "Initialize a \fBESIGN\fP private key with {n,e,p,q}\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int modulusBits)"
+.br
+.RI "Create a \fBESIGN\fP private key\&. "
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBCalculateRandomizedInverse\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const"
+.br
+.RI "Applies the inverse of the trapdoor function, using random data if required\&. "
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &alg)"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetPrime1\fP () const"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetPrime2\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetPrime1\fP (const \fBInteger\fP &p)"
+.br
+.ti -1c
+.RI "void \fBSetPrime2\fP (const \fBInteger\fP &q)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBESIGNFunction\fP
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &n, const \fBInteger\fP &e)"
+.br
+.RI "Initialize a \fBESIGN\fP public key with {n,e}\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBApplyFunction\fP (const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBPreimageBound\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBImageBound\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetModulus\fP () const"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetPublicExponent\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetModulus\fP (const \fBInteger\fP &n)"
+.br
+.ti -1c
+.RI "void \fBSetPublicExponent\fP (const \fBInteger\fP &e)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunction\fP
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBApplyRandomizedFunction\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor function\&. "
+.ti -1c
+.RI "bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the encryption algorithm is randomized\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunctionBounds\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxPreimage\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied bound to a public key\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxImage\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied bound to a public key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (unsigned int precomputationStorage)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomizedTrapdoorFunctionInverse\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the decryption algorithm is randomized\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBm_p\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_q\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBESIGNFunction\fP
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBm_n\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_e\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBESIGNFunction\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBGetK\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBESIGN\fP trapdoor function using the private key\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void InvertibleESIGNFunction::AssignFrom (const \fBNameValuePairs\fP & source)\fR [virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Reimplemented from \fBESIGNFunction\fP\&.
+.SS "void InvertibleESIGNFunction::BERDecode (\fBBufferedTransformation\fP & bt)\fR [virtual]\fP"
+
+.PP
+Decode this object from a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Basic Encoding Rules (BER) 
+.PP
+Reimplemented from \fBESIGNFunction\fP\&.
+.SS "\fBInteger\fP InvertibleESIGNFunction::CalculateRandomizedInverse (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & x) const\fR [virtual]\fP"
+
+.PP
+Applies the inverse of the trapdoor function, using random data if required\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIx\fP the message on which the decryption function is applied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the message x decrypted under the private key
+.RE
+.PP
+CalculateRandomizedInverse is a generalization of decryption using the private key The \fBRandomNumberGenerator\fP may (or may not) be required\&. Derived classes must implement it\&. 
+.PP
+Implements \fBRandomizedTrapdoorFunctionInverse\fP\&.
+.SS "void InvertibleESIGNFunction::DEREncode (\fBBufferedTransformation\fP & bt) const\fR [virtual]\fP"
+
+.PP
+Encode this object into a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Distinguished Encoding Rules (DER) 
+.PP
+Reimplemented from \fBESIGNFunction\fP\&.
+.SS "void InvertibleESIGNFunction::GenerateRandom (\fBRandomNumberGenerator\fP & rng, const \fBNameValuePairs\fP & alg)\fR [virtual]\fP"
+parameters: (ModulusSize) 
+.PP
+Reimplemented from \fBGeneratableCryptoMaterial\fP\&.
+.SS "bool InvertibleESIGNFunction::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBESIGNFunction\fP\&.
+.SS "void InvertibleESIGNFunction::Initialize (const \fBInteger\fP & n, const \fBInteger\fP & e, const \fBInteger\fP & p, const \fBInteger\fP & q)\fR [inline]\fP"
+
+.PP
+Initialize a \fBESIGN\fP private key with {n,e,p,q}\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP modulus 
+.br
+\fIe\fP public exponent 
+.br
+\fIp\fP first prime factor 
+.br
+\fIq\fP second prime factor
+.RE
+.PP
+This \fBInitialize()\fP function overload initializes a private key from existing parameters\&. 
+.SS "void InvertibleESIGNFunction::Initialize (\fBRandomNumberGenerator\fP & rng, unsigned int modulusBits)\fR [inline]\fP"
+
+.PP
+Create a \fBESIGN\fP private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fImodulusBits\fP the size of the modulud, in bits
+.RE
+.PP
+This function overload of \fBInitialize()\fP creates a new private key because it takes a \fBRandomNumberGenerator()\fP as a parameter\&. If you have an existing keypair, then use one of the other \fBInitialize()\fP overloads\&. 
+.SS "void InvertibleESIGNFunction::Load (\fBBufferedTransformation\fP & bt)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+BER decode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBASN1CryptoMaterial< PublicKey >\fP\&.
+.SS "void InvertibleESIGNFunction::Save (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+DER encode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+\fBSave()\fP will write the \fBOID\fP associated with algorithm or scheme\&. In the case of public and private keys, this function writes the subjectPublicKeyInfo and privateKeyInfo parts\&. 
+.PP
+Reimplemented from \fBASN1CryptoMaterial< PublicKey >\fP\&.
+.SS "bool InvertibleESIGNFunction::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThrowIfInvalid()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBESIGNFunction\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,76 @@
+.TH "RandomizedTrapdoorFunctionInverse" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RandomizedTrapdoorFunctionInverse \- Applies the inverse of the trapdoor function, using random data if required\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBInvertibleESIGNFunction\fP, and \fBTrapdoorFunctionInverse\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBCalculateRandomizedInverse\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const =0"
+.br
+.RI "Applies the inverse of the trapdoor function, using random data if required\&. "
+.ti -1c
+.RI "virtual bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the decryption algorithm is randomized\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Applies the inverse of the trapdoor function, using random data if required\&. 
+
+CalculateInverse() is the foundation for decrypting a message under a private key in a public key cryptosystem\&. Derived classes will override it at some point\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBTrapdoorFunctionBounds()\fP, \fBRandomizedTrapdoorFunction()\fP, \fBTrapdoorFunction()\fP, \fBRandomizedTrapdoorFunctionInverse()\fP and \fBTrapdoorFunctionInverse()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBInteger\fP RandomizedTrapdoorFunctionInverse::CalculateRandomizedInverse (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & x) const\fR [pure virtual]\fP"
+
+.PP
+Applies the inverse of the trapdoor function, using random data if required\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIx\fP the message on which the decryption function is applied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the message x decrypted under the private key
+.RE
+.PP
+CalculateRandomizedInverse is a generalization of decryption using the private key The \fBRandomNumberGenerator\fP may (or may not) be required\&. Derived classes must implement it\&. 
+.PP
+Implemented in \fBInvertibleESIGNFunction\fP, and \fBTrapdoorFunctionInverse\fP\&.
+.SS "virtual bool RandomizedTrapdoorFunctionInverse::IsRandomized () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if the decryption algorithm is randomized\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the decryption algorithm is randomized, false otherwise
+.RE
+.PP
+If \fBIsRandomized()\fP returns false, then \fBNullRNG()\fP can be used\&. 
+.PP
+Reimplemented in \fBTrapdoorFunctionInverse\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

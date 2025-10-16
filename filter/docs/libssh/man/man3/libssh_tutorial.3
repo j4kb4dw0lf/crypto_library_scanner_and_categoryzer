@@ -1,0 +1,58 @@
+.TH "libssh_tutorial" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_tutorial \- The Tutorial 
+.PP
+
+.SH "Introduction"
+.PP
+libssh is a C library that enables you to write a program that uses the SSH protocol\&. With it, you can remotely execute programs, transfer files, or use a secure and transparent tunnel for your remote programs\&. The SSH protocol is encrypted, ensures data integrity, and provides strong means of authenticating both the server of the client\&. The library hides a lot of technical details from the SSH protocol, but this does not mean that you should not try to know about and understand these details\&.
+
+.PP
+libssh is a Free Software / Open Source project\&. The libssh library is distributed under LGPL license\&. The libssh project has nothing to do with "libssh2", which is a completely different and independent project\&.
+
+.PP
+libssh can run on top of either libcrypto, mbedtls or libgcrypt (deprecated) general-purpose cryptographic libraries\&.
+
+.PP
+This tutorial concentrates for its main part on the "client" side of libssh\&. To learn how to accept incoming SSH connections (how to write a SSH server), you'll have to jump to the end of this document\&.
+
+.PP
+This tutorial describes libssh version 0\&.5\&.0\&. This version is a little different from the 0\&.4\&.X series\&. However, the examples should work with little changes on versions like 0\&.4\&.2 and later\&.
+
+.PP
+Table of contents:
+
+.PP
+\fBChapter 1: A typical SSH session\fP
+
+.PP
+\fBChapter 2: A deeper insight on authentication\fP
+
+.PP
+\fBChapter 3: Opening a remote shell\fP
+
+.PP
+\fBChapter 4: Passing a remote command\fP
+
+.PP
+\fBChapter 5: The SFTP subsystem\fP
+
+.PP
+\fBChapter 6: The SCP subsystem\fP
+
+.PP
+\fBChapter 7: Forwarding connections (tunnel)\fP
+
+.PP
+\fBChapter 8: Threads with libssh\fP
+
+.PP
+\fBChapter 9: Authentication using PKCS #11 URIs\fP
+
+.PP
+\fBChapter 10: The SFTP asynchronous I/O\fP
+
+.PP
+\fBTo be done\fP 

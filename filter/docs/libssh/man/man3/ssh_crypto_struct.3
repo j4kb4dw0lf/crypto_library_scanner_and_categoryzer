@@ -1,0 +1,112 @@
+.TH "ssh_crypto_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_crypto_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "bignum \fBshared_secret\fP"
+.br
+.ti -1c
+.RI "struct \fBdh_ctx\fP * \fBdh_ctx\fP"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBdh_server_signature\fP"
+.br
+.ti -1c
+.RI "size_t \fBsession_id_len\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBsession_id\fP"
+.br
+.ti -1c
+.RI "size_t \fBdigest_len\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBsecret_hash\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBencryptIV\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBdecryptIV\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBdecryptkey\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBencryptkey\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBencryptMAC\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBdecryptMAC\fP"
+.br
+.ti -1c
+.RI "unsigned char \fBhmacbuf\fP [DIGEST_MAX_LEN]"
+.br
+.ti -1c
+.RI "struct \fBssh_cipher_struct\fP * \fBin_cipher\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_cipher_struct\fP * \fBout_cipher\fP"
+.br
+.ti -1c
+.RI "enum ssh_hmac_e in_hmac \fBout_hmac\fP"
+.br
+.ti -1c
+.RI "bool \fBin_hmac_etm\fP"
+.br
+.ti -1c
+.RI "bool \fBout_hmac_etm\fP"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBserver_pubkey\fP"
+.br
+.ti -1c
+.RI "int \fBdo_compress_out\fP"
+.br
+.ti -1c
+.RI "int \fBdo_compress_in\fP"
+.br
+.ti -1c
+.RI "int \fBdelayed_compress_in\fP"
+.br
+.ti -1c
+.RI "int \fBdelayed_compress_out\fP"
+.br
+.ti -1c
+.RI "void * \fBcompress_out_ctx\fP"
+.br
+.ti -1c
+.RI "void * \fBcompress_in_ctx\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_kex_struct\fP \fBserver_kex\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_kex_struct\fP \fBclient_kex\fP"
+.br
+.ti -1c
+.RI "char * \fBkex_methods\fP [SSH_KEX_METHODS]"
+.br
+.ti -1c
+.RI "enum ssh_key_exchange_e \fBkex_type\fP"
+.br
+.ti -1c
+.RI "enum ssh_kdf_digest \fBdigest_type\fP"
+.br
+.ti -1c
+.RI "enum ssh_crypto_direction_e \fBused\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,86 @@
+.TH "/home/mock/cryptopp-master/xts.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/xts.h \- Classes for \fBXTS\fP block cipher mode of operation\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'modes\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBXTS_ModeBase\fP"
+.br
+.RI "\fBXTS\fP block cipher mode of operation default implementation\&. "
+.ti -1c
+.RI "class \fBXTS_Final< CIPHER >\fP"
+.br
+.RI "\fBXTS\fP block cipher mode of operation implementation\&. "
+.ti -1c
+.RI "struct \fBXTS< CIPHER >\fP"
+.br
+.RI "\fBXTS\fP block cipher mode of operation\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP   0"
+.br
+.RI "Enable \fBXTS\fP for wide block ciphers\&. "
+.ti -1c
+.RI "#define \fBXTS_Mode\fP   \fBXTS\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for \fBXTS\fP block cipher mode of operation\&.
+
+\fBXTS\fP mode is a wide block mode defined by IEEE P1619-2008\&. NIST SP-800-38E approves the mode for storage devices citing IEEE 1619-2007\&. IEEE 1619-2007 provides both a reference implementation and test vectors\&. The IEEE reference implementation fails to arrive at the expected result for some test vectors\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRModes of Operation\fP on the Crypto++ wiki, \fREvaluation of Some Blockcipher Modes of Operation\fP, \fRRecommendation for Block Cipher Modes of Operation: The XTS-AES Mode for Confidentiality on Storage Devices\fP, \fRIEEE P1619-2007\fP and \fRIEEE P1619/XTS, inconsistent reference implementation and test vectors\fP\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_XTS_WIDE_BLOCK_CIPHERS   0"
+
+.PP
+Enable \fBXTS\fP for wide block ciphers\&. \fBXTS\fP is only defined for AES\&. The library can support wide block ciphers like Kaylna and Threefish since we know the polynomials\&. To enable wide block ciphers define \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP to non-zero\&. Note this is a library compile time define\&.
+
+.PP
+There is risk involved with using \fBXTS\fP with wider block ciphers\&. According to Phillip Rogaway, "The narrow width of the underlying PRP and the poor treatment of fractional final blocks are problems\&."
+.PP
+\fBSee also\fP
+.RS 4
+\fREvaluation of Some Blockcipher Modes of Operation\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

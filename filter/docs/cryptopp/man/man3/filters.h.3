@@ -1,0 +1,249 @@
+.TH "/home/mock/cryptopp-master/filters.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/filters.h \- Implementation of \fBBufferedTransformation\fP's attachment interface\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'simple\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'queue\&.h'\fP
+.br
+\fR#include 'algparam\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBFilter\fP"
+.br
+.RI "Implementation of \fBBufferedTransformation\fP's attachment interface\&. "
+.ti -1c
+.RI "struct \fBFilterPutSpaceHelper\fP"
+.br
+.RI "Create a working space in a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "class \fBMeterFilter\fP"
+.br
+.RI "Measure how many bytes and messages pass through the filter\&. "
+.ti -1c
+.RI "class \fBTransparentFilter\fP"
+.br
+.RI "A transparent \fBMeterFilter\fP\&. "
+.ti -1c
+.RI "class \fBOpaqueFilter\fP"
+.br
+.RI "A non-transparent \fBMeterFilter\fP\&. "
+.ti -1c
+.RI "class \fBFilterWithBufferedInput\fP"
+.br
+.RI "Divides an input stream into discrete blocks\&. "
+.ti -1c
+.RI "class \fBFilterWithBufferedInput::BlockQueue\fP"
+.br
+.ti -1c
+.RI "class \fBFilterWithInputQueue\fP"
+.br
+.RI "A filter that buffers input using a \fBByteQueue\fP\&. "
+.ti -1c
+.RI "struct \fBBlockPaddingSchemeDef\fP"
+.br
+.RI "Padding schemes used for block ciphers\&. "
+.ti -1c
+.RI "class \fBStreamTransformationFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBStreamTransformation\fP\&. "
+.ti -1c
+.RI "class \fBHashFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBHashTransformation\fP\&. "
+.ti -1c
+.RI "class \fBHashVerificationFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBHashTransformation\fP\&. "
+.ti -1c
+.RI "class \fBHashVerificationFilter::HashVerificationFailed\fP"
+.br
+.RI "\fBException\fP thrown when a data integrity check failure is encountered\&. "
+.ti -1c
+.RI "class \fBAuthenticatedEncryptionFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for encrypting with \fBAuthenticatedSymmetricCipher\fP\&. "
+.ti -1c
+.RI "class \fBAuthenticatedDecryptionFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for decrypting with \fBAuthenticatedSymmetricCipher\fP\&. "
+.ti -1c
+.RI "class \fBSignerFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBPK_Signer\fP\&. "
+.ti -1c
+.RI "class \fBSignatureVerificationFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBPK_Verifier\fP\&. "
+.ti -1c
+.RI "class \fBSignatureVerificationFilter::SignatureVerificationFailed\fP"
+.br
+.RI "\fBException\fP thrown when an invalid signature is encountered\&. "
+.ti -1c
+.RI "class \fBRedirector\fP"
+.br
+.RI "Redirect input to another \fBBufferedTransformation\fP without owning it\&. "
+.ti -1c
+.RI "class \fBOutputProxy\fP"
+.br
+.RI "\fBFilter\fP class that is a proxy for a sink\&. "
+.ti -1c
+.RI "class \fBProxyFilter\fP"
+.br
+.RI "Base class for \fBFilter\fP classes that are proxies for a chain of other filters\&. "
+.ti -1c
+.RI "class \fBSimpleProxyFilter\fP"
+.br
+.RI "Proxy filter that doesn't modify the underlying filter's input or output\&. "
+.ti -1c
+.RI "class \fBPK_EncryptorFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBPK_Encryptor\fP\&. "
+.ti -1c
+.RI "class \fBPK_DecryptorFilter\fP"
+.br
+.RI "\fBFilter\fP wrapper for \fBPK_Decryptor\fP\&. "
+.ti -1c
+.RI "class \fBStringSinkTemplate< T >\fP"
+.br
+.RI "Append input to a string object\&. "
+.ti -1c
+.RI "class \fBRandomNumberSink\fP"
+.br
+.RI "Incorporates input into RNG as additional entropy\&. "
+.ti -1c
+.RI "class \fBArraySink\fP"
+.br
+.RI "Copy input to a memory buffer\&. "
+.ti -1c
+.RI "class \fBArrayXorSink\fP"
+.br
+.RI "Xor input to a memory buffer\&. "
+.ti -1c
+.RI "class \fBStringStore\fP"
+.br
+.RI "String-based implementation of \fBStore\fP interface\&. "
+.ti -1c
+.RI "class \fBRandomNumberStore\fP"
+.br
+.RI "RNG-based implementation of \fBSource\fP interface\&. "
+.ti -1c
+.RI "class \fBNullStore\fP"
+.br
+.RI "\fBEmpty\fP store\&. "
+.ti -1c
+.RI "class \fBSource\fP"
+.br
+.RI "Implementation of \fBBufferedTransformation\fP's attachment interface\&. "
+.ti -1c
+.RI "class \fBSourceTemplate< T >\fP"
+.br
+.RI "Transform a \fBStore\fP into a \fBSource\fP\&. "
+.ti -1c
+.RI "class \fBStringSource\fP"
+.br
+.RI "String-based implementation of the \fBSource\fP interface\&. "
+.ti -1c
+.RI "class \fBVectorSource\fP"
+.br
+.RI "std::vector-based implementation of the \fBSource\fP interface "
+.ti -1c
+.RI "class \fBRandomNumberSource\fP"
+.br
+.RI "RNG-based implementation of \fBSource\fP interface\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBStringSinkTemplate\fP< std::string >, StringSink)"
+.br
+.RI "Append input to a string object\&. "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBStringSinkTemplate\fP< std::vector< \fBbyte\fP > >, VectorSink)"
+.br
+.RI "Append input to a std::vector<byte> object\&. "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBStringSource\fP, ArraySource)"
+.br
+.RI "Pointer-based implementation of the \fBSource\fP interface\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBStringSinkTemplate< std::string >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBStringSinkTemplate< std::vector< byte > >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Implementation of \fBBufferedTransformation\fP's attachment interface\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "DOCUMENTED_TYPEDEF (\fBStringSinkTemplate\fP< std::string > , StringSink )"
+
+.PP
+Append input to a string object\&. StringSink is a typedef for \fBStringSinkTemplate<std::string>\fP\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBArraySink\fP, \fBArrayXorSink\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 4\&.0
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBStringSinkTemplate\fP< std::vector< \fBbyte\fP > > , VectorSink )"
+
+.PP
+Append input to a std::vector<byte> object\&. VectorSink is a typedef for \fBStringSinkTemplate\fP<std::vector<byte> >\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBStringSource\fP , ArraySource )"
+
+.PP
+Pointer-based implementation of the \fBSource\fP interface\&. ArraySource is a typedef for \fBStringSource\fP\&. Use the third constructor for an array source\&. The third constructor takes a pointer and length\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

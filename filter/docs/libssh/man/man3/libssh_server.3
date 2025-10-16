@@ -1,0 +1,855 @@
+.TH "libssh_server" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_server \- The libssh server API
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_bind_callbacks_struct\fP"
+.br
+.RI "These are the callbacks exported by the ssh_bind structure\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSERVERBANNER\fP   CLIENTBANNER"
+.br
+.ti -1c
+.RI "#define \fBSOCKOPT_TYPE_ARG4\fP   int"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBssh_bind_struct\fP * \fBssh_bind\fP"
+.br
+.ti -1c
+.RI "typedef void(* \fBssh_bind_incoming_connection_callback\fP) (\fBssh_bind\fP sshbind, void *userdata)"
+.br
+.RI "Incoming connection callback\&. This callback is called when a ssh_bind has a new incoming connection\&. "
+.ti -1c
+.RI "typedef struct \fBssh_bind_callbacks_struct\fP * \fBssh_bind_callbacks\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBssh_bind_options_e\fP { \fBSSH_BIND_OPTIONS_BINDADDR\fP, \fBSSH_BIND_OPTIONS_BINDPORT\fP, \fBSSH_BIND_OPTIONS_BINDPORT_STR\fP, \fBSSH_BIND_OPTIONS_HOSTKEY\fP, \fBSSH_BIND_OPTIONS_DSAKEY\fP, \fBSSH_BIND_OPTIONS_RSAKEY\fP, \fBSSH_BIND_OPTIONS_BANNER\fP, \fBSSH_BIND_OPTIONS_LOG_VERBOSITY\fP, \fBSSH_BIND_OPTIONS_LOG_VERBOSITY_STR\fP, \fBSSH_BIND_OPTIONS_ECDSAKEY\fP, \fBSSH_BIND_OPTIONS_IMPORT_KEY\fP, \fBSSH_BIND_OPTIONS_KEY_EXCHANGE\fP, \fBSSH_BIND_OPTIONS_CIPHERS_C_S\fP, \fBSSH_BIND_OPTIONS_CIPHERS_S_C\fP, \fBSSH_BIND_OPTIONS_HMAC_C_S\fP, \fBSSH_BIND_OPTIONS_HMAC_S_C\fP, \fBSSH_BIND_OPTIONS_CONFIG_DIR\fP, \fBSSH_BIND_OPTIONS_PUBKEY_ACCEPTED_KEY_TYPES\fP, \fBSSH_BIND_OPTIONS_HOSTKEY_ALGORITHMS\fP, \fBSSH_BIND_OPTIONS_PROCESS_CONFIG\fP, \fBSSH_BIND_OPTIONS_MODULI\fP, \fBSSH_BIND_OPTIONS_RSA_MIN_SIZE\fP, \fBSSH_BIND_OPTIONS_IMPORT_KEY_STR\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "LIBSSH_API \fBssh_bind\fP \fBssh_bind_new\fP (void)"
+.br
+.RI "Creates a new SSH server bind\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_bind_options_set\fP (\fBssh_bind\fP sshbind, enum ssh_bind_options_e type, const void *value)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_bind_options_parse_config\fP (\fBssh_bind\fP sshbind, const char *filename)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_bind_listen\fP (\fBssh_bind\fP ssh_bind_o)"
+.br
+.RI "Start listening to the socket\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_bind_set_callbacks\fP (\fBssh_bind\fP sshbind, \fBssh_bind_callbacks\fP callbacks, void *userdata)"
+.br
+.RI "Set the callback for this bind\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBssh_bind_set_blocking\fP (\fBssh_bind\fP ssh_bind_o, int blocking)"
+.br
+.RI "Set the session to blocking/nonblocking mode\&. "
+.ti -1c
+.RI "LIBSSH_API socket_t \fBssh_bind_get_fd\fP (\fBssh_bind\fP ssh_bind_o)"
+.br
+.RI "Recover the file descriptor from the session\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBssh_bind_set_fd\fP (\fBssh_bind\fP ssh_bind_o, socket_t fd)"
+.br
+.RI "Set the file descriptor for a session\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBssh_bind_fd_toaccept\fP (\fBssh_bind\fP ssh_bind_o)"
+.br
+.RI "Allow the file descriptor to accept new sessions\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_bind_accept\fP (\fBssh_bind\fP ssh_bind_o, \fBssh_session\fP session)"
+.br
+.RI "Accept an incoming ssh connection and initialize the session\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_bind_accept_fd\fP (\fBssh_bind\fP ssh_bind_o, \fBssh_session\fP session, socket_t fd)"
+.br
+.RI "Accept an incoming ssh connection on the given file descriptor and initialize the session\&. "
+.ti -1c
+.RI "LIBSSH_API ssh_gssapi_creds \fBssh_gssapi_get_creds\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_handle_key_exchange\fP (\fBssh_session\fP session)"
+.br
+.RI "Handles the key exchange and set up encryption\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_server_init_kex\fP (\fBssh_session\fP session)"
+.br
+.RI "Initialize the set of key exchange, hostkey, ciphers, MACs, and compression algorithms for the given ssh_session\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBssh_bind_free\fP (\fBssh_bind\fP ssh_bind_o)"
+.br
+.RI "Free a ssh servers bind\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBssh_set_auth_methods\fP (\fBssh_session\fP session, int auth_methods)"
+.br
+.RI "Set the acceptable authentication methods to be sent to the client\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_send_issue_banner\fP (\fBssh_session\fP session, const \fBssh_string\fP banner)"
+.br
+.RI "Send the server's issue-banner to client\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_reply_default\fP (\fBssh_message\fP msg)"
+.br
+.RI "Reply with a standard reject message\&. "
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_auth_user\fP (\fBssh_message\fP msg)"
+.br
+.RI "Get the name of the authenticated user\&. "
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API const char * \fBssh_message_auth_password\fP (\fBssh_message\fP msg)"
+.br
+.RI "Get the password of the authenticated user\&. "
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API \fBssh_key\fP \fBssh_message_auth_pubkey\fP (\fBssh_message\fP msg)"
+.br
+.RI "Get the publickey of the authenticated user\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_auth_kbdint_is_response\fP (\fBssh_message\fP msg)"
+.br
+.RI "Check if the message is a keyboard-interactive response\&. "
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API enum ssh_publickey_state_e \fBssh_message_auth_publickey_state\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_auth_reply_success\fP (\fBssh_message\fP msg, int partial)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_auth_reply_pk_ok\fP (\fBssh_message\fP msg, \fBssh_string\fP algo, \fBssh_string\fP pubkey)"
+.br
+.RI "Answer SSH2_MSG_USERAUTH_PK_OK to a pubkey authentication request\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_auth_reply_pk_ok_simple\fP (\fBssh_message\fP msg)"
+.br
+.RI "Answer SSH2_MSG_USERAUTH_PK_OK to a pubkey authentication request\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_auth_set_methods\fP (\fBssh_message\fP msg, int methods)"
+.br
+.RI "Sets the supported authentication methods to a message\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_auth_interactive_request\fP (\fBssh_message\fP msg, const char *name, const char *instruction, unsigned int num_prompts, const char **prompts, char *echo)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_service_reply_success\fP (\fBssh_message\fP msg)"
+.br
+.RI "Sends SERVICE_ACCEPT to the client\&. "
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_service_service\fP (\fBssh_message\fP msg)"
+.br
+.RI "Gets the service name from the service request message\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_global_request_reply_success\fP (\fBssh_message\fP msg, uint16_t bound_port)"
+.br
+.RI "Send a global request success message\&. "
+.ti -1c
+.RI "LIBSSH_API void \fBssh_set_message_callback\fP (\fBssh_session\fP session, int(*ssh_bind_message_callback)(\fBssh_session\fP session, \fBssh_message\fP msg, void *data), void *data)"
+.br
+.RI "defines the ssh_message callback "
+.ti -1c
+.RI "LIBSSH_API int \fBssh_execute_message_callbacks\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_channel_request_open_originator\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_channel_request_open_originator_port\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_channel_request_open_destination\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_channel_request_open_destination_port\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API \fBssh_channel\fP \fBssh_message_channel_request_channel\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API const char * \fBssh_message_channel_request_pty_term\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_message_channel_request_pty_width\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_message_channel_request_pty_height\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_message_channel_request_pty_pxwidth\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_message_channel_request_pty_pxheight\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_channel_request_env_name\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_channel_request_env_value\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_channel_request_command\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_channel_request_subsystem\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_message_channel_request_x11_single_connection\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API const char * \fBssh_message_channel_request_x11_auth_protocol\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API const char * \fBssh_message_channel_request_x11_auth_cookie\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_message_channel_request_x11_screen_number\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API const char * \fBssh_message_global_request_address\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_message_global_request_port\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_channel_open_reverse_forward\fP (\fBssh_channel\fP channel, const char *remotehost, int remoteport, const char *sourcehost, int localport)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_channel_open_x11\fP (\fBssh_channel\fP channel, const char *orig_addr, int orig_port)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_channel_request_send_exit_status\fP (\fBssh_channel\fP channel, int exit_status)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_channel_request_send_exit_signal\fP (\fBssh_channel\fP channel, const char *signum, int core, const char *errmsg, const char *lang)"
+.br
+.ti -1c
+.RI "LIBSSH_API int \fBssh_send_keepalive\fP (\fBssh_session\fP session)"
+.br
+.RI "Sends a keepalive message to the session\&. "
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBssh_accept\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "SSH_DEPRECATED LIBSSH_API int \fBchannel_write_stderr\fP (\fBssh_channel\fP channel, const void *data, uint32_t len)"
+.br
+.ti -1c
+.RI "\fBssh_poll_handle\fP \fBssh_bind_get_poll\fP (\fBssh_bind\fP sshbind)"
+.br
+.ti -1c
+.RI "int \fBserver_set_kex\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_kexdh_init)"
+.br
+.ti -1c
+.RI "int \fBssh_get_key_params\fP (\fBssh_session\fP session, \fBssh_key\fP *privkey, enum ssh_digest_e *digest)"
+.br
+.ti -1c
+.RI "int \fBssh_auth_reply_default\fP (\fBssh_session\fP session, int partial)"
+.br
+.ti -1c
+.RI "\fBssh_public_key\fP \fBssh_message_auth_publickey\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "int \fBssh_auth_reply_success\fP (\fBssh_session\fP session, int partial)"
+.br
+.RI "Sends SSH2_MSG_USERAUTH_SUCCESS or SSH2_MSG_USERAUTH_FAILURE message depending on the success of the authentication method\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef void(* ssh_bind_incoming_connection_callback) (\fBssh_bind\fP sshbind, void *userdata)"
+
+.PP
+Incoming connection callback\&. This callback is called when a ssh_bind has a new incoming connection\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsshbind\fP Current sshbind session handler 
+.br
+\fIuserdata\fP Userdata to be passed to the callback function\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_auth_reply_success (\fBssh_session\fP session, int partial)"
+
+.PP
+Sends SSH2_MSG_USERAUTH_SUCCESS or SSH2_MSG_USERAUTH_FAILURE message depending on the success of the authentication method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to reply to
+.br
+\fIpartial\fP Denotes if the authentication process was partially completed (unsuccessful)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, otherwise SSH_ERROR 
+.RE
+.PP
+
+.SS "int ssh_bind_accept (\fBssh_bind\fP ssh_bind_o, \fBssh_session\fP session)"
+
+.PP
+Accept an incoming ssh connection and initialize the session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to accept a connection\&. 
+.br
+\fIsession\fP A preallocated ssh session 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_new\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK when a connection is established 
+.RE
+.PP
+
+.SS "int ssh_bind_accept_fd (\fBssh_bind\fP ssh_bind_o, \fBssh_session\fP session, socket_t fd)"
+
+.PP
+Accept an incoming ssh connection on the given file descriptor and initialize the session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to accept a connection\&. 
+.br
+\fIsession\fP A preallocated ssh session 
+.br
+\fIfd\fP A file descriptor of an already established TCP inbound connection 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_new\fP 
+
+.PP
+\fBssh_bind_accept\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK when a connection is established 
+.RE
+.PP
+
+.SS "void ssh_bind_fd_toaccept (\fBssh_bind\fP ssh_bind_o)"
+
+.PP
+Allow the file descriptor to accept new sessions\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to use\&. 
+.RE
+.PP
+
+.SS "void ssh_bind_free (\fBssh_bind\fP ssh_bind_o)"
+
+.PP
+Free a ssh servers bind\&. Note that this will also free options that have been set on the bind, including keys set with SSH_BIND_OPTIONS_IMPORT_KEY\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to free\&. 
+.RE
+.PP
+
+.SS "socket_t ssh_bind_get_fd (\fBssh_bind\fP ssh_bind_o)"
+
+.PP
+Recover the file descriptor from the session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to get the fd from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The file descriptor\&. 
+.RE
+.PP
+
+.SS "int ssh_bind_listen (\fBssh_bind\fP ssh_bind_o)"
+
+.PP
+Start listening to the socket\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "\fBssh_bind\fP ssh_bind_new (void )"
+
+.PP
+Creates a new SSH server bind\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A newly allocated ssh_bind session pointer\&. 
+.RE
+.PP
+
+.SS "void ssh_bind_set_blocking (\fBssh_bind\fP ssh_bind_o, int blocking)"
+
+.PP
+Set the session to blocking/nonblocking mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to use\&.
+.br
+\fIblocking\fP Zero for nonblocking mode\&. 
+.RE
+.PP
+
+.SS "int ssh_bind_set_callbacks (\fBssh_bind\fP sshbind, \fBssh_bind_callbacks\fP callbacks, void * userdata)"
+
+.PP
+Set the callback for this bind\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsshbind\fP The bind to set the callback on\&.
+.br
+\fIcallbacks\fP An already set up ssh_bind_callbacks instance\&.
+.br
+\fIuserdata\fP A pointer to private data to pass to the callbacks\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR if an error occurred\&.
+.RE
+.PP
+.PP
+.nf
+struct ssh_callbacks_struct cb = {
+    \&.userdata = data,
+    \&.auth_function = my_auth_function
+};
+ssh_callbacks_init(&cb);
+ssh_bind_set_callbacks(session, &cb);
+.fi
+.PP
+ 
+.SS "void ssh_bind_set_fd (\fBssh_bind\fP ssh_bind_o, socket_t fd)"
+
+.PP
+Set the file descriptor for a session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIssh_bind_o\fP The ssh server bind to set the fd\&.
+.br
+\fIfd\fP The file descriptssh_bind B 
+.RE
+.PP
+
+.SS "int ssh_handle_key_exchange (\fBssh_session\fP session)"
+
+.PP
+Handles the key exchange and set up encryption\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP A connected ssh session 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_bind_accept\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the key exchange was successful 
+.RE
+.PP
+
+.SS "int ssh_message_auth_kbdint_is_response (\fBssh_message\fP msg)"
+
+.PP
+Check if the message is a keyboard-interactive response\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to check
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the message is a response, otherwise 0 
+.RE
+.PP
+
+.SS "const char * ssh_message_auth_password (\fBssh_message\fP msg)"
+
+.PP
+Get the password of the authenticated user\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to get the password from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The password or NULL if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_message_get()\fP 
+
+.PP
+\fBssh_message_type()\fP 
+.RE
+.PP
+\fBDeprecated\fP
+.RS 4
+This function should not be used anymore as there is a callback based server implementation now auth_password_function\&. 
+.RE
+.PP
+
+.SS "\fBssh_key\fP ssh_message_auth_pubkey (\fBssh_message\fP msg)"
+
+.PP
+Get the publickey of the authenticated user\&. If you need the key for later user you should duplicate it\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to get the public key from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The public key or NULL\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_dup()\fP 
+
+.PP
+\fBssh_key_cmp()\fP 
+
+.PP
+\fBssh_message_get()\fP 
+
+.PP
+\fBssh_message_type()\fP 
+.RE
+.PP
+\fBDeprecated\fP
+.RS 4
+This function should not be used anymore as there is a callback based server implementation auth_pubkey_function\&. 
+.RE
+.PP
+
+.SS "enum ssh_publickey_state_e ssh_message_auth_publickey_state (\fBssh_message\fP msg)"
+
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to get the public key state from\&.
+.RE
+.PP
+\fBDeprecated\fP
+.RS 4
+This function should not be used anymore as there is a callback based server implementation auth_pubkey_function 
+.RE
+.PP
+
+.SS "int ssh_message_auth_reply_pk_ok (\fBssh_message\fP msg, \fBssh_string\fP algo, \fBssh_string\fP pubkey)"
+
+.PP
+Answer SSH2_MSG_USERAUTH_PK_OK to a pubkey authentication request\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message
+.br
+\fIalgo\fP The algorithm of the accepted public key
+.br
+\fIpubkey\fP The accepted public key
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, otherwise SSH_ERROR 
+.RE
+.PP
+
+.SS "int ssh_message_auth_reply_pk_ok_simple (\fBssh_message\fP msg)"
+
+.PP
+Answer SSH2_MSG_USERAUTH_PK_OK to a pubkey authentication request\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, otherwise SSH_ERROR 
+.RE
+.PP
+
+.SS "int ssh_message_auth_set_methods (\fBssh_message\fP msg, int methods)"
+
+.PP
+Sets the supported authentication methods to a message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message
+.br
+\fImethods\fP Methods to set to the message\&. The supported methods are listed in ssh_set_auth_methods 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_set_auth_methods\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, otherwise -1 
+.RE
+.PP
+
+.SS "const char * ssh_message_auth_user (\fBssh_message\fP msg)"
+
+.PP
+Get the name of the authenticated user\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to get the username from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The username or NULL if an error occurred\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_message_get()\fP 
+
+.PP
+\fBssh_message_type()\fP 
+.RE
+.PP
+
+.SS "int ssh_message_global_request_reply_success (\fBssh_message\fP msg, uint16_t bound_port)"
+
+.PP
+Send a global request success message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message
+.br
+\fIbound_port\fP The remote bind port
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, otherwise SSH_ERROR 
+.RE
+.PP
+
+.SS "int ssh_message_reply_default (\fBssh_message\fP msg)"
+
+.PP
+Reply with a standard reject message\&. Use this function if you don't know what to respond or if you want to reject a request\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to use for the reply\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_message_get()\fP 
+.RE
+.PP
+
+.SS "int ssh_message_service_reply_success (\fBssh_message\fP msg)"
+
+.PP
+Sends SERVICE_ACCEPT to the client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to reply to
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK when success otherwise SSH_ERROR 
+.RE
+.PP
+
+.SS "const char * ssh_message_service_service (\fBssh_message\fP msg)"
+
+.PP
+Gets the service name from the service request message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The service request message
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the service name from the message 
+.RE
+.PP
+
+.SS "int ssh_send_issue_banner (\fBssh_session\fP session, const \fBssh_string\fP banner)"
+
+.PP
+Send the server's issue-banner to client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The server session\&.
+.br
+\fIbanner\fP The server's banner\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "int ssh_send_keepalive (\fBssh_session\fP session)"
+
+.PP
+Sends a keepalive message to the session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session to send the message to
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK 
+.RE
+.PP
+
+.SS "int ssh_server_init_kex (\fBssh_session\fP session)"
+
+.PP
+Initialize the set of key exchange, hostkey, ciphers, MACs, and compression algorithms for the given ssh_session\&. The selection of algorithms and keys used are determined by the options that are currently set in the given ssh_session structure\&. May only be called before the initial key exchange has begun\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The session structure to initialize\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_handle_key_exchange\fP 
+
+.PP
+\fBssh_options_set\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if initialization succeeds\&. 
+.RE
+.PP
+
+.SS "void ssh_set_auth_methods (\fBssh_session\fP session, int auth_methods)"
+
+.PP
+Set the acceptable authentication methods to be sent to the client\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The server session
+.br
+\fIauth_methods\fP The authentication methods we will support, which can be bitwise-or'd\&.
+.RE
+.PP
+Supported methods are:
+
+.PP
+SSH_AUTH_METHOD_PASSWORD SSH_AUTH_METHOD_PUBLICKEY SSH_AUTH_METHOD_HOSTBASED SSH_AUTH_METHOD_INTERACTIVE SSH_AUTH_METHOD_GSSAPI_MIC 
+.SS "void ssh_set_message_callback (\fBssh_session\fP session, int(* ssh_bind_message_callback )(\fBssh_session\fP session, \fBssh_message\fP msg, void *data), void * data)"
+
+.PP
+defines the ssh_message callback 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP the current ssh session 
+.br
+\fIssh_bind_message_callback\fP a function pointer to a callback taking the current ssh session and received message as parameters\&. the function returns 0 if the message has been parsed and treated successfully, 1 otherwise (libssh must take care of the response)\&. 
+.br
+\fIdata\fP void pointer to be passed to callback functions 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

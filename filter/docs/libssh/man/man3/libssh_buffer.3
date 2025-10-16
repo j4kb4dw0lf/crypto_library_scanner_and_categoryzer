@@ -1,0 +1,287 @@
+.TH "libssh_buffer" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_buffer \- The SSH buffer functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBbuffer_verify\fP(x)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_buffer_struct\fP * \fBssh_buffer_new\fP (void)"
+.br
+.RI "Create a new SSH buffer\&. "
+.ti -1c
+.RI "void \fBssh_buffer_free\fP (struct \fBssh_buffer_struct\fP *buffer)"
+.br
+.RI "Deallocate a SSH buffer\&. "
+.ti -1c
+.RI "void \fBssh_buffer_set_secure\fP (\fBssh_buffer\fP buffer)"
+.br
+.RI "Sets the buffer as secure\&. "
+.ti -1c
+.RI "int \fBssh_buffer_reinit\fP (struct \fBssh_buffer_struct\fP *buffer)"
+.br
+.RI "Reinitialize a SSH buffer\&. "
+.ti -1c
+.RI "int \fBssh_buffer_add_data\fP (struct \fBssh_buffer_struct\fP *buffer, const void *data, uint32_t len)"
+.br
+.RI "Add data at the tail of a buffer\&. "
+.ti -1c
+.RI "int \fBssh_buffer_allocate_size\fP (struct \fBssh_buffer_struct\fP *buffer, uint32_t len)"
+.br
+.RI "Ensure the buffer has at least a certain preallocated size\&. "
+.ti -1c
+.RI "void * \fBssh_buffer_allocate\fP (struct \fBssh_buffer_struct\fP *buffer, uint32_t len)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_add_ssh_string\fP (struct \fBssh_buffer_struct\fP *buffer, struct \fBssh_string_struct\fP *string)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_add_u32\fP (struct \fBssh_buffer_struct\fP *buffer, uint32_t data)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_add_u16\fP (struct \fBssh_buffer_struct\fP *buffer, uint16_t data)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_add_u64\fP (struct \fBssh_buffer_struct\fP *buffer, uint64_t data)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_add_u8\fP (struct \fBssh_buffer_struct\fP *buffer, uint8_t data)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_prepend_data\fP (struct \fBssh_buffer_struct\fP *buffer, const void *data, uint32_t len)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_add_buffer\fP (struct \fBssh_buffer_struct\fP *buffer, struct \fBssh_buffer_struct\fP *source)"
+.br
+.ti -1c
+.RI "void * \fBssh_buffer_get\fP (struct \fBssh_buffer_struct\fP *buffer)"
+.br
+.RI "Get a pointer to the head of a buffer at the current position\&. "
+.ti -1c
+.RI "uint32_t \fBssh_buffer_get_len\fP (struct \fBssh_buffer_struct\fP *buffer)"
+.br
+.RI "Get the length of the buffer from the current position\&. "
+.ti -1c
+.RI "uint32_t \fBssh_buffer_pass_bytes\fP (struct \fBssh_buffer_struct\fP *buffer, uint32_t len)"
+.br
+.ti -1c
+.RI "uint32_t \fBssh_buffer_pass_bytes_end\fP (struct \fBssh_buffer_struct\fP *buffer, uint32_t len)"
+.br
+.ti -1c
+.RI "uint32_t \fBssh_buffer_get_data\fP (struct \fBssh_buffer_struct\fP *buffer, void *data, uint32_t len)"
+.br
+.RI "Get the remaining data out of the buffer and adjust the read pointer\&. "
+.ti -1c
+.RI "uint32_t \fBssh_buffer_get_u8\fP (struct \fBssh_buffer_struct\fP *buffer, uint8_t *data)"
+.br
+.ti -1c
+.RI "uint32_t \fBssh_buffer_get_u32\fP (struct \fBssh_buffer_struct\fP *buffer, uint32_t *data)"
+.br
+.ti -1c
+.RI "uint32_t \fBssh_buffer_get_u64\fP (struct \fBssh_buffer_struct\fP *buffer, uint64_t *data)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_validate_length\fP (struct \fBssh_buffer_struct\fP *buffer, size_t len)"
+.br
+.RI "Validates that the given length can be obtained from the buffer\&. "
+.ti -1c
+.RI "struct \fBssh_string_struct\fP * \fBssh_buffer_get_ssh_string\fP (struct \fBssh_buffer_struct\fP *buffer)"
+.br
+.ti -1c
+.RI "int \fB_ssh_buffer_pack\fP (struct \fBssh_buffer_struct\fP *buffer, const char *format, size_t argc,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBssh_buffer_unpack_va\fP (struct \fBssh_buffer_struct\fP *buffer, const char *format, size_t argc, va_list ap)"
+.br
+.ti -1c
+.RI "int \fB_ssh_buffer_unpack\fP (struct \fBssh_buffer_struct\fP *buffer, const char *format, size_t argc,\&.\&.\&.)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions to handle SSH buffers\&. 
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_buffer_add_data (struct \fBssh_buffer_struct\fP * buffer, const void * data, uint32_t len)"
+
+.PP
+Add data at the tail of a buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to add the data\&.
+.br
+\fIdata\fP A pointer to the data to add\&.
+.br
+\fIlen\fP The length of the data to add\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_buffer_allocate_size (struct \fBssh_buffer_struct\fP * buffer, uint32_t len)"
+
+.PP
+Ensure the buffer has at least a certain preallocated size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to enlarge\&.
+.br
+\fIlen\fP The length to ensure as allocated\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "void ssh_buffer_free (struct \fBssh_buffer_struct\fP * buffer)"
+
+.PP
+Deallocate a SSH buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to free\&. 
+.RE
+.PP
+
+.SS "void * ssh_buffer_get (struct \fBssh_buffer_struct\fP * buffer)"
+
+.PP
+Get a pointer to the head of a buffer at the current position\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to get the head pointer\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to the data from current position\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_buffer_get_len()\fP 
+.RE
+.PP
+
+.SS "uint32_t ssh_buffer_get_data (struct \fBssh_buffer_struct\fP * buffer, void * data, uint32_t len)"
+
+.PP
+Get the remaining data out of the buffer and adjust the read pointer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to read\&.
+.br
+\fIdata\fP The data buffer where to store the data\&.
+.br
+\fIlen\fP The length to read from the buffer\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if there is not enough data in buffer, len otherwise\&. 
+.RE
+.PP
+
+.SS "uint32_t ssh_buffer_get_len (struct \fBssh_buffer_struct\fP * buffer)"
+
+.PP
+Get the length of the buffer from the current position\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to get the length from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The length of the buffer\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_buffer_get()\fP 
+.RE
+.PP
+
+.SS "struct \fBssh_buffer_struct\fP * ssh_buffer_new (void )"
+
+.PP
+Create a new SSH buffer\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A newly initialized SSH buffer, NULL on error\&. 
+.RE
+.PP
+
+.SS "int ssh_buffer_reinit (struct \fBssh_buffer_struct\fP * buffer)"
+
+.PP
+Reinitialize a SSH buffer\&. In case the buffer has exceeded 64K in size, the buffer will be reallocated to 64K\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to reinitialize\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "void ssh_buffer_set_secure (\fBssh_buffer\fP buffer)"
+
+.PP
+Sets the buffer as secure\&. A secure buffer will never leave cleartext data in the heap after being reallocated or freed\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP buffer to set secure\&. 
+.RE
+.PP
+
+.SS "int ssh_buffer_validate_length (struct \fBssh_buffer_struct\fP * buffer, size_t len)"
+
+.PP
+Validates that the given length can be obtained from the buffer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuffer\fP The buffer to read from\&.
+.br
+\fIlen\fP The length to be checked\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the length is valid, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

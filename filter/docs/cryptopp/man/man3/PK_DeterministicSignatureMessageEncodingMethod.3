@@ -1,0 +1,72 @@
+.TH "PK_DeterministicSignatureMessageEncodingMethod" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PK_DeterministicSignatureMessageEncodingMethod \- Interface for message encoding method for public key signature schemes\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBPK_SignatureMessageEncodingMethod\fP\&.
+.PP
+Inherited by \fBEMSA2HashIdLookup< PK_DeterministicSignatureMessageEncodingMethod >\fP, \fBEMSA5Pad< P1363_MGF1 >\fP, \fBDL_SignatureMessageEncodingMethod_DSA\fP, \fBDL_SignatureMessageEncodingMethod_NR\fP, \fBEMSA5Pad< T >\fP, and \fBPKCS1v15_SignatureMessageEncodingMethod\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBVerifyMessageRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMinRepresentativeBitLength\fP (size_t hashIdentifierLength, size_t digestLength) const"
+.br
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLength\fP (size_t representativeBitLength, size_t hashIdentifierLength, size_t digestLength) const"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines whether an encoding method requires a random number generator\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "virtual bool \fBRecoverablePartFirst\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessSemisignature\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *semisignature, size_t semisignatureLength) const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessRecoverableMessage\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *presignature, size_t presignatureLength, \fBSecByteBlock\fP &semisignature) const"
+.br
+.ti -1c
+.RI "virtual void \fBComputeMessageRepresentative\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, \fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const =0"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromSemisignature\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, const \fBbyte\fP *presignature, size_t presignatureLength, const \fBbyte\fP *semisignature, size_t semisignatureLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for message encoding method for public key signature schemes\&. 
+
+\fBPK_DeterministicSignatureMessageEncodingMethod\fP provides interfaces for message encoding method for public key signature schemes\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "bool PK_DeterministicSignatureMessageEncodingMethod::VerifyMessageRepresentative (\fBHashTransformation\fP & hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP * representative, size_t representativeBitLength) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_SignatureMessageEncodingMethod\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

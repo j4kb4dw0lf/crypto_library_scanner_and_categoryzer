@@ -1,0 +1,88 @@
+.TH "ASN1CryptoMaterial< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ASN1CryptoMaterial< BASE > \- Encode and decode ASN\&.1 objects with additional information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <asn\&.h>\fP
+.PP
+Inherits \fBASN1Object\fP, and BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)=0"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const =0"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE>
+.br
+class ASN1CryptoMaterial< BASE >"Encode and decode ASN\&.1 objects with additional information\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP base class or type
+.RE
+.PP
+Encodes and decodes public keys, private keys and group parameters with \fBOID\fP identifying the algorithm or scheme\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE> void \fBASN1CryptoMaterial\fP< BASE >::Load (\fBBufferedTransformation\fP & bt)\fR [inline]\fP"
+
+.PP
+BER decode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleRSAFunction\fP, and \fBx25519\fP\&.
+.SS "template<class BASE> void \fBASN1CryptoMaterial\fP< BASE >::Save (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP"
+
+.PP
+DER encode ASN\&.1 object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+\fBSave()\fP will write the \fBOID\fP associated with algorithm or scheme\&. In the case of public and private keys, this function writes the subjectPublicKeyInfo and privateKeyInfo parts\&. 
+.PP
+Reimplemented in \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleRSAFunction\fP, and \fBx25519\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

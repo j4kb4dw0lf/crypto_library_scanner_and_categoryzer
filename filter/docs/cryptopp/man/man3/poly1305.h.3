@@ -1,0 +1,128 @@
+.TH "/home/mock/cryptopp-master/poly1305.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/poly1305.h \- Classes for \fBPoly1305\fP message authentication code\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'seckey\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'argnames\&.h'\fP
+.br
+\fR#include 'algparam\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPoly1305_Base< T >\fP"
+.br
+.RI "\fBPoly1305\fP message authentication code base class\&. "
+.ti -1c
+.RI "class \fBPoly1305< T >\fP"
+.br
+.RI "\fBPoly1305\fP message authentication code\&. "
+.ti -1c
+.RI "class \fBPoly1305TLS_Base\fP"
+.br
+.RI "Poly1305-TLS message authentication code base class\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBMessageAuthenticationCodeFinal\fP< \fBPoly1305TLS_Base\fP >, Poly1305TLS)"
+.br
+.RI "Poly1305-TLS message authentication code\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for \fBPoly1305\fP message authentication code\&.
+
+Poly1305-AES is a state-of-the-art message-authentication code suitable for a wide variety of applications\&. Poly1305-AES computes a 16-byte authenticator of a variable-length message, using a 16-byte AES key, a 16-byte additional key, and a 16-byte nonce\&.
+
+.PP
+Crypto++ also supplies the IETF's version of \fBPoly1305\fP\&. It is a slightly different algorithm than Bernstein's version\&.
+.PP
+\fBSee also\fP
+.RS 4
+Daniel J\&. Bernstein \fRThe Poly1305-AES Message-Authentication Code (20050329)\fP, \fRRFC 8439, ChaCha20 and Poly1305 for IETF Protocols\fP and Andy Polyakov \fRPoly1305 Revised\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+\fBPoly1305\fP since Crypto++ 6\&.0, Poly1305TLS since Crypto++ 8\&.1
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP
+.SS "DOCUMENTED_TYPEDEF (\fBMessageAuthenticationCodeFinal\fP< \fBPoly1305TLS_Base\fP > , Poly1305TLS )"
+
+.PP
+Poly1305-TLS message authentication code\&. This is the IETF's variant of Bernstein's \fBPoly1305\fP from RFC 8439\&. IETF \fBPoly1305\fP is called Poly1305TLS in the Crypto++ library\&. It is \fIslightly\fP different from the Bernstein implementation\&. Poly1305-TLS can be used for cipher suites \fRTLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256\fP, \fRTLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256\fP, and \fRTLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256\fP\&.
+
+.PP
+The key is 32 bytes and a concatenation \fRkey = {r,s}\fP, where \fRr\fP is additional key that gets clamped and \fRs\fP is the nonce\&. The key is clamped internally so there is no need to perform the operation before setting the key\&.
+
+.PP
+Each message must have a unique security context, which means the key must be changed after each message\&. It can be accomplished in one of two ways\&. First, you can create a new \fBPoly1305\fP object with a new key each time its needed\&.
+.PP
+.nf
+  SecByteBlock key(32);
+  prng\&.GenerateBlock(key, key\&.size());
+
+  Poly1305TLS poly1305(key, key\&.size());
+  poly1305\&.Update(\&.\&.\&.);
+  poly1305\&.Final(\&.\&.\&.);
+.fi
+.PP
+
+.PP
+Second, you can create a \fBPoly1305\fP object, and use a new key for each message\&. The keys can be generated directly using a \fBRandomNumberGenerator()\fP derived class\&.
+.PP
+.nf
+  SecByteBlock key(32);
+  prng\&.GenerateBlock(key, key\&.size());
+
+  // First message
+  Poly1305TLS poly1305(key, key\&.size());
+  poly1305\&.Update(\&.\&.\&.);
+  poly1305\&.Final(\&.\&.\&.);
+
+  // Second message
+  prng\&.GenerateBlock(key, key\&.size());
+  poly1305\&.SetKey(key, key\&.size());
+  poly1305\&.Update(\&.\&.\&.);
+  poly1305\&.Final(\&.\&.\&.);
+  \&.\&.\&.
+.fi
+.PP
+
+.PP
+\fBWarning\fP
+.RS 4
+Each message must have a unique security context\&. The Poly1305-TLS class does not enforce a fresh key or nonce for each message\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBMessageAuthenticationCode()\fP, \fRRFC 8439, ChaCha20 and Poly1305 for IETF Protocols\fP
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

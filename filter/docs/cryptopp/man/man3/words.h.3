@@ -1,0 +1,395 @@
+.TH "/home/mock/cryptopp-master/words.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/words.h \- Support functions for word operations\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBCountWords\fP (const word *x, size_t n)"
+.br
+.RI "Count the number of words\&. "
+.ti -1c
+.RI "void \fBSetWords\fP (word *r, word a, size_t n)"
+.br
+.RI "Set the value of words\&. "
+.ti -1c
+.RI "void \fBCopyWords\fP (word *r, const word *a, size_t n)"
+.br
+.RI "Copy word array\&. "
+.ti -1c
+.RI "void \fBXorWords\fP (word *r, const word *a, const word *b, size_t n)"
+.br
+.RI "XOR word arrays\&. "
+.ti -1c
+.RI "void \fBXorWords\fP (word *r, const word *a, size_t n)"
+.br
+.RI "XOR word arrays\&. "
+.ti -1c
+.RI "void \fBAndWords\fP (word *r, const word *a, const word *b, size_t n)"
+.br
+.RI "AND word arrays\&. "
+.ti -1c
+.RI "void \fBAndWords\fP (word *r, const word *a, size_t n)"
+.br
+.RI "AND word arrays\&. "
+.ti -1c
+.RI "void \fBOrWords\fP (word *r, const word *a, const word *b, size_t n)"
+.br
+.RI "OR word arrays\&. "
+.ti -1c
+.RI "void \fBOrWords\fP (word *r, const word *a, size_t n)"
+.br
+.RI "OR word arrays\&. "
+.ti -1c
+.RI "word \fBShiftWordsLeftByBits\fP (word *r, size_t n, unsigned int shiftBits)"
+.br
+.RI "Left shift word array\&. "
+.ti -1c
+.RI "word \fBShiftWordsRightByBits\fP (word *r, size_t n, unsigned int shiftBits)"
+.br
+.RI "Right shift word array\&. "
+.ti -1c
+.RI "void \fBShiftWordsLeftByWords\fP (word *r, size_t n, size_t shiftWords)"
+.br
+.RI "Left shift word array\&. "
+.ti -1c
+.RI "void \fBShiftWordsRightByWords\fP (word *r, size_t n, size_t shiftWords)"
+.br
+.RI "Right shift word array\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Support functions for word operations\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "void AndWords (word * r, const word * a, const word * b, size_t n)\fR [inline]\fP"
+
+.PP
+AND word arrays\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP first source word array
+.br
+\fIb\fP second source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+AndWords ANDs the two source word arrays and copies the result to the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void AndWords (word * r, const word * a, size_t n)\fR [inline]\fP"
+
+.PP
+AND word arrays\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+AndWords ANDs the source word array with the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void CopyWords (word * r, const word * a, size_t n)\fR [inline]\fP"
+
+.PP
+Copy word array\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+CopyWords copies the source word array to the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "size_t CountWords (const word * x, size_t n)\fR [inline]\fP"
+
+.PP
+Count the number of words\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+number of words used in the array\&.
+.RE
+.PP
+CountWords counts the number of words in a word array\&. Leading 0-words are not included in the count\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void OrWords (word * r, const word * a, const word * b, size_t n)\fR [inline]\fP"
+
+.PP
+OR word arrays\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP first source word array
+.br
+\fIb\fP second source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+OrWords ORs the two source word arrays and copies the result to the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void OrWords (word * r, const word * a, size_t n)\fR [inline]\fP"
+
+.PP
+OR word arrays\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+OrWords ORs the source word array with the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void SetWords (word * r, word a, size_t n)\fR [inline]\fP"
+
+.PP
+Set the value of words\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP word array
+.br
+\fIa\fP value
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+SetWords sets all elements in the word array to the specified value\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "word ShiftWordsLeftByBits (word * r, size_t n, unsigned int shiftBits)\fR [inline]\fP"
+
+.PP
+Left shift word array\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP word array
+.br
+\fIn\fP size of the word array, in elements
+.br
+\fIshiftBits\fP number of bits to shift
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+word shifted out
+.RE
+.PP
+ShiftWordsLeftByBits shifts the word array left by shiftBits\&. ShiftWordsLeftByBits shifts bits out on the left; it does not extend the array\&.
+.PP
+\fBNote\fP
+.RS 4
+shiftBits must be less than WORD_BITS\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void ShiftWordsLeftByWords (word * r, size_t n, size_t shiftWords)\fR [inline]\fP"
+
+.PP
+Left shift word array\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP word array
+.br
+\fIn\fP size of the word array, in elements
+.br
+\fIshiftWords\fP number of words to shift
+.RE
+.PP
+ShiftWordsLeftByWords shifts the word array left by shiftWords\&. ShiftWordsLeftByWords shifts bits out on the left; it does not extend the array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "word ShiftWordsRightByBits (word * r, size_t n, unsigned int shiftBits)\fR [inline]\fP"
+
+.PP
+Right shift word array\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP word array
+.br
+\fIn\fP size of the word array, in elements
+.br
+\fIshiftBits\fP number of bits to shift
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+word shifted out
+.RE
+.PP
+ShiftWordsRightByBits shifts the word array shight by shiftBits\&. ShiftWordsRightByBits shifts bits out on the right\&.
+.PP
+\fBNote\fP
+.RS 4
+shiftBits must be less than WORD_BITS\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void ShiftWordsRightByWords (word * r, size_t n, size_t shiftWords)\fR [inline]\fP"
+
+.PP
+Right shift word array\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP word array
+.br
+\fIn\fP size of the word array, in elements
+.br
+\fIshiftWords\fP number of words to shift
+.RE
+.PP
+ShiftWordsRightByWords shifts the word array right by shiftWords\&. ShiftWordsRightByWords shifts bits out on the right\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void XorWords (word * r, const word * a, const word * b, size_t n)\fR [inline]\fP"
+
+.PP
+XOR word arrays\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP first source word array
+.br
+\fIb\fP second source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+XorWords XORs the two source word arrays and copies the result to the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "void XorWords (word * r, const word * a, size_t n)\fR [inline]\fP"
+
+.PP
+XOR word arrays\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP destination word array
+.br
+\fIa\fP source word array
+.br
+\fIn\fP size of the word array, in elements
+.RE
+.PP
+XorWords XORs the source word array with the destination word array\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

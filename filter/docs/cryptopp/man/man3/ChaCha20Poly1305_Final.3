@@ -1,0 +1,519 @@
+.TH "ChaCha20Poly1305_Final< T_IsEncryption >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ChaCha20Poly1305_Final< T_IsEncryption > \- IETF \fBChaCha20Poly1305\fP cipher final implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <chachapoly\&.h>\fP
+.PP
+Inherits \fBChaCha20Poly1305_Base\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBSymmetricCipher\fP & \fBGetSymmetricCipher\fP ()"
+.br
+.ti -1c
+.RI "\fBSymmetricCipher\fP & \fBAccessSymmetricCipher\fP ()"
+.br
+.ti -1c
+.RI "bool \fBIsForwardTransformation\fP () const"
+.br
+.RI "Determines if the cipher is being operated in its forward direction\&. "
+.ti -1c
+.RI "const \fBMessageAuthenticationCode\fP & \fBGetMAC\fP () const"
+.br
+.ti -1c
+.RI "\fBMessageAuthenticationCode\fP & \fBAccessMAC\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBChaCha20Poly1305_Base\fP
+.in +1c
+.ti -1c
+.RI "bool \fBAuthenticationIsOnPlaintext\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBAuthenticationBlockSize\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetKeyWithoutResync\fP (const \fBbyte\fP *userKey, size_t keylength, const \fBNameValuePairs\fP &params)"
+.br
+.ti -1c
+.RI "void \fBResync\fP (const \fBbyte\fP *iv, size_t len)"
+.br
+.ti -1c
+.RI "size_t \fBAuthenticateBlocks\fP (const \fBbyte\fP *data, size_t len)"
+.br
+.ti -1c
+.RI "void \fBAuthenticateLastHeaderBlock\fP ()"
+.br
+.ti -1c
+.RI "void \fBAuthenticateLastConfidentialBlock\fP ()"
+.br
+.ti -1c
+.RI "void \fBAuthenticateLastFooterBlock\fP (\fBbyte\fP *mac, size_t macSize)"
+.br
+.ti -1c
+.RI "void \fBRekeyCipherAndMac\fP (const \fBbyte\fP *userKey, size_t userKeyLength, const \fBNameValuePairs\fP &params)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBAuthenticatedSymmetricCipherBase\fP
+.in +1c
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const CryptoPP::NameValuePairs &params)"
+.br
+.ti -1c
+.RI "void \fBAuthenticateData\fP (const \fBbyte\fP *data, size_t len)"
+.br
+.ti -1c
+.RI "const \fBSymmetricCipher\fP & \fBGetSymmetricCipher\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBAuthenticatedSymmetricCipher\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.ti -1c
+.RI "virtual void \fBUncheckedSpecifyDataLengths\fP (\fBlword\fP headerLength, \fBlword\fP messageLength, \fBlword\fP footerLength)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBMessageAuthenticationCode\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)=0"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+
+Public Member Functions inherited from \fBChaCha20Poly1305_Base\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t n) const"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "bool \fBIsValidKeyLength\fP (size_t n) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "\fBIV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "\fBlword\fP \fBMaxHeaderLength\fP () const"
+.br
+.RI "Provides the maximum length of AAD that can be input\&. "
+.ti -1c
+.RI "\fBlword\fP \fBMaxMessageLength\fP () const"
+.br
+.RI "Provides the maximum length of encrypted data\&. "
+.ti -1c
+.RI "\fBlword\fP \fBMaxFooterLength\fP () const"
+.br
+.RI "Provides the maximum length of AAD\&. "
+.ti -1c
+.RI "virtual void \fBEncryptAndAuthenticate\fP (\fBbyte\fP *ciphertext, \fBbyte\fP *mac, size_t macSize, const \fBbyte\fP *iv, int ivLength, const \fBbyte\fP *aad, size_t aadLength, const \fBbyte\fP *message, size_t messageLength)"
+.br
+.RI "Encrypts and calculates a MAC in one call\&. "
+.ti -1c
+.RI "virtual bool \fBDecryptAndVerify\fP (\fBbyte\fP *message, const \fBbyte\fP *mac, size_t macSize, const \fBbyte\fP *iv, int ivLength, const \fBbyte\fP *aad, size_t aadLength, const \fBbyte\fP *ciphertext, size_t ciphertextLength)"
+.br
+.RI "Decrypts and verifies a MAC in one call\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAuthenticatedSymmetricCipherBase\fP
+.in +1c
+.ti -1c
+.RI "bool \fBIsRandomAccess\fP () const"
+.br
+.RI "Determines whether the cipher supports random access\&. "
+.ti -1c
+.RI "bool \fBIsSelfInverting\fP () const"
+.br
+.RI "Determines whether the cipher is self-inverting\&. "
+.ti -1c
+.RI "void \fBSetKey\fP (const \fBbyte\fP *userKey, size_t keylength, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *iv, int length=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt an array of bytes\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *mac, size_t macSize)"
+.br
+.RI "Computes the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAuthenticatedSymmetricCipher\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBNeedsPrespecifiedDataLengths\fP () const"
+.br
+.RI "Determines if data lengths must be specified prior to inputting data\&. "
+.ti -1c
+.RI "void \fBSpecifyDataLengths\fP (\fBlword\fP headerLength, \fBlword\fP messageLength, \fBlword\fP footerLength=0)"
+.br
+.RI "Prescribes the data lengths\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBStreamTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBStreamTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMandatoryBlockSize\fP () const"
+.br
+.RI "Provides the mandatory block size of the cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSizeUsed\fP () const"
+.br
+.RI "Provides the number of bytes used in the current block when processing at optimal block size\&. "
+.ti -1c
+.RI "virtual size_t \fBProcessLastBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.RI "Encrypt or decrypt the last block of data\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinLastBlockSize\fP () const"
+.br
+.RI "Provides the size of the last block\&. "
+.ti -1c
+.RI "virtual bool \fBIsLastBlockSpecial\fP () const"
+.br
+.RI "Determines if the last block receives special processing\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *inoutString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBProcessByte\fP (\fBbyte\fP input)"
+.br
+.RI "Encrypt or decrypt a byte\&. "
+.ti -1c
+.RI "virtual void \fBSeek\fP (\fBlword\fP pos)"
+.br
+.RI "Seek to an absolute position\&. "
+.in -1c
+
+Protected Types inherited from \fBAuthenticatedSymmetricCipherBase\fP
+.in +1c
+.ti -1c
+.RI "enum \fBState\fP { \fBState_Start\fP, \fBState_KeySet\fP, \fBState_IVSet\fP, \fBState_AuthUntransformed\fP, \fBState_AuthTransformed\fP, \fBState_AuthFooter\fP }"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBAuthenticatedSymmetricCipherBase\fP
+.in +1c
+.ti -1c
+.RI "\fBAlignedSecByteBlock\fP \fBm_buffer\fP"
+.br
+.ti -1c
+.RI "\fBlword\fP \fBm_totalHeaderLength\fP"
+.br
+.ti -1c
+.RI "\fBlword\fP \fBm_totalMessageLength\fP"
+.br
+.ti -1c
+.RI "\fBlword\fP \fBm_totalFooterLength\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_bufferedDataLength\fP"
+.br
+.ti -1c
+.RI "State \fBm_state\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<bool T_IsEncryption>
+.br
+class ChaCha20Poly1305_Final< T_IsEncryption >"IETF \fBChaCha20Poly1305\fP cipher final implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT_IsEncryption\fP flag indicating cipher direction
+.RE
+.PP
+\fBChaCha20Poly1305\fP is an authenticated encryption scheme that combines ChaCha20TLS and Poly1305TLS\&. The scheme is defined in RFC 8439, section 2\&.8, AEAD_CHACHA20_POLY1305 construction, and uses the IETF versions of ChaCha20 and \fBPoly1305\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 8439, ChaCha20 and Poly1305 for IETF Protocols\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<bool T_IsEncryption> \fBMessageAuthenticationCode\fP & \fBChaCha20Poly1305_Final\fP< T_IsEncryption >::AccessMAC ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBChaCha20Poly1305_Base\fP\&.
+.SS "template<bool T_IsEncryption> \fBSymmetricCipher\fP & \fBChaCha20Poly1305_Final\fP< T_IsEncryption >::AccessSymmetricCipher ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBAuthenticatedSymmetricCipherBase\fP\&.
+.SS "template<bool T_IsEncryption> const \fBMessageAuthenticationCode\fP & \fBChaCha20Poly1305_Final\fP< T_IsEncryption >::GetMAC () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBChaCha20Poly1305_Base\fP\&.
+.SS "template<bool T_IsEncryption> bool \fBChaCha20Poly1305_Final\fP< T_IsEncryption >::IsForwardTransformation () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if the cipher is being operated in its forward direction\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if DIR is ENCRYPTION, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBIsForwardTransformation()\fP, IsPermutation(), GetCipherDirection() 
+.RE
+.PP
+
+.PP
+Implements \fBStreamTransformation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,59 @@
+.TH "/home/mock/cryptopp-master/pssr.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/pssr.h \- Classes for probabilistic signature schemes\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'emsa2\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPSSR_MEM_Base\fP"
+.br
+.RI "\fBPSSR\fP Message Encoding Method interface\&. "
+.ti -1c
+.RI "class \fBPSSR_MEM_BaseWithHashId< true >\fP"
+.br
+.RI "\fBPSSR\fP Message Encoding Method with Hash Identifier\&. "
+.ti -1c
+.RI "class \fBPSSR_MEM_BaseWithHashId< false >\fP"
+.br
+.RI "\fBPSSR\fP Message Encoding Method without Hash Identifier\&. "
+.ti -1c
+.RI "class \fBPSSR_MEM< ALLOW_RECOVERY, MGF, SALT_LEN, MIN_PAD_LEN, USE_HASH_ID >\fP"
+.br
+.RI "\fBPSSR\fP Message Encoding Method\&. "
+.ti -1c
+.RI "struct \fBPSSR\fP"
+.br
+.RI "Probabilistic Signature Scheme with Recovery\&. "
+.ti -1c
+.RI "struct \fBPSS\fP"
+.br
+.RI "Probabilistic Signature Scheme with Appendix\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for probabilistic signature schemes\&.
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

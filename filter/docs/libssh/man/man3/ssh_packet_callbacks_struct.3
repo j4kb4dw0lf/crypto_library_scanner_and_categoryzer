@@ -1,0 +1,38 @@
+.TH "ssh_packet_callbacks_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_packet_callbacks_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint8_t \fBstart\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBn_callbacks\fP"
+.br
+.ti -1c
+.RI "\fBssh_packet_callback\fP * \fBcallbacks\fP"
+.br
+.ti -1c
+.RI "void * \fBuser\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBssh_packet_callback\fP* ssh_packet_callbacks_struct::callbacks"
+A pointer to n_callbacks packet callbacks 
+.SS "uint8_t ssh_packet_callbacks_struct::n_callbacks"
+Number of packets being handled by this callback struct 
+.SS "uint8_t ssh_packet_callbacks_struct::start"
+Index of the first packet type being handled 
+.SS "void* ssh_packet_callbacks_struct::user"
+User-provided data\&. User is free to set anything he wants here 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

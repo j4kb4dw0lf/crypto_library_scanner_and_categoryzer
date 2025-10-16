@@ -1,0 +1,395 @@
+.TH "DL_PrivateKey_GFP< GP >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_PrivateKey_GFP< GP > \- Discrete Log (DL) private key in GF(p) groups\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_PrivateKeyImpl< GP >\fP\&.
+.PP
+Inherited by \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest< DL_PrivateKey_GFP< DL_GroupParameters_DSA >, DSA2< SHA1 > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int modulusBits)"
+.br
+.RI "Create a private key\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &p, const \fBInteger\fP &g)"
+.br
+.RI "Create a private key\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &p, const \fBInteger\fP &q, const \fBInteger\fP &g)"
+.br
+.RI "Create a private key\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBDL_GroupParameters_IntegerBased\fP &params, const \fBInteger\fP &x)"
+.br
+.RI "Initialize a private key over GF(p) "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &p, const \fBInteger\fP &g, const \fBInteger\fP &x)"
+.br
+.RI "Initialize a private key over GF(p) "
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &p, const \fBInteger\fP &q, const \fBInteger\fP &g, const \fBInteger\fP &x)"
+.br
+.RI "Initialize a private key over GF(p) "
+.in -1c
+
+Public Member Functions inherited from \fBDL_PrivateKeyImpl< GP >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.ti -1c
+.RI "bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "void \fBPrecompute\fP (unsigned int precomputationStorage=16)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetPrivateExponent\fP () const"
+.br
+.RI "Retrieves the private exponent\&. "
+.ti -1c
+.RI "void \fBSetPrivateExponent\fP (const \fBInteger\fP &x)"
+.br
+.RI "Sets the private exponent\&. "
+.ti -1c
+.RI "void \fBBERDecodePrivateKey\fP (\fBBufferedTransformation\fP &bt, bool, size_t)"
+.br
+.RI "Decode privateKey part of privateKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncodePrivateKey\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode privateKey part of privateKeyInfo\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_PrivateKey< GP::Element >\fP
+.in +1c
+.ti -1c
+.RI "void \fBMakePublicKey\fP (\fBDL_PublicKey\fP< GP::Element > &pub) const"
+.br
+.RI "Initializes a public key from this key\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Initialize or reinitialize this key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_KeyImpl< PKCS8PrivateKey, GP >\fP
+.in +1c
+.ti -1c
+.RI "\fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.ti -1c
+.RI "bool \fBBERDecodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "bool \fBDEREncodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "const GP & \fBGetGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "GP & \fBAccessGroupParameters\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPKCS8PrivateKey\fP
+.in +1c
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBBERDecodeOptionalAttributes\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode optional attributes\&. "
+.ti -1c
+.RI "virtual void \fBDEREncodeOptionalAttributes\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode optional attributes\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1CryptoMaterial< PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_PrivateKeyImpl< GP >\fP
+.in +1c
+.ti -1c
+.RI "typedef GP::Element \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_PrivateKey< GP::Element >\fP
+.in +1c
+.ti -1c
+.RI "typedef GP::Element \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_KeyImpl< PKCS8PrivateKey, GP >\fP
+.in +1c
+.ti -1c
+.RI "typedef GP \fBGroupParameters\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+
+Protected Attributes inherited from \fBPKCS8PrivateKey\fP
+.in +1c
+.ti -1c
+.RI "\fBByteQueue\fP \fBm_optionalAttributes\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class GP>
+.br
+class DL_PrivateKey_GFP< GP >"Discrete Log (DL) private key in GF(p) groups\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIGP\fP GroupParameters derived class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class GP> void \fBDL_PrivateKey_GFP\fP< GP >::Initialize (const \fBDL_GroupParameters_IntegerBased\fP & params, const \fBInteger\fP & x)\fR [inline]\fP"
+
+.PP
+Initialize a private key over GF(p) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP the group parameters 
+.br
+\fIx\fP the private exponent 
+.RE
+.PP
+
+.SS "template<class GP> void \fBDL_PrivateKey_GFP\fP< GP >::Initialize (const \fBInteger\fP & p, const \fBInteger\fP & g, const \fBInteger\fP & x)\fR [inline]\fP"
+
+.PP
+Initialize a private key over GF(p) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP the modulus 
+.br
+\fIg\fP the generator 
+.br
+\fIx\fP the private exponent 
+.RE
+.PP
+
+.SS "template<class GP> void \fBDL_PrivateKey_GFP\fP< GP >::Initialize (const \fBInteger\fP & p, const \fBInteger\fP & q, const \fBInteger\fP & g, const \fBInteger\fP & x)\fR [inline]\fP"
+
+.PP
+Initialize a private key over GF(p) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP the modulus 
+.br
+\fIq\fP the subgroup order 
+.br
+\fIg\fP the generator 
+.br
+\fIx\fP the private exponent 
+.RE
+.PP
+
+.SS "template<class GP> void \fBDL_PrivateKey_GFP\fP< GP >::Initialize (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & p, const \fBInteger\fP & g)\fR [inline]\fP"
+
+.PP
+Create a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIp\fP the modulus 
+.br
+\fIg\fP the generator
+.RE
+.PP
+This function overload of \fBInitialize()\fP creates a new private key because it takes a \fBRandomNumberGenerator()\fP as a parameter\&. If you have an existing keypair, then use one of the other \fBInitialize()\fP overloads\&. 
+.SS "template<class GP> void \fBDL_PrivateKey_GFP\fP< GP >::Initialize (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & p, const \fBInteger\fP & q, const \fBInteger\fP & g)\fR [inline]\fP"
+
+.PP
+Create a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIp\fP the modulus 
+.br
+\fIq\fP the subgroup order 
+.br
+\fIg\fP the generator
+.RE
+.PP
+This function overload of \fBInitialize()\fP creates a new private key because it takes a \fBRandomNumberGenerator()\fP as a parameter\&. If you have an existing keypair, then use one of the other \fBInitialize()\fP overloads\&. 
+.SS "template<class GP> void \fBDL_PrivateKey_GFP\fP< GP >::Initialize (\fBRandomNumberGenerator\fP & rng, unsigned int modulusBits)\fR [inline]\fP"
+
+.PP
+Create a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fImodulusBits\fP the size of the modulus, in bits
+.RE
+.PP
+This function overload of \fBInitialize()\fP creates a new private key because it takes a \fBRandomNumberGenerator()\fP as a parameter\&. If you have an existing keypair, then use one of the other \fBInitialize()\fP overloads\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

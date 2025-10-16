@@ -1,0 +1,57 @@
+.TH "ClonableImpl< DERIVED, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ClonableImpl< DERIVED, BASE > \- Base class for identifying algorithm\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits BASE\&.
+.PP
+Inherited by \fBBlockCipherFinal< ENCRYPTION, Enc >\fP, \fBBlockCipherFinal< DECRYPTION, Dec >\fP, \fBBlockCipherFinal< ENCRYPTION, Base >\fP, \fBBlockCipherFinal< DECRYPTION, Base >\fP, \fBBlockCipherFinal< ENCRYPTION, SAFER_Impl< Enc, SAFER_K_Info, false > >\fP, \fBBlockCipherFinal< DECRYPTION, SAFER_Impl< Dec, SAFER_K_Info, false > >\fP, \fBBlockCipherFinal< ENCRYPTION, SAFER_Impl< Enc, SAFER_SK_Info, true > >\fP, and \fBBlockCipherFinal< DECRYPTION, SAFER_Impl< Dec, SAFER_SK_Info, true > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class DERIVED, class BASE>
+.br
+class ClonableImpl< DERIVED, BASE >"Base class for identifying algorithm\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP base class from which to derive 
+.br
+\fIDERIVED\fP class which to clone 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class DERIVED, class BASE> \fBClonable\fP * \fBClonableImpl\fP< DERIVED, BASE >::Clone () const\fR [inline]\fP"
+
+.PP
+Create a copy of this object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a copy of this object
+.RE
+.PP
+The caller is responsible for freeing the object\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

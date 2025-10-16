@@ -1,0 +1,88 @@
+.TH "ssh_channel_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_channel_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_session\fP \fBsession\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBlocal_channel\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBlocal_window\fP"
+.br
+.ti -1c
+.RI "int \fBlocal_eof\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBlocal_maxpacket\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBremote_channel\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBremote_window\fP"
+.br
+.ti -1c
+.RI "int \fBremote_eof\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBremote_maxpacket\fP"
+.br
+.ti -1c
+.RI "enum ssh_channel_state_e \fBstate\fP"
+.br
+.ti -1c
+.RI "int \fBdelayed_close\fP"
+.br
+.ti -1c
+.RI "int \fBflags\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBstdout_buffer\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBstderr_buffer\fP"
+.br
+.ti -1c
+.RI "void * \fBuserarg\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   bool \fBstatus\fP"
+.br
+.ti -1c
+.RI "   uint32_t \fBcode\fP"
+.br
+.ti -1c
+.RI "   char * \fBsignal\fP"
+.br
+.ti -1c
+.RI "   bool \fBcore_dumped\fP"
+.br
+.ti -1c
+.RI "} \fBexit\fP"
+.br
+.ti -1c
+.RI "enum ssh_channel_request_state_e \fBrequest_state\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBcallbacks\fP"
+.br
+.ti -1c
+.RI "\fBssh_counter\fP \fBcounter\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

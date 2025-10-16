@@ -1,0 +1,413 @@
+.TH "XTS_Final< CIPHER >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XTS_Final< CIPHER > \- \fBXTS\fP block cipher mode of operation implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xts\&.h>\fP
+.PP
+Inherits \fBXTS_ModeBase\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBlockCipher\fP & \fBAccessBlockCipher\fP ()"
+.br
+.ti -1c
+.RI "\fBBlockCipher\fP & \fBAccessTweakCipher\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBXTS_ModeBase\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBResizeBuffers\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBProcessLastPlainBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.ti -1c
+.RI "size_t \fBProcessLastCipherBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.ti -1c
+.RI "const \fBBlockCipher\fP & \fBGetBlockCipher\fP () const"
+.br
+.ti -1c
+.RI "const \fBBlockCipher\fP & \fBGetTweakCipher\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBBlockOrientedCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "bool \fBRequireAlignedInput\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBSetFeedbackSize\fP (unsigned int feedbackSize)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBSymmetricCipher\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "CIPHER::Encryption \fBm_tweaker\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBXTS_ModeBase\fP
+.in +1c
+.ti -1c
+.RI "\fBAlignedSecByteBlock\fP \fBm_xregister\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecByteBlock\fP \fBm_xworkspace\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBBlockOrientedCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBm_buffer\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "\fBBlockCipher\fP * \fBm_cipher\fP"
+.br
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBm_register\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+
+Public Member Functions inherited from \fBXTS_ModeBase\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t n) const"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBMinLastBlockSize\fP () const"
+.br
+.RI "Provides the size of the last block\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidBlockSize\fP (size_t length)"
+.br
+.RI "Validates the block size\&. "
+.ti -1c
+.RI "void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "\fBIV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt an array of bytes\&. "
+.ti -1c
+.RI "size_t \fBProcessLastBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.RI "Encrypt or decrypt the last block of data\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (word64 sector, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Resynchronize the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBBlockOrientedCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "unsigned int \fBMandatoryBlockSize\fP () const"
+.br
+.RI "Provides the mandatory block size of the cipher\&. "
+.ti -1c
+.RI "bool \fBIsRandomAccess\fP () const"
+.br
+.RI "Determines whether the cipher supports random access\&. "
+.ti -1c
+.RI "bool \fBIsSelfInverting\fP () const"
+.br
+.RI "Determines whether the cipher is self-inverting\&. "
+.ti -1c
+.RI "bool \fBIsForwardTransformation\fP () const"
+.br
+.RI "Determines if the cipher is being operated in its forward direction\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCipherModeBase\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "void \fBSetCipher\fP (\fBBlockCipher\fP &cipher)"
+.br
+.RI "Set external block cipher\&. "
+.ti -1c
+.RI "void \fBSetCipherWithIV\fP (\fBBlockCipher\fP &cipher, const \fBbyte\fP *iv, int feedbackSize=0)"
+.br
+.RI "Set external block cipher and IV\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBStreamTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBStreamTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSizeUsed\fP () const"
+.br
+.RI "Provides the number of bytes used in the current block when processing at optimal block size\&. "
+.ti -1c
+.RI "virtual bool \fBIsLastBlockSpecial\fP () const"
+.br
+.RI "Determines if the last block receives special processing\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *inoutString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBProcessByte\fP (\fBbyte\fP input)"
+.br
+.RI "Encrypt or decrypt a byte\&. "
+.ti -1c
+.RI "virtual void \fBSeek\fP (\fBlword\fP pos)"
+.br
+.RI "Seek to an absolute position\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Protected Types inherited from \fBXTS_ModeBase\fP
+.in +1c
+.ti -1c
+.RI "enum { \fBParallelBlocks\fP = 12 }"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class CIPHER>
+.br
+class XTS_Final< CIPHER >"\fBXTS\fP block cipher mode of operation implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fICIPHER\fP \fBBlockCipher\fP derived class or type
+.RE
+.PP
+\fBXTS_Final()\fP provides access to CIPHER in base class \fBXTS_ModeBase()\fP through an interface\&. AccessBlockCipher() and AccessTweakCipher() allow the \fBXTS_ModeBase()\fP base class to access the user's block cipher without recompiling the library\&.
+
+.PP
+If \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP is 0, then CIPHER must be a 16-byte block cipher\&. If \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP is non-zero then CIPHER can be 16, 32, 64, or 128-byte block cipher\&. There is risk involved with using \fBXTS\fP with wider block ciphers\&. According to Phillip Rogaway, "The narrow width of the underlying PRP and the poor treatment of fractional final blocks are problems\&." To enable wide block cipher support define \fRCRYPTOPP_XTS_WIDE_BLOCK_CIPHERS\fP to non-zero\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRModes of Operation\fP on the Crypto++ wiki, \fREvaluation of Some Blockcipher Modes of Operation\fP, \fRRecommendation for Block Cipher Modes of Operation: The XTS-AES Mode for Confidentiality on Storage Devices\fP, \fRIEEE P1619-2007\fP and \fRIEEE P1619/XTS, inconsistent reference implementation and test vectors\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class CIPHER> \fBBlockCipher\fP & \fBXTS_Final\fP< CIPHER >::AccessBlockCipher ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBXTS_ModeBase\fP\&.
+.SS "template<class CIPHER> \fBBlockCipher\fP & \fBXTS_Final\fP< CIPHER >::AccessTweakCipher ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBXTS_ModeBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

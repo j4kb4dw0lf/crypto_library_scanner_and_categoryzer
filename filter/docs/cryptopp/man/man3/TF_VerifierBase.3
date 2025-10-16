@@ -1,0 +1,245 @@
+.TH "TF_VerifierBase" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_VerifierBase \- Trapdoor Function (TF) \fBVerifier\fP base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBTF_SignatureSchemeBase< PK_Verifier, TF_Base< TrapdoorFunction, PK_SignatureMessageEncodingMethod > >\fP\&.
+.PP
+Inherited by \fBAlgorithmImpl< TF_VerifierBase, SCHEME_OPTIONS::AlgorithmInfo >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInputSignature\fP (\fBPK_MessageAccumulator\fP &messageAccumulator, const \fBbyte\fP *signature, size_t signatureLength) const"
+.br
+.RI "Input signature into a message accumulator\&. "
+.ti -1c
+.RI "bool \fBVerifyAndRestart\fP (\fBPK_MessageAccumulator\fP &messageAccumulator) const"
+.br
+.RI "Check whether messageAccumulator contains a valid signature and message, and restart messageAccumulator\&. "
+.ti -1c
+.RI "\fBDecodingResult\fP \fBRecoverAndRestart\fP (\fBbyte\fP *recoveredMessage, \fBPK_MessageAccumulator\fP &recoveryAccumulator) const"
+.br
+.RI "Recover a message from its signature\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTF_SignatureSchemeBase< PK_Verifier, TF_Base< TrapdoorFunction, PK_SignatureMessageEncodingMethod > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBSignatureLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxRecoverableLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "bool \fBRecoverablePartFirst\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_Verifier\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBPK_MessageAccumulator\fP * \fBNewVerificationAccumulator\fP () const =0"
+.br
+.RI "Create a new \fBHashTransformation\fP to accumulate the message to be verified\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (\fBPK_MessageAccumulator\fP *messageAccumulator) const"
+.br
+.RI "Check whether messageAccumulator contains a valid signature and message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyMessage\fP (const \fBbyte\fP *message, size_t messageLen, const \fBbyte\fP *signature, size_t signatureLen) const"
+.br
+.RI "Check whether input signature is a valid signature for input message\&. "
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecover\fP (\fBbyte\fP *recoveredMessage, \fBPK_MessageAccumulator\fP *messageAccumulator) const"
+.br
+.RI "Recover a message from its signature\&. "
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessage\fP (\fBbyte\fP *recoveredMessage, const \fBbyte\fP *nonrecoverableMessage, size_t nonrecoverableMessageLength, const \fBbyte\fP *signature, size_t signatureLength) const"
+.br
+.RI "Recover a message from its signature\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureScheme\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxSignatureLength\fP (size_t recoverablePartLength=0) const"
+.br
+.RI "Provides the maximum signature length produced given the length of the recoverable message part\&. "
+.ti -1c
+.RI "virtual bool \fBSignatureUpfront\fP () const"
+.br
+.RI "Determines whether the signature must be input before the message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPublicKeyAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "virtual \fBPublicKey\fP & \fBAccessPublicKey\fP ()=0"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "virtual const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Types inherited from \fBTF_Base< TrapdoorFunction, PK_SignatureMessageEncodingMethod >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBTrapdoorFunction\fP \fBTrapdoorFunctionInterface\fP"
+.br
+.ti -1c
+.RI "typedef \fBPK_SignatureMessageEncodingMethod\fP \fBMessageEncodingInterface\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBTF_SignatureSchemeBase< PK_Verifier, TF_Base< TrapdoorFunction, PK_SignatureMessageEncodingMethod > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMessageRepresentativeLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMessageRepresentativeBitLength\fP () const"
+.br
+.ti -1c
+.RI "virtual HashIdentifier \fBGetHashIdentifier\fP () const=0"
+.br
+.ti -1c
+.RI "virtual size_t \fBGetDigestSize\fP () const=0"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBTF_Base< TrapdoorFunction, PK_SignatureMessageEncodingMethod >\fP
+.in +1c
+.ti -1c
+.RI "virtual const \fBTrapdoorFunctionBounds\fP & \fBGetTrapdoorFunctionBounds\fP () const=0"
+.br
+.ti -1c
+.RI "virtual const \fBTrapdoorFunctionInterface\fP & \fBGetTrapdoorFunctionInterface\fP () const=0"
+.br
+.ti -1c
+.RI "virtual const \fBMessageEncodingInterface\fP & \fBGetMessageEncodingInterface\fP () const=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Trapdoor Function (TF) \fBVerifier\fP base class\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void TF_VerifierBase::InputSignature (\fBPK_MessageAccumulator\fP & messageAccumulator, const \fBbyte\fP * signature, size_t signatureLength) const\fR [virtual]\fP"
+
+.PP
+Input signature into a message accumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImessageAccumulator\fP a pointer to a \fBPK_MessageAccumulator\fP derived class 
+.br
+\fIsignature\fP the signature on the message 
+.br
+\fIsignatureLength\fP the size of the signature 
+.RE
+.PP
+
+.PP
+Implements \fBPK_Verifier\fP\&.
+.SS "\fBDecodingResult\fP TF_VerifierBase::RecoverAndRestart (\fBbyte\fP * recoveredMessage, \fBPK_MessageAccumulator\fP & messageAccumulator) const\fR [virtual]\fP"
+
+.PP
+Recover a message from its signature\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrecoveredMessage\fP a pointer to the recoverable message part to be verified 
+.br
+\fImessageAccumulator\fP a pointer to a \fBPK_MessageAccumulator\fP derived class 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of the verification operation
+.RE
+.PP
+\fBRecoverAndRestart()\fP restarts the messageAccumulator 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(recoveredMessage) == MaxRecoverableLengthFromSignatureLength(signatureLength)\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPK_Verifier\fP\&.
+.SS "bool TF_VerifierBase::VerifyAndRestart (\fBPK_MessageAccumulator\fP & messageAccumulator) const\fR [virtual]\fP"
+
+.PP
+Check whether messageAccumulator contains a valid signature and message, and restart messageAccumulator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImessageAccumulator\fP a reference to a \fBPK_MessageAccumulator\fP derived class 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature is valid, false otherwise
+.RE
+.PP
+\fBVerifyAndRestart()\fP restarts the messageAccumulator 
+.PP
+Implements \fBPK_Verifier\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

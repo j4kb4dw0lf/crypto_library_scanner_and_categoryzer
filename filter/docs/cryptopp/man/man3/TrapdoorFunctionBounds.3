@@ -1,0 +1,102 @@
+.TH "TrapdoorFunctionBounds" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TrapdoorFunctionBounds \- Provides range for plaintext and ciphertext lengths\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBRandomizedTrapdoorFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBPreimageBound\fP () const =0"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBImageBound\fP () const =0"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxPreimage\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied bound to a public key\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxImage\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied bound to a public key\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Provides range for plaintext and ciphertext lengths\&. 
+
+A trapdoor function is a function that is easy to compute in one direction, but difficult to compute in the opposite direction without special knowledge\&. The special knowledge is usually the private key\&.
+
+.PP
+Trapdoor functions only handle messages of a limited length or size\&. MaxPreimage is the plaintext's maximum length, and MaxImage is the ciphertext's maximum length\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBTrapdoorFunctionBounds()\fP, \fBRandomizedTrapdoorFunction()\fP, \fBTrapdoorFunction()\fP, \fBRandomizedTrapdoorFunctionInverse()\fP and \fBTrapdoorFunctionInverse()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBInteger\fP TrapdoorFunctionBounds::ImageBound () const\fR [pure virtual]\fP"
+
+.PP
+Returns the maximum size of a representation after the trapdoor function is applied\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a representation after the trapdoor function is applied
+.RE
+.PP
+Derived classes must implement \fBImageBound()\fP\&. 
+.PP
+Implemented in \fBESIGNFunction\fP, \fBLUCFunction\fP, \fBRabinFunction\fP, \fBRSAFunction\fP, and \fBRWFunction\fP\&.
+.SS "virtual \fBInteger\fP TrapdoorFunctionBounds::MaxImage () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the maximum size of a representation after the trapdoor function is applied bound to a public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a representation after the trapdoor function is applied bound to a public key
+.RE
+.PP
+The default implementation returns \fR\fBImageBound()\fP - 1\fP\&. 
+.SS "virtual \fBInteger\fP TrapdoorFunctionBounds::MaxPreimage () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the maximum size of a message before the trapdoor function is applied bound to a public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a message before the trapdoor function is applied bound to a public key
+.RE
+.PP
+The default implementation returns \fR\fBPreimageBound()\fP - 1\fP\&. 
+.SS "virtual \fBInteger\fP TrapdoorFunctionBounds::PreimageBound () const\fR [pure virtual]\fP"
+
+.PP
+Returns the maximum size of a message before the trapdoor function is applied\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a message before the trapdoor function is applied
+.RE
+.PP
+Derived classes must implement \fBPreimageBound()\fP\&. 
+.PP
+Implemented in \fBESIGNFunction\fP, \fBInvertibleRSAFunction_ISO\fP, \fBLUCFunction\fP, \fBRabinFunction\fP, \fBRSAFunction\fP, \fBRSAFunction_ISO\fP, and \fBRWFunction\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

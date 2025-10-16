@@ -1,0 +1,96 @@
+.TH "BLAKE2b_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BLAKE2b_Info \- \fBBLAKE2b\fP hash information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <blake2\&.h>\fP
+.PP
+Inherits \fBVariableKeyLength< 64, 0, 64, 1, SimpleKeyingInterface::NOT_RESYNCHRONIZABLE >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBVariableKeyLength\fP< 64, 0, 64, 1, \fBSimpleKeyingInterface::NOT_RESYNCHRONIZABLE\fP > \fBKeyBase\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=KeyBase::MIN_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=KeyBase::MAX_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=KeyBase::DEFAULT_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=128)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=64)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SALTSIZE=16)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (PERSONALIZATIONSIZE=16)"
+.br
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 64, 0, 64, 1, SimpleKeyingInterface::NOT_RESYNCHRONIZABLE >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=M)"
+.br
+.RI "The maximum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=D)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH_MULTIPLE=Q)"
+.br
+.RI "The key length multiple used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_REQUIREMENT=IV_REQ)"
+.br
+.RI "The default IV requirements for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_LENGTH=0)"
+.br
+.RI "The default initialization vector length for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBBLAKE2b\fP hash information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

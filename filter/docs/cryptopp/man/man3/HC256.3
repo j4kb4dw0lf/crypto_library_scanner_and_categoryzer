@@ -1,0 +1,77 @@
+.TH "HC256" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HC256 \- HC-256 stream cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <hc256\&.h>\fP
+.PP
+Inherits \fBHC256Info\fP, and \fBSymmetricCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBConcretePolicyHolder\fP< \fBHC256Policy\fP, \fBAdditiveCipherTemplate\fP<> >, \fBHC256Info\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBEncryption\fP \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBHC256Info\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+HC-256 stream cipher\&. 
+
+HC-256 is a stream cipher developed by Hongjun Wu\&. HC-256 is the successor to HC-128 from the eSTREAM project\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRThe eSTREAM Project | HC-256\fP and \fRCrypto++ Wiki | HC-128\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,162 @@
+.TH "DL_GroupPrecomputation< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_GroupPrecomputation< T > \- \fBDL_GroupPrecomputation\fP interface\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eprecomp\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBNeedConversions\fP () const"
+.br
+.RI "Determines if elements needs conversion\&. "
+.ti -1c
+.RI "virtual Element \fBConvertIn\fP (const Element &v) const"
+.br
+.RI "Converts an element between representations\&. "
+.ti -1c
+.RI "virtual Element \fBConvertOut\fP (const Element &v) const"
+.br
+.RI "Converts an element between representations\&. "
+.ti -1c
+.RI "virtual const \fBAbstractGroup\fP< Element > & \fBGetGroup\fP () const =0"
+.br
+.RI "Retrieves \fBAbstractGroup\fP interface\&. "
+.ti -1c
+.RI "virtual Element \fBBERDecodeElement\fP (\fBBufferedTransformation\fP &bt) const =0"
+.br
+.RI "Decodes element in DER format\&. "
+.ti -1c
+.RI "virtual void \fBDEREncodeElement\fP (\fBBufferedTransformation\fP &bt, const Element &P) const =0"
+.br
+.RI "Encodes element in DER format\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_GroupPrecomputation< T >"\fBDL_GroupPrecomputation\fP interface\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Field element 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual Element \fBDL_GroupPrecomputation\fP< T >::BERDecodeElement (\fBBufferedTransformation\fP & bt) const\fR [pure virtual]\fP"
+
+.PP
+Decodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+element in the group 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupPrecomputation_LUC\fP, \fBEcPrecomputation< EC2N >\fP, \fBEcPrecomputation< ECP >\fP, and \fBModExpPrecomputation\fP\&.
+.SS "template<class T> virtual Element \fBDL_GroupPrecomputation\fP< T >::ConvertIn (const Element & v) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Converts an element between representations\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP element to convert 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an element converted to an alternate representation for internal use
+.RE
+.PP
+ConvertIn is used when an element must convert between representations\&. 
+.PP
+Reimplemented in \fBEcPrecomputation< ECP >\fP, and \fBModExpPrecomputation\fP\&.
+.SS "template<class T> virtual Element \fBDL_GroupPrecomputation\fP< T >::ConvertOut (const Element & v) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Converts an element between representations\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP element to convert 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an element converted from an alternate representation 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBEcPrecomputation< ECP >\fP, and \fBModExpPrecomputation\fP\&.
+.SS "template<class T> virtual void \fBDL_GroupPrecomputation\fP< T >::DEREncodeElement (\fBBufferedTransformation\fP & bt, const Element & P) const\fR [pure virtual]\fP"
+
+.PP
+Encodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIP\fP Element to encode 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupPrecomputation_LUC\fP, \fBEcPrecomputation< EC2N >\fP, \fBEcPrecomputation< ECP >\fP, and \fBModExpPrecomputation\fP\&.
+.SS "template<class T> virtual const \fBAbstractGroup\fP< Element > & \fBDL_GroupPrecomputation\fP< T >::GetGroup () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves \fBAbstractGroup\fP interface\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBGetGroup()\fP returns the \fBAbstractGroup\fP interface 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupPrecomputation_LUC\fP, \fBEcPrecomputation< EC2N >\fP, \fBEcPrecomputation< ECP >\fP, and \fBModExpPrecomputation\fP\&.
+.SS "template<class T> virtual bool \fBDL_GroupPrecomputation\fP< T >::NeedConversions () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if elements needs conversion\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the element needs conversion, false otherwise
+.RE
+.PP
+NeedConversions determines if an element must convert between representations\&. 
+.PP
+Reimplemented in \fBEcPrecomputation< ECP >\fP, and \fBModExpPrecomputation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

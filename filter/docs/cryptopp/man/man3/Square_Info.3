@@ -1,0 +1,66 @@
+.TH "Square_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Square_Info \- \fBSquare\fP block cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <square\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< 16 >\fP, \fBFixedKeyLength< 16 >\fP, and \fBFixedRounds< 8 >\fP\&.
+.PP
+Inherited by \fBTwoBases< BlockCipher, Square_Info >\fP, and \fBSquare\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedBlockSize< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedRounds< 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (ROUNDS=R)"
+.br
+.RI "The number of rounds for the algorithm provided as a constant\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBSquare\fP block cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.2 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,46 @@
+.TH "ssh_poll_handle_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_poll_handle_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_poll_ctx\fP \fBctx\fP"
+.br
+.ti -1c
+.RI "\fBssh_session\fP \fBsession\fP"
+.br
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   socket_t \fBfd\fP"
+.br
+.ti -1c
+.RI "   size_t \fBidx\fP"
+.br
+.ti -1c
+.RI "} \fBx\fP"
+.br
+.ti -1c
+.RI "short \fBevents\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBlock_cnt\fP"
+.br
+.ti -1c
+.RI "ssh_poll_callback \fBcb\fP"
+.br
+.ti -1c
+.RI "void * \fBcb_data\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

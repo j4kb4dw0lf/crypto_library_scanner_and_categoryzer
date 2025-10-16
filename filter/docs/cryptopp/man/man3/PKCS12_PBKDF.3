@@ -1,0 +1,258 @@
+.TH "PKCS12_PBKDF< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PKCS12_PBKDF< T > \- PBKDF from PKCS #12, appendix B\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pwdbased\&.h>\fP
+.PP
+Inherits \fBPasswordBasedKeyDerivationFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxDerivedKeyLength\fP () const"
+.br
+.RI "Determine maximum number of bytes\&. "
+.ti -1c
+.RI "size_t \fBGetValidDerivedLength\fP (size_t keylength) const"
+.br
+.RI "Returns a valid key length for the derivation function\&. "
+.ti -1c
+.RI "size_t \fBDeriveKey\fP (\fBbyte\fP *derived, size_t derivedLen, const \fBbyte\fP *secret, size_t secretLen, const \fBNameValuePairs\fP &params=g_nullNameValuePairs) const"
+.br
+.RI "Derive a key from a seed\&. "
+.ti -1c
+.RI "size_t \fBDeriveKey\fP (\fBbyte\fP *derived, size_t derivedLen, \fBbyte\fP purpose, const \fBbyte\fP *secret, size_t secretLen, const \fBbyte\fP *salt, size_t saltLen, unsigned int iterations, double timeInSeconds) const"
+.br
+.RI "Derive a key from a secret seed\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyDerivationFunction\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMinDerivedKeyLength\fP () const"
+.br
+.RI "Determine minimum number of bytes\&. "
+.ti -1c
+.RI "virtual bool \fBIsValidDerivedLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetParameters\fP (const \fBNameValuePairs\fP &params)"
+.br
+.RI "Set or change parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBKeyDerivationFunction\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidDerivedKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the derived key length\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class PKCS12_PBKDF< T >"PBKDF from PKCS #12, appendix B\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP a \fBHashTransformation\fP class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBPasswordBasedKeyDerivationFunction\fP, \fRPKCS12_PBKDF\fP on the Crypto++ wiki 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> std::string \fBPKCS12_PBKDF\fP< T >::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name 
+.RE
+.PP
+
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "template<class T> size_t \fBPKCS12_PBKDF\fP< T >::DeriveKey (\fBbyte\fP * derived, size_t derivedLen, \fBbyte\fP purpose, const \fBbyte\fP * secret, size_t secretLen, const \fBbyte\fP * salt, size_t saltLen, unsigned int iterations, double timeInSeconds) const"
+
+.PP
+Derive a key from a secret seed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIderived\fP the derived output buffer 
+.br
+\fIderivedLen\fP the size of the derived buffer, in bytes 
+.br
+\fIpurpose\fP a purpose byte 
+.br
+\fIsecret\fP the seed input buffer 
+.br
+\fIsecretLen\fP the size of the secret buffer, in bytes 
+.br
+\fIsalt\fP the salt input buffer 
+.br
+\fIsaltLen\fP the size of the salt buffer, in bytes 
+.br
+\fIiterations\fP the number of iterations 
+.br
+\fItimeInSeconds\fP the in seconds 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of iterations performed 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidDerivedKeyLength\fP\fP if \fRderivedLen\fP is invalid for the scheme
+.RE
+.PP
+\fBDeriveKey()\fP provides a standard interface to derive a key from a seed and other parameters\&. Each class that derives from \fBKeyDerivationFunction\fP provides an overload that accepts most parameters used by the derivation function\&.
+
+.PP
+If \fRtimeInSeconds\fP is \fR> 0\&.0\fP then DeriveKey will run for the specified amount of time\&. If \fRtimeInSeconds\fP is \fR0\&.0\fP then DeriveKey will run for the specified number of iterations\&. 
+.SS "template<class T> size_t \fBPKCS12_PBKDF\fP< T >::DeriveKey (\fBbyte\fP * derived, size_t derivedLen, const \fBbyte\fP * secret, size_t secretLen, const \fBNameValuePairs\fP & params = \fRg_nullNameValuePairs\fP) const\fR [virtual]\fP"
+
+.PP
+Derive a key from a seed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIderived\fP the derived output buffer 
+.br
+\fIderivedLen\fP the size of the derived buffer, in bytes 
+.br
+\fIsecret\fP the seed input buffer 
+.br
+\fIsecretLen\fP the size of the secret buffer, in bytes 
+.br
+\fIparams\fP additional initialization parameters to configure this object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of iterations performed 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidDerivedKeyLength\fP\fP if \fRderivedLen\fP is invalid for the scheme
+.RE
+.PP
+\fBDeriveKey()\fP provides a standard interface to derive a key from a secret seed and other parameters\&. Each class that derives from \fBKeyDerivationFunction\fP provides an overload that accepts most parameters used by the derivation function\&.
+
+.PP
+the number of iterations performed by \fBDeriveKey()\fP may be 1\&. For example, a scheme like \fBHKDF\fP does not use the iteration count so it returns 1\&. 
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "template<class T> const \fBAlgorithm\fP & \fBPKCS12_PBKDF\fP< T >::GetAlgorithm () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the base class \fBAlgorithm\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the base class \fBAlgorithm\fP 
+.RE
+.PP
+
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "template<class T> size_t \fBPKCS12_PBKDF\fP< T >::GetValidDerivedLength (size_t keylength) const\fR [virtual]\fP"
+
+.PP
+Returns a valid key length for the derivation function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the derived key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBKeyDerivationFunction\fP\&.
+.SS "template<class T> size_t \fBPKCS12_PBKDF\fP< T >::MaxDerivedKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determine maximum number of bytes\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Maximum number of bytes which can be derived 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBKeyDerivationFunction\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.
