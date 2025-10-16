@@ -1,0 +1,203 @@
+.TH "CFB_CipherAbstractPolicy" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFB_CipherAbstractPolicy \- Policy object for feedback based stream ciphers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherited by \fBModePolicyCommonTemplate< CFB_CipherAbstractPolicy >\fP, and \fBCFB_CipherConcretePolicy< WT, W, BASE >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBGetAlignment\fP () const =0"
+.br
+.RI "Provides data alignment requirements\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetBytesPerIteration\fP () const =0"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBGetRegisterBegin\fP ()=0"
+.br
+.RI "Access the feedback register\&. "
+.ti -1c
+.RI "virtual void \fBTransformRegister\fP ()=0"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual bool \fBCanIterate\fP () const"
+.br
+.RI "Flag indicating iteration support\&. "
+.ti -1c
+.RI "virtual void \fBIterate\fP (\fBbyte\fP *output, const \fBbyte\fP *input, \fBCipherDir\fP dir, size_t iterationCount)"
+.br
+.RI "Iterate the cipher\&. "
+.ti -1c
+.RI "virtual void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)=0"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "virtual void \fBCipherResynchronize\fP (const \fBbyte\fP *iv, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Policy object for feedback based stream ciphers\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual std::string CFB_CipherAbstractPolicy::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.SS "virtual bool CFB_CipherAbstractPolicy::CanIterate () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating iteration support\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the cipher supports iteration, false otherwise 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCFB_CipherConcretePolicy< WT, W, BASE >\fP, and \fBCFB_ModePolicy\fP\&.
+.SS "virtual void CFB_CipherAbstractPolicy::CipherResynchronize (const \fBbyte\fP * iv, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIlength\fP the size of the IV array 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCFB_ModePolicy\fP\&.
+.SS "virtual void CFB_CipherAbstractPolicy::CipherSetKey (const \fBNameValuePairs\fP & params, const \fBbyte\fP * key, size_t length)\fR [pure virtual]\fP"
+
+.PP
+Key the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP set of \fBNameValuePairs\fP use to initialize this object 
+.br
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.RE
+.PP
+
+.SS "virtual unsigned int CFB_CipherAbstractPolicy::GetAlignment () const\fR [pure virtual]\fP"
+
+.PP
+Provides data alignment requirements\&. 
+.PP
+\fBReturns\fP
+.RS 4
+data alignment requirements, in bytes
+.RE
+.PP
+Internally, the default implementation returns 1\&. If the stream cipher is implemented using an SSE2 ASM or intrinsics, then the value returned is usually 16\&. 
+.PP
+Implemented in \fBCFB_CipherConcretePolicy< WT, W, BASE >\fP\&.
+.SS "virtual unsigned int CFB_CipherAbstractPolicy::GetBytesPerIteration () const\fR [pure virtual]\fP"
+
+.PP
+Provides number of bytes operated upon during an iteration\&. 
+.PP
+\fBReturns\fP
+.RS 4
+bytes operated upon during an iteration, in bytes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetOptimalBlockSize() 
+.RE
+.PP
+
+.PP
+Implemented in \fBCFB_CipherConcretePolicy< WT, W, BASE >\fP, and \fBCFB_ModePolicy\fP\&.
+.SS "virtual \fBbyte\fP * CFB_CipherAbstractPolicy::GetRegisterBegin ()\fR [pure virtual]\fP"
+
+.PP
+Access the feedback register\&. 
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the first byte of the feedback register 
+.RE
+.PP
+
+.PP
+Implemented in \fBCFB_ModePolicy\fP\&.
+.SS "virtual void CFB_CipherAbstractPolicy::Iterate (\fBbyte\fP * output, const \fBbyte\fP * input, \fBCipherDir\fP dir, size_t iterationCount)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Iterate the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the output buffer 
+.br
+\fIinput\fP the input buffer 
+.br
+\fIdir\fP the direction of the cipher 
+.br
+\fIiterationCount\fP the number of iterations to perform on the input 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+IsSelfInverting() and IsForwardTransformation() 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCFB_ModePolicy\fP\&.
+.SS "virtual void CFB_CipherAbstractPolicy::TransformRegister ()\fR [pure virtual]\fP"
+
+.PP
+TODO\&. 
+.PP
+Implemented in \fBCFB_CipherConcretePolicy< WT, W, BASE >\fP, and \fBCFB_ModePolicy\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

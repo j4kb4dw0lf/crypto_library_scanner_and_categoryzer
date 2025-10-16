@@ -1,0 +1,78 @@
+.TH "ssh::SshException" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh::SshException \- if defined, disable C++ exceptions for libssh c++ wrapper  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <libsshpp\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSshException\fP (\fBssh_session\fP csession)"
+.br
+.ti -1c
+.RI "\fBSshException\fP (const \fBSshException\fP &e)"
+.br
+.ti -1c
+.RI "int \fBgetCode\fP ()"
+.br
+.RI "returns the Error code "
+.ti -1c
+.RI "std::string \fBgetError\fP ()"
+.br
+.RI "returns the error message of the last exception "
+.in -1c
+.SH "Detailed Description"
+.PP 
+if defined, disable C++ exceptions for libssh c++ wrapper 
+
+Some people do not like C++ exceptions\&. With this define, we give the choice to use or not exceptions\&.
+
+.PP
+This class describes a SSH Exception object\&. This object can be thrown by several SSH functions that interact with the network, and may fail because of socket, protocol or memory errors\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "int ssh::SshException::getCode ()\fR [inline]\fP"
+
+.PP
+returns the Error code 
+.PP
+\fBReturns\fP
+.RS 4
+SSH_FATAL Fatal error happened (not recoverable) 
+
+.PP
+SSH_REQUEST_DENIED Request was denied by remote host 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_error_code\fP 
+.RE
+.PP
+
+.SS "std::string ssh::SshException::getError ()\fR [inline]\fP"
+
+.PP
+returns the error message of the last exception 
+.PP
+\fBReturns\fP
+.RS 4
+pointer to a c string containing the description of error 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_get_error\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

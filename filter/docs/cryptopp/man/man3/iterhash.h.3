@@ -1,0 +1,62 @@
+.TH "/home/mock/cryptopp-master/iterhash.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/iterhash.h \- Base classes for iterated hashes\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'simple\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBHashInputTooLong\fP"
+.br
+.RI "\fBException\fP thrown when trying to hash more data than is allowed by a hash function\&. "
+.ti -1c
+.RI "class \fBIteratedHashBase< T, BASE >\fP"
+.br
+.RI "Iterated hash base class\&. "
+.ti -1c
+.RI "class \fBIteratedHash< T_HashWordType, T_Endianness, T_BlockSize, T_Base >\fP"
+.br
+.RI "Iterated hash base class\&. "
+.ti -1c
+.RI "class \fBIteratedHashWithStaticTransform< T_HashWordType, T_Endianness, T_BlockSize, T_StateSize, T_Transform, T_DigestSize, T_StateAligned >\fP"
+.br
+.RI "Iterated hash with a static transformation function\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBIteratedHashBase< word64, HashTransformation >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_STATIC_TEMPLATE_CLASS \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBIteratedHashBase< word32, HashTransformation >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_STATIC_TEMPLATE_CLASS \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Base classes for iterated hashes\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

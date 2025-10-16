@@ -1,0 +1,124 @@
+.TH "libssh_messages" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_messages \- The SSH message functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBssh_message\fP \fBssh_message_pop_head\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "\fBssh_message\fP \fBssh_message_get\fP (\fBssh_session\fP session)"
+.br
+.RI "Retrieve a SSH message from a SSH session\&. "
+.ti -1c
+.RI "int \fBssh_message_type\fP (\fBssh_message\fP msg)"
+.br
+.RI "Get the type of the message\&. "
+.ti -1c
+.RI "int \fBssh_message_subtype\fP (\fBssh_message\fP msg)"
+.br
+.RI "Get the subtype of the message\&. "
+.ti -1c
+.RI "void \fBssh_message_free\fP (\fBssh_message\fP msg)"
+.br
+.RI "Free a SSH message\&. "
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_userauth_info_response)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_channel_open)"
+.br
+.ti -1c
+.RI "int \fBssh_message_channel_request_open_reply_accept_channel\fP (\fBssh_message\fP msg, \fBssh_channel\fP chan)"
+.br
+.ti -1c
+.RI "\fBssh_channel\fP \fBssh_message_channel_request_open_reply_accept\fP (\fBssh_message\fP msg)"
+.br
+.ti -1c
+.RI "int \fBssh_message_handle_channel_request\fP (\fBssh_session\fP session, \fBssh_channel\fP channel, \fBssh_buffer\fP packet, const char *request, uint8_t want_reply)"
+.br
+.ti -1c
+.RI "int \fBssh_message_channel_request_reply_success\fP (\fBssh_message\fP msg)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This file contains the message parsing utilities for client and server programs using libssh\&.
+
+.PP
+On the server the main loop of the program will call ssh_message_get(session) to get messages as they come\&. They are not 1-1 with the protocol messages\&. Then, the user will know what kind of a message it is and use the appropriate functions to handle it (or use the default handlers if you don't know what to do)\&. 
+.SH "Function Documentation"
+.PP 
+.SS "void ssh_message_free (\fBssh_message\fP msg)"
+
+.PP
+Free a SSH message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to release the memory\&. 
+.RE
+.PP
+
+.SS "\fBssh_message\fP ssh_message_get (\fBssh_session\fP session)"
+
+.PP
+Retrieve a SSH message from a SSH session\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session to get the message\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The SSH message received, NULL in case of error, or timeout elapsed\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+This function blocks until a message has been received\&. Betterset up a callback if this behavior is unwanted\&. 
+.RE
+.PP
+
+.SS "int ssh_message_subtype (\fBssh_message\fP msg)"
+
+.PP
+Get the subtype of the message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to get the subtype from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The message type or -1 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_message_type (\fBssh_message\fP msg)"
+
+.PP
+Get the type of the message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP The message to get the type from\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The message type or -1 on error\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

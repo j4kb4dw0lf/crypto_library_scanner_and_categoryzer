@@ -1,0 +1,79 @@
+.TH "DL_CryptoSchemeOptions< T1, T2, T3, T4, T5 >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_CryptoSchemeOptions< T1, T2, T3, T4, T5 > \- Discrete Log (DL) crypto scheme options\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_KeyedSchemeOptions< T1, T2 >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T3 \fBKeyAgreementAlgorithm\fP"
+.br
+.ti -1c
+.RI "typedef T4 \fBKeyDerivationAlgorithm\fP"
+.br
+.ti -1c
+.RI "typedef T5 \fBSymmetricEncryptionAlgorithm\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_KeyedSchemeOptions< T1, T2 >\fP
+.in +1c
+.ti -1c
+.RI "typedef T2 \fBKeys\fP"
+.br
+.ti -1c
+.RI "typedef Keys::PrivateKey \fBPrivateKey\fP"
+.br
+.ti -1c
+.RI "typedef Keys::PublicKey \fBPublicKey\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_SchemeOptionsBase< T1, T2::PublicKey::GroupParameters >\fP
+.in +1c
+.ti -1c
+.RI "typedef T1 \fBAlgorithmInfo\fP"
+.br
+.ti -1c
+.RI "typedef T2 \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef GroupParameters::Element \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T1, class T2, class T3, class T4, class T5>
+.br
+struct DL_CryptoSchemeOptions< T1, T2, T3, T4, T5 >"Discrete Log (DL) crypto scheme options\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP algorithm information 
+.br
+\fIT2\fP keys used in the scheme 
+.br
+\fIT3\fP key agreement algorithm 
+.br
+\fIT4\fP key derivation algorithm 
+.br
+\fIT5\fP symmetric encryption algorithm 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,95 @@
+.TH "PKCS1v15_SignatureMessageEncodingMethod" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PKCS1v15_SignatureMessageEncodingMethod \- PKCS #1 v1\&.5 Signature Encoding Scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pkcspad\&.h>\fP
+.PP
+Inherits \fBPK_DeterministicSignatureMessageEncodingMethod\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBHashIdentifierLookup\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBMinRepresentativeBitLength\fP (size_t hashIdentifierSize, size_t digestSize) const"
+.br
+.ti -1c
+.RI "void \fBComputeMessageRepresentative\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, \fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_DeterministicSignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "bool \fBVerifyMessageRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLength\fP (size_t representativeBitLength, size_t hashIdentifierLength, size_t digestLength) const"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines whether an encoding method requires a random number generator\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "virtual bool \fBRecoverablePartFirst\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessSemisignature\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *semisignature, size_t semisignatureLength) const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessRecoverableMessage\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *presignature, size_t presignatureLength, \fBSecByteBlock\fP &semisignature) const"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromSemisignature\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, const \fBbyte\fP *presignature, size_t presignatureLength, const \fBbyte\fP *semisignature, size_t semisignatureLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+PKCS #1 v1\&.5 Signature Encoding Scheme\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fREMSA-PKCS1-v1_5\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void PKCS1v15_SignatureMessageEncodingMethod::ComputeMessageRepresentative (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * recoverableMessage, size_t recoverableMessageLength, \fBHashTransformation\fP & hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP * representative, size_t representativeBitLength) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_SignatureMessageEncodingMethod\fP\&.
+.SS "size_t PKCS1v15_SignatureMessageEncodingMethod::MinRepresentativeBitLength (size_t hashIdentifierSize, size_t digestSize) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBPK_SignatureMessageEncodingMethod\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

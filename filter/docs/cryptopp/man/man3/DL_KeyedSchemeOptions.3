@@ -1,0 +1,62 @@
+.TH "DL_KeyedSchemeOptions< T1, T2 >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_KeyedSchemeOptions< T1, T2 > \- Discrete Log (DL) key options\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_SchemeOptionsBase< T1, T2::PublicKey::GroupParameters >\fP\&.
+.PP
+Inherited by \fBDL_CryptoSchemeOptions< ElGamal, ElGamalKeys, int, int, int >\fP, \fBDL_CryptoSchemeOptions< ALG_INFO, KEYS, AA, DA, EA >\fP, \fBDL_SignatureSchemeOptions< ALG_INFO, KEYS, SA, MEM, H >\fP, \fBDL_CryptoSchemeOptions< T1, T2, T3, T4, T5 >\fP, and \fBDL_SignatureSchemeOptions< T1, T2, T3, T4, T5 >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T2 \fBKeys\fP"
+.br
+.ti -1c
+.RI "typedef Keys::PrivateKey \fBPrivateKey\fP"
+.br
+.ti -1c
+.RI "typedef Keys::PublicKey \fBPublicKey\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_SchemeOptionsBase< T1, T2::PublicKey::GroupParameters >\fP
+.in +1c
+.ti -1c
+.RI "typedef T1 \fBAlgorithmInfo\fP"
+.br
+.ti -1c
+.RI "typedef T2 \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef GroupParameters::Element \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T1, class T2>
+.br
+struct DL_KeyedSchemeOptions< T1, T2 >"Discrete Log (DL) key options\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP algorithm information 
+.br
+\fIT2\fP keys used in the scheme 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

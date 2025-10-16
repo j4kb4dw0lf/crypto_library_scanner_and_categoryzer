@@ -1,0 +1,165 @@
+.TH "/home/mock/cryptopp-master/allocate.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/allocate.h \- Functions for allocating aligned buffers\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBCallNewHandler\fP ()"
+.br
+.RI "Attempts to reclaim unused memory\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void *CRYPTOPP_API \fBAlignedAllocate\fP (size_t size)"
+.br
+.RI "Allocates a buffer on 16-byte boundary\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBAlignedDeallocate\fP (void *ptr)"
+.br
+.RI "Frees a buffer allocated with AlignedAllocate\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void *CRYPTOPP_API \fBUnalignedAllocate\fP (size_t size)"
+.br
+.RI "Allocates a buffer\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBUnalignedDeallocate\fP (void *ptr)"
+.br
+.RI "Frees a buffer allocated with UnalignedAllocate\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Functions for allocating aligned buffers\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "CRYPTOPP_DLL void *CRYPTOPP_API AlignedAllocate (size_t size)"
+
+.PP
+Allocates a buffer on 16-byte boundary\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the size of the buffer
+.RE
+.PP
+AlignedAllocate is primarily used when the data will be processed by SSE, NEON, ARMv8 or PowerPC instructions\&. The assembly language routines rely on the alignment\&. If the alignment is not respected, then a SIGBUS could be generated on Unix and Linux, and an EXCEPTION_DATATYPE_MISALIGNMENT could be generated on Windows\&.
+
+.PP
+Formerly, AlignedAllocate and AlignedDeallocate were only available on certain platforms when CRYTPOPP_DISABLE_ASM was not in effect\&. However, Android and iOS debug simulator builds got into a state where the aligned allocator was not available and caused link failures\&.
+.PP
+\fBSince\fP
+.RS 4
+AlignedAllocate for SIMD since Crypto++ 1\&.0, AlignedAllocate for all builds since Crypto++ 8\&.1
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlignedDeallocate\fP, \fBUnalignedAllocate\fP, \fBUnalignedDeallocate\fP, \fBCallNewHandler\fP, \fRIssue 779\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API AlignedDeallocate (void * ptr)"
+
+.PP
+Frees a buffer allocated with AlignedAllocate\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP the buffer to free
+.RE
+.PP
+\fBSince\fP
+.RS 4
+AlignedDeallocate for SIMD since Crypto++ 1\&.0, AlignedAllocate for all builds since Crypto++ 8\&.1
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlignedAllocate\fP, \fBUnalignedAllocate\fP, \fBUnalignedDeallocate\fP, \fBCallNewHandler\fP, \fRIssue 779\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API CallNewHandler ()"
+
+.PP
+Attempts to reclaim unused memory\&.
+.PP
+\fBExceptions\fP
+.RS 4
+\fIbad_alloc\fP
+.RE
+.PP
+In the normal course of running a program, a request for memory normally succeeds\&. If a call to AlignedAllocate or UnalignedAllocate fails, then CallNewHandler is called in n effort to recover\&. Internally, CallNewHandler calls set_new_handler(nullptr) in an effort to free memory\&. There is no guarantee CallNewHandler will be able to obtain more memory so an allocation succeeds\&. If the call to set_new_handler fails, then CallNewHandler throws a bad_alloc exception\&.
+.PP
+\fBExceptions\fP
+.RS 4
+\fIbad_alloc\fP on failure
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlignedAllocate\fP, \fBAlignedDeallocate\fP, \fBUnalignedAllocate\fP, \fBUnalignedDeallocate\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void *CRYPTOPP_API UnalignedAllocate (size_t size)"
+
+.PP
+Allocates a buffer\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the size of the buffer
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlignedAllocate\fP, \fBAlignedDeallocate\fP, \fBUnalignedDeallocate\fP, \fBCallNewHandler\fP, \fRIssue 779\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API UnalignedDeallocate (void * ptr)"
+
+.PP
+Frees a buffer allocated with UnalignedAllocate\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP the buffer to free
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBAlignedAllocate\fP, \fBAlignedDeallocate\fP, \fBUnalignedAllocate\fP, \fBCallNewHandler\fP, \fRIssue 779\fP
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

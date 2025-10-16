@@ -1,0 +1,87 @@
+.TH "Kalyna256" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Kalyna256 \- Kalyna 256-bit block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <kalyna\&.h>\fP
+.PP
+Inherits \fBKalyna256_Info\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBase\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBENCRYPTION\fP, \fBBase\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBDECRYPTION\fP, \fBBase\fP > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 32, 32, 64 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBKalyna256_Info\fP
+.in +1c
+.ti -1c
+.RI "static const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Kalyna 256-bit block cipher\&. 
+
+\fBKalyna256\fP provides 256-bit block size\&. The valid key sizes are 256-bit and 512-bit\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

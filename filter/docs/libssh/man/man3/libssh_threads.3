@@ -1,0 +1,136 @@
+.TH "libssh_threads" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_threads \- The SSH threading functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_threads_callbacks_struct\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int(* \fBssh_thread_callback\fP) (void **lock)"
+.br
+.ti -1c
+.RI "typedef unsigned long(* \fBssh_thread_id_callback\fP) (void)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "LIBSSH_API int \fBssh_threads_set_callbacks\fP (struct \fBssh_threads_callbacks_struct\fP *cb)"
+.br
+.RI "Set the thread callbacks structure\&. "
+.ti -1c
+.RI "LIBSSH_API struct \fBssh_threads_callbacks_struct\fP * \fBssh_threads_get_default\fP (void)"
+.br
+.RI "Returns a pointer to the appropriate callbacks structure for the environment, to be used with ssh_threads_set_callbacks\&. "
+.ti -1c
+.RI "LIBSSH_API struct \fBssh_threads_callbacks_struct\fP * \fBssh_threads_get_pthread\fP (void)"
+.br
+.RI "Returns a pointer on the pthread threads callbacks, to be used with ssh_threads_set_callbacks\&. "
+.ti -1c
+.RI "LIBSSH_API struct \fBssh_threads_callbacks_struct\fP * \fBssh_threads_get_noop\fP (void)"
+.br
+.RI "Get the noop threads callbacks structure\&. "
+.ti -1c
+.RI "int \fBssh_threads_init\fP (void)"
+.br
+.ti -1c
+.RI "void \fBssh_threads_finalize\fP (void)"
+.br
+.ti -1c
+.RI "const char * \fBssh_threads_get_type\fP (void)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Threading with libssh
+.SH "Function Documentation"
+.PP 
+.SS "LIBSSH_API struct \fBssh_threads_callbacks_struct\fP * ssh_threads_get_default (void )"
+
+.PP
+Returns a pointer to the appropriate callbacks structure for the environment, to be used with ssh_threads_set_callbacks\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to a \fBssh_threads_callbacks_struct\fP to be used with ssh_threads_set_callbacks\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_threads_set_callbacks\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API struct \fBssh_threads_callbacks_struct\fP * ssh_threads_get_noop (void )"
+
+.PP
+Get the noop threads callbacks structure\&. This can be used with ssh_threads_set_callbacks\&. These callbacks do nothing and are being used by default\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+Always returns a valid pointer to the noop callbacks structure\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_threads_set_callbacks\fP 
+.RE
+.PP
+
+.SS "LIBSSH_API struct \fBssh_threads_callbacks_struct\fP * ssh_threads_get_pthread (void )"
+
+.PP
+Returns a pointer on the pthread threads callbacks, to be used with ssh_threads_set_callbacks\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_threads_set_callbacks\fP 
+.RE
+.PP
+
+.SS "int ssh_threads_set_callbacks (struct \fBssh_threads_callbacks_struct\fP * cb)"
+
+.PP
+Set the thread callbacks structure\&. This is necessary if your program is using libssh in a multithreaded fashion\&. This function must be called first, outside of any threading context (in your main() function for instance), before you call \fBssh_init()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIcb\fP A pointer to a \fBssh_threads_callbacks_struct\fP structure, which contains the different callbacks to be set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Always returns SSH_OK\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_threads_callbacks_struct\fP 
+
+.PP
+SSH_THREADS_PTHREAD 
+.RE
+.PP
+\fBBug\fP
+.RS 4
+libgcrypt 1\&.6 and bigger backend does not support custom callback\&. Using anything else than pthreads here will fail\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

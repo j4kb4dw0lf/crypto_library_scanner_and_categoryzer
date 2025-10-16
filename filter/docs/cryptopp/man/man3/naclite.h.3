@@ -1,0 +1,53 @@
+.TH "/home/mock/cryptopp-master/naclite.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/naclite.h \- Crypto++ interface to TweetNaCl library (20140917)
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_DISABLE_NACL\fP   1"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Crypto++ interface to TweetNaCl library (20140917)
+
+TweetNaCl is a compact reimplementation of the NaCl library by Daniel J\&. Bernstein, Bernard van Gastel, Wesley Janssen, Tanja Lange, Peter Schwabe and Sjaak Smetsers\&. The library is less than 20 KB in size and provides 25 of the NaCl library functions\&.
+
+.PP
+The compact library uses curve25519, \fBXSalsa20\fP, \fBPoly1305\fP and SHA-512 as default primitives, and includes both \fBx25519\fP key exchange and \fBed25519\fP signatures\&. The complete list of functions can be found in \fRTweetNaCl: A crypto library in 100 tweets\fP (20140917), Table 1, page 5\&.
+
+.PP
+Crypto++ rejects small order elements using libsodium's blacklist\&. The TweetNaCl library allowed them but the library predated the attack\&. If you wish to allow small elements then use the "unchecked" versions of crypto_box_unchecked, crypto_box_open_unchecked and crypto_box_beforenm_unchecked\&.
+
+.PP
+TweetNaCl is well written but not well optimzed\&. It runs about 10x slower than optimized routines from libsodium\&. However, the library is still 2x to 4x faster than the algorithms NaCl was designed to replace and allows cross-checking results from an independent implementation\&.
+
+.PP
+The Crypto++ wrapper for TweetNaCl requires OS features\&. That is, \fRNO_OS_DEPENDENCE\fP cannot be defined\&. It is due to TweetNaCl's internal function \fRrandombytes\fP\&. Crypto++ used \fRDefaultAutoSeededRNG\fP within \fRrandombytes\fP, so OS integration must be enabled\&. You can use another generator like \fR\fBRDRAND\fP\fP to avoid the restriction\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRThe security impact of a new cryptographic library\fP, \fRTweetNaCl: A crypto library in 100 tweets\fP (20140917), \fRMay the Fourth Be With You: A Microarchitectural Side Channel Attack on Several Real-World Applications of Curve25519\fP, \fRlibsodium commit afabd7e7386e1194\fP and \fRRFC 7748, Elliptic Curves for Security\fP, Section 6\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,123 @@
+.TH "/home/mock/cryptopp-master/config_ver.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/config_ver.h \- Library configuration file\&.
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_MAJOR\fP   8"
+.br
+.RI "Library major version\&. "
+.ti -1c
+.RI "#define \fBCRYPTOPP_MINOR\fP   9"
+.br
+.RI "Library minor version\&. "
+.ti -1c
+.RI "#define \fBCRYPTOPP_REVISION\fP   0"
+.br
+.RI "Library revision number\&. "
+.ti -1c
+.RI "#define \fBCRYPTOPP_VERSION\fP   890"
+.br
+.RI "Full library version\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Library configuration file\&.
+
+\fR\fBconfig_ver\&.h\fP\fP provides defines for library and compiler versions\&.
+
+.PP
+\fR\fBconfig\&.h\fP\fP was split into components in May 2019 to better integrate with Autoconf and its feature tests\&. The splitting occurred so users could continue to include \fR\fBconfig\&.h\fP\fP while allowing Autoconf to write new \fR\fBconfig_asm\&.h\fP\fP and new \fR\fBconfig_cxx\&.h\fP\fP using its feature tests\&.
+.PP
+\fBNote\fP
+.RS 4
+You should include \fR\fBconfig\&.h\fP\fP rather than \fR\fBconfig_ver\&.h\fP\fP directly\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 835, Make config\&.h more autoconf friendly\fP, \fRConfigure\&.sh script\fP on the Crypto++ wiki
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_MAJOR   8"
+
+.PP
+Library major version\&. CRYPTOPP_MAJOR reflects the major version of the library the headers came from\&. It is not necessarily the version of the library built as a shared object if versions are inadvertently mixed and matched\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBCRYPTOPP_VERSION\fP, LibraryVersion(), \fBHeaderVersion()\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.2
+.RE
+.PP
+
+.SS "#define CRYPTOPP_MINOR   9"
+
+.PP
+Library minor version\&. CRYPTOPP_MINOR reflects the minor version of the library the headers came from\&. It is not necessarily the version of the library built as a shared object if versions are inadvertently mixed and matched\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBCRYPTOPP_VERSION\fP, LibraryVersion(), \fBHeaderVersion()\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.2
+.RE
+.PP
+
+.SS "#define CRYPTOPP_REVISION   0"
+
+.PP
+Library revision number\&. CRYPTOPP_REVISION reflects the revision number of the library the headers came from\&. It is not necessarily the revision of the library built as a shared object if versions are inadvertently mixed and matched\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBCRYPTOPP_VERSION\fP, LibraryVersion(), \fBHeaderVersion()\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.2
+.RE
+.PP
+
+.SS "#define CRYPTOPP_VERSION   890"
+
+.PP
+Full library version\&. CRYPTOPP_VERSION reflects the version of the library the headers came from\&. It is not necessarily the version of the library built as a shared object if versions are inadvertently mixed and matched\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBCRYPTOPP_MAJOR\fP, \fBCRYPTOPP_MINOR\fP, \fBCRYPTOPP_REVISION\fP, LibraryVersion(), \fBHeaderVersion()\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

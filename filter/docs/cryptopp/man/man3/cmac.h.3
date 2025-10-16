@@ -1,0 +1,55 @@
+.TH "/home/mock/cryptopp-master/cmac.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/cmac.h \- Classes for \fBCMAC\fP message authentication code\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'seckey\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBCMAC_Base\fP"
+.br
+.RI "\fBCMAC\fP base implementation\&. "
+.ti -1c
+.RI "class \fBCMAC< T >\fP"
+.br
+.RI "\fBCMAC\fP message authentication code\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_CMAC_WIDE_BLOCK_CIPHERS\fP   1"
+.br
+.RI "Enable \fBCMAC\fP and wide block ciphers\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for \fBCMAC\fP message authentication code\&.
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.0
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_CMAC_WIDE_BLOCK_CIPHERS   1"
+
+.PP
+Enable \fBCMAC\fP and wide block ciphers\&. \fBCMAC\fP is only defined for AES\&. The library can support wide block ciphers like Kaylna and Threefish since we know the polynomials\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

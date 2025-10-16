@@ -1,0 +1,367 @@
+.TH "Whirlpool" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Whirlpool \- \fBWhirlpool\fP message digest\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <whrlpool\&.h>\fP
+.PP
+Inherits \fBIteratedHashWithStaticTransform< word64, BigEndian, 64, 64, Whirlpool >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *hash, size_t size)"
+.br
+.RI "Computes the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHashWithStaticTransform< word64, BigEndian, 64, 64, Whirlpool >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=0 ? 0 :T_StateSize)"
+.br
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.RI "Provides the digest size of the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonableImpl< Whirlpool, AlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, Whirlpool > >\fP
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, Whirlpool >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=T_BlockSize)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_COMPILE_ASSERT\fP ((T_BlockSize &(T_BlockSize \- 1))==0)"
+.br
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the hash\&. "
+.ti -1c
+.RI "\fBByteOrder\fP \fBGetByteOrder\fP () const"
+.br
+.RI "Provides the byte order of the hash\&. "
+.ti -1c
+.RI "void \fBCorrectEndianess\fP (HashWordType *out, const HashWordType *in, size_t byteCount)"
+.br
+.RI "Adjusts the byte ordering of the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHashBase< word64, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "\fBIteratedHashBase\fP ()"
+.br
+.RI "Construct an \fBIteratedHashBase\fP\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Requests space which can be written into by the caller\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBInitState\fP (HashWordType *state)"
+.br
+.ti -1c
+.RI "static void \fBTransform\fP (word64 *digest, const word64 *data)"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, Whirlpool >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBigEndian\fP \fBByteOrderClass\fP"
+.br
+.ti -1c
+.RI "typedef word64 \fBHashWordType\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBIteratedHashBase< word64, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "typedef word64 \fBHashWordType\fP"
+.br
+.in -1c
+
+Protected Types inherited from \fBIteratedHashWithStaticTransform< word64, BigEndian, 64, 64, Whirlpool >\fP
+.in +1c
+.ti -1c
+.RI "enum "
+.br
+.in -1c
+
+Protected Types inherited from \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "enum "
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHashWithStaticTransform< word64, BigEndian, 64, 64, Whirlpool >\fP
+.in +1c
+.ti -1c
+.RI "void \fBHashEndianCorrectedBlock\fP (const word64 *data)"
+.br
+.ti -1c
+.RI "void \fBInit\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBStateBuf\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "word64 * \fBDataBuf\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHashBase< word64, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "word64 \fBGetBitCountHi\fP () const"
+.br
+.ti -1c
+.RI "word64 \fBGetBitCountLo\fP () const"
+.br
+.ti -1c
+.RI "void \fBPadLastBlock\fP (unsigned int lastBlockSize, \fBbyte\fP padFirst=0x80)"
+.br
+.ti -1c
+.RI "virtual size_t \fBHashMultipleBlocks\fP (const word64 *input, size_t length)"
+.br
+.ti -1c
+.RI "void \fBHashBlock\fP (const HashWordType *input)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+
+Protected Attributes inherited from \fBIteratedHashWithStaticTransform< word64, BigEndian, 64, 64, Whirlpool >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< word64, Blocks, false > \fBm_state\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< word64, Blocks > \fBm_data\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBWhirlpool\fP message digest\&. 
+
+Crypto++ provides version 3\&.0 of the \fBWhirlpool\fP algorithm\&. This version of the algorithm was submitted for ISO standardization\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.2 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRWhirlpool\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string Whirlpool::AlgorithmProvider () const\fR [virtual]\fP"
+The \fBWhirlpool\fP hashing function\&.
+
+.PP
+\fBReferences\fP
+
+.PP
+The \fBWhirlpool\fP algorithm was developed by \fRPaulo S\&. L\&. M\&. Barreto\fP and \fRVincent Rijmen\fP\&.
+
+.PP
+See P\&.S\&.L\&.M\&. Barreto, V\&. Rijmen, ``The \fBWhirlpool\fP hashing function,'' NESSIE submission, 2000 (tweaked version, 2001), https://www.cosic.esat.kuleuven.ac.be/nessie/workshop/submissions/whirlpool.zip
+
+.PP
+\fBAuthor\fP
+.RS 4
+Paulo S\&.L\&.M\&. Barreto 
+
+.PP
+Vincent Rijmen\&.
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+3\&.0 (2003\&.03\&.12)
+.RE
+.PP
+.PP
+
+.PP
+Differences from version 2\&.1:
+
+.PP
+.IP "\(bu" 2
+Suboptimal diffusion matrix replaced by cir(1, 1, 4, 1, 8, 5, 2, 9)\&.
+.PP
+
+.PP
+.PP
+
+.PP
+Differences from version 2\&.0:
+
+.PP
+.IP "\(bu" 2
+Generation of ISO/IEC 10118-3 test vectors\&.
+.IP "\(bu" 2
+Bug fix: nonzero carry was ignored when tallying the data length (this bug apparently only manifested itself when feeding data in pieces rather than in a single chunk at once)\&.
+.IP "\(bu" 2
+Support for MS Visual C++ 64-bit integer arithmetic\&.
+.PP
+
+.PP
+Differences from version 1\&.0:
+
+.PP
+.IP "\(bu" 2
+Original S-box replaced by the tweaked, hardware-efficient version\&.
+.PP
+
+.PP
+.PP
+
+.PP
+THIS SOFTWARE IS PROVIDED BY THE AUTHORS ''AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED\&. IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE\&. 
+.PP
+Reimplemented from \fBIteratedHashBase< word64, HashTransformation >\fP\&.
+.SS "void Whirlpool::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)\fR [virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls \fBFinal()\fP and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+Reimplemented from \fBIteratedHashBase< word64, HashTransformation >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

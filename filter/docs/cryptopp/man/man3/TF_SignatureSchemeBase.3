@@ -1,0 +1,72 @@
+.TH "TF_SignatureSchemeBase< INTFACE, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_SignatureSchemeBase< INTFACE, BASE > \- Trapdoor Function (TF) Signature Scheme base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits INTFACE, and BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBSignatureLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxRecoverableLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "bool \fBRecoverablePartFirst\fP () const"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBMessageRepresentativeLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMessageRepresentativeBitLength\fP () const"
+.br
+.ti -1c
+.RI "virtual HashIdentifier \fBGetHashIdentifier\fP () const =0"
+.br
+.ti -1c
+.RI "virtual size_t \fBGetDigestSize\fP () const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class INTFACE, class BASE>
+.br
+class TF_SignatureSchemeBase< INTFACE, BASE >"Trapdoor Function (TF) Signature Scheme base class\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIINTFACE\fP interface 
+.br
+\fIBASE\fP base class 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

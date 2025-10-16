@@ -1,0 +1,86 @@
+.TH "MessageAuthenticationCodeFinal< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MessageAuthenticationCodeFinal< BASE > \- Provides class member functions to key a message authentication code\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherits \fBClonableImpl< MessageAuthenticationCodeFinal< BASE >, MessageAuthenticationCodeImpl< BASE > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMessageAuthenticationCodeFinal\fP ()"
+.br
+.RI "Construct a default \fBMessageAuthenticationCodeFinal\fP\&. "
+.ti -1c
+.RI "\fBMessageAuthenticationCodeFinal\fP (const \fBbyte\fP *key)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.ti -1c
+.RI "\fBMessageAuthenticationCodeFinal\fP (const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Construct a \fBBlockCipherFinal\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonableImpl< MessageAuthenticationCodeFinal< BASE >, MessageAuthenticationCodeImpl< BASE > >\fP
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE>
+.br
+class MessageAuthenticationCodeFinal< BASE >"Provides class member functions to key a message authentication code\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP a \fBBlockCipherImpl\fP derived class
+.RE
+.PP
+A default implementation for \fBMessageAuthenticationCode\fP 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class BASE> \fBMessageAuthenticationCodeFinal\fP< BASE >\fB::MessageAuthenticationCodeFinal\fP ()\fR [inline]\fP"
+
+.PP
+Construct a default \fBMessageAuthenticationCodeFinal\fP\&. The message authentication code is not keyed\&. 
+.SS "template<class BASE> \fBMessageAuthenticationCodeFinal\fP< BASE >\fB::MessageAuthenticationCodeFinal\fP (const \fBbyte\fP * key)\fR [inline]\fP"
+
+.PP
+Construct a \fBBlockCipherFinal\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the algorithm
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+.SS "template<class BASE> \fBMessageAuthenticationCodeFinal\fP< BASE >\fB::MessageAuthenticationCodeFinal\fP (const \fBbyte\fP * key, size_t length)\fR [inline]\fP"
+
+.PP
+Construct a \fBBlockCipherFinal\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the algorithm 
+.br
+\fIlength\fP the length of the byte array
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. Internally, the function calls \fBSimpleKeyingInterface::SetKey\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

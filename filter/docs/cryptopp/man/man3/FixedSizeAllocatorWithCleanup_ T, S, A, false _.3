@@ -1,0 +1,230 @@
+.TH "FixedSizeAllocatorWithCleanup< T, S, A, false >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FixedSizeAllocatorWithCleanup< T, S, A, false > \- Static secure memory block with cleanup\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.PP
+Inherits \fBAllocatorBase< T >\fP, and \fBAllocatorBase< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAllocatorWithCleanup\fP ()"
+.br
+.RI "Constructs a \fBFixedSizeAllocatorWithCleanup\fP\&. "
+.ti -1c
+.RI "pointer \fBallocate\fP (size_type size)"
+.br
+.RI "Allocates a block of memory\&. "
+.ti -1c
+.RI "pointer \fBallocate\fP (size_type size, const void *hint)"
+.br
+.RI "Allocates a block of memory\&. "
+.ti -1c
+.RI "void \fBdeallocate\fP (void *ptr, size_type size)"
+.br
+.RI "Deallocates a block of memory\&. "
+.ti -1c
+.RI "pointer \fBreallocate\fP (pointer oldPtr, size_type oldSize, size_type newSize, bool preserve)"
+.br
+.RI "Reallocates a block of memory\&. "
+.ti -1c
+.RI "CRYPTOPP_CONSTEXPR size_type \fBmax_size\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "pointer \fBaddress\fP (reference r) const"
+.br
+.ti -1c
+.RI "const_pointer \fBaddress\fP (const_reference r) const"
+.br
+.ti -1c
+.RI "void \fBconstruct\fP (pointer p, const T &val)"
+.br
+.ti -1c
+.RI "void \fBdestroy\fP (pointer p)"
+.br
+.ti -1c
+.RI "CRYPTOPP_CONSTEXPR size_type \fBmax_size\fP () const"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "typedef T \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef size_t \fBsize_type\fP"
+.br
+.ti -1c
+.RI "typedef std::ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "typedef T * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef const T * \fBconst_pointer\fP"
+.br
+.ti -1c
+.RI "typedef T & \fBreference\fP"
+.br
+.ti -1c
+.RI "typedef const T & \fBconst_reference\fP"
+.br
+.in -1c
+
+Static Public Attributes inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "static const size_type \fBELEMS_MAX\fP = SIZE_MAX/sizeof(T)"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+
+Static Protected Member Functions inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "static void \fBCheckSize\fP (size_t size)"
+.br
+.RI "Verifies the allocator can satisfy a request based on size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, size_t S, class A>
+.br
+class FixedSizeAllocatorWithCleanup< T, S, A, false >"Static secure memory block with cleanup\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.br
+\fIS\fP fixed-size of the stack-based memory block, in elements
+.RE
+.PP
+\fBFixedSizeAllocatorWithCleanup\fP provides a fixed-size, stack- based allocation at compile time\&. The class can grow its memory block at runtime if a suitable allocator is available\&. If size grows beyond S and a suitable allocator is available, then the statically allocated array is obsoleted\&. 
+.PP
+\fBNote\fP
+.RS 4
+This allocator can't be used with standard collections because they require that all objects of the same allocator type are equivalent\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, size_t S, class A> pointer \fBFixedSizeAllocatorWithCleanup\fP< T, S, A, false >::allocate (size_type size)\fR [inline]\fP"
+
+.PP
+Allocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the count elements in the memory block
+.RE
+.PP
+\fBFixedSizeAllocatorWithCleanup\fP provides a fixed-size, stack-based allocation at compile time\&. If size is less than or equal to \fRS\fP, then a pointer to the static array is returned\&.
+
+.PP
+The class can grow its memory block at runtime if a suitable allocator is available\&. If size grows beyond S and a suitable allocator is available, then the statically allocated array is obsoleted\&. If a suitable allocator is not available, as with a \fBNullAllocator\fP, then the function returns NULL and a runtime error eventually occurs\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBreallocate()\fP, \fBSecBlockWithHint\fP 
+.RE
+.PP
+
+.SS "template<class T, size_t S, class A> pointer \fBFixedSizeAllocatorWithCleanup\fP< T, S, A, false >::allocate (size_type size, const void * hint)\fR [inline]\fP"
+
+.PP
+Allocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the count elements in the memory block 
+.br
+\fIhint\fP an unused hint
+.RE
+.PP
+\fBFixedSizeAllocatorWithCleanup\fP provides a fixed-size, stack- based allocation at compile time\&. If size is less than or equal to S, then a pointer to the static array is returned\&.
+
+.PP
+The class can grow its memory block at runtime if a suitable allocator is available\&. If size grows beyond S and a suitable allocator is available, then the statically allocated array is obsoleted\&. If a suitable allocator is not available, as with a \fBNullAllocator\fP, then the function returns NULL and a runtime error eventually occurs\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBreallocate()\fP, \fBSecBlockWithHint\fP 
+.RE
+.PP
+
+.SS "template<class T, size_t S, class A> void \fBFixedSizeAllocatorWithCleanup\fP< T, S, A, false >::deallocate (void * ptr, size_type size)\fR [inline]\fP"
+
+.PP
+Deallocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP a pointer to the memory block to deallocate 
+.br
+\fIsize\fP the count elements in the memory block
+.RE
+.PP
+The memory block is wiped or zeroized before deallocation\&. If the statically allocated memory block is active, then no additional actions are taken after the wipe\&.
+
+.PP
+If a dynamic memory block is active, then the pointer and size are passed to the allocator for deallocation\&. 
+.SS "template<class T, size_t S, class A> pointer \fBFixedSizeAllocatorWithCleanup\fP< T, S, A, false >::reallocate (pointer oldPtr, size_type oldSize, size_type newSize, bool preserve)\fR [inline]\fP"
+
+.PP
+Reallocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoldPtr\fP the previous allocation 
+.br
+\fIoldSize\fP the size of the previous allocation 
+.br
+\fInewSize\fP the new, requested size 
+.br
+\fIpreserve\fP flag that indicates if the old allocation should be preserved 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the new memory block
+.RE
+.PP
+\fBFixedSizeAllocatorWithCleanup\fP provides a fixed-size, stack- based allocation at compile time\&. If size is less than or equal to S, then a pointer to the static array is returned\&.
+
+.PP
+The class can grow its memory block at runtime if a suitable allocator is available\&. If size grows beyond S and a suitable allocator is available, then the statically allocated array is obsoleted\&. If a suitable allocator is not available, as with a \fBNullAllocator\fP, then the function returns NULL and a runtime error eventually occurs\&. 
+.PP
+\fBNote\fP
+.RS 4
+size is the count of elements, and not the number of bytes\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBreallocate()\fP, \fBSecBlockWithHint\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

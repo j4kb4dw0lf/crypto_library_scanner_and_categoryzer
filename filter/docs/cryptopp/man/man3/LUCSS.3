@@ -1,0 +1,89 @@
+.TH "LUCSS< STANDARD, H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LUCSS< STANDARD, H > \- \fBLUC\fP signature scheme with appendix\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <luc\&.h>\fP
+.PP
+Inherits \fBTF_SS< LUC, STANDARD, H >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBTF_SS< LUC, STANDARD, H >\fP
+.in +1c
+.ti -1c
+.RI "typedef STANDARD \fBStandard\fP"
+.br
+.RI "see \fBSignatureStandard\fP for a list of standards "
+.ti -1c
+.RI "typedef Standard::SignatureMessageEncodingMethod \fBMessageEncodingMethod\fP"
+.br
+.ti -1c
+.RI "typedef \fBTF_SignatureSchemeOptions\fP< \fBTF_SS\fP< \fBLUC\fP, STANDARD, H, int >, \fBLUC\fP, MessageEncodingMethod, H > \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBTF_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBTF_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBLUC\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBLUCFunction\fP \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBInvertibleLUCFunction\fP \fBPrivateKey\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBTF_SS< LUC, STANDARD, H >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBLUC\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class STANDARD, class H>
+.br
+struct LUCSS< STANDARD, H >"\fBLUC\fP signature scheme with appendix\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fISTANDARD\fP signature standard 
+.br
+\fIH\fP hash transformation
+.RE
+.PP
+This class is here for historical and pedagogical interest\&. It has no practical advantages over other trapdoor functions and probably shouldn't be used in production software\&. The discrete log based \fBLUC\fP schemes defined later in this \&.h file may be of more practical interest\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

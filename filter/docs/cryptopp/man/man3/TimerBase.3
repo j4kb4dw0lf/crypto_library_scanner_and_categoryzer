@@ -1,0 +1,172 @@
+.TH "TimerBase" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TimerBase \- Base class for timers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <hrtimer\&.h>\fP
+.PP
+Inherited by \fBThreadUserTimer\fP, and \fBTimer\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBUnit\fP { \fBSECONDS\fP = 0, \fBMILLISECONDS\fP, \fBMICROSECONDS\fP, \fBNANOSECONDS\fP }"
+.br
+.RI "\fBUnit\fP of measure\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTimerBase\fP (\fBUnit\fP unit, bool stuckAtZero)"
+.br
+.RI "Construct a \fBTimerBase\fP\&. "
+.ti -1c
+.RI "virtual \fBTimerWord\fP \fBGetCurrentTimerValue\fP ()=0"
+.br
+.RI "Retrieve the current timer value\&. "
+.ti -1c
+.RI "virtual \fBTimerWord\fP \fBTicksPerSecond\fP ()=0"
+.br
+.RI "Retrieve ticks per second\&. "
+.ti -1c
+.RI "void \fBStartTimer\fP ()"
+.br
+.RI "Start the timer\&. "
+.ti -1c
+.RI "double \fBElapsedTimeAsDouble\fP ()"
+.br
+.RI "Retrieve the elapsed time\&. "
+.ti -1c
+.RI "unsigned long \fBElapsedTime\fP ()"
+.br
+.RI "Retrieve the elapsed time\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Base class for timers\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBThreadUserTimer\fP, \fBTimer\fP 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBTimerBase::Unit\fP"
+
+.PP
+\fBUnit\fP of measure\&. \fBUnit\fP selects the unit of measure as returned by functions \fBElapsedTimeAsDouble()\fP and \fBElapsedTime()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBElapsedTimeAsDouble\fP, \fBElapsedTime\fP 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BISECONDS \fP
+\fBTimer\fP unit is seconds\&. All timers support seconds 
+.TP
+\f(BIMILLISECONDS \fP
+\fBTimer\fP unit is milliseconds\&. All timers support milliseconds 
+.TP
+\f(BIMICROSECONDS \fP
+\fBTimer\fP unit is microseconds\&. The timer requires hardware support microseconds 
+.TP
+\f(BINANOSECONDS \fP
+\fBTimer\fP unit is nanoseconds\&. The timer requires hardware support nanoseconds 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "TimerBase::TimerBase (\fBUnit\fP unit, bool stuckAtZero)\fR [inline]\fP"
+
+.PP
+Construct a \fBTimerBase\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIunit\fP the unit of measure 
+.br
+\fIstuckAtZero\fP flag 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned long TimerBase::ElapsedTime ()"
+
+.PP
+Retrieve the elapsed time\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the elapsed time as an unsigned long
+.RE
+.PP
+The return value of \fBElapsedTime()\fP depends upon the \fBUnit\fP selected during construction of the timer\&. For example, if \fR\fBUnit\fP = SECONDS\fP and \fBElapsedTime()\fP returns 3, then the timer has run for 3 seconds\&. If \fR\fBUnit\fP = MILLISECONDS\fP and \fBElapsedTime()\fP returns 3000, then the timer has run for 3 seconds\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBUnit\fP, \fBElapsedTimeAsDouble\fP 
+.RE
+.PP
+
+.SS "double TimerBase::ElapsedTimeAsDouble ()"
+
+.PP
+Retrieve the elapsed time\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the elapsed time as a double
+.RE
+.PP
+The return value of \fBElapsedTimeAsDouble()\fP depends upon the \fBUnit\fP selected during construction of the timer\&. For example, if \fR\fBUnit\fP = SECONDS\fP and \fBElapsedTimeAsDouble()\fP returns 3, then the timer has run for 3 seconds\&. If \fR\fBUnit\fP = MILLISECONDS\fP and \fBElapsedTimeAsDouble()\fP returns 3000, then the timer has run for 3 seconds\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBUnit\fP, \fBElapsedTime\fP 
+.RE
+.PP
+
+.SS "virtual \fBTimerWord\fP TimerBase::GetCurrentTimerValue ()\fR [pure virtual]\fP"
+
+.PP
+Retrieve the current timer value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the current timer value 
+.RE
+.PP
+
+.PP
+Implemented in \fBThreadUserTimer\fP, and \fBTimer\fP\&.
+.SS "virtual \fBTimerWord\fP TimerBase::TicksPerSecond ()\fR [pure virtual]\fP"
+
+.PP
+Retrieve ticks per second\&. 
+.PP
+\fBReturns\fP
+.RS 4
+ticks per second
+.RE
+.PP
+\fBTicksPerSecond()\fP is not the timer resolution\&. It is a conversion factor into seconds\&. 
+.PP
+Implemented in \fBThreadUserTimer\fP, and \fBTimer\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

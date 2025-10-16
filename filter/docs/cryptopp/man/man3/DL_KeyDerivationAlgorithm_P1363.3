@@ -1,0 +1,56 @@
+.TH "DL_KeyDerivationAlgorithm_P1363< T, DHAES_MODE, KDF >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_KeyDerivationAlgorithm_P1363< T, DHAES_MODE, KDF > \- P1363 based Key Derivation Method\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_KeyDerivationAlgorithm< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "void \fBDerive\fP (const \fBDL_GroupParameters\fP< T > &params, \fBbyte\fP *derivedKey, size_t derivedLength, const T &agreedElement, const T &ephemeralPublicKey, const \fBNameValuePairs\fP &parameters) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, bool DHAES_MODE, class KDF>
+.br
+class DL_KeyDerivationAlgorithm_P1363< T, DHAES_MODE, KDF >"P1363 based Key Derivation Method\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP FieldElement type or class 
+.br
+\fIDHAES_MODE\fP flag indicating DHAES mode 
+.br
+\fIKDF\fP key derivation function
+.RE
+.PP
+FieldElement \fRT\fP can be \fBInteger\fP, \fBECP\fP or \fBEC2N\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, bool DHAES_MODE, class KDF> void \fBDL_KeyDerivationAlgorithm_P1363\fP< T, DHAES_MODE, KDF >::Derive (const \fBDL_GroupParameters\fP< T > & params, \fBbyte\fP * derivedKey, size_t derivedLength, const T & agreedElement, const T & ephemeralPublicKey, const \fBNameValuePairs\fP & parameters) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_KeyDerivationAlgorithm< T >\fP\&.
+.SS "template<class T, bool DHAES_MODE, class KDF> bool \fBDL_KeyDerivationAlgorithm_P1363\fP< T, DHAES_MODE, KDF >::ParameterSupported (const char * name) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBDL_KeyDerivationAlgorithm< T >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

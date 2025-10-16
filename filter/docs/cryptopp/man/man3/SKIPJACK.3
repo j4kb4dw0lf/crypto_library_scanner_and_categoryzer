@@ -1,0 +1,80 @@
+.TH "SKIPJACK" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SKIPJACK \- \fBSKIPJACK\fP block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <skipjack\&.h>\fP
+.PP
+Inherits \fBSKIPJACK_Info\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBENCRYPTION\fP, Enc > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBDECRYPTION\fP, Dec > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 10 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBSKIPJACK_Info\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBSKIPJACK\fP block cipher\&. 
+
+The Crypto++ implementation conforms to \fBSKIPJACK\fP and KEA \fBAlgorithm\fP Specifications published by NIST in May 1998\&. The library passes known answer tests available in NIST SP800-17, Table 6, pp\&. 140-42\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRSKIPJACK and KEA Algorithm Specifications\fP (May 1998), \fRSKIPJACK\fP on the Crypto++ wiki 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

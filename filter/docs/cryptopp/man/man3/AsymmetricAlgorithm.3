@@ -1,0 +1,95 @@
+.TH "AsymmetricAlgorithm" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AsymmetricAlgorithm \- Interface for asymmetric algorithms\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBAlgorithm\fP\&.
+.PP
+Inherited by \fBKeyAgreementAlgorithm\fP, \fBPrivateKeyAlgorithm\fP, and \fBPublicKeyAlgorithm\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBCryptoMaterial\fP & \fBAccessMaterial\fP ()=0"
+.br
+.RI "Retrieves a reference to \fBCryptoMaterial\fP\&. "
+.ti -1c
+.RI "virtual const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const =0"
+.br
+.RI "Retrieves a reference to \fBCryptoMaterial\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for asymmetric algorithms\&. 
+
+BERDecode() and DEREncode() were removed under Issue 569 and Commit 9b174e84de7a\&. Programs should use \fR\fBAccessMaterial()\fP\&.Load(bt)\fP or \fR\fBGetMaterial()\fP\&.Save(bt)\fP instead\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 569\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBCryptoMaterial\fP & AsymmetricAlgorithm::AccessMaterial ()\fR [pure virtual]\fP"
+
+.PP
+Retrieves a reference to \fBCryptoMaterial\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference to the crypto material 
+.RE
+.PP
+
+.PP
+Implemented in \fBKeyAgreementAlgorithm\fP, \fBPrivateKeyAlgorithm\fP, and \fBPublicKeyAlgorithm\fP\&.
+.SS "virtual const \fBCryptoMaterial\fP & AsymmetricAlgorithm::GetMaterial () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves a reference to \fBCryptoMaterial\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the crypto material 
+.RE
+.PP
+
+.PP
+Implemented in \fBKeyAgreementAlgorithm\fP, \fBPrivateKeyAlgorithm\fP, and \fBPublicKeyAlgorithm\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

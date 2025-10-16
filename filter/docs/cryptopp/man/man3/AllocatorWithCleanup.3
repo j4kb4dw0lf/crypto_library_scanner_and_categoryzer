@@ -1,0 +1,212 @@
+.TH "AllocatorWithCleanup< T, T_Align16 >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AllocatorWithCleanup< T, T_Align16 > \- Allocates a block of memory with cleanup\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.PP
+Inherits \fBAllocatorBase< T >\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBrebind\fP"
+.br
+.RI "Template class member Rebind\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "pointer \fBallocate\fP (size_type size, const void *ptr=NULLPTR)"
+.br
+.RI "Allocates a block of memory\&. "
+.ti -1c
+.RI "void \fBdeallocate\fP (void *ptr, size_type size)"
+.br
+.RI "Deallocates a block of memory\&. "
+.ti -1c
+.RI "pointer \fBreallocate\fP (T *oldPtr, size_type oldSize, size_type newSize, bool preserve)"
+.br
+.RI "Reallocates a block of memory\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "pointer \fBaddress\fP (reference r) const"
+.br
+.ti -1c
+.RI "const_pointer \fBaddress\fP (const_reference r) const"
+.br
+.ti -1c
+.RI "void \fBconstruct\fP (pointer p, const T &val)"
+.br
+.ti -1c
+.RI "void \fBdestroy\fP (pointer p)"
+.br
+.ti -1c
+.RI "CRYPTOPP_CONSTEXPR size_type \fBmax_size\fP () const"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "typedef T \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef size_t \fBsize_type\fP"
+.br
+.ti -1c
+.RI "typedef std::ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "typedef T * \fBpointer\fP"
+.br
+.ti -1c
+.RI "typedef const T * \fBconst_pointer\fP"
+.br
+.ti -1c
+.RI "typedef T & \fBreference\fP"
+.br
+.ti -1c
+.RI "typedef const T & \fBconst_reference\fP"
+.br
+.in -1c
+
+Static Public Attributes inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "static const size_type \fBELEMS_MAX\fP = SIZE_MAX/sizeof(T)"
+.br
+.RI "Returns the maximum number of elements the allocator can provide\&. "
+.in -1c
+
+Static Protected Member Functions inherited from \fBAllocatorBase< T >\fP
+.in +1c
+.ti -1c
+.RI "static void \fBCheckSize\fP (size_t size)"
+.br
+.RI "Verifies the allocator can satisfy a request based on size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, bool T_Align16 = false>
+.br
+class AllocatorWithCleanup< T, T_Align16 >"Allocates a block of memory with cleanup\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.br
+\fIT_Align16\fP boolean that determines whether allocations should be aligned on a 16-byte boundary
+.RE
+.PP
+If T_Align16 is true, then \fBAllocatorWithCleanup\fP calls AlignedAllocate() for memory allocations\&. If T_Align16 is false, then \fBAllocatorWithCleanup()\fP calls UnalignedAllocate() for memory allocations\&.
+
+.PP
+Template parameter T_Align16 is effectively controlled by \fBcryptlib\&.h\fP and mirrors CRYPTOPP_BOOL_ALIGN16\&. CRYPTOPP_BOOL_ALIGN16 is often used as the template parameter\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, bool T_Align16 = false> pointer \fBAllocatorWithCleanup\fP< T, T_Align16 >::allocate (size_type size, const void * ptr = \fRNULLPTR\fP)\fR [inline]\fP"
+
+.PP
+Allocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP the size of the allocation 
+.br
+\fIsize\fP the size of the allocation, in elements 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a memory block 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP 
+.RE
+.PP
+\fBallocate()\fP first checks the size of the request\&. If it is non-0 and less than \fBmax_size()\fP, then an attempt is made to fulfill the request using either AlignedAllocate() or UnalignedAllocate()\&. AlignedAllocate() is used if T_Align16 is true\&. UnalignedAllocate() used if T_Align16 is false\&.
+
+.PP
+This is the C++ \fIPlacement New\fP operator\&. ptr is not used, and the function asserts in Debug builds if ptr is non-NULL\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCallNewHandler()\fP for the methods used to recover from a failed allocation attempt\&. 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+size is the count of elements, and not the number of bytes 
+.RE
+.PP
+
+.SS "template<class T, bool T_Align16 = false> void \fBAllocatorWithCleanup\fP< T, T_Align16 >::deallocate (void * ptr, size_type size)\fR [inline]\fP"
+
+.PP
+Deallocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP the pointer for the allocation 
+.br
+\fIsize\fP the size of the allocation, in elements
+.RE
+.PP
+Internally, \fBSecureWipeArray()\fP is called before deallocating the memory\&. Once the memory block is wiped or zeroized, AlignedDeallocate() or UnalignedDeallocate() is called\&.
+
+.PP
+AlignedDeallocate() is used if T_Align16 is true\&. UnalignedDeallocate() used if T_Align16 is false\&. 
+.SS "template<class T, bool T_Align16 = false> pointer \fBAllocatorWithCleanup\fP< T, T_Align16 >::reallocate (T * oldPtr, size_type oldSize, size_type newSize, bool preserve)\fR [inline]\fP"
+
+.PP
+Reallocates a block of memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoldPtr\fP the previous allocation 
+.br
+\fIoldSize\fP the size of the previous allocation 
+.br
+\fInewSize\fP the new, requested size 
+.br
+\fIpreserve\fP flag that indicates if the old allocation should be preserved 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the new memory block
+.RE
+.PP
+Internally, \fBreallocate()\fP calls \fBStandardReallocate()\fP\&.
+
+.PP
+If preserve is true, then index 0 is used to begin copying the old memory block to the new one\&. If the block grows, then the old array is copied in its entirety\&. If the block shrinks, then only newSize elements are copied from the old block to the new one\&. 
+.PP
+\fBNote\fP
+.RS 4
+oldSize and newSize are the count of elements, and not the number of bytes\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

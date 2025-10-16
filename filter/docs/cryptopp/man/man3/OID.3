@@ -1,0 +1,231 @@
+.TH "OID" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OID \- Object Identifier\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <asn\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBOID\fP ()"
+.br
+.RI "Construct an \fBOID\fP\&. "
+.ti -1c
+.RI "\fBOID\fP (\fBword32\fP v)"
+.br
+.RI "Construct an \fBOID\fP\&. "
+.ti -1c
+.RI "\fBOID\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Construct an \fBOID\fP\&. "
+.ti -1c
+.RI "\fBOID\fP & \fBoperator+=\fP (\fBword32\fP rhs)"
+.br
+.RI "Append a value to an \fBOID\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode this \fBOID\fP\&. "
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode an \fBOID\fP\&. "
+.ti -1c
+.RI "void \fBBERDecodeAndCheck\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "BER decode an \fBOID\fP\&. "
+.ti -1c
+.RI "bool \fBEmpty\fP () const"
+.br
+.RI "Determine if \fBOID\fP is empty\&. "
+.ti -1c
+.RI "const std::vector< \fBword32\fP > & \fBGetValues\fP () const"
+.br
+.RI "Retrieve \fBOID\fP value array\&. "
+.ti -1c
+.RI "std::ostream & \fBPrint\fP (std::ostream &out) const"
+.br
+.RI "Print an \fBOID\fP\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBword32\fP > \fBm_values\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBOID\fP &lhs, const \fBOID\fP &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBOID\fP &lhs, const \fBOID\fP &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBOID\fP &lhs, const \fBOID\fP &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator>\fP (const \fBOID\fP &lhs, const \fBOID\fP &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator<=\fP (const \fBOID\fP &lhs, const \fBOID\fP &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator>=\fP (const \fBOID\fP &lhs, const \fBOID\fP &rhs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Object Identifier\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "OID::OID (\fBword32\fP v)\fR [inline]\fP"
+
+.PP
+Construct an \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIv\fP value to initialize the \fBOID\fP 
+.RE
+.PP
+
+.SS "OID::OID (\fBBufferedTransformation\fP & bt)\fR [inline]\fP"
+
+.PP
+Construct an \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void OID::BERDecode (\fBBufferedTransformation\fP & bt)"
+
+.PP
+BER decode an \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.SS "void OID::BERDecodeAndCheck (\fBBufferedTransformation\fP & bt) const"
+
+.PP
+BER decode an \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBBERDecodeErr()\fP\fP if decoded value doesn't match an expected \fBOID\fP
+.RE
+.PP
+\fBBERDecodeAndCheck()\fP can be used to parse an \fBOID\fP and verify it matches an expected\&. 
+.PP
+.nf
+
+  \fBBERSequenceDecoder\fP key(bt);
+  \&.\&.\&.
+  \fBBERSequenceDecoder\fP algorithm(key);
+  GetAlgorithmID()\&.BERDecodeAndCheck(algorithm);
+.fi
+.PP
+ 
+.SS "void OID::DEREncode (\fBBufferedTransformation\fP & bt) const"
+
+.PP
+DER encode this \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.SS "bool OID::Empty () const\fR [inline]\fP"
+
+.PP
+Determine if \fBOID\fP is empty\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if \fBOID\fP has 0 elements, false otherwise 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SS "const std::vector< \fBword32\fP > & OID::GetValues () const\fR [inline]\fP"
+
+.PP
+Retrieve \fBOID\fP value array\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBOID\fP value vector 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SS "\fBOID\fP & OID::operator+= (\fBword32\fP rhs)\fR [inline]\fP"
+
+.PP
+Append a value to an \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP the value to append 
+.RE
+.PP
+
+.SS "std::ostream & OID::Print (std::ostream & out) const"
+
+.PP
+Print an \fBOID\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIout\fP ostream object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+ostream reference
+.RE
+.PP
+\fBPrint()\fP writes the \fBOID\fP in a customary format, like 1\&.2\&.840\&.113549\&.1\&.1\&.11\&. The caller is reposnsible to convert the \fBOID\fP to a friendly name, like sha256WithRSAEncryption\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

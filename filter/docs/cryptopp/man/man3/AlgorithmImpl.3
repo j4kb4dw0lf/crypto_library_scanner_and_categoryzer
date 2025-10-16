@@ -1,0 +1,78 @@
+.TH "AlgorithmImpl< BASE, ALGORITHM_INFO >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AlgorithmImpl< BASE, ALGORITHM_INFO > \- Base class information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits BASE\&.
+.PP
+Inherited by \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ConcretePolicyHolder< Empty, CFB_EncryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ConcretePolicyHolder< Empty, CFB_DecryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ConcretePolicyHolder< Empty, CFB_RequireFullDataBlocks< CFB_EncryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ConcretePolicyHolder< Empty, CFB_RequireFullDataBlocks< CFB_DecryptionTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, CFB_ModePolicy > > > > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, OFB_ModePolicy > > > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ConcretePolicyHolder< Empty, AdditiveCipherTemplate< AbstractPolicyHolder< AdditiveCipherAbstractPolicy, CTR_ModePolicy > > > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, ECB_OneWay >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Decryption, ECB_OneWay >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, CBC_Encryption >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Decryption, CBC_Decryption >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, CBC_CTS_Encryption >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Decryption, CBC_CTS_Decryption >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Encryption, XTS_Final< CIPHER > >\fP, \fBCipherModeFinalTemplate_CipherHolder< typename CIPHER::Decryption, XTS_Final< CIPHER > >\fP, \fBSymmetricCipherFinal< ARC4_Base >\fP, \fBSymmetricCipherFinal< MARC4_Base >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< ChaCha_Policy, AdditiveCipherTemplate<> >, ChaCha_Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< ChaChaTLS_Policy, AdditiveCipherTemplate<> >, ChaChaTLS_Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< XChaCha20_Policy, AdditiveCipherTemplate<> >, XChaCha20_Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< HC128Policy, AdditiveCipherTemplate<> >, HC128Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< HC256Policy, AdditiveCipherTemplate<> >, HC256Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< PanamaCipherPolicy< B >, AdditiveCipherTemplate<> >, PanamaCipherInfo< B > >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< RabbitPolicy, AdditiveCipherTemplate<> >, RabbitInfo >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< RabbitWithIVPolicy, AdditiveCipherTemplate<> >, RabbitWithIVInfo >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< Salsa20_Policy, AdditiveCipherTemplate<> >, Salsa20_Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< XSalsa20_Policy, AdditiveCipherTemplate<> >, XSalsa20_Info >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< SEAL_Policy< B >, AdditiveCipherTemplate<> >, SEAL_Info< B > >\fP, \fBSymmetricCipherFinal< ConcretePolicyHolder< SosemanukPolicy, AdditiveCipherTemplate<> >, SosemanukInfo >\fP, and \fBSymmetricCipherFinal< ConcretePolicyHolder< WAKE_Policy< B >, AdditiveCipherTemplate<> >, WAKE_OFB_Info< B > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class ALGORITHM_INFO = BASE>
+.br
+class AlgorithmImpl< BASE, ALGORITHM_INFO >"Base class information\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP an \fBAlgorithm\fP derived class 
+.br
+\fIALGORITHM_INFO\fP an \fBAlgorithm\fP derived class
+.RE
+.PP
+\fBAlgorithmImpl\fP provides StaticAlgorithmName from the template parameter BASE 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE, class ALGORITHM_INFO = BASE> std::string \fBAlgorithmImpl\fP< BASE, ALGORITHM_INFO >::AlgorithmName () const\fR [inline]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+AlgorithmName returns the algorithm's name as a member function\&. The name is acquired by calling StaticAlgorithmName\&. 
+.PP
+Reimplemented in \fBHMAC< T >\fP, \fBHMAC< H >\fP, \fBHMAC< SHA256 >\fP, \fBKalyna128::Base\fP, \fBKalyna256::Base\fP, \fBKalyna512::Base\fP, \fBSIMON128::Base\fP, \fBSIMON64::Base\fP, \fBSPECK128::Base\fP, and \fBSPECK64::Base\fP\&.
+.SS "template<class BASE, class ALGORITHM_INFO = BASE> std::string CRYPTOPP_API \fBAlgorithmImpl\fP< BASE, ALGORITHM_INFO >::StaticAlgorithmName ()\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&. The name is taken from information provided by BASE\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

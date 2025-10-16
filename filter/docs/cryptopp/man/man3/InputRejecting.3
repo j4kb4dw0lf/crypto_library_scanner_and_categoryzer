@@ -1,0 +1,194 @@
+.TH "InputRejecting< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+InputRejecting< T > \- Base class for input rejecting filters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits T\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBInputRejected\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.PP
+.RI "\fBINPUT\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "size_t \fBPut2\fP (const \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input a byte array for processing\&. "
+.in -1c
+.in -1c
+.PP
+.RI "\fBSIGNALS\fP"
+.br
+
+.in +1c
+.in +1c
+.ti -1c
+.RI "bool \fBIsolatedFlush\fP (bool hardFlush, bool blocking)"
+.br
+.RI "Flushes data buffered by this object, without signal propagation\&. "
+.ti -1c
+.RI "bool \fBIsolatedMessageSeriesEnd\fP (bool blocking)"
+.br
+.RI "Marks the end of a series of messages, without signal propagation\&. "
+.ti -1c
+.RI "size_t \fBChannelPut2\fP (const std::string &channel, const \fBbyte\fP *inString, size_t length, int messageEnd, bool blocking)"
+.br
+.RI "Input multiple bytes for processing on a channel\&. "
+.ti -1c
+.RI "bool \fBChannelMessageSeriesEnd\fP (const std::string &channel, int messageEnd, bool blocking)"
+.br
+.RI "Marks the end of a series of messages on a channel\&. "
+.in -1c
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class InputRejecting< T >"Base class for input rejecting filters\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+T should be a \fBBufferedTransformation\fP derived class 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> bool \fBInputRejecting\fP< T >::ChannelMessageSeriesEnd (const std::string & channel, int messageEnd, bool blocking)\fR [inline]\fP"
+
+.PP
+Marks the end of a series of messages on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to signal the end of a series of messages 
+.br
+\fImessageEnd\fP the number of attached transformations the \fBChannelMessageSeriesEnd()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the message was successful, false otherwise
+.RE
+.PP
+Each object that receives the signal will perform its processing, decrement propagation, and then pass the signal on to attached transformations if the value is not 0\&.
+
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+There should be a MessageEnd() immediately before MessageSeriesEnd()\&. 
+.RE
+.PP
+
+.SS "template<class T> size_t \fBInputRejecting\fP< T >::ChannelPut2 (const std::string & channel, const \fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP"
+
+.PP
+Input multiple bytes for processing on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to process the data\&. 
+.br
+\fIinString\fP the byte buffer to process\&. 
+.br
+\fIlength\fP the size of the string, in bytes\&. 
+.br
+\fImessageEnd\fP means how many filters to signal MessageEnd() to, including this one\&. 
+.br
+\fIblocking\fP specifies whether the object should block when processing input\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed) 
+.RE
+.PP
+
+.SS "template<class T> bool \fBInputRejecting\fP< T >::IsolatedFlush (bool hardFlush, bool blocking)\fR [inline]\fP"
+
+.PP
+Flushes data buffered by this object, without signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhardFlush\fP indicates whether all data should be flushed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+hardFlush must be used with care 
+.RE
+.PP
+
+.SS "template<class T> bool \fBInputRejecting\fP< T >::IsolatedMessageSeriesEnd (bool blocking)\fR [inline]\fP"
+
+.PP
+Marks the end of a series of messages, without signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIblocking\fP specifies whether the object should block when completing the processing on the current series of messages 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the message was successful, false otherwise 
+.RE
+.PP
+
+.SS "template<class T> size_t \fBInputRejecting\fP< T >::Put2 (const \fBbyte\fP * inString, size_t length, int messageEnd, bool blocking)\fR [inline]\fP"
+
+.PP
+Input a byte array for processing\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinString\fP the byte array to process 
+.br
+\fIlength\fP the size of the string, in bytes 
+.br
+\fImessageEnd\fP means how many filters to signal MessageEnd() to, including this one 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInputRejected\fP\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of bytes that remain to be processed (i\&.e\&., bytes not processed)
+.RE
+.PP
+Internally, the default implementation throws \fBInputRejected\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

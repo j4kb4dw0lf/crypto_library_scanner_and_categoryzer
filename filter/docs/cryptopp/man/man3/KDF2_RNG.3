@@ -1,0 +1,112 @@
+.TH "KDF2_RNG" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+KDF2_RNG
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBRandomNumberGenerator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBKDF2_RNG\fP (const \fBbyte\fP *seed, size_t seedSize)"
+.br
+.ti -1c
+.RI "void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "size_t \fBClampSize\fP (size_t req) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "virtual bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual \fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffUL)"
+.br
+.RI "Generate a random 32 bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "void KDF2_RNG::GenerateBlock (\fBbyte\fP * output, size_t size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate random array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the byte buffer 
+.br
+\fIsize\fP the length of the buffer, in bytes
+.RE
+.PP
+All generated values are uniformly distributed over the range specified within the the constraints of a particular generator\&. 
+.PP
+\fBNote\fP
+.RS 4
+A derived generator \fImust\fP override either \fBGenerateBlock()\fP or \fBGenerateIntoBufferedTransformation()\fP\&. They can override both, or have one call the other\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

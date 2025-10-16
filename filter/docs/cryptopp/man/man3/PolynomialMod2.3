@@ -1,0 +1,422 @@
+.TH "PolynomialMod2" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PolynomialMod2 \- Polynomial with Coefficients in GF(2)  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gf2n\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDivideByZero\fP"
+.br
+.RI "\fBException\fP thrown when divide by zero is encountered\&. "
+.in -1c
+.SS "ENUMS, EXCEPTIONS, and TYPEDEFS"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned int \fBRandomizationParameter\fP"
+.br
+.in -1c
+.SS "INPUT/OUTPUT"
+
+.in +1c
+.ti -1c
+.RI "class \fBGF2NT\fP"
+.br
+.ti -1c
+.RI "class \fBGF2NT233\fP"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBPolynomialMod2\fP &a)"
+.br
+.in -1c
+.SS "CREATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialMod2\fP ()"
+.br
+.RI "Construct the zero polynomial\&. "
+.ti -1c
+.RI "\fBPolynomialMod2\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.RI "Copy construct a \fBPolynomialMod2\fP\&. "
+.ti -1c
+.RI "\fBPolynomialMod2\fP (word value, size_t bitLength=\fBWORD_BITS\fP)"
+.br
+.RI "Construct a \fBPolynomialMod2\fP from a word\&. "
+.ti -1c
+.RI "\fBPolynomialMod2\fP (const \fBbyte\fP *encodedPoly, size_t byteCount)"
+.br
+.RI "Construct a \fBPolynomialMod2\fP from big-endian byte array\&. "
+.ti -1c
+.RI "\fBPolynomialMod2\fP (\fBBufferedTransformation\fP &encodedPoly, size_t byteCount)"
+.br
+.RI "Construct a \fBPolynomialMod2\fP from big-endian form stored in a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "\fBPolynomialMod2\fP (\fBRandomNumberGenerator\fP &rng, size_t bitcount)"
+.br
+.RI "Create a uniformly distributed random polynomial\&. "
+.ti -1c
+.RI "static \fBPolynomialMod2\fP CRYPTOPP_API \fBMonomial\fP (size_t i)"
+.br
+.RI "Provides x^i\&. "
+.ti -1c
+.RI "static \fBPolynomialMod2\fP CRYPTOPP_API \fBTrinomial\fP (size_t t0, size_t t1, size_t t2)"
+.br
+.RI "Provides x^t0 + x^t1 + x^t2\&. "
+.ti -1c
+.RI "static \fBPolynomialMod2\fP CRYPTOPP_API \fBPentanomial\fP (size_t t0, size_t t1, size_t t2, size_t t3, size_t t4)"
+.br
+.RI "Provides x^t0 + x^t1 + x^t2 + x^t3 + x^t4\&. "
+.ti -1c
+.RI "static \fBPolynomialMod2\fP CRYPTOPP_API \fBAllOnes\fP (size_t n)"
+.br
+.RI "Provides x^(n-1) + \&.\&.\&. + x + 1\&. "
+.ti -1c
+.RI "static const \fBPolynomialMod2\fP &CRYPTOPP_API \fBZero\fP ()"
+.br
+.RI "The Zero polinomial\&. "
+.ti -1c
+.RI "static const \fBPolynomialMod2\fP &CRYPTOPP_API \fBOne\fP ()"
+.br
+.RI "The One polinomial\&. "
+.in -1c
+.SS "ENCODE/DECODE"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBMinEncodedSize\fP () const"
+.br
+.RI "minimum number of bytes to encode this polynomial "
+.ti -1c
+.RI "void \fBEncode\fP (\fBbyte\fP *output, size_t outputLen) const"
+.br
+.ti -1c
+.RI "void \fBEncode\fP (\fBBufferedTransformation\fP &bt, size_t outputLen) const"
+.br
+.ti -1c
+.RI "void \fBDecode\fP (const \fBbyte\fP *input, size_t inputLen)"
+.br
+.ti -1c
+.RI "void \fBDecode\fP (\fBBufferedTransformation\fP &bt, size_t inputLen)"
+.br
+.ti -1c
+.RI "void \fBDEREncodeAsOctetString\fP (\fBBufferedTransformation\fP &bt, size_t length) const"
+.br
+.RI "encode value as big-endian octet string "
+.ti -1c
+.RI "void \fBBERDecodeAsOctetString\fP (\fBBufferedTransformation\fP &bt, size_t length)"
+.br
+.RI "decode value as big-endian octet string "
+.in -1c
+.SS "ACCESSORS"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBBitCount\fP () const"
+.br
+.RI "number of significant bits = \fBDegree()\fP + 1 "
+.ti -1c
+.RI "unsigned int \fBByteCount\fP () const"
+.br
+.RI "number of significant bytes = ceiling(\fBBitCount()\fP/8) "
+.ti -1c
+.RI "unsigned int \fBWordCount\fP () const"
+.br
+.RI "number of significant words = ceiling(\fBByteCount()\fP/sizeof(word)) "
+.ti -1c
+.RI "bool \fBGetBit\fP (size_t n) const"
+.br
+.RI "return the n-th bit, n=0 being the least significant bit "
+.ti -1c
+.RI "\fBbyte\fP \fBGetByte\fP (size_t n) const"
+.br
+.RI "return the n-th byte "
+.ti -1c
+.RI "signed int \fBDegree\fP () const"
+.br
+.RI "the zero polynomial will return a degree of -1 "
+.ti -1c
+.RI "unsigned int \fBCoefficientCount\fP () const"
+.br
+.RI "degree + 1 "
+.ti -1c
+.RI "int \fBGetCoefficient\fP (size_t i) const"
+.br
+.RI "return coefficient for x^i "
+.ti -1c
+.RI "int \fBoperator[]\fP (unsigned int i) const"
+.br
+.RI "return coefficient for x^i "
+.ti -1c
+.RI "bool \fBIsZero\fP () const"
+.br
+.ti -1c
+.RI "bool \fBEquals\fP (const \fBPolynomialMod2\fP &rhs) const"
+.br
+.in -1c
+.SS "MANIPULATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator&=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator^=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator+=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator\-=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator*=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator/=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator%=\fP (const \fBPolynomialMod2\fP &t)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator<<=\fP (unsigned int)"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP & \fBoperator>>=\fP (unsigned int)"
+.br
+.ti -1c
+.RI "void \fBRandomize\fP (\fBRandomNumberGenerator\fP &rng, size_t bitcount)"
+.br
+.ti -1c
+.RI "void \fBSetBit\fP (size_t i, int value=1)"
+.br
+.ti -1c
+.RI "void \fBSetByte\fP (size_t n, \fBbyte\fP value)"
+.br
+.RI "set the n-th byte to value "
+.ti -1c
+.RI "void \fBSetCoefficient\fP (size_t i, int value)"
+.br
+.ti -1c
+.RI "void \fBswap\fP (\fBPolynomialMod2\fP &a)"
+.br
+.in -1c
+.SS "UNARY OPERATORS"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator!\fP () const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBoperator+\fP () const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBoperator\-\fP () const"
+.br
+.in -1c
+.SS "BINARY OPERATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBAnd\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBXor\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBPlus\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBMinus\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBTimes\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBDividedBy\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBModulo\fP (const \fBPolynomialMod2\fP &b) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBoperator>>\fP (unsigned int n) const"
+.br
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBoperator<<\fP (unsigned int n) const"
+.br
+.in -1c
+.SS "OTHER ARITHMETIC FUNCTIONS"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBParity\fP () const"
+.br
+.RI "sum modulo 2 of all coefficients "
+.ti -1c
+.RI "bool \fBIsIrreducible\fP () const"
+.br
+.RI "check for irreducibility "
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBDoubled\fP () const"
+.br
+.RI "is always zero since we're working modulo 2 "
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBSquared\fP () const"
+.br
+.ti -1c
+.RI "bool \fBIsUnit\fP () const"
+.br
+.RI "only 1 is a unit "
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBMultiplicativeInverse\fP () const"
+.br
+.RI "return inverse if *this is a unit, otherwise return 0 "
+.ti -1c
+.RI "\fBPolynomialMod2\fP \fBInverseMod\fP (const \fBPolynomialMod2\fP &) const"
+.br
+.RI "calculate multiplicative inverse of *this mod n "
+.ti -1c
+.RI "static \fBPolynomialMod2\fP CRYPTOPP_API \fBGcd\fP (const \fBPolynomialMod2\fP &a, const \fBPolynomialMod2\fP &n)"
+.br
+.RI "greatest common divisor "
+.ti -1c
+.RI "static void CRYPTOPP_API \fBDivide\fP (\fBPolynomialMod2\fP &r, \fBPolynomialMod2\fP &q, const \fBPolynomialMod2\fP &a, const \fBPolynomialMod2\fP &d)"
+.br
+.RI "calculate r and q such that (a == d*q + r) && (deg(r) < deg(d)) "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Polynomial with Coefficients in GF(2) 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "PolynomialMod2::PolynomialMod2 (word value, size_t bitLength = \fR\fBWORD_BITS\fP\fP)"
+
+.PP
+Construct a \fBPolynomialMod2\fP from a word\&. value should be encoded with the least significant bit as coefficient to x^0 and most significant bit as coefficient to x^(WORD_BITS-1) bitLength denotes how much memory to allocate initially 
+.SS "PolynomialMod2::PolynomialMod2 (\fBRandomNumberGenerator\fP & rng, size_t bitcount)\fR [inline]\fP"
+
+.PP
+Create a uniformly distributed random polynomial\&. Create a random polynomial uniformly distributed over all polynomials with degree less than bitcount 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBPolynomialMod2\fP PolynomialMod2::AllOnes (size_t n)\fR [static]\fP"
+
+.PP
+Provides x^(n-1) + \&.\&.\&. + x + 1\&. 
+.PP
+\fBReturns\fP
+.RS 4
+x^(n-1) + \&.\&.\&. + x + 1 
+.RE
+.PP
+
+.SS "void PolynomialMod2::Encode (\fBbyte\fP * output, size_t outputLen) const"
+encode in big-endian format
+
+.PP
+if outputLen < MinEncodedSize, the most significant bytes will be dropped if outputLen > MinEncodedSize, the most significant bytes will be padded 
+.SS "unsigned int PolynomialMod2::MinEncodedSize () const\fR [inline]\fP"
+
+.PP
+minimum number of bytes to encode this polynomial MinEncodedSize of 0 is 1 
+.SS "\fBPolynomialMod2\fP PolynomialMod2::Monomial (size_t i)\fR [static]\fP"
+
+.PP
+Provides x^i\&. 
+.PP
+\fBReturns\fP
+.RS 4
+x^i 
+.RE
+.PP
+
+.SS "const \fBPolynomialMod2\fP & PolynomialMod2::One ()\fR [static]\fP"
+
+.PP
+The One polinomial\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the one polynomial 
+.RE
+.PP
+
+.SS "\fBPolynomialMod2\fP PolynomialMod2::Pentanomial (size_t t0, size_t t1, size_t t2, size_t t3, size_t t4)\fR [static]\fP"
+
+.PP
+Provides x^t0 + x^t1 + x^t2 + x^t3 + x^t4\&. 
+.PP
+\fBReturns\fP
+.RS 4
+x^t0 + x^t1 + x^t2 + x^t3 + x^t4 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+The coefficients should be provided in descending order\&. That is, 
+.PP
+.nf
+t0 > t1 > t2 > t3 > t4
+.PP
+.nf
+\&. 
+.fi
+.PP
+.fi
+.PP
+.RE
+.PP
+
+.SS "\fBPolynomialMod2\fP PolynomialMod2::Trinomial (size_t t0, size_t t1, size_t t2)\fR [static]\fP"
+
+.PP
+Provides x^t0 + x^t1 + x^t2\&. 
+.PP
+\fBReturns\fP
+.RS 4
+x^t0 + x^t1 + x^t2 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+The coefficients should be provided in descending order\&. That is, 
+.PP
+.nf
+t0 > t1 > t2
+.PP
+.nf
+\&. 
+.fi
+.PP
+.fi
+.PP
+.RE
+.PP
+
+.SS "const \fBPolynomialMod2\fP & PolynomialMod2::Zero ()\fR [static]\fP"
+
+.PP
+The Zero polinomial\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the zero polynomial 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

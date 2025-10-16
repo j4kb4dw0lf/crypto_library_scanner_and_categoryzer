@@ -1,0 +1,478 @@
+.TH "DL_PrivateKey_ECGDSA< EC >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_PrivateKey_ECGDSA< EC > \- Elliptic Curve German \fBDSA\fP key for ISO/IEC 15946\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.PP
+Inherits \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef EC::Point \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_GroupParameters_EC\fP< EC >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_PrivateKey< DL_GroupParameters_EC< EC >::Element >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_GroupParameters_EC\fP< EC >\fB::Element\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_KeyImpl< PKCS8PrivateKey, DL_GroupParameters_EC< EC > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_GroupParameters_EC\fP< EC > \fBGroupParameters\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBDL_GroupParameters_EC\fP< EC > &params, const \fBInteger\fP &x)"
+.br
+.RI "Initialize an EC Private Key using {GP,x}\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (const EC &ec, const Element &G, const \fBInteger\fP &n, const \fBInteger\fP &x)"
+.br
+.RI "Initialize an EC Private Key using {EC,G,n,x}\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (\fBRandomNumberGenerator\fP &rng, const \fBDL_GroupParameters_EC\fP< EC > &params)"
+.br
+.RI "Create an EC private key\&. "
+.ti -1c
+.RI "void \fBInitialize\fP (\fBRandomNumberGenerator\fP &rng, const EC &ec, const Element &G, const \fBInteger\fP &n)"
+.br
+.RI "Create an EC private key\&. "
+.ti -1c
+.RI "virtual void \fBMakePublicKey\fP (\fBDL_PublicKey_ECGDSA\fP< EC > &pub) const"
+.br
+.ti -1c
+.RI "virtual bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "virtual void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "void \fBBERDecodePrivateKey\fP (\fBBufferedTransformation\fP &bt, bool parametersPresent, size_t size)"
+.br
+.RI "Decode privateKey part of privateKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncodePrivateKey\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode privateKey part of privateKeyInfo\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP
+.in +1c
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.ti -1c
+.RI "bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "void \fBPrecompute\fP (unsigned int precomputationStorage=16)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.RI "Retrieves abstract group parameters\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetPrivateExponent\fP () const"
+.br
+.RI "Retrieves the private exponent\&. "
+.ti -1c
+.RI "void \fBSetPrivateExponent\fP (const \fBInteger\fP &x)"
+.br
+.RI "Sets the private exponent\&. "
+.ti -1c
+.RI "void \fBBERDecodePrivateKey\fP (\fBBufferedTransformation\fP &bt, bool, size_t)"
+.br
+.RI "Decode privateKey part of privateKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncodePrivateKey\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode privateKey part of privateKeyInfo\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_PrivateKey< DL_GroupParameters_EC< EC >::Element >\fP
+.in +1c
+.ti -1c
+.RI "void \fBMakePublicKey\fP (\fBDL_PublicKey\fP< \fBDL_GroupParameters_EC\fP< EC >\fB::Element\fP > &pub) const"
+.br
+.RI "Initializes a public key from this key\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Initialize or reinitialize this key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_KeyImpl< PKCS8PrivateKey, DL_GroupParameters_EC< EC > >\fP
+.in +1c
+.ti -1c
+.RI "\fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.ti -1c
+.RI "bool \fBBERDecodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "bool \fBDEREncodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.ti -1c
+.RI "const \fBDL_GroupParameters_EC\fP< EC > & \fBGetGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "\fBDL_GroupParameters_EC\fP< EC > & \fBAccessGroupParameters\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPKCS8PrivateKey\fP
+.in +1c
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBBERDecodeOptionalAttributes\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode optional attributes\&. "
+.ti -1c
+.RI "virtual void \fBDEREncodeOptionalAttributes\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode optional attributes\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1CryptoMaterial< PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+
+Protected Attributes inherited from \fBPKCS8PrivateKey\fP
+.in +1c
+.ti -1c
+.RI "\fBByteQueue\fP \fBm_optionalAttributes\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC>
+.br
+class DL_PrivateKey_ECGDSA< EC >"Elliptic Curve German \fBDSA\fP key for ISO/IEC 15946\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBECGDSA\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class EC> virtual void \fBDL_PrivateKey_ECGDSA\fP< EC >::AssignFrom (const \fBNameValuePairs\fP & source)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Implements \fBCryptoMaterial\fP\&.
+.SS "template<class EC> void \fBDL_PrivateKey_ECGDSA\fP< EC >::BERDecodePrivateKey (\fBBufferedTransformation\fP & bt, bool parametersPresent, size_t size)\fR [virtual]\fP"
+
+.PP
+Decode privateKey part of privateKeyInfo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIparametersPresent\fP flag indicating if algorithm parameters are present 
+.br
+\fIsize\fP number of octets to read for the parameters, in bytes
+.RE
+.PP
+\fBBERDecodePrivateKey()\fP the decodes privateKey part of privateKeyInfo, without the OCTET STRING header\&.
+
+.PP
+When \fRparametersPresent = true\fP then \fBBERDecodePrivateKey()\fP calls BERDecodeAlgorithmParameters() to parse algorithm parameters\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBBERDecodeAlgorithmParameters\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPKCS8PrivateKey\fP\&.
+.SS "template<class EC> void \fBDL_PrivateKey_ECGDSA\fP< EC >::DEREncodePrivateKey (\fBBufferedTransformation\fP & bt) const\fR [virtual]\fP"
+
+.PP
+Encode privateKey part of privateKeyInfo\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+\fBDEREncodePrivateKey()\fP encodes the privateKey part of privateKeyInfo, without the OCTET STRING header\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDEREncodeAlgorithmParameters\fP 
+.RE
+.PP
+
+.PP
+Implements \fBPKCS8PrivateKey\fP\&.
+.SS "template<class EC> virtual bool \fBDL_PrivateKey_ECGDSA\fP< EC >::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBNameValuePairs\fP\&.
+.SS "template<class EC> void \fBDL_PrivateKey_ECGDSA\fP< EC >::Initialize (const \fBDL_GroupParameters_EC\fP< EC > & params, const \fBInteger\fP & x)\fR [inline]\fP"
+
+.PP
+Initialize an EC Private Key using {GP,x}\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP group parameters 
+.br
+\fIx\fP the private exponent
+.RE
+.PP
+This \fBInitialize()\fP function overload initializes a private key from existing parameters\&. 
+.SS "template<class EC> void \fBDL_PrivateKey_ECGDSA\fP< EC >::Initialize (const EC & ec, const Element & G, const \fBInteger\fP & n, const \fBInteger\fP & x)\fR [inline]\fP"
+
+.PP
+Initialize an EC Private Key using {EC,G,n,x}\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIec\fP the elliptic curve 
+.br
+\fIG\fP the base point 
+.br
+\fIn\fP the order of the base point 
+.br
+\fIx\fP the private exponent
+.RE
+.PP
+This \fBInitialize()\fP function overload initializes a private key from existing parameters\&. 
+.SS "template<class EC> void \fBDL_PrivateKey_ECGDSA\fP< EC >::Initialize (\fBRandomNumberGenerator\fP & rng, const \fBDL_GroupParameters_EC\fP< EC > & params)\fR [inline]\fP"
+
+.PP
+Create an EC private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIparams\fP the EC group parameters
+.RE
+.PP
+This function overload of \fBInitialize()\fP creates a new private key because it takes a \fBRandomNumberGenerator()\fP as a parameter\&. If you have an existing keypair, then use one of the other \fBInitialize()\fP overloads\&. 
+.SS "template<class EC> void \fBDL_PrivateKey_ECGDSA\fP< EC >::Initialize (\fBRandomNumberGenerator\fP & rng, const EC & ec, const Element & G, const \fBInteger\fP & n)\fR [inline]\fP"
+
+.PP
+Create an EC private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIec\fP the elliptic curve 
+.br
+\fIG\fP the base point 
+.br
+\fIn\fP the order of the base point
+.RE
+.PP
+This function overload of \fBInitialize()\fP creates a new private key because it takes a \fBRandomNumberGenerator()\fP as a parameter\&. If you have an existing keypair, then use one of the other \fBInitialize()\fP overloads\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,87 @@
+.TH "member_ptr< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+member_ptr< T > \- Pointer that overloads operator ->  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <smartptr\&.h>\fP
+.PP
+Inherited by \fBASNOptional< T >\fP, \fBclonable_ptr< T >\fP, and \fBvalue_ptr< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmember_ptr\fP (T *p=NULLPTR)"
+.br
+.ti -1c
+.RI "const T & \fBoperator*\fP () const"
+.br
+.ti -1c
+.RI "T & \fBoperator*\fP ()"
+.br
+.ti -1c
+.RI "const T * \fBoperator\->\fP () const"
+.br
+.ti -1c
+.RI "T * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "const T * \fBget\fP () const"
+.br
+.ti -1c
+.RI "T * \fBget\fP ()"
+.br
+.ti -1c
+.RI "T * \fBrelease\fP ()"
+.br
+.ti -1c
+.RI "void \fBreset\fP (T *p=NULLPTR)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmember_ptr\fP (const \fBmember_ptr\fP< T > &rhs)"
+.br
+.ti -1c
+.RI "void \fBoperator=\fP (const \fBmember_ptr\fP< T > &rhs)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "T * \fBm_p\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class member_ptr< T >"Pointer that overloads operator -> 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBmember_ptr\fP is used frequently in the library to avoid the issues related to std::auto_ptr in C++11 (deprecated) and std::unique_ptr in C++03 (non-existent)\&. 
+.PP
+\fBBug\fP
+.RS 4
+\fRIssue 48: "Use of auto_ptr causes dirty compile under C++11"\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

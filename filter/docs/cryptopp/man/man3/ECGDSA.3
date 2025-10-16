@@ -1,0 +1,82 @@
+.TH "ECGDSA< EC, H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECGDSA< EC, H > \- Elliptic Curve German Digital Signature \fBAlgorithm\fP signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.PP
+Inherits \fBDL_SS< DL_Keys_ECGDSA< EC >, DL_Algorithm_ECGDSA< EC >, DL_SignatureMessageEncodingMethod_DSA, H >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBDL_SS< DL_Keys_ECGDSA< EC >, DL_Algorithm_ECGDSA< EC >, DL_SignatureMessageEncodingMethod_DSA, H >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_SS< DL_Keys_ECGDSA< EC >, DL_Algorithm_ECGDSA< EC >, DL_SignatureMessageEncodingMethod_DSA, H >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBDL_Keys_ECGDSA< EC >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_PublicKey_ECGDSA\fP< EC > \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_ECGDSA\fP< EC > \fBPrivateKey\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC, class H>
+.br
+struct ECGDSA< EC, H >"Elliptic Curve German Digital Signature \fBAlgorithm\fP signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.br
+\fIH\fP \fBHashTransformation\fP derived class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+Erwin Hess, Marcus Schafheutle, and Pascale Serf \fRThe Digital Signature Scheme ECGDSA (October 24, 2006)\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,118 @@
+.TH "TrapdoorFunction" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TrapdoorFunction \- Applies the trapdoor function\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBRandomizedTrapdoorFunction\fP\&.
+.PP
+Inherited by \fBESIGNFunction\fP, \fBLUCFunction\fP, \fBRSAFunction\fP, \fBRWFunction\fP, and \fBRabinFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBApplyRandomizedFunction\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor function\&. "
+.ti -1c
+.RI "bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the encryption algorithm is randomized\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBApplyFunction\fP (const \fBInteger\fP &x) const =0"
+.br
+.RI "Applies the trapdoor\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunctionBounds\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBPreimageBound\fP () const =0"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBImageBound\fP () const =0"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxPreimage\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied bound to a public key\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxImage\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied bound to a public key\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Applies the trapdoor function\&. 
+
+\fBApplyFunction()\fP is the foundation for encrypting a message under a public key\&. Derived classes will override it at some point\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBTrapdoorFunctionBounds()\fP, \fBRandomizedTrapdoorFunction()\fP, \fBTrapdoorFunction()\fP, \fBRandomizedTrapdoorFunctionInverse()\fP and \fBTrapdoorFunctionInverse()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBInteger\fP TrapdoorFunction::ApplyFunction (const \fBInteger\fP & x) const\fR [pure virtual]\fP"
+
+.PP
+Applies the trapdoor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the message on which the encryption function is applied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the message x encrypted under the public key
+.RE
+.PP
+ApplyFunction is a generalization of encryption under a public key cryptosystem\&. Derived classes must implement it\&. 
+.PP
+Implemented in \fBESIGNFunction\fP, \fBLUCFunction\fP, \fBRabinFunction\fP, \fBRSAFunction\fP, \fBRSAFunction_ISO\fP, and \fBRWFunction\fP\&.
+.SS "\fBInteger\fP TrapdoorFunction::ApplyRandomizedFunction (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & x) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Applies the trapdoor function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIx\fP the message on which the encryption function is applied
+.RE
+.PP
+ApplyRandomizedFunction is a generalization of encryption under a public key cryptosystem\&. The \fBRandomNumberGenerator\fP may (or may not) be required\&.
+
+.PP
+Internally, \fBApplyRandomizedFunction()\fP calls \fBApplyFunction()\fP without the \fBRandomNumberGenerator\fP\&. 
+.PP
+Implements \fBRandomizedTrapdoorFunction\fP\&.
+.SS "bool TrapdoorFunction::IsRandomized () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines if the encryption algorithm is randomized\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the encryption algorithm is randomized, false otherwise
+.RE
+.PP
+If \fBIsRandomized()\fP returns false, then \fBNullRNG()\fP can be used\&. 
+.PP
+Reimplemented from \fBRandomizedTrapdoorFunction\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

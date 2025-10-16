@@ -1,0 +1,285 @@
+.TH "DL_SimpleKeyAgreementDomainBase< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_SimpleKeyAgreementDomainBase< T > \- Discrete Log (DL) simple key agreement base implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBSimpleKeyAgreementDomain\fP\&.
+.PP
+Inherited by \fBDH_Domain< DL_GroupParameters_GFP_DefaultSafePrime >\fP, \fBDH_Domain< DL_GroupParameters_EC< EC >, COFACTOR_OPTION >\fP, and \fBDH_Domain< DL_GroupParameters_LUC_DefaultSafePrime >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "unsigned int \fBAgreedValueLength\fP () const"
+.br
+.RI "Provides the size of the agreed value\&. "
+.ti -1c
+.RI "unsigned int \fBPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the private key\&. "
+.ti -1c
+.RI "unsigned int \fBPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the public key\&. "
+.ti -1c
+.RI "void \fBGeneratePrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate private key in this domain\&. "
+.ti -1c
+.RI "void \fBGeneratePublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a public key from a private key in this domain\&. "
+.ti -1c
+.RI "bool \fBAgree\fP (\fBbyte\fP *agreedValue, const \fBbyte\fP *privateKey, const \fBbyte\fP *otherPublicKey, bool validateOtherPublicKey=true) const"
+.br
+.RI "Derive agreed value\&. "
+.ti -1c
+.RI "const Element & \fBGetGenerator\fP () const"
+.br
+.RI "Retrieves a reference to the group generator\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyAgreementDomain\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a private/public key pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyAgreementAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual const \fBDL_KeyAgreementAlgorithm\fP< Element > & \fBGetKeyAgreementAlgorithm\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()=0"
+.br
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_SimpleKeyAgreementDomainBase< T >"Discrete Log (DL) simple key agreement base implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> \fBCryptoParameters\fP & \fBDL_SimpleKeyAgreementDomainBase\fP< T >::AccessCryptoParameters ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implements \fBKeyAgreementAlgorithm\fP\&.
+.SS "template<class T> bool \fBDL_SimpleKeyAgreementDomainBase\fP< T >::Agree (\fBbyte\fP * agreedValue, const \fBbyte\fP * privateKey, const \fBbyte\fP * otherPublicKey, bool validateOtherPublicKey = \fRtrue\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Derive agreed value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIagreedValue\fP a byte buffer for the shared secret 
+.br
+\fIprivateKey\fP a byte buffer with your private key in this domain 
+.br
+\fIotherPublicKey\fP a byte buffer with the other party's public key in this domain 
+.br
+\fIvalidateOtherPublicKey\fP a flag indicating if the other party's public key should be validated 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true upon success, false in case of failure
+.RE
+.PP
+\fBAgree()\fP derives an agreed value from your private keys and couterparty's public keys\&.
+
+.PP
+The other party's public key is validated by default\&. If you have previously validated the static public key, use \fRvalidateStaticOtherPublicKey=false\fP to save time\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(agreedValue) == \fBAgreedValueLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(privateKey) == \fBPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(otherPublicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "template<class T> unsigned int \fBDL_SimpleKeyAgreementDomainBase\fP< T >::AgreedValueLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the agreed value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of agreed value produced in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "template<class T> void \fBDL_SimpleKeyAgreementDomainBase\fP< T >::GeneratePrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == \fBPrivateKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "template<class T> void \fBDL_SimpleKeyAgreementDomainBase\fP< T >::GeneratePublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate a public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "template<class T> const Element & \fBDL_SimpleKeyAgreementDomainBase\fP< T >::GetGenerator () const\fR [inline]\fP"
+
+.PP
+Retrieves a reference to the group generator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+const reference to the group generator 
+.RE
+.PP
+
+.SS "template<class T> unsigned int \fBDL_SimpleKeyAgreementDomainBase\fP< T >::PrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of private keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "template<class T> unsigned int \fBDL_SimpleKeyAgreementDomainBase\fP< T >::PublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of public keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

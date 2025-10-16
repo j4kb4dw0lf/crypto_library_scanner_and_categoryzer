@@ -1,0 +1,122 @@
+.TH "Unflushable< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Unflushable< T > \- Base class for unflushable filters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits T\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBFlush\fP (bool completeFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output, with signal propagation\&. "
+.ti -1c
+.RI "bool \fBIsolatedFlush\fP (bool hardFlush, bool blocking)"
+.br
+.RI "Flushes data buffered by this object, without signal propagation\&. "
+.ti -1c
+.RI "bool \fBChannelFlush\fP (const std::string &channel, bool hardFlush, int propagation=\-1, bool blocking=true)"
+.br
+.RI "Flush buffered input and/or output on a channel\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBInputBufferIsEmpty\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class Unflushable< T >"Base class for unflushable filters\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> bool \fBUnflushable\fP< T >::ChannelFlush (const std::string & channel, bool hardFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Flush buffered input and/or output on a channel\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchannel\fP the channel to flush the data 
+.br
+\fIhardFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBChannelFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true of the Flush was successful
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.SS "template<class T> bool \fBUnflushable\fP< T >::Flush (bool completeFlush, int propagation = \fR\-1\fP, bool blocking = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Flush buffered input and/or output, with signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcompleteFlush\fP is used to indicate whether all data should be flushed 
+.br
+\fIpropagation\fP the number of attached transformations the \fBFlush()\fP signal should be passed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input
+.RE
+.PP
+propagation count includes this object\&. Setting propagation to \fR1\fP means this object only\&. Setting propagation to \fR-1\fP means unlimited propagation\&. 
+.PP
+\fBNote\fP
+.RS 4
+Hard flushes must be used with care\&. It means try to process and output everything, even if there may not be enough data to complete the action\&. For example, hard flushing a \fBHexDecoder\fP would cause an error if you do it after inputing an odd number of hex encoded characters\&. 
+
+.PP
+For some types of filters, like \fBZlibDecompressor\fP, hard flushes can only be done at "synchronization points"\&. These synchronization points are positions in the data stream that are created by hard flushes on the corresponding reverse filters, in this example \fBZlibCompressor\fP\&. This is useful when zlib compressed data is moved across a network in packets and compression state is preserved across packets, as in the SSH2 protocol\&. 
+.RE
+.PP
+
+.SS "template<class T> bool \fBUnflushable\fP< T >::IsolatedFlush (bool hardFlush, bool blocking)\fR [inline]\fP"
+
+.PP
+Flushes data buffered by this object, without signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhardFlush\fP indicates whether all data should be flushed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+hardFlush must be used with care 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

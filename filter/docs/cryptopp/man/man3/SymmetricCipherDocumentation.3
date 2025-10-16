@@ -1,0 +1,34 @@
+.TH "SymmetricCipherDocumentation" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SymmetricCipherDocumentation \- Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement a symmetric cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherited by \fBChaCha\fP, \fBChaChaTLS\fP, \fBCipherModeDocumentation\fP, \fBHC128\fP, \fBHC256\fP, \fBPanamaCipher< B >\fP, \fBRabbit\fP, \fBRabbitWithIV\fP, \fBSEAL< B >\fP, \fBSalsa20\fP, \fBSosemanuk\fP, \fBWAKE_OFB< B >\fP, \fBWeak1::ARC4_Base\fP, \fBXChaCha20\fP, and \fBXSalsa20\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement a symmetric cipher\&. 
+
+Each class derived from this one defines two types, \fBEncryption\fP and \fBDecryption\fP, both of which implement the \fBSymmetricCipher\fP interface\&. Two types of classes derive from this class: stream ciphers and block cipher modes\&. Stream ciphers can be used alone, cipher mode classes need to be used with a block cipher\&. See \fBCipherModeDocumentation\fP for more for information about using cipher modes and block ciphers\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

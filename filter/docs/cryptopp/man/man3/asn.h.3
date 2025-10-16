@@ -1,0 +1,776 @@
+.TH "/home/mock/cryptopp-master/asn.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/asn.h \- Classes and functions for working with ANS\&.1 objects\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'filters\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+\fR#include 'queue\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include <iosfwd>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBUnknownOID\fP"
+.br
+.RI "\fBException\fP thrown when an unknown object identifier is encountered\&. "
+.ti -1c
+.RI "class \fBOID\fP"
+.br
+.RI "Object Identifier\&. "
+.ti -1c
+.RI "class \fBEncodedObjectFilter\fP"
+.br
+.RI "ASN\&.1 encoded object filter\&. "
+.ti -1c
+.RI "class \fBBERGeneralDecoder\fP"
+.br
+.RI "BER General Decoder\&. "
+.ti -1c
+.RI "class \fBDERGeneralEncoder\fP"
+.br
+.RI "DER General Encoder\&. "
+.ti -1c
+.RI "class \fBBERSequenceDecoder\fP"
+.br
+.RI "BER Sequence Decoder\&. "
+.ti -1c
+.RI "class \fBDERSequenceEncoder\fP"
+.br
+.RI "DER Sequence Encoder\&. "
+.ti -1c
+.RI "class \fBBERSetDecoder\fP"
+.br
+.RI "BER Set Decoder\&. "
+.ti -1c
+.RI "class \fBDERSetEncoder\fP"
+.br
+.RI "DER Set Encoder\&. "
+.ti -1c
+.RI "class \fBASNOptional< T >\fP"
+.br
+.RI "Optional data encoder and decoder\&. "
+.ti -1c
+.RI "class \fBASN1CryptoMaterial< BASE >\fP"
+.br
+.RI "Encode and decode ASN\&.1 objects with additional information\&. "
+.ti -1c
+.RI "class \fBX509PublicKey\fP"
+.br
+.RI "Encodes and decodes subjectPublicKeyInfo\&. "
+.ti -1c
+.RI "class \fBPKCS8PrivateKey\fP"
+.br
+.RI "Encodes and Decodes privateKeyInfo\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBASNTag\fP { \fBBOOLEAN\fP = 0x01, \fBINTEGER\fP = 0x02, \fBBIT_STRING\fP = 0x03, \fBOCTET_STRING\fP = 0x04, \fBTAG_NULL\fP = 0x05, \fBOBJECT_IDENTIFIER\fP = 0x06, \fBOBJECT_DESCRIPTOR\fP = 0x07, \fBEXTERNAL\fP = 0x08, \fBREAL\fP = 0x09, \fBENUMERATED\fP = 0x0a, \fBUTF8_STRING\fP = 0x0c, \fBSEQUENCE\fP = 0x10, \fBSET\fP = 0x11, \fBNUMERIC_STRING\fP = 0x12, \fBPRINTABLE_STRING\fP = 0x13, \fBT61_STRING\fP = 0x14, \fBVIDEOTEXT_STRING\fP = 0x15, \fBIA5_STRING\fP = 0x16, \fBUTC_TIME\fP = 0x17, \fBGENERALIZED_TIME\fP = 0x18, \fBGRAPHIC_STRING\fP = 0x19, \fBVISIBLE_STRING\fP = 0x1a, \fBGENERAL_STRING\fP = 0x1b, \fBUNIVERSAL_STRING\fP = 0x1c, \fBBMP_STRING\fP = 0x1e }"
+.br
+.RI "ASN\&.1 types\&. "
+.ti -1c
+.RI "enum \fBASNIdFlag\fP { \fBUNIVERSAL\fP = 0x00, \fBPRIMITIVE\fP = 0x00, \fBCONSTRUCTED\fP = 0x20, \fBAPPLICATION\fP = 0x40, \fBCONTEXT_SPECIFIC\fP = 0x80, \fBPRIVATE\fP = 0xc0 }"
+.br
+.RI "ASN\&.1 flags\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBBERDecodeError\fP ()"
+.br
+.RI "Raises a \fBBERDecodeErr\fP\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDERLengthEncode\fP (\fBBufferedTransformation\fP &bt, \fBlword\fP length)"
+.br
+.RI "DER encode a length\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBBERLengthDecode\fP (\fBBufferedTransformation\fP &bt, size_t &length)"
+.br
+.RI "BER decode a length\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBDEREncodeNull\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "DER encode NULL\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBBERDecodeNull\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode NULL\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeOctetString\fP (\fBBufferedTransformation\fP &bt, const \fBbyte\fP *str, size_t strLen)"
+.br
+.RI "DER encode octet string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeOctetString\fP (\fBBufferedTransformation\fP &bt, const \fBSecByteBlock\fP &str)"
+.br
+.RI "DER encode octet string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodeOctetString\fP (\fBBufferedTransformation\fP &bt, \fBSecByteBlock\fP &str)"
+.br
+.RI "BER decode octet string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodeOctetString\fP (\fBBufferedTransformation\fP &bt, \fBBufferedTransformation\fP &str)"
+.br
+.RI "BER decode octet string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeTextString\fP (\fBBufferedTransformation\fP &bt, const \fBbyte\fP *str, size_t strLen, \fBbyte\fP asnTag)"
+.br
+.RI "DER encode text string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeTextString\fP (\fBBufferedTransformation\fP &bt, const \fBSecByteBlock\fP &str, \fBbyte\fP asnTag)"
+.br
+.RI "DER encode text string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeTextString\fP (\fBBufferedTransformation\fP &bt, const std::string &str, \fBbyte\fP asnTag)"
+.br
+.RI "DER encode text string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodeTextString\fP (\fBBufferedTransformation\fP &bt, \fBSecByteBlock\fP &str, \fBbyte\fP asnTag)"
+.br
+.RI "BER decode text string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodeTextString\fP (\fBBufferedTransformation\fP &bt, std::string &str, \fBbyte\fP asnTag)"
+.br
+.RI "BER decode text string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeDate\fP (\fBBufferedTransformation\fP &bt, const \fBSecByteBlock\fP &str, \fBbyte\fP asnTag)"
+.br
+.RI "DER encode date\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodeDate\fP (\fBBufferedTransformation\fP &bt, \fBSecByteBlock\fP &str, \fBbyte\fP asnTag)"
+.br
+.RI "BER decode date\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBDEREncodeBitString\fP (\fBBufferedTransformation\fP &bt, const \fBbyte\fP *str, size_t strLen, unsigned int unusedBits=0)"
+.br
+.RI "DER encode bit string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodeBitString\fP (\fBBufferedTransformation\fP &bt, \fBSecByteBlock\fP &str, unsigned int &unusedBits)"
+.br
+.RI "DER decode bit string\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void CRYPTOPP_API \fBDERReencode\fP (\fBBufferedTransformation\fP &bt, \fBBufferedTransformation\fP &dest)"
+.br
+.RI "BER decode and DER re-encode\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL size_t CRYPTOPP_API \fBBERDecodePeekLength\fP (const \fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode size\&. "
+.ti -1c
+.RI "template<class T> size_t \fBDEREncodeUnsigned\fP (\fBBufferedTransformation\fP &out, T w, \fBbyte\fP asnTag=\fBINTEGER\fP)"
+.br
+.RI "DER Encode unsigned value\&. "
+.ti -1c
+.RI "template<class T> void \fBBERDecodeUnsigned\fP (\fBBufferedTransformation\fP &in, T &w, \fBbyte\fP asnTag=\fBINTEGER\fP, T minValue=0, T maxValue=T(0xffffffff))"
+.br
+.RI "BER Decode unsigned value\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const ::CryptoPP::OID &lhs, const ::CryptoPP::OID &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const ::CryptoPP::OID &lhs, const ::CryptoPP::OID &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator<\fP (const ::CryptoPP::OID &lhs, const ::CryptoPP::OID &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator>\fP (const ::CryptoPP::OID &lhs, const ::CryptoPP::OID &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator<=\fP (const ::CryptoPP::OID &lhs, const ::CryptoPP::OID &rhs)"
+.br
+.ti -1c
+.RI "bool \fBoperator>=\fP (const ::CryptoPP::OID &lhs, const ::CryptoPP::OID &rhs)"
+.br
+.ti -1c
+.RI "inline ::CryptoPP::OID \fBoperator+\fP (const ::CryptoPP::OID &lhs, unsigned long rhs)"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &out, const \fBOID\fP &oid)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for working with ANS\&.1 objects\&.
+
+
+.SH "Enumeration Type Documentation"
+.PP
+.SS "enum \fBASNIdFlag\fP"
+
+.PP
+ASN\&.1 flags\&.
+.PP
+\fBNote\fP
+.RS 4
+These flags are not complete
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIUNIVERSAL \fP
+ASN\&.1 Universal class\&.
+.TP
+\f(BIPRIMITIVE \fP
+ASN\&.1 Primitive flag\&.
+.TP
+\f(BICONSTRUCTED \fP
+ASN\&.1 Constructed flag\&.
+.TP
+\f(BIAPPLICATION \fP
+ASN\&.1 Application class\&.
+.TP
+\f(BICONTEXT_SPECIFIC \fP
+ASN\&.1 Context specific class\&.
+.TP
+\f(BIPRIVATE \fP
+ASN\&.1 Private class\&.
+.SS "enum \fBASNTag\fP"
+
+.PP
+ASN\&.1 types\&.
+.PP
+\fBNote\fP
+.RS 4
+These tags are not complete
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIBOOLEAN \fP
+ASN\&.1 Boolean\&.
+.TP
+\f(BIINTEGER \fP
+ASN\&.1 \fBInteger\fP\&.
+.TP
+\f(BIBIT_STRING \fP
+ASN\&.1 Bit string\&.
+.TP
+\f(BIOCTET_STRING \fP
+ASN\&.1 Octet string\&.
+.TP
+\f(BITAG_NULL \fP
+ASN\&.1 Null\&.
+.TP
+\f(BIOBJECT_IDENTIFIER \fP
+ASN\&.1 Object identifier\&.
+.TP
+\f(BIOBJECT_DESCRIPTOR \fP
+ASN\&.1 Object descriptor\&.
+.TP
+\f(BIEXTERNAL \fP
+ASN\&.1 External reference\&.
+.TP
+\f(BIREAL \fP
+ASN\&.1 Real integer\&.
+.TP
+\f(BIENUMERATED \fP
+ASN\&.1 Enumerated value\&.
+.TP
+\f(BIUTF8_STRING \fP
+ASN\&.1 UTF-8 string\&.
+.TP
+\f(BISEQUENCE \fP
+ASN\&.1 Sequence\&.
+.TP
+\f(BISET \fP
+ASN\&.1 Set\&.
+.TP
+\f(BINUMERIC_STRING \fP
+ASN\&.1 Numeric string\&.
+.TP
+\f(BIPRINTABLE_STRING \fP
+ASN\&.1 Printable string\&.
+.TP
+\f(BIT61_STRING \fP
+ASN\&.1 T61 string\&.
+.TP
+\f(BIVIDEOTEXT_STRING \fP
+ASN\&.1 Videotext string\&.
+.TP
+\f(BIIA5_STRING \fP
+ASN\&.1 IA5 string\&.
+.TP
+\f(BIUTC_TIME \fP
+ASN\&.1 UTC time\&.
+.TP
+\f(BIGENERALIZED_TIME \fP
+ASN\&.1 Generalized time\&.
+.TP
+\f(BIGRAPHIC_STRING \fP
+ASN\&.1 Graphic string\&.
+.TP
+\f(BIVISIBLE_STRING \fP
+ASN\&.1 Visible string\&.
+.TP
+\f(BIGENERAL_STRING \fP
+ASN\&.1 General string\&.
+.TP
+\f(BIUNIVERSAL_STRING \fP
+ASN\&.1 Universal string\&.
+.TP
+\f(BIBMP_STRING \fP
+ASN\&.1 BMP string\&.
+.SH "Function Documentation"
+.PP
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodeBitString (\fBBufferedTransformation\fP & bt, \fBSecByteBlock\fP & str, unsigned int & unusedBits)"
+
+.PP
+DER decode bit string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the decoded string
+.br
+\fIunusedBits\fP the number of unused bits
+.RE
+.PP
+The caller is responsible for shifting octets if unusedBits is not 0\&. For example, to DER encode a web server X\&.509 key usage, the 101b bit mask is often used (digitalSignature and keyEncipherment)\&. In this case \fRstr\fP is one octet with a value=0xa0 and unusedBits=5\&. The value 0xa0 is \fR101b << 5\fP\&.
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodeDate (\fBBufferedTransformation\fP & bt, \fBSecByteBlock\fP & str, \fBbyte\fP asnTag)"
+
+.PP
+BER decode date\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the date to decode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBBERDecodeDate()\fP can be used for UTC_TIME and GENERALIZED_TIME
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API BERDecodeNull (\fBBufferedTransformation\fP & bt)"
+
+.PP
+BER decode NULL\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodeOctetString (\fBBufferedTransformation\fP & bt, \fBBufferedTransformation\fP & str)"
+
+.PP
+BER decode octet string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the decoded string
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodeOctetString (\fBBufferedTransformation\fP & bt, \fBSecByteBlock\fP & str)"
+
+.PP
+BER decode octet string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the decoded string
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodePeekLength (const \fBBufferedTransformation\fP & bt)"
+
+.PP
+BER decode size\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the length of the ASN\&.1 value, in bytes
+.RE
+.PP
+\fBBERDecodePeekLength()\fP determines the length of a value without consuming octets in the stream\&. The stream must use definite length encoding\&. If indefinite length encoding is used or an error occurs, then 0 is returned\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodeTextString (\fBBufferedTransformation\fP & bt, \fBSecByteBlock\fP & str, \fBbyte\fP asnTag)"
+
+.PP
+BER decode text string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the string to decode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBBERDecodeTextString()\fP can be used for UTF8_STRING, PRINTABLE_STRING, and IA5_STRING
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API BERDecodeTextString (\fBBufferedTransformation\fP & bt, std::string & str, \fBbyte\fP asnTag)"
+
+.PP
+BER decode text string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the string to decode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBBERDecodeTextString()\fP can be used for UTF8_STRING, PRINTABLE_STRING, and IA5_STRING
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "template<class T> void BERDecodeUnsigned (\fBBufferedTransformation\fP & in, T & w, \fBbyte\fP asnTag = \fR\fBINTEGER\fP\fP, T minValue = \fR0\fP, T maxValue = \fRT(0xffffffff)\fP)"
+
+.PP
+BER Decode unsigned value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP fundamental C++ type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIin\fP \fBBufferedTransformation\fP object
+.br
+\fIw\fP the decoded value
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.br
+\fIminValue\fP the minimum expected value
+.br
+\fImaxValue\fP the maximum expected value
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBBERDecodeErr()\fP\fP if the value cannot be parsed or the decoded value is not within range\&.
+.RE
+.PP
+\fBDEREncodeUnsigned()\fP can be used with INTEGER, BOOLEAN, and ENUM
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API BERLengthDecode (\fBBufferedTransformation\fP & bt, size_t & length)"
+
+.PP
+BER decode a length\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIlength\fP the decoded size
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was decoded
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fIBERDecodeError\fP if the value fails to decode or is too large for size_t
+.RE
+.PP
+\fBBERLengthDecode()\fP returns false if the encoding is indefinite length\&.
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeBitString (\fBBufferedTransformation\fP & bt, const \fBbyte\fP * str, size_t strLen, unsigned int unusedBits = \fR0\fP)"
+
+.PP
+DER encode bit string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIstr\fP the string to encode
+.br
+\fIstrLen\fP the length of the string
+.br
+\fIunusedBits\fP the number of unused bits
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+The caller is responsible for shifting octets if unusedBits is not 0\&. For example, to DER encode a web server X\&.509 key usage, the 101b bit mask is often used (digitalSignature and keyEncipherment)\&. In this case \fRstr\fP is one octet with a value=0xa0 and unusedBits=5\&. The value 0xa0 is \fR101b << 5\fP\&.
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeDate (\fBBufferedTransformation\fP & bt, const \fBSecByteBlock\fP & str, \fBbyte\fP asnTag)"
+
+.PP
+DER encode date\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIstr\fP the date to encode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+\fBBERDecodeDate()\fP can be used for UTC_TIME and GENERALIZED_TIME
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API DEREncodeNull (\fBBufferedTransformation\fP & bt)"
+
+.PP
+DER encode NULL\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeOctetString (\fBBufferedTransformation\fP & bt, const \fBbyte\fP * str, size_t strLen)"
+
+.PP
+DER encode octet string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIstr\fP the string to encode
+.br
+\fIstrLen\fP the length of the string
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+DER encode octet string\&.
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeOctetString (\fBBufferedTransformation\fP & bt, const \fBSecByteBlock\fP & str)"
+
+.PP
+DER encode octet string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for reading
+.br
+\fIstr\fP the string to encode
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeTextString (\fBBufferedTransformation\fP & bt, const \fBbyte\fP * str, size_t strLen, \fBbyte\fP asnTag)"
+
+.PP
+DER encode text string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIstr\fP the string to encode
+.br
+\fIstrLen\fP the length of the string, in bytes
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+\fBDEREncodeTextString()\fP can be used for UTF8_STRING, PRINTABLE_STRING, and IA5_STRING
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeTextString (\fBBufferedTransformation\fP & bt, const \fBSecByteBlock\fP & str, \fBbyte\fP asnTag)"
+
+.PP
+DER encode text string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIstr\fP the string to encode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+\fBDEREncodeTextString()\fP can be used for UTF8_STRING, PRINTABLE_STRING, and IA5_STRING
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DEREncodeTextString (\fBBufferedTransformation\fP & bt, const std::string & str, \fBbyte\fP asnTag)"
+
+.PP
+DER encode text string\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIstr\fP the string to encode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+\fBDEREncodeTextString()\fP can be used for UTF8_STRING, PRINTABLE_STRING, and IA5_STRING
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "template<class T> size_t DEREncodeUnsigned (\fBBufferedTransformation\fP & out, T w, \fBbyte\fP asnTag = \fR\fBINTEGER\fP\fP)"
+
+.PP
+DER Encode unsigned value\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIout\fP \fBBufferedTransformation\fP object
+.br
+\fIw\fP unsigned value to encode
+.br
+\fIasnTag\fP the ASN\&.1 identifier
+.RE
+.PP
+\fBDEREncodeUnsigned()\fP can be used with INTEGER, BOOLEAN, and ENUM
+.SS "CRYPTOPP_DLL size_t CRYPTOPP_API DERLengthEncode (\fBBufferedTransformation\fP & bt, \fBlword\fP length)"
+
+.PP
+DER encode a length\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIlength\fP the size to encode
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of octets used for the encoding
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API DERReencode (\fBBufferedTransformation\fP & bt, \fBBufferedTransformation\fP & dest)"
+
+.PP
+BER decode and DER re-encode\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object for writing
+.br
+\fIdest\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

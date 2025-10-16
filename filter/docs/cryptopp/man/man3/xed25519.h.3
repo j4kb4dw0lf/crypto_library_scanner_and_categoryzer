@@ -1,0 +1,86 @@
+.TH "/home/mock/cryptopp-master/xed25519.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/xed25519.h \- Classes for \fBx25519\fP and \fBed25519\fP operations\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'oids\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBx25519\fP"
+.br
+.RI "\fBx25519\fP with key validation "
+.ti -1c
+.RI "struct \fBed25519_MessageAccumulator\fP"
+.br
+.RI "\fBed25519\fP message accumulator "
+.ti -1c
+.RI "struct \fBed25519PrivateKey\fP"
+.br
+.RI "Ed25519 private key\&. "
+.ti -1c
+.RI "struct \fBed25519Signer\fP"
+.br
+.RI "Ed25519 signature algorithm\&. "
+.ti -1c
+.RI "struct \fBed25519PublicKey\fP"
+.br
+.RI "Ed25519 public key\&. "
+.ti -1c
+.RI "struct \fBed25519Verifier\fP"
+.br
+.RI "Ed25519 signature verification algorithm\&. "
+.ti -1c
+.RI "struct \fBed25519\fP"
+.br
+.RI "Ed25519 signature scheme\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for \fBx25519\fP and \fBed25519\fP operations\&.
+
+This implementation integrates Andrew Moon's public domain code for curve25519-donna and ed25519-donna\&.
+
+.PP
+Moving keys into and out of the library proceeds as follows\&. If an \fBInteger\fP class is accepted or returned, then the data is in big endian format\&. That is, the MSB is at byte position 0, and the LSB is at byte position 31\&. The \fBInteger\fP will work as expected, just like an int or a long\&.
+
+.PP
+If a byte array is accepted, then the byte array is in little endian format\&. That is, the LSB is at byte position 0, and the MSB is at byte position 31\&. This follows the implementation where byte 0 is clamed with 248\&. That is my_arr[0] &= 248 to mask the lower 3 bits\&.
+
+.PP
+PKCS8 and X509 keys encoded using ASN\&.1 follow little endian arrays\&. The format is specified in \fRdraft-ietf-curdle-pkix\fP\&.
+
+.PP
+If you have a little endian array and you want to wrap it in an \fBInteger\fP using big endian then you can perform the following:
+.PP
+.nf
+\fBInteger\fP x(my_arr, SECRET_KEYLENGTH, UNSIGNED, LITTLE_ENDIAN_ORDER);
+.fi
+.PP
+
+.PP
+\fBSee also\fP
+.RS 4
+Andrew Moon's x22519 GitHub \fRcurve25519-donna\fP, ed22519 GitHub \fRed25519-donna\fP, and \fRdraft-ietf-curdle-pkix\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

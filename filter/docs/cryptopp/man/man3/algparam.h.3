@@ -1,0 +1,187 @@
+.TH "/home/mock/cryptopp-master/algparam.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/algparam.h \- Classes for working with \fBNameValuePairs\fP\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include <string>\fP
+.br
+\fR#include <typeinfo>\fP
+.br
+\fR#include <exception>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBConstByteArrayParameter\fP"
+.br
+.RI "Used to pass byte array input as part of a \fBNameValuePairs\fP object\&. "
+.ti -1c
+.RI "class \fBByteArrayParameter\fP"
+.br
+.RI "Used to pass byte array input as part of a \fBNameValuePairs\fP object\&. "
+.ti -1c
+.RI "class \fBCombinedNameValuePairs\fP"
+.br
+.RI "Combines two sets of \fBNameValuePairs\fP\&. "
+.ti -1c
+.RI "class \fBGetValueHelperClass< T, BASE >\fP"
+.br
+.ti -1c
+.RI "class \fBAssignFromHelperClass< T, BASE >\fP"
+.br
+.ti -1c
+.RI "class \fBAlgorithmParametersBase\fP"
+.br
+.RI "Base class for \fBAlgorithmParameters\fP\&. "
+.ti -1c
+.RI "class \fBAlgorithmParametersBase::ParameterNotUsed\fP"
+.br
+.RI "\fBException\fP thrown when an AlgorithmParameter is unused\&. "
+.ti -1c
+.RI "class \fBAlgorithmParametersTemplate< T >\fP"
+.br
+.RI "Template base class for \fBAlgorithmParameters\fP\&. "
+.ti -1c
+.RI "class \fBAlgorithmParameters\fP"
+.br
+.RI "An object that implements \fBNameValuePairs\fP\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_GET_FUNCTION_ENTRY\fP(name)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_SET_FUNCTION_ENTRY\fP(name)"
+.br
+.ti -1c
+.RI "#define \fBCRYPTOPP_SET_FUNCTION_ENTRY2\fP(name1,  name2)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class BASE, class T> \fBGetValueHelperClass\fP< T, BASE > \fBGetValueHelper\fP (const T *pObject, const char *name, const std::type_info &valueType, void *pValue, const \fBNameValuePairs\fP *searchFirst=NULLPTR)"
+.br
+.ti -1c
+.RI "template<class T> \fBGetValueHelperClass\fP< T, T > \fBGetValueHelper\fP (const T *pObject, const char *name, const std::type_info &valueType, void *pValue, const \fBNameValuePairs\fP *searchFirst=NULLPTR)"
+.br
+.ti -1c
+.RI "template<class BASE, class T> \fBAssignFromHelperClass\fP< T, BASE > \fBAssignFromHelper\fP (T *pObject, const \fBNameValuePairs\fP &source)"
+.br
+.ti -1c
+.RI "template<class T> \fBAssignFromHelperClass\fP< T, T > \fBAssignFromHelper\fP (T *pObject, const \fBNameValuePairs\fP &source)"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBAssignIntToInteger\fP (const std::type_info &valueType, void *pInteger, const void *pInt)"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL const std::type_info &CRYPTOPP_API \fBIntegerTypeId\fP ()"
+.br
+.ti -1c
+.RI "template<class T> \fBAlgorithmParameters\fP \fBMakeParameters\fP (const char *name, const T &value, bool throwIfNotUsed=true)"
+.br
+.RI "Create an object that implements \fBNameValuePairs\fP\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAlgorithmParametersTemplate< bool >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAlgorithmParametersTemplate< int >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAlgorithmParametersTemplate< ConstByteArrayParameter >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for working with \fBNameValuePairs\fP\&.
+
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_GET_FUNCTION_ENTRY( name)"
+\fBValue:\fP
+.nf
+(Name::name(), &ThisClass::Get##name)
+.PP
+.fi
+
+.SS "#define CRYPTOPP_SET_FUNCTION_ENTRY( name)"
+\fBValue:\fP
+.nf
+(Name::name(), &ThisClass::Set##name)
+.PP
+.fi
+
+.SS "#define CRYPTOPP_SET_FUNCTION_ENTRY2( name1,  name2)"
+\fBValue:\fP
+.nf
+(Name::name1(), Name::name2(), &ThisClass::Set##name1##And##name2)
+.PP
+.fi
+
+.SH "Function Documentation"
+.PP
+.SS "template<class T> \fBAlgorithmParameters\fP MakeParameters (const char * name, const T & value, bool throwIfNotUsed = \fRtrue\fP)"
+
+.PP
+Create an object that implements \fBNameValuePairs\fP\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve
+.br
+\fIvalue\fP reference to a variable that receives the value
+.br
+\fIthrowIfNotUsed\fP if true, the object will throw an exception if the value is not accessed
+.RE
+.PP
+\fBNote\fP
+.RS 4
+throwIfNotUsed is ignored if using a compiler that does not support std::uncaught_exception(), such as MSVC 7\&.0 and earlier\&.
+
+.PP
+A \fBNameValuePairs\fP object containing an arbitrary number of name value pairs may be constructed by repeatedly using \fRoperator()\fP on the object returned by \fRMakeParameters\fP, for example:
+.PP
+.nf
+
+    \fBAlgorithmParameters\fP parameters = MakeParameters(name1, value1)(name2, value2)(name3, value3);
+
+.fi
+.PP
+
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

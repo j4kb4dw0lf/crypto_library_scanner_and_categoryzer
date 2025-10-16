@@ -1,0 +1,116 @@
+.TH "ClassNullRNG" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ClassNullRNG \- Random Number Generator that does not produce random numbers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBRandomNumberGenerator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The name of the generator\&. "
+.ti -1c
+.RI "void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "An implementation that throws \fBNotImplemented\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "virtual bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual \fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffUL)"
+.br
+.RI "Generate a random 32 bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Random Number Generator that does not produce random numbers\&. 
+
+\fBClassNullRNG\fP can be used for functions that require a \fBRandomNumberGenerator\fP but don't actually use it\&. The class throws \fBNotImplemented\fP when a generation function is called\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNullRNG()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string ClassNullRNG::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+The name of the generator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the string \fINullRNGs\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "void ClassNullRNG::GenerateBlock (\fBbyte\fP * output, size_t size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+An implementation that throws \fBNotImplemented\fP\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

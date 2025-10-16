@@ -1,0 +1,115 @@
+.TH "Algorithm" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Algorithm \- Interface for all crypto algorithms\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBClonable\fP\&.
+.PP
+Inherited by \fBAsymmetricAlgorithm\fP, \fBBlockTransformation\fP, \fBBufferedTransformation\fP, \fBHashTransformation\fP, \fBKeyDerivationFunction\fP, \fBRandomNumberGenerator\fP, and \fBStreamTransformation\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for all crypto algorithms\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Algorithm::Algorithm (bool checkSelfTestStatus = \fRtrue\fP)"
+
+.PP
+Interface for all crypto algorithms\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcheckSelfTestStatus\fP determines whether the object can proceed if the self tests have not been run or failed\&.
+.RE
+.PP
+When FIPS 140-2 compliance is enabled and checkSelfTestStatus == true, this constructor throws \fBSelfTestFailure\fP if the self test hasn't been run or fails\&.
+
+.PP
+FIPS 140-2 compliance is disabled by default\&. It is only used by certain versions of the library when the library is built as a DLL on Windows\&. Also see CRYPTOPP_ENABLE_COMPLIANCE_WITH_FIPS_140_2 in \fBconfig\&.h\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual std::string Algorithm::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name
+.RE
+.PP
+The standard algorithm name can be a name like \fRAES\fP or \fRAES/GCM\fP\&. Some algorithms do not have standard names yet\&. For example, there is no standard algorithm name for Shoup's \fBECIES\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+AlgorithmName is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAdler32\fP, \fBAlgorithmImpl< DL_DecryptorBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< DL_EncryptorBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< DL_SignerBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< DL_VerifierBase< SCHEME_OPTIONS::Element >, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< IteratedHash< T_HashWordType, T_Endianness, T_BlockSize >, T_Transform >\fP, \fBAlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SHA1 >\fP, \fBAlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SHA224 >\fP, \fBAlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SHA256 >\fP, \fBAlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SM3 >\fP, \fBAlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, MD4 >\fP, \fBAlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, MD5 >\fP, \fBAlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD128 >\fP, \fBAlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD160 >\fP, \fBAlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD256 >\fP, \fBAlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD320 >\fP, \fBAlgorithmImpl< IteratedHash< word32, NativeByteOrder, 32 >, PanamaHash< LittleEndian > >\fP, \fBAlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, SHA384 >\fP, \fBAlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, SHA512 >\fP, \fBAlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, Whirlpool >\fP, \fBAlgorithmImpl< IteratedHash< word64, LittleEndian, T_BlockSize >, Tiger >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >, BTEA_Info >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >, CBC_MAC< T > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >, CMAC< T > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >, CMAC< T_BlockCipher > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >, DMAC_Base< T > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >, HMAC< H > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >, HMAC< SHA256 > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >, HMAC< T > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >, Poly1305_Base< T > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >, PanamaHash< LittleEndian > >\fP, \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >, T_Hash >\fP, \fBAlgorithmImpl< TF_DecryptorBase, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< TF_EncryptorBase, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< TF_SignerBase, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAlgorithmImpl< TF_VerifierBase, SCHEME_OPTIONS::AlgorithmInfo >\fP, \fBAuthenticatedDecryptionFilter\fP, \fBAuthenticatedSymmetricCipher\fP, \fBBitBucket\fP, \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeFinalTemplate_ExternalCipher< CBC_CTS_Decryption >\fP, \fBCipherModeFinalTemplate_ExternalCipher< CBC_CTS_Encryption >\fP, \fBCipherModeFinalTemplate_ExternalCipher< CBC_Decryption >\fP, \fBCipherModeFinalTemplate_ExternalCipher< CBC_Encryption >\fP, \fBCipherModeFinalTemplate_ExternalCipher< ECB_OneWay >\fP, \fBClassNullRNG\fP, \fBCRC32\fP, \fBCRC32C\fP, \fBDH_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >\fP, \fBDH_Domain< DL_GroupParameters_EC< EC >, COFACTOR_OPTION >\fP, \fBDH_Domain< DL_GroupParameters_GFP_DefaultSafePrime >\fP, \fBDH_Domain< DL_GroupParameters_LUC_DefaultSafePrime >\fP, \fBDH_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBHashFilter\fP, \fBHashVerificationFilter\fP, \fBHKDF< T >\fP, \fBHMAC< T >\fP, \fBHMAC< H >\fP, \fBHMAC< SHA256 >\fP, \fBKalyna128::Base\fP, \fBKalyna256::Base\fP, \fBKalyna512::Base\fP, \fBKeccak_Final< T_DigestSize >\fP, \fBKeyDerivationFunction\fP, \fBLSH224\fP, \fBLSH256\fP, \fBLSH384\fP, \fBLSH512\fP, \fBLSH512_256\fP, \fBPKCS12_PBKDF< T >\fP, \fBPKCS5_PBKDF1< T >\fP, \fBPKCS5_PBKDF2_HMAC< T >\fP, \fBScrypt\fP, \fBSHA3_Final< T_DigestSize >\fP, \fBSHA3_Final< 28 >\fP, \fBSHA3_Final< 32 >\fP, \fBSHA3_Final< 48 >\fP, \fBSHA3_Final< 64 >\fP, \fBSHAKE_Final< T_Strength >\fP, \fBSHAKE_Final< 128 >\fP, \fBSHAKE_Final< 256 >\fP, \fBSignatureVerificationFilter\fP, \fBSignerFilter\fP, \fBSIMON128::Base\fP, \fBSIMON64::Base\fP, \fBSPECK128::Base\fP, \fBSPECK64::Base\fP, \fBStreamTransformationFilter\fP, \fBVMAC_Base\fP, \fBWeak1::MD2\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "virtual std::string Algorithm::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAdditiveCipherTemplate< BASE >\fP, \fBAuthenticatedSymmetricCipher\fP, \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBCCM_Base\fP, \fBCFB_CipherTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, SymmetricCipher > >\fP, \fBChaCha20Poly1305_Base\fP, \fBCHAM128::Base\fP, \fBCipherModeBase\fP, \fBCMAC_Base\fP, \fBCRC32\fP, \fBCRC32C\fP, \fBDARN\fP, \fBDMAC_Base< T >\fP, \fBEAX_Base\fP, \fBEAX_Final< T_BlockCipher, T_IsEncryption >\fP, \fBEAX_Final< T_BlockCipher, false >\fP, \fBEAX_Final< T_BlockCipher, true >\fP, \fBGCM_Base\fP, \fBHash_DRBG< HASH, STRENGTH, SEEDLENGTH >\fP, \fBHMAC< T >\fP, \fBHMAC< H >\fP, \fBHMAC< SHA256 >\fP, \fBHMAC_DRBG< HASH, STRENGTH, SEEDLENGTH >\fP, \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP, \fBLEA::Base\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBPadlockRNG\fP, \fBPoly1305_Base< T >\fP, \fBRDRAND\fP, \fBRDSEED\fP, \fBSHA1\fP, \fBSHA224\fP, \fBSHA256\fP, \fBSHA384\fP, \fBSHA512\fP, \fBSIMECK32::Base\fP, \fBSIMECK64::Base\fP, \fBSIMON128::Base\fP, \fBSIMON64::Base\fP, \fBSM4::Enc\fP, \fBSPECK128::Base\fP, \fBSPECK64::Base\fP, \fBTiger\fP, \fBVMAC_Base\fP, \fBWeak::PanamaHash< B >\fP, \fBWeak::PanamaHash< LittleEndian >\fP, \fBWhirlpool\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,105 @@
+.TH "SameKeyLengthAs< T, IV_REQ, IV_L >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SameKeyLengthAs< T, IV_REQ, IV_L > \- Provides key lengths based on another class's key length\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherited by \fBCBC_MAC< T >\fP, \fBCMAC< T >\fP, and \fBDMAC_Base< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=T::MIN_KEYLENGTH)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=T::MAX_KEYLENGTH)"
+.br
+.RI "The maximum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=T::DEFAULT_KEYLENGTH)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_REQUIREMENT=IV_REQ)"
+.br
+.RI "The default IV requirements for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_LENGTH=IV_L)"
+.br
+.RI "The default initialization vector length for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0>
+.br
+class SameKeyLengthAs< T, IV_REQ, IV_L >"Provides key lengths based on another class's key length\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP another \fBFixedKeyLength\fP or \fBVariableKeyLength\fP class 
+.br
+\fIIV_REQ\fP the \fBIV requirements\fP 
+.br
+\fIIV_L\fP default IV length, in bytes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSimpleKeyingInterface\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBSameKeyLengthAs\fP< T, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (DEFAULT_KEYLENGTH  = \fRT::DEFAULT_KEYLENGTH\fP)"
+
+.PP
+The default key length used by the algorithm provided as a constant\&. MIN_KEYLENGTH is provided in bytes, not bits 
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBSameKeyLengthAs\fP< T, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (IV_LENGTH  = \fRIV_L\fP)"
+
+.PP
+The default initialization vector length for the algorithm provided as a constant\&. IV_LENGTH is provided in bytes, not bits\&. The default implementation uses 0\&. 
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBSameKeyLengthAs\fP< T, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (IV_REQUIREMENT  = \fRIV_REQ\fP)"
+
+.PP
+The default IV requirements for the algorithm provided as a constant\&. The default value is NOT_RESYNCHRONIZABLE\&. See IV_Requirement in \fBcryptlib\&.h\fP for allowed values\&. 
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBSameKeyLengthAs\fP< T, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (MAX_KEYLENGTH  = \fRT::MAX_KEYLENGTH\fP)"
+
+.PP
+The maximum key length used by the algorithm provided as a constant\&. MIN_KEYLENGTH is provided in bytes, not bits 
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBSameKeyLengthAs\fP< T, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (MIN_KEYLENGTH  = \fRT::MIN_KEYLENGTH\fP)"
+
+.PP
+The minimum key length used by the algorithm provided as a constant\&. MIN_KEYLENGTH is provided in bytes, not bits 
+.SS "template<class T, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBSameKeyLengthAs\fP< T, IV_REQ, IV_L >::StaticGetValidKeyLength (size_t keylength)\fR [inline]\fP"
+
+.PP
+Provides a valid key length for the algorithm provided by a static function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the key, in bytes
+.RE
+.PP
+If keylength is less than MIN_KEYLENGTH, then the function returns MIN_KEYLENGTH\&. If keylength is greater than MAX_KEYLENGTH, then the function returns MAX_KEYLENGTH\&. If keylength is a multiple of KEYLENGTH_MULTIPLE, then keylength is returned\&. Otherwise, the function returns keylength rounded \fIdown\fP to the next smaller multiple of KEYLENGTH_MULTIPLE\&.
+
+.PP
+keylength is provided in bytes, not bits\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

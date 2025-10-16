@@ -1,0 +1,87 @@
+.TH "ESIGN< H, STANDARD >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ESIGN< H, STANDARD > \- \fBESIGN\fP signature scheme, IEEE P1363a\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <esign\&.h>\fP
+.PP
+Inherits \fBTF_SS< ESIGN_Keys, P1363_EMSA5, H >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBTF_SS< ESIGN_Keys, P1363_EMSA5, H >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBP1363_EMSA5\fP \fBStandard\fP"
+.br
+.RI "see \fBSignatureStandard\fP for a list of standards "
+.ti -1c
+.RI "typedef \fBStandard::SignatureMessageEncodingMethod\fP \fBMessageEncodingMethod\fP"
+.br
+.ti -1c
+.RI "typedef \fBTF_SignatureSchemeOptions\fP< \fBTF_SS\fP< \fBESIGN_Keys\fP, \fBP1363_EMSA5\fP, H, int >, \fBESIGN_Keys\fP, \fBMessageEncodingMethod\fP, H > \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBTF_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBTF_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBESIGN_Keys\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBESIGNFunction\fP \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBInvertibleESIGNFunction\fP \fBPrivateKey\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBESIGN_Keys\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBTF_SS< ESIGN_Keys, P1363_EMSA5, H >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class H, class STANDARD = P1363_EMSA5>
+.br
+struct ESIGN< H, STANDARD >"\fBESIGN\fP signature scheme, IEEE P1363a\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP \fBHashTransformation\fP derived class 
+.br
+\fISTANDARD\fP Signature encoding method 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

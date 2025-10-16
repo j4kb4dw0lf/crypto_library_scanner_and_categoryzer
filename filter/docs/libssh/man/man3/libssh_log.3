@@ -1,0 +1,172 @@
+.TH "libssh_log" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_log \- The SSH logging functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBSSH_LOG_NOLOG\fP =0, \fBSSH_LOG_WARNING\fP, \fBSSH_LOG_PROTOCOL\fP, \fBSSH_LOG_PACKET\fP, \fBSSH_LOG_FUNCTIONS\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBssh_log_function\fP (int verbosity, const char *function, const char *buffer)"
+.br
+.ti -1c
+.RI "void \fBssh_vlog\fP (int verbosity, const char *function, const char *format, va_list *va)"
+.br
+.ti -1c
+.RI "void \fB_ssh_log\fP (int verbosity, const char *function, const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void \fBssh_log\fP (\fBssh_session\fP session, int verbosity, const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void \fBssh_log_common\fP (struct \fBssh_common_struct\fP *common, int verbosity, const char *function, const char *format,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "int \fBssh_set_log_level\fP (int level)"
+.br
+.RI "Set the log level of the library\&. "
+.ti -1c
+.RI "int \fBssh_get_log_level\fP (void)"
+.br
+.RI "Get the log level of the library\&. "
+.ti -1c
+.RI "int \fBssh_set_log_callback\fP (\fBssh_logging_callback\fP cb)"
+.br
+.RI "Set the logging callback function\&. "
+.ti -1c
+.RI "void \fB_ssh_reset_log_cb\fP (void)"
+.br
+.ti -1c
+.RI "\fBssh_logging_callback\fP \fBssh_get_log_callback\fP (void)"
+.br
+.RI "Get the pointer to the logging callback function\&. "
+.ti -1c
+.RI "void * \fBssh_get_log_userdata\fP (void)"
+.br
+.RI "Get the userdata of the logging function\&. "
+.ti -1c
+.RI "int \fBssh_set_log_userdata\fP (void *data)"
+.br
+.RI "Set the userdata for the logging function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Logging functions for debugging and problem resolving\&.
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BISSH_LOG_NOLOG \fP
+No logging at all 
+.TP
+\f(BISSH_LOG_WARNING \fP
+Only unrecoverable errors 
+.TP
+\f(BISSH_LOG_PROTOCOL \fP
+Information for the users 
+.TP
+\f(BISSH_LOG_PACKET \fP
+Debug information, to see what is going on 
+.TP
+\f(BISSH_LOG_FUNCTIONS \fP
+Trace information and recoverable error messages 
+.SH "Function Documentation"
+.PP 
+.SS "\fBssh_logging_callback\fP ssh_get_log_callback (void )"
+
+.PP
+Get the pointer to the logging callback function\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The pointer the the callback or NULL if none set\&. 
+.RE
+.PP
+
+.SS "int ssh_get_log_level (void )"
+
+.PP
+Get the log level of the library\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The value of the log level\&. 
+.RE
+.PP
+
+.SS "void * ssh_get_log_userdata (void )"
+
+.PP
+Get the userdata of the logging function\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The userdata if set or NULL\&. 
+.RE
+.PP
+
+.SS "int ssh_set_log_callback (\fBssh_logging_callback\fP cb)"
+
+.PP
+Set the logging callback function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcb\fP The callback to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_set_log_level (int level)"
+
+.PP
+Set the log level of the library\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP The level to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "int ssh_set_log_userdata (void * data)"
+
+.PP
+Set the userdata for the logging function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP The userdata to set\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,464 @@
+.TH "XTR_DH" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+XTR_DH \- XTR-DH with key validation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xtrcrypt\&.h>\fP
+.PP
+Inherits \fBSimpleKeyAgreementDomain\fP, and \fBCryptoParameters\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBXTR_DH\fP (const \fBInteger\fP &p, const \fBInteger\fP &q, const \fBGFP2Element\fP &g)"
+.br
+.ti -1c
+.RI "\fBXTR_DH\fP (\fBRandomNumberGenerator\fP &rng, unsigned int pbits, unsigned int qbits)"
+.br
+.ti -1c
+.RI "\fBXTR_DH\fP (\fBBufferedTransformation\fP &domainParams)"
+.br
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &domainParams) const"
+.br
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "\fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "unsigned int \fBAgreedValueLength\fP () const"
+.br
+.RI "Provides the size of the agreed value\&. "
+.ti -1c
+.RI "unsigned int \fBPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the private key\&. "
+.ti -1c
+.RI "unsigned int \fBPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the public key\&. "
+.ti -1c
+.RI "void \fBGeneratePrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate private key in this domain\&. "
+.ti -1c
+.RI "void \fBGeneratePublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a public key from a private key in this domain\&. "
+.ti -1c
+.RI "bool \fBAgree\fP (\fBbyte\fP *agreedValue, const \fBbyte\fP *privateKey, const \fBbyte\fP *otherPublicKey, bool validateOtherPublicKey=true) const"
+.br
+.RI "Derive agreed value\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetModulus\fP () const"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetSubgroupOrder\fP () const"
+.br
+.ti -1c
+.RI "const \fBGFP2Element\fP & \fBGetSubgroupGenerator\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetModulus\fP (const \fBInteger\fP &p)"
+.br
+.ti -1c
+.RI "void \fBSetSubgroupOrder\fP (const \fBInteger\fP &q)"
+.br
+.ti -1c
+.RI "void \fBSetSubgroupGenerator\fP (const \fBGFP2Element\fP &g)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyAgreementDomain\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a private/public key pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyAgreementAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Saves a key to a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Loads a key from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (unsigned int precomputationStorage)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+XTR-DH with key validation\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCryptoParameters\fP & XTR_DH::AccessCryptoParameters ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to Crypto Parameters\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference the crypto parameters 
+.RE
+.PP
+
+.PP
+Implements \fBKeyAgreementAlgorithm\fP\&.
+.SS "bool XTR_DH::Agree (\fBbyte\fP * agreedValue, const \fBbyte\fP * privateKey, const \fBbyte\fP * otherPublicKey, bool validateOtherPublicKey = \fRtrue\fP) const\fR [virtual]\fP"
+
+.PP
+Derive agreed value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIagreedValue\fP a byte buffer for the shared secret 
+.br
+\fIprivateKey\fP a byte buffer with your private key in this domain 
+.br
+\fIotherPublicKey\fP a byte buffer with the other party's public key in this domain 
+.br
+\fIvalidateOtherPublicKey\fP a flag indicating if the other party's public key should be validated 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true upon success, false in case of failure
+.RE
+.PP
+\fBAgree()\fP derives an agreed value from your private keys and couterparty's public keys\&.
+
+.PP
+The other party's public key is validated by default\&. If you have previously validated the static public key, use \fRvalidateStaticOtherPublicKey=false\fP to save time\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(agreedValue) == \fBAgreedValueLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(privateKey) == \fBPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(otherPublicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "unsigned int XTR_DH::AgreedValueLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the agreed value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of agreed value produced in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "void XTR_DH::AssignFrom (const \fBNameValuePairs\fP & source)\fR [virtual]\fP"
+
+.PP
+Assign values to this object\&. This function can be used to create a public key from a private key\&. 
+.PP
+Implements \fBCryptoMaterial\fP\&.
+.SS "void XTR_DH::GeneratePrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [virtual]\fP"
+
+.PP
+Generate private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == \fBPrivateKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "void XTR_DH::GeneratePublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [virtual]\fP"
+
+.PP
+Generate a public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "bool XTR_DH::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBNameValuePairs\fP\&.
+.SS "unsigned int XTR_DH::PrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of private keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "unsigned int XTR_DH::PublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of public keys in this domain 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "bool XTR_DH::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThrowIfInvalid()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBCryptoMaterial\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

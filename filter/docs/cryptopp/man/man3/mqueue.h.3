@@ -1,0 +1,51 @@
+.TH "/home/mock/cryptopp-master/mqueue.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/mqueue.h \- Classes for an unlimited queue to store messages\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'queue\&.h'\fP
+.br
+\fR#include 'filters\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include <deque>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBMessageQueue\fP"
+.br
+.RI "Data structure used to store messages\&. "
+.ti -1c
+.RI "class \fBEqualityComparisonFilter\fP"
+.br
+.RI "\fBFilter\fP that checks messages on two channels for equality\&. "
+.ti -1c
+.RI "struct \fBEqualityComparisonFilter::MismatchDetected\fP"
+.br
+.RI "Different messages were detected\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<> NAMESPACE_END void \fBswap\fP (CryptoPP::MessageQueue &a, CryptoPP::MessageQueue &b)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for an unlimited queue to store messages\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

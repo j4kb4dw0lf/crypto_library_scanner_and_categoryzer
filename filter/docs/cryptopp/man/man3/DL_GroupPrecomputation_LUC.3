@@ -1,0 +1,124 @@
+.TH "DL_GroupPrecomputation_LUC" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_GroupPrecomputation_LUC \- \fBLUC\fP GroupParameters precomputation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <luc\&.h>\fP
+.PP
+Inherits \fBDL_GroupPrecomputation< Integer >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBAbstractGroup\fP< \fBElement\fP > & \fBGetGroup\fP () const"
+.br
+.RI "Retrieves \fBAbstractGroup\fP interface\&. "
+.ti -1c
+.RI "\fBElement\fP \fBBERDecodeElement\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Decodes element in DER format\&. "
+.ti -1c
+.RI "void \fBDEREncodeElement\fP (\fBBufferedTransformation\fP &bt, const \fBElement\fP &v) const"
+.br
+.RI "Encodes element in DER format\&. "
+.ti -1c
+.RI "void \fBSetModulus\fP (const \fBInteger\fP &v)"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetModulus\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_GroupPrecomputation< Integer >\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBNeedConversions\fP () const"
+.br
+.RI "Determines if elements needs conversion\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBConvertIn\fP (const \fBElement\fP &v) const"
+.br
+.RI "Converts an element between representations\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBConvertOut\fP (const \fBElement\fP &v) const"
+.br
+.RI "Converts an element between representations\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_GroupPrecomputation< Integer >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBLUC\fP GroupParameters precomputation\&. 
+
+No actual precomputation is performed 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBElement\fP DL_GroupPrecomputation_LUC::BERDecodeElement (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Decodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+element in the group 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< Integer >\fP\&.
+.SS "void DL_GroupPrecomputation_LUC::DEREncodeElement (\fBBufferedTransformation\fP & bt, const \fBElement\fP & P) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Encodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIP\fP Element to encode 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< Integer >\fP\&.
+.SS "const \fBAbstractGroup\fP< \fBElement\fP > & DL_GroupPrecomputation_LUC::GetGroup () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves \fBAbstractGroup\fP interface\&. 
+.PP
+\fBReturns\fP
+.RS 4
+\fBGetGroup()\fP returns the \fBAbstractGroup\fP interface 
+.RE
+.PP
+
+.PP
+Implements \fBDL_GroupPrecomputation< Integer >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

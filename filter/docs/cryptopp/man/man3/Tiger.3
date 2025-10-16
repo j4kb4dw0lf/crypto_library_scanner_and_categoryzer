@@ -1,0 +1,355 @@
+.TH "Tiger" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Tiger \- \fBTiger\fP message digest\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tiger\&.h>\fP
+.PP
+Inherits \fBIteratedHashWithStaticTransform< word64, LittleEndian, 64, 24, Tiger >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *digest, size_t digestSize)"
+.br
+.RI "Computes the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHashWithStaticTransform< word64, LittleEndian, 64, 24, Tiger >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=0 ? 0 :T_StateSize)"
+.br
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.RI "Provides the digest size of the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonableImpl< Tiger, AlgorithmImpl< IteratedHash< word64, LittleEndian, T_BlockSize >, Tiger > >\fP
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word64, LittleEndian, T_BlockSize >, Tiger >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=T_BlockSize)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_COMPILE_ASSERT\fP ((T_BlockSize &(T_BlockSize \- 1))==0)"
+.br
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the hash\&. "
+.ti -1c
+.RI "\fBByteOrder\fP \fBGetByteOrder\fP () const"
+.br
+.RI "Provides the byte order of the hash\&. "
+.ti -1c
+.RI "void \fBCorrectEndianess\fP (HashWordType *out, const HashWordType *in, size_t byteCount)"
+.br
+.RI "Adjusts the byte ordering of the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHashBase< word64, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "\fBIteratedHashBase\fP ()"
+.br
+.RI "Construct an \fBIteratedHashBase\fP\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Requests space which can be written into by the caller\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static void \fBInitState\fP (HashWordType *state)"
+.br
+.RI "Initialize state array\&. "
+.ti -1c
+.RI "static void \fBTransform\fP (word64 *digest, const word64 *data)"
+.br
+.RI "Operate the hash\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word64, LittleEndian, T_BlockSize >, Tiger >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const word64 \fBtable\fP [4 *256+3]"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBLittleEndian\fP \fBByteOrderClass\fP"
+.br
+.ti -1c
+.RI "typedef word64 \fBHashWordType\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBIteratedHashBase< word64, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "typedef word64 \fBHashWordType\fP"
+.br
+.in -1c
+
+Protected Types inherited from \fBIteratedHashWithStaticTransform< word64, LittleEndian, 64, 24, Tiger >\fP
+.in +1c
+.ti -1c
+.RI "enum "
+.br
+.in -1c
+
+Protected Types inherited from \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "enum "
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHashWithStaticTransform< word64, LittleEndian, 64, 24, Tiger >\fP
+.in +1c
+.ti -1c
+.RI "void \fBHashEndianCorrectedBlock\fP (const word64 *data)"
+.br
+.ti -1c
+.RI "void \fBInit\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBStateBuf\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "word64 * \fBDataBuf\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHashBase< word64, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "word64 \fBGetBitCountHi\fP () const"
+.br
+.ti -1c
+.RI "word64 \fBGetBitCountLo\fP () const"
+.br
+.ti -1c
+.RI "void \fBPadLastBlock\fP (unsigned int lastBlockSize, \fBbyte\fP padFirst=0x80)"
+.br
+.ti -1c
+.RI "virtual size_t \fBHashMultipleBlocks\fP (const word64 *input, size_t length)"
+.br
+.ti -1c
+.RI "void \fBHashBlock\fP (const HashWordType *input)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+
+Protected Attributes inherited from \fBIteratedHashWithStaticTransform< word64, LittleEndian, 64, 24, Tiger >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< word64, Blocks, false > \fBm_state\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< word64, Blocks > \fBm_data\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBTiger\fP message digest\&. 
+
+Crypto++ provides the original \fBTiger\fP hash that was submitted to the NESSIE project\&. The implementation is different from the revised Tiger2 hash\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRTiger\fP and \fRTiger: A Fast New Cryptographic Hash Function\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string Tiger::AlgorithmProvider () const\fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBIteratedHashBase< word64, HashTransformation >\fP\&.
+.SS "void Tiger::InitState (HashWordType * state)\fR [static]\fP"
+
+.PP
+Initialize state array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstate\fP the state of the hash 
+.RE
+.PP
+
+.SS "void Tiger::Transform (word64 * digest, const word64 * data)\fR [static]\fP"
+
+.PP
+Operate the hash\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP the state of the hash 
+.br
+\fIdata\fP the data to be digested 
+.RE
+.PP
+
+.SS "void Tiger::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)\fR [virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls \fBFinal()\fP and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+Reimplemented from \fBIteratedHashBase< word64, HashTransformation >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,95 @@
+.TH "/home/mock/cryptopp-master/config_ns.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/config_ns.h \- Library configuration file\&.
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNAMESPACE_BEGIN\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBNAMESPACE_END\fP   }"
+.br
+.ti -1c
+.RI "#define \fBDOCUMENTED_TYPEDEF\fP(x,  y)"
+.br
+.ti -1c
+.RI "#define \fBANONYMOUS_NAMESPACE_BEGIN\fP   namespace {"
+.br
+.ti -1c
+.RI "#define \fBANONYMOUS_NAMESPACE_END\fP   }"
+.br
+.ti -1c
+.RI "#define \fBUSING_NAMESPACE\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBDOCUMENTED_NAMESPACE_BEGIN\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBDOCUMENTED_NAMESPACE_END\fP   }"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Library configuration file\&.
+
+\fR\fBconfig_ns\&.h\fP\fP provides defines for C++ and library namespaces\&.
+
+.PP
+\fR\fBconfig\&.h\fP\fP was split into components in May 2019 to better integrate with Autoconf and its feature tests\&. The splitting occurred so users could continue to include \fR\fBconfig\&.h\fP\fP while allowing Autoconf to write new \fR\fBconfig_asm\&.h\fP\fP and new \fR\fBconfig_cxx\&.h\fP\fP using its feature tests\&.
+.PP
+\fBNote\fP
+.RS 4
+You should include \fR\fBconfig\&.h\fP\fP rather than \fR\fBconfig_ns\&.h\fP\fP directly\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 835, Make config\&.h more autoconf friendly\fP, \fRConfigure\&.sh script\fP on the Crypto++ wiki
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.3
+.RE
+.PP
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define DOCUMENTED_NAMESPACE_BEGIN( x)"
+\fBValue:\fP
+.nf
+namespace x {
+.PP
+.fi
+
+.SS "#define DOCUMENTED_TYPEDEF( x,  y)"
+\fBValue:\fP
+.nf
+typedef x y
+.PP
+.fi
+
+.SS "#define NAMESPACE_BEGIN( x)"
+\fBValue:\fP
+.nf
+namespace x {
+.PP
+.fi
+
+.SS "#define USING_NAMESPACE( x)"
+\fBValue:\fP
+.nf
+using namespace x;
+.PP
+.fi
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,102 @@
+.TH "/home/mock/cryptopp-master/cpu.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/cpu.h \- Functions for CPU features and intrinsics\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNEW_LINE\fP"
+.br
+.ti -1c
+.RI "#define \fBINTEL_PREFIX\fP"
+.br
+.ti -1c
+.RI "#define \fBINTEL_NOPREFIX\fP"
+.br
+.ti -1c
+.RI "#define \fBATT_PREFIX\fP"
+.br
+.ti -1c
+.RI "#define \fBATT_NOPREFIX\fP"
+.br
+.ti -1c
+.RI "#define \fBPERCENT_PASTE\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBPERCENT_REG\fP(x)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBGetCacheLineSize\fP ()"
+.br
+.RI "Provides the cache line size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Functions for CPU features and intrinsics\&.
+
+The CPU functions are used in IA-32, ARM and PowerPC code paths\&. The functions provide cpu specific feature testing on IA-32, ARM and PowerPC machines\&.
+
+.PP
+Feature detection uses CPUID on IA-32, like Intel and AMD\&. On other platforms a two-part strategy is used\&. First, the library attempts to \fIQuery\fP the OS for a feature, like using Linux getauxval() or android_getCpuFeatures()\&. If that fails, then \fIProbe\fP the cpu executing an instruction and an observe a SIGILL if unsupported\&. The general pattern used by the library is:
+.PP
+.nf
+
+   g_hasCRC32 = CPU_QueryCRC32() || CPU_ProbeCRC32();
+   g_hasPMULL = CPU_QueryPMULL() || CPU_ProbePMULL();
+   g_hasAES  = CPU_QueryAES() || CPU_ProbeAES();
+.fi
+.PP
+
+.PP
+Generally speaking, CPU_Query() is in the source file \fRcpu\&.cpp\fP because it does not require special architectural flags\&. CPU_Probe() is in a source file that receives architectural flags, like \fRsse_simd\&.cpp\fP, \fRneon_simd\&.cpp\fP and \fRppc_simd\&.cpp\fP\&. For example, compiling \fRneon_simd\&.cpp\fP on an ARM64 machine will have \fR-march=armv8-a\fP applied during a compile to make the instruction set architecture (ISA) available\&.
+
+.PP
+The cpu probes are expensive when compared to a standard OS feature query\&. The library also avoids probes on Apple platforms because Apple's signal handling for SIGILLs appears to corrupt memory\&. CPU_Probe() will unconditionally return false for Apple platforms\&. OpenSSL experienced the same problem and moved away from SIGILL probes on Apple\&.
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define PERCENT_PASTE( x)"
+\fBValue:\fP
+.nf
+"%" #x
+.PP
+.fi
+
+.SS "#define PERCENT_REG( x)"
+\fBValue:\fP
+.nf
+PERCENT_PASTE(x)
+.PP
+.fi
+
+.SH "Function Documentation"
+.PP
+.SS "int GetCacheLineSize ()\fR [inline]\fP"
+
+.PP
+Provides the cache line size\&.
+.PP
+\fBReturns\fP
+.RS 4
+lower bound on the size of a cache line in bytes, if available
+.RE
+.PP
+\fBGetCacheLineSize()\fP returns the lower bound on the size of a cache line, if it is available\&. If the value is not available at runtime, then 32 is returned for a 32-bit processor and 64 is returned for a 64-bit processor\&.
+
+.PP
+x86/x32/x64 uses CPUID to determine the value and it is usually accurate\&. PowerPC and AIX also makes the value available to user space and it is also usually accurate\&. The ARM processor equivalent is a privileged instruction, so a compile time value is returned\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

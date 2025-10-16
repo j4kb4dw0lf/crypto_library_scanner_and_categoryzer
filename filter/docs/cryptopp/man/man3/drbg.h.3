@@ -1,0 +1,58 @@
+.TH "/home/mock/cryptopp-master/drbg.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/drbg.h \- Classes for NIST DRBGs from SP 800-90A\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'hmac\&.h'\fP
+.br
+\fR#include 'sha\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBNIST_DRBG\fP"
+.br
+.RI "Interface for NIST DRBGs from SP 800-90A\&. "
+.ti -1c
+.RI "class \fBNIST_DRBG::Err\fP"
+.br
+.RI "\fBException\fP thrown when a NIST DRBG encounters an error\&. "
+.ti -1c
+.RI "class \fBHash_DRBG< HASH, STRENGTH, SEEDLENGTH >\fP"
+.br
+.RI "\fBHash_DRBG\fP from SP 800-90A Rev 1 (June 2015) "
+.ti -1c
+.RI "class \fBHMAC_DRBG< HASH, STRENGTH, SEEDLENGTH >\fP"
+.br
+.RI "\fBHMAC_DRBG\fP from SP 800-90A Rev 1 (June 2015) "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for NIST DRBGs from SP 800-90A\&.
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fRRecommendation for Random Number Generation Using Deterministic Random Bit Generators, Rev 1 (June 2015)\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

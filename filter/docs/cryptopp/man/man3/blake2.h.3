@@ -1,0 +1,67 @@
+.TH "/home/mock/cryptopp-master/blake2.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/blake2.h \- Classes for \fBBLAKE2b\fP and \fBBLAKE2s\fP message digests and keyed message digests\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'seckey\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBBLAKE2s_Info\fP"
+.br
+.RI "\fBBLAKE2s\fP hash information\&. "
+.ti -1c
+.RI "struct \fBBLAKE2b_Info\fP"
+.br
+.RI "\fBBLAKE2b\fP hash information\&. "
+.ti -1c
+.RI "struct \fBBLAKE2s_ParameterBlock\fP"
+.br
+.RI "\fBBLAKE2s\fP parameter block\&. "
+.ti -1c
+.RI "struct \fBBLAKE2b_ParameterBlock\fP"
+.br
+.RI "\fBBLAKE2b\fP parameter block\&. "
+.ti -1c
+.RI "struct \fBBLAKE2s_State\fP"
+.br
+.RI "\fBBLAKE2s\fP state information\&. "
+.ti -1c
+.RI "struct \fBBLAKE2b_State\fP"
+.br
+.RI "\fBBLAKE2b\fP state information\&. "
+.ti -1c
+.RI "class \fBBLAKE2s\fP"
+.br
+.RI "The \fBBLAKE2s\fP cryptographic hash function\&. "
+.ti -1c
+.RI "class \fBBLAKE2b\fP"
+.br
+.RI "The \fBBLAKE2b\fP cryptographic hash function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for \fBBLAKE2b\fP and \fBBLAKE2s\fP message digests and keyed message digests\&.
+
+This implementation follows Aumasson, Neves, Wilcox-O'Hearn and Winnerlein's \fRBLAKE2: simpler, smaller, fast as MD5\fP (2013\&.01\&.29)\&. Static algorithm name return either "BLAKE2b" or "BLAKE2s"\&. An object algorithm name follows the naming described in \fRRFC 7693, The BLAKE2 Cryptographic Hash and Message Authentication Code (MAC)\fP\&.
+.PP
+\fBSince\fP
+.RS 4
+C++ since Crypto++ 5\&.6\&.4, SSE since Crypto++ 5\&.6\&.4, NEON since Crypto++ 6\&.0, Power8 since Crypto++ 8\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

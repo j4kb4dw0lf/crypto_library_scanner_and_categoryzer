@@ -1,0 +1,780 @@
+.TH "DL_GroupParameters< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_GroupParameters< T > \- Interface for Discrete Log (DL) group parameters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBCryptoParameters\fP\&.
+.PP
+Inherited by \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP, and \fBDL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "void \fBPrecompute\fP (unsigned int precomputationStorage=16)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "virtual const Element & \fBGetSubgroupGenerator\fP () const"
+.br
+.RI "Retrieves the subgroup generator\&. "
+.ti -1c
+.RI "virtual void \fBSetSubgroupGenerator\fP (const Element &base)"
+.br
+.RI "Sets the subgroup generator\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiateBase\fP (const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates the base\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiateElement\fP (const Element &base, const \fBInteger\fP &exponent) const"
+.br
+.RI "Exponentiates an element\&. "
+.ti -1c
+.RI "virtual const \fBDL_GroupPrecomputation\fP< Element > & \fBGetGroupPrecomputation\fP () const =0"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "virtual const \fBDL_FixedBasePrecomputation\fP< Element > & \fBGetBasePrecomputation\fP () const =0"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "virtual \fBDL_FixedBasePrecomputation\fP< Element > & \fBAccessBasePrecomputation\fP ()=0"
+.br
+.RI "Retrieves the group precomputation\&. "
+.ti -1c
+.RI "virtual const \fBInteger\fP & \fBGetSubgroupOrder\fP () const =0"
+.br
+.RI "Retrieves the subgroup order\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetMaxExponent\fP () const =0"
+.br
+.RI "Retrieves the maximum exponent for the group\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetGroupOrder\fP () const"
+.br
+.RI "Retrieves the order of the group\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBGetCofactor\fP () const"
+.br
+.RI "Retrieves the cofactor\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetEncodedElementSize\fP (bool reversible) const =0"
+.br
+.RI "Retrieves the encoded element's size\&. "
+.ti -1c
+.RI "virtual void \fBEncodeElement\fP (bool reversible, const Element &element, \fBbyte\fP *encoded) const =0"
+.br
+.RI "Encodes the element\&. "
+.ti -1c
+.RI "virtual Element \fBDecodeElement\fP (const \fBbyte\fP *encoded, bool checkForGroupMembership) const =0"
+.br
+.RI "Decodes the element\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBConvertElementToInteger\fP (const Element &element) const =0"
+.br
+.RI "Converts an element to an \fBInteger\fP\&. "
+.ti -1c
+.RI "virtual bool \fBValidateGroup\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const =0"
+.br
+.RI "Check the group for errors\&. "
+.ti -1c
+.RI "virtual bool \fBValidateElement\fP (unsigned int level, const Element &element, const \fBDL_FixedBasePrecomputation\fP< Element > *precomp) const =0"
+.br
+.RI "Check the element for errors\&. "
+.ti -1c
+.RI "virtual bool \fBFastSubgroupCheckAvailable\fP () const =0"
+.br
+.ti -1c
+.RI "virtual bool \fBIsIdentity\fP (const Element &element) const =0"
+.br
+.RI "Determines if an element is an identity\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousExponentiate\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const =0"
+.br
+.RI "Exponentiates a base to multiple exponents\&. "
+.in -1c
+
+Public Member Functions inherited from \fBGeneratableCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.ti -1c
+.RI "void \fBGenerateRandomWithKeySize\fP (\fBRandomNumberGenerator\fP &rng, unsigned int keySize)"
+.br
+.RI "Generate a random key or crypto parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)=0"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Saves a key to a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Loads a key from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBParametersChanged\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_GroupParameters< T >"Interface for Discrete Log (DL) group parameters\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP element in the group
+.RE
+.PP
+The element is usually an \fBInteger\fP, \fBECP::Point\fP or \fBEC2N::Point\fP 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual \fBDL_FixedBasePrecomputation\fP< Element > & \fBDL_GroupParameters\fP< T >::AccessBasePrecomputation ()\fR [pure virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a non-const reference to the group precomputation using a fixed base 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP, \fBDL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >\fP, \fBDL_GroupParametersImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC, DL_GroupParameters_IntegerBased >\fP, \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP, \fBDL_GroupParametersImpl< GROUP_PRECOMP, DL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >, DL_GroupParameters_IntegerBased >\fP, and \fBDL_GroupParametersImpl< ModExpPrecomputation, DL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >, DL_GroupParameters_IntegerBased >\fP\&.
+.SS "template<class T> virtual \fBInteger\fP \fBDL_GroupParameters\fP< T >::ConvertElementToInteger (const Element & element) const\fR [pure virtual]\fP"
+
+.PP
+Converts an element to an \fBInteger\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP the element to convert to an \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Element after converting to an \fBInteger\fP
+.RE
+.PP
+\fBConvertElementToInteger()\fP must be implemented in a derived class\&. 
+.SS "template<class T> virtual Element \fBDL_GroupParameters\fP< T >::DecodeElement (const \fBbyte\fP * encoded, bool checkForGroupMembership) const\fR [pure virtual]\fP"
+
+.PP
+Decodes the element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIencoded\fP byte array with the encoded element 
+.br
+\fIcheckForGroupMembership\fP flag indicating if the element should be validated 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Element after decoding
+.RE
+.PP
+\fBDecodeElement()\fP must be implemented in a derived class\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(encoded) == \fBGetEncodedElementSize()\fP\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, and \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> virtual void \fBDL_GroupParameters\fP< T >::EncodeElement (bool reversible, const Element & element, \fBbyte\fP * encoded) const\fR [pure virtual]\fP"
+
+.PP
+Encodes the element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreversible\fP flag indicating the encoding format 
+.br
+\fIelement\fP reference to the element to encode 
+.br
+\fIencoded\fP destination byte array for the encoded element
+.RE
+.PP
+\fBEncodeElement()\fP must be implemented in a derived class\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(encoded) == \fBGetEncodedElementSize()\fP\fP 
+.RE
+.PP
+
+.SS "template<class T> virtual Element \fBDL_GroupParameters\fP< T >::ExponentiateBase (const \fBInteger\fP & exponent) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Exponentiates the base\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the element after exponentiation
+.RE
+.PP
+\fBExponentiateBase()\fP calls \fBGetBasePrecomputation()\fP and then exponentiates\&. 
+.SS "template<class T> virtual Element \fBDL_GroupParameters\fP< T >::ExponentiateElement (const Element & base, const \fBInteger\fP & exponent) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Exponentiates an element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbase\fP the base element 
+.br
+\fIexponent\fP the exponent to raise the base 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of the exponentiation
+.RE
+.PP
+Internally, \fBExponentiateElement()\fP calls \fBSimultaneousExponentiate()\fP\&. 
+.SS "template<class T> virtual bool \fBDL_GroupParameters\fP< T >::FastSubgroupCheckAvailable () const\fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> virtual const \fBDL_FixedBasePrecomputation\fP< Element > & \fBDL_GroupParameters\fP< T >::GetBasePrecomputation () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the group precomputation using a fixed base 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP, \fBDL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >\fP, \fBDL_GroupParametersImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC, DL_GroupParameters_IntegerBased >\fP, \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP, \fBDL_GroupParametersImpl< GROUP_PRECOMP, DL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >, DL_GroupParameters_IntegerBased >\fP, and \fBDL_GroupParametersImpl< ModExpPrecomputation, DL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >, DL_GroupParameters_IntegerBased >\fP\&.
+.SS "template<class T> virtual \fBInteger\fP \fBDL_GroupParameters\fP< T >::GetCofactor () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the cofactor\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the cofactor
+.RE
+.PP
+Either \fBGetGroupOrder()\fP or \fBGetCofactor()\fP must be overridden in a derived class\&. 
+.PP
+Reimplemented in \fBDL_GroupParameters_EC< EC >\fP\&.
+.SS "template<class T> virtual unsigned int \fBDL_GroupParameters\fP< T >::GetEncodedElementSize (bool reversible) const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the encoded element's size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreversible\fP flag indicating the encoding format 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+encoded element's size, in bytes
+.RE
+.PP
+The format of the encoded element varies by the underlying type of the element and the reversible flag\&. \fBGetEncodedElementSize()\fP must be implemented in a derived class\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetEncodedElementSize()\fP, \fBEncodeElement()\fP, \fBDecodeElement()\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, and \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> virtual \fBInteger\fP \fBDL_GroupParameters\fP< T >::GetGroupOrder () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the order of the group\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the order of the group
+.RE
+.PP
+Either \fBGetGroupOrder()\fP or \fBGetCofactor()\fP must be overridden in a derived class\&. 
+.PP
+Reimplemented in \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> virtual const \fBDL_GroupPrecomputation\fP< Element > & \fBDL_GroupParameters\fP< T >::GetGroupPrecomputation () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the group precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference to the group precomputation 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParametersImpl< GROUP_PRECOMP, BASE_PRECOMP, BASE >\fP, \fBDL_GroupParametersImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC, DL_GroupParameters_IntegerBased >\fP, \fBDL_GroupParametersImpl< EcPrecomputation< EC > >\fP, \fBDL_GroupParametersImpl< GROUP_PRECOMP, DL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >, DL_GroupParameters_IntegerBased >\fP, and \fBDL_GroupParametersImpl< ModExpPrecomputation, DL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >, DL_GroupParameters_IntegerBased >\fP\&.
+.SS "template<class T> virtual \fBInteger\fP \fBDL_GroupParameters\fP< T >::GetMaxExponent () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the maximum exponent for the group\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum exponent for the group 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, \fBDL_GroupParameters_ElGamal\fP, and \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> virtual const Element & \fBDL_GroupParameters\fP< T >::GetSubgroupGenerator () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the subgroup generator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the subgroup generator
+.RE
+.PP
+The subgroup generator is retrieved from the base precomputation 
+.SS "template<class T> virtual const \fBInteger\fP & \fBDL_GroupParameters\fP< T >::GetSubgroupOrder () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the subgroup order\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the order of subgroup generated by the base element 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_GroupParameters_EC< EC >\fP, and \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> bool \fBDL_GroupParameters\fP< T >::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBNameValuePairs\fP\&.
+.PP
+Reimplemented in \fBDL_GroupParameters_EC< EC >\fP, \fBDL_GroupParameters_GFP\fP, \fBDL_GroupParameters_IntegerBased\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP, and \fBDL_GroupParameters_LUC\fP\&.
+.SS "template<class T> virtual bool \fBDL_GroupParameters\fP< T >::IsIdentity (const Element & element) const\fR [pure virtual]\fP"
+
+.PP
+Determines if an element is an identity\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP element to check 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the element is an identity, false otherwise
+.RE
+.PP
+The identity element or or neutral element is a special element in a group that leaves other elements unchanged when combined with it\&.
+
+.PP
+\fBIsIdentity()\fP must be implemented in a derived class\&. 
+.PP
+Implemented in \fBDL_GroupParameters_LUC\fP\&.
+.SS "template<class T> void \fBDL_GroupParameters\fP< T >::LoadPrecomputation (\fBBufferedTransformation\fP & storedPrecomputation)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve previously saved precomputation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstoredPrecomputation\fP \fBBufferedTransformation\fP with the saved precomputation 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSupportsPrecomputation()\fP, \fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "template<class T> void \fBDL_GroupParameters\fP< T >::Precompute (unsigned int precomputationStorage = \fR16\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Perform precomputation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprecomputationStorage\fP the suggested number of objects for the precompute table 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+The exact semantics of \fBPrecompute()\fP varies, but it typically means calculate a table of n objects that can be used later to speed up computation\&.
+
+.PP
+If a derived class does not override \fBPrecompute()\fP, then the base class throws \fBNotImplemented\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSupportsPrecomputation()\fP, \fBLoadPrecomputation()\fP, \fBSavePrecomputation()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "template<class T> void \fBDL_GroupParameters\fP< T >::SavePrecomputation (\fBBufferedTransformation\fP & storedPrecomputation) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Save precomputation for later use\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstoredPrecomputation\fP \fBBufferedTransformation\fP to write the precomputation 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSupportsPrecomputation()\fP, \fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "template<class T> virtual void \fBDL_GroupParameters\fP< T >::SetSubgroupGenerator (const Element & base)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Sets the subgroup generator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbase\fP the new subgroup generator
+.RE
+.PP
+The subgroup generator is set in the base precomputation 
+.SS "template<class T> virtual void \fBDL_GroupParameters\fP< T >::SimultaneousExponentiate (Element * results, const Element & base, const \fBInteger\fP * exponents, unsigned int exponentsCount) const\fR [pure virtual]\fP"
+
+.PP
+Exponentiates a base to multiple exponents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIresults\fP an array of Elements 
+.br
+\fIbase\fP the base to raise to the exponents 
+.br
+\fIexponents\fP an array of exponents 
+.br
+\fIexponentsCount\fP the number of exponents in the array
+.RE
+.PP
+\fBSimultaneousExponentiate()\fP raises the base to each exponent in the exponents array and stores the result at the respective position in the results array\&.
+
+.PP
+\fBSimultaneousExponentiate()\fP must be implemented in a derived class\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(results) == exponentsCount\fP 
+
+.PP
+\fRCOUNTOF(exponents) == exponentsCount\fP 
+.RE
+.PP
+
+.SS "template<class T> bool \fBDL_GroupParameters\fP< T >::SupportsPrecomputation () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether the object supports precomputation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the object supports precomputation, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCryptoMaterial\fP\&.
+.SS "template<class T> bool \fBDL_GroupParameters\fP< T >::Validate (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Check this object for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP the level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBThrowIfInvalid()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBCryptoMaterial\fP\&.
+.SS "template<class T> virtual bool \fBDL_GroupParameters\fP< T >::ValidateElement (unsigned int level, const Element & element, const \fBDL_FixedBasePrecomputation\fP< Element > * precomp) const\fR [pure virtual]\fP"
+
+.PP
+Check the element for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP level of thoroughness 
+.br
+\fIelement\fP element to check 
+.br
+\fIprecomp\fP optional pointer to \fBDL_FixedBasePrecomputation\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 performs group membership checks\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&.
+
+.PP
+\fBValidateElement()\fP must be implemented in a derived class\&. 
+.PP
+Implemented in \fBDL_GroupParameters_IntegerBased\fP\&.
+.SS "template<class T> virtual bool \fBDL_GroupParameters\fP< T >::ValidateGroup (\fBRandomNumberGenerator\fP & rng, unsigned int level) const\fR [pure virtual]\fP"
+
+.PP
+Check the group for errors\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP for objects which use randomized testing 
+.br
+\fIlevel\fP level of thoroughness 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the tests succeed, false otherwise
+.RE
+.PP
+There are four levels of thoroughness: 
+.PD 0
+.IP "\(bu" 2
+0 - using this object won't cause a crash or exception 
+.IP "\(bu" 2
+1 - this object will probably function, and encrypt, sign, other operations correctly 
+.IP "\(bu" 2
+2 - ensure this object will function correctly, and perform reasonable security checks 
+.IP "\(bu" 2
+3 - perform reasonable security checks, and do checks that may take a long time 
+.PP
+
+.PP
+Level 0 does not require a \fBRandomNumberGenerator\fP\&. A \fBNullRNG()\fP can be used for level 0\&. Level 1 may not check for weak keys and such\&. Levels 2 and 3 are recommended\&.
+
+.PP
+\fBValidateGroup()\fP must be implemented in a derived class\&. 
+.PP
+Implemented in \fBDL_GroupParameters_DSA\fP, \fBDL_GroupParameters_EC< EC >\fP, and \fBDL_GroupParameters_IntegerBased\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

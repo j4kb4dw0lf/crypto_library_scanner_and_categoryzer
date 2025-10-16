@@ -1,0 +1,233 @@
+.TH "/home/mock/cryptopp-master/eccrypto.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/eccrypto.h \- Classes and functions for Elliptic Curves over prime and binary fields\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'asn\&.h'\fP
+.br
+\fR#include 'hmac\&.h'\fP
+.br
+\fR#include 'sha\&.h'\fP
+.br
+\fR#include 'gfpcrypt\&.h'\fP
+.br
+\fR#include 'dh\&.h'\fP
+.br
+\fR#include 'mqv\&.h'\fP
+.br
+\fR#include 'hmqv\&.h'\fP
+.br
+\fR#include 'fhmqv\&.h'\fP
+.br
+\fR#include 'ecp\&.h'\fP
+.br
+\fR#include 'ec2n\&.h'\fP
+.br
+\fR#include <iosfwd>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDL_GroupParameters_EC< EC >\fP"
+.br
+.RI "Elliptic Curve Parameters\&. "
+.ti -1c
+.RI "class \fBDL_PublicKey_EC< EC >\fP"
+.br
+.RI "Elliptic Curve Discrete Log (DL) public key\&. "
+.ti -1c
+.RI "class \fBDL_PrivateKey_EC< EC >\fP"
+.br
+.RI "Elliptic Curve Discrete Log (DL) private key\&. "
+.ti -1c
+.RI "struct \fBECDH< EC, COFACTOR_OPTION >\fP"
+.br
+.RI "Elliptic Curve Diffie-Hellman\&. "
+.ti -1c
+.RI "struct \fBECMQV< EC, COFACTOR_OPTION >\fP"
+.br
+.RI "Elliptic Curve Menezes-Qu-Vanstone\&. "
+.ti -1c
+.RI "struct \fBECHMQV< EC, COFACTOR_OPTION, HASH >\fP"
+.br
+.RI "Hashed Elliptic Curve Menezes-Qu-Vanstone\&. "
+.ti -1c
+.RI "struct \fBECFHMQV< EC, COFACTOR_OPTION, HASH >\fP"
+.br
+.RI "Fully Hashed Elliptic Curve Menezes-Qu-Vanstone\&. "
+.ti -1c
+.RI "struct \fBDL_Keys_EC< EC >\fP"
+.br
+.RI "Elliptic Curve Discrete Log (DL) keys\&. "
+.ti -1c
+.RI "struct \fBDL_Keys_ECDSA< EC >\fP"
+.br
+.RI "Elliptic Curve \fBDSA\fP keys\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_ECDSA< EC >\fP"
+.br
+.RI "Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature algorithm\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_ECDSA_RFC6979< EC, H >\fP"
+.br
+.RI "Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature algorithm based on RFC 6979\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_ECNR< EC >\fP"
+.br
+.RI "Elliptic Curve \fBNR\fP (\fBECNR\fP) signature algorithm\&. "
+.ti -1c
+.RI "struct \fBECDSA< EC, H >\fP"
+.br
+.RI "Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature scheme\&. "
+.ti -1c
+.RI "struct \fBECDSA_RFC6979< EC, H >\fP"
+.br
+.RI "Elliptic Curve \fBDSA\fP (\fBECDSA\fP) deterministic signature scheme\&. "
+.ti -1c
+.RI "struct \fBECNR< EC, H >\fP"
+.br
+.RI "Elliptic Curve \fBNR\fP (\fBECNR\fP) signature scheme\&. "
+.ti -1c
+.RI "class \fBDL_PrivateKey_ECGDSA< EC >\fP"
+.br
+.RI "Elliptic Curve German \fBDSA\fP key for ISO/IEC 15946\&. "
+.ti -1c
+.RI "class \fBDL_PublicKey_ECGDSA< EC >\fP"
+.br
+.RI "Elliptic Curve German \fBDSA\fP key for ISO/IEC 15946\&. "
+.ti -1c
+.RI "struct \fBDL_Keys_ECGDSA< EC >\fP"
+.br
+.RI "Elliptic Curve German \fBDSA\fP keys for ISO/IEC 15946\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_ECGDSA< EC >\fP"
+.br
+.RI "Elliptic Curve German \fBDSA\fP signature algorithm\&. "
+.ti -1c
+.RI "struct \fBECGDSA< EC, H >\fP"
+.br
+.RI "Elliptic Curve German Digital Signature \fBAlgorithm\fP signature scheme\&. "
+.ti -1c
+.RI "struct \fBECIES< EC, HASH, COFACTOR_OPTION, DHAES_MODE, LABEL_OCTETS >\fP"
+.br
+.RI "Elliptic Curve Integrated Encryption Scheme\&. "
+.ti -1c
+.RI "struct \fBECIES_P1363< EC, HASH, COFACTOR_OPTION >\fP"
+.br
+.RI "Elliptic Curve Integrated Encryption Scheme for P1363\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBECHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA1\fP >\fB::Domain\fP \fBECHMQV160\fP"
+.br
+.ti -1c
+.RI "typedef \fBECHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA256\fP >\fB::Domain\fP \fBECHMQV256\fP"
+.br
+.ti -1c
+.RI "typedef \fBECHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA384\fP >\fB::Domain\fP \fBECHMQV384\fP"
+.br
+.ti -1c
+.RI "typedef \fBECHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA512\fP >\fB::Domain\fP \fBECHMQV512\fP"
+.br
+.ti -1c
+.RI "typedef \fBECFHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA1\fP >\fB::Domain\fP \fBECFHMQV160\fP"
+.br
+.ti -1c
+.RI "typedef \fBECFHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA256\fP >\fB::Domain\fP \fBECFHMQV256\fP"
+.br
+.ti -1c
+.RI "typedef \fBECFHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA384\fP >\fB::Domain\fP \fBECFHMQV384\fP"
+.br
+.ti -1c
+.RI "typedef \fBECFHMQV\fP< \fBECP\fP, \fBDL_GroupParameters_EC\fP< \fBECP\fP >::DefaultCofactorOption, \fBSHA512\fP >\fB::Domain\fP \fBECFHMQV512\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &os, const \fBDL_GroupParameters_EC\fP< \fBECP\fP >\fB::Element\fP &obj)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "NAMESPACE_END CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_GroupParameters_EC< ECP >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_GroupParameters_EC< EC2N >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKeyImpl< DL_GroupParameters_EC< ECP > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC2N > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKey_EC< ECP >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKey_EC< EC2N >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKey_ECGDSA< ECP >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PublicKey_ECGDSA< EC2N >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< ECP > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC2N > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_EC< ECP >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_EC< EC2N >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_ECGDSA< ECP >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_ECGDSA< EC2N >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_GDSA< ECP::Point >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_Algorithm_GDSA< EC2N::Point >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest< DL_PrivateKey_EC< ECP >, ECDSA< ECP, SHA256 > >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBDL_PrivateKey_WithSignaturePairwiseConsistencyTest< DL_PrivateKey_EC< EC2N >, ECDSA< EC2N, SHA256 > >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for Elliptic Curves over prime and binary fields\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

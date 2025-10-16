@@ -1,0 +1,283 @@
+.TH "PadlockRNG" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PadlockRNG \- Hardware generated random numbers using VIA XSTORE\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <padlkrng\&.h>\fP
+.PP
+Inherits \fBRandomNumberGenerator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBPadlockRNG\fP (\fBword32\fP divisor=1)"
+.br
+.RI "Construct a \fBPadlockRNG\fP generator\&. "
+.ti -1c
+.RI "virtual void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "virtual void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.ti -1c
+.RI "virtual void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "\fBword32\fP \fBSetDivisor\fP (\fBword32\fP divisor)"
+.br
+.RI "Set the XSTORE divisor\&. "
+.ti -1c
+.RI "\fBword32\fP \fBGetDivisor\fP () const"
+.br
+.RI "Get the XSTORE divisor\&. "
+.ti -1c
+.RI "\fBword32\fP \fBGetMSR\fP () const"
+.br
+.RI "Get the MSR for the last operation\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual \fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffUL)"
+.br
+.RI "Generate a random 32 bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBword32\fP \fBDivisorHelper\fP (\fBword32\fP divisor)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Hardware generated random numbers using VIA XSTORE\&. 
+
+Some VIA processors provide a Security Engine called Padlock\&. The Padlock Security Engine provides AES, SHA and a RNG\&. The \fBPadlockRNG\fP class provides access to the RNG\&.
+
+.PP
+The VIA generator uses an 8 byte FIFO buffer for random numbers\&. The generator can be configured to discard bits from the buffer to resist analysis\&. The \fRdivisor\fP controls the number of bytes discarded\&. The formula for the discard amount is \fR2**divisor - 1\fP\&. When \fRdivisor=0\fP no bits are discarded and the entire 8 byte buffer is read\&. If \fRdivisor=3\fP then 7 bytes are discarded and 1 byte is read\&. TheVIA SDK samples use \fRdivisor=1\fP\&.
+
+.PP
+Cryptography Research, Inc (CRI) audited the Padlock Security Engine in 2003\&. CRI provided recommendations to operate the generator for secure and non-secure applications\&. Additionally, the Programmers Guide and SDK provided a different configuration in the sample code\&.
+
+.PP
+You can operate the generator according to CRI recommendations by setting \fRdivisor\fP, reading one word (or partial word) at a time from the FIFO, and then inspecting the MSR after each read\&.
+
+.PP
+The audit report with recommendations is available on the Crypto++ wiki at \fRVIA Padlock\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBMaurerRandomnessTest()\fP for random bit generators 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "PadlockRNG::PadlockRNG (\fBword32\fP divisor = \fR1\fP)"
+
+.PP
+Construct a \fBPadlockRNG\fP generator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdivisor\fP the XSTORE divisor
+.RE
+.PP
+Some VIA processors provide a Security Engine called Padlock\&. The Padlock Security Engine provides AES, SHA and a RNG\&. The \fBPadlockRNG\fP class provides access to the RNG\&.
+
+.PP
+The VIA generator uses an 8 byte FIFO buffer for random numbers\&. The generator can be configured to discard bits from the buffer to resist analysis\&. The \fRdivisor\fP controls the number of bytes discarded\&. The formula for the discard amount is \fR2**divisor - 1\fP\&. When \fRdivisor=0\fP no bits are discarded and the entire 8 byte buffer is read\&. If \fRdivisor=3\fP then 7 bytes are discarded and 1 byte is read\&. VIA SDK samples use \fRdivisor=1\fP\&.
+
+.PP
+Cryptography Research, Inc (CRI) audited the Padlock Security Engine in 2003\&. CRI provided recommendations to operate the generator for secure and non-secure applications\&. Additionally, the Programmers SDK provided a different configuration in the sample code\&.
+
+.PP
+The audit report with recommendations is available on the Crypto++ wiki at \fRVIA Padlock\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSetDivisor\fP, \fBGetDivisor\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string PadlockRNG::AlgorithmProvider () const\fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "void PadlockRNG::DiscardBytes (size_t n)\fR [virtual]\fP"
+
+.PP
+Generate and discard n bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number of bytes to generate and discard
+.RE
+.PP
+the Padlock generator discards words, not bytes\&. If n is not a multiple of a 32-bit word, then it is rounded up to that size\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "void PadlockRNG::GenerateBlock (\fBbyte\fP * output, size_t size)\fR [virtual]\fP"
+
+.PP
+Generate random array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the byte buffer 
+.br
+\fIsize\fP the length of the buffer, in bytes 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "\fBword32\fP PadlockRNG::GetDivisor () const\fR [inline]\fP"
+
+.PP
+Get the XSTORE divisor\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the current XSTORE divisor 
+.RE
+.PP
+
+.SS "\fBword32\fP PadlockRNG::GetMSR () const\fR [inline]\fP"
+
+.PP
+Get the MSR for the last operation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the MSR for the last read operation 
+.RE
+.PP
+
+.SS "virtual void PadlockRNG::IncorporateEntropy (const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Update RNG state with additional unpredictable values\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP unused 
+.br
+\fIlength\fP unused
+.RE
+.PP
+The operation is a nop for this generator\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "\fBword32\fP PadlockRNG::SetDivisor (\fBword32\fP divisor)\fR [inline]\fP"
+
+.PP
+Set the XSTORE divisor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdivisor\fP the XSTORE divisor 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the old XSTORE divisor 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

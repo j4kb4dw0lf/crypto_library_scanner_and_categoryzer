@@ -1,0 +1,486 @@
+.TH "Weak::PanamaHash< B >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Weak::PanamaHash< B > \- \fBPanama\fP hash\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <panama\&.h>\fP
+.PP
+Inherits \fBPanama< LittleEndian >\fP, and \fBAlgorithmImpl< IteratedHash< word32, NativeByteOrder, 32 >, PanamaHash< LittleEndian > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=32)"
+.br
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *hash, size_t size)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word32, NativeByteOrder, 32 >, PanamaHash< LittleEndian > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHash< word32, NativeByteOrder, 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=T_BlockSize)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_COMPILE_ASSERT\fP ((T_BlockSize &(T_BlockSize \- 1))==0)"
+.br
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the hash\&. "
+.ti -1c
+.RI "\fBByteOrder\fP \fBGetByteOrder\fP () const"
+.br
+.RI "Provides the byte order of the hash\&. "
+.ti -1c
+.RI "void \fBCorrectEndianess\fP (HashWordType *out, const HashWordType *in, size_t byteCount)"
+.br
+.RI "Adjusts the byte ordering of the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHashBase< word32, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "\fBIteratedHashBase\fP ()"
+.br
+.RI "Construct an \fBIteratedHashBase\fP\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Requests space which can be written into by the caller\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInit\fP ()"
+.br
+.ti -1c
+.RI "void \fBHashEndianCorrectedBlock\fP (const \fBword32\fP *data)"
+.br
+.ti -1c
+.RI "size_t \fBHashMultipleBlocks\fP (const \fBword32\fP *input, size_t length)"
+.br
+.ti -1c
+.RI "\fBword32\fP * \fBStateBuf\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBPanama< LittleEndian >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (STAGES=32)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.ti -1c
+.RI "void \fBReset\fP ()"
+.br
+.ti -1c
+.RI "void \fBIterate\fP (size_t count, const \fBword32\fP *p=NULLPTR, \fBbyte\fP *output=NULLPTR, const \fBbyte\fP *input=NULLPTR, \fBKeystreamOperation\fP operation=\fBWRITE_KEYSTREAM\fP)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word32, NativeByteOrder, 32 >, PanamaHash< LittleEndian > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHash< word32, NativeByteOrder, 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBword32\fP * \fBDataBuf\fP ()"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=T_BlockSize)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_COMPILE_ASSERT\fP ((T_BlockSize &(T_BlockSize \- 1))==0)"
+.br
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the hash\&. "
+.ti -1c
+.RI "\fBByteOrder\fP \fBGetByteOrder\fP () const"
+.br
+.RI "Provides the byte order of the hash\&. "
+.ti -1c
+.RI "void \fBCorrectEndianess\fP (HashWordType *out, const HashWordType *in, size_t byteCount)"
+.br
+.RI "Adjusts the byte ordering of the hash\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHashBase< word32, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "\fBword32\fP \fBGetBitCountHi\fP () const"
+.br
+.ti -1c
+.RI "\fBword32\fP \fBGetBitCountLo\fP () const"
+.br
+.ti -1c
+.RI "void \fBPadLastBlock\fP (unsigned int lastBlockSize, \fBbyte\fP padFirst=0x80)"
+.br
+.ti -1c
+.RI "virtual size_t \fBHashMultipleBlocks\fP (const \fBword32\fP *input, size_t length)"
+.br
+.ti -1c
+.RI "void \fBHashBlock\fP (const HashWordType *input)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBIteratedHashBase\fP ()"
+.br
+.RI "Construct an \fBIteratedHashBase\fP\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Requests space which can be written into by the caller\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBword32\fP, 8 > \fBm_buf\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBPanama< LittleEndian >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 20+8 *32 > \fBm_state\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBIteratedHash< word32, NativeByteOrder, 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBword32\fP, Blocks > \fBm_data\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBIteratedHash< word32, NativeByteOrder, 32 >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBNativeByteOrder\fP \fBByteOrderClass\fP"
+.br
+.ti -1c
+.RI "typedef \fBword32\fP \fBHashWordType\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBIteratedHashBase< word32, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBHashWordType\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word32, NativeByteOrder, 32 >, PanamaHash< LittleEndian > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Types inherited from \fBPanama< LittleEndian >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBStage\fP[8]"
+.br
+.in -1c
+
+Protected Types inherited from \fBIteratedHash< word32, NativeByteOrder, 32 >\fP
+.in +1c
+.ti -1c
+.RI "enum "
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "typedef \fBNativeByteOrder\fP \fBByteOrderClass\fP"
+.br
+.ti -1c
+.RI "typedef \fBword32\fP \fBHashWordType\fP"
+.br
+.in -1c
+
+Protected Types inherited from \fBIteratedHashBase< word32, HashTransformation >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBHashWordType\fP"
+.br
+.in -1c
+
+Static Protected Member Functions inherited from \fBAlgorithmImpl< IteratedHash< word32, NativeByteOrder, 32 >, PanamaHash< LittleEndian > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class B = LittleEndian>
+.br
+class Weak::PanamaHash< B >"\fBPanama\fP hash\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fRPanama Hash\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class B = LittleEndian> std::string \fBWeak::PanamaHash\fP< B >::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBIteratedHashBase< word32, HashTransformation >\fP\&.
+.SS "template<class B = LittleEndian> unsigned int \fBWeak::PanamaHash\fP< B >::DigestSize () const\fR [inline]\fP, \fR [virtual]\fP"
+Provides the digest size of the hash 
+.PP
+\fBReturns\fP
+.RS 4
+the digest size of the hash\&. 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+.SS "template<class B = LittleEndian> void \fBWeak::PanamaHash\fP< B >::HashEndianCorrectedBlock (const \fBword32\fP * data)\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBIteratedHashBase< word32, HashTransformation >\fP\&.
+.SS "template<class B = LittleEndian> void \fBWeak::PanamaHash\fP< B >::Init ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBIteratedHashBase< word32, HashTransformation >\fP\&.
+.SS "template<class B = LittleEndian> \fBword32\fP * \fBWeak::PanamaHash\fP< B >::StateBuf ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBIteratedHashBase< word32, HashTransformation >\fP\&.
+.SS "template<class B = LittleEndian> void PanamaHash::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)\fR [virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls \fBFinal()\fP and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+Reimplemented from \fBIteratedHashBase< word32, HashTransformation >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

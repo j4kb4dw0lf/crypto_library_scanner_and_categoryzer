@@ -1,0 +1,123 @@
+.TH "/home/mock/cryptopp-master/luc.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/luc.h \- Classes for the \fBLUC\fP cryptosystem\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'gfpcrypt\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'pkcspad\&.h'\fP
+.br
+\fR#include 'oaep\&.h'\fP
+.br
+\fR#include 'dh\&.h'\fP
+.br
+\fR#include <limits\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBLUCFunction\fP"
+.br
+.RI "The \fBLUC\fP function\&. "
+.ti -1c
+.RI "class \fBInvertibleLUCFunction\fP"
+.br
+.RI "The \fBLUC\fP inverse function\&. "
+.ti -1c
+.RI "struct \fBLUC\fP"
+.br
+.RI "\fBLUC\fP cryptosystem\&. "
+.ti -1c
+.RI "struct \fBLUCES< STANDARD >\fP"
+.br
+.RI "\fBLUC\fP encryption scheme\&. "
+.ti -1c
+.RI "struct \fBLUCSS< STANDARD, H >\fP"
+.br
+.RI "\fBLUC\fP signature scheme with appendix\&. "
+.ti -1c
+.RI "class \fBDL_GroupPrecomputation_LUC\fP"
+.br
+.RI "\fBLUC\fP GroupParameters precomputation\&. "
+.ti -1c
+.RI "class \fBDL_BasePrecomputation_LUC\fP"
+.br
+.RI "\fBLUC\fP Precomputation\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_LUC\fP"
+.br
+.RI "\fBLUC\fP GroupParameters specialization\&. "
+.ti -1c
+.RI "class \fBDL_GroupParameters_LUC_DefaultSafePrime\fP"
+.br
+.RI "GF(p) group parameters that default to safe primes\&. "
+.ti -1c
+.RI "class \fBDL_Algorithm_LUC_HMP\fP"
+.br
+.RI "\fBLUC\fP HMP signature algorithm\&. "
+.ti -1c
+.RI "struct \fBDL_SignatureKeys_LUC\fP"
+.br
+.RI "\fBLUC\fP signature keys\&. "
+.ti -1c
+.RI "struct \fBLUC_HMP< H >\fP"
+.br
+.RI "LUC-HMP, based on "Digital signature schemes based on Lucas functions" by Patrick Horster, Markus Michels, Holger Petersen\&. "
+.ti -1c
+.RI "struct \fBDL_CryptoKeys_LUC\fP"
+.br
+.RI "\fBLUC\fP encryption keys\&. "
+.ti -1c
+.RI "struct \fBLUC_IES< HASH, COFACTOR_OPTION, DHAES_MODE, LABEL_OCTETS >\fP"
+.br
+.RI "\fBLUC\fP Integrated Encryption Scheme\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBLUCES\fP< \fBOAEP\fP< \fBSHA1\fP > >\fB::Decryptor\fP \fBLUCES_OAEP_SHA_Decryptor\fP"
+.br
+.ti -1c
+.RI "typedef \fBLUCES\fP< \fBOAEP\fP< \fBSHA1\fP > >\fB::Encryptor\fP \fBLUCES_OAEP_SHA_Encryptor\fP"
+.br
+.ti -1c
+.RI "typedef \fBLUCSS\fP< \fBPKCS1v15\fP, \fBSHA1\fP >\fB::Signer\fP \fBLUCSSA_PKCS1v15_SHA_Signer\fP"
+.br
+.ti -1c
+.RI "typedef \fBLUCSS\fP< \fBPKCS1v15\fP, \fBSHA1\fP >\fB::Verifier\fP \fBLUCSSA_PKCS1v15_SHA_Verifier\fP"
+.br
+.ti -1c
+.RI "typedef \fBDH_Domain\fP< \fBDL_GroupParameters_LUC_DefaultSafePrime\fP > \fBLUC_DH\fP"
+.br
+.RI "LUC-DH\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the \fBLUC\fP cryptosystem\&.
+
+This class is here for historical and pedagogical interest\&. It has no practical advantages over other trapdoor functions and probably shouldn't be used in production software\&. The discrete log based \fBLUC\fP schemes defined later in this \&.h file may be of more practical interest\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

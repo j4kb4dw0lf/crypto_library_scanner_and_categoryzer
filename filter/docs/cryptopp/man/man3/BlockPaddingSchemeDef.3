@@ -1,0 +1,123 @@
+.TH "BlockPaddingSchemeDef" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BlockPaddingSchemeDef \- Padding schemes used for block ciphers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <filters\&.h>\fP
+.PP
+Inherited by \fBAuthenticatedDecryptionFilter\fP, and \fBStreamTransformationFilter\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBBlockPaddingScheme\fP { \fBNO_PADDING\fP, \fBZEROS_PADDING\fP, \fBPKCS_PADDING\fP, \fBONE_AND_ZEROS_PADDING\fP, \fBW3C_PADDING\fP, \fBDEFAULT_PADDING\fP }"
+.br
+.RI "Padding schemes used for block ciphers\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Padding schemes used for block ciphers\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBBlockPaddingSchemeDef::BlockPaddingScheme\fP"
+
+.PP
+Padding schemes used for block ciphers\&. DEFAULT_PADDING means PKCS_PADDING if \fRcipher\&.MandatoryBlockSize() > 1 && cipher\&.MinLastBlockSize() == 0\fP, which holds for ECB or CBC mode\&. Otherwise, NO_PADDING for modes like OFB, CFB, CTR, CBC-CTS\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRBlock Cipher Padding\fP for additional details\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BINO_PADDING \fP
+No padding added to a block\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.TP
+\f(BIZEROS_PADDING \fP
+0's padding added to a block 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.TP
+\f(BIPKCS_PADDING \fP
+PKCS padding added to a block\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.TP
+\f(BIONE_AND_ZEROS_PADDING \fP
+1 and 0's padding added to a block 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+.TP
+\f(BIW3C_PADDING \fP
+W3C padding added to a block\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRXML Encryption Syntax and Processing\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.TP
+\f(BIDEFAULT_PADDING \fP
+Default padding scheme\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

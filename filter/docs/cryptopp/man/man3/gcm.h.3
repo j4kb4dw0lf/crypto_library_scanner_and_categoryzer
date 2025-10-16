@@ -1,0 +1,71 @@
+.TH "/home/mock/cryptopp-master/gcm.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/gcm.h \- \fBGCM\fP block cipher mode of operation\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'authenc\&.h'\fP
+.br
+\fR#include 'modes\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBGCM_Base\fP"
+.br
+.RI "\fBGCM\fP block cipher base implementation\&. "
+.ti -1c
+.RI "class \fBGCM_Base::GCTR\fP"
+.br
+.ti -1c
+.RI "class \fBGCM_Final< T_BlockCipher, T_TablesOption, T_IsEncryption >\fP"
+.br
+.RI "\fBGCM\fP block cipher final implementation\&. "
+.ti -1c
+.RI "struct \fBGCM< T_BlockCipher, T_TablesOption >\fP"
+.br
+.RI "\fBGCM\fP block cipher mode of operation\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBGCM_TablesOption\fP { \fBGCM_2K_Tables\fP, \fBGCM_64K_Tables\fP }"
+.br
+.RI "\fBGCM\fP table size options\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+\fBGCM\fP block cipher mode of operation\&.
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.0
+.RE
+.PP
+
+.SH "Enumeration Type Documentation"
+.PP
+.SS "enum \fBGCM_TablesOption\fP"
+
+.PP
+\fBGCM\fP table size options\&.
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIGCM_2K_Tables \fP
+Use a table with 2K entries\&.
+.TP
+\f(BIGCM_64K_Tables \fP
+Use a table with 64K entries\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

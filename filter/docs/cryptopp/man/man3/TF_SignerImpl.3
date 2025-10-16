@@ -1,0 +1,237 @@
+.TH "TF_SignerImpl< SCHEME_OPTIONS >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_SignerImpl< SCHEME_OPTIONS > \- Trapdoor Function (TF) encryptor options\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBTF_ObjectImpl< TF_SignerBase, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP\&.
+.PP
+Inherited by \fBPK_FinalTemplate< TF_SignerImpl< SchemeOptions > >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBTF_ObjectImpl< TF_SignerBase, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS::PrivateKey \fBKeyClass\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBTF_ObjectImplBase< TF_SignerBase, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef SCHEME_OPTIONS::PrivateKey \fBKeyClass\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBTF_ObjectImpl< TF_SignerBase, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "const KeyClass & \fBGetKey\fP () const"
+.br
+.ti -1c
+.RI "KeyClass & \fBAccessKey\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBTF_ObjectImplBase< TF_SignerBase, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessPublicKey\fP ()"
+.br
+.ti -1c
+.RI "const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.ti -1c
+.RI "\fBPrivateKey\fP & \fBAccessPrivateKey\fP ()"
+.br
+.ti -1c
+.RI "const \fBPrivateKey\fP & \fBGetPrivateKey\fP () const"
+.br
+.ti -1c
+.RI "const KeyClass & \fBGetTrapdoorFunction\fP () const"
+.br
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewSignatureAccumulator\fP (\fBRandomNumberGenerator\fP &rng) const"
+.br
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewVerificationAccumulator\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< TF_SignerBase, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTF_SignerBase\fP
+.in +1c
+.ti -1c
+.RI "void \fBInputRecoverableMessage\fP (\fBPK_MessageAccumulator\fP &messageAccumulator, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength) const"
+.br
+.RI "Input a recoverable message to an accumulator\&. "
+.ti -1c
+.RI "size_t \fBSignAndRestart\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulator\fP &messageAccumulator, \fBbyte\fP *signature, bool restart=true) const"
+.br
+.RI "Sign and restart messageAccumulator\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTF_SignatureSchemeBase< PK_Signer, TF_Base< RandomizedTrapdoorFunctionInverse, PK_SignatureMessageEncodingMethod > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBSignatureLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxRecoverableLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "bool \fBRecoverablePartFirst\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_Signer\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBSign\fP (\fBRandomNumberGenerator\fP &rng, \fBPK_MessageAccumulator\fP *messageAccumulator, \fBbyte\fP *signature) const"
+.br
+.RI "Sign and delete the messageAccumulator\&. "
+.ti -1c
+.RI "virtual size_t \fBSignMessage\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *message, size_t messageLen, \fBbyte\fP *signature) const"
+.br
+.RI "Sign a message\&. "
+.ti -1c
+.RI "virtual size_t \fBSignMessageWithRecovery\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *nonrecoverableMessage, size_t nonrecoverableMessageLength, \fBbyte\fP *signature) const"
+.br
+.RI "Sign a recoverable message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureScheme\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxSignatureLength\fP (size_t recoverablePartLength=0) const"
+.br
+.RI "Provides the maximum signature length produced given the length of the recoverable message part\&. "
+.ti -1c
+.RI "virtual bool \fBSignatureUpfront\fP () const"
+.br
+.RI "Determines whether the signature must be input before the message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPrivateKeyAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Private Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< TF_SignerBase, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Types inherited from \fBTF_Base< RandomizedTrapdoorFunctionInverse, PK_SignatureMessageEncodingMethod >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBRandomizedTrapdoorFunctionInverse\fP \fBTrapdoorFunctionInterface\fP"
+.br
+.ti -1c
+.RI "typedef \fBPK_SignatureMessageEncodingMethod\fP \fBMessageEncodingInterface\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBTF_ObjectImplBase< TF_SignerBase, SCHEME_OPTIONS, SCHEME_OPTIONS::PrivateKey >\fP
+.in +1c
+.ti -1c
+.RI "const \fBTF_SignerBase::MessageEncodingInterface\fP & \fBGetMessageEncodingInterface\fP () const"
+.br
+.ti -1c
+.RI "const \fBTrapdoorFunctionBounds\fP & \fBGetTrapdoorFunctionBounds\fP () const"
+.br
+.ti -1c
+.RI "const \fBTF_SignerBase::TrapdoorFunctionInterface\fP & \fBGetTrapdoorFunctionInterface\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBGetDigestSize\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBTF_SignatureSchemeBase< PK_Signer, TF_Base< RandomizedTrapdoorFunctionInverse, PK_SignatureMessageEncodingMethod > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMessageRepresentativeLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMessageRepresentativeBitLength\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class SCHEME_OPTIONS>
+.br
+class TF_SignerImpl< SCHEME_OPTIONS >"Trapdoor Function (TF) encryptor options\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fISCHEME_OPTIONS\fP scheme options class 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

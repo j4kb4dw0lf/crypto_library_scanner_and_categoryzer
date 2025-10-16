@@ -1,0 +1,113 @@
+.TH "DL_Algorithm_ECDSA_RFC6979< EC, H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_Algorithm_ECDSA_RFC6979< EC, H > \- Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature algorithm based on RFC 6979\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.PP
+Inherits \fBDL_Algorithm_DSA_RFC6979< EC::Point, H >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBDL_Algorithm_DSA_RFC6979< EC::Point, H >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.ti -1c
+.RI "bool \fBIsDeterministic\fP () const"
+.br
+.RI "Signature scheme flag\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBGenerateRandom\fP (const \fBInteger\fP &x, const \fBInteger\fP &q, const \fBInteger\fP &e) const"
+.br
+.RI "Generate k\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_Algorithm_GDSA< EC::Point >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char *CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "void \fBSign\fP (const \fBDL_GroupParameters\fP< EC::Point > &params, const \fBInteger\fP &x, const \fBInteger\fP &k, const \fBInteger\fP &e, \fBInteger\fP &r, \fBInteger\fP &s) const"
+.br
+.RI "Sign a message using a private key\&. "
+.ti -1c
+.RI "bool \fBVerify\fP (const \fBDL_GroupParameters\fP< EC::Point > &params, const \fBDL_PublicKey\fP< EC::Point > &publicKey, const \fBInteger\fP &e, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Verify a message using a public key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_ElgamalLikeSignatureAlgorithm< EC::Point >\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBRecoverPresignature\fP (const \fBDL_GroupParameters\fP< EC::Point > &params, const \fBDL_PublicKey\fP< EC::Point > &publicKey, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Recover a Presignature\&. "
+.ti -1c
+.RI "virtual size_t \fBRLen\fP (const \fBDL_GroupParameters\fP< EC::Point > &params) const"
+.br
+.RI "Retrieve R length\&. "
+.ti -1c
+.RI "virtual size_t \fBSLen\fP (const \fBDL_GroupParameters\fP< EC::Point > &params) const"
+.br
+.RI "Retrieve S length\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBDL_Algorithm_DSA_RFC6979< EC::Point, H >\fP
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBbits2int\fP (const \fBSecByteBlock\fP &bits, size_t qlen) const"
+.br
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBint2octets\fP (const \fBInteger\fP &val, size_t rlen) const"
+.br
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBbits2octets\fP (const \fBSecByteBlock\fP &in, const \fBInteger\fP &q) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC, class H>
+.br
+class DL_Algorithm_ECDSA_RFC6979< EC, H >"Elliptic Curve \fBDSA\fP (\fBECDSA\fP) signature algorithm based on RFC 6979\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRRFC 6979, Deterministic Usage of the Digital Signature Algorithm (DSA) and Elliptic Curve Digital Signature Algorithm (ECDSA)\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

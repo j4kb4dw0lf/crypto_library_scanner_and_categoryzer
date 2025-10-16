@@ -1,0 +1,68 @@
+.TH "CCM< T_BlockCipher, T_DefaultDigestSize >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CCM< T_BlockCipher, T_DefaultDigestSize > \- \fBCCM\fP block cipher mode of operation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ccm\&.h>\fP
+.PP
+Inherits \fBAuthenticatedSymmetricCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBCCM_Final\fP< T_BlockCipher, T_DefaultDigestSize, true > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBCCM_Final\fP< T_BlockCipher, T_DefaultDigestSize, false > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAuthenticatedSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBAuthenticatedSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBAuthenticatedSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBAuthenticatedSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBAuthenticatedSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T_BlockCipher, int T_DefaultDigestSize = 16>
+.br
+struct CCM< T_BlockCipher, T_DefaultDigestSize >"\fBCCM\fP block cipher mode of operation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT_BlockCipher\fP block cipher 
+.br
+\fIT_DefaultDigestSize\fP default digest size, in bytes
+.RE
+.PP
+\fR\fBCCM\fP\fP provides the \fREncryption\fP and \fRDecryption\fP typedef\&. See \fBGCM_Base\fP and \fBGCM_Final\fP for the \fBAuthenticatedSymmetricCipher\fP implementation\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRCCM Mode\fP and \fRModes of Operation\fP on the Crypto++ wiki\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

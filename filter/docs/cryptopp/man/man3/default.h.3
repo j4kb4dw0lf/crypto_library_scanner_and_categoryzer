@@ -1,0 +1,126 @@
+.TH "/home/mock/cryptopp-master/default.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/default.h \- Classes for DefaultEncryptor, DefaultDecryptor, DefaultEncryptorWithMAC and DefaultDecryptorWithMAC\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sha\&.h'\fP
+.br
+\fR#include 'hmac\&.h'\fP
+.br
+\fR#include 'aes\&.h'\fP
+.br
+\fR#include 'des\&.h'\fP
+.br
+\fR#include 'modes\&.h'\fP
+.br
+\fR#include 'filters\&.h'\fP
+.br
+\fR#include 'smartptr\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDataDecryptorErr\fP"
+.br
+.RI "\fBException\fP thrown when LegacyDecryptorWithMAC or DefaultDecryptorWithMAC decryption error is encountered\&. "
+.ti -1c
+.RI "class \fBKeyBadErr\fP"
+.br
+.RI "\fBException\fP thrown when a bad key is encountered in DefaultDecryptorWithMAC and LegacyDecryptorWithMAC\&. "
+.ti -1c
+.RI "class \fBMACBadErr\fP"
+.br
+.RI "\fBException\fP thrown when an incorrect MAC is encountered in DefaultDecryptorWithMAC and LegacyDecryptorWithMAC\&. "
+.ti -1c
+.RI "struct \fBDataParametersInfo< BlockSize, KeyLength, DigestSize, SaltSize, Iterations >\fP"
+.br
+.RI "\fBAlgorithm\fP information for password-based encryptors and decryptors\&. "
+.ti -1c
+.RI "class \fBDataEncryptor< BC, H, Info >\fP"
+.br
+.RI "Password-based \fBEncryptor\fP\&. "
+.ti -1c
+.RI "class \fBDataDecryptor< BC, H, Info >\fP"
+.br
+.RI "Password-based \fBDecryptor\fP\&. "
+.ti -1c
+.RI "class \fBDataEncryptorWithMAC< BC, H, MAC, Info >\fP"
+.br
+.RI "Password-based encryptor with MAC\&. "
+.ti -1c
+.RI "class \fBDataDecryptorWithMAC< BC, H, MAC, Info >\fP"
+.br
+.RI "Password-based decryptor with MAC\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDES_EDE2\fP \fBLegacyBlockCipher\fP"
+.br
+.RI "Legacy block cipher for LegacyEncryptor, LegacyDecryptor, LegacyEncryptorWithMAC and LegacyDecryptorWithMAC\&. "
+.ti -1c
+.RI "typedef \fBSHA1\fP \fBLegacyHashModule\fP"
+.br
+.RI "Legacy hash for use with LegacyEncryptorWithMAC and LegacyDecryptorWithMAC\&. "
+.ti -1c
+.RI "typedef \fBHMAC\fP< \fBLegacyHashModule\fP > \fBLegacyMAC\fP"
+.br
+.RI "Legacy \fBHMAC\fP for use withLegacyEncryptorWithMAC and LegacyDecryptorWithMAC\&. "
+.ti -1c
+.RI "typedef AES \fBDefaultBlockCipher\fP"
+.br
+.RI "Default block cipher for DefaultEncryptor, DefaultDecryptor, DefaultEncryptorWithMAC and DefaultDecryptorWithMAC\&. "
+.ti -1c
+.RI "typedef \fBSHA256\fP \fBDefaultHashModule\fP"
+.br
+.RI "Default hash for use with DefaultEncryptorWithMAC and DefaultDecryptorWithMAC\&. "
+.ti -1c
+.RI "typedef \fBHMAC\fP< \fBDefaultHashModule\fP > \fBDefaultMAC\fP"
+.br
+.RI "Default \fBHMAC\fP for use withDefaultEncryptorWithMAC and DefaultDecryptorWithMAC\&. "
+.ti -1c
+.RI "typedef \fBDataParametersInfo\fP< LegacyBlockCipher::BLOCKSIZE, LegacyBlockCipher::DEFAULT_KEYLENGTH, LegacyHashModule::DIGESTSIZE, 8, 200 > \fBLegacyParametersInfo\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataParametersInfo\fP< DefaultBlockCipher::BLOCKSIZE, DefaultBlockCipher::DEFAULT_KEYLENGTH, DefaultHashModule::DIGESTSIZE, 8, 2500 > \fBDefaultParametersInfo\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataEncryptor\fP< \fBLegacyBlockCipher\fP, \fBLegacyHashModule\fP, \fBLegacyParametersInfo\fP > \fBLegacyEncryptor\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataDecryptor\fP< \fBLegacyBlockCipher\fP, \fBLegacyHashModule\fP, \fBLegacyParametersInfo\fP > \fBLegacyDecryptor\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataEncryptor\fP< \fBDefaultBlockCipher\fP, \fBDefaultHashModule\fP, \fBDefaultParametersInfo\fP > \fBDefaultEncryptor\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataDecryptor\fP< \fBDefaultBlockCipher\fP, \fBDefaultHashModule\fP, \fBDefaultParametersInfo\fP > \fBDefaultDecryptor\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataEncryptorWithMAC\fP< \fBLegacyBlockCipher\fP, \fBLegacyHashModule\fP, \fBLegacyMAC\fP, \fBLegacyParametersInfo\fP > \fBLegacyEncryptorWithMAC\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataDecryptorWithMAC\fP< \fBLegacyBlockCipher\fP, \fBLegacyHashModule\fP, \fBLegacyMAC\fP, \fBLegacyParametersInfo\fP > \fBLegacyDecryptorWithMAC\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataEncryptorWithMAC\fP< \fBDefaultBlockCipher\fP, \fBDefaultHashModule\fP, \fBDefaultMAC\fP, \fBDefaultParametersInfo\fP > \fBDefaultEncryptorWithMAC\fP"
+.br
+.ti -1c
+.RI "typedef \fBDataDecryptorWithMAC\fP< \fBDefaultBlockCipher\fP, \fBDefaultHashModule\fP, \fBDefaultMAC\fP, \fBDefaultParametersInfo\fP > \fBDefaultDecryptorWithMAC\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for DefaultEncryptor, DefaultDecryptor, DefaultEncryptorWithMAC and DefaultDecryptorWithMAC\&.
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

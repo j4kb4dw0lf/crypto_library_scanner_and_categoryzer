@@ -1,0 +1,206 @@
+.TH "DARN" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DARN \- Hardware generated random numbers using \fBDARN\fP instruction\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <darn\&.h>\fP
+.PP
+Inherits \fBRandomNumberGenerator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBDARN\fP ()"
+.br
+.RI "Construct a \fBDARN\fP generator\&. "
+.ti -1c
+.RI "virtual void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "virtual void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.ti -1c
+.RI "virtual void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual \fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffUL)"
+.br
+.RI "Generate a random 32 bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Hardware generated random numbers using \fBDARN\fP instruction\&. 
+
+\fBDARN()\fP provides access to Power9's random number generator\&. The Crypto++ implementation provides conditioned random numbers from the generator as opposed to raw random numbers\&. According to Power ISA 3\&.0B manual, a conditioned random number has been processed by hardware to reduce bias\&. A raw random number is unconditioned noise source output\&.
+
+.PP
+According to Power ISA 3\&.0B manual, the random number generator provided by the \fRdarn\fP instruction is NIST SP800-90B and SP800-90C compliant to the extent possible given the completeness of the standards at the time the hardware is designed\&. The random number generator provides a minimum of 0\&.5 bits of entropy per bit\&. 
+.PP
+\fBWraps\fP
+.RS 4
+darn instruction 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRPower ISA Version 3\&.0B\fP, \fBMaurerRandomnessTest()\fP for random bit generators 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "DARN::DARN ()"
+
+.PP
+Construct a \fBDARN\fP generator\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBDARN_Err\fP\fP if the random number generator is not available 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string DARN::AlgorithmProvider () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "void DARN::DiscardBytes (size_t n)\fR [virtual]\fP"
+
+.PP
+Generate and discard n bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number of bytes to generate and discard
+.RE
+.PP
+the \fBRDSEED\fP generator discards words, not bytes\&. If n is not a multiple of a machine word, then it is rounded up to that size\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "void DARN::GenerateBlock (\fBbyte\fP * output, size_t size)\fR [virtual]\fP"
+
+.PP
+Generate random array of bytes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP the byte buffer 
+.br
+\fIsize\fP the length of the buffer, in bytes 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+.SS "virtual void DARN::IncorporateEntropy (const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Update RNG state with additional unpredictable values\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP unused 
+.br
+\fIlength\fP unused
+.RE
+.PP
+The operation is a nop for this generator\&. 
+.PP
+Reimplemented from \fBRandomNumberGenerator\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

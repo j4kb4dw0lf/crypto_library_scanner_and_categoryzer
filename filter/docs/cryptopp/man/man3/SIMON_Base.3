@@ -1,0 +1,65 @@
+.TH "SIMON_Base< W >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SIMON_Base< W > \- SIMON block cipher base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simon\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSecBlock\fP< W, \fBAllocatorWithCleanup\fP< W, true > > \fBAlignedSecBlock\fP"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBAlignedSecBlock\fP \fBm_wspace\fP"
+.br
+.ti -1c
+.RI "\fBAlignedSecBlock\fP \fBm_rkeys\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_kwords\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_rounds\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class W>
+.br
+struct SIMON_Base< W >"SIMON block cipher base class\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIW\fP the word type
+.RE
+.PP
+User code should use \fBSIMON64\fP or \fBSIMON128\fP 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSIMON64\fP, \fBSIMON128\fP, \fRSIMON\fP on the Crypto++ wiki 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,834 @@
+.TH "ModularArithmetic" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ModularArithmetic \- Ring of congruence classes modulo n\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <modarith\&.h>\fP
+.PP
+Inherits \fBAbstractRing< Integer >\fP\&.
+.PP
+Inherited by \fBMontgomeryRepresentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef int \fBRandomizationParameter\fP"
+.br
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAbstractRing< Integer >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAbstractGroup< Integer >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBInteger\fP \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBModularArithmetic\fP (const \fBInteger\fP &modulus=\fBInteger::One\fP())"
+.br
+.RI "Construct a \fBModularArithmetic\fP\&. "
+.ti -1c
+.RI "\fBModularArithmetic\fP (const \fBModularArithmetic\fP &ma)"
+.br
+.RI "Copy construct a \fBModularArithmetic\fP\&. "
+.ti -1c
+.RI "\fBModularArithmetic\fP & \fBoperator=\fP (const \fBModularArithmetic\fP &ma)"
+.br
+.RI "Assign a \fBModularArithmetic\fP\&. "
+.ti -1c
+.RI "\fBModularArithmetic\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Construct a \fBModularArithmetic\fP\&. "
+.ti -1c
+.RI "virtual \fBModularArithmetic\fP * \fBClone\fP () const"
+.br
+.RI "Clone a \fBModularArithmetic\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encodes in DER format\&. "
+.ti -1c
+.RI "void \fBDEREncodeElement\fP (\fBBufferedTransformation\fP &out, const \fBElement\fP &a) const"
+.br
+.RI "Encodes element in DER format\&. "
+.ti -1c
+.RI "void \fBBERDecodeElement\fP (\fBBufferedTransformation\fP &in, \fBElement\fP &a) const"
+.br
+.RI "Decodes element in DER format\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetModulus\fP () const"
+.br
+.RI "Retrieves the modulus\&. "
+.ti -1c
+.RI "void \fBSetModulus\fP (const \fBInteger\fP &newModulus)"
+.br
+.RI "Sets the modulus\&. "
+.ti -1c
+.RI "virtual bool \fBIsMontgomeryRepresentation\fP () const"
+.br
+.RI "Retrieves the representation\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBConvertIn\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Reduces an element in the congruence class\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBConvertOut\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Reduces an element in the congruence class\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBHalf\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Divides an element by 2\&. "
+.ti -1c
+.RI "bool \fBEqual\fP (const \fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "Compare two elements for equality\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBIdentity\fP () const"
+.br
+.RI "Provides the Identity element\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBAdd\fP (const \fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "Adds elements in the ring\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBAccumulate\fP (\fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBInverse\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Inverts the element in the ring\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBSubtract\fP (const \fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "Subtracts elements in the ring\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBReduce\fP (\fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBDouble\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Doubles an element in the ring\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBMultiplicativeIdentity\fP () const"
+.br
+.RI "Retrieves the multiplicative identity\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBMultiply\fP (const \fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "Multiplies elements in the ring\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBSquare\fP (const \fBInteger\fP &a) const"
+.br
+.RI "\fBSquare\fP an element in the ring\&. "
+.ti -1c
+.RI "bool \fBIsUnit\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Determines whether an element is a unit in the ring\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBMultiplicativeInverse\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Calculate the multiplicative inverse of an element in the ring\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBDivide\fP (const \fBInteger\fP &a, const \fBInteger\fP &b) const"
+.br
+.RI "Divides elements in the ring\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBCascadeExponentiate\fP (const \fBInteger\fP &x, const \fBInteger\fP &e1, const \fBInteger\fP &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "void \fBSimultaneousExponentiate\fP (\fBElement\fP *results, const \fBElement\fP &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Exponentiates a base to multiple exponents in the ring\&. "
+.ti -1c
+.RI "unsigned int \fBMaxElementBitLength\fP () const"
+.br
+.RI "Provides the maximum bit size of an element in the ring\&. "
+.ti -1c
+.RI "unsigned int \fBMaxElementByteLength\fP () const"
+.br
+.RI "Provides the maximum byte size of an element in the ring\&. "
+.ti -1c
+.RI "\fBElement\fP \fBRandomElement\fP (\fBRandomNumberGenerator\fP &rng, const RandomizationParameter &ignore_for_now=0) const"
+.br
+.RI "Provides a random element in the ring\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBModularArithmetic\fP &rhs) const"
+.br
+.RI "Compares two \fBModularArithmetic\fP for equality\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAbstractRing< Integer >\fP
+.in +1c
+.ti -1c
+.RI "\fBAbstractRing\fP ()"
+.br
+.RI "Construct an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "\fBAbstractRing\fP & \fBoperator=\fP (const \fBAbstractRing\fP &source)"
+.br
+.RI "Assign an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBExponentiate\fP (const \fBElement\fP &a, const \fBInteger\fP &e) const"
+.br
+.RI "Raises a base to an exponent in the group\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBCascadeExponentiate\fP (const \fBElement\fP &x, const \fBInteger\fP &e1, const \fBElement\fP &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousExponentiate\fP (\fBElement\fP *results, const \fBElement\fP &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Exponentiates a base to multiple exponents in the Ring\&. "
+.ti -1c
+.RI "virtual const \fBAbstractGroup\fP< \fBInteger\fP > & \fBMultiplicativeGroup\fP () const"
+.br
+.RI "Retrieves the multiplicative group\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAbstractGroup< Integer >\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBInversionIsFast\fP () const"
+.br
+.RI "Determine if inversion is fast\&. "
+.ti -1c
+.RI "virtual const \fBElement\fP & \fBSubtract\fP (const \fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.RI "Subtracts elements in the group\&. "
+.ti -1c
+.RI "virtual \fBElement\fP & \fBAccumulate\fP (\fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual \fBElement\fP & \fBReduce\fP (\fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.RI "Reduces an element in the congruence class\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBScalarMultiply\fP (const \fBElement\fP &a, const \fBInteger\fP &e) const"
+.br
+.RI "Performs a scalar multiplication\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBCascadeScalarMultiply\fP (const \fBElement\fP &x, const \fBInteger\fP &e1, const \fBElement\fP &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousMultiply\fP (\fBElement\fP *results, const \fBElement\fP &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Multiplies a base to multiple exponents in a group\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const RandomizationParameter \fBDefaultRandomizationParameter\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBm_modulus\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_result\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_result1\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Ring of congruence classes modulo n\&. 
+
+This implementation represents each congruence class as the smallest non-negative integer in that class\&.
+
+.PP
+\fRconst Element&\fP returned by member functions are references to internal data members\&. Since each object may have only one such data member for holding results, you should use the class like this: 
+.PP
+.nf
+    abcd = group\&.Add(a, group\&.Add(b, group\&.Add(c,d));
+.fi
+.PP
+ The following code will produce \fIincorrect\fP results: 
+.PP
+.nf
+    abcd = group\&.Add(group\&.Add(a,b), group\&.Add(c,d));
+.fi
+.PP
+
+.PP
+If a \fBModularArithmetic()\fP is copied or assigned the modulus is copied, but not the internal data members\&. The internal data members are undefined after copy or assignment\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRInteger\fP on the Crypto++ wiki\&. 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ModularArithmetic::ModularArithmetic (const \fBInteger\fP & modulus = \fR\fBInteger::One\fP()\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBModularArithmetic\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImodulus\fP congruence class modulus 
+.RE
+.PP
+
+.SS "ModularArithmetic::ModularArithmetic (const \fBModularArithmetic\fP & ma)\fR [inline]\fP"
+
+.PP
+Copy construct a \fBModularArithmetic\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIma\fP other \fBModularArithmetic\fP 
+.RE
+.PP
+
+.SS "ModularArithmetic::ModularArithmetic (\fBBufferedTransformation\fP & bt)"
+
+.PP
+Construct a \fBModularArithmetic\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP BER encoded \fBModularArithmetic\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBInteger\fP & ModularArithmetic::Accumulate (\fBInteger\fP & a, const \fBInteger\fP & b) const"
+
+.PP
+TODO\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.br
+\fIb\fP second element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+TODO 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & ModularArithmetic::Add (const \fBInteger\fP & a, const \fBInteger\fP & b) const\fR [virtual]\fP"
+
+.PP
+Adds elements in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.br
+\fIb\fP second element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the sum of \fRa\fP and \fRb\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< Integer >\fP\&.
+.SS "void ModularArithmetic::BERDecodeElement (\fBBufferedTransformation\fP & in, \fBElement\fP & a) const"
+
+.PP
+Decodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIin\fP \fBBufferedTransformation\fP object 
+.br
+\fIa\fP Element to decode 
+.RE
+.PP
+
+.SS "\fBInteger\fP ModularArithmetic::CascadeExponentiate (const \fBInteger\fP & x, const \fBInteger\fP & e1, const \fBInteger\fP & y, const \fBInteger\fP & e2) const"
+
+.PP
+TODO\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP first element 
+.br
+\fIe1\fP first exponent 
+.br
+\fIy\fP second element 
+.br
+\fIe2\fP second exponent 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+TODO 
+.RE
+.PP
+
+.SS "virtual \fBModularArithmetic\fP * ModularArithmetic::Clone () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Clone a \fBModularArithmetic\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+pointer to a new \fBModularArithmetic\fP
+.RE
+.PP
+Clone effectively copy constructs a new \fBModularArithmetic\fP\&. The caller is responsible for deleting the pointer returned from this method\&. 
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "virtual \fBInteger\fP ModularArithmetic::ConvertIn (const \fBInteger\fP & a) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reduces an element in the congruence class\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP element to convert 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the reduced element
+.RE
+.PP
+ConvertIn is useful for derived classes, like \fBMontgomeryRepresentation\fP, which must convert between representations\&. 
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "virtual \fBInteger\fP ModularArithmetic::ConvertOut (const \fBInteger\fP & a) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reduces an element in the congruence class\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP element to convert 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the reduced element
+.RE
+.PP
+ConvertOut is useful for derived classes, like \fBMontgomeryRepresentation\fP, which must convert between representations\&. 
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "void ModularArithmetic::DEREncode (\fBBufferedTransformation\fP & bt) const"
+
+.PP
+Encodes in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.SS "void ModularArithmetic::DEREncodeElement (\fBBufferedTransformation\fP & out, const \fBElement\fP & a) const"
+
+.PP
+Encodes element in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIout\fP \fBBufferedTransformation\fP object 
+.br
+\fIa\fP Element to encode 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & ModularArithmetic::Divide (const \fBInteger\fP & a, const \fBInteger\fP & b) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Divides elements in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the dividend 
+.br
+\fIb\fP the divisor 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the quotient
+.RE
+.PP
+Divide returns \fRa*b\*{-1\*} %n\fP\&. 
+.PP
+Reimplemented from \fBAbstractRing< Integer >\fP\&.
+.SS "const \fBInteger\fP & ModularArithmetic::Double (const \fBInteger\fP & a) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Doubles an element in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the element doubled
+.RE
+.PP
+Double returns \fRAdd(a, a)\fP\&. The element \fRa\fP must provide an Add member function\&. 
+.PP
+Reimplemented from \fBAbstractGroup< Integer >\fP\&.
+.SS "bool ModularArithmetic::Equal (const \fBInteger\fP & a, const \fBInteger\fP & b) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Compare two elements for equality\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.br
+\fIb\fP second element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the elements are equal, false otherwise
+.RE
+.PP
+\fBEqual()\fP tests the elements for equality using \fRa==b\fP 
+.PP
+Implements \fBAbstractGroup< Integer >\fP\&.
+.SS "const \fBInteger\fP & ModularArithmetic::GetModulus () const\fR [inline]\fP"
+
+.PP
+Retrieves the modulus\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the modulus 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & ModularArithmetic::Half (const \fBInteger\fP & a) const"
+
+.PP
+Divides an element by 2\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP element to convert 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & ModularArithmetic::Identity () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the Identity element\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the Identity element 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< Integer >\fP\&.
+.SS "const \fBInteger\fP & ModularArithmetic::Inverse (const \fBInteger\fP & a) const\fR [virtual]\fP"
+
+.PP
+Inverts the element in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the inverse of the element 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< Integer >\fP\&.
+.SS "virtual bool ModularArithmetic::IsMontgomeryRepresentation () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the representation\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the if the modulus is in Montgomery form for multiplication, false otherwise 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "bool ModularArithmetic::IsUnit (const \fBInteger\fP & a) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether an element is a unit in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the element is a unit after reduction, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractRing< Integer >\fP\&.
+.SS "unsigned int ModularArithmetic::MaxElementBitLength () const\fR [inline]\fP"
+
+.PP
+Provides the maximum bit size of an element in the ring\&. 
+.PP
+\fBReturns\fP
+.RS 4
+maximum bit size of an element 
+.RE
+.PP
+
+.SS "unsigned int ModularArithmetic::MaxElementByteLength () const\fR [inline]\fP"
+
+.PP
+Provides the maximum byte size of an element in the ring\&. 
+.PP
+\fBReturns\fP
+.RS 4
+maximum byte size of an element 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & ModularArithmetic::MultiplicativeIdentity () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the multiplicative identity\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the multiplicative identity
+.RE
+.PP
+the base class implementations returns 1\&. 
+.PP
+Implements \fBAbstractRing< Integer >\fP\&.
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "const \fBInteger\fP & ModularArithmetic::MultiplicativeInverse (const \fBInteger\fP & a) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Calculate the multiplicative inverse of an element in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element
+.RE
+.PP
+MultiplicativeInverse returns \fRa\*{-1\*} %n\fP\&. The element \fRa\fP must provide a InverseMod member function\&. 
+.PP
+Implements \fBAbstractRing< Integer >\fP\&.
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "const \fBInteger\fP & ModularArithmetic::Multiply (const \fBInteger\fP & a, const \fBInteger\fP & b) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Multiplies elements in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the multiplicand 
+.br
+\fIb\fP the multiplier 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the product of a and b
+.RE
+.PP
+Multiply returns \fRa*b%n\fP\&. 
+.PP
+Implements \fBAbstractRing< Integer >\fP\&.
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "\fBModularArithmetic\fP & ModularArithmetic::operator= (const \fBModularArithmetic\fP & ma)\fR [inline]\fP"
+
+.PP
+Assign a \fBModularArithmetic\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIma\fP other \fBModularArithmetic\fP 
+.RE
+.PP
+
+.SS "bool ModularArithmetic::operator== (const \fBModularArithmetic\fP & rhs) const\fR [inline]\fP"
+
+.PP
+Compares two \fBModularArithmetic\fP for equality\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP other \fBModularArithmetic\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if this is equal to the other, false otherwise
+.RE
+.PP
+The operator tests for equality using \fRthis\&.m_modulus == rhs\&.m_modulus\fP\&. 
+.SS "\fBElement\fP ModularArithmetic::RandomElement (\fBRandomNumberGenerator\fP & rng, const RandomizationParameter & ignore_for_now = \fR0\fP) const\fR [inline]\fP"
+
+.PP
+Provides a random element in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fIignore_for_now\fP unused 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a random element that is uniformly distributed
+.RE
+.PP
+RandomElement constructs a new element in the range \fR[0,n-1]\fP, inclusive\&. The element's class must provide a constructor with the signature \fRElement(RandomNumberGenerator rng,
+  Element min, Element max)\fP\&. 
+.SS "\fBInteger\fP & ModularArithmetic::Reduce (\fBInteger\fP & a, const \fBInteger\fP & b) const"
+
+.PP
+TODO\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.br
+\fIb\fP second element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+TODO 
+.RE
+.PP
+
+.SS "void ModularArithmetic::SetModulus (const \fBInteger\fP & newModulus)\fR [inline]\fP"
+
+.PP
+Sets the modulus\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInewModulus\fP the new modulus 
+.RE
+.PP
+
+.SS "void ModularArithmetic::SimultaneousExponentiate (\fBElement\fP * results, const \fBElement\fP & base, const \fBInteger\fP * exponents, unsigned int exponentsCount) const"
+
+.PP
+Exponentiates a base to multiple exponents in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIresults\fP an array of Elements 
+.br
+\fIbase\fP the base to raise to the exponents 
+.br
+\fIexponents\fP an array of exponents 
+.br
+\fIexponentsCount\fP the number of exponents in the array
+.RE
+.PP
+\fBSimultaneousExponentiate()\fP raises the base to each exponent in the exponents array and stores the result at the respective position in the results array\&.
+
+.PP
+\fBSimultaneousExponentiate()\fP must be implemented in a derived class\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(results) == exponentsCount\fP 
+
+.PP
+\fRCOUNTOF(exponents) == exponentsCount\fP 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & ModularArithmetic::Square (const \fBInteger\fP & a) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+\fBSquare\fP an element in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the element squared
+.RE
+.PP
+\fBSquare\fP returns \fRa*a%n\fP\&. The element \fRa\fP must provide a \fBSquare\fP member function\&. 
+.PP
+Reimplemented from \fBAbstractRing< Integer >\fP\&.
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "const \fBInteger\fP & ModularArithmetic::Subtract (const \fBInteger\fP & a, const \fBInteger\fP & b) const"
+
+.PP
+Subtracts elements in the ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.br
+\fIb\fP second element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the difference of \fRa\fP and \fRb\fP\&. The element \fRa\fP must provide a Subtract member function\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

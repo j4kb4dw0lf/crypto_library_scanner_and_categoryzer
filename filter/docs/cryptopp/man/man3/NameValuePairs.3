@@ -1,0 +1,418 @@
+.TH "NameValuePairs" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NameValuePairs \- Interface for retrieving values given their names\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBAlgorithmParameters\fP, \fBCombinedNameValuePairs\fP, \fBCryptoMaterial\fP, \fBNullNameValuePairs\fP, and \fBTestDataNameValuePairs\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBValueTypeMismatch\fP"
+.br
+.RI "Thrown when an unexpected type is encountered\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "virtual CRYPTOPP_DLL bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const =0"
+.br
+.RI "Get a named value\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for retrieving values given their names\&. 
+
+This class is used to safely pass a variable number of arbitrarily typed arguments to functions and to read values from keys and crypto parameters\&.
+
+.PP
+To obtain an object that implements \fBNameValuePairs\fP for the purpose of parameter passing, use the \fBMakeParameters()\fP function\&.
+
+.PP
+To get a value from \fBNameValuePairs\fP, you need to know the name and the type of the value\&. Call \fBGetValueNames()\fP on a \fBNameValuePairs\fP object to obtain a list of value names that it supports\&. then look at the Name namespace documentation to see what the type of each value is, or alternatively, call \fBGetIntValue()\fP with the value name, and if the type is not int, a \fBValueTypeMismatch\fP exception will be thrown and you can get the actual type from the exception object\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBNullNameValuePairs\fP, g_nullNameValuePairs, \fRNameValuePairs\fP on the Crypto++ wiki 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "CRYPTOPP_DLL bool NameValuePairs::GetIntValue (const char * name, int & value) const\fR [inline]\fP"
+
+.PP
+Get a named value with type int\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value to retrieve 
+.br
+\fIvalue\fP the value retrieved upon success 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if an int value was retrieved, false otherwise
+.RE
+.PP
+\fBGetIntValue()\fP is used to ensure we don't accidentally try to get an unsigned int or some other type when we mean int (which is the most common case) 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL int NameValuePairs::GetIntValueWithDefault (const char * name, int defaultValue) const\fR [inline]\fP"
+
+.PP
+Get a named value with type int, with default\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value to retrieve 
+.br
+\fIdefaultValue\fP the default value if the name does not exist 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the value retrieved on success or the default value 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void NameValuePairs::GetRequiredIntParameter (const char * className, const char * name, int & value) const\fR [inline]\fP"
+
+.PP
+Retrieves a required name/value pair\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIclassName\fP the name of the class 
+.br
+\fIname\fP the name of the value 
+.br
+\fIvalue\fP reference to a variable to receive the value 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP 
+.RE
+.PP
+\fBGetRequiredParameter()\fP throws \fBInvalidArgument\fP if the name is not present or not of the expected type T\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "template<class T> void NameValuePairs::GetRequiredParameter (const char * className, const char * name, T & value) const\fR [inline]\fP"
+
+.PP
+Retrieves a required name/value pair\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIclassName\fP the name of the class 
+.br
+\fIname\fP the name of the value 
+.br
+\fIvalue\fP reference to a variable to receive the value 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP 
+.RE
+.PP
+\fBGetRequiredParameter()\fP throws \fBInvalidArgument\fP if the name is not present or not of the expected type T\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "template<class T> bool NameValuePairs::GetThisObject (T & object) const\fR [inline]\fP"
+
+.PP
+Get a copy of this object or subobject\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIobject\fP reference to a variable that receives the value 
+.RE
+.PP
+
+.SS "template<class T> bool NameValuePairs::GetThisPointer (T *& ptr) const\fR [inline]\fP"
+
+.PP
+Get a pointer to this object\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP reference to a pointer to a variable that receives the value 
+.RE
+.PP
+
+.SS "template<class T> bool NameValuePairs::GetValue (const char * name, T & value) const\fR [inline]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalue\fP reference to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL std::string NameValuePairs::GetValueNames () const\fR [inline]\fP"
+
+.PP
+Get a list of value names that can be retrieved\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a list of names available to retrieve
+.RE
+.PP
+the items in the list are delimited with a colon\&. 
+.SS "template<class T> T NameValuePairs::GetValueWithDefault (const char * name, T defaultValue) const\fR [inline]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIdefaultValue\fP the default value of the class or type if it does not exist 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the object or value 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "virtual CRYPTOPP_DLL bool NameValuePairs::GetVoidValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [pure virtual]\fP"
+
+.PP
+Get a named value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the object or value to retrieve 
+.br
+\fIvalueType\fP reference to a variable that receives the value 
+.br
+\fIpValue\fP void pointer to a variable that receives the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the value was retrieved, false otherwise
+.RE
+.PP
+\fBGetVoidValue()\fP retrieves the value of name if it exists\&. 
+.PP
+\fBNote\fP
+.RS 4
+\fBGetVoidValue()\fP is an internal function and should be implemented by derived classes\&. Users should use one of the other functions instead\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBAlgorithmParameters\fP, \fBCombinedNameValuePairs\fP, \fBDL_GroupParameters< T >\fP, \fBDL_GroupParameters< Integer >\fP, \fBDL_GroupParameters< typename EcPrecomputation< EC >::Element >\fP, \fBDL_GroupParameters< typename GROUP_PRECOMP::Element >\fP, \fBDL_GroupParameters_EC< EC >\fP, \fBDL_GroupParameters_GFP\fP, \fBDL_GroupParameters_IntegerBased\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< DL_GroupPrecomputation_LUC, DL_BasePrecomputation_LUC >\fP, \fBDL_GroupParameters_IntegerBasedImpl< GROUP_PRECOMP, BASE_PRECOMP >\fP, \fBDL_GroupParameters_IntegerBasedImpl< ModExpPrecomputation >\fP, \fBDL_GroupParameters_LUC\fP, \fBDL_PrivateKey_ECGDSA< EC >\fP, \fBDL_PrivateKeyImpl< GP >\fP, \fBDL_PrivateKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBDL_PublicKeyImpl< GP >\fP, \fBDL_PublicKeyImpl< DL_GroupParameters_EC< EC > >\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBESIGNFunction\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleLUCFunction\fP, \fBInvertibleRabinFunction\fP, \fBInvertibleRSAFunction\fP, \fBInvertibleRWFunction\fP, \fBLUCFunction\fP, \fBNullNameValuePairs\fP, \fBRabinFunction\fP, \fBRSAFunction\fP, \fBRWFunction\fP, \fBTestDataNameValuePairs\fP, \fBx25519\fP, and \fBXTR_DH\fP\&.
+.SS "CRYPTOPP_DLL bool NameValuePairs::GetWord64Value (const char * name, word64 & value) const\fR [inline]\fP"
+
+.PP
+Get a named value with type word64\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value to retrieve 
+.br
+\fIvalue\fP the value retrieved upon success 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if an word64 value was retrieved, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetWord64ValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL word64 NameValuePairs::GetWord64ValueWithDefault (const char * name, word64 defaultValue) const\fR [inline]\fP"
+
+.PP
+Get a named value with type word64, with default\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value to retrieve 
+.br
+\fIdefaultValue\fP the default value if the name does not exist 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the value retrieved on success or the default value 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetWord64Value()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and GetRequiredWord64Parameter() 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL void CRYPTOPP_API NameValuePairs::ThrowIfTypeMismatch (const char * name, const std::type_info & stored, const std::type_info & retrieving)\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+Ensures an expected name and type is present\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value 
+.br
+\fIstored\fP the type that was stored for the name 
+.br
+\fIretrieving\fP the type that is being retrieved for the name 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBValueTypeMismatch\fP\fP 
+.RE
+.PP
+\fBThrowIfTypeMismatch()\fP effectively performs a type safety check\&. stored and retrieving are C++ mangled names for the type\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetValue()\fP, \fBGetValueWithDefault()\fP, \fBGetIntValue()\fP, \fBGetIntValueWithDefault()\fP, \fBGetRequiredParameter()\fP and \fBGetRequiredIntParameter()\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

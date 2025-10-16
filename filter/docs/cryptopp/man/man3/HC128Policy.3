@@ -1,0 +1,226 @@
+.TH "HC128Policy" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HC128Policy \- HC-128 stream cipher implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <hc128\&.h>\fP
+.PP
+Inherits \fBAdditiveCipherConcretePolicy< word32, 16 >\fP, and \fBHC128Info\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "void \fBOperateKeystream\fP (\fBKeystreamOperation\fP operation, \fBbyte\fP *output, const \fBbyte\fP *input, size_t iterationCount)"
+.br
+.RI "Operates the keystream\&. "
+.ti -1c
+.RI "void \fBCipherResynchronize\fP (\fBbyte\fP *keystreamBuffer, const \fBbyte\fP *iv, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "bool \fBCanOperateKeystream\fP () const"
+.br
+.RI "Flag indicating\&. "
+.ti -1c
+.RI "bool \fBCipherIsRandomAccess\fP () const"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "void \fBGenerateKeystream\fP (\fBword32\fP *keystream)"
+.br
+.ti -1c
+.RI "void \fBSetupUpdate\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBWordType\fP"
+.br
+.RI "\fBWord\fP type for the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BYTES_PER_ITERATION=sizeof(\fBWordType\fP) *W)"
+.br
+.RI "Number of bytes for an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetAlignment\fP () const"
+.br
+.RI "Provides data alignment requirements\&. "
+.ti -1c
+.RI "unsigned int \fBGetBytesPerIteration\fP () const"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetIterationsToBuffer\fP () const"
+.br
+.RI "Provides buffer size based on iterations\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherAbstractPolicy\fP
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "virtual void \fBWriteKeystream\fP (\fBbyte\fP *keystream, size_t iterationCount)"
+.br
+.RI "Generate the keystream\&. "
+.ti -1c
+.RI "virtual void \fBSeekToIteration\fP (\fBlword\fP iterationCount)"
+.br
+.RI "Seeks to a random position in the stream\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHC128Info\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 16, SimpleKeyingInterface::UNIQUE_IV, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+HC-128 stream cipher implementation\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "bool HC128Policy::CanOperateKeystream () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the stream can be generated independent of the transformation input, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBCanOperateKeystream()\fP, \fBOperateKeystream()\fP, \fBWriteKeystream()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP\&.
+.SS "bool HC128Policy::CipherIsRandomAccess () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating random access\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the cipher is seekable, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSeekToIteration()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "void HC128Policy::CipherResynchronize (\fBbyte\fP * keystreamBuffer, const \fBbyte\fP * iv, size_t length)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeystreamBuffer\fP the keystream buffer 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIlength\fP the size of the IV array 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "void HC128Policy::CipherSetKey (const \fBNameValuePairs\fP & params, const \fBbyte\fP * key, size_t length)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Key the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP set of \fBNameValuePairs\fP use to initialize this object 
+.br
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "void HC128Policy::OperateKeystream (\fBKeystreamOperation\fP operation, \fBbyte\fP * output, const \fBbyte\fP * input, size_t iterationCount)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Operates the keystream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoperation\fP the operation with additional flags 
+.br
+\fIoutput\fP the output buffer 
+.br
+\fIinput\fP the input buffer 
+.br
+\fIiterationCount\fP the number of iterations to perform on the input
+.RE
+.PP
+\fBOperateKeystream()\fP will attempt to operate upon \fBGetOptimalBlockSize()\fP buffer, which will be derived from \fBGetBytesPerIteration()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCanOperateKeystream()\fP, \fBOperateKeystream()\fP, \fBWriteKeystream()\fP, \fBKeystreamOperation()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherConcretePolicy< word32, 16 >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

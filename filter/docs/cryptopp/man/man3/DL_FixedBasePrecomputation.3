@@ -1,0 +1,244 @@
+.TH "DL_FixedBasePrecomputation< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_FixedBasePrecomputation< T > \- \fBDL_FixedBasePrecomputation\fP interface\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eprecomp\&.h>\fP
+.PP
+Inherited by \fBDL_FixedBasePrecomputationImpl< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsInitialized\fP () const =0"
+.br
+.RI "Determines whether this object is initialized\&. "
+.ti -1c
+.RI "virtual void \fBSetBase\fP (const \fBDL_GroupPrecomputation\fP< Element > &group, const Element &base)=0"
+.br
+.RI "Set the base element\&. "
+.ti -1c
+.RI "virtual const Element & \fBGetBase\fP (const \fBDL_GroupPrecomputation\fP< Element > &group) const =0"
+.br
+.RI "Get the base element\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (const \fBDL_GroupPrecomputation\fP< Element > &group, unsigned int maxExpBits, unsigned int storage)=0"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoad\fP (const \fBDL_GroupPrecomputation\fP< Element > &group, \fBBufferedTransformation\fP &storedPrecomputation)=0"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSave\fP (const \fBDL_GroupPrecomputation\fP< Element > &group, \fBBufferedTransformation\fP &storedPrecomputation) const =0"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiate\fP (const \fBDL_GroupPrecomputation\fP< Element > &group, const \fBInteger\fP &exponent) const =0"
+.br
+.RI "Exponentiates an element\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeExponentiate\fP (const \fBDL_GroupPrecomputation\fP< Element > &pc1, const \fBInteger\fP &exponent1, const \fBDL_FixedBasePrecomputation\fP< Element > &pc2, const \fBInteger\fP &exponent2) const =0"
+.br
+.RI "Exponentiates an element\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_FixedBasePrecomputation< T >"\fBDL_FixedBasePrecomputation\fP interface\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Field element 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual Element \fBDL_FixedBasePrecomputation\fP< T >::CascadeExponentiate (const \fBDL_GroupPrecomputation\fP< Element > & pc1, const \fBInteger\fP & exponent1, const \fBDL_FixedBasePrecomputation\fP< Element > & pc2, const \fBInteger\fP & exponent2) const\fR [pure virtual]\fP"
+
+.PP
+Exponentiates an element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpc1\fP the first the group precomputation 
+.br
+\fIexponent1\fP the first exponent 
+.br
+\fIpc2\fP the second the group precomputation 
+.br
+\fIexponent2\fP the first exponent2 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the public element raised to the exponent
+.RE
+.PP
+CascadeExponentiateBaseAndPublicElement raises the public element to the base element and precomputation\&. 
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual Element \fBDL_FixedBasePrecomputation\fP< T >::Exponentiate (const \fBDL_GroupPrecomputation\fP< Element > & group, const \fBInteger\fP & exponent) const\fR [pure virtual]\fP"
+
+.PP
+Exponentiates an element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgroup\fP the group 
+.br
+\fIexponent\fP the exponent 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of the exponentiation 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual const Element & \fBDL_FixedBasePrecomputation\fP< T >::GetBase (const \fBDL_GroupPrecomputation\fP< Element > & group) const\fR [pure virtual]\fP"
+
+.PP
+Get the base element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgroup\fP the group 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+base element in the group 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual bool \fBDL_FixedBasePrecomputation\fP< T >::IsInitialized () const\fR [pure virtual]\fP"
+
+.PP
+Determines whether this object is initialized\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if this object is initialized, false otherwise 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_BasePrecomputation_LUC\fP, \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual void \fBDL_FixedBasePrecomputation\fP< T >::Load (const \fBDL_GroupPrecomputation\fP< Element > & group, \fBBufferedTransformation\fP & storedPrecomputation)\fR [pure virtual]\fP"
+
+.PP
+Retrieve previously saved precomputation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgroup\fP the group 
+.br
+\fIstoredPrecomputation\fP \fBBufferedTransformation\fP with the saved precomputation 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+SupportsPrecomputation(), \fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual void \fBDL_FixedBasePrecomputation\fP< T >::Precompute (const \fBDL_GroupPrecomputation\fP< Element > & group, unsigned int maxExpBits, unsigned int storage)\fR [pure virtual]\fP"
+
+.PP
+Perform precomputation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgroup\fP the group 
+.br
+\fImaxExpBits\fP used to calculate the exponent base 
+.br
+\fIstorage\fP the suggested number of objects for the precompute table
+.RE
+.PP
+The exact semantics of \fBPrecompute()\fP varies, but it typically means calculate a table of n objects that can be used later to speed up computation\&.
+
+.PP
+If a derived class does not override \fBPrecompute()\fP, then the base class throws \fBNotImplemented\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+SupportsPrecomputation(), LoadPrecomputation(), SavePrecomputation() 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual void \fBDL_FixedBasePrecomputation\fP< T >::Save (const \fBDL_GroupPrecomputation\fP< Element > & group, \fBBufferedTransformation\fP & storedPrecomputation) const\fR [pure virtual]\fP"
+
+.PP
+Save precomputation for later use\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgroup\fP the group 
+.br
+\fIstoredPrecomputation\fP \fBBufferedTransformation\fP to write the precomputation 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+SupportsPrecomputation(), \fBPrecompute()\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+.SS "template<class T> virtual void \fBDL_FixedBasePrecomputation\fP< T >::SetBase (const \fBDL_GroupPrecomputation\fP< Element > & group, const Element & base)\fR [pure virtual]\fP"
+
+.PP
+Set the base element\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgroup\fP the group 
+.br
+\fIbase\fP element in the group 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_FixedBasePrecomputationImpl< T >\fP, \fBDL_FixedBasePrecomputationImpl< typename EcPrecomputation< EC >::Element >\fP, \fBDL_FixedBasePrecomputationImpl< typename GROUP_PRECOMP::Element >\fP, and \fBDL_FixedBasePrecomputationImpl< typename ModExpPrecomputation::Element >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

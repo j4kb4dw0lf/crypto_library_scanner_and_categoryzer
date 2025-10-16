@@ -1,0 +1,69 @@
+.TH "BLAKE2b_ParameterBlock" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BLAKE2b_ParameterBlock \- \fBBLAKE2b\fP parameter block\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <blake2\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBDigestOff\fP = 0, \fBKeyOff\fP = 1, \fBFanoutOff\fP = 2, \fBDepthOff\fP = 3, \fBLeafOff\fP = 4, \fBNodeOff\fP = 8, \fBNodeDepthOff\fP = 16, \fBInnerOff\fP = 17, \fBRfuOff\fP = 18, \fBSaltOff\fP = 32, \fBPersonalizationOff\fP = 48 }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SALTSIZE=BLAKE2b_Info::SALTSIZE)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=BLAKE2b_Info::DIGESTSIZE)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (PERSONALIZATIONSIZE=BLAKE2b_Info::PERSONALIZATIONSIZE)"
+.br
+.ti -1c
+.RI "\fBBLAKE2b_ParameterBlock\fP (size_t digestSize)"
+.br
+.ti -1c
+.RI "\fBBLAKE2b_ParameterBlock\fP (size_t digestSize, size_t keyLength, const \fBbyte\fP *salt, size_t saltLength, const \fBbyte\fP *personalization, size_t personalizationLength)"
+.br
+.ti -1c
+.RI "void \fBReset\fP (size_t digestLength=DIGESTSIZE, size_t keyLength=0)"
+.br
+.ti -1c
+.RI "\fBbyte\fP * \fBdata\fP ()"
+.br
+.ti -1c
+.RI "const \fBbyte\fP * \fBdata\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBsize\fP () const"
+.br
+.ti -1c
+.RI "\fBbyte\fP * \fBsalt\fP ()"
+.br
+.ti -1c
+.RI "\fBbyte\fP * \fBpersonalization\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBbyte\fP, 64, true > \fBm_data\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBBLAKE2b\fP parameter block\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

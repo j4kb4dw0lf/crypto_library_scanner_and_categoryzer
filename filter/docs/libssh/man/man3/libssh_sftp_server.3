@@ -1,0 +1,84 @@
+.TH "libssh_sftp_server" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_sftp_server \- The libssh SFTP server API
+.PP
+ \- SFTP server handling functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBsftp_message_handler\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSSH_SFTP_CALLBACK\fP(name)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int(* \fBsftp_server_message_callback\fP) (\fBsftp_client_message\fP message)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_channel_default_subsystem_request\fP (\fBssh_session\fP session, \fBssh_channel\fP channel, const char *subsystem, void *userdata)"
+.br
+.RI "Default subsystem request handler for SFTP subsystem\&. "
+.ti -1c
+.RI "LIBSSH_API int \fBsftp_channel_default_data_callback\fP (\fBssh_session\fP session, \fBssh_channel\fP channel, void *data, uint32_t len, int is_stderr, void *userdata)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+SFTP server handling functions\&. 
+
+TODO 
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define SSH_SFTP_CALLBACK( name)"
+\fBValue:\fP
+.nf
+    static int name(sftp_client_message message)
+.PP
+.fi
+
+.SH "Function Documentation"
+.PP 
+.SS "LIBSSH_API int sftp_channel_default_subsystem_request (\fBssh_session\fP session, \fBssh_channel\fP channel, const char * subsystem, void * userdata)"
+
+.PP
+Default subsystem request handler for SFTP subsystem\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session 
+.br
+\fIchannel\fP The existing ssh channel 
+.br
+\fIsubsystem\fP The subsystem name\&. Only "sftp" is handled 
+.br
+\fIuserdata\fP The pointer to sftp_session which will get the resulting SFTP session
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK when the SFTP server was successfully initialized, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

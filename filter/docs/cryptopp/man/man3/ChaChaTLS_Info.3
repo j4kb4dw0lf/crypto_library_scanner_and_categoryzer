@@ -1,0 +1,81 @@
+.TH "ChaChaTLS_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ChaChaTLS_Info \- IETF ChaCha20 stream cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <chacha\&.h>\fP
+.PP
+Inherits \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 12 >\fP, and \fBFixedRounds< 20 >\fP\&.
+.PP
+Inherited by \fBChaChaTLS\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const char * \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 12 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedRounds< 20 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (ROUNDS=R)"
+.br
+.RI "The number of rounds for the algorithm provided as a constant\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+IETF ChaCha20 stream cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const char * ChaChaTLS_Info::StaticAlgorithmName ()\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+The algorithm name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm name
+.RE
+.PP
+StaticAlgorithmName returns the algorithm's name as a static member function\&.
+
+.PP
+This is the IETF's variant of Bernstein's \fBChaCha\fP from RFC
+.IP "8439." 4
+IETF \fBChaCha\fP is called \fBChaChaTLS\fP in the Crypto++ library\&. It is \fIslightly\fP different from Bernstein's implementation\&. 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,454 @@
+.TH "DH_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DH_Domain< GROUP_PARAMETERS, COFACTOR_OPTION > \- Diffie-Hellman domain\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <dh\&.h>\fP
+.PP
+Inherits \fBDL_SimpleKeyAgreementDomainBase< GROUP_PARAMETERS::Element >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef GROUP_PARAMETERS \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef GroupParameters::Element \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_KeyAgreementAlgorithm_DH\fP< Element, COFACTOR_OPTION > \fBDH_Algorithm\fP"
+.br
+.ti -1c
+.RI "typedef \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION > \fBDomain\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_SimpleKeyAgreementDomainBase< GROUP_PARAMETERS::Element >\fP
+.in +1c
+.ti -1c
+.RI "typedef GROUP_PARAMETERS::Element \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDH_Domain\fP ()"
+.br
+.RI "Construct a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "\fBDH_Domain\fP (const GroupParameters &params)"
+.br
+.RI "Construct a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "\fBDH_Domain\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Construct a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "template<class T2> \fBDH_Domain\fP (\fBRandomNumberGenerator\fP &v1, const T2 &v2)"
+.br
+.RI "Create a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "template<class T2, class T3> \fBDH_Domain\fP (\fBRandomNumberGenerator\fP &v1, const T2 &v2, const T3 &v3)"
+.br
+.RI "Create a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "template<class T2, class T3, class T4> \fBDH_Domain\fP (\fBRandomNumberGenerator\fP &v1, const T2 &v2, const T3 &v3, const T4 &v4)"
+.br
+.RI "Create a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "template<class T1, class T2> \fBDH_Domain\fP (const T1 &v1, const T2 &v2)"
+.br
+.RI "Construct a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "template<class T1, class T2, class T3> \fBDH_Domain\fP (const T1 &v1, const T2 &v2, const T3 &v3)"
+.br
+.RI "Construct a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "template<class T1, class T2, class T3, class T4> \fBDH_Domain\fP (const T1 &v1, const T2 &v2, const T3 &v3, const T4 &v4)"
+.br
+.RI "Construct a Diffie-Hellman domain\&. "
+.ti -1c
+.RI "const GroupParameters & \fBGetGroupParameters\fP () const"
+.br
+.RI "Retrieves the group parameters for this domain\&. "
+.ti -1c
+.RI "GroupParameters & \fBAccessGroupParameters\fP ()"
+.br
+.RI "Retrieves the group parameters for this domain\&. "
+.ti -1c
+.RI "void \fBGeneratePublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a public key from a private key in this domain\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_SimpleKeyAgreementDomainBase< GROUP_PARAMETERS::Element >\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "unsigned int \fBAgreedValueLength\fP () const"
+.br
+.RI "Provides the size of the agreed value\&. "
+.ti -1c
+.RI "unsigned int \fBPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the private key\&. "
+.ti -1c
+.RI "unsigned int \fBPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the public key\&. "
+.ti -1c
+.RI "void \fBGeneratePrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate private key in this domain\&. "
+.ti -1c
+.RI "void \fBGeneratePublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a public key from a private key in this domain\&. "
+.ti -1c
+.RI "bool \fBAgree\fP (\fBbyte\fP *agreedValue, const \fBbyte\fP *privateKey, const \fBbyte\fP *otherPublicKey, bool validateOtherPublicKey=true) const"
+.br
+.RI "Derive agreed value\&. "
+.ti -1c
+.RI "const Element & \fBGetGenerator\fP () const"
+.br
+.RI "Retrieves a reference to the group generator\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyAgreementDomain\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a private/public key pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyAgreementAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBDL_SimpleKeyAgreementDomainBase< GROUP_PARAMETERS::Element >\fP
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption>
+.br
+class DH_Domain< GROUP_PARAMETERS, COFACTOR_OPTION >"Diffie-Hellman domain\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIGROUP_PARAMETERS\fP group parameters 
+.br
+\fICOFACTOR_OPTION\fP cofactor multiplication option
+.RE
+.PP
+A Diffie-Hellman domain is a set of parameters that must be shared by two parties in a key agreement protocol, along with the algorithms for generating key pairs and deriving agreed values\&.
+
+.PP
+For COFACTOR_OPTION, see \fBCofactorMultiplicationOption\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDL_SimpleKeyAgreementDomainBase\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (const GroupParameters & params)\fR [inline]\fP"
+
+.PP
+Construct a Diffie-Hellman domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP group parameters and options 
+.RE
+.PP
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (\fBBufferedTransformation\fP & bt)\fR [inline]\fP"
+
+.PP
+Construct a Diffie-Hellman domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP with group parameters and options 
+.RE
+.PP
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> template<class T2> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (\fBRandomNumberGenerator\fP & v1, const T2 & v2)\fR [inline]\fP"
+
+.PP
+Create a Diffie-Hellman domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT2\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP \fBRandomNumberGenerator\fP derived class 
+.br
+\fIv2\fP second parameter
+.RE
+.PP
+v1 and v2 are passed directly to the GROUP_PARAMETERS object\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> template<class T2, class T3> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (\fBRandomNumberGenerator\fP & v1, const T2 & v2, const T3 & v3)\fR [inline]\fP"
+
+.PP
+Create a Diffie-Hellman domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT2\fP template parameter used as a constructor parameter 
+.br
+\fIT3\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP \fBRandomNumberGenerator\fP derived class 
+.br
+\fIv2\fP second parameter 
+.br
+\fIv3\fP third parameter
+.RE
+.PP
+v1, v2 and v3 are passed directly to the GROUP_PARAMETERS object\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> template<class T2, class T3, class T4> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (\fBRandomNumberGenerator\fP & v1, const T2 & v2, const T3 & v3, const T4 & v4)\fR [inline]\fP"
+
+.PP
+Create a Diffie-Hellman domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT2\fP template parameter used as a constructor parameter 
+.br
+\fIT3\fP template parameter used as a constructor parameter 
+.br
+\fIT4\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP \fBRandomNumberGenerator\fP derived class 
+.br
+\fIv2\fP second parameter 
+.br
+\fIv3\fP third parameter 
+.br
+\fIv4\fP fourth parameter
+.RE
+.PP
+v1, v2, v3 and v4 are passed directly to the GROUP_PARAMETERS object\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> template<class T1, class T2> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (const T1 & v1, const T2 & v2)\fR [inline]\fP"
+
+.PP
+Construct a Diffie-Hellman domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.br
+\fIT2\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIv2\fP second parameter
+.RE
+.PP
+v1 and v2 are passed directly to the GROUP_PARAMETERS object\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> template<class T1, class T2, class T3> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (const T1 & v1, const T2 & v2, const T3 & v3)\fR [inline]\fP"
+
+.PP
+Construct a Diffie-Hellman domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.br
+\fIT2\fP template parameter used as a constructor parameter 
+.br
+\fIT3\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIv2\fP second parameter 
+.br
+\fIv3\fP third parameter
+.RE
+.PP
+v1, v2 and v3 are passed directly to the GROUP_PARAMETERS object\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> template<class T1, class T2, class T3, class T4> \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >\fB::DH_Domain\fP (const T1 & v1, const T2 & v2, const T3 & v3, const T4 & v4)\fR [inline]\fP"
+
+.PP
+Construct a Diffie-Hellman domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.br
+\fIT2\fP template parameter used as a constructor parameter 
+.br
+\fIT3\fP template parameter used as a constructor parameter 
+.br
+\fIT4\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIv2\fP second parameter 
+.br
+\fIv3\fP third parameter 
+.br
+\fIv4\fP fourth parameter
+.RE
+.PP
+v1, v2, v3 and v4 are passed directly to the GROUP_PARAMETERS object\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> GroupParameters & \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >::AccessGroupParameters ()\fR [inline]\fP"
+
+.PP
+Retrieves the group parameters for this domain\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the group parameters for this domain as a non-const reference 
+.RE
+.PP
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> std::string \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name
+.RE
+.PP
+The standard algorithm name can be a name like \fRAES\fP or \fRAES/GCM\fP\&. Some algorithms do not have standard names yet\&. For example, there is no standard algorithm name for Shoup's \fBECIES\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+AlgorithmName is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> void \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >::GeneratePublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate a public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP byte buffer for the generated public key in this domain
+.RE
+.PP
+If using a FIPS 140-2 validated library on Windows, then this class will perform a self test to ensure the key pair is pairwise consistent\&. Non-FIPS and non-Windows builds of the library do not provide FIPS validated cryptography, so the code should be removed by the optimizer\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == \fBPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSimpleKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption> const GroupParameters & \fBDH_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION >::GetGroupParameters () const\fR [inline]\fP"
+
+.PP
+Retrieves the group parameters for this domain\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the group parameters for this domain as a const reference 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

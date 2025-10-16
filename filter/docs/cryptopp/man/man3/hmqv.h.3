@@ -1,0 +1,65 @@
+.TH "/home/mock/cryptopp-master/hmqv.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/hmqv.h \- Classes for Hashed Menezes-Qu-Vanstone key agreement in GF(p)
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'gfpcrypt\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+\fR#include 'sha\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fP"
+.br
+.RI "Hashed Menezes-Qu-Vanstone in GF(p) "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBHMQV_Domain\fP< \fBDL_GroupParameters_GFP_DefaultSafePrime\fP > \fBHMQV\fP"
+.br
+.RI "Hashed Menezes-Qu-Vanstone in GF(p) "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for Hashed Menezes-Qu-Vanstone key agreement in GF(p)
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4
+.RE
+.PP
+
+.SH "Typedef Documentation"
+.PP
+.SS "typedef \fBHMQV_Domain\fP<\fBDL_GroupParameters_GFP_DefaultSafePrime\fP> \fBHMQV\fP"
+
+.PP
+Hashed Menezes-Qu-Vanstone in GF(p) This implementation follows Hugo Krawczyk's \fRHMQV: A High-Performance Secure Diffie-Hellman Protocol\fP\&. Note: this implements \fBHMQV\fP only\&. HMQV-C with Key Confirmation is not provided\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBHMQV\fP, \fBHMQV_Domain\fP, \fBFHMQV_Domain\fP, \fBAuthenticatedKeyAgreementDomain\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

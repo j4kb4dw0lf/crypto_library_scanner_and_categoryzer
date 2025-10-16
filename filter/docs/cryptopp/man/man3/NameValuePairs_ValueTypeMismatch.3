@@ -1,0 +1,125 @@
+.TH "NameValuePairs::ValueTypeMismatch" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NameValuePairs::ValueTypeMismatch \- Thrown when an unexpected type is encountered\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBInvalidArgument\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBValueTypeMismatch\fP (const std::string &name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Construct a \fBValueTypeMismatch\fP\&. "
+.ti -1c
+.RI "const std::type_info & \fBGetStoredTypeInfo\fP () const"
+.br
+.RI "Provides the stored type\&. "
+.ti -1c
+.RI "const std::type_info & \fBGetRetrievingTypeInfo\fP () const"
+.br
+.RI "Provides the retrieveing type\&. "
+.in -1c
+
+Public Member Functions inherited from \fBInvalidArgument\fP
+.in +1c
+.ti -1c
+.RI "\fBInvalidArgument\fP (const std::string &s)"
+.br
+.RI "Construct an \fBInvalidArgument\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBException\fP
+.in +1c
+.ti -1c
+.RI "\fBException\fP (\fBErrorType\fP errorType, const std::string &s)"
+.br
+.RI "Construct a new \fBException\fP\&. "
+.ti -1c
+.RI "const char * \fBwhat\fP () const  throw ()"
+.br
+.RI "Retrieves a C-string describing the exception\&. "
+.ti -1c
+.RI "const std::string & \fBGetWhat\fP () const"
+.br
+.RI "Retrieves a string describing the exception\&. "
+.ti -1c
+.RI "void \fBSetWhat\fP (const std::string &s)"
+.br
+.RI "Sets the error string for the exception\&. "
+.ti -1c
+.RI "\fBErrorType\fP \fBGetErrorType\fP () const"
+.br
+.RI "Retrieves the error type for the exception\&. "
+.ti -1c
+.RI "void \fBSetErrorType\fP (\fBErrorType\fP errorType)"
+.br
+.RI "Sets the error type for the exceptions\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBException\fP
+.in +1c
+.ti -1c
+.RI "enum \fBErrorType\fP { \fBNOT_IMPLEMENTED\fP, \fBINVALID_ARGUMENT\fP, \fBCANNOT_FLUSH\fP, \fBDATA_INTEGRITY_CHECK_FAILED\fP, \fBINVALID_DATA_FORMAT\fP, \fBIO_ERROR\fP, \fBOTHER_ERROR\fP }"
+.br
+.RI "Error types or categories\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Thrown when an unexpected type is encountered\&. 
+
+\fBException\fP thrown when trying to retrieve a value using a different type than expected 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "NameValuePairs::ValueTypeMismatch::ValueTypeMismatch (const std::string & name, const std::type_info & stored, const std::type_info & retrieving)\fR [inline]\fP"
+
+.PP
+Construct a \fBValueTypeMismatch\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value 
+.br
+\fIstored\fP the \fIactual\fP type of the value stored 
+.br
+\fIretrieving\fP the \fIpresumed\fP type of the value retrieved 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const std::type_info & NameValuePairs::ValueTypeMismatch::GetRetrievingTypeInfo () const\fR [inline]\fP"
+
+.PP
+Provides the retrieveing type\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the C++ mangled name of the type 
+.RE
+.PP
+
+.SS "const std::type_info & NameValuePairs::ValueTypeMismatch::GetStoredTypeInfo () const\fR [inline]\fP"
+
+.PP
+Provides the stored type\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the C++ mangled name of the type 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

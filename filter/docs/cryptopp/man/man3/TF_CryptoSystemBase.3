@@ -1,0 +1,77 @@
+.TH "TF_CryptoSystemBase< INTFACE, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_CryptoSystemBase< INTFACE, BASE > \- Trapdoor function cryptosystem base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBPK_FixedLengthCryptoSystemImpl< INTFACE >\fP, and BASE\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "size_t \fBFixedMaxPlaintextLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBFixedCiphertextLength\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_FixedLengthCryptoSystemImpl< INTFACE >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMaxPlaintextLength\fP (size_t ciphertextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBCiphertextLength\fP (size_t plaintextLength) const"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBPaddedBlockByteLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBPaddedBlockBitLength\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class INTFACE, class BASE>
+.br
+class TF_CryptoSystemBase< INTFACE, BASE >"Trapdoor function cryptosystem base class\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIINTFACE\fP public key cryptosystem base interface 
+.br
+\fIBASE\fP public key cryptosystem implementation base 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class INTFACE, class BASE> size_t \fBTF_CryptoSystemBase\fP< INTFACE, BASE >::FixedCiphertextLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBPK_FixedLengthCryptoSystemImpl< INTFACE >\fP\&.
+.SS "template<class INTFACE, class BASE> size_t \fBTF_CryptoSystemBase\fP< INTFACE, BASE >::FixedMaxPlaintextLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBPK_FixedLengthCryptoSystemImpl< INTFACE >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

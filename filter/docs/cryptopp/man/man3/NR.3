@@ -1,0 +1,71 @@
+.TH "NR< H >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+NR< H > \- \fBNR\fP signature scheme\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_SS< DL_SignatureKeys_GFP, DL_Algorithm_NR< Integer >, DL_SignatureMessageEncodingMethod_NR, H >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBDL_SS< DL_SignatureKeys_GFP, DL_Algorithm_NR< Integer >, DL_SignatureMessageEncodingMethod_NR, H >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_SignerImpl\fP< \fBSchemeOptions\fP > > \fBSigner\fP"
+.br
+.RI "implements \fBPK_Signer\fP interface "
+.ti -1c
+.RI "typedef \fBPK_FinalTemplate\fP< \fBDL_VerifierImpl\fP< \fBSchemeOptions\fP > > \fBVerifier\fP"
+.br
+.RI "implements \fBPK_Verifier\fP interface "
+.in -1c
+
+Public Types inherited from \fBDL_SignatureKeys_GFP\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBDL_GroupParameters_GFP\fP \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PublicKey_GFP\fP< \fBGroupParameters\fP > \fBPublicKey\fP"
+.br
+.ti -1c
+.RI "typedef \fBDL_PrivateKey_GFP\fP< \fBGroupParameters\fP > \fBPrivateKey\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBDL_SS< DL_SignatureKeys_GFP, DL_Algorithm_NR< Integer >, DL_SignatureMessageEncodingMethod_NR, H >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class H>
+.br
+struct NR< H >"\fBNR\fP signature scheme\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIH\fP \fBHashTransformation\fP derived class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRNR\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

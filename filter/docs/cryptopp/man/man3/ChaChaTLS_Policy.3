@@ -1,0 +1,277 @@
+.TH "ChaChaTLS_Policy" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ChaChaTLS_Policy \- IETF ChaCha20 stream cipher implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <chacha\&.h>\fP
+.PP
+Inherits \fBAdditiveCipherConcretePolicy< word32, 16 >\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "void \fBOperateKeystream\fP (\fBKeystreamOperation\fP operation, \fBbyte\fP *output, const \fBbyte\fP *input, size_t iterationCount)"
+.br
+.RI "Operates the keystream\&. "
+.ti -1c
+.RI "void \fBCipherResynchronize\fP (\fBbyte\fP *keystreamBuffer, const \fBbyte\fP *IV, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "bool \fBCipherIsRandomAccess\fP () const"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "void \fBSeekToIteration\fP (\fBlword\fP iterationCount)"
+.br
+.RI "Seeks to a random position in the stream\&. "
+.ti -1c
+.RI "unsigned int \fBGetAlignment\fP () const"
+.br
+.RI "Provides data alignment requirements\&. "
+.ti -1c
+.RI "unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (ROUNDS=ChaChaTLS_Info::ROUNDS)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEY=16)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (CTR=24)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 16+8 > \fBm_state\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_counter\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBWordType\fP"
+.br
+.RI "\fBWord\fP type for the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BYTES_PER_ITERATION=sizeof(\fBWordType\fP) *W)"
+.br
+.RI "Number of bytes for an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetBytesPerIteration\fP () const"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetIterationsToBuffer\fP () const"
+.br
+.RI "Provides buffer size based on iterations\&. "
+.ti -1c
+.RI "bool \fBCanOperateKeystream\fP () const"
+.br
+.RI "Flag indicating\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherAbstractPolicy\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBWriteKeystream\fP (\fBbyte\fP *keystream, size_t iterationCount)"
+.br
+.RI "Generate the keystream\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+IETF ChaCha20 stream cipher implementation\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string ChaChaTLS_Policy::AlgorithmProvider () const\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "bool ChaChaTLS_Policy::CipherIsRandomAccess () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating random access\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the cipher is seekable, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSeekToIteration()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "void ChaChaTLS_Policy::CipherResynchronize (\fBbyte\fP * keystreamBuffer, const \fBbyte\fP * iv, size_t length)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeystreamBuffer\fP the keystream buffer 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIlength\fP the size of the IV array 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "void ChaChaTLS_Policy::CipherSetKey (const \fBNameValuePairs\fP & params, const \fBbyte\fP * key, size_t length)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Key the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP set of \fBNameValuePairs\fP use to initialize this object 
+.br
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "unsigned int ChaChaTLS_Policy::GetAlignment () const\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Provides data alignment requirements\&. 
+.PP
+\fBReturns\fP
+.RS 4
+data alignment requirements, in bytes
+.RE
+.PP
+Internally, the default implementation returns 1\&. If the stream cipher is implemented using an SSE2 ASM or intrinsics, then the value returned is usually 16\&. 
+.PP
+Reimplemented from \fBAdditiveCipherConcretePolicy< word32, 16 >\fP\&.
+.SS "unsigned int ChaChaTLS_Policy::GetOptimalBlockSize () const\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Provides number of ideal bytes to process\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the ideal number of bytes to process
+.RE
+.PP
+Internally, the default implementation returns \fBGetBytesPerIteration()\fP 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetBytesPerIteration()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "void ChaChaTLS_Policy::OperateKeystream (\fBKeystreamOperation\fP operation, \fBbyte\fP * output, const \fBbyte\fP * input, size_t iterationCount)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Operates the keystream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoperation\fP the operation with additional flags 
+.br
+\fIoutput\fP the output buffer 
+.br
+\fIinput\fP the input buffer 
+.br
+\fIiterationCount\fP the number of iterations to perform on the input
+.RE
+.PP
+\fBOperateKeystream()\fP will attempt to operate upon \fBGetOptimalBlockSize()\fP buffer, which will be derived from \fBGetBytesPerIteration()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCanOperateKeystream()\fP, \fBOperateKeystream()\fP, \fBWriteKeystream()\fP, \fBKeystreamOperation()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherConcretePolicy< word32, 16 >\fP\&.
+.SS "void ChaChaTLS_Policy::SeekToIteration (\fBlword\fP iterationCount)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Seeks to a random position in the stream\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCipherIsRandomAccess()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

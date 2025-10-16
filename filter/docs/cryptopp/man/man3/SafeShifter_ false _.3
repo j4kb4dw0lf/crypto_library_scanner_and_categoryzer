@@ -1,0 +1,80 @@
+.TH "SafeShifter< false >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SafeShifter< false > \- Shifts a value in the absence of overflow\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <misc\&.h>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T> static T \fBRightShift\fP (T value, unsigned int bits)"
+.br
+.RI "Right shifts a value that does not overflow\&. "
+.ti -1c
+.RI "template<class T> static T \fBLeftShift\fP (T value, unsigned int bits)"
+.br
+.RI "Left shifts a value that does not overflow\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Shifts a value in the absence of overflow\&. 
+
+the false template parameter indicates overflow would not occur\&. In this case, \fBSafeShifter\fP returns the shfted value\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> T \fBSafeShifter\fP< false >::LeftShift (T value, unsigned int bits)\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+Left shifts a value that does not overflow\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the shifted value
+.RE
+.PP
+Since \fRoverflow == false\fP, the shifted value is returned\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSafeRightShift\fP 
+.RE
+.PP
+
+.SS "template<class T> T \fBSafeShifter\fP< false >::RightShift (T value, unsigned int bits)\fR [inline]\fP, \fR [static]\fP"
+
+.PP
+Right shifts a value that does not overflow\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the shifted value
+.RE
+.PP
+Since \fRoverflow == false\fP, the shifted value is returned\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSafeLeftShift\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

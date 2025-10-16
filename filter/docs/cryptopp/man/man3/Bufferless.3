@@ -1,0 +1,60 @@
+.TH "Bufferless< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Bufferless< T > \- Base class for bufferless filters\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple\&.h>\fP
+.PP
+Inherits T\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBIsolatedFlush\fP (bool hardFlush, bool blocking)"
+.br
+.RI "Flushes data buffered by this object, without signal propagation\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class Bufferless< T >"Base class for bufferless filters\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> bool \fBBufferless\fP< T >::IsolatedFlush (bool hardFlush, bool blocking)\fR [inline]\fP"
+
+.PP
+Flushes data buffered by this object, without signal propagation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhardFlush\fP indicates whether all data should be flushed 
+.br
+\fIblocking\fP specifies whether the object should block when processing input 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+hardFlush must be used with care 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

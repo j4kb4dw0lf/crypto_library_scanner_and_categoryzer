@@ -1,0 +1,194 @@
+.TH "FixedSizeAlignedSecBlock< T, S, T_Align16 >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FixedSizeAlignedSecBlock< T, S, T_Align16 > \- Fixed size stack-based \fBSecBlock\fP with 16-byte alignment\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.PP
+Inherits \fBFixedSizeSecBlock< T, S, FixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true > >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSecBlock< T, FixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true > >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true >::value_type \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "typedef \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true >::pointer \fBiterator\fP"
+.br
+.ti -1c
+.RI "typedef \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true >::const_pointer \fBconst_iterator\fP"
+.br
+.ti -1c
+.RI "typedef \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true >::size_type \fBsize_type\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedSizeSecBlock< T, S, FixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true > >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP ()"
+.br
+.RI "Construct a \fBFixedSizeSecBlock\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSecBlock< T, FixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true > >\fP
+.in +1c
+.ti -1c
+.RI "\fBSecBlock\fP (size_type \fBsize\fP=0)"
+.br
+.RI "Construct a \fBSecBlock\fP with space for size elements\&. "
+.ti -1c
+.RI "\fBoperator const void *\fP () const"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "\fBoperator void *\fP ()"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "\fBoperator const T *\fP () const"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "\fBoperator T*\fP ()"
+.br
+.RI "Cast operator\&. "
+.ti -1c
+.RI "iterator \fBbegin\fP ()"
+.br
+.RI "Provides an iterator pointing to the first element in the memory block\&. "
+.ti -1c
+.RI "iterator \fBend\fP ()"
+.br
+.RI "Provides an iterator pointing beyond the last element in the memory block\&. "
+.ti -1c
+.RI "\fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true >::pointer \fBdata\fP ()"
+.br
+.RI "Provides a pointer to the first element in the memory block\&. "
+.ti -1c
+.RI "size_type \fBsize\fP () const"
+.br
+.RI "Provides the count of elements in the \fBSecBlock\fP\&. "
+.ti -1c
+.RI "bool \fBempty\fP () const"
+.br
+.RI "Determines if the \fBSecBlock\fP is empty\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBBytePtr\fP ()"
+.br
+.RI "Provides a byte pointer to the first element in the memory block\&. "
+.ti -1c
+.RI "size_type \fBSizeInBytes\fP () const"
+.br
+.RI "Provides the number of bytes in the \fBSecBlock\fP\&. "
+.ti -1c
+.RI "void \fBAssign\fP (const T *ptr, size_type len)"
+.br
+.RI "Set contents and size from an array\&. "
+.ti -1c
+.RI "void \fBAppend\fP (const T *ptr, size_type len)"
+.br
+.RI "Append contents from an array\&. "
+.ti -1c
+.RI "void \fBSetMark\fP (size_t count)"
+.br
+.RI "Sets the number of elements to zeroize\&. "
+.ti -1c
+.RI "\fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > & \fBoperator=\fP (const \fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > &t)"
+.br
+.RI "Assign contents from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "\fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > & \fBoperator+=\fP (const \fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > &t)"
+.br
+.RI "Append contents from another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "\fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > \fBoperator+\fP (const \fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > &t)"
+.br
+.RI "Construct a \fBSecBlock\fP from this and another \fBSecBlock\fP\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > &t) const"
+.br
+.RI "Bitwise compare two SecBlocks\&. "
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > &t) const"
+.br
+.RI "Bitwise compare two SecBlocks\&. "
+.ti -1c
+.RI "void \fBNew\fP (size_type newSize)"
+.br
+.RI "Change size without preserving contents\&. "
+.ti -1c
+.RI "void \fBCleanNew\fP (size_type newSize)"
+.br
+.RI "Change size without preserving contents\&. "
+.ti -1c
+.RI "void \fBGrow\fP (size_type newSize)"
+.br
+.RI "Change size and preserve contents\&. "
+.ti -1c
+.RI "void \fBCleanGrow\fP (size_type newSize)"
+.br
+.RI "Change size and preserve contents\&. "
+.ti -1c
+.RI "void \fBresize\fP (size_type newSize)"
+.br
+.RI "Change size and preserve contents\&. "
+.ti -1c
+.RI "void \fBswap\fP (\fBSecBlock\fP< T, \fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > > &b)"
+.br
+.RI "Swap contents with another \fBSecBlock\fP\&. "
+.in -1c
+
+Static Public Attributes inherited from \fBSecBlock< T, FixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true > >\fP
+.in +1c
+.ti -1c
+.RI "static const size_type \fBELEMS_MAX\fP"
+.br
+.RI "Returns the maximum number of elements the block can hold\&. "
+.in -1c
+
+Protected Attributes inherited from \fBSecBlock< T, FixedSizeAllocatorWithCleanup< T, S, NullAllocator< T >, true > >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAllocatorWithCleanup\fP< T, S, \fBNullAllocator\fP< T >, true > \fBm_alloc\fP"
+.br
+.ti -1c
+.RI "size_type \fBm_mark\fP"
+.br
+.ti -1c
+.RI "size_type \fBm_size\fP"
+.br
+.ti -1c
+.RI "T * \fBm_ptr\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, unsigned int S, bool T_Align16 = true>
+.br
+class FixedSizeAlignedSecBlock< T, S, T_Align16 >"Fixed size stack-based \fBSecBlock\fP with 16-byte alignment\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.br
+\fIS\fP fixed-size of the stack-based memory block, in elements 
+.br
+\fIT_Align16\fP boolean that determines whether allocations should be aligned on a 16-byte boundary 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

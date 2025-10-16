@@ -1,0 +1,282 @@
+.TH "RSAFunction_ISO" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RSAFunction_ISO \- \fBRSA\fP trapdoor function using the public key\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <rsa\&.h>\fP
+.PP
+Inherits \fBRSAFunction\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBApplyFunction\fP (const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBPreimageBound\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRSAFunction\fP
+.in +1c
+.ti -1c
+.RI "void \fBInitialize\fP (const \fBInteger\fP &n, const \fBInteger\fP &e)"
+.br
+.RI "Initialize a \fBRSA\fP public key\&. "
+.ti -1c
+.RI "\fBOID\fP \fBGetAlgorithmID\fP () const"
+.br
+.RI "Retrieves the \fBOID\fP of the algorithm\&. "
+.ti -1c
+.RI "void \fBBERDecodePublicKey\fP (\fBBufferedTransformation\fP &bt, bool parametersPresent, size_t size)"
+.br
+.RI "Decode subjectPublicKey part of subjectPublicKeyInfo\&. "
+.ti -1c
+.RI "void \fBDEREncodePublicKey\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode subjectPublicKey part of subjectPublicKeyInfo\&. "
+.ti -1c
+.RI "bool \fBValidate\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "void \fBAssignFrom\fP (const \fBNameValuePairs\fP &source)"
+.br
+.RI "Assign values to this object\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBImageBound\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied\&. "
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetModulus\fP () const"
+.br
+.ti -1c
+.RI "const \fBInteger\fP & \fBGetPublicExponent\fP () const"
+.br
+.ti -1c
+.RI "void \fBSetModulus\fP (const \fBInteger\fP &n)"
+.br
+.ti -1c
+.RI "void \fBSetPublicExponent\fP (const \fBInteger\fP &e)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunction\fP
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBApplyRandomizedFunction\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &x) const"
+.br
+.RI "Applies the trapdoor function\&. "
+.ti -1c
+.RI "bool \fBIsRandomized\fP () const"
+.br
+.RI "Determines if the encryption algorithm is randomized\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTrapdoorFunctionBounds\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxPreimage\fP () const"
+.br
+.RI "Returns the maximum size of a message before the trapdoor function is applied bound to a public key\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBMaxImage\fP () const"
+.br
+.RI "Returns the maximum size of a representation after the trapdoor function is applied bound to a public key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBX509PublicKey\fP
+.in +1c
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual bool \fBBERDecodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode algorithm parameters\&. "
+.ti -1c
+.RI "virtual bool \fBDEREncodeAlgorithmParameters\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode algorithm parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1CryptoMaterial< PublicKey >\fP
+.in +1c
+.ti -1c
+.RI "void \fBSave\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER encode ASN\&.1 object\&. "
+.ti -1c
+.RI "void \fBLoad\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "BER decode ASN\&.1 object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCryptoMaterial\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBThrowIfInvalid\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level) const"
+.br
+.RI "Check this object for errors\&. "
+.ti -1c
+.RI "virtual bool \fBSupportsPrecomputation\fP () const"
+.br
+.RI "Determines whether the object supports precomputation\&. "
+.ti -1c
+.RI "virtual void \fBPrecompute\fP (unsigned int precomputationStorage)"
+.br
+.RI "Perform precomputation\&. "
+.ti -1c
+.RI "virtual void \fBLoadPrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation)"
+.br
+.RI "Retrieve previously saved precomputation\&. "
+.ti -1c
+.RI "virtual void \fBSavePrecomputation\fP (\fBBufferedTransformation\fP &storedPrecomputation) const"
+.br
+.RI "Save precomputation for later use\&. "
+.ti -1c
+.RI "void \fBDoQuickSanityCheck\fP () const"
+.br
+.RI "Perform a quick sanity check\&. "
+.in -1c
+
+Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "template<class T> bool \fBGetThisObject\fP (T &object) const"
+.br
+.RI "Get a copy of this object or subobject\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetThisPointer\fP (T *&ptr) const"
+.br
+.RI "Get a pointer to this object\&. "
+.ti -1c
+.RI "template<class T> bool \fBGetValue\fP (const char *name, T &value) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "template<class T> T \fBGetValueWithDefault\fP (const char *name, T defaultValue) const"
+.br
+.RI "Get a named value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::string \fBGetValueNames\fP () const"
+.br
+.RI "Get a list of value names that can be retrieved\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetIntValue\fP (const char *name, int &value) const"
+.br
+.RI "Get a named value with type int\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int \fBGetIntValueWithDefault\fP (const char *name, int defaultValue) const"
+.br
+.RI "Get a named value with type int, with default\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool \fBGetWord64Value\fP (const char *name, word64 &value) const"
+.br
+.RI "Get a named value with type word64\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL word64 \fBGetWord64ValueWithDefault\fP (const char *name, word64 defaultValue) const"
+.br
+.RI "Get a named value with type word64, with default\&. "
+.ti -1c
+.RI "template<class T> void \fBGetRequiredParameter\fP (const char *className, const char *name, T &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL void \fBGetRequiredIntParameter\fP (const char *className, const char *name, int &value) const"
+.br
+.RI "Retrieves a required name/value pair\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBNameValuePairs\fP
+.in +1c
+.ti -1c
+.RI "static CRYPTOPP_DLL void CRYPTOPP_API \fBThrowIfTypeMismatch\fP (const char *name, const std::type_info &stored, const std::type_info &retrieving)"
+.br
+.RI "Ensures an expected name and type is present\&. "
+.in -1c
+
+Protected Attributes inherited from \fBRSAFunction\fP
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBm_n\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBm_e\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBRSA\fP trapdoor function using the public key\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBInteger\fP RSAFunction_ISO::ApplyFunction (const \fBInteger\fP & x) const\fR [virtual]\fP"
+
+.PP
+Applies the trapdoor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the message on which the encryption function is applied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the message x encrypted under the public key
+.RE
+.PP
+ApplyFunction is a generalization of encryption under a public key cryptosystem\&. Derived classes must implement it\&. 
+.PP
+Reimplemented from \fBRSAFunction\fP\&.
+.SS "\fBInteger\fP RSAFunction_ISO::PreimageBound () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns the maximum size of a message before the trapdoor function is applied\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of a message before the trapdoor function is applied
+.RE
+.PP
+Derived classes must implement \fBPreimageBound()\fP\&. 
+.PP
+Reimplemented from \fBRSAFunction\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

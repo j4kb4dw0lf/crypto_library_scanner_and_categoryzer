@@ -1,0 +1,692 @@
+.TH "libssh_misc" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_misc \- The SSH helper functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBNSS_BUFLEN_PASSWD\fP   4096"
+.br
+.ti -1c
+.RI "#define \fBCLOCK\fP   CLOCK_REALTIME"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBssh_getpass\fP (const char *prompt, char *buf, size_t len, int echo, int verify)"
+.br
+.RI "Get a password from the console\&. "
+.ti -1c
+.RI "int \fBssh_get_random\fP (void *where, int len, int strong)"
+.br
+.RI "Get random bytes\&. "
+.ti -1c
+.RI "char * \fBssh_get_user_home_dir\fP (void)"
+.br
+.ti -1c
+.RI "int \fBssh_file_readaccess_ok\fP (const char *\fBfile\fP)"
+.br
+.ti -1c
+.RI "int \fBssh_dir_writeable\fP (const char *path)"
+.br
+.RI "Check if the given path is an existing directory and that is accessible for writing\&. "
+.ti -1c
+.RI "char * \fBssh_get_local_username\fP (void)"
+.br
+.ti -1c
+.RI "int \fBssh_is_ipaddr_v4\fP (const char *str)"
+.br
+.ti -1c
+.RI "int \fBssh_is_ipaddr\fP (const char *str)"
+.br
+.ti -1c
+.RI "char * \fBssh_lowercase\fP (const char *str)"
+.br
+.ti -1c
+.RI "char * \fBssh_hostport\fP (const char *host, int port)"
+.br
+.ti -1c
+.RI "char * \fBssh_get_hexa\fP (const unsigned char *what, size_t len)"
+.br
+.RI "Convert a buffer into a colon separated hex string\&. The caller has to free the memory\&. "
+.ti -1c
+.RI "void \fBssh_print_hexa\fP (const char *descr, const unsigned char *what, size_t len)"
+.br
+.ti -1c
+.RI "void \fBssh_log_hexdump\fP (const char *descr, const unsigned char *what, size_t len)"
+.br
+.RI "Log the content of a buffer in hexadecimal format, similar to the output of 'hexdump -C' command\&. "
+.ti -1c
+.RI "const char * \fBssh_version\fP (int req_version)"
+.br
+.RI "Check if libssh is the required version or get the version string\&. "
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBssh_list_new\fP (void)"
+.br
+.ti -1c
+.RI "void \fBssh_list_free\fP (struct \fBssh_list\fP *list)"
+.br
+.ti -1c
+.RI "struct \fBssh_iterator\fP * \fBssh_list_get_iterator\fP (const struct \fBssh_list\fP *list)"
+.br
+.ti -1c
+.RI "struct \fBssh_iterator\fP * \fBssh_list_find\fP (const struct \fBssh_list\fP *list, void *value)"
+.br
+.ti -1c
+.RI "size_t \fBssh_list_count\fP (const struct \fBssh_list\fP *list)"
+.br
+.RI "Get the number of elements in the list\&. "
+.ti -1c
+.RI "int \fBssh_list_append\fP (struct \fBssh_list\fP *list, const void *data)"
+.br
+.ti -1c
+.RI "int \fBssh_list_prepend\fP (struct \fBssh_list\fP *list, const void *data)"
+.br
+.ti -1c
+.RI "void \fBssh_list_remove\fP (struct \fBssh_list\fP *list, struct \fBssh_iterator\fP *iterator)"
+.br
+.ti -1c
+.RI "const void * \fB_ssh_list_pop_head\fP (struct \fBssh_list\fP *list)"
+.br
+.ti -1c
+.RI "char * \fBssh_dirname\fP (const char *path)"
+.br
+.RI "Parse directory component\&. "
+.ti -1c
+.RI "char * \fBssh_basename\fP (const char *path)"
+.br
+.RI "basename - parse filename component\&. "
+.ti -1c
+.RI "int \fBssh_mkdir\fP (const char *pathname, mode_t mode)"
+.br
+.RI "Attempts to create a directory with the given pathname\&. "
+.ti -1c
+.RI "int \fBssh_mkdirs\fP (const char *pathname, mode_t mode)"
+.br
+.RI "Attempts to create a directory with the given pathname\&. The missing directories in the given pathname are created recursively\&. "
+.ti -1c
+.RI "char * \fBssh_path_expand_tilde\fP (const char *d)"
+.br
+.RI "Expand a directory starting with a tilde '~'\&. "
+.ti -1c
+.RI "char * \fBssh_path_expand_escape\fP (\fBssh_session\fP session, const char *s)"
+.br
+.ti -1c
+.RI "int \fBssh_analyze_banner\fP (\fBssh_session\fP session, int server)"
+.br
+.ti -1c
+.RI "void \fBssh_timestamp_init\fP (struct \fBssh_timestamp\fP *ts)"
+.br
+.ti -1c
+.RI "int \fBssh_make_milliseconds\fP (unsigned long sec, unsigned long usec)"
+.br
+.ti -1c
+.RI "int \fBssh_timeout_elapsed\fP (struct \fBssh_timestamp\fP *ts, int timeout)"
+.br
+.ti -1c
+.RI "int \fBssh_timeout_update\fP (struct \fBssh_timestamp\fP *ts, int timeout)"
+.br
+.RI "updates a timeout value so it reflects the remaining time "
+.ti -1c
+.RI "void \fBexplicit_bzero\fP (void *s, size_t n)"
+.br
+.ti -1c
+.RI "void \fBburn_free\fP (void *ptr, size_t len)"
+.br
+.RI "Securely free memory by overwriting it before deallocation\&. "
+.ti -1c
+.RI "char * \fBstrndup\fP (const char *s, size_t n)"
+.br
+.ti -1c
+.RI "void \fBuint64_inc\fP (unsigned char *counter)"
+.br
+.ti -1c
+.RI "int \fBssh_quote_file_name\fP (const char *file_name, char *buf, size_t buf_len)"
+.br
+.ti -1c
+.RI "int \fBssh_newline_vis\fP (const char *string, char *buf, size_t buf_len)"
+.br
+.ti -1c
+.RI "int \fBssh_tmpname\fP (char *name)"
+.br
+.ti -1c
+.RI "char * \fBssh_strreplace\fP (const char *src, const char *pattern, const char *replace)"
+.br
+.ti -1c
+.RI "char * \fBssh_strerror\fP (int err_num, char *buf, size_t buflen)"
+.br
+.ti -1c
+.RI "ssize_t \fBssh_readn\fP (int fd, void *buf, size_t nbytes)"
+.br
+.RI "Read the requested number of bytes from a local file\&. "
+.ti -1c
+.RI "ssize_t \fBssh_writen\fP (int fd, const void *buf, size_t nbytes)"
+.br
+.RI "Write the requested number of bytes to a local file\&. "
+.ti -1c
+.RI "int \fBssh_check_hostname_syntax\fP (const char *hostname)"
+.br
+.RI "Checks syntax of a domain name\&. "
+.ti -1c
+.RI "int \fBssh_check_username_syntax\fP (const char *username)"
+.br
+.RI "Checks syntax of a username\&. "
+.ti -1c
+.RI "void \fBssh_proxyjumps_free\fP (struct \fBssh_list\fP *proxy_jump_list)"
+.br
+.RI "Free proxy jump list\&. "
+.ti -1c
+.RI "bool \fBssh_libssh_proxy_jumps\fP (void)"
+.br
+.RI "Check if libssh proxy jumps is enabled\&. "
+.ti -1c
+.RI "int \fBencode_current_tty_opts\fP (unsigned char *buf, size_t buflen)"
+.br
+.RI "Encode the current TTY options as SSH modes\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Different helper functions used in the SSH Library\&.
+.SH "Function Documentation"
+.PP 
+.SS "void burn_free (void * ptr, size_t len)"
+
+.PP
+Securely free memory by overwriting it before deallocation\&. Overwrites the memory region with zeros before calling free() to prevent sensitive data from remaining in memory after deallocation\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIptr\fP Pointer to the memory region to securely free\&. Can be NULL (no operation performed)\&. 
+.br
+\fIlen\fP Length of the memory region in bytes\&. 
+.RE
+.PP
+
+.SS "int encode_current_tty_opts (unsigned char * buf, size_t buflen)"
+
+.PP
+Encode the current TTY options as SSH modes\&. Call this function to determine the settings of the process' TTY and encode them as SSH Terminal Modes according to RFC 4254 section 8\&.
+
+.PP
+If STDIN isn't connected to a TTY, this function fills the buffer with "sane" default modes\&.
+
+.PP
+The encoded modes can be passed to \fRssh_channel_request_pty_size_modes\fP \&.
+
+.PP
+.PP
+.nf
+unsigned char modes_buf[SSH_TTY_MODES_MAX_BUFSIZE];
+encode_current_tty_opts(modes_buf, sizeof(modes_buf));
+.fi
+.PP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP Modes will be encoded into this buffer\&.
+.br
+\fIbuflen\fP The length of the buffer\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+number of bytes in the buffer on success, -1 on error\&. 
+.RE
+.PP
+
+.SS "char * ssh_basename (const char * path)"
+
+.PP
+basename - parse filename component\&. basename breaks a null-terminated pathname string into a filename component\&. \fBssh_basename()\fP returns the component following the final '/'\&. Trailing '/' characters are not counted as part of the pathname\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIpath\fP The path to parse\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The filename of path or NULL if we can't allocate memory\&. If path is the string "/", basename returns the string "/"\&. If path is NULL or an empty string, "\&." is returned\&. The caller needs to free this memory \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "int ssh_check_hostname_syntax (const char * hostname)"
+
+.PP
+Checks syntax of a domain name\&. The check is made based on the RFC1035 section 2\&.3\&.1 Allowed characters are: hyphen, period, digits (0-9) and letters (a-zA-Z)
+
+.PP
+The label should be no longer than 63 characters The label should start with a letter and end with a letter or number The label in this implementation can start with a number to allow virtual URLs to pass\&. Note that this will make IPv4 addresses to pass this check too\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIhostname\fP The domain name to be checked, has to be null terminated
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the hostname passes syntax check SSH_ERROR otherwise or if hostname is NULL or empty string 
+.RE
+.PP
+
+.SS "int ssh_check_username_syntax (const char * username)"
+
+.PP
+Checks syntax of a username\&. This check disallows metacharacters in the username
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIusername\fP The username to be checked, has to be null terminated
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK if the username passes syntax check SSH_ERROR otherwise or if username is NULL or empty string 
+.RE
+.PP
+
+.SS "int ssh_dir_writeable (const char * path)"
+
+.PP
+Check if the given path is an existing directory and that is accessible for writing\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpath\fP Path to the directory to be checked
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Return 1 if the directory exists and is accessible; 0 otherwise 
+.RE
+.PP
+
+.SS "char * ssh_dirname (const char * path)"
+
+.PP
+Parse directory component\&. dirname breaks a null-terminated pathname string into a directory component\&. In the usual case, \fBssh_dirname()\fP returns the string up to, but not including, the final '/'\&. Trailing '/' characters are not counted as part of the pathname\&. The caller must free the memory using \fBssh_string_free_char()\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIpath\fP The path to parse\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The dirname of path or NULL if we can't allocate memory\&. If path does not contain a slash, c_dirname() returns the string "\&."\&. If path is a string "/", it returns the string "/"\&. If path is NULL or an empty string, "\&." is returned\&. The memory needs to be freed using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "char * ssh_get_hexa (const unsigned char * what, size_t len)"
+
+.PP
+Convert a buffer into a colon separated hex string\&. The caller has to free the memory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIwhat\fP What should be converted to a hex string\&.
+.br
+\fIlen\fP Length of the buffer to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The hex string or NULL on error\&. The memory needs to be freed using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "int ssh_get_random (void * where, int len, int strong)"
+
+.PP
+Get random bytes\&. Make sure to always check the return code of this function!
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIwhere\fP The buffer to fill with random bytes
+.br
+\fIlen\fP The size of the buffer to fill\&.
+.br
+\fIstrong\fP Use a strong or private RNG source\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 on success, 0 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_getpass (const char * prompt, char * buf, size_t len, int echo, int verify)"
+
+.PP
+Get a password from the console\&. You should make sure that the buffer is an empty string!
+
+.PP
+You can also use this function to ask for a username\&. Then you can fill the buffer with the username and it is shows to the users\&. If the users just presses enter the buffer will be untouched\&.
+
+.PP
+.PP
+.nf
+char username[128];
+
+snprintf(username, sizeof(username), "john");
+
+ssh_getpass("Username:", username, sizeof(username), 1, 0);
+.fi
+.PP
+
+.PP
+The prompt will look like this:
+
+.PP
+Username: [john]
+
+.PP
+If you press enter then john is used as the username, or you can type it in to change it\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIprompt\fP The prompt to show to ask for the password\&.
+.br
+\fIbuf\fP The buffer the password should be stored\&. It NEEDS to be empty or filled out\&.
+.br
+\fIlen\fP The length of the buffer\&.
+.br
+\fIecho\fP Should we echo what you type\&.
+.br
+\fIverify\fP Should we ask for the password twice\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, -1 on error\&. 
+.RE
+.PP
+
+.SS "bool ssh_libssh_proxy_jumps (void )"
+
+.PP
+Check if libssh proxy jumps is enabled\&. If env variable OPENSSH_PROXYJUMP is set to 1 then proxyjump will be through the OpenSSH binary\&.
+
+.PP
+\fBReturns\fP
+.RS 4
+false if OPENSSH_PROXYJUMP=1 true otherwise 
+.RE
+.PP
+
+.SS "size_t ssh_list_count (const struct \fBssh_list\fP * list)"
+
+.PP
+Get the number of elements in the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlist\fP The list to count\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of elements in the list\&. 
+.RE
+.PP
+
+.SS "void ssh_log_hexdump (const char * descr, const unsigned char * what, size_t len)"
+
+.PP
+Log the content of a buffer in hexadecimal format, similar to the output of 'hexdump -C' command\&. The first logged line is the given description followed by the length\&. Then the content of the buffer is logged 16 bytes per line in the following format:
+
+.PP
+(offset) (first 8 bytes) (last 8 bytes) (the 16 bytes as ASCII char values)
+
+.PP
+The output for a 16 bytes array containing values from 0x00 to 0x0f would be:
+
+.PP
+"Example (16 bytes):" "  00000000  00 01 02 03 04 05 06 07  08 09 0a 0b 0c 0d 0e 0f  \&.\&.\&.\&.\&.\&.\&.\&.\&.\&.\&.\&.\&.\&.\&.\&."
+
+.PP
+The value for each byte as corresponding ASCII character is printed at the end if the value is printable\&. Otherwise, it is replaced with '\&.'\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIdescr\fP A description for the content to be logged 
+.br
+\fIwhat\fP The buffer to be logged 
+.br
+\fIlen\fP The length of the buffer given in what
+.RE
+.PP
+\fBNote\fP
+.RS 4
+If a too long description is provided (which would result in a first line longer than 80 bytes), the function will fail\&. 
+.RE
+.PP
+
+.SS "int ssh_mkdir (const char * pathname, mode_t mode)"
+
+.PP
+Attempts to create a directory with the given pathname\&. This is the portable version of mkdir, mode is ignored on Windows systems\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIpathname\fP The path name to create the directory\&.
+.br
+\fImode\fP The permissions to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with errno set\&. 
+.RE
+.PP
+
+.SS "int ssh_mkdirs (const char * pathname, mode_t mode)"
+
+.PP
+Attempts to create a directory with the given pathname\&. The missing directories in the given pathname are created recursively\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpathname\fP The path name to create the directory\&.
+.br
+\fImode\fP The permissions to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error with errno set\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+mode is ignored on Windows systems\&. 
+.RE
+.PP
+
+.SS "char * ssh_path_expand_tilde (const char * d)"
+
+.PP
+Expand a directory starting with a tilde '~'\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fId\fP The directory to expand\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The expanded directory, NULL on error\&. The caller needs to free the memory using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "void ssh_print_hexa (const char * descr, const unsigned char * what, size_t len)"
+
+.PP
+\fBDeprecated\fP
+.RS 4
+Please use \fBssh_print_hash()\fP instead 
+.RE
+.PP
+
+.SS "void ssh_proxyjumps_free (struct \fBssh_list\fP * proxy_jump_list)"
+
+.PP
+Free proxy jump list\&. Frees everything in a proxy jump list, but doesn't free the \fBssh_list\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIproxy_jump_list\fP 
+.RE
+.PP
+
+.SS "ssize_t ssh_readn (int fd, void * buf, size_t nbytes)"
+
+.PP
+Read the requested number of bytes from a local file\&. A call to read() may perform a short read even when sufficient data is present in the file\&. This function can be used to avoid such short reads\&.
+
+.PP
+This function tries to read the requested number of bytes from the file until one of the following occurs :
+.IP "\(bu" 2
+Requested number of bytes are read\&.
+.IP "\(bu" 2
+EOF is encountered before reading the requested number of bytes\&.
+.IP "\(bu" 2
+An error occurs\&.
+.PP
+
+.PP
+On encountering an error due to an interrupt, this function ignores that error and continues trying to read the data\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfd\fP The file descriptor of the local file to read from\&.
+.br
+\fIbuf\fP Pointer to a buffer in which read data will be stored\&.
+.br
+\fInbytes\fP Number of bytes to read\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes read on success, SSH_ERROR on error with errno set to indicate the error\&. 
+.RE
+.PP
+
+.SS "int ssh_timeout_update (struct \fBssh_timestamp\fP * ts, int timeout)"
+
+.PP
+updates a timeout value so it reflects the remaining time 
+.PP
+\fBParameters\fP
+.RS 4
+\fIts\fP pointer to an existing timestamp 
+.br
+\fItimeout\fP timeout in milliseconds\&. Negative values mean infinite timeout 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+remaining time in milliseconds, 0 if elapsed, -1 if never\&. 
+.RE
+.PP
+
+.SS "const char * ssh_version (int req_version)"
+
+.PP
+Check if libssh is the required version or get the version string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIreq_version\fP The version required\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+If the version of libssh is newer than the version required it will return a version string\&. NULL if the version is older\&.
+.RE
+.PP
+Example:
+
+.PP
+.PP
+.nf
+if (ssh_version(SSH_VERSION_INT(0,2,1)) == NULL) {
+  fprintf(stderr, "libssh version is too old!\\n");
+  exit(1);
+}
+
+if (debug) {
+  printf("libssh %s\\n", ssh_version(0));
+}
+.fi
+.PP
+ 
+.SS "ssize_t ssh_writen (int fd, const void * buf, size_t nbytes)"
+
+.PP
+Write the requested number of bytes to a local file\&. A call to write() may perform a short write on a local file\&. This function can be used to avoid short writes\&.
+
+.PP
+This function tries to write the requested number of bytes until those many bytes are written or some error occurs\&.
+
+.PP
+On encountering an error due to an interrupt, this function ignores that error and continues trying to write the data\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIfd\fP The file descriptor of the local file to write to\&.
+.br
+\fIbuf\fP Pointer to a buffer in which data to write is stored\&.
+.br
+\fInbytes\fP Number of bytes to write\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Number of bytes written on success, SSH_ERROR on error with errno set to indicate the error\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

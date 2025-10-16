@@ -1,0 +1,60 @@
+.TH "Kalyna256_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Kalyna256_Info \- Kalyna-256 block cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <kalyna\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< 32 >\fP, and \fBVariableKeyLength< 32, 32, 64 >\fP\&.
+.PP
+Inherited by \fBTwoBases< BlockCipher, Kalyna256_Info >\fP, and \fBKalyna256\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 32, 32, 64 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Kalyna-256 block cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

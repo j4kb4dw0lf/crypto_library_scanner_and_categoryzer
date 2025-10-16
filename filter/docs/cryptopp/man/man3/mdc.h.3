@@ -1,0 +1,62 @@
+.TH "/home/mock/cryptopp-master/mdc.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/mdc.h \- Classes for the \fBMDC\fP message digest\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'seckey\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBMDC_Info< B >\fP"
+.br
+.RI "\fBMDC_Info\fP cipher information\&. "
+.ti -1c
+.RI "class \fBMDC< H >\fP"
+.br
+.RI "\fBMDC\fP cipher\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBHashWordPtr\fP(x)"
+.br
+.ti -1c
+.RI "#define \fBConstHashWordPtr\fP(x)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the \fBMDC\fP message digest\&.
+
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define ConstHashWordPtr( x)"
+\fBValue:\fP
+.nf
+((const HashWordType*)(const void*)(x))
+.PP
+.fi
+
+.SS "#define HashWordPtr( x)"
+\fBValue:\fP
+.nf
+((HashWordType*)(void*)(x))
+.PP
+.fi
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

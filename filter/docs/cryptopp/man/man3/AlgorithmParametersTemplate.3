@@ -1,0 +1,119 @@
+.TH "AlgorithmParametersTemplate< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AlgorithmParametersTemplate< T > \- Template base class for \fBAlgorithmParameters\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <algparam\&.h>\fP
+.PP
+Inherits \fBAlgorithmParametersBase\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAlgorithmParametersTemplate\fP (const char *name, const T &value, bool throwIfNotUsed)"
+.br
+.RI "Construct an \fBAlgorithmParametersTemplate\fP\&. "
+.ti -1c
+.RI "void \fBAssignValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.ti -1c
+.RI "void \fBMoveInto\fP (void *buffer) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmParametersBase\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithmParametersBase\fP (const \fBAlgorithmParametersBase\fP &x)"
+.br
+.ti -1c
+.RI "\fBAlgorithmParametersBase\fP (const char *name, bool throwIfNotUsed)"
+.br
+.RI "Construct a \fBAlgorithmParametersBase\fP\&. "
+.ti -1c
+.RI "bool \fBGetVoidValue\fP (const char *name, const std::type_info &valueType, void *pValue) const"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBm_value\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBAlgorithmParametersBase\fP
+.in +1c
+.ti -1c
+.RI "const char * \fBm_name\fP"
+.br
+.ti -1c
+.RI "bool \fBm_throwIfNotUsed\fP"
+.br
+.ti -1c
+.RI "bool \fBm_used\fP"
+.br
+.ti -1c
+.RI "\fBmember_ptr\fP< \fBAlgorithmParametersBase\fP > \fBm_next\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBAlgorithmParametersBase\fP
+.in +1c
+.ti -1c
+.RI "void \fBoperator=\fP (const \fBAlgorithmParametersBase\fP &rhs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class AlgorithmParametersTemplate< T >"Template base class for \fBAlgorithmParameters\fP\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T> \fBAlgorithmParametersTemplate\fP< T >\fB::AlgorithmParametersTemplate\fP (const char * name, const T & value, bool throwIfNotUsed)\fR [inline]\fP"
+
+.PP
+Construct an \fBAlgorithmParametersTemplate\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the value 
+.br
+\fIvalue\fP a reference to the value 
+.br
+\fIthrowIfNotUsed\fP flags indicating whether an exception should be thrown
+.RE
+.PP
+If throwIfNotUsed is true, then a \fBParameterNotUsed\fP exception will be thrown in the destructor if the parameter is not not retrieved\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> void \fBAlgorithmParametersTemplate\fP< T >::AssignValue (const char * name, const std::type_info & valueType, void * pValue) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBAlgorithmParametersBase\fP\&.
+.SS "template<class T> void \fBAlgorithmParametersTemplate\fP< T >::MoveInto (void * buffer) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBAlgorithmParametersBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

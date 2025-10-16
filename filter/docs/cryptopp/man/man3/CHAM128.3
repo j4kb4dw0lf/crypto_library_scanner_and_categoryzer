@@ -1,0 +1,109 @@
+.TH "CHAM128" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CHAM128 \- CHAM 128-bit block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cham\&.h>\fP
+.PP
+Inherits \fBCHAM128_Info\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBBase\fP"
+.br
+.RI "CHAM block cipher transformation functions\&. "
+.ti -1c
+.RI "class \fBDec\fP"
+.br
+.RI "\fBDecryption\fP transformation\&. "
+.ti -1c
+.RI "class \fBEnc\fP"
+.br
+.RI "\fBEncryption\fP transformation\&. "
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBENCRYPTION\fP, \fBEnc\fP > \fBEncryption\fP"
+.br
+.RI "\fBCHAM128\fP encryption\&. "
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBDECRYPTION\fP, \fBDec\fP > \fBDecryption\fP"
+.br
+.RI "\fBCHAM128\fP decryption\&. "
+.in -1c
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 16, 16, 32, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBCHAM128_Info\fP
+.in +1c
+.ti -1c
+.RI "static const std::string \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+CHAM 128-bit block cipher\&. 
+
+\fBCHAM128\fP provides 128-bit block size\&. The valid key size is 128-bit and 256-bit\&. 
+.PP
+\fBNote\fP
+.RS 4
+Crypto++ provides a byte oriented implementation 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBCHAM64\fP, \fRCHAM\fP, \fRCHAM: A Family of Lightweight Block Ciphers for Resource-Constrained Devices\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,58 @@
+.TH "FixedRoundsCipherFactory< E, D >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FixedRoundsCipherFactory< E, D >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBCipherFactory\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedRoundsCipherFactory\fP (unsigned int keylen=0)"
+.br
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBKeyLength\fP () const"
+.br
+.ti -1c
+.RI "\fBBlockTransformation\fP * \fBNewEncryption\fP (const \fBbyte\fP *keyStr) const"
+.br
+.ti -1c
+.RI "\fBBlockTransformation\fP * \fBNewDecryption\fP (const \fBbyte\fP *keyStr) const"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBm_keylen\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class E, class D> unsigned int \fBFixedRoundsCipherFactory\fP< E, D >::BlockSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBCipherFactory\fP\&.
+.SS "template<class E, class D> unsigned int \fBFixedRoundsCipherFactory\fP< E, D >::KeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBCipherFactory\fP\&.
+.SS "template<class E, class D> \fBBlockTransformation\fP * \fBFixedRoundsCipherFactory\fP< E, D >::NewDecryption (const \fBbyte\fP * keyStr) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBCipherFactory\fP\&.
+.SS "template<class E, class D> \fBBlockTransformation\fP * \fBFixedRoundsCipherFactory\fP< E, D >::NewEncryption (const \fBbyte\fP * keyStr) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBCipherFactory\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

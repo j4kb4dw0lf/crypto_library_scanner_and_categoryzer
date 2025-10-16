@@ -1,0 +1,96 @@
+.TH "/home/mock/cryptopp-master/mersenne.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/mersenne.h \- Class file for Mersenne Twister\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBMersenneTwister< K, M, N, F, S >\fP"
+.br
+.RI "Mersenne Twister class for Monte-Carlo simulations\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBMersenneTwister\fP< 0x9908B0DF, 397, 624, 0x10DCD, 4537 > \fBMT19937\fP"
+.br
+.RI "Original \fBMT19937\fP generator provided in the ACM paper\&. "
+.ti -1c
+.RI "typedef \fBMersenneTwister\fP< 0x9908B0DF, 397, 624, 0x6C078965, 5489 > \fBMT19937ar\fP"
+.br
+.RI "Updated \fBMT19937\fP generator adapted to provide an array for initialization\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Class file for Mersenne Twister\&.
+
+
+.PP
+\fBWarning\fP
+.RS 4
+\fBMersenneTwister\fP is suitable for Monte-Carlo simulations, where uniformaly distributed numbers are required quickly\&. It should not be used for cryptographic purposes\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.3
+.RE
+.PP
+
+.SH "Typedef Documentation"
+.PP
+.SS "typedef \fBMersenneTwister\fP<0x9908B0DF , 397, 624, 0x10DCD , 4537> \fBMT19937\fP"
+
+.PP
+Original \fBMT19937\fP generator provided in the ACM paper\&. \fBMT19937\fP uses 4537 as default initial seed\&.
+
+.PP
+You should reseed the generator after a fork() to avoid multiple generators with the same internal state\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBMT19937ar\fP, \fRMersenne twister: a 623-dimensionally equidistributed uniform pseudo-random number generator\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.3
+.RE
+.PP
+
+.SS "typedef \fBMersenneTwister\fP<0x9908B0DF , 397, 624, 0x6C078965 , 5489> \fBMT19937ar\fP"
+
+.PP
+Updated \fBMT19937\fP generator adapted to provide an array for initialization\&. \fBMT19937\fP uses 5489 as default initial seed\&. Use this generator when interoperating with C++11's mt19937 class\&.
+
+.PP
+You should reseed the generator after a fork() to avoid multiple generators with the same internal state\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBMT19937\fP, \fRMersenne Twister with improved initialization\fP
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.3
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

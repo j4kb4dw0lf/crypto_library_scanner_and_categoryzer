@@ -1,0 +1,130 @@
+.TH "/home/mock/cryptopp-master/gf2n.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/gf2n.h \- Classes and functions for schemes over GF(2^n)
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'algebra\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'asn\&.h'\fP
+.br
+\fR#include <iosfwd>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPolynomialMod2\fP"
+.br
+.RI "Polynomial with Coefficients in GF(2) "
+.ti -1c
+.RI "class \fBPolynomialMod2::DivideByZero\fP"
+.br
+.RI "\fBException\fP thrown when divide by zero is encountered\&. "
+.ti -1c
+.RI "class \fBGF2NP\fP"
+.br
+.RI "GF(2^n) with Polynomial Basis\&. "
+.ti -1c
+.RI "class \fBGF2NT\fP"
+.br
+.RI "GF(2^n) with Trinomial Basis\&. "
+.ti -1c
+.RI "class \fBGF2NT233\fP"
+.br
+.RI "GF(2^n) for b233 and k233\&. "
+.ti -1c
+.RI "class \fBGF2NPP\fP"
+.br
+.RI "GF(2^n) with Pentanomial Basis\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator==\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "bool \fBoperator>\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.RI "compares degree "
+.ti -1c
+.RI "bool \fBoperator>=\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.RI "compares degree "
+.ti -1c
+.RI "bool \fBoperator<\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.RI "compares degree "
+.ti -1c
+.RI "bool \fBoperator<=\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.RI "compares degree "
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator&\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator^\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator+\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator\-\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator*\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator/\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CryptoPP::PolynomialMod2 \fBoperator%\fP (const CryptoPP::PolynomialMod2 &a, const CryptoPP::PolynomialMod2 &b)"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL \fBGF2NP\fP *CRYPTOPP_API \fBBERDecodeGF2NP\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.ti -1c
+.RI "template<> NAMESPACE_END void \fBswap\fP (CryptoPP::PolynomialMod2 &a, CryptoPP::PolynomialMod2 &b)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAbstractGroup< PolynomialMod2 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAbstractRing< PolynomialMod2 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAbstractEuclideanDomain< PolynomialMod2 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBEuclideanDomainOf< PolynomialMod2 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBQuotientRing< EuclideanDomainOf< PolynomialMod2 > >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for schemes over GF(2^n)
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

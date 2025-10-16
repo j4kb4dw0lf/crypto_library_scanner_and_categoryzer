@@ -1,0 +1,54 @@
+.TH "LazyPutter" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LazyPutter \- Helper class to finalize Puts on \fBByteQueue\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <queue\&.h>\fP
+.PP
+Inherited by \fBLazyPutterModifiable\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLazyPutter\fP (\fBByteQueue\fP &bq, const \fBbyte\fP *inString, size_t size)"
+.br
+.RI "Construct a \fBLazyPutter\fP\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLazyPutter\fP (\fBByteQueue\fP &bq)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Helper class to finalize Puts on \fBByteQueue\fP\&. 
+
+\fBLazyPutter\fP ensures LazyPut is committed to the \fBByteQueue\fP in event of exception\&. During destruction, the \fBLazyPutter\fP class calls FinalizeLazyPut\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LazyPutter::LazyPutter (\fBByteQueue\fP & bq, const \fBbyte\fP * inString, size_t size)\fR [inline]\fP"
+
+.PP
+Construct a \fBLazyPutter\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbq\fP the \fBByteQueue\fP 
+.br
+\fIinString\fP a byte array to insert 
+.br
+\fIsize\fP the length of the byte array
+.RE
+.PP
+\fBLazyPutter\fP ensures LazyPut is committed to the \fBByteQueue\fP in event of exception\&. During destruction, the \fBLazyPutter\fP class calls FinalizeLazyPut\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

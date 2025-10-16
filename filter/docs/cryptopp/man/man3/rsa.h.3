@@ -1,0 +1,196 @@
+.TH "/home/mock/cryptopp-master/rsa.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/rsa.h \- Classes for the \fBRSA\fP cryptosystem\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'pubkey\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'pkcspad\&.h'\fP
+.br
+\fR#include 'oaep\&.h'\fP
+.br
+\fR#include 'emsa2\&.h'\fP
+.br
+\fR#include 'asn\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBRSAFunction\fP"
+.br
+.RI "\fBRSA\fP trapdoor function using the public key\&. "
+.ti -1c
+.RI "class \fBInvertibleRSAFunction\fP"
+.br
+.RI "\fBRSA\fP trapdoor function using the private key\&. "
+.ti -1c
+.RI "class \fBRSAFunction_ISO\fP"
+.br
+.RI "\fBRSA\fP trapdoor function using the public key\&. "
+.ti -1c
+.RI "class \fBInvertibleRSAFunction_ISO\fP"
+.br
+.RI "\fBRSA\fP trapdoor function using the private key\&. "
+.ti -1c
+.RI "struct \fBRSA\fP"
+.br
+.RI "\fBRSA\fP algorithm\&. "
+.ti -1c
+.RI "struct \fBRSAES< STANDARD >\fP"
+.br
+.RI "\fBRSA\fP encryption algorithm\&. "
+.ti -1c
+.RI "struct \fBRSASS< STANDARD, H >\fP"
+.br
+.RI "\fBRSA\fP signature algorithm\&. "
+.ti -1c
+.RI "struct \fBRSA_ISO\fP"
+.br
+.RI "\fBRSA\fP algorithm\&. "
+.ti -1c
+.RI "struct \fBRSASS_ISO< H >\fP"
+.br
+.RI "\fBRSA\fP signature algorithm\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBSHA1\fP >\fB::Signer\fP \fBRSASSA_PKCS1v15_SHA_Signer\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBSHA1\fP >\fB::Verifier\fP \fBRSASSA_PKCS1v15_SHA_Verifier\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBSHA256\fP >\fB::Signer\fP \fBRSASSA_PKCS1v15_SHA256_Signer\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBSHA256\fP >\fB::Verifier\fP \fBRSASSA_PKCS1v15_SHA256_Verifier\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBWeak1::MD2\fP >\fB::Signer\fP \fBWeak::RSASSA_PKCS1v15_MD2_Signer\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBWeak1::MD2\fP >\fB::Verifier\fP \fBWeak::RSASSA_PKCS1v15_MD2_Verifier\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBWeak1::MD5\fP >\fB::Signer\fP \fBWeak::RSASSA_PKCS1v15_MD5_Signer\fP"
+.br
+.ti -1c
+.RI "typedef \fBRSASS\fP< \fBPKCS1v15\fP, \fBWeak1::MD5\fP >\fB::Verifier\fP \fBWeak::RSASSA_PKCS1v15_MD5_Verifier\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBRSAES\fP< \fBPKCS1v15\fP >\fB::Decryptor\fP, RSAES_PKCS1v15_Decryptor)"
+.br
+.RI "\fBRSAES<PKCS1v15>::Decryptor\fP typedef "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBRSAES\fP< \fBPKCS1v15\fP >\fB::Encryptor\fP, RSAES_PKCS1v15_Encryptor)"
+.br
+.RI "\fBRSAES<PKCS1v15>::Encryptor\fP typedef "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBRSAES\fP< \fBOAEP\fP< \fBSHA1\fP > >\fB::Decryptor\fP, RSAES_OAEP_SHA_Decryptor)"
+.br
+.RI "\fBRSAES<OAEP<SHA1>>::Decryptor\fP typedef "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBRSAES\fP< \fBOAEP\fP< \fBSHA1\fP > >\fB::Encryptor\fP, RSAES_OAEP_SHA_Encryptor)"
+.br
+.RI "\fBRSAES<OAEP<SHA1>>::Encryptor\fP typedef "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBRSAES\fP< \fBOAEP\fP< \fBSHA256\fP > >\fB::Decryptor\fP, RSAES_OAEP_SHA256_Decryptor)"
+.br
+.RI "\fBRSAES<OAEP<SHA256>>::Decryptor\fP typedef "
+.ti -1c
+.RI "\fBDOCUMENTED_TYPEDEF\fP (\fBRSAES\fP< \fBOAEP\fP< \fBSHA256\fP > >\fB::Encryptor\fP, RSAES_OAEP_SHA256_Encryptor)"
+.br
+.RI "\fBRSAES<OAEP<SHA256>>::Encryptor\fP typedef "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the \fBRSA\fP cryptosystem\&.
+
+This file contains classes that implement the \fBRSA\fP ciphers and signature schemes as defined in PKCS #1 v2\&.0\&.
+.SH "Function Documentation"
+.PP
+.SS "DOCUMENTED_TYPEDEF (\fBRSAES\fP< \fBOAEP\fP< \fBSHA1\fP > >\fB::Decryptor\fP , RSAES_OAEP_SHA_Decryptor )"
+
+.PP
+\fBRSAES<OAEP<SHA1>>::Decryptor\fP typedef \fBRSA\fP encryption scheme defined in PKCS #1 v2\&.0
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBRSAES\fP< \fBOAEP\fP< \fBSHA1\fP > >\fB::Encryptor\fP , RSAES_OAEP_SHA_Encryptor )"
+
+.PP
+\fBRSAES<OAEP<SHA1>>::Encryptor\fP typedef \fBRSA\fP encryption scheme defined in PKCS #1 v2\&.0
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBRSAES\fP< \fBOAEP\fP< \fBSHA256\fP > >\fB::Decryptor\fP , RSAES_OAEP_SHA256_Decryptor )"
+
+.PP
+\fBRSAES<OAEP<SHA256>>::Decryptor\fP typedef \fBRSA\fP encryption scheme defined in PKCS #1 v2\&.0
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBRSAES\fP< \fBOAEP\fP< \fBSHA256\fP > >\fB::Encryptor\fP , RSAES_OAEP_SHA256_Encryptor )"
+
+.PP
+\fBRSAES<OAEP<SHA256>>::Encryptor\fP typedef \fBRSA\fP encryption scheme defined in PKCS #1 v2\&.0
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.8
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBRSAES\fP< \fBPKCS1v15\fP >\fB::Decryptor\fP , RSAES_PKCS1v15_Decryptor )"
+
+.PP
+\fBRSAES<PKCS1v15>::Decryptor\fP typedef \fBRSA\fP encryption scheme defined in PKCS #1 v2\&.0
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SS "DOCUMENTED_TYPEDEF (\fBRSAES\fP< \fBPKCS1v15\fP >\fB::Encryptor\fP , RSAES_PKCS1v15_Encryptor )"
+
+.PP
+\fBRSAES<PKCS1v15>::Encryptor\fP typedef \fBRSA\fP encryption scheme defined in PKCS #1 v2\&.0
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

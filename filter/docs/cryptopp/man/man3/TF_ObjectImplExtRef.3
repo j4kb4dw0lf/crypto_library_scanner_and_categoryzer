@@ -1,0 +1,134 @@
+.TH "TF_ObjectImplExtRef< BASE, SCHEME_OPTIONS, KEY >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TF_ObjectImplExtRef< BASE, SCHEME_OPTIONS, KEY > \- Trapdoor Function (TF) signature with external reference\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTF_ObjectImplExtRef\fP (const KEY *pKey=NULLPTR)"
+.br
+.ti -1c
+.RI "void \fBSetKeyPtr\fP (const KEY *pKey)"
+.br
+.ti -1c
+.RI "const KEY & \fBGetKey\fP () const"
+.br
+.ti -1c
+.RI "KEY & \fBAccessKey\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP
+.in +1c
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessPublicKey\fP ()"
+.br
+.ti -1c
+.RI "const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.ti -1c
+.RI "\fBPrivateKey\fP & \fBAccessPrivateKey\fP ()"
+.br
+.ti -1c
+.RI "const \fBPrivateKey\fP & \fBGetPrivateKey\fP () const"
+.br
+.ti -1c
+.RI "const KeyClass & \fBGetTrapdoorFunction\fP () const"
+.br
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewSignatureAccumulator\fP (\fBRandomNumberGenerator\fP &rng) const"
+.br
+.ti -1c
+.RI "\fBPK_MessageAccumulator\fP * \fBNewVerificationAccumulator\fP () const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef KEY \fBKeyClass\fP"
+.br
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP
+.in +1c
+.ti -1c
+.RI "const BASE::MessageEncodingInterface & \fBGetMessageEncodingInterface\fP () const"
+.br
+.ti -1c
+.RI "const \fBTrapdoorFunctionBounds\fP & \fBGetTrapdoorFunctionBounds\fP () const"
+.br
+.ti -1c
+.RI "const BASE::TrapdoorFunctionInterface & \fBGetTrapdoorFunctionInterface\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBGetDigestSize\fP () const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class SCHEME_OPTIONS, class KEY>
+.br
+class TF_ObjectImplExtRef< BASE, SCHEME_OPTIONS, KEY >"Trapdoor Function (TF) signature with external reference\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP base class 
+.br
+\fISCHEME_OPTIONS\fP scheme options class 
+.br
+\fIKEY\fP key class
+.RE
+.PP
+TF_ObjectImplExtRef() holds a pointer to an external key structure 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE, class SCHEME_OPTIONS, class KEY> KEY & \fBTF_ObjectImplExtRef\fP< BASE, SCHEME_OPTIONS, KEY >::AccessKey ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP\&.
+.SS "template<class BASE, class SCHEME_OPTIONS, class KEY> const KEY & \fBTF_ObjectImplExtRef\fP< BASE, SCHEME_OPTIONS, KEY >::GetKey () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBTF_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

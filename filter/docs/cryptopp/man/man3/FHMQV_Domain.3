@@ -1,0 +1,580 @@
+.TH "FHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH > \- Fully Hashed Menezes-Qu-Vanstone in GF(p)  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <fhmqv\&.h>\fP
+.PP
+Inherits \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef GROUP_PARAMETERS \fBGroupParameters\fP"
+.br
+.ti -1c
+.RI "typedef GroupParameters::Element \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH > \fBDomain\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFHMQV_Domain\fP (bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "\fBFHMQV_Domain\fP (const GroupParameters &params, bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "\fBFHMQV_Domain\fP (\fBBufferedTransformation\fP &bt, bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "template<class T1> \fBFHMQV_Domain\fP (T1 v1, bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "template<class T1, class T2> \fBFHMQV_Domain\fP (T1 v1, T2 v2, bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "template<class T1, class T2, class T3> \fBFHMQV_Domain\fP (T1 v1, T2 v2, T3 v3, bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "template<class T1, class T2, class T3, class T4> \fBFHMQV_Domain\fP (T1 v1, T2 v2, T3 v3, T4 v4, bool clientRole=true)"
+.br
+.RI "Construct a \fBFHMQV\fP domain\&. "
+.ti -1c
+.RI "const GroupParameters & \fBGetGroupParameters\fP () const"
+.br
+.RI "Retrieves the group parameters for this domain\&. "
+.ti -1c
+.RI "GroupParameters & \fBAccessGroupParameters\fP ()"
+.br
+.RI "Retrieves the group parameters for this domain\&. "
+.ti -1c
+.RI "\fBCryptoParameters\fP & \fBAccessCryptoParameters\fP ()"
+.br
+.RI "Retrieves the crypto parameters for this domain\&. "
+.ti -1c
+.RI "unsigned int \fBAgreedValueLength\fP () const"
+.br
+.RI "Provides the size of the agreed value\&. "
+.ti -1c
+.RI "unsigned int \fBStaticPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the static private key\&. "
+.ti -1c
+.RI "unsigned int \fBStaticPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the static public key\&. "
+.ti -1c
+.RI "void \fBGenerateStaticPrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate static private key in this domain\&. "
+.ti -1c
+.RI "void \fBGenerateStaticPublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a static public key from a private key in this domain\&. "
+.ti -1c
+.RI "unsigned int \fBEphemeralPrivateKeyLength\fP () const"
+.br
+.RI "Provides the size of the ephemeral private key\&. "
+.ti -1c
+.RI "unsigned int \fBEphemeralPublicKeyLength\fP () const"
+.br
+.RI "Provides the size of the ephemeral public key\&. "
+.ti -1c
+.RI "void \fBGenerateEphemeralPrivateKey\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey) const"
+.br
+.RI "Generate ephemeral private key in this domain\&. "
+.ti -1c
+.RI "void \fBGenerateEphemeralPublicKey\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate ephemeral public key from a private key in this domain\&. "
+.ti -1c
+.RI "bool \fBAgree\fP (\fBbyte\fP *agreedValue, const \fBbyte\fP *staticPrivateKey, const \fBbyte\fP *ephemeralPrivateKey, const \fBbyte\fP *staticOtherPublicKey, const \fBbyte\fP *ephemeralOtherPublicKey, bool validateStaticOtherPublicKey=true) const"
+.br
+.RI "Derive agreed value or shared secret\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAuthenticatedKeyAgreementDomain\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateStaticKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate a static private/public key pair\&. "
+.ti -1c
+.RI "virtual void \fBGenerateEphemeralKeyPair\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *privateKey, \fBbyte\fP *publicKey) const"
+.br
+.RI "Generate private/public key pair\&. "
+.in -1c
+
+Public Member Functions inherited from \fBKeyAgreementAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.ti -1c
+.RI "virtual const \fBCryptoParameters\fP & \fBGetCryptoParameters\fP () const"
+.br
+.RI "Retrieves a reference to Crypto Parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBHash\fP (const Element *sigma, const \fBbyte\fP *e1, size_t e1len, const \fBbyte\fP *e2, size_t e2len, const \fBbyte\fP *s1, size_t s1len, const \fBbyte\fP *s2, size_t s2len, \fBbyte\fP *digest, size_t dlen) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512>
+.br
+class FHMQV_Domain< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >"Fully Hashed Menezes-Qu-Vanstone in GF(p) 
+
+This implementation follows Augustin P\&. Sarr and Philippe Elbaz–Vincent, and Jean–Claude Bajard's \fRA Secure and Efficient Authenticated Diffie-Hellman Protocol\fP\&. Note: this is \fBFHMQV\fP, Protocol 5, from page 11; and not FHMQV-C\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBMQV\fP, \fBHMQV\fP, \fBFHMQV\fP, and \fBAuthenticatedKeyAgreementDomain\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (const GroupParameters & params, bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP group parameters and options 
+.br
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (\fBBufferedTransformation\fP & bt, bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP with group parameters and options 
+.br
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> template<class T1> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (T1 v1, bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+v1 is passed directly to the GROUP_PARAMETERS object\&.
+
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> template<class T1, class T2> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (T1 v1, T2 v2, bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.br
+\fIT2\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIv2\fP second parameter 
+.br
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+v1 and v2 are passed directly to the GROUP_PARAMETERS object\&.
+
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> template<class T1, class T2, class T3> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (T1 v1, T2 v2, T3 v3, bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.br
+\fIT2\fP template parameter used as a constructor parameter 
+.br
+\fIT3\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIv2\fP second parameter 
+.br
+\fIv3\fP third parameter 
+.br
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+v1, v2 and v3 are passed directly to the GROUP_PARAMETERS object\&.
+
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> template<class T1, class T2, class T3, class T4> \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >\fB::FHMQV_Domain\fP (T1 v1, T2 v2, T3 v3, T4 v4, bool clientRole = \fRtrue\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBFHMQV\fP domain\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT1\fP template parameter used as a constructor parameter 
+.br
+\fIT2\fP template parameter used as a constructor parameter 
+.br
+\fIT3\fP template parameter used as a constructor parameter 
+.br
+\fIT4\fP template parameter used as a constructor parameter 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIv1\fP first parameter 
+.br
+\fIv2\fP second parameter 
+.br
+\fIv3\fP third parameter 
+.br
+\fIv4\fP third parameter 
+.br
+\fIclientRole\fP flag indicating initiator or recipient
+.RE
+.PP
+v1, v2, v3 and v4 are passed directly to the GROUP_PARAMETERS object\&.
+
+.PP
+\fRclientRole = true\fP indicates initiator, and \fRclientRole = false\fP indicates recipient or server\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> \fBCryptoParameters\fP & \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::AccessCryptoParameters ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the crypto parameters for this domain\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the crypto parameters for this domain as a non-const reference 
+.RE
+.PP
+
+.PP
+Implements \fBKeyAgreementAlgorithm\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> GroupParameters & \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::AccessGroupParameters ()\fR [inline]\fP"
+
+.PP
+Retrieves the group parameters for this domain\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the group parameters for this domain as a non-const reference 
+.RE
+.PP
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> bool \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::Agree (\fBbyte\fP * agreedValue, const \fBbyte\fP * staticPrivateKey, const \fBbyte\fP * ephemeralPrivateKey, const \fBbyte\fP * staticOtherPublicKey, const \fBbyte\fP * ephemeralOtherPublicKey, bool validateStaticOtherPublicKey = \fRtrue\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Derive agreed value or shared secret\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIagreedValue\fP the shared secret 
+.br
+\fIstaticPrivateKey\fP your long term private key 
+.br
+\fIephemeralPrivateKey\fP your ephemeral private key 
+.br
+\fIstaticOtherPublicKey\fP couterparty's long term public key 
+.br
+\fIephemeralOtherPublicKey\fP couterparty's ephemeral public key 
+.br
+\fIvalidateStaticOtherPublicKey\fP flag indicating validation 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true upon success, false in case of failure
+.RE
+.PP
+\fBAgree()\fP performs the authenticated key agreement\&. \fBAgree()\fP derives a shared secret from your private keys and couterparty's public keys\&. Each instance or run of the protocol should use a new ephemeral key pair\&.
+
+.PP
+The other's ephemeral public key will always be validated at Level 1 to ensure it is a point on the curve\&. \fRvalidateStaticOtherPublicKey\fP determines how thoroughly other's static public key is validated\&. If you have previously validated the couterparty's static public key, then use \fRvalidateStaticOtherPublicKey=false\fP to save time\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(agreedValue) == \fBAgreedValueLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(staticPrivateKey) == \fBStaticPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(ephemeralPrivateKey) == \fBEphemeralPrivateKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(staticOtherPublicKey) == \fBStaticPublicKeyLength()\fP\fP 
+
+.PP
+\fRCOUNTOF(ephemeralOtherPublicKey) == \fBEphemeralPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> unsigned int \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::AgreedValueLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the agreed value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of agreed value produced in this domain
+.RE
+.PP
+The length is calculated using \fRGetEncodedElementSize(false)\fP, which means the element is encoded in a non-reversible format\&. A non-reversible format means its a raw byte array, and it lacks presentation format like an ASN\&.1 BIT_STRING or OCTET_STRING\&. 
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> unsigned int \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::EphemeralPrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the ephemeral private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of ephemeral private keys in this domain
+.RE
+.PP
+An ephemeral private key is a private key and public key\&. The serialized size is different than a static private key\&. 
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> unsigned int \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::EphemeralPublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the ephemeral public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of ephemeral public keys in this domain
+.RE
+.PP
+An ephemeral public key is a public key\&. The serialized size is the same as a static public key\&. 
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> void \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::GenerateEphemeralPrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate ephemeral private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == \fBEphemeralPrivateKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> void \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::GenerateEphemeralPublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate ephemeral public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain 
+.RE
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == \fBEphemeralPublicKeyLength()\fP\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> void \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::GenerateStaticPrivateKey (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * privateKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate static private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer for the generated private key in this domain
+.RE
+.PP
+The private key is a random scalar used as an exponent in the range \fR[1,MaxExponent()]\fP\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(privateKey) == PrivateStaticKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> void \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::GenerateStaticPublicKey (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * privateKey, \fBbyte\fP * publicKey) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Generate a static public key from a private key in this domain\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP derived class 
+.br
+\fIprivateKey\fP a byte buffer with the previously generated private key 
+.br
+\fIpublicKey\fP a byte buffer for the generated public key in this domain
+.RE
+.PP
+The public key is an element or point on the curve, and its stored in a revrsible format\&. A reversible format means it has a presentation format, and its an ANS\&.1 encoded element or point\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(publicKey) == PublicStaticKeyLength()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> const GroupParameters & \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::GetGroupParameters () const\fR [inline]\fP"
+
+.PP
+Retrieves the group parameters for this domain\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the group parameters for this domain as a const reference 
+.RE
+.PP
+
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> unsigned int \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::StaticPrivateKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the static private key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of static private keys in this domain
+.RE
+.PP
+The length is calculated using the byte count of the subgroup order\&. 
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+.SS "template<class GROUP_PARAMETERS, class COFACTOR_OPTION = typename GROUP_PARAMETERS::DefaultCofactorOption, class HASH = SHA512> unsigned int \fBFHMQV_Domain\fP< GROUP_PARAMETERS, COFACTOR_OPTION, HASH >::StaticPublicKeyLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the size of the static public key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+size of static public keys in this domain
+.RE
+.PP
+The length is calculated using \fRGetEncodedElementSize(true)\fP, which means the element is encoded in a reversible format\&. A reversible format means it has a presentation format, and its an ANS\&.1 encoded element or point\&. 
+.PP
+Implements \fBAuthenticatedKeyAgreementDomain\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

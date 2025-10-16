@@ -1,0 +1,454 @@
+.TH "Poly1305< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Poly1305< T > \- \fBPoly1305\fP message authentication code\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <poly1305\&.h>\fP
+.PP
+Inherits \fBMessageAuthenticationCodeFinal< Poly1305_Base< T > >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=\fBPoly1305_Base\fP< T >::DEFAULT_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBPoly1305\fP ()"
+.br
+.RI "Construct a \fBPoly1305\fP\&. "
+.ti -1c
+.RI "\fBPoly1305\fP (const \fBbyte\fP *key, size_t keyLength=DEFAULT_KEYLENGTH, const \fBbyte\fP *nonce=NULLPTR, size_t nonceLength=0)"
+.br
+.RI "Construct a \fBPoly1305\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBMessageAuthenticationCodeFinal< Poly1305_Base< T > >\fP
+.in +1c
+.ti -1c
+.RI "\fBMessageAuthenticationCodeFinal\fP ()"
+.br
+.RI "Construct a default \fBMessageAuthenticationCodeFinal\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonableImpl< MessageAuthenticationCodeFinal< Poly1305_Base< T > >, MessageAuthenticationCodeImpl< Poly1305_Base< T > > >\fP
+.in +1c
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Create a copy of this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >, Poly1305_Base< T > >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "The minimum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "The maximum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "The default key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Provides a valid key length for the algorithm\&. "
+.ti -1c
+.RI "\fBSimpleKeyingInterface::IV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "The default IV requirements for the algorithm\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "The initialization vector length for the algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPoly1305_Base< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=T::BLOCKSIZE)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=T::BLOCKSIZE)"
+.br
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *mac, size_t size)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 16 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >, Poly1305_Base< T > >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBPoly1305_Base< T >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBPoly1305_Base< T >\fP
+.in +1c
+.ti -1c
+.RI "void \fBHashBlocks\fP (const \fBbyte\fP *input, size_t length, \fBword32\fP padbit)"
+.br
+.ti -1c
+.RI "void \fBHashFinal\fP (\fBbyte\fP *mac, size_t length)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBMessageAuthenticationCode\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+
+Protected Attributes inherited from \fBPoly1305_Base< T >\fP
+.in +1c
+.ti -1c
+.RI "T::Encryption \fBm_cipher\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 5 > \fBm_h\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 4 > \fBm_r\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 4 > \fBm_n\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBbyte\fP, BLOCKSIZE > \fBm_acc\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBbyte\fP, BLOCKSIZE > \fBm_nk\fP"
+.br
+.ti -1c
+.RI "size_t \fBm_idx\fP"
+.br
+.ti -1c
+.RI "bool \fBm_used\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class Poly1305< T >"\fBPoly1305\fP message authentication code\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class derived from \fBBlockCipherDocumentation\fP with 16-byte key and 16-byte blocksize
+.RE
+.PP
+Poly1305-AES is a state-of-the-art message-authentication code suitable for a wide variety of applications\&. Poly1305-AES computes a 16-byte authenticator of a variable-length message, using a 16-byte AES key, a 16-byte additional key, and a 16-byte nonce\&.
+
+.PP
+The key is 32 bytes and a concatenation \fRkey = {k,s}\fP, where \fRk\fP is the AES key and \fRr\fP is additional key that gets clamped\&. The key is clamped internally so there is no need to perform the operation before setting the key\&.
+
+.PP
+Each message must have a unique security context, which means either the key or nonce must be changed after each message\&. It can be accomplished in one of two ways\&. First, you can create a new \fBPoly1305\fP object each time its needed\&. 
+.PP
+.nf
+  SecByteBlock key(32), nonce(16);
+  prng\&.GenerateBlock(key, key\&.size());
+  prng\&.GenerateBlock(nonce, nonce\&.size());
+
+  \fBPoly1305<AES>\fP poly1305(key, key\&.size(), nonce, nonce\&.size());
+  poly1305\&.Update(\&.\&.\&.);
+  poly1305\&.Final(\&.\&.\&.);
+.fi
+.PP
+
+.PP
+Second, you can create a \fBPoly1305\fP object, reuse the key, and set a fresh nonce for each message\&. The second and subsequent nonces can be generated using \fBGetNextIV()\fP\&. 
+.PP
+.nf
+  SecByteBlock key(32), nonce(16);
+  prng\&.GenerateBlock(key, key\&.size());
+  prng\&.GenerateBlock(nonce, nonce\&.size());
+
+  // First message
+  \fBPoly1305<AES>\fP poly1305(key, key\&.size());
+  poly1305\&.Resynchronize(nonce);
+  poly1305\&.Update(\&.\&.\&.);
+  poly1305\&.Final(\&.\&.\&.);
+
+  // Second message
+  poly1305\&.GetNextIV(prng, nonce);
+  poly1305\&.Resynchronize(nonce);
+  poly1305\&.Update(\&.\&.\&.);
+  poly1305\&.Final(\&.\&.\&.);
+  \&.\&.\&.
+.fi
+.PP
+ 
+.PP
+\fBWarning\fP
+.RS 4
+Each message must have a unique security context\&. The \fBPoly1305\fP class does not enforce a fresh key or nonce for each message\&. The source code will assert in debug builds to alert of nonce reuse\&. No action is taken in release builds\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+Daniel J\&. Bernstein \fRThe Poly1305-AES Message-Authentication Code (20050329)\fP and Andy Polyakov \fRPoly1305 Revised\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T> \fBPoly1305\fP< T >\fB::Poly1305\fP (const \fBbyte\fP * key, size_t keyLength = \fRDEFAULT_KEYLENGTH\fP, const \fBbyte\fP * nonce = \fRNULLPTR\fP, size_t nonceLength = \fR0\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBPoly1305\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIkeyLength\fP the size of the byte array, in bytes 
+.br
+\fInonce\fP a byte array used to key the cipher 
+.br
+\fInonceLength\fP the size of the byte array, in bytes
+.RE
+.PP
+The key is 32 bytes and a concatenation \fRkey = {k,s}\fP, where \fRk\fP is the AES key and \fRr\fP is additional key that gets clamped\&. The key is clamped internally so there is no need to perform the operation before setting the key\&.
+
+.PP
+Each message requires a unique security context\&. You can use \fBGetNextIV()\fP and \fBResynchronize()\fP to set a new nonce under a key for a message\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

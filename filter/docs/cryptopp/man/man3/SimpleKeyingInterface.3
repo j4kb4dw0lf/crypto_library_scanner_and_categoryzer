@@ -1,0 +1,639 @@
+.TH "SimpleKeyingInterface" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SimpleKeyingInterface \- Interface for algorithms that take byte strings as keys\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBBlockCipher\fP, \fBMessageAuthenticationCode\fP, and \fBSymmetricCipher\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMinKeyLength\fP () const =0"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxKeyLength\fP () const =0"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBDefaultKeyLength\fP () const =0"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "virtual size_t \fBGetValidKeyLength\fP (size_t keylength) const =0"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "virtual \fBIV_Requirement\fP \fBIVRequirement\fP () const =0"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "virtual unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const =0"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.ti -1c
+.RI "virtual void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)=0"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for algorithms that take byte strings as keys\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBFixedKeyLength()\fP, \fBVariableKeyLength()\fP, \fBSameKeyLengthAs()\fP, \fBSimpleKeyingInterfaceImpl()\fP 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBSimpleKeyingInterface::IV_Requirement\fP"
+
+.PP
+Secure IVs requirements as enumerated values\&. Provides secure IV requirements as a monotonically increasing enumerated values\&. Requirements can be compared using less than (<) and greater than (>)\&. For example, \fRUNIQUE_IV < RANDOM_IV\fP and \fRUNPREDICTABLE_RANDOM_IV > RANDOM_IV\fP\&.
+
+.PP
+Objects that use \fBSimpleKeyingInterface\fP do not support an optional IV\&. That is, an IV must be present or it must be absent\&. If you wish to support an optional IV then provide two classes - one with an IV and one without an IV\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBIsResynchronizable()\fP, \fBCanUseRandomIVs()\fP, \fBCanUsePredictableIVs()\fP, \fBCanUseStructuredIVs()\fP 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIUNIQUE_IV \fP
+The IV must be unique\&. 
+.TP
+\f(BIRANDOM_IV \fP
+The IV must be random and possibly predictable\&. 
+.TP
+\f(BIUNPREDICTABLE_RANDOM_IV \fP
+The IV must be random and unpredictable\&. 
+.TP
+\f(BIINTERNALLY_GENERATED_IV \fP
+The IV is set by the object\&. 
+.TP
+\f(BINOT_RESYNCHRONIZABLE \fP
+The object does not use an IV\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void SimpleKeyingInterface::AssertValidKeyLength (size_t length) const\fR [inline]\fP, \fR [protected]\fP"
+
+.PP
+Validates the key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP the size of the keying material, in bytes 
+.RE
+.PP
+
+.SS "bool SimpleKeyingInterface::CanUsePredictableIVs () const\fR [inline]\fP"
+
+.PP
+Determines if the object can use random but possibly predictable IVs\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the object can use random but possibly predictable IVs (in addition to ones returned by GetNextIV), false otherwise 
+.RE
+.PP
+
+.SS "bool SimpleKeyingInterface::CanUseRandomIVs () const\fR [inline]\fP"
+
+.PP
+Determines if the object can use random IVs\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the object can use random IVs (in addition to ones returned by GetNextIV), false otherwise 
+.RE
+.PP
+
+.SS "bool SimpleKeyingInterface::CanUseStructuredIVs () const\fR [inline]\fP"
+
+.PP
+Determines if the object can use structured IVs\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the object can use structured IVs, false otherwise
+.RE
+.PP
+\fBCanUseStructuredIVs()\fP indicates whether the object can use structured IVs; for example a counter (in addition to ones returned by GetNextIV)\&. 
+.SS "unsigned int SimpleKeyingInterface::DefaultIVLength () const\fR [inline]\fP"
+
+.PP
+Provides the default size of an IV\&. 
+.PP
+\fBReturns\fP
+.RS 4
+default length of IVs accepted by this object, in bytes 
+.RE
+.PP
+
+.SS "virtual size_t SimpleKeyingInterface::DefaultKeyLength () const\fR [pure virtual]\fP"
+
+.PP
+Returns default key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the default key length, in bytes 
+.RE
+.PP
+
+.PP
+Implemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBSimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >\fP, \fBSimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >\fP, \fBSimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2b_Info >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP, \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >\fP, \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "virtual const \fBAlgorithm\fP & SimpleKeyingInterface::GetAlgorithm () const\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Returns the base class \fBAlgorithm\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the base class \fBAlgorithm\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBAuthenticatedSymmetricCipher\fP, \fBBlockCipher\fP, \fBMessageAuthenticationCode\fP, and \fBSymmetricCipher\fP\&.
+.SS "const \fBbyte\fP * SimpleKeyingInterface::GetIVAndThrowIfInvalid (const \fBNameValuePairs\fP & params, size_t & size)\fR [protected]\fP"
+
+.PP
+Retrieves and validates the IV\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP \fBNameValuePairs\fP with the IV supplied as a \fBConstByteArrayParameter\fP 
+.br
+\fIsize\fP the length of the IV, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a pointer to the first byte of the IV 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if the number of rounds are invalid 
+.RE
+.PP
+
+.SS "void SimpleKeyingInterface::GetNextIV (\fBRandomNumberGenerator\fP & rng, \fBbyte\fP * iv)\fR [virtual]\fP"
+
+.PP
+Retrieves a secure IV for the next message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP to produce keying material 
+.br
+\fIiv\fP a block of bytes to receive the IV
+.RE
+.PP
+The IV must be at least \fBIVSize()\fP in length\&.
+
+.PP
+This method should be called after you finish encrypting one message and are ready to start the next one\&. After calling it, you must call \fBSetKey()\fP or \fBResynchronize()\fP\&. before using this object again\&.
+
+.PP
+Internally, the base class implementation calls \fBRandomNumberGenerator\fP's GenerateBlock() 
+.PP
+\fBNote\fP
+.RS 4
+This method is not implemented on decryption objects\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBPoly1305_Base< T >\fP, and \fBVMAC_Base\fP\&.
+.SS "virtual size_t SimpleKeyingInterface::GetValidKeyLength (size_t keylength) const\fR [pure virtual]\fP"
+
+.PP
+Returns a valid key length for the algorithm\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes
+.RE
+.PP
+keylength is provided in bytes, not bits\&. If keylength is less than MIN_KEYLENGTH, then the function returns MIN_KEYLENGTH\&. If keylength is greater than MAX_KEYLENGTH, then the function returns MAX_KEYLENGTH\&. if If keylength is a multiple of KEYLENGTH_MULTIPLE, then keylength is returned\&. Otherwise, the function returns a \fIlower\fP multiple of KEYLENGTH_MULTIPLE\&. 
+.PP
+Implemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBSimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >\fP, \fBSimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >\fP, \fBSimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2b_Info >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP, \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >\fP, \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "bool SimpleKeyingInterface::IsResynchronizable () const\fR [inline]\fP"
+
+.PP
+Determines if the object can be resynchronized\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the object can be resynchronized (i\&.e\&. supports initialization vectors), false otherwise 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+If this function returns true, and no IV is passed to \fBSetKey()\fP and \fR\fBCanUseStructuredIVs()\fP==true\fP, an IV of all 0's will be assumed\&. 
+.RE
+.PP
+
+.SS "virtual bool SimpleKeyingInterface::IsValidKeyLength (size_t keylength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns whether keylength is a valid key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the requested keylength 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if keylength is valid, false otherwise
+.RE
+.PP
+Internally the function calls \fBGetValidKeyLength()\fP 
+.PP
+Reimplemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "virtual \fBIV_Requirement\fP SimpleKeyingInterface::IVRequirement () const\fR [pure virtual]\fP"
+
+.PP
+Minimal requirement for secure IVs\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the secure IV requirement of the algorithm 
+.RE
+.PP
+
+.PP
+Implemented in \fBCBC_ModeBase\fP, \fBCCM_Base\fP, \fBCFB_ModePolicy\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBCTR_ModePolicy\fP, \fBEAX_Base\fP, \fBECB_OneWay\fP, \fBGCM_Base\fP, \fBOFB_ModePolicy\fP, \fBSimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >\fP, \fBSimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >\fP, \fBSimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2b_Info >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP, \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >\fP, \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "virtual unsigned int SimpleKeyingInterface::IVSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns length of the IV accepted by this object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the size of an IV, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented()\fP\fP if the object does not support resynchronization
+.RE
+.PP
+The default implementation throws \fBNotImplemented\fP 
+.PP
+Reimplemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBSimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >\fP, \fBSimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >\fP, \fBSimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2b_Info >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP, \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >\fP, \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBVMAC_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual unsigned int SimpleKeyingInterface::MaxIVLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum size of an IV\&. 
+.PP
+\fBReturns\fP
+.RS 4
+maximal length of IVs accepted by this object, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented()\fP\fP if the object does not support resynchronization 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual size_t SimpleKeyingInterface::MaxKeyLength () const\fR [pure virtual]\fP"
+
+.PP
+Returns largest valid key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum key length, in bytes 
+.RE
+.PP
+
+.PP
+Implemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBSimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >\fP, \fBSimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >\fP, \fBSimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2b_Info >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP, \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >\fP, \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "virtual unsigned int SimpleKeyingInterface::MinIVLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the minimum size of an IV\&. 
+.PP
+\fBReturns\fP
+.RS 4
+minimal length of IVs accepted by this object, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented()\fP\fP if the object does not support resynchronization 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBVMAC_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual size_t SimpleKeyingInterface::MinKeyLength () const\fR [pure virtual]\fP"
+
+.PP
+Returns smallest valid key length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the minimum key length, in bytes 
+.RE
+.PP
+
+.PP
+Implemented in \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCipherModeBase\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBSimpleKeyingInterfaceImpl< BlockCipher, BTEA_Info >\fP, \fBSimpleKeyingInterfaceImpl< CBC_MAC_Base, CBC_MAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< CMAC_Base, CMAC< T_BlockCipher > >\fP, \fBSimpleKeyingInterfaceImpl< DMAC_Base< T >, DMAC_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< H > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< SHA256 > >\fP, \fBSimpleKeyingInterfaceImpl< HMAC_Base, HMAC< T > >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2b_Info >\fP, \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP, \fBSimpleKeyingInterfaceImpl< Poly1305_Base< T >, Poly1305_Base< T > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ARIA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Blowfish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Camellia_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CAST256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, CHAM64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_EDE3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, DES_XEX3_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, GOST_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, HIGHT_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, IDEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, INFO > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna128_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna256_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Kalyna512_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, LR_Info< T > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MARS_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, MDC_Info< H > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC5_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, RC6_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Rijndael_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SEED_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Serpent_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHACAL2_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SHARK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK32_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMECK64_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SIMON_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SKIPJACK_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SM4_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 16, 16, 16, 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, SPECK_Info< 8, 12, 12, 16 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Square_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, TEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 128 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 32 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Threefish_Info< 64 > > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, ThreeWay_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, Twofish_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< BlockCipher, XTEA_Info > >\fP, \fBSimpleKeyingInterfaceImpl< TwoBases< MessageAuthenticationCode, VariableKeyLength< 32, 0, INT_MAX > > >\fP, \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBXChaCha20Poly1305_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "virtual void SimpleKeyingInterface::Resynchronize (const \fBbyte\fP * iv, int ivLength = \fR\-1\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Resynchronize with an IV\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIiv\fP the initialization vector 
+.br
+\fIivLength\fP the size of the initialization vector, in bytes
+.RE
+.PP
+\fBResynchronize()\fP resynchronizes with an IV provided by the caller\&. \fRivLength=-1\fP means use \fBIVSize()\fP\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented()\fP\fP if the object does not support resynchronization 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAuthenticatedSymmetricCipherBase\fP, \fBBlockOrientedCipherModeBase\fP, \fBCFB_CipherTemplate< AbstractPolicyHolder< CFB_CipherAbstractPolicy, SymmetricCipher > >\fP, \fBPoly1305_Base< T >\fP, \fBVMAC_Base\fP, and \fBXTS_ModeBase\fP\&.
+.SS "void SimpleKeyingInterface::SetKey (const \fBbyte\fP * key, size_t length, const \fBNameValuePairs\fP & params = \fRg_nullNameValuePairs\fP)\fR [virtual]\fP"
+
+.PP
+Sets or reset the key of this object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the key to use when keying the object 
+.br
+\fIlength\fP the size of the key, in bytes 
+.br
+\fIparams\fP additional initialization parameters to configure this object 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBAuthenticatedSymmetricCipherBase\fP, \fBECB_OneWay\fP, and \fBXTS_ModeBase\fP\&.
+.SS "void SimpleKeyingInterface::SetKeyWithIV (const \fBbyte\fP * key, size_t length, const \fBbyte\fP * iv)\fR [inline]\fP"
+
+.PP
+Sets or reset the key of this object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the key to use when keying the object 
+.br
+\fIlength\fP the size of the key, in bytes 
+.br
+\fIiv\fP the initialization vector to use when keying the object
+.RE
+.PP
+\fBSetKeyWithIV()\fP calls \fBSetKey()\fP with a \fBNameValuePairs()\fP object that only specifies iv\&. iv is a byte buffer, and it must have a size \fBIVSize()\fP\&. 
+.SS "void SimpleKeyingInterface::SetKeyWithIV (const \fBbyte\fP * key, size_t length, const \fBbyte\fP * iv, size_t ivLength)"
+
+.PP
+Sets or reset the key of this object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the key to use when keying the object 
+.br
+\fIlength\fP the size of the key, in bytes 
+.br
+\fIiv\fP the initialization vector to use when keying the object 
+.br
+\fIivLength\fP the size of the iv, in bytes
+.RE
+.PP
+\fBSetKeyWithIV()\fP calls \fBSetKey()\fP with a \fBNameValuePairs\fP that only specifies IV\&. The IV is a byte buffer with size ivLength\&. ivLength is an integer parameter, and \fR-1\fP means use \fBIVSize()\fP\&. 
+.SS "void SimpleKeyingInterface::SetKeyWithRounds (const \fBbyte\fP * key, size_t length, int rounds)"
+
+.PP
+Sets or reset the key of this object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the key to use when keying the object 
+.br
+\fIlength\fP the size of the key, in bytes 
+.br
+\fIrounds\fP the number of rounds to apply the transformation function, if applicable
+.RE
+.PP
+\fBSetKeyWithRounds()\fP calls \fBSetKey()\fP with a \fBNameValuePairs\fP object that only specifies rounds\&. rounds is an integer parameter, and \fR-1\fP means use the default number of rounds\&. 
+.SS "void SimpleKeyingInterface::ThrowIfInvalidIV (const \fBbyte\fP * iv)\fR [protected]\fP"
+
+.PP
+Validates the IV\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIiv\fP the IV with a length of IVSize, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP on failure
+.RE
+.PP
+Internally, the default implementation checks the iv\&. If iv is not NULL or nullptr, then the function succeeds\&. If iv is NULL, then IVRequirement is checked against UNPREDICTABLE_RANDOM_IV\&. If IVRequirement is UNPREDICTABLE_RANDOM_IV, then then the function succeeds\&. Otherwise, an exception is thrown\&. 
+.SS "size_t SimpleKeyingInterface::ThrowIfInvalidIVLength (int length)\fR [protected]\fP"
+
+.PP
+Validates the IV length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP the size of an IV, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if the IV length is invalid 
+.RE
+.PP
+
+.SS "void SimpleKeyingInterface::ThrowIfInvalidKeyLength (size_t length)\fR [protected]\fP"
+
+.PP
+Validates the key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP the size of the keying material, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidKeyLength\fP\fP if the key length is invalid 
+.RE
+.PP
+
+.SS "void SimpleKeyingInterface::ThrowIfResynchronizable ()\fR [protected]\fP"
+
+.PP
+Validates the object\&. 
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if the IV is present
+.RE
+.PP
+Internally, the default implementation calls \fBIsResynchronizable()\fP and throws \fBInvalidArgument\fP if the function returns true\&. 
+.PP
+\fBNote\fP
+.RS 4
+called when no IV is passed 
+.RE
+.PP
+
+.SS "virtual void SimpleKeyingInterface::UncheckedSetKey (const \fBbyte\fP * key, unsigned int length, const \fBNameValuePairs\fP & params)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Sets the key for this object without performing parameter validation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte buffer used to key the cipher 
+.br
+\fIlength\fP the length of the byte buffer 
+.br
+\fIparams\fP additional parameters passed as \fBNameValuePairs\fP
+.RE
+.PP
+key must be at least DEFAULT_KEYLENGTH in length\&. 
+.PP
+Implemented in \fBARIA::Base\fP, \fBBlockOrientedCipherModeBase\fP, \fBCBC_CTS_Encryption\fP, \fBCBC_MAC_Base\fP, \fBCHAM128::Base\fP, \fBCHAM64::Base\fP, \fBCMAC_Base\fP, \fBDMAC_Base< T >\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBHIGHT::Base\fP, \fBHMAC_Base\fP, \fBKalyna128::Base\fP, \fBKalyna256::Base\fP, \fBKalyna512::Base\fP, \fBLEA::Base\fP, \fBPoly1305_Base< T >\fP, \fBPoly1305TLS_Base\fP, \fBSAFER::Base\fP, \fBSIMECK32::Base\fP, \fBSIMECK64::Base\fP, \fBSIMON128::Base\fP, \fBSIMON64::Base\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBSM4::Base\fP, \fBSPECK128::Base\fP, \fBSPECK64::Base\fP, \fBThreefish1024::Base\fP, \fBThreefish256::Base\fP, \fBThreefish512::Base\fP, \fBTTMAC_Base\fP, \fBVMAC_Base\fP, and \fBWeak1::ARC4_Base\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

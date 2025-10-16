@@ -1,0 +1,108 @@
+.TH "FixedKeyLength< N, IV_REQ, IV_L >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FixedKeyLength< N, IV_REQ, IV_L > \- Inherited by keyed algorithms with fixed key length\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=N)"
+.br
+.RI "The maximum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_REQUIREMENT=IV_REQ)"
+.br
+.RI "The default IV requirements for the algorithm provided as a constant\&. "
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (IV_LENGTH=IV_L)"
+.br
+.RI "The default IV length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0>
+.br
+class FixedKeyLength< N, IV_REQ, IV_L >"Inherited by keyed algorithms with fixed key length\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIN\fP Default key length, in bytes 
+.br
+\fIIV_REQ\fP the \fBIV requirements\fP 
+.br
+\fIIV_L\fP default IV length, in bytes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSimpleKeyingInterface\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (DEFAULT_KEYLENGTH  = \fRN\fP)"
+
+.PP
+The default key length used by the algorithm provided as a constant\&. DEFAULT_KEYLENGTH is provided in bytes, not bits 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (IV_LENGTH  = \fRIV_L\fP)"
+
+.PP
+The default IV length used by the algorithm provided as a constant\&. IV_LENGTH is provided in bytes, not bits\&. The default implementation uses 0\&. 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (IV_REQUIREMENT  = \fRIV_REQ\fP)"
+
+.PP
+The default IV requirements for the algorithm provided as a constant\&. The default value is NOT_RESYNCHRONIZABLE\&. See IV_Requirement in \fBcryptlib\&.h\fP for allowed values\&. 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (KEYLENGTH  = \fRN\fP)"
+
+.PP
+The default key length used by the algorithm provided as a constant\&. KEYLENGTH is provided in bytes, not bits 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (MAX_KEYLENGTH  = \fRN\fP)"
+
+.PP
+The maximum key length used by the algorithm provided as a constant\&. MAX_KEYLENGTH is provided in bytes, not bits 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::CRYPTOPP_CONSTANT (MIN_KEYLENGTH  = \fRN\fP)"
+
+.PP
+The minimum key length used by the algorithm provided as a constant\&. MIN_KEYLENGTH is provided in bytes, not bits 
+.SS "template<unsigned int N, unsigned int IV_REQ = SimpleKeyingInterface::NOT_RESYNCHRONIZABLE, unsigned int IV_L = 0> CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBFixedKeyLength\fP< N, IV_REQ, IV_L >::StaticGetValidKeyLength (size_t keylength)\fR [inline]\fP"
+
+.PP
+The default key length for the algorithm provided by a static function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the key, in bytes
+.RE
+.PP
+The default implementation returns KEYLENGTH\&. keylength is unused in the default implementation\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,515 @@
+.TH "HashTransformation" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+HashTransformation \- Interface for hash functions and data processing part of MACs\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBAlgorithm\fP\&.
+.PP
+Inherited by \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBTruncatedHashTemplate< HashTransformation & >\fP, \fBAdler32\fP, \fBCRC32\fP, \fBCRC32C\fP, \fBKeccak\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBMessageAuthenticationCode\fP, \fBNullHash\fP, \fBPK_MessageAccumulator\fP, \fBSHA3\fP, \fBSHAKE\fP, \fBTruncatedHashTemplate< T >\fP, and \fBWeak1::MD2\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)=0"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "virtual unsigned int \fBDigestSize\fP () const =0"
+.br
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBTruncatedFinal\fP (\fBbyte\fP *digest, size_t digestSize)=0"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for hash functions and data processing part of MACs\&. 
+
+\fBHashTransformation\fP objects are stateful\&. They are created in an initial state, change state as \fBUpdate()\fP is called, and return to the initial state when \fBFinal()\fP is called\&. This interface allows a large message to be hashed in pieces by calling \fBUpdate()\fP on each piece followed by calling \fBFinal()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBHashFilter()\fP, \fBHashVerificationFilter()\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual unsigned int HashTransformation::BlockSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the block size of the compression function\&. 
+.PP
+\fBReturns\fP
+.RS 4
+block size of the compression function, in bytes
+.RE
+.PP
+\fBBlockSize()\fP will return 0 if the hash is not block based or does not have an equivalent block size\&. For example, \fBKeccak\fP and SHA-3 do not have a block size, but they do have an equivalent block size called rate expressed as \fRr\fP\&. 
+.PP
+Reimplemented in \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBIteratedHash< T_HashWordType, T_Endianness, T_BlockSize, T_Base >\fP, \fBIteratedHash< word32, BigEndian, T_BlockSize >\fP, \fBIteratedHash< word32, LittleEndian, 64, MessageAuthenticationCode >\fP, \fBIteratedHash< word32, LittleEndian, T_BlockSize >\fP, \fBIteratedHash< word32, NativeByteOrder, 32 >\fP, \fBIteratedHash< word64, BigEndian, T_BlockSize >\fP, \fBIteratedHash< word64, LittleEndian, T_BlockSize >\fP, \fBKeccak_Final< T_DigestSize >\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBPoly1305_Base< T >\fP, \fBPoly1305TLS_Base\fP, \fBSHA3_Final< T_DigestSize >\fP, \fBSHA3_Final< 28 >\fP, \fBSHA3_Final< 32 >\fP, \fBSHA3_Final< 48 >\fP, \fBSHA3_Final< 64 >\fP, \fBSHAKE_Final< T_Strength >\fP, \fBSHAKE_Final< 128 >\fP, \fBSHAKE_Final< 256 >\fP, \fBVMAC_Base\fP, and \fBWeak1::MD2\fP\&.
+.SS "virtual void HashTransformation::CalculateDigest (\fBbyte\fP * digest, const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Updates the hash with additional input and computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes
+.RE
+.PP
+Use this if your input is in one piece and you don't want to call \fBUpdate()\fP and \fBFinal()\fP separately
+
+.PP
+\fBCalculateDigest()\fP restarts the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) == \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) == HASH::DIGESTSIZE\fP ensures the output byte buffer is a valid size\&. 
+.RE
+.PP
+
+.SS "virtual void HashTransformation::CalculateTruncatedDigest (\fBbyte\fP * digest, size_t digestSize, const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Updates the hash with additional input and computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the length of the truncated hash, in bytes 
+.br
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes
+.RE
+.PP
+Use this if your input is in one piece and you don't want to call \fBUpdate()\fP and \fBCalculateDigest()\fP separately\&.
+
+.PP
+\fBCalculateTruncatedDigest()\fP restarts the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRdigestSize <= \fBDigestSize()\fP\fP or \fRdigestSize <= HASH::DIGESTSIZE\fP ensures the output byte buffer is a valid size\&. 
+.RE
+.PP
+
+.SS "virtual \fBbyte\fP * HashTransformation::CreateUpdateSpace (size_t & size)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Request space which can be written into by the caller\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the requested size of the buffer
+.RE
+.PP
+The purpose of this method is to help avoid extra memory allocations\&.
+
+.PP
+size is an \fIIN\fP and \fIOUT\fP parameter and used as a hint\&. When the call is made, size is the requested size of the buffer\&. When the call returns, size is the size of the array returned to the caller\&.
+
+.PP
+The base class implementation sets size to 0 and returns NULL or nullptr\&. 
+.PP
+\fBNote\fP
+.RS 4
+Some objects, like \fBArraySink\fP, cannot create a space because its fixed\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, and \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP\&.
+.SS "virtual unsigned int HashTransformation::DigestSize () const\fR [pure virtual]\fP"
+Provides the digest size of the hash 
+.PP
+\fBReturns\fP
+.RS 4
+the digest size of the hash\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBAdler32\fP, \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBCBC_MAC_Base\fP, \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCMAC_Base\fP, \fBCRC32\fP, \fBCRC32C\fP, \fBDMAC_Base< T >\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBHMAC_Base\fP, \fBIteratedHashWithStaticTransform< T_HashWordType, T_Endianness, T_BlockSize, T_StateSize, T_Transform, T_DigestSize, T_StateAligned >\fP, \fBIteratedHashWithStaticTransform< word32, BigEndian, 64, 20, SHA1 >\fP, \fBIteratedHashWithStaticTransform< word32, BigEndian, 64, 32, SHA224, 28, true >\fP, \fBIteratedHashWithStaticTransform< word32, BigEndian, 64, 32, SHA256, 32, true >\fP, \fBIteratedHashWithStaticTransform< word32, BigEndian, 64, 32, SM3, 32, true >\fP, \fBIteratedHashWithStaticTransform< word32, LittleEndian, 64, 16, MD4 >\fP, \fBIteratedHashWithStaticTransform< word32, LittleEndian, 64, 16, MD5 >\fP, \fBIteratedHashWithStaticTransform< word32, LittleEndian, 64, 16, RIPEMD128 >\fP, \fBIteratedHashWithStaticTransform< word32, LittleEndian, 64, 20, RIPEMD160 >\fP, \fBIteratedHashWithStaticTransform< word32, LittleEndian, 64, 32, RIPEMD256 >\fP, \fBIteratedHashWithStaticTransform< word32, LittleEndian, 64, 40, RIPEMD320 >\fP, \fBIteratedHashWithStaticTransform< word64, BigEndian, 128, 64, SHA384, 48, true >\fP, \fBIteratedHashWithStaticTransform< word64, BigEndian, 128, 64, SHA512, 64, true >\fP, \fBIteratedHashWithStaticTransform< word64, BigEndian, 64, 64, Whirlpool >\fP, \fBIteratedHashWithStaticTransform< word64, LittleEndian, 64, 24, Tiger >\fP, \fBKeccak\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBNullHash\fP, \fBPK_MessageAccumulator\fP, \fBPoly1305_Base< T >\fP, \fBPoly1305TLS_Base\fP, \fBSHA3\fP, \fBSHAKE\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBTruncatedHashTemplate< T >\fP, \fBTruncatedHashTemplate< HashTransformation & >\fP, \fBTTMAC_Base\fP, \fBVMAC_Base\fP, \fBWeak1::MD2\fP, \fBWeak::PanamaHash< B >\fP, \fBWeak::PanamaHash< LittleEndian >\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "virtual void HashTransformation::Final (\fBbyte\fP * digest)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash
+.RE
+.PP
+\fBFinal()\fP restarts the hash for a new message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) <= \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) <= HASH::DIGESTSIZE\fP ensures the output byte buffer is large enough for the digest\&. 
+.RE
+.PP
+
+.SS "virtual unsigned int HashTransformation::OptimalBlockSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the input block size most efficient for this hash\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The input block size that is most efficient for the cipher
+.RE
+.PP
+The base class implementation returns MandatoryBlockSize()\&.
+
+.PP
+Optimal input length is \fRn * \fBOptimalBlockSize()\fP - GetOptimalBlockSizeUsed()\fP for any \fRn > 0\fP\&. 
+.PP
+Reimplemented in \fBCMAC_Base\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBHMAC_Base\fP, \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP, \fBSipHash_Base< C, D, T_128bit >\fP, and \fBSipHash_Base< 2, 4, false >\fP\&.
+.SS "unsigned int HashTransformation::OptimalDataAlignment () const\fR [virtual]\fP"
+
+.PP
+Provides input and output data alignment for optimal performance\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the input data alignment that provides optimal performance 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetAlignment() and \fBOptimalBlockSize()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBCCM_Base\fP, \fBChaCha20Poly1305_Base\fP, \fBCMAC_Base\fP, \fBEAX_Base\fP, \fBGCM_Base\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP, \fBKeccak\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBSHA3\fP, \fBSHAKE\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBVMAC_Base\fP, and \fBXChaCha20Poly1305_Base\fP\&.
+.SS "\fBHashTransformation\fP & HashTransformation::Ref ()\fR [inline]\fP"
+
+.PP
+Provides a reference to this object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to this object
+.RE
+.PP
+Useful for passing a temporary object to a function that takes a non-const reference 
+.SS "virtual void HashTransformation::Restart ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Restart the hash\&. Discards the current state, and restart for a new message 
+.PP
+Reimplemented in \fBAuthenticatedSymmetricCipherBase\fP, \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBed25519_MessageAccumulator\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBHMAC_Base\fP, \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP, \fBKeccak\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBPoly1305_Base< T >\fP, \fBPoly1305TLS_Base\fP, \fBSHA3\fP, \fBSHAKE\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBTruncatedHashTemplate< T >\fP, and \fBTruncatedHashTemplate< HashTransformation & >\fP\&.
+.SS "unsigned int HashTransformation::TagSize () const\fR [inline]\fP"
+Provides the tag size of the hash 
+.PP
+\fBReturns\fP
+.RS 4
+the tag size of the hash\&.
+.RE
+.PP
+Same as \fBDigestSize()\fP\&. 
+.SS "void HashTransformation::ThrowIfInvalidTruncatedSize (size_t size) const\fR [protected]\fP"
+
+.PP
+Validates a truncated digest size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the requested digest size 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument\fP\fP if the algorithm's digest size cannot be truncated to the requested size
+.RE
+.PP
+Throws an exception when the truncated digest size is greater than \fBDigestSize()\fP 
+.SS "virtual void HashTransformation::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)\fR [pure virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls \fBFinal()\fP and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) <= \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) <= HASH::DIGESTSIZE\fP ensures the output byte buffer is a valid size\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBAdler32\fP, \fBAuthenticatedSymmetricCipherBase\fP, \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBCBC_MAC_Base\fP, \fBCMAC_Base\fP, \fBCRC32\fP, \fBCRC32C\fP, \fBDMAC_Base< T >\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBHMAC_Base\fP, \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP, \fBKeccak\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBNullHash\fP, \fBPK_MessageAccumulator\fP, \fBPoly1305_Base< T >\fP, \fBPoly1305TLS_Base\fP, \fBSHA3\fP, \fBSHAKE\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBTiger\fP, \fBTruncatedHashTemplate< T >\fP, \fBTruncatedHashTemplate< HashTransformation & >\fP, \fBTTMAC_Base\fP, \fBVMAC_Base\fP, \fBWeak1::MD2\fP, \fBWeak::PanamaHash< B >\fP, \fBWeak::PanamaHash< LittleEndian >\fP, and \fBWhirlpool\fP\&.
+.SS "bool HashTransformation::TruncatedVerify (const \fBbyte\fP * digest, size_t digestLength)\fR [virtual]\fP"
+
+.PP
+Verifies the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer of an \fIexisting\fP hash 
+.br
+\fIdigestLength\fP the size of the truncated hash, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fRtrue\fP if the existing hash matches the computed hash, \fRfalse\fP otherwise 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument()\fP\fP if digestLength exceeds \fBDigestSize()\fP
+.RE
+.PP
+\fBTruncatedVerify()\fP is a truncated version of \fBVerify()\fP\&. It can operate on a buffer smaller than \fBDigestSize()\fP\&. However, digestLength cannot exceed \fBDigestSize()\fP\&.
+
+.PP
+\fBVerify()\fP performs a bitwise compare on the buffers using VerifyBufsEqual(), which is a constant time comparison function\&. digestLength cannot exceed \fBDigestSize()\fP\&.
+
+.PP
+\fBTruncatedVerify()\fP restarts the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRdigestLength <= \fBDigestSize()\fP\fP or \fRdigestLength <= HASH::DIGESTSIZE\fP ensures the input byte buffer is a valid size\&. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBNullHash\fP, \fBTruncatedHashTemplate< T >\fP, and \fBTruncatedHashTemplate< HashTransformation & >\fP\&.
+.SS "virtual void HashTransformation::Update (const \fBbyte\fP * input, size_t length)\fR [pure virtual]\fP"
+
+.PP
+Updates a hash with additional input\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes 
+.RE
+.PP
+
+.PP
+Implemented in \fBAdler32\fP, \fBAuthenticatedSymmetricCipherBase\fP, \fBBLAKE2b\fP, \fBBLAKE2s\fP, \fBCBC_MAC_Base\fP, \fBCMAC_Base\fP, \fBCRC32\fP, \fBCRC32C\fP, \fBDMAC_Base< T >\fP, \fBed25519_MessageAccumulator\fP, \fBHermeticHashFunctionMAC< T_Hash, T_Info >\fP, \fBHermeticHashFunctionMAC< PanamaHash< LittleEndian > >\fP, \fBHMAC_Base\fP, \fBIteratedHashBase< T_HashWordType, HashTransformation >\fP, \fBIteratedHashBase< word32, HashTransformation >\fP, \fBIteratedHashBase< word32, MessageAuthenticationCode >\fP, \fBIteratedHashBase< word64, HashTransformation >\fP, \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP, \fBKeccak\fP, \fBLSH256_Base\fP, \fBLSH512_Base\fP, \fBNullHash\fP, \fBPK_MessageAccumulatorBase\fP, \fBPoly1305_Base< T >\fP, \fBPoly1305TLS_Base\fP, \fBSHA3\fP, \fBSHAKE\fP, \fBSipHash_Base< C, D, T_128bit >\fP, \fBSipHash_Base< 2, 4, false >\fP, \fBTruncatedHashTemplate< T >\fP, \fBTruncatedHashTemplate< HashTransformation & >\fP, and \fBWeak1::MD2\fP\&.
+.SS "virtual bool HashTransformation::Verify (const \fBbyte\fP * digest)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Verifies the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer of an \fIexisting\fP hash 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fRtrue\fP if the existing hash matches the computed hash, \fRfalse\fP otherwise 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument()\fP\fP if the existing hash's size exceeds \fBDigestSize()\fP
+.RE
+.PP
+\fBVerify()\fP performs a bitwise compare on the buffers using VerifyBufsEqual(), which is a constant time comparison function\&. digestLength cannot exceed \fBDigestSize()\fP\&.
+
+.PP
+\fBVerify()\fP restarts the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) == \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) == HASH::DIGESTSIZE\fP ensures the input byte buffer is a valid size\&. 
+.RE
+.PP
+
+.SS "virtual bool HashTransformation::VerifyDigest (const \fBbyte\fP * digest, const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Updates the hash with additional input and verifies the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer of an \fIexisting\fP hash 
+.br
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fRtrue\fP if the existing hash matches the computed hash, \fRfalse\fP otherwise 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument()\fP\fP if the existing hash's size exceeds \fBDigestSize()\fP
+.RE
+.PP
+Use this if your input is in one piece and you don't want to call \fBUpdate()\fP and \fBVerify()\fP separately
+
+.PP
+\fBVerifyDigest()\fP performs a bitwise compare on the buffers using VerifyBufsEqual(), which is a constant time comparison function\&.
+
+.PP
+\fBVerifyDigest()\fP restarts the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) == \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) == HASH::DIGESTSIZE\fP ensures the output byte buffer is a valid size\&. 
+.RE
+.PP
+
+.SS "virtual bool HashTransformation::VerifyTruncatedDigest (const \fBbyte\fP * digest, size_t digestLength, const \fBbyte\fP * input, size_t length)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Updates the hash with additional input and verifies the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer of an \fIexisting\fP hash 
+.br
+\fIdigestLength\fP the size of the truncated hash, in bytes 
+.br
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fRtrue\fP if the existing hash matches the computed hash, \fRfalse\fP otherwise 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidArgument()\fP\fP if digestLength exceeds \fBDigestSize()\fP
+.RE
+.PP
+Use this if your input is in one piece and you don't want to call \fBUpdate()\fP and \fBTruncatedVerify()\fP separately\&.
+
+.PP
+\fBVerifyTruncatedDigest()\fP is a truncated version of \fBVerifyDigest()\fP\&. It can operate on a buffer smaller than \fBDigestSize()\fP\&. However, digestLength cannot exceed \fBDigestSize()\fP\&.
+
+.PP
+\fBVerifyTruncatedDigest()\fP restarts the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRdigestLength <= \fBDigestSize()\fP\fP or \fRdigestLength <= HASH::DIGESTSIZE\fP ensures the input byte buffer is a valid size\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,58 @@
+.TH "GOST_Info" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GOST_Info \- \fBGOST\fP block cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gost\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< 8 >\fP, and \fBFixedKeyLength< 32 >\fP\&.
+.PP
+Inherited by \fBTwoBases< BlockCipher, GOST_Info >\fP, and \fBGOST\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedBlockSize< 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBGOST\fP block cipher information\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

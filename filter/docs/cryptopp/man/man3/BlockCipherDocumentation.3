@@ -1,0 +1,34 @@
+.TH "BlockCipherDocumentation" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BlockCipherDocumentation \- Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement a block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <seckey\&.h>\fP
+.PP
+Inherited by \fBARIA\fP, \fBBTEA\fP, \fBBlowfish\fP, \fBCAST128\fP, \fBCAST256\fP, \fBCHAM128\fP, \fBCHAM64\fP, \fBCamellia\fP, \fBDES\fP, \fBDES_EDE2\fP, \fBDES_EDE3\fP, \fBDES_XEX3\fP, \fBGOST\fP, \fBHIGHT\fP, \fBIDEA\fP, \fBKalyna128\fP, \fBKalyna256\fP, \fBKalyna512\fP, \fBLEA\fP, \fBLR< T >\fP, \fBMARS\fP, \fBRC2\fP, \fBRC5\fP, \fBRC6\fP, \fBRijndael\fP, \fBSAFER_K\fP, \fBSAFER_SK\fP, \fBSEED\fP, \fBSHACAL2\fP, \fBSHARK\fP, \fBSIMECK32\fP, \fBSIMECK64\fP, \fBSIMON128\fP, \fBSIMON64\fP, \fBSKIPJACK\fP, \fBSM4\fP, \fBSPECK128\fP, \fBSPECK64\fP, \fBSerpent\fP, \fBSquare\fP, \fBTEA\fP, \fBThreeWay\fP, \fBThreefish1024\fP, \fBThreefish256\fP, \fBThreefish512\fP, \fBTwofish\fP, and \fBXTEA\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Provides \fBEncryption\fP and \fBDecryption\fP typedefs used by derived classes to implement a block cipher\&. 
+
+These objects usually should not be used directly\&. See \fBCipherModeDocumentation\fP instead\&. Each class derived from this one defines two types, \fBEncryption\fP and \fBDecryption\fP, both of which implement the \fBBlockCipher\fP interface\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

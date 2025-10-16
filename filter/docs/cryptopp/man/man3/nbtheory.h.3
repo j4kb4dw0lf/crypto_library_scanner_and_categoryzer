@@ -1,0 +1,694 @@
+.TH "/home/mock/cryptopp-master/nbtheory.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/nbtheory.h \- Classes and functions for number theoretic operations\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'integer\&.h'\fP
+.br
+\fR#include 'algparam\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPrimeSelector\fP"
+.br
+.RI "Application callback to signal suitability of a candidate prime\&. "
+.ti -1c
+.RI "class \fBPrimeAndGenerator\fP"
+.br
+.RI "Generator of prime numbers of special forms\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL const \fBword16\fP *CRYPTOPP_API \fBGetPrimeTable\fP (unsigned int &size)"
+.br
+.RI "The Small Prime table\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBMaurerProvablePrime\fP (\fBRandomNumberGenerator\fP &rng, unsigned int bits)"
+.br
+.RI "Generates a provable prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBMihailescuProvablePrime\fP (\fBRandomNumberGenerator\fP &rng, unsigned int bits)"
+.br
+.RI "Generates a provable prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIsSmallPrime\fP (const \fBInteger\fP &p)"
+.br
+.RI "Tests whether a number is a small prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBTrialDivision\fP (const \fBInteger\fP &p, unsigned bound)"
+.br
+.RI "Tests whether a number is divisible by a small prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBSmallDivisorsTest\fP (const \fBInteger\fP &p)"
+.br
+.RI "Tests whether a number is divisible by a small prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIsFermatProbablePrime\fP (const \fBInteger\fP &n, const \fBInteger\fP &b)"
+.br
+.RI "Determine if a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIsLucasProbablePrime\fP (const \fBInteger\fP &n)"
+.br
+.RI "Determine if a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIsStrongProbablePrime\fP (const \fBInteger\fP &n, const \fBInteger\fP &b)"
+.br
+.RI "Determine if a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIsStrongLucasProbablePrime\fP (const \fBInteger\fP &n)"
+.br
+.RI "Determine if a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBRabinMillerTest\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &n, unsigned int rounds)"
+.br
+.RI "Determine if a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBIsPrime\fP (const \fBInteger\fP &p)"
+.br
+.RI "Verifies a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBVerifyPrime\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &p, unsigned int level=1)"
+.br
+.RI "Verifies a number is probably prime\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBFirstPrime\fP (\fBInteger\fP &p, const \fBInteger\fP &max, const \fBInteger\fP &equiv, const \fBInteger\fP &mod, const \fBPrimeSelector\fP *pSelector)"
+.br
+.RI "Finds a random prime of special form\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL unsigned int CRYPTOPP_API \fBPrimeSearchInterval\fP (const \fBInteger\fP &max)"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL \fBAlgorithmParameters\fP CRYPTOPP_API \fBMakeParametersForTwoPrimesOfEqualSize\fP (unsigned int productBitLength)"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBGCD\fP (const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.RI "Calculate the greatest common divisor\&. "
+.ti -1c
+.RI "bool \fBRelativelyPrime\fP (const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.RI "Determine relative primality\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBLCM\fP (const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.RI "Calculate the least common multiple\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBEuclideanMultiplicativeInverse\fP (const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.RI "Calculate multiplicative inverse\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBCRT\fP (const \fBInteger\fP &xp, const \fBInteger\fP &p, const \fBInteger\fP &xq, const \fBInteger\fP &q, const \fBInteger\fP &u)"
+.br
+.RI "Chinese Remainder Theorem\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL int CRYPTOPP_API \fBJacobi\fP (const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.RI "Calculate the Jacobi symbol\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBLucas\fP (const \fBInteger\fP &e, const \fBInteger\fP &p, const \fBInteger\fP &n)"
+.br
+.RI "Calculate the Lucas value\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBInverseLucas\fP (const \fBInteger\fP &e, const \fBInteger\fP &m, const \fBInteger\fP &p, const \fBInteger\fP &q, const \fBInteger\fP &u)"
+.br
+.RI "Calculate the inverse Lucas value\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBModularMultiplication\fP (const \fBInteger\fP &x, const \fBInteger\fP &y, const \fBInteger\fP &m)"
+.br
+.RI "Modular multiplication\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBModularExponentiation\fP (const \fBInteger\fP &x, const \fBInteger\fP &e, const \fBInteger\fP &m)"
+.br
+.RI "Modular exponentiation\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBModularSquareRoot\fP (const \fBInteger\fP &a, const \fBInteger\fP &p)"
+.br
+.RI "Extract a modular square root\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API \fBModularRoot\fP (const \fBInteger\fP &a, const \fBInteger\fP &dp, const \fBInteger\fP &dq, const \fBInteger\fP &p, const \fBInteger\fP &q, const \fBInteger\fP &u)"
+.br
+.RI "Extract a modular root\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL bool CRYPTOPP_API \fBSolveModularQuadraticEquation\fP (\fBInteger\fP &r1, \fBInteger\fP &r2, const \fBInteger\fP &a, const \fBInteger\fP &b, const \fBInteger\fP &c, const \fBInteger\fP &p)"
+.br
+.RI "Solve a Modular Quadratic Equation\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL unsigned int CRYPTOPP_API \fBDiscreteLogWorkFactor\fP (unsigned int bitlength)"
+.br
+.RI "Estimate work factor\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL unsigned int CRYPTOPP_API \fBFactoringWorkFactor\fP (unsigned int bitlength)"
+.br
+.RI "Estimate work factor\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for number theoretic operations\&.
+
+
+.SH "Function Documentation"
+.PP
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API CRT (const \fBInteger\fP & xp, const \fBInteger\fP & p, const \fBInteger\fP & xq, const \fBInteger\fP & q, const \fBInteger\fP & u)"
+
+.PP
+Chinese Remainder Theorem\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIxp\fP the first number, mod p
+.br
+\fIp\fP the first prime modulus
+.br
+\fIxq\fP the second number, mod q
+.br
+\fIq\fP the second prime modulus
+.br
+\fIu\fP inverse of p mod q
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the CRT value of the parameters
+.RE
+.PP
+CRT uses the Chinese Remainder Theorem to calculate \fRx\fP given \fRx mod p\fP and \fRx mod q\fP, and \fRu\fP the inverse of \fRp mod q\fP\&.
+.SS "CRYPTOPP_DLL unsigned int CRYPTOPP_API DiscreteLogWorkFactor (unsigned int bitlength)"
+
+.PP
+Estimate work factor\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbitlength\fP the size of the number, in bits
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the estimated work factor, in operations
+.RE
+.PP
+DiscreteLogWorkFactor returns log base 2 of estimated number of operations to calculate discrete log or factor a number\&.
+.SS "\fBInteger\fP EuclideanMultiplicativeInverse (const \fBInteger\fP & a, const \fBInteger\fP & b)\fR [inline]\fP"
+
+.PP
+Calculate multiplicative inverse\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the number to test
+.br
+\fIb\fP the modulus
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP \fR(a ^ -1) % n\fP or 0 if none exists\&.
+.RE
+.PP
+EuclideanMultiplicativeInverse returns the multiplicative inverse of the \fBInteger\fP \fR*a\fP modulo the \fBInteger\fP \fRb\fP\&. If no \fBInteger\fP exists then \fBInteger\fP 0 is returned\&.
+.SS "CRYPTOPP_DLL unsigned int CRYPTOPP_API FactoringWorkFactor (unsigned int bitlength)"
+
+.PP
+Estimate work factor\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIbitlength\fP the size of the number, in bits
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the estimated work factor, in operations
+.RE
+.PP
+FactoringWorkFactor returns log base 2 of estimated number of operations to calculate discrete log or factor a number\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API FirstPrime (\fBInteger\fP & p, const \fBInteger\fP & max, const \fBInteger\fP & equiv, const \fBInteger\fP & mod, const \fBPrimeSelector\fP * pSelector)"
+
+.PP
+Finds a random prime of special form\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP an \fBInteger\fP reference to receive the prime
+.br
+\fImax\fP the maximum value
+.br
+\fIequiv\fP the equivalence class based on the parameter mod
+.br
+\fImod\fP the modulus used to reduce the equivalence class
+.br
+\fIpSelector\fP pointer to a \fBPrimeSelector\fP function for the application to signal suitability
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if and only if \fBFirstPrime()\fP finds a prime and returns the prime through p\&. If \fBFirstPrime()\fP returns false, then no such prime exists and the value of p is undefined
+.RE
+.PP
+\fBFirstPrime()\fP uses a fast sieve to find the first probable prime in \fR{x | p<=x<=max and xmod==equiv}\fP
+.SS "\fBInteger\fP GCD (const \fBInteger\fP & a, const \fBInteger\fP & b)\fR [inline]\fP"
+
+.PP
+Calculate the greatest common divisor\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first term
+.br
+\fIb\fP the second term
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the greatest common divisor if one exists, 0 otherwise\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL const \fBword16\fP *CRYPTOPP_API GetPrimeTable (unsigned int & size)"
+
+.PP
+The Small Prime table\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP number of elements in the table
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+prime table with /p size elements
+.RE
+.PP
+\fBGetPrimeTable()\fP obtains pointer to small prime table and provides the size of the table\&. /p size is an out parameter\&.
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API InverseLucas (const \fBInteger\fP & e, const \fBInteger\fP & m, const \fBInteger\fP & p, const \fBInteger\fP & q, const \fBInteger\fP & u)"
+
+.PP
+Calculate the inverse Lucas value\&.
+.PP
+\fBReturns\fP
+.RS 4
+the inverse Lucas value
+.RE
+.PP
+\fBInverseLucas()\fP calculates \fRx\fP such that \fRm==Lucas(e, x, p*q)\fP, \fRp q\fP primes, \fRu\fP is inverse of \fRp mod q\fP\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IsFermatProbablePrime (const \fBInteger\fP & n, const \fBInteger\fP & b)"
+
+.PP
+Determine if a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number to test
+.br
+\fIb\fP the base to exponentiate
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the number n is probably prime, false otherwise\&.
+.RE
+.PP
+IsFermatProbablePrime raises \fRb\fP to the \fRn-1\fP power and checks if the result is congruent to 1 modulo \fRn\fP\&.
+
+.PP
+These is no reason to use IsFermatProbablePrime, use IsStrongProbablePrime or IsStrongLucasProbablePrime instead\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBIsStrongProbablePrime\fP, \fBIsStrongLucasProbablePrime\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IsLucasProbablePrime (const \fBInteger\fP & n)"
+
+.PP
+Determine if a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the number n is probably prime, false otherwise\&.
+.RE
+.PP
+These is no reason to use IsLucasProbablePrime, use IsStrongProbablePrime or IsStrongLucasProbablePrime instead\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fBIsStrongProbablePrime\fP, \fBIsStrongLucasProbablePrime\fP
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IsPrime (const \fBInteger\fP & p)"
+
+.PP
+Verifies a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP a candidate prime to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if p is a probable prime, false otherwise
+.RE
+.PP
+\fBIsPrime()\fP is suitable for testing candidate primes when creating them\&. Internally, \fBIsPrime()\fP utilizes \fBSmallDivisorsTest()\fP, \fBIsStrongProbablePrime()\fP and \fBIsStrongLucasProbablePrime()\fP\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IsSmallPrime (const \fBInteger\fP & p)"
+
+.PP
+Tests whether a number is a small prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP a candidate prime to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if p is a small prime, false otherwise
+.RE
+.PP
+Internally, the library maintains a table of the first 32719 prime numbers in sorted order\&. IsSmallPrime searches the table and returns true if p is in the table\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IsStrongLucasProbablePrime (const \fBInteger\fP & n)"
+
+.PP
+Determine if a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number to test
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the number n is probably prime, false otherwise\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API IsStrongProbablePrime (const \fBInteger\fP & n, const \fBInteger\fP & b)"
+
+.PP
+Determine if a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the number to test
+.br
+\fIb\fP the base to exponentiate
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the number n is probably prime, false otherwise\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL int CRYPTOPP_API Jacobi (const \fBInteger\fP & a, const \fBInteger\fP & b)"
+
+.PP
+Calculate the Jacobi symbol\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first term
+.br
+\fIb\fP the second term
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the Jacobi symbol\&.
+.RE
+.PP
+Jacobi symbols are calculated using the following rules:
+.IP "1." 4
+if \fRb\fP is prime, then \fRJacobi(a, b)\fP, then return 0
+.IP "2." 4
+if \fRab\fP==0 AND \fRa\fP is quadratic residue \fRmod b\fP, then return 1
+.IP "3." 4
+return -1 otherwise
+.PP
+
+.PP
+Refer to a number theory book for what Jacobi symbol means when \fRb\fP is not prime\&.
+.SS "\fBInteger\fP LCM (const \fBInteger\fP & a, const \fBInteger\fP & b)\fR [inline]\fP"
+
+.PP
+Calculate the least common multiple\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first term
+.br
+\fIb\fP the second term
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the least common multiple of \fRa\fP and \fRb\fP\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API Lucas (const \fBInteger\fP & e, const \fBInteger\fP & p, const \fBInteger\fP & n)"
+
+.PP
+Calculate the Lucas value\&.
+.PP
+\fBReturns\fP
+.RS 4
+the Lucas value
+.RE
+.PP
+\fBLucas()\fP calculates the Lucas function \fRV_e(p, 1) mod n\fP\&.
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API MaurerProvablePrime (\fBRandomNumberGenerator\fP & rng, unsigned int bits)"
+
+.PP
+Generates a provable prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP to produce random material
+.br
+\fIbits\fP the number of bits in the prime number
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBInteger()\fP meeting Maurer's tests for primality
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API MihailescuProvablePrime (\fBRandomNumberGenerator\fP & rng, unsigned int bits)"
+
+.PP
+Generates a provable prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP to produce random material
+.br
+\fIbits\fP the number of bits in the prime number
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fBInteger()\fP meeting Mihailescu's tests for primality
+.RE
+.PP
+Mihailescu's methods performs a search using algorithmic progressions\&.
+.SS "\fBInteger\fP ModularExponentiation (const \fBInteger\fP & x, const \fBInteger\fP & e, const \fBInteger\fP & m)\fR [inline]\fP"
+
+.PP
+Modular exponentiation\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the base
+.br
+\fIe\fP the exponent
+.br
+\fIm\fP the modulus
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP \fR(a ^ b) % m\fP\&.
+.RE
+.PP
+
+.SS "\fBInteger\fP ModularMultiplication (const \fBInteger\fP & x, const \fBInteger\fP & y, const \fBInteger\fP & m)\fR [inline]\fP"
+
+.PP
+Modular multiplication\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the first term
+.br
+\fIy\fP the second term
+.br
+\fIm\fP the modulus
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP \fR(x * y) % m\fP\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API ModularRoot (const \fBInteger\fP & a, const \fBInteger\fP & dp, const \fBInteger\fP & dq, const \fBInteger\fP & p, const \fBInteger\fP & q, const \fBInteger\fP & u)"
+
+.PP
+Extract a modular root\&.
+.PP
+\fBReturns\fP
+.RS 4
+a modular root if it exists
+.RE
+.PP
+ModularRoot returns \fRx\fP such that \fRa==ModularExponentiation(x, e, p*q)\fP, \fRp\fP \fRq\fP primes, and \fRe\fP relatively prime to \fR(p-1)*(q-1)\fP, \fRdp=d%(p-1)\fP, \fRdq=d%(q-1)\fP, (d is inverse of \fRe mod (p-1)*(q-1)\fP) and \fRu=inverse of p mod q\fP\&.
+.SS "CRYPTOPP_DLL \fBInteger\fP CRYPTOPP_API ModularSquareRoot (const \fBInteger\fP & a, const \fBInteger\fP & p)"
+
+.PP
+Extract a modular square root\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the number to extract square root
+.br
+\fIp\fP the prime modulus
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the modular square root if it exists
+.RE
+.PP
+ModularSquareRoot returns \fRx\fP such that \fRx*xp == a\fP, \fRp\fP prime
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API RabinMillerTest (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & n, unsigned int rounds)"
+
+.PP
+Determine if a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP to produce random material
+.br
+\fIn\fP the number to test
+.br
+\fIrounds\fP the number of tests to perform
+.RE
+.PP
+This is the Rabin-Miller primality test, i\&.e\&. repeating the strong probable prime test for several rounds with random bases
+.PP
+\fBSee also\fP
+.RS 4
+\fRTrial divisions before Miller-Rabin checks?\fP on Crypto Stack Exchange
+.RE
+.PP
+
+.SS "bool RelativelyPrime (const \fBInteger\fP & a, const \fBInteger\fP & b)\fR [inline]\fP"
+
+.PP
+Determine relative primality\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first term
+.br
+\fIb\fP the second term
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if \fRa\fP and \fRb\fP are relatively prime, false otherwise\&.
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API SmallDivisorsTest (const \fBInteger\fP & p)"
+
+.PP
+Tests whether a number is divisible by a small prime\&.
+.PP
+\fBReturns\fP
+.RS 4
+true if p is NOT divisible by small primes\&.
+.RE
+.PP
+\fBSmallDivisorsTest()\fP returns \fRtrue\fP if \fRp\fP is NOT divisible by some prime less than 32719\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API SolveModularQuadraticEquation (\fBInteger\fP & r1, \fBInteger\fP & r2, const \fBInteger\fP & a, const \fBInteger\fP & b, const \fBInteger\fP & c, const \fBInteger\fP & p)"
+
+.PP
+Solve a Modular Quadratic Equation\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIr1\fP the first residue
+.br
+\fIr2\fP the second residue
+.br
+\fIa\fP the first coefficient
+.br
+\fIb\fP the second coefficient
+.br
+\fIc\fP the third constant
+.br
+\fIp\fP the prime modulus
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if solutions exist
+.RE
+.PP
+\fBSolveModularQuadraticEquation()\fP finds \fRr1\fP and \fRr2\fP such that \fRax^2 + bx + c == 0 (mod p)\fP for x in \fR{r1, r2}\fP, \fRp\fP prime\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API TrialDivision (const \fBInteger\fP & p, unsigned bound)"
+
+.PP
+Tests whether a number is divisible by a small prime\&.
+.PP
+\fBReturns\fP
+.RS 4
+true if p is divisible by some prime less than bound\&.
+.RE
+.PP
+\fBTrialDivision()\fP returns \fRtrue\fP if \fRp\fP is divisible by some prime less than \fRbound\fP\&. \fRbound\fP should not be greater than the largest entry in the prime table, which is 32719\&.
+.SS "CRYPTOPP_DLL bool CRYPTOPP_API VerifyPrime (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & p, unsigned int level = \fR1\fP)"
+
+.PP
+Verifies a number is probably prime\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP a \fBRandomNumberGenerator\fP for randomized testing
+.br
+\fIp\fP a candidate prime to test
+.br
+\fIlevel\fP the level of thoroughness of testing
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if p is a strong probable prime, false otherwise
+.RE
+.PP
+\fBVerifyPrime()\fP is suitable for testing candidate primes created by others\&. Internally, \fBVerifyPrime()\fP utilizes \fBIsPrime()\fP and one-round \fBRabinMillerTest()\fP\&. If the candidate passes and level is greater than 1, then 10 round \fBRabinMillerTest()\fP primality testing is performed\&.
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

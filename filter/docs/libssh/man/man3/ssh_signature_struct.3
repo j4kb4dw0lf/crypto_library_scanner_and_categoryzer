@@ -1,0 +1,37 @@
+.TH "ssh_signature_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_signature_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "enum ssh_keytypes_e \fBtype\fP"
+.br
+.ti -1c
+.RI "enum ssh_digest_e \fBhash_type\fP"
+.br
+.ti -1c
+.RI "const char * \fBtype_c\fP"
+.br
+.ti -1c
+.RI "ed25519_signature * \fBed25519_sig\fP"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBraw_sig\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBsk_flags\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBsk_counter\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,188 @@
+.TH "DL_SignatureSchemeBase< INTFACE, KEY_INTFACE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_SignatureSchemeBase< INTFACE, KEY_INTFACE > \- Discrete Log (DL) signature scheme base implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits INTFACE, and \fBDL_Base< KEY_INTFACE >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBSignatureLength\fP () const"
+.br
+.RI "Provides the signature length\&. "
+.ti -1c
+.RI "size_t \fBMaxRecoverableLength\fP () const"
+.br
+.RI "Provides the maximum recoverable length\&. "
+.ti -1c
+.RI "size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const"
+.br
+.RI "Provides the maximum recoverable length\&. "
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines if the scheme is probabilistic\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.RI "Determines if the scheme has non-recoverable part\&. "
+.ti -1c
+.RI "bool \fBRecoverablePartFirst\fP () const"
+.br
+.RI "Determines if the scheme allows recoverable part first\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBMessageRepresentativeLength\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMessageRepresentativeBitLength\fP () const"
+.br
+.ti -1c
+.RI "virtual bool \fBIsDeterministic\fP () const"
+.br
+.ti -1c
+.RI "virtual const \fBDL_ElgamalLikeSignatureAlgorithm\fP< typename KEY_INTFACE::Element > & \fBGetSignatureAlgorithm\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBPK_SignatureMessageEncodingMethod\fP & \fBGetMessageEncodingInterface\fP () const =0"
+.br
+.ti -1c
+.RI "virtual HashIdentifier \fBGetHashIdentifier\fP () const =0"
+.br
+.ti -1c
+.RI "virtual size_t \fBGetDigestSize\fP () const =0"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_Base< KEY_INTFACE >\fP
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.ti -1c
+.RI "virtual KeyInterface & \fBAccessKeyInterface\fP ()=0"
+.br
+.ti -1c
+.RI "virtual const KeyInterface & \fBGetKeyInterface\fP () const=0"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Types inherited from \fBDL_Base< KEY_INTFACE >\fP
+.in +1c
+.ti -1c
+.RI "typedef KEY_INTFACE \fBKeyInterface\fP"
+.br
+.ti -1c
+.RI "typedef KEY_INTFACE::Element \fBElement\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class INTFACE, class KEY_INTFACE>
+.br
+class DL_SignatureSchemeBase< INTFACE, KEY_INTFACE >"Discrete Log (DL) signature scheme base implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIINTFACE\fP \fBPK_Signer\fP or \fBPK_Verifier\fP derived class 
+.br
+\fIKEY_INTFACE\fP \fBDL_Base\fP key base used in the scheme
+.RE
+.PP
+\fBDL_SignatureSchemeBase\fP provides common functions for signers and verifiers\&. \fBDL_Base<DL_PrivateKey>\fP is used for signers, and \fBDL_Base<DL_PublicKey>\fP is used for verifiers\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class INTFACE, class KEY_INTFACE> bool \fBDL_SignatureSchemeBase\fP< INTFACE, KEY_INTFACE >::AllowNonrecoverablePart () const\fR [inline]\fP"
+
+.PP
+Determines if the scheme has non-recoverable part\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the message encoding has a non-recoverable part, false otherwise\&. 
+.RE
+.PP
+
+.SS "template<class INTFACE, class KEY_INTFACE> bool \fBDL_SignatureSchemeBase\fP< INTFACE, KEY_INTFACE >::IsProbabilistic () const\fR [inline]\fP"
+
+.PP
+Determines if the scheme is probabilistic\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the scheme is probabilistic, false otherwise 
+.RE
+.PP
+
+.SS "template<class INTFACE, class KEY_INTFACE> size_t \fBDL_SignatureSchemeBase\fP< INTFACE, KEY_INTFACE >::MaxRecoverableLength () const\fR [inline]\fP"
+
+.PP
+Provides the maximum recoverable length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+maximum recoverable length, in bytes 
+.RE
+.PP
+
+.SS "template<class INTFACE, class KEY_INTFACE> size_t \fBDL_SignatureSchemeBase\fP< INTFACE, KEY_INTFACE >::MaxRecoverableLengthFromSignatureLength (size_t signatureLength) const\fR [inline]\fP"
+
+.PP
+Provides the maximum recoverable length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsignatureLength\fP the size of the signature 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+maximum recoverable length based on signature length, in bytes
+.RE
+.PP
+this function is not implemented and always returns 0\&. 
+.SS "template<class INTFACE, class KEY_INTFACE> bool \fBDL_SignatureSchemeBase\fP< INTFACE, KEY_INTFACE >::RecoverablePartFirst () const\fR [inline]\fP"
+
+.PP
+Determines if the scheme allows recoverable part first\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the message encoding allows the recoverable part, false otherwise\&. 
+.RE
+.PP
+
+.SS "template<class INTFACE, class KEY_INTFACE> size_t \fBDL_SignatureSchemeBase\fP< INTFACE, KEY_INTFACE >::SignatureLength () const\fR [inline]\fP"
+
+.PP
+Provides the signature length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+signature length, in bytes
+.RE
+.PP
+SignatureLength returns the size required for \fRr+s\fP\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

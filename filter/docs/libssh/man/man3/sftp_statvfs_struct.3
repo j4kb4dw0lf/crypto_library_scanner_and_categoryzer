@@ -1,0 +1,77 @@
+.TH "sftp_statvfs_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sftp_statvfs_struct \- SFTP statvfs structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sftp\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "uint64_t \fBf_bsize\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_frsize\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_blocks\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_bfree\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_bavail\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_files\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_ffree\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_favail\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_fsid\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_flag\fP"
+.br
+.ti -1c
+.RI "uint64_t \fBf_namemax\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+SFTP statvfs structure\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "uint64_t sftp_statvfs_struct::f_bavail"
+free blocks in file system 
+.SS "uint64_t sftp_statvfs_struct::f_bfree"
+number of blocks (unit f_frsize) 
+.SS "uint64_t sftp_statvfs_struct::f_blocks"
+fundamental fs block size 
+.SS "uint64_t sftp_statvfs_struct::f_favail"
+free file inodes 
+.SS "uint64_t sftp_statvfs_struct::f_ffree"
+total file inodes 
+.SS "uint64_t sftp_statvfs_struct::f_files"
+free blocks for non-root 
+.SS "uint64_t sftp_statvfs_struct::f_flag"
+file system id 
+.SS "uint64_t sftp_statvfs_struct::f_frsize"
+file system block size 
+.SS "uint64_t sftp_statvfs_struct::f_fsid"
+free file inodes for to non-root 
+.SS "uint64_t sftp_statvfs_struct::f_namemax"
+bit mask of f_flag values 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,641 @@
+.TH "libssh_auth" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_auth \- The SSH authentication functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_agent_state_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_auth_auto_state_struct\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int(* \fBssh_auth_callback\fP) (const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata)"
+.br
+.RI "SSH authentication callback for password and publickey auth\&. "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBssh_agent_state_e\fP { \fBSSH_AGENT_STATE_NONE\fP = 0, \fBSSH_AGENT_STATE_PUBKEY\fP, \fBSSH_AGENT_STATE_CERT\fP, \fBSSH_AGENT_STATE_AUTH\fP }"
+.br
+.ti -1c
+.RI "enum \fBssh_auth_auto_state_e\fP { \fBSSH_AUTH_AUTO_STATE_NONE\fP = 0, \fBSSH_AUTH_AUTO_STATE_PUBKEY\fP, \fBSSH_AUTH_AUTO_STATE_KEY_IMPORTED\fP, \fBSSH_AUTH_AUTO_STATE_CERTIFICATE_FILE\fP, \fBSSH_AUTH_AUTO_STATE_CERTIFICATE_OPTION\fP, \fBSSH_AUTH_AUTO_STATE_PUBKEY_ACCEPTED\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBssh_set_agent_channel\fP (\fBssh_session\fP session, \fBssh_channel\fP channel)"
+.br
+.RI "sets the SSH agent channel\&. The SSH agent channel will be used to authenticate this client using an agent through a channel, from another session\&. The most likely use is to implement SSH Agent forwarding into a SSH proxy\&. "
+.ti -1c
+.RI "int \fBssh_set_agent_socket\fP (\fBssh_session\fP session, socket_t fd)"
+.br
+.RI "sets the SSH agent socket\&. The SSH agent will be used to authenticate this client using the given socket to communicate with the ssh-agent\&. The caller is responsible for connecting to the socket prior to calling this function\&. "
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_userauth_banner)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_userauth_failure)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_userauth_success)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_userauth_pk_ok)"
+.br
+.ti -1c
+.RI "int \fBssh_userauth_list\fP (\fBssh_session\fP session, const char *username)"
+.br
+.RI "Get available authentication methods from the server\&. "
+.ti -1c
+.RI "int \fBssh_userauth_none\fP (\fBssh_session\fP session, const char *username)"
+.br
+.RI "Try to authenticate through the "none" method\&. "
+.ti -1c
+.RI "int \fBssh_userauth_try_publickey\fP (\fBssh_session\fP session, const char *username, const \fBssh_key\fP pubkey)"
+.br
+.RI "Try to authenticate with the given public key\&. "
+.ti -1c
+.RI "int \fBssh_userauth_publickey\fP (\fBssh_session\fP session, const char *username, const \fBssh_key\fP privkey)"
+.br
+.RI "Authenticate with public/private key or certificate\&. "
+.ti -1c
+.RI "void \fBssh_agent_state_free\fP (void *data)"
+.br
+.ti -1c
+.RI "int \fBssh_userauth_agent\fP (\fBssh_session\fP session, const char *username)"
+.br
+.RI "Try to do public key authentication with ssh agent\&. "
+.ti -1c
+.RI "int \fBssh_userauth_publickey_auto_get_current_identity\fP (\fBssh_session\fP session, char **value)"
+.br
+.RI "Get the identity that is currently being processed by \fBssh_userauth_publickey_auto()\fP "
+.ti -1c
+.RI "int \fBssh_userauth_publickey_auto\fP (\fBssh_session\fP session, const char *username, const char *passphrase)"
+.br
+.RI "Tries to automatically authenticate with public key and "none"\&. "
+.ti -1c
+.RI "int \fBssh_userauth_password\fP (\fBssh_session\fP session, const char *username, const char *password)"
+.br
+.RI "Try to authenticate by password\&. "
+.ti -1c
+.RI "int \fBssh_userauth_agent_pubkey\fP (\fBssh_session\fP session, const char *username, \fBssh_public_key\fP publickey)"
+.br
+.ti -1c
+.RI "\fBssh_kbdint\fP \fBssh_kbdint_new\fP (void)"
+.br
+.ti -1c
+.RI "void \fBssh_kbdint_free\fP (\fBssh_kbdint\fP kbd)"
+.br
+.ti -1c
+.RI "void \fBssh_kbdint_clean\fP (\fBssh_kbdint\fP kbd)"
+.br
+.ti -1c
+.RI "\fBSSH_PACKET_CALLBACK\fP (ssh_packet_userauth_info_request)"
+.br
+.ti -1c
+.RI "int \fBssh_userauth_kbdint\fP (\fBssh_session\fP session, const char *user, const char *submethods)"
+.br
+.RI "Try to authenticate through the "keyboard-interactive" method\&. "
+.ti -1c
+.RI "int \fBssh_userauth_kbdint_getnprompts\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the number of prompts (questions) the server has given\&. "
+.ti -1c
+.RI "const char * \fBssh_userauth_kbdint_getname\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the "name" of the message block\&. "
+.ti -1c
+.RI "const char * \fBssh_userauth_kbdint_getinstruction\fP (\fBssh_session\fP session)"
+.br
+.RI "Get the "instruction" of the message block\&. "
+.ti -1c
+.RI "const char * \fBssh_userauth_kbdint_getprompt\fP (\fBssh_session\fP session, unsigned int i, char *echo)"
+.br
+.RI "Get a prompt from a message block\&. "
+.ti -1c
+.RI "int \fBssh_userauth_kbdint_setanswer\fP (\fBssh_session\fP session, unsigned int i, const char *answer)"
+.br
+.RI "Set the answer for a question from a message block\&. "
+.ti -1c
+.RI "int \fBssh_userauth_gssapi\fP (\fBssh_session\fP session)"
+.br
+.RI "Try to authenticate through the "gssapi-with-mic" method\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions to authenticate with a server\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef int(* ssh_auth_callback) (const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata)"
+
+.PP
+SSH authentication callback for password and publickey auth\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprompt\fP Prompt to be displayed\&. 
+.br
+\fIbuf\fP Buffer to save the password\&. You should null-terminate it\&. 
+.br
+\fIlen\fP Length of the buffer\&. 
+.br
+\fIecho\fP Enable or disable the echo of what you type\&. 
+.br
+\fIverify\fP Should the password be verified? 
+.br
+\fIuserdata\fP Userdata to be passed to the callback function\&. Useful for GUI applications\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_set_agent_channel (\fBssh_session\fP session, \fBssh_channel\fP channel)"
+
+.PP
+sets the SSH agent channel\&. The SSH agent channel will be used to authenticate this client using an agent through a channel, from another session\&. The most likely use is to implement SSH Agent forwarding into a SSH proxy\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP the session
+.br
+\fIchannel\fP a SSH channel from another session\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK in case of success SSH_ERROR in case of an error 
+.RE
+.PP
+
+.SS "int ssh_set_agent_socket (\fBssh_session\fP session, socket_t fd)"
+
+.PP
+sets the SSH agent socket\&. The SSH agent will be used to authenticate this client using the given socket to communicate with the ssh-agent\&. The caller is responsible for connecting to the socket prior to calling this function\&. 
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK in case of success SSH_ERROR in case of an error 
+.RE
+.PP
+
+.SS "int ssh_userauth_agent (\fBssh_session\fP session, const char * username)"
+
+.PP
+Try to do public key authentication with ssh agent\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fIusername\fP The username, this SHOULD be NULL\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened\&.
+.br
+ SSH_AUTH_DENIED: The server doesn't accept that public key as an authentication token\&. Try another key or another method\&.
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method\&.
+.br
+ SSH_AUTH_SUCCESS: The public key is accepted, you want now to use \fBssh_userauth_publickey()\fP\&.
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Most server implementations do not permit changing the username during authentication\&. The username should only be set with \fBssh_options_set()\fP only before you connect to the server\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_gssapi (\fBssh_session\fP session)"
+
+.PP
+Try to authenticate through the "gssapi-with-mic" method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened
+.br
+ SSH_AUTH_DENIED: Authentication failed : use another method
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method
+.br
+ SSH_AUTH_SUCCESS: Authentication success
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_kbdint (\fBssh_session\fP session, const char * user, const char * submethods)"
+
+.PP
+Try to authenticate through the "keyboard-interactive" method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fIuser\fP The username to authenticate\&. You can specify NULL if ssh_option_set_username() has been used\&. You cannot try two different logins in a row\&.
+.br
+\fIsubmethods\fP Undocumented\&. Set it to NULL\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened
+.br
+ SSH_AUTH_DENIED: Authentication failed : use another method
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method
+.br
+ SSH_AUTH_SUCCESS: Authentication success
+.br
+ SSH_AUTH_INFO: The server asked some questions\&. Use \fBssh_userauth_kbdint_getnprompts()\fP and such\&.
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_kbdint_getnprompts()\fP 
+
+.PP
+\fBssh_userauth_kbdint_getname()\fP 
+
+.PP
+\fBssh_userauth_kbdint_getinstruction()\fP 
+
+.PP
+\fBssh_userauth_kbdint_getprompt()\fP 
+
+.PP
+\fBssh_userauth_kbdint_setanswer()\fP 
+.RE
+.PP
+
+.SS "const char * ssh_userauth_kbdint_getinstruction (\fBssh_session\fP session)"
+
+.PP
+Get the "instruction" of the message block\&. Once you have called \fBssh_userauth_kbdint()\fP and received SSH_AUTH_INFO return code, this function can be used to retrieve information about the keyboard interactive authentication questions sent by the remote host\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The instruction of the message block\&. 
+.RE
+.PP
+
+.SS "const char * ssh_userauth_kbdint_getname (\fBssh_session\fP session)"
+
+.PP
+Get the "name" of the message block\&. Once you have called \fBssh_userauth_kbdint()\fP and received SSH_AUTH_INFO return code, this function can be used to retrieve information about the keyboard interactive authentication questions sent by the remote host\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The name of the message block\&. Do not free it\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_kbdint_getnprompts (\fBssh_session\fP session)"
+
+.PP
+Get the number of prompts (questions) the server has given\&. Once you have called \fBssh_userauth_kbdint()\fP and received SSH_AUTH_INFO return code, this function can be used to retrieve information about the keyboard interactive authentication questions sent by the remote host\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of prompts\&. 
+.RE
+.PP
+
+.SS "const char * ssh_userauth_kbdint_getprompt (\fBssh_session\fP session, unsigned int i, char * echo)"
+
+.PP
+Get a prompt from a message block\&. Once you have called \fBssh_userauth_kbdint()\fP and received SSH_AUTH_INFO return code, this function can be used to retrieve information about the keyboard interactive authentication questions sent by the remote host\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fIi\fP The index number of the i'th prompt\&.
+.br
+\fIecho\fP This is an optional variable\&. You can obtain a boolean if the user input should be echoed or hidden\&. For passwords it is usually hidden\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A pointer to the prompt\&. Do not free it\&.
+.RE
+.PP
+.PP
+.nf
+const char prompt;
+char echo;
+
+prompt = ssh_userauth_kbdint_getprompt(session, 0, &echo);
+if (echo) \&.\&.\&.
+.fi
+.PP
+ 
+.SS "int ssh_userauth_kbdint_setanswer (\fBssh_session\fP session, unsigned int i, const char * answer)"
+
+.PP
+Set the answer for a question from a message block\&. If you have called \fBssh_userauth_kbdint()\fP and got SSH_AUTH_INFO, this function returns the questions from the server\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fIi\fP index The number of the ith prompt\&.
+.br
+\fIanswer\fP The answer to give to the server\&. The answer MUST be encoded UTF-8\&. It is up to the server how to interpret the value and validate it\&. However, if you read the answer in some other encoding, you MUST convert it to UTF-8\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_list (\fBssh_session\fP session, const char * username)"
+
+.PP
+Get available authentication methods from the server\&. This requires the function \fBssh_userauth_none()\fP to be called before the methods are available\&. The server MAY return a list of methods that may continue\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.br
+\fIusername\fP Deprecated, set to NULL\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A bitfield of the following values:
+.IP "\(bu" 2
+SSH_AUTH_METHOD_PASSWORD
+.IP "\(bu" 2
+SSH_AUTH_METHOD_PUBLICKEY
+.IP "\(bu" 2
+SSH_AUTH_METHOD_HOSTBASED
+.IP "\(bu" 2
+SSH_AUTH_METHOD_INTERACTIVE
+.PP
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Other reserved flags may appear in future versions\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_none()\fP 
+.RE
+.PP
+
+.SS "int ssh_userauth_none (\fBssh_session\fP session, const char * username)"
+
+.PP
+Try to authenticate through the "none" method\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fIusername\fP The username, this SHOULD be NULL\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened\&.
+.br
+ SSH_AUTH_DENIED: Authentication failed: use another method
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method
+.br
+ SSH_AUTH_SUCCESS: Authentication success
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Most server implementations do not permit changing the username during authentication\&. The username should only be set with \fBssh_options_set()\fP only before you connect to the server\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_password (\fBssh_session\fP session, const char * username, const char * password)"
+
+.PP
+Try to authenticate by password\&. This authentication method is normally disabled on SSHv2 server\&. You should use keyboard-interactive mode\&.
+
+.PP
+The 'password' value MUST be encoded UTF-8\&. It is up to the server how to interpret the password and validate it against the password database\&. However, if you read the password in some other encoding, you MUST convert the password to UTF-8\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The ssh session to use\&.
+.br
+\fIusername\fP The username, this SHOULD be NULL\&.
+.br
+\fIpassword\fP The password to authenticate in UTF-8\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened\&.
+.br
+ SSH_AUTH_DENIED: Authentication failed: use another method
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method
+.br
+ SSH_AUTH_SUCCESS: Authentication success
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Most server implementations do not permit changing the username during authentication\&. The username should only be set with \fBssh_options_set()\fP only before you connect to the server\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_userauth_none()\fP 
+
+.PP
+\fBssh_userauth_kbdint()\fP 
+.RE
+.PP
+
+.SS "int ssh_userauth_publickey (\fBssh_session\fP session, const char * username, const \fBssh_key\fP privkey)"
+
+.PP
+Authenticate with public/private key or certificate\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.br
+\fIusername\fP The username, this SHOULD be NULL\&.
+.br
+\fIprivkey\fP The private key for authentication\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened\&.
+.br
+ SSH_AUTH_DENIED: The server doesn't accept that public key as an authentication token\&. Try another key or another method\&.
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method\&.
+.br
+ SSH_AUTH_SUCCESS: The public key is accepted\&.
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Most server implementations do not permit changing the username during authentication\&. The username should only be set with \fBssh_options_set()\fP only before you connect to the server\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_publickey_auto (\fBssh_session\fP session, const char * username, const char * passphrase)"
+
+.PP
+Tries to automatically authenticate with public key and "none"\&. It may fail, for instance it doesn't ask for a password and uses a default asker for passphrases (in case the private key is encrypted)\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.br
+\fIusername\fP The username, this SHOULD be NULL\&.
+.br
+\fIpassphrase\fP Use this passphrase to unlock the privatekey\&. Use NULL if you don't want to use a passphrase or the user should be asked\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened\&.
+.br
+ SSH_AUTH_DENIED: The server doesn't accept that public key as an authentication token\&. Try another key or another method\&.
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method\&.
+.br
+ SSH_AUTH_SUCCESS: Authentication success
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Most server implementations do not permit changing the username during authentication\&. The username should only be set with \fBssh_options_set()\fP only before you connect to the server\&.
+.RE
+.PP
+The OpenSSH iterates over the identities and first try the plain public key and then the certificate if it is in place\&. 
+.SS "int ssh_userauth_publickey_auto_get_current_identity (\fBssh_session\fP session, char ** value)"
+
+.PP
+Get the identity that is currently being processed by \fBssh_userauth_publickey_auto()\fP This is meant to be used by a callback that happens as part of the execution of \fBssh_userauth_publickey_auto()\fP\&. The auth_function callback might want to know which key a passphrase is needed for, for example\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.br
+\fIvalue\fP The value to get into\&. As a char**, space will be allocated by the function for the value, it is your responsibility to free the memory using \fBssh_string_free_char()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "int ssh_userauth_try_publickey (\fBssh_session\fP session, const char * username, const \fBssh_key\fP pubkey)"
+
+.PP
+Try to authenticate with the given public key\&. To avoid unnecessary processing and user interaction, the following method is provided for querying whether authentication using the 'pubkey' would be possible\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session\&.
+.br
+\fIusername\fP The username, this SHOULD be NULL\&.
+.br
+\fIpubkey\fP The public key to try\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_AUTH_ERROR: A serious error happened\&.
+.br
+ SSH_AUTH_DENIED: The server doesn't accept that public key as an authentication token\&. Try another key or another method\&.
+.br
+ SSH_AUTH_PARTIAL: You've been partially authenticated, you still have to use another method\&.
+.br
+ SSH_AUTH_SUCCESS: The public key is accepted, you want now to use \fBssh_userauth_publickey()\fP\&.
+.br
+ SSH_AUTH_AGAIN: In nonblocking mode, you've got to call this again later\&.
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Most server implementations do not permit changing the username during authentication\&. The username should only be set with \fBssh_options_set()\fP only before you connect to the server\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

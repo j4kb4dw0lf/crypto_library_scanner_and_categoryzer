@@ -1,0 +1,57 @@
+.TH "GFP2Element" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GFP2Element \- an element of GF(p^2)  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <xtr\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGFP2Element\fP (const \fBInteger\fP &c1, const \fBInteger\fP &c2)"
+.br
+.ti -1c
+.RI "\fBGFP2Element\fP (const \fBbyte\fP *encodedElement, unsigned int size)"
+.br
+.ti -1c
+.RI "void \fBEncode\fP (\fBbyte\fP *encodedElement, unsigned int size)"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBGFP2Element\fP &rhs) const"
+.br
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBGFP2Element\fP &rhs) const"
+.br
+.ti -1c
+.RI "void \fBswap\fP (\fBGFP2Element\fP &a)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static const \fBGFP2Element\fP & \fBZero\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBc1\fP"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBc2\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+an element of GF(p^2) 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

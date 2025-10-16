@@ -1,0 +1,160 @@
+.TH "DL_ElgamalLikeSignatureAlgorithm< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_ElgamalLikeSignatureAlgorithm< T > \- Interface for Elgamal-like signature algorithms\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBDL_Algorithm_GDSA< T >\fP, \fBDL_Algorithm_GDSA_ISO15946< T >\fP, and \fBDL_Algorithm_NR< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBSign\fP (const \fBDL_GroupParameters\fP< T > &params, const \fBInteger\fP &privateKey, const \fBInteger\fP &k, const \fBInteger\fP &e, \fBInteger\fP &r, \fBInteger\fP &s) const =0"
+.br
+.RI "Sign a message using a private key\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBDL_GroupParameters\fP< T > &params, const \fBDL_PublicKey\fP< T > &publicKey, const \fBInteger\fP &e, const \fBInteger\fP &r, const \fBInteger\fP &s) const =0"
+.br
+.RI "Verify a message using a public key\&. "
+.ti -1c
+.RI "virtual \fBInteger\fP \fBRecoverPresignature\fP (const \fBDL_GroupParameters\fP< T > &params, const \fBDL_PublicKey\fP< T > &publicKey, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Recover a Presignature\&. "
+.ti -1c
+.RI "virtual size_t \fBRLen\fP (const \fBDL_GroupParameters\fP< T > &params) const"
+.br
+.RI "Retrieve R length\&. "
+.ti -1c
+.RI "virtual size_t \fBSLen\fP (const \fBDL_GroupParameters\fP< T > &params) const"
+.br
+.RI "Retrieve S length\&. "
+.ti -1c
+.RI "virtual bool \fBIsDeterministic\fP () const"
+.br
+.RI "Signature scheme flag\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class DL_ElgamalLikeSignatureAlgorithm< T >"Interface for Elgamal-like signature algorithms\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Field element type or class
+.RE
+.PP
+Field element \fRT\fP can be \fBInteger\fP, \fBECP\fP or \fBEC2N\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> virtual bool \fBDL_ElgamalLikeSignatureAlgorithm\fP< T >::IsDeterministic () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Signature scheme flag\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature scheme is deterministic, false otherwise
+.RE
+.PP
+\fBIsDeterministic()\fP is provided for DL signers\&. It is used by RFC 6979 signature schemes\&. 
+.PP
+Reimplemented in \fBDL_Algorithm_DSA_RFC6979< T, H >\fP, and \fBDL_Algorithm_DSA_RFC6979< EC::Point, H >\fP\&.
+.SS "template<class T> virtual \fBInteger\fP \fBDL_ElgamalLikeSignatureAlgorithm\fP< T >::RecoverPresignature (const \fBDL_GroupParameters\fP< T > & params, const \fBDL_PublicKey\fP< T > & publicKey, const \fBInteger\fP & r, const \fBInteger\fP & s) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Recover a Presignature\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.br
+\fIpublicKey\fP public key 
+.br
+\fIr\fP r part of signature 
+.br
+\fIs\fP s part of signature 
+.RE
+.PP
+
+.SS "template<class T> virtual size_t \fBDL_ElgamalLikeSignatureAlgorithm\fP< T >::RLen (const \fBDL_GroupParameters\fP< T > & params) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve R length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBDL_Algorithm_LUC_HMP\fP\&.
+.SS "template<class T> virtual void \fBDL_ElgamalLikeSignatureAlgorithm\fP< T >::Sign (const \fBDL_GroupParameters\fP< T > & params, const \fBInteger\fP & privateKey, const \fBInteger\fP & k, const \fBInteger\fP & e, \fBInteger\fP & r, \fBInteger\fP & s) const\fR [pure virtual]\fP"
+
+.PP
+Sign a message using a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.br
+\fIprivateKey\fP private key 
+.br
+\fIk\fP signing exponent 
+.br
+\fIe\fP encoded message 
+.br
+\fIr\fP r part of signature 
+.br
+\fIs\fP s part of signature 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_Algorithm_GDSA< T >\fP, \fBDL_Algorithm_GDSA< EC::Point >\fP, \fBDL_Algorithm_GDSA_ISO15946< T >\fP, \fBDL_Algorithm_GDSA_ISO15946< EC::Point >\fP, \fBDL_Algorithm_LUC_HMP\fP, \fBDL_Algorithm_NR< T >\fP, and \fBDL_Algorithm_NR< EC::Point >\fP\&.
+.SS "template<class T> virtual size_t \fBDL_ElgamalLikeSignatureAlgorithm\fP< T >::SLen (const \fBDL_GroupParameters\fP< T > & params) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve S length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.RE
+.PP
+
+.SS "template<class T> virtual bool \fBDL_ElgamalLikeSignatureAlgorithm\fP< T >::Verify (const \fBDL_GroupParameters\fP< T > & params, const \fBDL_PublicKey\fP< T > & publicKey, const \fBInteger\fP & e, const \fBInteger\fP & r, const \fBInteger\fP & s) const\fR [pure virtual]\fP"
+
+.PP
+Verify a message using a public key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.br
+\fIpublicKey\fP public key 
+.br
+\fIe\fP encoded message 
+.br
+\fIr\fP r part of signature 
+.br
+\fIs\fP s part of signature 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_Algorithm_GDSA< T >\fP, \fBDL_Algorithm_GDSA< EC::Point >\fP, \fBDL_Algorithm_GDSA_ISO15946< T >\fP, \fBDL_Algorithm_GDSA_ISO15946< EC::Point >\fP, \fBDL_Algorithm_LUC_HMP\fP, \fBDL_Algorithm_NR< T >\fP, and \fBDL_Algorithm_NR< EC::Point >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,277 @@
+.TH "PanamaCipherPolicy< B >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PanamaCipherPolicy< B > \- \fBPanama\fP stream cipher operation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <panama\&.h>\fP
+.PP
+Inherits \fBAdditiveCipherConcretePolicy< word32, 8 >\fP, \fBPanamaCipherInfo< B >\fP, and \fBPanama< B >\fP\&.
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "void \fBOperateKeystream\fP (\fBKeystreamOperation\fP operation, \fBbyte\fP *output, const \fBbyte\fP *input, size_t iterationCount)"
+.br
+.RI "Operates the keystream\&. "
+.ti -1c
+.RI "bool \fBCipherIsRandomAccess\fP () const"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "void \fBCipherResynchronize\fP (\fBbyte\fP *keystreamBuffer, const \fBbyte\fP *iv, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "unsigned int \fBGetAlignment\fP () const"
+.br
+.RI "Provides data alignment requirements\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBPanama< B >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (STAGES=32)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.ti -1c
+.RI "void \fBReset\fP ()"
+.br
+.ti -1c
+.RI "void \fBIterate\fP (size_t count, const \fBword32\fP *p=NULLPTR, \fBbyte\fP *output=NULLPTR, const \fBbyte\fP *input=NULLPTR, \fBKeystreamOperation\fP operation=\fBWRITE_KEYSTREAM\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBword32\fP, 8 > \fBm_key\fP"
+.br
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBword32\fP, 8 > \fBm_buf\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBPanama< B >\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeAlignedSecBlock\fP< \fBword32\fP, 20+8 *32 > \fBm_state\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBAdditiveCipherConcretePolicy< word32, 8 >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBWordType\fP"
+.br
+.RI "\fBWord\fP type for the cipher\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherConcretePolicy< word32, 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BYTES_PER_ITERATION=sizeof(\fBWordType\fP) *W)"
+.br
+.RI "Number of bytes for an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetBytesPerIteration\fP () const"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "unsigned int \fBGetIterationsToBuffer\fP () const"
+.br
+.RI "Provides buffer size based on iterations\&. "
+.ti -1c
+.RI "bool \fBCanOperateKeystream\fP () const"
+.br
+.RI "Flag indicating\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAdditiveCipherAbstractPolicy\fP
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "virtual void \fBWriteKeystream\fP (\fBbyte\fP *keystream, size_t iterationCount)"
+.br
+.RI "Generate the keystream\&. "
+.ti -1c
+.RI "virtual void \fBSeekToIteration\fP (\fBlword\fP iterationCount)"
+.br
+.RI "Seeks to a random position in the stream\&. "
+.in -1c
+
+Public Member Functions inherited from \fBPanamaCipherInfo< B >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 32, SimpleKeyingInterface::UNIQUE_IV, 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Protected Types inherited from \fBPanama< B >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBword32\fP \fBStage\fP[8]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class B>
+.br
+class PanamaCipherPolicy< B >"\fBPanama\fP stream cipher operation\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class B> std::string \fBPanamaCipherPolicy\fP< B >::AlgorithmProvider () const\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "template<class B> bool \fBPanamaCipherPolicy\fP< B >::CipherIsRandomAccess () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating random access\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the cipher is seekable, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBSeekToIteration()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "template<class B> void \fBPanamaCipherPolicy\fP< B >::CipherResynchronize (\fBbyte\fP * keystreamBuffer, const \fBbyte\fP * iv, size_t length)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeystreamBuffer\fP the keystream buffer 
+.br
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIlength\fP the size of the IV array 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "template<class B> NAMESPACE_END void \fBPanamaCipherPolicy\fP< B >::CipherSetKey (const \fBNameValuePairs\fP & params, const \fBbyte\fP * key, size_t length)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Key the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP set of \fBNameValuePairs\fP use to initialize this object 
+.br
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherAbstractPolicy\fP\&.
+.SS "template<class B> unsigned int \fBPanamaCipherPolicy\fP< B >::GetAlignment () const\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Provides data alignment requirements\&. 
+.PP
+\fBReturns\fP
+.RS 4
+data alignment requirements, in bytes
+.RE
+.PP
+Internally, the default implementation returns 1\&. If the stream cipher is implemented using an SSE2 ASM or intrinsics, then the value returned is usually 16\&. 
+.PP
+Reimplemented from \fBAdditiveCipherConcretePolicy< word32, 8 >\fP\&.
+.SS "template<class B> void \fBPanamaCipherPolicy\fP< B >::OperateKeystream (\fBKeystreamOperation\fP operation, \fBbyte\fP * output, const \fBbyte\fP * input, size_t iterationCount)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Operates the keystream\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoperation\fP the operation with additional flags 
+.br
+\fIoutput\fP the output buffer 
+.br
+\fIinput\fP the input buffer 
+.br
+\fIiterationCount\fP the number of iterations to perform on the input
+.RE
+.PP
+\fBOperateKeystream()\fP will attempt to operate upon \fBGetOptimalBlockSize()\fP buffer, which will be derived from \fBGetBytesPerIteration()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBCanOperateKeystream()\fP, \fBOperateKeystream()\fP, \fBWriteKeystream()\fP, \fBKeystreamOperation()\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAdditiveCipherConcretePolicy< word32, 8 >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

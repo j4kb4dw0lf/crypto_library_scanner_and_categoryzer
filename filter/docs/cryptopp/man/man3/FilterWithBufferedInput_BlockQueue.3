@@ -1,0 +1,37 @@
+.TH "FilterWithBufferedInput::BlockQueue" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FilterWithBufferedInput::BlockQueue
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBResetQueue\fP (size_t blockSize, size_t maxBlocks)"
+.br
+.ti -1c
+.RI "\fBbyte\fP * \fBGetBlock\fP ()"
+.br
+.ti -1c
+.RI "\fBbyte\fP * \fBGetContigousBlocks\fP (size_t &numberOfBytes)"
+.br
+.ti -1c
+.RI "size_t \fBGetAll\fP (\fBbyte\fP *outString)"
+.br
+.ti -1c
+.RI "void \fBPut\fP (const \fBbyte\fP *inString, size_t length)"
+.br
+.ti -1c
+.RI "size_t \fBCurrentSize\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBMaxSize\fP () const"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

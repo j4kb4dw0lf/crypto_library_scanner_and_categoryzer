@@ -1,0 +1,51 @@
+.TH "RawDES" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RawDES \- \fBDES\fP block cipher base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <des\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBRawSetKey\fP (\fBCipherDir\fP direction, const \fBbyte\fP *userKey)"
+.br
+.ti -1c
+.RI "void \fBRawProcessBlock\fP (\fBword32\fP &l, \fBword32\fP &r) const"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBword32\fP, 32 > \fBk\fP"
+.br
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const \fBword32\fP \fBSpbox\fP [8][64]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBDES\fP block cipher base class\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

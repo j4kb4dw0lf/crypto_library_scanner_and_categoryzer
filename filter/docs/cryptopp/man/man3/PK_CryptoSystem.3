@@ -1,0 +1,108 @@
+.TH "PK_CryptoSystem" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PK_CryptoSystem \- Interface for public-key encryptors and decryptors\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBPK_Decryptor\fP, and \fBPK_Encryptor\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMaxPlaintextLength\fP (size_t ciphertextLength) const =0"
+.br
+.RI "Provides the maximum length of plaintext for a given ciphertext length\&. "
+.ti -1c
+.RI "virtual size_t \fBCiphertextLength\fP (size_t plaintextLength) const =0"
+.br
+.RI "Calculate the length of ciphertext given length of plaintext\&. "
+.ti -1c
+.RI "virtual bool \fBParameterSupported\fP (const char *name) const =0"
+.br
+.RI "Determines whether this object supports the use of a named parameter\&. "
+.ti -1c
+.RI "virtual size_t \fBFixedCiphertextLength\fP () const"
+.br
+.RI "Provides the fixed ciphertext length, if one exists\&. "
+.ti -1c
+.RI "virtual size_t \fBFixedMaxPlaintextLength\fP () const"
+.br
+.RI "Provides the maximum plaintext length given a fixed ciphertext length\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for public-key encryptors and decryptors\&. 
+
+This class provides an interface common to encryptors and decryptors for querying their plaintext and ciphertext lengths\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual size_t PK_CryptoSystem::CiphertextLength (size_t plaintextLength) const\fR [pure virtual]\fP"
+
+.PP
+Calculate the length of ciphertext given length of plaintext\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of the ciphertext, in bytes
+.RE
+.PP
+This function returns 0 if plaintextLength is not valid (too long)\&. 
+.SS "virtual size_t PK_CryptoSystem::FixedCiphertextLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the fixed ciphertext length, if one exists\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the fixed ciphertext length if one exists, otherwise 0
+.RE
+.PP
+"Fixed" here means length of ciphertext does not depend on length of plaintext\&. In this case, it usually does depend on the key length\&. 
+.SS "virtual size_t PK_CryptoSystem::FixedMaxPlaintextLength () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum plaintext length given a fixed ciphertext length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+maximum plaintext length given the fixed ciphertext length, if one exists, otherwise return 0\&.
+.RE
+.PP
+FixedMaxPlaintextLength(0 returns the maximum plaintext length given the fixed ciphertext length, if one exists, otherwise return 0\&. 
+.SS "virtual size_t PK_CryptoSystem::MaxPlaintextLength (size_t ciphertextLength) const\fR [pure virtual]\fP"
+
+.PP
+Provides the maximum length of plaintext for a given ciphertext length\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the maximum size of the plaintext, in bytes
+.RE
+.PP
+This function returns 0 if ciphertextLength is not valid (too long or too short)\&. 
+.SS "virtual bool PK_CryptoSystem::ParameterSupported (const char * name) const\fR [pure virtual]\fP"
+
+.PP
+Determines whether this object supports the use of a named parameter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP the name of the parameter 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the parameter name is supported, false otherwise
+.RE
+.PP
+Some possible parameter names: EncodingParameters(), KeyDerivationParameters() and others Parameters listed in \fBargnames\&.h\fP 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

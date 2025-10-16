@@ -1,0 +1,80 @@
+.TH "WAKE_OFB< B >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+WAKE_OFB< B > \- WAKE stream cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <wake\&.h>\fP
+.PP
+Inherits \fBWAKE_OFB_Info< BigEndian >\fP, and \fBSymmetricCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBConcretePolicyHolder\fP< \fBWAKE_Policy\fP< B >, \fBAdditiveCipherTemplate\fP<> >, \fBWAKE_OFB_Info\fP< B > > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBEncryption\fP \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBWAKE_OFB_Info< BigEndian >\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class B = BigEndian>
+.br
+struct WAKE_OFB< B >"WAKE stream cipher\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIB\fP Endianness of the stream cipher 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

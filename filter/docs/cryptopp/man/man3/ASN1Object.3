@@ -1,0 +1,80 @@
+.TH "ASN1Object" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ASN1Object \- Interface for encoding and decoding ASN1 objects\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBASN1CryptoMaterial< DL_GroupParameters< Integer > >\fP, \fBASN1CryptoMaterial< PublicKey >\fP, \fBASN1CryptoMaterial< PrivateKey >\fP, \fBASN1CryptoMaterial< BASE >\fP, and \fBInteger\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)=0"
+.br
+.RI "Decode this object from a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const =0"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for encoding and decoding ASN1 objects\&. 
+
+Each class that derives from \fBASN1Object\fP should provide a serialization format that controls subobject layout\&. Most of the time the serialization format is taken from a standard, like P1363 or an RFC\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void ASN1Object::BERDecode (\fBBufferedTransformation\fP & bt)\fR [pure virtual]\fP"
+
+.PP
+Decode this object from a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Basic Encoding Rules (BER) 
+.PP
+Implemented in \fBDL_GroupParameters_IntegerBased\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBESIGNFunction\fP, \fBInteger\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleRSAFunction\fP, \fBPKCS8PrivateKey\fP, \fBx25519\fP, and \fBX509PublicKey\fP\&.
+.SS "virtual void ASN1Object::BEREncode (\fBBufferedTransformation\fP & bt) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Encode this object into a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Basic Encoding Rules (BER)\&.
+
+.PP
+This may be useful if \fBDEREncode()\fP would be too inefficient\&. 
+.SS "virtual void ASN1Object::DEREncode (\fBBufferedTransformation\fP & bt) const\fR [pure virtual]\fP"
+
+.PP
+Encode this object into a \fBBufferedTransformation\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Uses Distinguished Encoding Rules (DER) 
+.PP
+Implemented in \fBDL_GroupParameters_IntegerBased\fP, \fBed25519PrivateKey\fP, \fBed25519PublicKey\fP, \fBESIGNFunction\fP, \fBInteger\fP, \fBInvertibleESIGNFunction\fP, \fBInvertibleRSAFunction\fP, \fBPKCS8PrivateKey\fP, \fBx25519\fP, and \fBX509PublicKey\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,179 @@
+.TH "SHA3_256" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SHA3_256 \- SHA3-256 message digest\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sha3\&.h>\fP
+.PP
+Inherits \fBSHA3_Final< 32 >\fP\&.
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBSHA3_Final< 32 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=T_DigestSize)"
+.br
+.ti -1c
+.RI "\fBSHA3_Final\fP ()"
+.br
+.RI "Construct a SHA3-X message digest\&. "
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSHA3\fP
+.in +1c
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *hash, size_t size)"
+.br
+.RI "Computes the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBSHA3_Final< 32 >\fP
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBSHA3\fP
+.in +1c
+.ti -1c
+.RI "\fBSHA3\fP (unsigned int digestSize)"
+.br
+.RI "Construct a \fBSHA3\fP\&. "
+.ti -1c
+.RI "unsigned int \fBr\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+
+Protected Attributes inherited from \fBSHA3\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< word64, 25 > \fBm_state\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_digestSize\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_counter\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+SHA3-256 message digest\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.2 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

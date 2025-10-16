@@ -1,0 +1,125 @@
+.TH "DL_ObjectImpl< BASE, SCHEME_OPTIONS, KEY >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_ObjectImpl< BASE, SCHEME_OPTIONS, KEY > \- Discrete Log (DL) object implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherits \fBDL_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef KEY::Element \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBDL_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP
+.in +1c
+.ti -1c
+.RI "typedef SCHEME_OPTIONS \fBSchemeOptions\fP"
+.br
+.ti -1c
+.RI "typedef KEY::Element \fBElement\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBDL_ElgamalLikeSignatureAlgorithm\fP< Element > & \fBGetSignatureAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "const \fBDL_KeyAgreementAlgorithm\fP< Element > & \fBGetKeyAgreementAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "const \fBDL_KeyDerivationAlgorithm\fP< Element > & \fBGetKeyDerivationAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "const \fBDL_SymmetricEncryptionAlgorithm\fP & \fBGetSymmetricEncryptionAlgorithm\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "const \fBPK_SignatureMessageEncodingMethod\fP & \fBGetMessageEncodingInterface\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBDL_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP
+.in +1c
+.ti -1c
+.RI "BASE::KeyInterface & \fBAccessKeyInterface\fP ()"
+.br
+.ti -1c
+.RI "const BASE::KeyInterface & \fBGetKeyInterface\fP () const"
+.br
+.ti -1c
+.RI "HashIdentifier \fBGetHashIdentifier\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBGetDigestSize\fP () const"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBDL_ObjectImplBase< BASE, SCHEME_OPTIONS, KEY >\fP
+.in +1c
+.ti -1c
+.RI "\fBPrivateKey\fP & \fBAccessPrivateKey\fP ()"
+.br
+.ti -1c
+.RI "\fBPublicKey\fP & \fBAccessPublicKey\fP ()"
+.br
+.ti -1c
+.RI "const KEY & \fBGetKey\fP () const"
+.br
+.ti -1c
+.RI "KEY & \fBAccessKey\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< BASE, SCHEME_OPTIONS::AlgorithmInfo >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class SCHEME_OPTIONS, class KEY>
+.br
+class DL_ObjectImpl< BASE, SCHEME_OPTIONS, KEY >"Discrete Log (DL) object implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP TODO 
+.br
+\fISCHEME_OPTIONS\fP options for the scheme 
+.br
+\fIKEY\fP key used in the scheme 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

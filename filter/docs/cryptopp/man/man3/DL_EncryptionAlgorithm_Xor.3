@@ -1,0 +1,100 @@
+.TH "DL_EncryptionAlgorithm_Xor< MAC, DHAES_MODE, LABEL_OCTETS >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_EncryptionAlgorithm_Xor< MAC, DHAES_MODE, LABEL_OCTETS > \- P1363 based XOR Encryption Method\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gfpcrypt\&.h>\fP
+.PP
+Inherits \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "size_t \fBGetSymmetricKeyLength\fP (size_t plaintextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBGetSymmetricCiphertextLength\fP (size_t plaintextLength) const"
+.br
+.ti -1c
+.RI "size_t \fBGetMaxSymmetricPlaintextLength\fP (size_t ciphertextLength) const"
+.br
+.ti -1c
+.RI "void \fBSymmetricEncrypt\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *key, const \fBbyte\fP *plaintext, size_t plaintextLength, \fBbyte\fP *ciphertext, const \fBNameValuePairs\fP &parameters) const"
+.br
+.ti -1c
+.RI "\fBDecodingResult\fP \fBSymmetricDecrypt\fP (const \fBbyte\fP *key, const \fBbyte\fP *ciphertext, size_t ciphertextLength, \fBbyte\fP *plaintext, const \fBNameValuePairs\fP &parameters) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false>
+.br
+class DL_EncryptionAlgorithm_Xor< MAC, DHAES_MODE, LABEL_OCTETS >"P1363 based XOR Encryption Method\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIMAC\fP \fBMessageAuthenticationCode\fP derived class used for MAC computation 
+.br
+\fIDHAES_MODE\fP flag indicating DHAES mode 
+.br
+\fILABEL_OCTETS\fP flag indicating the label is octet count
+.RE
+.PP
+\fBDL_EncryptionAlgorithm_Xor\fP is based on an early P1363 draft, which itself appears to be based on an early Certicom SEC-1 draft (or an early SEC-1 draft was based on a P1363 draft)\&. Crypto++ 4\&.2 used it in its Integrated Ecryption Schemes with \fRNoCofactorMultiplication\fP, \fRDHAES_MODE=false\fP and \fRLABEL_OCTETS=true\fP\&.
+
+.PP
+If you need this method for Crypto++ 4\&.2 compatibility, then use the \fBECIES\fP template class with \fRNoCofactorMultiplication\fP, \fRDHAES_MODE=false\fP and \fRLABEL_OCTETS=true\fP\&.
+
+.PP
+If you need this method for Bouncy Castle 1\&.54 and Botan 1\&.11 compatibility, then use the \fBECIES\fP template class with \fRNoCofactorMultiplication\fP, \fRDHAES_MODE=true\fP and \fRLABEL_OCTETS=false\fP\&.
+
+.PP
+Bouncy Castle 1\&.54 and Botan 1\&.11 compatibility are the default template parameters\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 4\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false> size_t \fBDL_EncryptionAlgorithm_Xor\fP< MAC, DHAES_MODE, LABEL_OCTETS >::GetMaxSymmetricPlaintextLength (size_t ciphertextLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false> size_t \fBDL_EncryptionAlgorithm_Xor\fP< MAC, DHAES_MODE, LABEL_OCTETS >::GetSymmetricCiphertextLength (size_t plaintextLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false> size_t \fBDL_EncryptionAlgorithm_Xor\fP< MAC, DHAES_MODE, LABEL_OCTETS >::GetSymmetricKeyLength (size_t plaintextLength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false> bool \fBDL_EncryptionAlgorithm_Xor\fP< MAC, DHAES_MODE, LABEL_OCTETS >::ParameterSupported (const char * name) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false> \fBDecodingResult\fP \fBDL_EncryptionAlgorithm_Xor\fP< MAC, DHAES_MODE, LABEL_OCTETS >::SymmetricDecrypt (const \fBbyte\fP * key, const \fBbyte\fP * ciphertext, size_t ciphertextLength, \fBbyte\fP * plaintext, const \fBNameValuePairs\fP & parameters) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+.SS "template<class MAC, bool DHAES_MODE, bool LABEL_OCTETS = false> void \fBDL_EncryptionAlgorithm_Xor\fP< MAC, DHAES_MODE, LABEL_OCTETS >::SymmetricEncrypt (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * key, const \fBbyte\fP * plaintext, size_t plaintextLength, \fBbyte\fP * ciphertext, const \fBNameValuePairs\fP & parameters) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBDL_SymmetricEncryptionAlgorithm\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

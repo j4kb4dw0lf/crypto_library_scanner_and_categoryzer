@@ -1,0 +1,98 @@
+.TH "clonable_ptr< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+clonable_ptr< T > \- A pointer which can be copied and cloned\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <smartptr\&.h>\fP
+.PP
+Inherits \fBmember_ptr< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBclonable_ptr\fP (const T &obj)"
+.br
+.ti -1c
+.RI "\fBclonable_ptr\fP (T *p=NULLPTR)"
+.br
+.ti -1c
+.RI "\fBclonable_ptr\fP (const \fBclonable_ptr\fP< T > &rhs)"
+.br
+.ti -1c
+.RI "\fBclonable_ptr\fP< T > & \fBoperator=\fP (const \fBclonable_ptr\fP< T > &rhs)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBmember_ptr< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBmember_ptr\fP (T *p=NULLPTR)"
+.br
+.ti -1c
+.RI "const T & \fBoperator*\fP () const"
+.br
+.ti -1c
+.RI "T & \fBoperator*\fP ()"
+.br
+.ti -1c
+.RI "const T * \fBoperator\->\fP () const"
+.br
+.ti -1c
+.RI "T * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "const T * \fBget\fP () const"
+.br
+.ti -1c
+.RI "T * \fBget\fP ()"
+.br
+.ti -1c
+.RI "T * \fBrelease\fP ()"
+.br
+.ti -1c
+.RI "void \fBreset\fP (T *p=NULLPTR)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBmember_ptr< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBmember_ptr\fP (const \fBmember_ptr\fP< T > &rhs)"
+.br
+.ti -1c
+.RI "void \fBoperator=\fP (const \fBmember_ptr\fP< T > &rhs)"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBmember_ptr< T >\fP
+.in +1c
+.ti -1c
+.RI "T * \fBm_p\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class clonable_ptr< T >"A pointer which can be copied and cloned\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.RE
+.PP
+\fRT\fP should adhere to the \fR\fBClonable\fP\fP interface 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

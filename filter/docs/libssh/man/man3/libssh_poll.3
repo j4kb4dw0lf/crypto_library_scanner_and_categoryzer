@@ -1,0 +1,618 @@
+.TH "libssh_poll" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_poll \- The SSH poll functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_poll_handle_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_poll_ctx_struct\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_event_fd_wrapper\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_event_struct\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef int(* \fBpoll_fn\fP) (\fBssh_pollfd_t\fP *, nfds_t, int)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBssh_poll_init\fP (void)"
+.br
+.ti -1c
+.RI "void \fBssh_poll_cleanup\fP (void)"
+.br
+.ti -1c
+.RI "int \fBssh_poll\fP (\fBssh_pollfd_t\fP *fds, nfds_t nfds, int timeout)"
+.br
+.ti -1c
+.RI "\fBssh_poll_handle\fP \fBssh_poll_new\fP (socket_t fd, short events, ssh_poll_callback cb, void *userdata)"
+.br
+.RI "Allocate a new poll object, which could be used within a poll context\&. "
+.ti -1c
+.RI "void \fBssh_poll_free\fP (\fBssh_poll_handle\fP p)"
+.br
+.RI "Free a poll object\&. "
+.ti -1c
+.RI "\fBssh_poll_ctx\fP \fBssh_poll_get_ctx\fP (\fBssh_poll_handle\fP p)"
+.br
+.RI "Get the poll context of a poll object\&. "
+.ti -1c
+.RI "short \fBssh_poll_get_events\fP (\fBssh_poll_handle\fP p)"
+.br
+.RI "Get the events of a poll object\&. "
+.ti -1c
+.RI "void \fBssh_poll_set_events\fP (\fBssh_poll_handle\fP p, short events)"
+.br
+.RI "Set the events of a poll object\&. The events will also be propagated to an associated poll context unless the fd is locked\&. In that case, only the POLLOUT can be set\&. "
+.ti -1c
+.RI "void \fBssh_poll_set_fd\fP (\fBssh_poll_handle\fP p, socket_t fd)"
+.br
+.RI "Set the file descriptor of a poll object\&. The FD will also be propagated to an associated poll context\&. "
+.ti -1c
+.RI "void \fBssh_poll_add_events\fP (\fBssh_poll_handle\fP p, short events)"
+.br
+.RI "Add extra events to a poll object\&. Duplicates are ignored\&. The events will also be propagated to an associated poll context\&. "
+.ti -1c
+.RI "void \fBssh_poll_remove_events\fP (\fBssh_poll_handle\fP p, short events)"
+.br
+.RI "Remove events from a poll object\&. Non-existent are ignored\&. The events will also be propagated to an associated poll context\&. "
+.ti -1c
+.RI "socket_t \fBssh_poll_get_fd\fP (\fBssh_poll_handle\fP p)"
+.br
+.RI "Get the raw socket of a poll object\&. "
+.ti -1c
+.RI "void \fBssh_poll_set_callback\fP (\fBssh_poll_handle\fP p, ssh_poll_callback cb, void *userdata)"
+.br
+.RI "Set the callback of a poll object\&. "
+.ti -1c
+.RI "\fBssh_poll_ctx\fP \fBssh_poll_ctx_new\fP (size_t chunk_size)"
+.br
+.RI "Create a new poll context\&. It could be associated with many poll object which are going to be polled at the same time as the poll context\&. You would need a single poll context per thread\&. "
+.ti -1c
+.RI "void \fBssh_poll_ctx_free\fP (\fBssh_poll_ctx\fP ctx)"
+.br
+.RI "Free a poll context\&. "
+.ti -1c
+.RI "int \fBssh_poll_ctx_add\fP (\fBssh_poll_ctx\fP ctx, \fBssh_poll_handle\fP p)"
+.br
+.RI "Add a poll object to a poll context\&. "
+.ti -1c
+.RI "int \fBssh_poll_ctx_add_socket\fP (\fBssh_poll_ctx\fP ctx, \fBssh_socket\fP s)"
+.br
+.RI "Add a socket object to a poll context\&. "
+.ti -1c
+.RI "void \fBssh_poll_ctx_remove\fP (\fBssh_poll_ctx\fP ctx, \fBssh_poll_handle\fP p)"
+.br
+.RI "Remove a poll object from a poll context\&. "
+.ti -1c
+.RI "bool \fBssh_poll_is_locked\fP (\fBssh_poll_handle\fP p)"
+.br
+.RI "Returns if a poll object is locked\&. "
+.ti -1c
+.RI "int \fBssh_poll_ctx_dopoll\fP (\fBssh_poll_ctx\fP ctx, int timeout)"
+.br
+.RI "Poll all the sockets associated through a poll object with a poll context\&. If any of the events are set after the poll, the call back function of the socket will be called\&. This function should be called once within the program's main loop\&. "
+.ti -1c
+.RI "\fBssh_poll_ctx\fP \fBssh_poll_get_default_ctx\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "\fBssh_event\fP \fBssh_event_new\fP (void)"
+.br
+.RI "Create a new event context\&. It could be associated with many ssh_session objects and socket fd which are going to be polled at the same time as the event context\&. You would need a single event context per thread\&. "
+.ti -1c
+.RI "int \fBssh_event_add_fd\fP (\fBssh_event\fP event, socket_t fd, short events, ssh_event_callback cb, void *userdata)"
+.br
+.RI "Add a fd to the event and assign it a callback, when used in blocking mode\&. "
+.ti -1c
+.RI "int \fBssh_event_add_poll\fP (\fBssh_event\fP event, \fBssh_poll_handle\fP p)"
+.br
+.RI "Add a poll handle to the event\&. "
+.ti -1c
+.RI "void \fBssh_event_remove_poll\fP (\fBssh_event\fP event, \fBssh_poll_handle\fP p)"
+.br
+.RI "remove a poll handle to the event\&. "
+.ti -1c
+.RI "int \fBssh_event_add_session\fP (\fBssh_event\fP event, \fBssh_session\fP session)"
+.br
+.RI "remove the poll handle from session and assign them to an event, when used in blocking mode\&. "
+.ti -1c
+.RI "int \fBssh_event_add_connector\fP (\fBssh_event\fP event, \fBssh_connector\fP connector)"
+.br
+.RI "Add a connector to the SSH event loop\&. "
+.ti -1c
+.RI "int \fBssh_event_dopoll\fP (\fBssh_event\fP event, int timeout)"
+.br
+.RI "Poll all the sockets and sessions associated through an event object\&. "
+.ti -1c
+.RI "int \fBssh_event_remove_fd\fP (\fBssh_event\fP event, socket_t fd)"
+.br
+.RI "Remove a socket fd from an event context\&. "
+.ti -1c
+.RI "int \fBssh_event_remove_session\fP (\fBssh_event\fP event, \fBssh_session\fP session)"
+.br
+.RI "Remove a session object from an event context\&. "
+.ti -1c
+.RI "int \fBssh_event_remove_connector\fP (\fBssh_event\fP event, \fBssh_connector\fP connector)"
+.br
+.RI "Remove a connector from an event context\&. "
+.ti -1c
+.RI "void \fBssh_event_free\fP (\fBssh_event\fP event)"
+.br
+.RI "Free an event context\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Add a generic way to handle sockets asynchronously\&.
+
+.PP
+It's based on poll objects, each of which store a socket, its events and a callback, which gets called whenever an event is set\&. The poll objects are attached to a poll context, which should be allocated on a per thread basis\&.
+
+.PP
+Polling the poll context will poll all the attached poll objects and call their callbacks (handlers) if any of the socket events are set\&. This should be done within the main loop of an application\&. 
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_event_add_connector (\fBssh_event\fP event, \fBssh_connector\fP connector)"
+
+.PP
+Add a connector to the SSH event loop\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The SSH event loop
+.br
+\fIconnector\fP The connector object
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK
+
+.PP
+SSH_ERROR in case of error 
+.RE
+.PP
+
+.SS "int ssh_event_add_fd (\fBssh_event\fP event, socket_t fd, short events, ssh_event_callback cb, void * userdata)"
+
+.PP
+Add a fd to the event and assign it a callback, when used in blocking mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event 
+.br
+\fIfd\fP Socket that will be polled\&. 
+.br
+\fIevents\fP Poll events that will be monitored for the socket\&. i\&.e\&. POLLIN, POLLPRI, POLLOUT 
+.br
+\fIcb\fP Function to be called if any of the events are set\&. The prototype of cb is: int (*ssh_event_callback)(socket_t fd, int revents, void *userdata); 
+.br
+\fIuserdata\fP Userdata to be passed to the callback function\&. NULL if not needed\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success SSH_ERROR on failure 
+.RE
+.PP
+
+.SS "int ssh_event_add_poll (\fBssh_event\fP event, \fBssh_poll_handle\fP p)"
+
+.PP
+Add a poll handle to the event\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP the ssh_event
+.br
+\fIp\fP the poll handle
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success SSH_ERROR on failure 
+.RE
+.PP
+
+.SS "int ssh_event_add_session (\fBssh_event\fP event, \fBssh_session\fP session)"
+
+.PP
+remove the poll handle from session and assign them to an event, when used in blocking mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event object 
+.br
+\fIsession\fP The session to add to the event\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success SSH_ERROR on failure 
+.RE
+.PP
+
+.SS "int ssh_event_dopoll (\fBssh_event\fP event, int timeout)"
+
+.PP
+Poll all the sockets and sessions associated through an event object\&. If any of the events are set after the poll, the call back functions of the sessions or sockets will be called\&. This function should be called once within the programs main loop\&. In case of failure, the errno should be consulted to find more information about the failure set by underlying poll imlpementation\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event object to poll\&.
+.br
+\fItimeout\fP An upper limit on the time for which the poll will block, in milliseconds\&. Specifying a negative value means an infinite timeout\&. This parameter is passed to the poll() function\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success\&. SSH_ERROR Error happened during the poll\&. Check errno to get more details about why it failed\&. SSH_AGAIN Timeout occurred 
+.RE
+.PP
+
+.SS "void ssh_event_free (\fBssh_event\fP event)"
+
+.PP
+Free an event context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event object to free\&. Note: you have to manually remove sessions and socket fds before freeing the event object\&. 
+.RE
+.PP
+
+.SS "\fBssh_event\fP ssh_event_new (void )"
+
+.PP
+Create a new event context\&. It could be associated with many ssh_session objects and socket fd which are going to be polled at the same time as the event context\&. You would need a single event context per thread\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The ssh_event object on success, NULL on failure\&. 
+.RE
+.PP
+
+.SS "int ssh_event_remove_connector (\fBssh_event\fP event, \fBssh_connector\fP connector)"
+
+.PP
+Remove a connector from an event context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event object\&. 
+.br
+\fIconnector\fP connector object to remove 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success 
+
+.PP
+SSH_ERROR on failure 
+.RE
+.PP
+
+.SS "int ssh_event_remove_fd (\fBssh_event\fP event, socket_t fd)"
+
+.PP
+Remove a socket fd from an event context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event object\&. 
+.br
+\fIfd\fP The fd to remove\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success SSH_ERROR on failure 
+.RE
+.PP
+
+.SS "void ssh_event_remove_poll (\fBssh_event\fP event, \fBssh_poll_handle\fP p)"
+
+.PP
+remove a poll handle to the event\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP the ssh_event
+.br
+\fIp\fP the poll handle 
+.RE
+.PP
+
+.SS "int ssh_event_remove_session (\fBssh_event\fP event, \fBssh_session\fP session)"
+
+.PP
+Remove a session object from an event context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The ssh_event object\&. 
+.br
+\fIsession\fP The session to remove\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success SSH_ERROR on failure 
+.RE
+.PP
+
+.SS "void ssh_poll_add_events (\fBssh_poll_handle\fP p, short events)"
+
+.PP
+Add extra events to a poll object\&. Duplicates are ignored\&. The events will also be propagated to an associated poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.br
+\fIevents\fP Poll events\&. 
+.RE
+.PP
+
+.SS "int ssh_poll_ctx_add (\fBssh_poll_ctx\fP ctx, \fBssh_poll_handle\fP p)"
+
+.PP
+Add a poll object to a poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIctx\fP Pointer to an already allocated poll context\&. 
+.br
+\fIp\fP Pointer to an already allocated poll object\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error 
+.RE
+.PP
+
+.SS "int ssh_poll_ctx_add_socket (\fBssh_poll_ctx\fP ctx, \fBssh_socket\fP s)"
+
+.PP
+Add a socket object to a poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIctx\fP Pointer to an already allocated poll context\&. 
+.br
+\fIs\fP A SSH socket handle
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 on error 
+.RE
+.PP
+
+.SS "int ssh_poll_ctx_dopoll (\fBssh_poll_ctx\fP ctx, int timeout)"
+
+.PP
+Poll all the sockets associated through a poll object with a poll context\&. If any of the events are set after the poll, the call back function of the socket will be called\&. This function should be called once within the program's main loop\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIctx\fP Pointer to an already allocated poll context\&. 
+.br
+\fItimeout\fP An upper limit on the time for which ssh_poll_ctx() will block, in milliseconds\&. Specifying a negative value means an infinite timeout\&. This parameter is passed to the poll() function\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK No error\&. SSH_ERROR Error happened during the poll\&. SSH_AGAIN Timeout occurred 
+.RE
+.PP
+
+.SS "void ssh_poll_ctx_free (\fBssh_poll_ctx\fP ctx)"
+
+.PP
+Free a poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIctx\fP Pointer to an already allocated poll context\&. 
+.RE
+.PP
+
+.SS "\fBssh_poll_ctx\fP ssh_poll_ctx_new (size_t chunk_size)"
+
+.PP
+Create a new poll context\&. It could be associated with many poll object which are going to be polled at the same time as the poll context\&. You would need a single poll context per thread\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIchunk_size\fP The size of the memory chunk that will be allocated, when more memory is needed\&. This is for efficiency reasons, i\&.e\&. don't allocate memory for each new poll object, but for the next 5\&. Set it to 0 if you want to use the library's default value\&. 
+.RE
+.PP
+
+.SS "void ssh_poll_ctx_remove (\fBssh_poll_ctx\fP ctx, \fBssh_poll_handle\fP p)"
+
+.PP
+Remove a poll object from a poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIctx\fP Pointer to an already allocated poll context\&. 
+.br
+\fIp\fP Pointer to an already allocated poll object\&. 
+.RE
+.PP
+
+.SS "void ssh_poll_free (\fBssh_poll_handle\fP p)"
+
+.PP
+Free a poll object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.RE
+.PP
+
+.SS "\fBssh_poll_ctx\fP ssh_poll_get_ctx (\fBssh_poll_handle\fP p)"
+
+.PP
+Get the poll context of a poll object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Poll context or NULL if the poll object isn't attached\&. 
+.RE
+.PP
+
+.SS "short ssh_poll_get_events (\fBssh_poll_handle\fP p)"
+
+.PP
+Get the events of a poll object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Poll events\&. 
+.RE
+.PP
+
+.SS "socket_t ssh_poll_get_fd (\fBssh_poll_handle\fP p)"
+
+.PP
+Get the raw socket of a poll object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Raw socket\&. 
+.RE
+.PP
+
+.SS "bool ssh_poll_is_locked (\fBssh_poll_handle\fP p)"
+
+.PP
+Returns if a poll object is locked\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the poll object is locked; false otherwise\&. 
+.RE
+.PP
+
+.SS "\fBssh_poll_handle\fP ssh_poll_new (socket_t fd, short events, ssh_poll_callback cb, void * userdata)"
+
+.PP
+Allocate a new poll object, which could be used within a poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfd\fP Socket that will be polled\&. 
+.br
+\fIevents\fP Poll events that will be monitored for the socket\&. i\&.e\&. POLLIN, POLLPRI, POLLOUT 
+.br
+\fIcb\fP Function to be called if any of the events are set\&. The prototype of cb is: int (*ssh_poll_callback)(ssh_poll_handle p, socket_t fd, int revents, void *userdata); 
+.br
+\fIuserdata\fP Userdata to be passed to the callback function\&. NULL if not needed\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A new poll object, NULL on error 
+.RE
+.PP
+
+.SS "void ssh_poll_remove_events (\fBssh_poll_handle\fP p, short events)"
+
+.PP
+Remove events from a poll object\&. Non-existent are ignored\&. The events will also be propagated to an associated poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.br
+\fIevents\fP Poll events\&. 
+.RE
+.PP
+
+.SS "void ssh_poll_set_callback (\fBssh_poll_handle\fP p, ssh_poll_callback cb, void * userdata)"
+
+.PP
+Set the callback of a poll object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.br
+\fIcb\fP Function to be called if any of the events are set\&. 
+.br
+\fIuserdata\fP Userdata to be passed to the callback function\&. NULL if not needed\&. 
+.RE
+.PP
+
+.SS "void ssh_poll_set_events (\fBssh_poll_handle\fP p, short events)"
+
+.PP
+Set the events of a poll object\&. The events will also be propagated to an associated poll context unless the fd is locked\&. In that case, only the POLLOUT can be set\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.br
+\fIevents\fP Poll events\&. 
+.RE
+.PP
+
+.SS "void ssh_poll_set_fd (\fBssh_poll_handle\fP p, socket_t fd)"
+
+.PP
+Set the file descriptor of a poll object\&. The FD will also be propagated to an associated poll context\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Pointer to an already allocated poll object\&. 
+.br
+\fIfd\fP New file descriptor\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

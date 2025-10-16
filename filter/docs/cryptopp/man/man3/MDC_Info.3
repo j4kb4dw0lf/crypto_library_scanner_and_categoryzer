@@ -1,0 +1,63 @@
+.TH "MDC_Info< B >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MDC_Info< B > \- \fBMDC_Info\fP cipher information\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <mdc\&.h>\fP
+.PP
+Inherits \fBFixedBlockSize< B::DIGESTSIZE >\fP, and \fBFixedKeyLength< B::BLOCKSIZE >\fP\&.
+.PP
+Inherited by \fBMDC< SHA1 >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBFixedBlockSize< B::DIGESTSIZE >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< B::BLOCKSIZE >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class B>
+.br
+struct MDC_Info< B >"\fBMDC_Info\fP cipher information\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIB\fP \fBBlockCipher\fP derived class 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

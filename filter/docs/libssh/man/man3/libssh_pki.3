@@ -1,0 +1,967 @@
+.TH "libssh_pki" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_pki \- The SSH Public Key Infrastructure
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_LINE_SIZE\fP   4096"
+.br
+.ti -1c
+.RI "#define \fBPKCS11_URI\fP   'pkcs11:'"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "enum ssh_keytypes_e \fBpki_privatekey_type_from_string\fP (const char *privkey)"
+.br
+.ti -1c
+.RI "const char * \fBssh_pki_key_ecdsa_name\fP (const \fBssh_key\fP key)"
+.br
+.RI "returns the ECDSA key name ("ecdsa-sha2-nistp256" for example) "
+.ti -1c
+.RI "\fBssh_key\fP \fBssh_key_new\fP (void)"
+.br
+.RI "creates a new empty SSH key "
+.ti -1c
+.RI "\fBssh_key\fP \fBpki_key_dup_common_init\fP (const \fBssh_key\fP key, int demote)"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBssh_key_dup\fP (const \fBssh_key\fP key)"
+.br
+.RI "duplicates the key "
+.ti -1c
+.RI "void \fBssh_key_clean\fP (\fBssh_key\fP key)"
+.br
+.RI "clean up the key and deallocate all existing keys "
+.ti -1c
+.RI "void \fBssh_key_free\fP (\fBssh_key\fP key)"
+.br
+.RI "deallocate a SSH key "
+.ti -1c
+.RI "enum ssh_keytypes_e \fBssh_key_type\fP (const \fBssh_key\fP key)"
+.br
+.RI "returns the type of a ssh key "
+.ti -1c
+.RI "const char * \fBssh_key_signature_to_char\fP (enum ssh_keytypes_e type, enum ssh_digest_e hash_type)"
+.br
+.RI "Convert a signature type to a string\&. "
+.ti -1c
+.RI "const char * \fBssh_key_type_to_char\fP (enum ssh_keytypes_e type)"
+.br
+.RI "Convert a key type to a string\&. "
+.ti -1c
+.RI "enum ssh_digest_e \fBssh_key_hash_from_name\fP (const char *name)"
+.br
+.ti -1c
+.RI "int \fBssh_key_algorithm_allowed\fP (\fBssh_session\fP session, const char *type)"
+.br
+.RI "Checks the given key against the configured allowed public key algorithm types\&. "
+.ti -1c
+.RI "bool \fBssh_key_size_allowed_rsa\fP (int min_size, \fBssh_key\fP key)"
+.br
+.ti -1c
+.RI "bool \fBssh_key_size_allowed\fP (\fBssh_session\fP session, \fBssh_key\fP key)"
+.br
+.RI "Check the given key is acceptable in regards to the key size policy specified by the configuration\&. "
+.ti -1c
+.RI "enum ssh_digest_e \fBssh_key_type_to_hash\fP (\fBssh_session\fP session, enum ssh_keytypes_e type)"
+.br
+.RI "Convert a key type to a hash type\&. This is usually unambiguous for all the key types, unless the SHA2 extension (RFC 8332) is negotiated during key exchange\&. "
+.ti -1c
+.RI "const char * \fBssh_key_get_signature_algorithm\fP (\fBssh_session\fP session, enum ssh_keytypes_e type)"
+.br
+.RI "Gets signature algorithm name to be used with the given key type\&. "
+.ti -1c
+.RI "enum ssh_keytypes_e \fBssh_key_type_from_signature_name\fP (const char *name)"
+.br
+.RI "Convert a ssh key algorithm name to a ssh key algorithm type\&. "
+.ti -1c
+.RI "enum ssh_keytypes_e \fBssh_key_type_from_name\fP (const char *name)"
+.br
+.RI "Convert a ssh key name to a ssh key type\&. "
+.ti -1c
+.RI "enum ssh_keytypes_e \fBssh_key_type_plain\fP (enum ssh_keytypes_e type)"
+.br
+.RI "Get the public key type corresponding to a certificate type\&. "
+.ti -1c
+.RI "int \fBssh_key_is_public\fP (const \fBssh_key\fP k)"
+.br
+.RI "Check if the key has/is a public key\&. "
+.ti -1c
+.RI "int \fBssh_key_is_private\fP (const \fBssh_key\fP k)"
+.br
+.RI "Check if the key is a private key\&. "
+.ti -1c
+.RI "int \fBssh_key_cmp\fP (const \fBssh_key\fP k1, const \fBssh_key\fP k2, enum ssh_keycmp_e what)"
+.br
+.RI "Compare keys if they are equal\&. "
+.ti -1c
+.RI "\fBssh_signature\fP \fBssh_signature_new\fP (void)"
+.br
+.ti -1c
+.RI "void \fBssh_signature_free\fP (\fBssh_signature\fP sig)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_import_privkey_base64\fP (const char *b64_key, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data, \fBssh_key\fP *pkey)"
+.br
+.RI "import a base64 formatted key from a memory c-string "
+.ti -1c
+.RI "int \fBssh_pki_export_privkey_base64_format\fP (const \fBssh_key\fP privkey, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data, char **b64_key, enum ssh_file_format_e format)"
+.br
+.RI "Convert a private key to a base64 encoded key in given format\&. "
+.ti -1c
+.RI "int \fBssh_pki_export_privkey_base64\fP (const \fBssh_key\fP privkey, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data, char **b64_key)"
+.br
+.RI "Convert a private key to a pem base64 encoded key, or OpenSSH format for keytype ssh-ed25519\&. "
+.ti -1c
+.RI "int \fBssh_pki_import_privkey_file\fP (const char *filename, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data, \fBssh_key\fP *pkey)"
+.br
+.RI "Import a private key from a file or a PKCS #11 device\&. "
+.ti -1c
+.RI "int \fBssh_pki_export_privkey_file_format\fP (const \fBssh_key\fP privkey, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data, const char *filename, enum ssh_file_format_e format)"
+.br
+.RI "Export a private key to a file in format specified in the argument\&. "
+.ti -1c
+.RI "int \fBssh_pki_export_privkey_file\fP (const \fBssh_key\fP privkey, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data, const char *filename)"
+.br
+.RI "Export a private key to a pem file on disk, or OpenSSH format for keytype ssh-ed25519\&. "
+.ti -1c
+.RI "\fBssh_public_key\fP \fBssh_pki_convert_key_to_publickey\fP (const \fBssh_key\fP key)"
+.br
+.ti -1c
+.RI "\fBssh_private_key\fP \fBssh_pki_convert_key_to_privatekey\fP (const \fBssh_key\fP key)"
+.br
+.ti -1c
+.RI "int \fBpki_import_privkey_buffer\fP (enum ssh_keytypes_e type, \fBssh_buffer\fP buffer, \fBssh_key\fP *pkey)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_import_pubkey_base64\fP (const char *b64_key, enum ssh_keytypes_e type, \fBssh_key\fP *pkey)"
+.br
+.RI "Import a base64 formatted public key from a memory c-string\&. "
+.ti -1c
+.RI "int \fBssh_pki_import_pubkey_blob\fP (const \fBssh_string\fP key_blob, \fBssh_key\fP *pkey)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_import_pubkey_file\fP (const char *filename, \fBssh_key\fP *pkey)"
+.br
+.RI "Import a public key from a file or a PKCS #11 device\&. "
+.ti -1c
+.RI "int \fBssh_pki_import_cert_base64\fP (const char *b64_cert, enum ssh_keytypes_e type, \fBssh_key\fP *pkey)"
+.br
+.RI "Import a base64 formatted certificate from a memory c-string\&. "
+.ti -1c
+.RI "int \fBssh_pki_import_cert_blob\fP (const \fBssh_string\fP cert_blob, \fBssh_key\fP *pkey)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_import_cert_file\fP (const char *filename, \fBssh_key\fP *pkey)"
+.br
+.RI "Import a certificate from the given filename\&. "
+.ti -1c
+.RI "int \fBssh_pki_generate\fP (enum ssh_keytypes_e type, int parameter, \fBssh_key\fP *pkey)"
+.br
+.RI "Generates a key pair\&. "
+.ti -1c
+.RI "int \fBssh_pki_export_privkey_to_pubkey\fP (const \fBssh_key\fP privkey, \fBssh_key\fP *pkey)"
+.br
+.RI "Create a public key from a private key\&. "
+.ti -1c
+.RI "int \fBpki_buffer_pack_sk_priv_data\fP (\fBssh_buffer\fP buffer, \fBssh_key\fP key)"
+.br
+.ti -1c
+.RI "int \fBpki_buffer_unpack_sk_priv_data\fP (\fBssh_buffer\fP buffer, \fBssh_key\fP key)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_export_pubkey_blob\fP (const \fBssh_key\fP key, \fBssh_string\fP *pblob)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_export_privkey_blob\fP (const \fBssh_key\fP key, \fBssh_string\fP *pblob)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_export_pubkey_base64\fP (const \fBssh_key\fP key, char **b64_key)"
+.br
+.RI "Convert a public key to a base64 encoded key\&. "
+.ti -1c
+.RI "int \fBssh_pki_export_pubkey_file\fP (const \fBssh_key\fP key, const char *filename)"
+.br
+.RI "Export public key to file\&. "
+.ti -1c
+.RI "int \fBssh_pki_copy_cert_to_privkey\fP (const \fBssh_key\fP certkey, \fBssh_key\fP privkey)"
+.br
+.RI "Copy the certificate part of a public key into a private key\&. "
+.ti -1c
+.RI "int \fBssh_pki_export_signature_blob\fP (const \fBssh_signature\fP sig, \fBssh_string\fP *sig_blob)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_import_signature_blob\fP (const \fBssh_string\fP sig_blob, const \fBssh_key\fP pubkey, \fBssh_signature\fP *psig)"
+.br
+.ti -1c
+.RI "int \fBpki_key_check_hash_compatible\fP (\fBssh_key\fP key, enum ssh_digest_e hash_type)"
+.br
+.ti -1c
+.RI "int \fBssh_pki_signature_verify\fP (\fBssh_session\fP session, \fBssh_signature\fP sig, const \fBssh_key\fP key, const unsigned char *input, size_t input_len)"
+.br
+.ti -1c
+.RI "\fBssh_signature\fP \fBpki_do_sign\fP (const \fBssh_key\fP privkey, const unsigned char *input, size_t input_len, enum ssh_digest_e hash_type)"
+.br
+.ti -1c
+.RI "int \fBsshsig_sign\fP (const void *data, size_t data_length, \fBssh_key\fP privkey, const char *sig_namespace, enum sshsig_digest_e hash_alg, char **signature)"
+.br
+.RI "Signs data in sshsig compatible format\&. "
+.ti -1c
+.RI "int \fBsshsig_verify\fP (const void *data, size_t data_length, const char *signature, const char *sig_namespace, \fBssh_key\fP *sign_key)"
+.br
+.RI "Verifies an sshsig formatted signature against data\&. "
+.ti -1c
+.RI "\fBssh_string\fP \fBssh_pki_do_sign\fP (\fBssh_session\fP session, \fBssh_buffer\fP sigbuf, const \fBssh_key\fP privkey, enum ssh_digest_e hash_type)"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBssh_pki_do_sign_agent\fP (\fBssh_session\fP session, struct \fBssh_buffer_struct\fP *buf, const \fBssh_key\fP pubkey)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBssh_key\fP \fBssh_pki_openssh_privkey_import\fP (const char *text_key, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data)"
+.br
+.ti -1c
+.RI "\fBssh_key\fP \fBssh_pki_openssh_pubkey_import\fP (const char *text_key)"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBssh_pki_openssh_privkey_export\fP (const \fBssh_key\fP privkey, const char *passphrase, \fBssh_auth_callback\fP auth_fn, void *auth_data)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for the creation, importation and manipulation of public and private keys in the context of the SSH protocol 
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_key_algorithm_allowed (\fBssh_session\fP session, const char * type)"
+
+.PP
+Checks the given key against the configured allowed public key algorithm types\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session 
+.br
+\fItype\fP The key algorithm to check 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the key algorithm is allowed, 0 otherwise 
+.RE
+.PP
+
+.SS "void ssh_key_clean (\fBssh_key\fP key)"
+
+.PP
+clean up the key and deallocate all existing keys 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP ssh_key to clean 
+.RE
+.PP
+
+.SS "int ssh_key_cmp (const \fBssh_key\fP k1, const \fBssh_key\fP k2, enum ssh_keycmp_e what)"
+
+.PP
+Compare keys if they are equal\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIk1\fP The first key to compare\&.
+.br
+\fIk2\fP The second key to compare\&.
+.br
+\fIwhat\fP What part or type of the key do you want to compare\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 if equal, 1 if not\&. 
+.RE
+.PP
+
+.SS "\fBssh_key\fP ssh_key_dup (const \fBssh_key\fP key)"
+
+.PP
+duplicates the key 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP An ssh_key to duplicate
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A duplicated ssh_key key 
+.RE
+.PP
+
+.SS "void ssh_key_free (\fBssh_key\fP key)"
+
+.PP
+deallocate a SSH key 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP ssh_key handle to free 
+.RE
+.PP
+
+.SS "const char * ssh_key_get_signature_algorithm (\fBssh_session\fP session, enum ssh_keytypes_e type)"
+
+.PP
+Gets signature algorithm name to be used with the given key type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP SSH session\&. 
+.br
+\fItype\fP The algorithm type to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A string for the keytype or NULL if unknown\&. 
+.RE
+.PP
+
+.SS "int ssh_key_is_private (const \fBssh_key\fP k)"
+
+.PP
+Check if the key is a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIk\fP The key to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if it is a private key, 0 if not\&. 
+.RE
+.PP
+
+.SS "int ssh_key_is_public (const \fBssh_key\fP k)"
+
+.PP
+Check if the key has/is a public key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIk\fP The key to check\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if it is a public key, 0 if not\&. 
+.RE
+.PP
+
+.SS "\fBssh_key\fP ssh_key_new (void )"
+
+.PP
+creates a new empty SSH key 
+.PP
+\fBReturns\fP
+.RS 4
+an empty ssh_key handle, or NULL on error\&. 
+.RE
+.PP
+
+.SS "const char * ssh_key_signature_to_char (enum ssh_keytypes_e type, enum ssh_digest_e hash_type)"
+
+.PP
+Convert a signature type to a string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP The algorithm type to convert\&.
+.br
+\fIhash_type\fP The hash type to convert
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A string for the keytype or NULL if unknown\&. 
+.RE
+.PP
+
+.SS "bool ssh_key_size_allowed (\fBssh_session\fP session, \fBssh_key\fP key)"
+
+.PP
+Check the given key is acceptable in regards to the key size policy specified by the configuration\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP The SSH session 
+.br
+\fIkey\fP The SSH key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the key is allowed, false otherwise 
+.RE
+.PP
+
+.SS "enum ssh_keytypes_e ssh_key_type (const \fBssh_key\fP key)"
+
+.PP
+returns the type of a ssh key 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the ssh_key handle 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+one of SSH_KEYTYPE_RSA, SSH_KEYTYPE_ECDSA_P256, SSH_KEYTYPE_ECDSA_P384, SSH_KEYTYPE_ECDSA_P521, SSH_KEYTYPE_ED25519, SSH_KEYTYPE_RSA_CERT01, SSH_KEYTYPE_ECDSA_P256_CERT01, SSH_KEYTYPE_ECDSA_P384_CERT01, SSH_KEYTYPE_ECDSA_P521_CERT01, or SSH_KEYTYPE_ED25519_CERT01\&. 
+
+.PP
+SSH_KEYTYPE_UNKNOWN if the type is unknown 
+.RE
+.PP
+
+.SS "enum ssh_keytypes_e ssh_key_type_from_name (const char * name)"
+
+.PP
+Convert a ssh key name to a ssh key type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP The name to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The enum ssh key type\&. 
+.RE
+.PP
+
+.SS "enum ssh_keytypes_e ssh_key_type_from_signature_name (const char * name)"
+
+.PP
+Convert a ssh key algorithm name to a ssh key algorithm type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIname\fP The name to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The enum ssh key algorithm type\&. 
+.RE
+.PP
+
+.SS "enum ssh_keytypes_e ssh_key_type_plain (enum ssh_keytypes_e type)"
+
+.PP
+Get the public key type corresponding to a certificate type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP The certificate or public key type\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The matching public key type\&. 
+.RE
+.PP
+
+.SS "const char * ssh_key_type_to_char (enum ssh_keytypes_e type)"
+
+.PP
+Convert a key type to a string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP The type to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A string for the keytype or NULL if unknown\&. 
+.RE
+.PP
+
+.SS "enum ssh_digest_e ssh_key_type_to_hash (\fBssh_session\fP session, enum ssh_keytypes_e type)"
+
+.PP
+Convert a key type to a hash type\&. This is usually unambiguous for all the key types, unless the SHA2 extension (RFC 8332) is negotiated during key exchange\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsession\fP SSH Session\&.
+.br
+\fItype\fP The type to convert\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A hash type to be used\&. 
+.RE
+.PP
+
+.SS "int ssh_pki_copy_cert_to_privkey (const \fBssh_key\fP certkey, \fBssh_key\fP privkey)"
+
+.PP
+Copy the certificate part of a public key into a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcertkey\fP The certificate key\&.
+.br
+\fIprivkey\fP The target private key to copy the certificate to\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "int ssh_pki_export_privkey_base64 (const \fBssh_key\fP privkey, const char * passphrase, \fBssh_auth_callback\fP auth_fn, void * auth_data, char ** b64_key)"
+
+.PP
+Convert a private key to a pem base64 encoded key, or OpenSSH format for keytype ssh-ed25519\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprivkey\fP The private key to export\&.
+.br
+\fIpassphrase\fP The passphrase to use to encrypt the key with or NULL\&. An empty string means no passphrase\&.
+.br
+\fIauth_fn\fP An auth function you may want to use or NULL\&.
+.br
+\fIauth_data\fP Private data passed to the auth function\&.
+.br
+\fIb64_key\fP A pointer to store the allocated base64 encoded key\&. You need to free the buffer using \fBssh_string_from_char()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_export_privkey_base64_format (const \fBssh_key\fP privkey, const char * passphrase, \fBssh_auth_callback\fP auth_fn, void * auth_data, char ** b64_key, enum ssh_file_format_e format)"
+
+.PP
+Convert a private key to a base64 encoded key in given format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprivkey\fP The private key to export\&.
+.br
+\fIpassphrase\fP The passphrase to use to encrypt the key with or NULL\&. An empty string means no passphrase\&.
+.br
+\fIauth_fn\fP An auth function you may want to use or NULL\&.
+.br
+\fIauth_data\fP Private data passed to the auth function\&.
+.br
+\fIb64_key\fP A pointer to store the allocated base64 encoded key\&. You need to free the buffer using \fBssh_string_from_char()\fP\&.
+.br
+\fIformat\fP The file format (OpenSSH, PEM, or default)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_export_privkey_file (const \fBssh_key\fP privkey, const char * passphrase, \fBssh_auth_callback\fP auth_fn, void * auth_data, const char * filename)"
+
+.PP
+Export a private key to a pem file on disk, or OpenSSH format for keytype ssh-ed25519\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprivkey\fP The private key to export\&.
+.br
+\fIpassphrase\fP The passphrase to use to encrypt the key with or NULL\&. An empty string means no passphrase\&.
+.br
+\fIauth_fn\fP An auth function you may want to use or NULL\&.
+.br
+\fIauth_data\fP Private data passed to the auth function\&.
+.br
+\fIfilename\fP The path where to store the pem file\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "int ssh_pki_export_privkey_file_format (const \fBssh_key\fP privkey, const char * passphrase, \fBssh_auth_callback\fP auth_fn, void * auth_data, const char * filename, enum ssh_file_format_e format)"
+
+.PP
+Export a private key to a file in format specified in the argument\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprivkey\fP The private key to export\&.
+.br
+\fIpassphrase\fP The passphrase to use to encrypt the key with or NULL\&. An empty string means no passphrase\&.
+.br
+\fIauth_fn\fP An auth function you may want to use or NULL\&.
+.br
+\fIauth_data\fP Private data passed to the auth function\&.
+.br
+\fIfilename\fP The path where to store the pem file\&.
+.br
+\fIformat\fP The file format (OpenSSH, PEM, or default)
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&. 
+.RE
+.PP
+
+.SS "int ssh_pki_export_privkey_to_pubkey (const \fBssh_key\fP privkey, \fBssh_key\fP * pkey)"
+
+.PP
+Create a public key from a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprivkey\fP The private key to get the public key from\&.
+.br
+\fIpkey\fP A pointer to store the newly allocated public key\&. You NEED to free the key using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_export_pubkey_base64 (const \fBssh_key\fP key, char ** b64_key)"
+
+.PP
+Convert a public key to a base64 encoded key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key to hash
+.br
+\fIb64_key\fP A pointer to store the allocated base64 encoded key\&. You need to free the buffer using \fBssh_string_free_char()\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_string_free_char()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_export_pubkey_file (const \fBssh_key\fP key, const char * filename)"
+
+.PP
+Export public key to file\&. Exports the public key in AuthorizedKeysFile acceptable format\&. For more information see \fRman sshd\fP
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP A key to export
+.br
+\fIfilename\fP The name of the output file
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR otherwise\&. 
+.RE
+.PP
+
+.SS "int ssh_pki_generate (enum ssh_keytypes_e type, int parameter, \fBssh_key\fP * pkey)"
+
+.PP
+Generates a key pair\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP Type of key to create
+.br
+\fIparameter\fP Parameter to the creation of key: rsa : length of the key in bits (e\&.g\&. 1024, 2048, 4096) 
+.br
+\fIpkey\fP A pointer to store the allocated private key\&. You need to free the memory using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBWarning\fP
+.RS 4
+Generating a key pair may take some time\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_import_cert_base64 (const char * b64_cert, enum ssh_keytypes_e type, \fBssh_key\fP * pkey)"
+
+.PP
+Import a base64 formatted certificate from a memory c-string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb64_cert\fP The base64 cert to format\&.
+.br
+\fItype\fP The type of the cert to format\&.
+.br
+\fIpkey\fP A pointer where the allocated key can be stored\&. You need to free the memory using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_import_cert_file (const char * filename, \fBssh_key\fP * pkey)"
+
+.PP
+Import a certificate from the given filename\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilename\fP The path to the certificate\&.
+.br
+\fIpkey\fP A pointer to store the allocated certificate\&. You need to free the memory using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_EOF if the file doesn't exist or permission denied, SSH_ERROR otherwise\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_import_privkey_base64 (const char * b64_key, const char * passphrase, \fBssh_auth_callback\fP auth_fn, void * auth_data, \fBssh_key\fP * pkey)"
+
+.PP
+import a base64 formatted key from a memory c-string 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb64_key\fP The c-string holding the base64 encoded key
+.br
+\fIpassphrase\fP The passphrase to decrypt the key, or NULL
+.br
+\fIauth_fn\fP An auth function you may want to use or NULL\&.
+.br
+\fIauth_data\fP Private data passed to the auth function\&.
+.br
+\fIpkey\fP A pointer where the allocated key can be stored\&. You need to free the memory using \fBssh_key_free()\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_ERROR in case of error, SSH_OK otherwise\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_import_privkey_file (const char * filename, const char * passphrase, \fBssh_auth_callback\fP auth_fn, void * auth_data, \fBssh_key\fP * pkey)"
+
+.PP
+Import a private key from a file or a PKCS #11 device\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilename\fP The filename of the private key or the PKCS #11 URI corresponding to the private key\&.
+.br
+\fIpassphrase\fP The passphrase to decrypt the private key\&. Set to NULL if none is needed or it is unknown\&.
+.br
+\fIauth_fn\fP An auth function you may want to use or NULL\&.
+.br
+\fIauth_data\fP Private data passed to the auth function\&.
+.br
+\fIpkey\fP A pointer to store the allocated ssh_key\&. You need to free the key using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_EOF if the file doesn't exist or permission denied, SSH_ERROR otherwise\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_import_pubkey_base64 (const char * b64_key, enum ssh_keytypes_e type, \fBssh_key\fP * pkey)"
+
+.PP
+Import a base64 formatted public key from a memory c-string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIb64_key\fP The base64 key to format\&.
+.br
+\fItype\fP The type of the key to format\&.
+.br
+\fIpkey\fP A pointer where the allocated key can be stored\&. You need to free the memory using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "int ssh_pki_import_pubkey_file (const char * filename, \fBssh_key\fP * pkey)"
+
+.PP
+Import a public key from a file or a PKCS #11 device\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilename\fP The filename of the public key or the PKCS #11 URI corresponding to the public key\&.
+.br
+\fIpkey\fP A pointer to store the allocated public key\&. You need to free the memory using \fBssh_key_free()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_EOF if the file doesn't exist or permission denied, SSH_ERROR otherwise\&.
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBssh_key_free()\fP 
+.RE
+.PP
+
+.SS "const char * ssh_pki_key_ecdsa_name (const \fBssh_key\fP key)"
+
+.PP
+returns the ECDSA key name ("ecdsa-sha2-nistp256" for example) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the ssh_key whose ECDSA name to get
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the ECDSA key name ("ecdsa-sha2-nistp256" for example)
+
+.PP
+"unknown" if the ECDSA key name is not known 
+.RE
+.PP
+
+.SS "int sshsig_sign (const void * data, size_t data_length, \fBssh_key\fP privkey, const char * sig_namespace, enum sshsig_digest_e hash_alg, char ** signature)"
+
+.PP
+Signs data in sshsig compatible format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP The data to sign 
+.br
+\fIdata_length\fP The length of the data 
+.br
+\fIprivkey\fP The private key to sign with 
+.br
+\fIhash_alg\fP The hash algorithm to use (SSHSIG_DIGEST_SHA2_256 or SSHSIG_DIGEST_SHA2_512) 
+.br
+\fIsig_namespace\fP The signature namespace (e\&.g\&. "file", "email", etc\&.) 
+.br
+\fIsignature\fP Pointer to store the allocated signature string in the armored format\&. Must be freed with \fBssh_string_free_char()\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on error 
+.RE
+.PP
+
+.SS "int sshsig_verify (const void * data, size_t data_length, const char * signature, const char * sig_namespace, \fBssh_key\fP * sign_key)"
+
+.PP
+Verifies an sshsig formatted signature against data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP The data to verify 
+.br
+\fIdata_length\fP The length of the data 
+.br
+\fIsignature\fP The armored sshsig signature 
+.br
+\fIsig_namespace\fP The expected signature namespace 
+.br
+\fIsign_key\fP If not NULL, returns the allocated public key that was used for signing this data\&. Must be freed with \fBssh_key_free()\fP\&. Note that this is an output parameter and is not checked against "allowed signers"\&. The caller needs to compare it with expected signer key using \fBssh_key_cmp()\fP\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_OK on success, SSH_ERROR on verification failure 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

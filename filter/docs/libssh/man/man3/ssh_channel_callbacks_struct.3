@@ -1,0 +1,113 @@
+.TH "ssh_channel_callbacks_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_channel_callbacks_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.ti -1c
+.RI "void * \fBuserdata\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_data_callback\fP \fBchannel_data_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_eof_callback\fP \fBchannel_eof_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_close_callback\fP \fBchannel_close_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_signal_callback\fP \fBchannel_signal_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_exit_status_callback\fP \fBchannel_exit_status_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_exit_signal_callback\fP \fBchannel_exit_signal_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_pty_request_callback\fP \fBchannel_pty_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_shell_request_callback\fP \fBchannel_shell_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_auth_agent_req_callback\fP \fBchannel_auth_agent_req_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_x11_req_callback\fP \fBchannel_x11_req_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_pty_window_change_callback\fP \fBchannel_pty_window_change_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_exec_request_callback\fP \fBchannel_exec_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_env_request_callback\fP \fBchannel_env_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_subsystem_request_callback\fP \fBchannel_subsystem_request_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_write_wontblock_callback\fP \fBchannel_write_wontblock_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_open_resp_callback\fP \fBchannel_open_response_function\fP"
+.br
+.ti -1c
+.RI "\fBssh_channel_request_resp_callback\fP \fBchannel_request_response_function\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBssh_channel_auth_agent_req_callback\fP ssh_channel_callbacks_struct::channel_auth_agent_req_function"
+This function will be called when a client requests agent authentication forwarding\&. 
+.SS "\fBssh_channel_close_callback\fP ssh_channel_callbacks_struct::channel_close_function"
+This functions will be called when the channel has been closed by remote 
+.SS "\fBssh_channel_data_callback\fP ssh_channel_callbacks_struct::channel_data_function"
+This functions will be called when there is data available\&. 
+.SS "\fBssh_channel_env_request_callback\fP ssh_channel_callbacks_struct::channel_env_request_function"
+This function will be called when a client requests an environment variable to be set\&. 
+.SS "\fBssh_channel_eof_callback\fP ssh_channel_callbacks_struct::channel_eof_function"
+This functions will be called when the channel has received an EOF\&. 
+.SS "\fBssh_channel_exec_request_callback\fP ssh_channel_callbacks_struct::channel_exec_request_function"
+This function will be called when a client requests a command execution\&. 
+.SS "\fBssh_channel_exit_signal_callback\fP ssh_channel_callbacks_struct::channel_exit_signal_function"
+This functions will be called when an exit signal has been received 
+.SS "\fBssh_channel_exit_status_callback\fP ssh_channel_callbacks_struct::channel_exit_status_function"
+This functions will be called when an exit status has been received 
+.SS "\fBssh_channel_open_resp_callback\fP ssh_channel_callbacks_struct::channel_open_response_function"
+This functions will be called when the channel has received a channel open confirmation or failure\&. 
+.SS "\fBssh_channel_pty_request_callback\fP ssh_channel_callbacks_struct::channel_pty_request_function"
+This function will be called when a client requests a PTY 
+.SS "\fBssh_channel_pty_window_change_callback\fP ssh_channel_callbacks_struct::channel_pty_window_change_function"
+This function will be called when a client requests a window change\&. 
+.SS "\fBssh_channel_request_resp_callback\fP ssh_channel_callbacks_struct::channel_request_response_function"
+This functions will be called when the channel has received the response to the pending request\&. 
+.SS "\fBssh_channel_shell_request_callback\fP ssh_channel_callbacks_struct::channel_shell_request_function"
+This function will be called when a client requests a shell 
+.SS "\fBssh_channel_signal_callback\fP ssh_channel_callbacks_struct::channel_signal_function"
+This functions will be called when a signal has been received 
+.SS "\fBssh_channel_subsystem_request_callback\fP ssh_channel_callbacks_struct::channel_subsystem_request_function"
+This function will be called when a client requests a subsystem (like sftp)\&. 
+.SS "\fBssh_channel_write_wontblock_callback\fP ssh_channel_callbacks_struct::channel_write_wontblock_function"
+This function will be called when the channel write is guaranteed not to block\&. 
+.SS "\fBssh_channel_x11_req_callback\fP ssh_channel_callbacks_struct::channel_x11_req_function"
+This function will be called when a client requests X11 forwarding\&. 
+.SS "size_t ssh_channel_callbacks_struct::size"
+DON'T SET THIS use \fBssh_callbacks_init()\fP instead\&. 
+.SS "void* ssh_channel_callbacks_struct::userdata"
+User-provided data\&. User is free to set anything he wants here 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

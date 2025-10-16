@@ -1,0 +1,386 @@
+.TH "Weak1::MARC4_Base" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Weak1::MARC4_Base \- MARC4 base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <arc4\&.h>\fP
+.PP
+Inherits \fBWeak1::ARC4_Base\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBMARC4_Base\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBMARC4_Base\fP > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBWeak1::ARC4_Base\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBARC4_Base\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBSymmetricCipherFinal\fP< \fBARC4_Base\fP > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBWeak1::ARC4_Base\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "void \fBGenerateBlock\fP (\fBbyte\fP *output, size_t size)"
+.br
+.RI "Generate random array of bytes\&. "
+.ti -1c
+.RI "void \fBDiscardBytes\fP (size_t n)"
+.br
+.RI "Generate and discard n bytes\&. "
+.ti -1c
+.RI "void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt an array of bytes\&. "
+.ti -1c
+.RI "bool \fBIsRandomAccess\fP () const"
+.br
+.RI "Determines whether the cipher supports random access\&. "
+.ti -1c
+.RI "bool \fBIsSelfInverting\fP () const"
+.br
+.RI "Determines whether the cipher is self-inverting\&. "
+.ti -1c
+.RI "bool \fBIsForwardTransformation\fP () const"
+.br
+.RI "Determines if the cipher is being operated in its forward direction\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVariableKeyLength< 16, 1, 256 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=N)"
+.br
+.RI "The minimum key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "Provides a valid key length for the algorithm provided by a static function\&. "
+.in -1c
+
+Public Member Functions inherited from \fBRandomNumberGenerator\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBIncorporateEntropy\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Update RNG state with additional unpredictable values\&. "
+.ti -1c
+.RI "virtual bool \fBCanIncorporateEntropy\fP () const"
+.br
+.RI "Determines if a generator can accept additional entropy\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP \fBGenerateByte\fP ()"
+.br
+.RI "Generate new random byte and return it\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGenerateBit\fP ()"
+.br
+.RI "Generate new random bit and return it\&. "
+.ti -1c
+.RI "virtual \fBword32\fP \fBGenerateWord32\fP (\fBword32\fP min=0, \fBword32\fP max=0xffffffffUL)"
+.br
+.RI "Generate a random 32 bit word in the range min to max, inclusive\&. "
+.ti -1c
+.RI "virtual void \fBGenerateIntoBufferedTransformation\fP (\fBBufferedTransformation\fP &target, const std::string &channel, \fBlword\fP length)"
+.br
+.RI "Generate random bytes into a \fBBufferedTransformation\fP\&. "
+.ti -1c
+.RI "template<class IT> void \fBShuffle\fP (IT begin, IT end)"
+.br
+.RI "Randomly shuffle the specified array\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBMinKeyLength\fP () const =0"
+.br
+.RI "Returns smallest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxKeyLength\fP () const =0"
+.br
+.RI "Returns largest valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBDefaultKeyLength\fP () const =0"
+.br
+.RI "Returns default key length\&. "
+.ti -1c
+.RI "virtual size_t \fBGetValidKeyLength\fP (size_t keylength) const =0"
+.br
+.RI "Returns a valid key length for the algorithm\&. "
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "virtual \fBIV_Requirement\fP \fBIVRequirement\fP () const =0"
+.br
+.RI "Minimal requirement for secure IVs\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "virtual unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBStreamTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBStreamTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMandatoryBlockSize\fP () const"
+.br
+.RI "Provides the mandatory block size of the cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "virtual unsigned int \fBGetOptimalBlockSizeUsed\fP () const"
+.br
+.RI "Provides the number of bytes used in the current block when processing at optimal block size\&. "
+.ti -1c
+.RI "virtual unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "virtual size_t \fBProcessLastBlock\fP (\fBbyte\fP *outString, size_t outLength, const \fBbyte\fP *inString, size_t inLength)"
+.br
+.RI "Encrypt or decrypt the last block of data\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinLastBlockSize\fP () const"
+.br
+.RI "Provides the size of the last block\&. "
+.ti -1c
+.RI "virtual bool \fBIsLastBlockSpecial\fP () const"
+.br
+.RI "Determines if the last block receives special processing\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *inoutString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "void \fBProcessString\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Encrypt or decrypt a string of bytes\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBProcessByte\fP (\fBbyte\fP input)"
+.br
+.RI "Encrypt or decrypt a byte\&. "
+.ti -1c
+.RI "virtual void \fBSeek\fP (\fBlword\fP pos)"
+.br
+.RI "Seek to an absolute position\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBGetDefaultDiscardBytes\fP () const"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBWeak1::ARC4_Base\fP
+.in +1c
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSymmetricCipher\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Attributes inherited from \fBWeak1::ARC4_Base\fP
+.in +1c
+.ti -1c
+.RI "\fBFixedSizeSecBlock\fP< \fBbyte\fP, 256 > \fBm_state\fP"
+.br
+.ti -1c
+.RI "\fBbyte\fP \fBm_x\fP"
+.br
+.ti -1c
+.RI "\fBbyte\fP \fBm_y\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+MARC4 base class\&. 
+
+Implementations and overrides in \fRBase\fP apply to both \fRENCRYPTION\fP and \fRDECRYPTION\fP directions
+
+.PP
+MARC4 discards the first 256 bytes of keystream, which may be weaker than the rest 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned int Weak1::MARC4_Base::GetDefaultDiscardBytes () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBWeak1::ARC4_Base\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

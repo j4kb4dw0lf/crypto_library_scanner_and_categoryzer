@@ -1,0 +1,68 @@
+.TH "ByteArrayParameter" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ByteArrayParameter \- Used to pass byte array input as part of a \fBNameValuePairs\fP object\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <algparam\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBByteArrayParameter\fP (\fBbyte\fP *data=NULLPTR, unsigned int \fBsize\fP=0)"
+.br
+.RI "Construct a \fBByteArrayParameter\fP\&. "
+.ti -1c
+.RI "\fBByteArrayParameter\fP (\fBSecByteBlock\fP &block)"
+.br
+.RI "Construct a \fBByteArrayParameter\fP\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBbegin\fP () const"
+.br
+.RI "Pointer to the first byte in the memory block\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBend\fP () const"
+.br
+.RI "Pointer beyond the last byte in the memory block\&. "
+.ti -1c
+.RI "size_t \fBsize\fP () const"
+.br
+.RI "Length of the memory block\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Used to pass byte array input as part of a \fBNameValuePairs\fP object\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ByteArrayParameter::ByteArrayParameter (\fBbyte\fP * data = \fRNULLPTR\fP, unsigned int size = \fR0\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBByteArrayParameter\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdata\fP a memory buffer 
+.br
+\fIsize\fP the length of the memory buffer 
+.RE
+.PP
+
+.SS "ByteArrayParameter::ByteArrayParameter (\fBSecByteBlock\fP & block)\fR [inline]\fP"
+
+.PP
+Construct a \fBByteArrayParameter\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIblock\fP a SecByteBlock 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

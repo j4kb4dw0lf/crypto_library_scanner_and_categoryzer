@@ -1,0 +1,60 @@
+.TH "vector_member_ptrs< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+vector_member_ptrs< T > \- Manages resources for an array of objects\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <smartptr\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvector_member_ptrs\fP (size_t size=0)"
+.br
+.ti -1c
+.RI "\fBmember_ptr\fP< T > & \fBoperator[]\fP (size_t index)"
+.br
+.ti -1c
+.RI "const \fBmember_ptr\fP< T > & \fBoperator[]\fP (size_t index) const"
+.br
+.ti -1c
+.RI "size_t \fBsize\fP () const"
+.br
+.ti -1c
+.RI "void \fBresize\fP (size_t newSize)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class vector_member_ptrs< T >"Manages resources for an array of objects\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T> \fBvector_member_ptrs\fP< T >\fB::vector_member_ptrs\fP (size_t size = \fR0\fP)\fR [inline]\fP"
+Construct an array of \fRT\fP 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsize\fP the size of the array, in elements
+.RE
+.PP
+If \fRT\fP is a Plain Old Dataype (POD), then the array is uninitialized\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

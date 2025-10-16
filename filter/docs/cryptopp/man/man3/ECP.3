@@ -1,0 +1,437 @@
+.TH "ECP" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECP \- Elliptic Curve over GF(p), where p is prime\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <ecp\&.h>\fP
+.PP
+Inherits \fBAbstractGroup< ECPPoint >\fP, and \fBEncodedPoint< ECPPoint >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBModularArithmetic\fP \fBField\fP"
+.br
+.ti -1c
+.RI "typedef \fBInteger\fP \fBFieldElement\fP"
+.br
+.ti -1c
+.RI "typedef \fBECPPoint\fP \fBPoint\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAbstractGroup< ECPPoint >\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBECPPoint\fP \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBECP\fP ()"
+.br
+.RI "Construct an \fBECP\fP\&. "
+.ti -1c
+.RI "\fBECP\fP (const \fBECP\fP &ecp, bool convertToMontgomeryRepresentation)"
+.br
+.RI "Construct an \fBECP\fP\&. "
+.ti -1c
+.RI "\fBECP\fP (const \fBInteger\fP &modulus, const \fBFieldElement\fP &a, const \fBFieldElement\fP &b)"
+.br
+.RI "Construct an \fBECP\fP\&. "
+.ti -1c
+.RI "\fBECP\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Construct an \fBECP\fP from BER encoded parameters\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "DER Encode\&. "
+.ti -1c
+.RI "bool \fBEqual\fP (const \fBPoint\fP &P, const \fBPoint\fP &Q) const"
+.br
+.RI "Compare two points\&. "
+.ti -1c
+.RI "const \fBPoint\fP & \fBIdentity\fP () const"
+.br
+.RI "Provides the Identity element\&. "
+.ti -1c
+.RI "const \fBPoint\fP & \fBInverse\fP (const \fBPoint\fP &P) const"
+.br
+.RI "Inverts the element in the group\&. "
+.ti -1c
+.RI "bool \fBInversionIsFast\fP () const"
+.br
+.RI "Determine if inversion is fast\&. "
+.ti -1c
+.RI "const \fBPoint\fP & \fBAdd\fP (const \fBPoint\fP &P, const \fBPoint\fP &Q) const"
+.br
+.RI "Adds elements in the group\&. "
+.ti -1c
+.RI "const \fBPoint\fP & \fBDouble\fP (const \fBPoint\fP &P) const"
+.br
+.ti -1c
+.RI "\fBPoint\fP \fBScalarMultiply\fP (const \fBPoint\fP &P, const \fBInteger\fP &k) const"
+.br
+.ti -1c
+.RI "\fBPoint\fP \fBCascadeScalarMultiply\fP (const \fBPoint\fP &P, const \fBInteger\fP &k1, const \fBPoint\fP &Q, const \fBInteger\fP &k2) const"
+.br
+.ti -1c
+.RI "void \fBSimultaneousMultiply\fP (\fBPoint\fP *results, const \fBPoint\fP &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.ti -1c
+.RI "\fBPoint\fP \fBMultiply\fP (const \fBInteger\fP &k, const \fBPoint\fP &P) const"
+.br
+.ti -1c
+.RI "\fBPoint\fP \fBCascadeMultiply\fP (const \fBInteger\fP &k1, const \fBPoint\fP &P, const \fBInteger\fP &k2, const \fBPoint\fP &Q) const"
+.br
+.ti -1c
+.RI "bool \fBValidateParameters\fP (\fBRandomNumberGenerator\fP &rng, unsigned int level=3) const"
+.br
+.ti -1c
+.RI "bool \fBVerifyPoint\fP (const \fBPoint\fP &P) const"
+.br
+.RI "Verifies points on elliptic curve\&. "
+.ti -1c
+.RI "unsigned int \fBEncodedPointSize\fP (bool compressed=false) const"
+.br
+.RI "Determines encoded point size\&. "
+.ti -1c
+.RI "bool \fBDecodePoint\fP (\fBPoint\fP &P, \fBBufferedTransformation\fP &bt, size_t len) const"
+.br
+.RI "Decodes an elliptic curve point\&. "
+.ti -1c
+.RI "bool \fBDecodePoint\fP (\fBPoint\fP &P, const \fBbyte\fP *encodedPoint, size_t len) const"
+.br
+.ti -1c
+.RI "void \fBEncodePoint\fP (\fBbyte\fP *encodedPoint, const \fBPoint\fP &P, bool compressed) const"
+.br
+.RI "Encodes an elliptic curve point\&. "
+.ti -1c
+.RI "void \fBEncodePoint\fP (\fBBufferedTransformation\fP &bt, const \fBPoint\fP &P, bool compressed) const"
+.br
+.ti -1c
+.RI "\fBPoint\fP \fBBERDecodePoint\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "BER Decodes an elliptic curve point\&. "
+.ti -1c
+.RI "void \fBDEREncodePoint\fP (\fBBufferedTransformation\fP &bt, const \fBPoint\fP &P, bool compressed) const"
+.br
+.RI "DER Encodes an elliptic curve point\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBFieldSize\fP () const"
+.br
+.ti -1c
+.RI "const \fBField\fP & \fBGetField\fP () const"
+.br
+.ti -1c
+.RI "const \fBFieldElement\fP & \fBGetA\fP () const"
+.br
+.ti -1c
+.RI "const \fBFieldElement\fP & \fBGetB\fP () const"
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBECP\fP &rhs) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBAbstractGroup< ECPPoint >\fP
+.in +1c
+.ti -1c
+.RI "virtual const \fBElement\fP & \fBDouble\fP (const \fBElement\fP &a) const"
+.br
+.RI "Doubles an element in the group\&. "
+.ti -1c
+.RI "virtual const \fBElement\fP & \fBSubtract\fP (const \fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.RI "Subtracts elements in the group\&. "
+.ti -1c
+.RI "virtual \fBElement\fP & \fBAccumulate\fP (\fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual \fBElement\fP & \fBReduce\fP (\fBElement\fP &a, const \fBElement\fP &b) const"
+.br
+.RI "Reduces an element in the congruence class\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBScalarMultiply\fP (const \fBElement\fP &a, const \fBInteger\fP &e) const"
+.br
+.RI "Performs a scalar multiplication\&. "
+.ti -1c
+.RI "virtual \fBElement\fP \fBCascadeScalarMultiply\fP (const \fBElement\fP &x, const \fBInteger\fP &e1, const \fBElement\fP &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousMultiply\fP (\fBElement\fP *results, const \fBElement\fP &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Multiplies a base to multiple exponents in a group\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Elliptic Curve over GF(p), where p is prime\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ANONYMOUS_NAMESPACE_END ECP::ECP (const \fBECP\fP & ecp, bool convertToMontgomeryRepresentation)"
+
+.PP
+Construct an \fBECP\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIecp\fP the other \fBECP\fP object 
+.br
+\fIconvertToMontgomeryRepresentation\fP flag indicating if the curve should be converted to a \fBMontgomeryRepresentation\fP\&.
+.RE
+.PP
+Prior to Crypto++ 8\&.3 the default value for convertToMontgomeryRepresentation was false\&. it was changed due to two audit tools finding, "Signature-compatible with a copy constructor"\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBModularArithmetic\fP, \fBMontgomeryRepresentation\fP 
+.RE
+.PP
+
+.SS "ECP::ECP (const \fBInteger\fP & modulus, const \fBFieldElement\fP & a, const \fBFieldElement\fP & b)\fR [inline]\fP"
+
+.PP
+Construct an \fBECP\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImodulus\fP the prime modulus 
+.br
+\fIa\fP Field::Element 
+.br
+\fIb\fP Field::Element 
+.RE
+.PP
+
+.SS "ECP::ECP (\fBBufferedTransformation\fP & bt)"
+
+.PP
+Construct an \fBECP\fP from BER encoded parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP derived object
+.RE
+.PP
+This constructor will decode and extract the fields fieldID and curve of the sequence ECParameters 
+.SH "Member Function Documentation"
+.PP 
+.SS "const \fBECP::Point\fP & ECP::Add (const \fBPoint\fP & a, const \fBPoint\fP & b) const\fR [virtual]\fP"
+
+.PP
+Adds elements in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.br
+\fIb\fP second element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the sum of \fRa\fP and \fRb\fP 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< ECPPoint >\fP\&.
+.SS "\fBECP::Point\fP ECP::BERDecodePoint (\fBBufferedTransformation\fP & bt) const\fR [virtual]\fP"
+
+.PP
+BER Decodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP source \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the decoded elliptic curve point 
+.RE
+.PP
+
+.PP
+Implements \fBEncodedPoint< ECPPoint >\fP\&.
+.SS "bool ECP::DecodePoint (\fBECP::Point\fP & P, \fBBufferedTransformation\fP & bt, size_t len) const\fR [virtual]\fP"
+
+.PP
+Decodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point which is decoded 
+.br
+\fIbt\fP source \fBBufferedTransformation\fP 
+.br
+\fIlen\fP number of bytes to read from the \fBBufferedTransformation\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if a point was decoded, false otherwise 
+.RE
+.PP
+
+.PP
+Implements \fBEncodedPoint< ECPPoint >\fP\&.
+.SS "void ECP::DEREncode (\fBBufferedTransformation\fP & bt) const"
+
+.PP
+DER Encode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP derived object
+.RE
+.PP
+DEREncode encode the fields fieldID and curve of the sequence ECParameters 
+.SS "void ECP::DEREncodePoint (\fBBufferedTransformation\fP & bt, const \fBPoint\fP & P, bool compressed) const\fR [virtual]\fP"
+
+.PP
+DER Encodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP target \fBBufferedTransformation\fP 
+.br
+\fIP\fP point which is encoded 
+.br
+\fIcompressed\fP flag indicating if the point is compressed 
+.RE
+.PP
+
+.PP
+Implements \fBEncodedPoint< ECPPoint >\fP\&.
+.SS "unsigned int ECP::EncodedPointSize (bool compressed = \fRfalse\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines encoded point size\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcompressed\fP flag indicating if the point is compressed 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the minimum number of bytes required to encode the point 
+.RE
+.PP
+
+.PP
+Implements \fBEncodedPoint< ECPPoint >\fP\&.
+.SS "void ECP::EncodePoint (\fBbyte\fP * encodedPoint, const \fBPoint\fP & P, bool compressed) const\fR [virtual]\fP"
+
+.PP
+Encodes an elliptic curve point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point which is decoded 
+.br
+\fIencodedPoint\fP byte array for the encoded point 
+.br
+\fIcompressed\fP flag indicating if the point is compressed
+.RE
+.PP
+\fRencodedPoint\fP must be at least \fBEncodedPointSize()\fP in length 
+.PP
+Implements \fBEncodedPoint< ECPPoint >\fP\&.
+.SS "bool ECP::Equal (const \fBPoint\fP & P, const \fBPoint\fP & Q) const\fR [virtual]\fP"
+
+.PP
+Compare two points\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP the first point 
+.br
+\fIQ\fP the second point 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if equal, false otherwise 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< ECPPoint >\fP\&.
+.SS "const \fBECP::Point\fP & ECP::Identity () const\fR [virtual]\fP"
+
+.PP
+Provides the Identity element\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the Identity element 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< ECPPoint >\fP\&.
+.SS "const \fBECP::Point\fP & ECP::Inverse (const \fBPoint\fP & a) const\fR [virtual]\fP"
+
+.PP
+Inverts the element in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP first element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the inverse of the element 
+.RE
+.PP
+
+.PP
+Implements \fBAbstractGroup< ECPPoint >\fP\&.
+.SS "bool ECP::InversionIsFast () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determine if inversion is fast\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if inversion is fast, false otherwise 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAbstractGroup< ECPPoint >\fP\&.
+.SS "bool ECP::VerifyPoint (const \fBPoint\fP & P) const\fR [virtual]\fP"
+
+.PP
+Verifies points on elliptic curve\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIP\fP point to verify 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the point is valid, false otherwise 
+.RE
+.PP
+
+.PP
+Implements \fBEncodedPoint< ECPPoint >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,48 @@
+.TH "ssh_socket_callbacks_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_socket_callbacks_struct
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <callbacks\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "void * \fBuserdata\fP"
+.br
+.ti -1c
+.RI "ssh_callback_data \fBdata\fP"
+.br
+.ti -1c
+.RI "ssh_callback_int \fBcontrolflow\fP"
+.br
+.ti -1c
+.RI "ssh_callback_int_int \fBexception\fP"
+.br
+.ti -1c
+.RI "ssh_callback_int_int \fBconnected\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+These are the callbacks exported by the socket structure They are called by the socket module when a socket event appears 
+.SH "Member Data Documentation"
+.PP 
+.SS "ssh_callback_int_int ssh_socket_callbacks_struct::connected"
+This function is called when the ssh_socket_connect was used on the socket on nonblocking state, and the connection succeeded\&. 
+.SS "ssh_callback_int ssh_socket_callbacks_struct::controlflow"
+This function will be called each time a controlflow state changes, i\&.e\&. the socket is available for reading or writing\&. 
+.SS "ssh_callback_data ssh_socket_callbacks_struct::data"
+This function will be called each time data appears on socket\&. The data not consumed will appear on the next data event\&. 
+.SS "ssh_callback_int_int ssh_socket_callbacks_struct::exception"
+This function will be called each time an exception appears on socket\&. An exception can be a socket problem (timeout, \&.\&.\&.) or an end-of-file\&. 
+.SS "void* ssh_socket_callbacks_struct::userdata"
+User-provided data\&. User is free to set anything he wants here 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

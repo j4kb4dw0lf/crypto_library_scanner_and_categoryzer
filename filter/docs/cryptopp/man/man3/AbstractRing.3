@@ -1,0 +1,383 @@
+.TH "AbstractRing< T >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AbstractRing< T > \- Abstract ring\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <algebra\&.h>\fP
+.PP
+Inherits \fBAbstractGroup< T >\fP\&.
+.PP
+Inherited by \fBAbstractEuclideanDomain< PolynomialOver< T > >\fP, and \fBAbstractEuclideanDomain< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBAbstractGroup< T >\fP
+.in +1c
+.ti -1c
+.RI "typedef T \fBElement\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAbstractRing\fP ()"
+.br
+.RI "Construct an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "\fBAbstractRing\fP (const \fBAbstractRing\fP &source)"
+.br
+.RI "Copy construct an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "\fBAbstractRing\fP & \fBoperator=\fP (const \fBAbstractRing\fP &source)"
+.br
+.RI "Assign an \fBAbstractRing\fP\&. "
+.ti -1c
+.RI "virtual bool \fBIsUnit\fP (const Element &a) const =0"
+.br
+.RI "Determines whether an element is a unit in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBMultiplicativeIdentity\fP () const =0"
+.br
+.RI "Retrieves the multiplicative identity\&. "
+.ti -1c
+.RI "virtual const Element & \fBMultiply\fP (const Element &a, const Element &b) const =0"
+.br
+.RI "Multiplies elements in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBMultiplicativeInverse\fP (const Element &a) const =0"
+.br
+.RI "Calculate the multiplicative inverse of an element in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBSquare\fP (const Element &a) const"
+.br
+.RI "\fBSquare\fP an element in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBDivide\fP (const Element &a, const Element &b) const"
+.br
+.RI "Divides elements in the group\&. "
+.ti -1c
+.RI "virtual Element \fBExponentiate\fP (const Element &a, const \fBInteger\fP &e) const"
+.br
+.RI "Raises a base to an exponent in the group\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeExponentiate\fP (const Element &x, const \fBInteger\fP &e1, const Element &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousExponentiate\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Exponentiates a base to multiple exponents in the Ring\&. "
+.ti -1c
+.RI "virtual const \fBAbstractGroup\fP< T > & \fBMultiplicativeGroup\fP () const"
+.br
+.RI "Retrieves the multiplicative group\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAbstractGroup< T >\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBEqual\fP (const Element &a, const Element &b) const =0"
+.br
+.RI "Compare two elements for equality\&. "
+.ti -1c
+.RI "virtual const Element & \fBIdentity\fP () const =0"
+.br
+.RI "Provides the Identity element\&. "
+.ti -1c
+.RI "virtual const Element & \fBAdd\fP (const Element &a, const Element &b) const =0"
+.br
+.RI "Adds elements in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBInverse\fP (const Element &a) const =0"
+.br
+.RI "Inverts the element in the group\&. "
+.ti -1c
+.RI "virtual bool \fBInversionIsFast\fP () const"
+.br
+.RI "Determine if inversion is fast\&. "
+.ti -1c
+.RI "virtual const Element & \fBDouble\fP (const Element &a) const"
+.br
+.RI "Doubles an element in the group\&. "
+.ti -1c
+.RI "virtual const Element & \fBSubtract\fP (const Element &a, const Element &b) const"
+.br
+.RI "Subtracts elements in the group\&. "
+.ti -1c
+.RI "virtual Element & \fBAccumulate\fP (Element &a, const Element &b) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual Element & \fBReduce\fP (Element &a, const Element &b) const"
+.br
+.RI "Reduces an element in the congruence class\&. "
+.ti -1c
+.RI "virtual Element \fBScalarMultiply\fP (const Element &a, const \fBInteger\fP &e) const"
+.br
+.RI "Performs a scalar multiplication\&. "
+.ti -1c
+.RI "virtual Element \fBCascadeScalarMultiply\fP (const Element &x, const \fBInteger\fP &e1, const Element &y, const \fBInteger\fP &e2) const"
+.br
+.RI "TODO\&. "
+.ti -1c
+.RI "virtual void \fBSimultaneousMultiply\fP (Element *results, const Element &base, const \fBInteger\fP *exponents, unsigned int exponentsCount) const"
+.br
+.RI "Multiplies a base to multiple exponents in a group\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T>
+.br
+class AbstractRing< T >"Abstract ring\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP element class or type
+.RE
+.PP
+\fRconst Element&\fP returned by member functions are references to internal data members\&. Since each object may have only one such data member for holding results, the following code will produce incorrect results: 
+.PP
+.nf
+    abcd = group\&.Add(group\&.Add(a,b), group\&.Add(c,d));
+.fi
+.PP
+ But this should be fine: 
+.PP
+.nf
+    abcd = group\&.Add(a, group\&.Add(b, group\&.Add(c,d));
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class T> \fBAbstractRing\fP< T >\fB::AbstractRing\fP (const \fBAbstractRing\fP< T > & source)\fR [inline]\fP"
+
+.PP
+Copy construct an \fBAbstractRing\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsource\fP other \fBAbstractRing\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class T> T \fBAbstractRing\fP< T >::CascadeExponentiate (const Element & x, const \fBInteger\fP & e1, const Element & y, const \fBInteger\fP & e2) const\fR [virtual]\fP"
+
+.PP
+TODO\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP first element 
+.br
+\fIe1\fP first exponent 
+.br
+\fIy\fP second element 
+.br
+\fIe2\fP second exponent 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+TODO 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "template<class T> const T & \fBAbstractRing\fP< T >::Divide (const Element & a, const Element & b) const\fR [virtual]\fP"
+
+.PP
+Divides elements in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the dividend 
+.br
+\fIb\fP the divisor 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the quotient 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBEuclideanDomainOf< T >\fP, \fBEuclideanDomainOf< PolynomialMod2 >\fP, and \fBModularArithmetic\fP\&.
+.SS "template<class T> T \fBAbstractRing\fP< T >::Exponentiate (const Element & a, const \fBInteger\fP & e) const\fR [virtual]\fP"
+
+.PP
+Raises a base to an exponent in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the base 
+.br
+\fIe\fP the exponent 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the exponentiation 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBGFP2_ONB< F >\fP\&.
+.SS "template<class T> virtual bool \fBAbstractRing\fP< T >::IsUnit (const Element & a) const\fR [pure virtual]\fP"
+
+.PP
+Determines whether an element is a unit in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the element is a unit after reduction, false otherwise\&. 
+.RE
+.PP
+
+.PP
+Implemented in \fBEuclideanDomainOf< T >\fP, \fBEuclideanDomainOf< PolynomialMod2 >\fP, \fBGFP2_ONB< F >\fP, and \fBModularArithmetic\fP\&.
+.SS "template<class T> virtual const \fBAbstractGroup\fP< T > & \fBAbstractRing\fP< T >::MultiplicativeGroup () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves the multiplicative group\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the multiplicative group 
+.RE
+.PP
+
+.SS "template<class T> virtual const Element & \fBAbstractRing\fP< T >::MultiplicativeIdentity () const\fR [pure virtual]\fP"
+
+.PP
+Retrieves the multiplicative identity\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the multiplicative identity 
+.RE
+.PP
+
+.PP
+Implemented in \fBEuclideanDomainOf< T >\fP, \fBEuclideanDomainOf< PolynomialMod2 >\fP, \fBGFP2_ONB< F >\fP, \fBModularArithmetic\fP, \fBMontgomeryRepresentation\fP, \fBQuotientRing< T >\fP, \fBQuotientRing< EuclideanDomainOf< PolynomialMod2 > >\fP, and \fBRingOfPolynomialsOver< T >\fP\&.
+.SS "template<class T> virtual const Element & \fBAbstractRing\fP< T >::MultiplicativeInverse (const Element & a) const\fR [pure virtual]\fP"
+
+.PP
+Calculate the multiplicative inverse of an element in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element 
+.RE
+.PP
+
+.PP
+Implemented in \fBEuclideanDomainOf< T >\fP, \fBEuclideanDomainOf< PolynomialMod2 >\fP, \fBGFP2_ONB< F >\fP, \fBModularArithmetic\fP, and \fBMontgomeryRepresentation\fP\&.
+.SS "template<class T> virtual const Element & \fBAbstractRing\fP< T >::Multiply (const Element & a, const Element & b) const\fR [pure virtual]\fP"
+
+.PP
+Multiplies elements in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the multiplicand 
+.br
+\fIb\fP the multiplier 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the product of a and b 
+.RE
+.PP
+
+.PP
+Implemented in \fBEuclideanDomainOf< T >\fP, \fBEuclideanDomainOf< PolynomialMod2 >\fP, \fBGFP2_ONB< F >\fP, \fBModularArithmetic\fP, and \fBMontgomeryRepresentation\fP\&.
+.SS "template<class T> \fBAbstractRing\fP & \fBAbstractRing\fP< T >::operator= (const \fBAbstractRing\fP< T > & source)\fR [inline]\fP"
+
+.PP
+Assign an \fBAbstractRing\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsource\fP other \fBAbstractRing\fP 
+.RE
+.PP
+
+.SS "template<class T> void \fBAbstractRing\fP< T >::SimultaneousExponentiate (Element * results, const Element & base, const \fBInteger\fP * exponents, unsigned int exponentsCount) const\fR [virtual]\fP"
+
+.PP
+Exponentiates a base to multiple exponents in the Ring\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIresults\fP an array of Elements 
+.br
+\fIbase\fP the base to raise to the exponents 
+.br
+\fIexponents\fP an array of exponents 
+.br
+\fIexponentsCount\fP the number of exponents in the array
+.RE
+.PP
+\fBSimultaneousExponentiate()\fP raises the base to each exponent in the exponents array and stores the result at the respective position in the results array\&.
+
+.PP
+\fBSimultaneousExponentiate()\fP must be implemented in a derived class\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(results) == exponentsCount\fP 
+
+.PP
+\fRCOUNTOF(exponents) == exponentsCount\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBMontgomeryRepresentation\fP\&.
+.SS "template<class T> const T & \fBAbstractRing\fP< T >\fB::Square\fP (const Element & a) const\fR [virtual]\fP"
+
+.PP
+\fBSquare\fP an element in the group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the element 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the element squared 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBEuclideanDomainOf< T >\fP, \fBEuclideanDomainOf< PolynomialMod2 >\fP, \fBGFP2_ONB< F >\fP, \fBModularArithmetic\fP, and \fBMontgomeryRepresentation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

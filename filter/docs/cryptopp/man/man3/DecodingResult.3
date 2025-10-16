@@ -1,0 +1,101 @@
+.TH "DecodingResult" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DecodingResult \- Returns a decoding results\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDecodingResult\fP ()"
+.br
+.RI "Constructs a \fBDecodingResult\fP\&. "
+.ti -1c
+.RI "\fBDecodingResult\fP (size_t len)"
+.br
+.RI "Constructs a \fBDecodingResult\fP\&. "
+.ti -1c
+.RI "bool \fBoperator==\fP (const \fBDecodingResult\fP &rhs) const"
+.br
+.RI "Compare two \fBDecodingResult\fP\&. "
+.ti -1c
+.RI "bool \fBoperator!=\fP (const \fBDecodingResult\fP &rhs) const"
+.br
+.RI "Compare two \fBDecodingResult\fP\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBisValidCoding\fP"
+.br
+.RI "Flag to indicate the decoding is valid\&. "
+.ti -1c
+.RI "size_t \fBmessageLength\fP"
+.br
+.RI "Recovered message length if isValidCoding is true, undefined otherwise\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Returns a decoding results\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "DecodingResult::DecodingResult ()\fR [inline]\fP, \fR [explicit]\fP"
+
+.PP
+Constructs a \fBDecodingResult\fP\&. isValidCoding is initialized to false and messageLength is initialized to 0\&. 
+.SS "DecodingResult::DecodingResult (size_t len)\fR [inline]\fP, \fR [explicit]\fP"
+
+.PP
+Constructs a \fBDecodingResult\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlen\fP the message length
+.RE
+.PP
+isValidCoding is initialized to true\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "bool DecodingResult::operator!= (const \fBDecodingResult\fP & rhs) const\fR [inline]\fP"
+
+.PP
+Compare two \fBDecodingResult\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP the other \fBDecodingResult\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if either isValidCoding or messageLength is \fInot\fP equal, false otherwise
+.RE
+.PP
+Returns \fR!operator==(rhs)\fP\&. 
+.SS "bool DecodingResult::operator== (const \fBDecodingResult\fP & rhs) const\fR [inline]\fP"
+
+.PP
+Compare two \fBDecodingResult\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP the other \fBDecodingResult\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if either isValidCoding or messageLength is \fInot\fP equal, false otherwise 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

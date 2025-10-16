@@ -1,0 +1,581 @@
+.TH "BLAKE2s" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BLAKE2s \- The \fBBLAKE2s\fP cryptographic hash function\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <blake2\&.h>\fP
+.PP
+Inherits \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBLAKE2s_State\fP \fBState\fP"
+.br
+.ti -1c
+.RI "typedef \fBBLAKE2s_ParameterBlock\fP \fBParameterBlock\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DEFAULT_KEYLENGTH=BLAKE2s_Info::DEFAULT_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MIN_KEYLENGTH=BLAKE2s_Info::MIN_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (MAX_KEYLENGTH=BLAKE2s_Info::MAX_KEYLENGTH)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (DIGESTSIZE=BLAKE2s_Info::DIGESTSIZE)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=BLAKE2s_Info::BLOCKSIZE)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (SALTSIZE=BLAKE2s_Info::SALTSIZE)"
+.br
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (PERSONALIZATIONSIZE=BLAKE2s_Info::PERSONALIZATIONSIZE)"
+.br
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "\fBBLAKE2s\fP (bool treeMode=false, unsigned int digestSize=DIGESTSIZE)"
+.br
+.RI "Construct a \fBBLAKE2s\fP hash\&. "
+.ti -1c
+.RI "\fBBLAKE2s\fP (unsigned int digestSize)"
+.br
+.RI "Construct a \fBBLAKE2s\fP hash\&. "
+.ti -1c
+.RI "\fBBLAKE2s\fP (const \fBbyte\fP *key, size_t keyLength, const \fBbyte\fP *salt=NULLPTR, size_t saltLength=0, const \fBbyte\fP *personalization=NULLPTR, size_t personalizationLength=0, bool treeMode=false, unsigned int digestSize=DIGESTSIZE)"
+.br
+.RI "Construct a \fBBLAKE2s\fP hash\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Retrieve the object's name\&. "
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.ti -1c
+.RI "void \fBRestart\fP (const \fBBLAKE2s_ParameterBlock\fP &block, const \fBword32\fP counter[2])"
+.br
+.RI "Restart a hash with parameter block and counter\&. "
+.ti -1c
+.RI "void \fBSetTreeMode\fP (bool mode)"
+.br
+.RI "Set tree mode\&. "
+.ti -1c
+.RI "bool \fBGetTreeMode\fP () const"
+.br
+.RI "Get tree mode\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *hash, size_t size)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterfaceImpl< MessageAuthenticationCode, BLAKE2s_Info >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "The minimum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "The maximum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "The default key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Provides a valid key length for the algorithm\&. "
+.ti -1c
+.RI "\fBSimpleKeyingInterface::IV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "The default IV requirements for the algorithm\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "The initialization vector length for the algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.ti -1c
+.RI "virtual void \fBResynchronize\fP (const \fBbyte\fP *iv, int ivLength=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "virtual void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *iv)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Request space which can be written into by the caller\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this hash\&. "
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBCompress\fP (const \fBbyte\fP *input)"
+.br
+.ti -1c
+.RI "void \fBIncrementCounter\fP (size_t count=BLOCKSIZE)"
+.br
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const CryptoPP::NameValuePairs &params)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBMessageAuthenticationCode\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)=0"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBBLAKE2s\fP cryptographic hash function\&. 
+
+\fBBLAKE2s\fP can function as both a hash and keyed hash\&. If you want only the hash, then use the \fBBLAKE2s\fP constructor that accepts no parameters or digest size\&. If you want a keyed hash, then use the constructor that accpts the key as a parameter\&. Once a key and digest size are selected, its effectively immutable\&. The \fBRestart()\fP method that accepts a ParameterBlock does not allow you to change it\&. 
+.PP
+\fBSee also\fP
+.RS 4
+Aumasson, Neves, Wilcox-O'Hearn and Winnerlein's \fRBLAKE2: simpler, smaller, fast as MD5\fP (2013\&.01\&.29)\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+C++ since Crypto++ 5\&.6\&.4, SSE since Crypto++ 5\&.6\&.4, NEON since Crypto++ 6\&.0, Power8 since Crypto++ 8\&.0 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "BLAKE2s::BLAKE2s (bool treeMode = \fRfalse\fP, unsigned int digestSize = \fRDIGESTSIZE\fP)"
+
+.PP
+Construct a \fBBLAKE2s\fP hash\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigestSize\fP the digest size, in bytes 
+.br
+\fItreeMode\fP flag indicating tree mode 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+.SS "BLAKE2s::BLAKE2s (unsigned int digestSize)"
+
+.PP
+Construct a \fBBLAKE2s\fP hash\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigestSize\fP the digest size, in bytes
+.RE
+.PP
+treeMode flag is set to false 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.2 
+.RE
+.PP
+
+.SS "BLAKE2s::BLAKE2s (const \fBbyte\fP * key, size_t keyLength, const \fBbyte\fP * salt = \fRNULLPTR\fP, size_t saltLength = \fR0\fP, const \fBbyte\fP * personalization = \fRNULLPTR\fP, size_t personalizationLength = \fR0\fP, bool treeMode = \fRfalse\fP, unsigned int digestSize = \fRDIGESTSIZE\fP)"
+
+.PP
+Construct a \fBBLAKE2s\fP hash\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIkeyLength\fP the size of the byte array 
+.br
+\fIsalt\fP a byte array used as salt 
+.br
+\fIsaltLength\fP the size of the byte array 
+.br
+\fIpersonalization\fP a byte array used as personalization string 
+.br
+\fIpersonalizationLength\fP the size of the byte array 
+.br
+\fItreeMode\fP flag indicating tree mode 
+.br
+\fIdigestSize\fP the digest size, in bytes 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.4 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string BLAKE2s::AlgorithmName () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve the object's name\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the object's algorithm name following RFC 7693
+.RE
+.PP
+Object algorithm name follows the naming described in \fRRFC 7693, The BLAKE2 Cryptographic Hash and Message Authentication Code (MAC)\fP\&. For example, "BLAKE2b-512" and "BLAKE2s-256"\&. 
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "std::string BLAKE2s::AlgorithmProvider () const\fR [virtual]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 8\&.0 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.SS "unsigned int BLAKE2s::BlockSize () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the block size of the compression function\&. 
+.PP
+\fBReturns\fP
+.RS 4
+block size of the compression function, in bytes
+.RE
+.PP
+\fBBlockSize()\fP will return 0 if the hash is not block based or does not have an equivalent block size\&. For example, \fBKeccak\fP and SHA-3 do not have a block size, but they do have an equivalent block size called rate expressed as \fRr\fP\&. 
+.PP
+Reimplemented from \fBHashTransformation\fP\&.
+.SS "unsigned int BLAKE2s::DigestSize () const\fR [inline]\fP, \fR [virtual]\fP"
+Provides the digest size of the hash 
+.PP
+\fBReturns\fP
+.RS 4
+the digest size of the hash\&. 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+.SS "bool BLAKE2s::GetTreeMode () const\fR [inline]\fP"
+
+.PP
+Get tree mode\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the current tree mode
+.RE
+.PP
+Tree mode is persisted across calls to \fBRestart()\fP\&. 
+.SS "unsigned int BLAKE2s::OptimalDataAlignment () const\fR [virtual]\fP"
+
+.PP
+Provides input and output data alignment for optimal performance\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the input data alignment that provides optimal performance 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetAlignment() and \fBOptimalBlockSize()\fP 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBHashTransformation\fP\&.
+.SS "void BLAKE2s::Restart ()\fR [virtual]\fP"
+
+.PP
+Restart the hash\&. Discards the current state, and restart for a new message 
+.PP
+Reimplemented from \fBHashTransformation\fP\&.
+.SS "void BLAKE2s::Restart (const \fBBLAKE2s_ParameterBlock\fP & block, const \fBword32\fP counter[2])"
+
+.PP
+Restart a hash with parameter block and counter\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIblock\fP parameter block 
+.br
+\fIcounter\fP counter array
+.RE
+.PP
+Parameter block is persisted across calls to \fBRestart()\fP\&. 
+.SS "void BLAKE2s::SetTreeMode (bool mode)\fR [inline]\fP"
+
+.PP
+Set tree mode\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImode\fP the new tree mode
+.RE
+.PP
+BLAKE2 has two finalization flags, called State::f[0] and State::f[1]\&. If \fRtreeMode=false\fP (default), then State::f[1] is never set\&. If \fRtreeMode=true\fP, then State::f[1] is set when State::f[0] is set\&. Tree mode is persisted across calls to \fBRestart()\fP\&. 
+.SS "void BLAKE2s::TruncatedFinal (\fBbyte\fP * digest, size_t digestSize)\fR [virtual]\fP"
+
+.PP
+Computes the hash of the current message\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdigest\fP a pointer to the buffer to receive the hash 
+.br
+\fIdigestSize\fP the size of the truncated digest, in bytes
+.RE
+.PP
+\fBTruncatedFinal()\fP calls \fBFinal()\fP and then copies digestSize bytes to digest\&. The hash is restarted the hash for the next message\&. 
+.PP
+\fBPrecondition\fP
+.RS 4
+\fRCOUNTOF(digest) <= \fBDigestSize()\fP\fP or \fRCOUNTOF(digest) <= HASH::DIGESTSIZE\fP ensures the output byte buffer is a valid size\&. 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+.SS "void BLAKE2s::Update (const \fBbyte\fP * input, size_t length)\fR [virtual]\fP"
+
+.PP
+Updates a hash with additional input\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP the additional input as a buffer 
+.br
+\fIlength\fP the size of the buffer, in bytes 
+.RE
+.PP
+
+.PP
+Implements \fBHashTransformation\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

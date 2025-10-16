@@ -1,0 +1,83 @@
+.TH "PSSR_MEM< ALLOW_RECOVERY, MGF, SALT_LEN, MIN_PAD_LEN, USE_HASH_ID >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PSSR_MEM< ALLOW_RECOVERY, MGF, SALT_LEN, MIN_PAD_LEN, USE_HASH_ID > \- \fBPSSR\fP Message Encoding Method\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pssr\&.h>\fP
+.PP
+Inherits \fBPSSR_MEM_BaseWithHashId< false >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBPK_RecoverableSignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "bool \fBVerifyMessageRepresentative\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, bool messageEmpty, \fBbyte\fP *representative, size_t representativeBitLength) const"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBPK_SignatureMessageEncodingMethod\fP
+.in +1c
+.ti -1c
+.RI "bool \fBIsProbabilistic\fP () const"
+.br
+.RI "Determines whether an encoding method requires a random number generator\&. "
+.ti -1c
+.RI "bool \fBAllowNonrecoverablePart\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessSemisignature\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *semisignature, size_t semisignatureLength) const"
+.br
+.ti -1c
+.RI "virtual void \fBProcessRecoverableMessage\fP (\fBHashTransformation\fP &hash, const \fBbyte\fP *recoverableMessage, size_t recoverableMessageLength, const \fBbyte\fP *presignature, size_t presignatureLength, \fBSecByteBlock\fP &semisignature) const"
+.br
+.ti -1c
+.RI "virtual \fBDecodingResult\fP \fBRecoverMessageFromSemisignature\fP (\fBHashTransformation\fP &hash, HashIdentifier hashIdentifier, const \fBbyte\fP *presignature, size_t presignatureLength, const \fBbyte\fP *semisignature, size_t semisignatureLength, \fBbyte\fP *recoveredMessage) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<bool ALLOW_RECOVERY, class MGF = P1363_MGF1, int SALT_LEN = \-1, int MIN_PAD_LEN = 0, bool USE_HASH_ID = false>
+.br
+class PSSR_MEM< ALLOW_RECOVERY, MGF, SALT_LEN, MIN_PAD_LEN, USE_HASH_ID >"\fBPSSR\fP Message Encoding Method\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIALLOW_RECOVERY\fP flag indicating whether the scheme provides message recovery 
+.br
+\fIMGF\fP mask generation function 
+.br
+\fISALT_LEN\fP length of the salt 
+.br
+\fIMIN_PAD_LEN\fP minimum length of the pad 
+.br
+\fIUSE_HASH_ID\fP flag indicating whether the HashId is used
+.RE
+.PP
+If ALLOW_RECOVERY is true, the signature scheme provides message recovery\&. If ALLOW_RECOVERY is false, the signature scheme is appendix, and the message must be provided during verification\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

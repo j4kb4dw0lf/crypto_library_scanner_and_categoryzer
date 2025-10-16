@@ -1,0 +1,120 @@
+.TH "PublicKeyAlgorithm" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PublicKeyAlgorithm \- Interface for asymmetric algorithms using public keys\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBAsymmetricAlgorithm\fP\&.
+.PP
+Inherited by \fBPK_Encryptor\fP, and \fBPK_Verifier\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCryptoMaterial\fP & \fBAccessMaterial\fP ()"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "const \fBCryptoMaterial\fP & \fBGetMaterial\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "virtual \fBPublicKey\fP & \fBAccessPublicKey\fP ()=0"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.ti -1c
+.RI "virtual const \fBPublicKey\fP & \fBGetPublicKey\fP () const"
+.br
+.RI "Retrieves a reference to a Public Key\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for asymmetric algorithms using public keys\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBCryptoMaterial\fP & PublicKeyAlgorithm::AccessMaterial ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference to the public key 
+.RE
+.PP
+
+.PP
+Implements \fBAsymmetricAlgorithm\fP\&.
+.SS "virtual \fBPublicKey\fP & PublicKeyAlgorithm::AccessPublicKey ()\fR [pure virtual]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a reference to the public key 
+.RE
+.PP
+
+.PP
+Implemented in \fBed25519Verifier\fP\&.
+.SS "const \fBCryptoMaterial\fP & PublicKeyAlgorithm::GetMaterial () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference the public key 
+.RE
+.PP
+
+.PP
+Implements \fBAsymmetricAlgorithm\fP\&.
+.SS "virtual const \fBPublicKey\fP & PublicKeyAlgorithm::GetPublicKey () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieves a reference to a Public Key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a const reference the public key 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBed25519Verifier\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

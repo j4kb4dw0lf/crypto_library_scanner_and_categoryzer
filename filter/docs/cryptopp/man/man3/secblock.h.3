@@ -1,0 +1,196 @@
+.TH "/home/mock/cryptopp-master/secblock.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/secblock.h \- Classes and functions for secure memory allocations\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'allocate\&.h'\fP
+.br
+\fR#include 'misc\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBAllocatorBase< T >\fP"
+.br
+.RI "Base class for all allocators used by \fBSecBlock\fP\&. "
+.ti -1c
+.RI "class \fBAllocatorWithCleanup< T, T_Align16 >\fP"
+.br
+.RI "Allocates a block of memory with cleanup\&. "
+.ti -1c
+.RI "struct \fBAllocatorWithCleanup< T, T_Align16 >::rebind< V >\fP"
+.br
+.RI "Template class member Rebind\&. "
+.ti -1c
+.RI "class \fBNullAllocator< T >\fP"
+.br
+.RI "NULL allocator\&. "
+.ti -1c
+.RI "class \fBFixedSizeAllocatorWithCleanup< T, S, A, T_Align16 >\fP"
+.br
+.RI "Static secure memory block with cleanup\&. "
+.ti -1c
+.RI "class \fBFixedSizeAllocatorWithCleanup< T, S, A, true >\fP"
+.br
+.RI "Static secure memory block with cleanup\&. "
+.ti -1c
+.RI "class \fBFixedSizeAllocatorWithCleanup< T, S, A, false >\fP"
+.br
+.RI "Static secure memory block with cleanup\&. "
+.ti -1c
+.RI "class \fBSecBlock< T, A >\fP"
+.br
+.RI "Secure memory block with allocator and cleanup\&. "
+.ti -1c
+.RI "class \fBFixedSizeSecBlock< T, S, A >\fP"
+.br
+.RI "Fixed size stack-based \fBSecBlock\fP\&. "
+.ti -1c
+.RI "class \fBFixedSizeAlignedSecBlock< T, S, T_Align16 >\fP"
+.br
+.RI "Fixed size stack-based \fBSecBlock\fP with 16-byte alignment\&. "
+.ti -1c
+.RI "class \fBSecBlockWithHint< T, S, A >\fP"
+.br
+.RI "Stack-based \fBSecBlock\fP that grows into the heap\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCRYPTOPP_INHERIT_ALLOCATOR_TYPES\fP(T_type)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSecBlock\fP< \fBbyte\fP > \fBSecByteBlock\fP"
+.br
+.ti -1c
+.RI "typedef \fBSecBlock\fP< word > \fBSecWordBlock\fP"
+.br
+.ti -1c
+.RI "typedef \fBSecBlock\fP< \fBbyte\fP, \fBAllocatorWithCleanup\fP< \fBbyte\fP, true > > \fBAlignedSecByteBlock\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T, class A> A::pointer \fBStandardReallocate\fP (A &alloc, T *oldPtr, typename A::size_type oldSize, typename A::size_type newSize, bool preserve)"
+.br
+.RI "Reallocation function\&. "
+.ti -1c
+.RI "template<class T, bool A, class V, bool B> bool \fBoperator==\fP (const CryptoPP::AllocatorWithCleanup< T, A > &, const CryptoPP::AllocatorWithCleanup< V, B > &)"
+.br
+.ti -1c
+.RI "template<class T, bool A, class V, bool B> bool \fBoperator!=\fP (const CryptoPP::AllocatorWithCleanup< T, A > &, const CryptoPP::AllocatorWithCleanup< V, B > &)"
+.br
+.ti -1c
+.RI "template<class T, class A> NAMESPACE_END void \fBswap\fP (CryptoPP::SecBlock< T, A > &a, CryptoPP::SecBlock< T, A > &b)"
+.br
+.RI "Swap two SecBlocks\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAllocatorWithCleanup< byte >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAllocatorWithCleanup< word16 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAllocatorWithCleanup< word32 >\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL_TEMPLATE_CLASS \fBAllocatorWithCleanup< word64 >\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes and functions for secure memory allocations\&.
+
+
+.SH "Macro Definition Documentation"
+.PP
+.SS "#define CRYPTOPP_INHERIT_ALLOCATOR_TYPES( T_type)"
+\fBValue:\fP
+.nf
+    typedef typename AllocatorBase<T_type>::value_type value_type;\\
+    typedef typename AllocatorBase<T_type>::size_type size_type;\\
+    typedef typename AllocatorBase<T_type>::difference_type difference_type;\\
+    typedef typename AllocatorBase<T_type>::pointer pointer;\\
+    typedef typename AllocatorBase<T_type>::const_pointer const_pointer;\\
+    typedef typename AllocatorBase<T_type>::reference reference;\\
+    typedef typename AllocatorBase<T_type>::const_reference const_reference;
+.PP
+.fi
+
+.SH "Function Documentation"
+.PP
+.SS "template<class T, class A> A::pointer StandardReallocate (A & alloc, T * oldPtr, typename A::size_type oldSize, typename A::size_type newSize, bool preserve)"
+
+.PP
+Reallocation function\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP the class or type
+.br
+\fIA\fP the class or type's allocator
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIalloc\fP the allocator
+.br
+\fIoldPtr\fP the previous allocation
+.br
+\fIoldSize\fP the size of the previous allocation
+.br
+\fInewSize\fP the new, requested size
+.br
+\fIpreserve\fP flag that indicates if the old allocation should be preserved
+.RE
+.PP
+\fBNote\fP
+.RS 4
+oldSize and newSize are the count of elements, and not the number of bytes\&.
+.RE
+.PP
+
+.SS "template<class T, class A> NAMESPACE_END void swap (CryptoPP::SecBlock< T, A > & a, CryptoPP::SecBlock< T, A > & b)\fR [inline]\fP"
+
+.PP
+Swap two SecBlocks\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type
+.br
+\fIA\fP \fBAllocatorBase\fP derived class for allocation and cleanup
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first \fBSecBlock\fP
+.br
+\fIb\fP the second \fBSecBlock\fP
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

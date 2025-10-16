@@ -1,0 +1,97 @@
+.TH "DES" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DES \- \fBDES\fP block cipher\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <des\&.h>\fP
+.PP
+Inherits \fBDES_Info\fP, and \fBBlockCipherDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBENCRYPTION\fP, Base > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBBlockCipherFinal\fP< \fBDECRYPTION\fP, Base > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBBlockCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.ti -1c
+.RI "typedef \fBBlockCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBBlockCipher\fP interface "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static bool \fBCheckKeyParityBits\fP (const \fBbyte\fP *key)"
+.br
+.RI "check \fBDES\fP key parity bits "
+.ti -1c
+.RI "static void \fBCorrectKeyParityBits\fP (\fBbyte\fP *key)"
+.br
+.RI "correct \fBDES\fP key parity bits "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBDES_Info\fP
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBFixedBlockSize< 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (BLOCKSIZE=N)"
+.br
+.RI "The block size of the algorithm provided as a constant\&. "
+.in -1c
+
+Public Member Functions inherited from \fBFixedKeyLength< 8 >\fP
+.in +1c
+.ti -1c
+.RI "\fBCRYPTOPP_CONSTANT\fP (KEYLENGTH=N)"
+.br
+.RI "The default key length used by the algorithm provided as a constant\&. "
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR size_t CRYPTOPP_API \fBStaticGetValidKeyLength\fP (size_t keylength)"
+.br
+.RI "The default key length for the algorithm provided by a static function\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBDES\fP block cipher\&. 
+
+The \fBDES\fP implementation in Crypto++ ignores the parity bits (the least significant bits of each byte) in the key\&. However you can use \fBCheckKeyParityBits()\fP and \fBCorrectKeyParityBits()\fP to check or correct the parity bits if you wish\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRDES\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,1974 @@
+.TH "Integer" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Integer \- Multiple precision integer with arithmetic operations\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <integer\&.h>\fP
+.PP
+Inherits \fBInitializeInteger\fP, and \fBASN1Object\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBDivideByZero\fP"
+.br
+.RI "\fBException\fP thrown when division by 0 is encountered\&. "
+.ti -1c
+.RI "class \fBOpenPGPDecodeErr\fP"
+.br
+.RI "\fBException\fP thrown when an error is encountered decoding an OpenPGP integer\&. "
+.ti -1c
+.RI "class \fBRandomNumberNotFound\fP"
+.br
+.RI "\fBException\fP thrown when a random number cannot be found that satisfies the condition\&. "
+.in -1c
+.SS "ENUMS, EXCEPTIONS, and TYPEDEFS"
+
+.in +1c
+.ti -1c
+.RI "enum \fBSign\fP { \fBPOSITIVE\fP =0, \fBNEGATIVE\fP =1 }"
+.br
+.RI "Used internally to represent the integer\&. "
+.ti -1c
+.RI "enum \fBSignedness\fP { \fBUNSIGNED\fP, \fBSIGNED\fP }"
+.br
+.RI "Used when importing and exporting integers\&. "
+.ti -1c
+.RI "enum \fBRandomNumberType\fP { \fBANY\fP, \fBPRIME\fP }"
+.br
+.RI "Properties of a random integer\&. "
+.in -1c
+.SS "INPUT/OUTPUT"
+
+.in +1c
+.ti -1c
+.RI "class \fBModularArithmetic\fP"
+.br
+.ti -1c
+.RI "class \fBMontgomeryRepresentation\fP"
+.br
+.ti -1c
+.RI "class \fBHalfMontgomeryRepresentation\fP"
+.br
+.ti -1c
+.RI "CRYPTOPP_DLL std::istream &CRYPTOPP_API \fBoperator>>\fP (std::istream &in, \fBInteger\fP &a)"
+.br
+.RI "Extraction operator\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL std::ostream &CRYPTOPP_API \fBoperator<<\fP (std::ostream &out, const \fBInteger\fP &a)"
+.br
+.RI "Insertion operator\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL friend \fBInteger\fP CRYPTOPP_API \fBa_times_b_mod_c\fP (const \fBInteger\fP &x, const \fBInteger\fP &y, const \fBInteger\fP &m)"
+.br
+.RI "Modular multiplication\&. "
+.ti -1c
+.RI "CRYPTOPP_DLL friend \fBInteger\fP CRYPTOPP_API \fBa_exp_b_mod_c\fP (const \fBInteger\fP &x, const \fBInteger\fP &e, const \fBInteger\fP &m)"
+.br
+.RI "Modular exponentiation\&. "
+.ti -1c
+.RI "void \fBPositiveAdd\fP (\fBInteger\fP &sum, const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.ti -1c
+.RI "void \fBPositiveSubtract\fP (\fBInteger\fP &diff, const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.ti -1c
+.RI "void \fBPositiveMultiply\fP (\fBInteger\fP &product, const \fBInteger\fP &a, const \fBInteger\fP &b)"
+.br
+.ti -1c
+.RI "void \fBPositiveDivide\fP (\fBInteger\fP &remainder, \fBInteger\fP &quotient, const \fBInteger\fP &dividend, const \fBInteger\fP &divisor)"
+.br
+.ti -1c
+.RI "\fBInteger\fP \fBInverseModNext\fP (const \fBInteger\fP &n) const"
+.br
+.in -1c
+.SS "CREATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP ()"
+.br
+.RI "Creates the zero integer\&. "
+.ti -1c
+.RI "\fBInteger\fP (const \fBInteger\fP &t)"
+.br
+.RI "copy constructor "
+.ti -1c
+.RI "\fBInteger\fP (signed long value)"
+.br
+.RI "Convert from signed long\&. "
+.ti -1c
+.RI "\fBInteger\fP (\fBSign\fP sign, \fBlword\fP value)"
+.br
+.RI "Convert from lword\&. "
+.ti -1c
+.RI "\fBInteger\fP (\fBSign\fP sign, word highWord, word lowWord)"
+.br
+.RI "Convert from two words\&. "
+.ti -1c
+.RI "\fBInteger\fP (const char *str, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Convert from a C-string\&. "
+.ti -1c
+.RI "\fBInteger\fP (const wchar_t *str, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Convert from a wide C-string\&. "
+.ti -1c
+.RI "\fBInteger\fP (const \fBbyte\fP *encodedInteger, size_t byteCount, \fBSignedness\fP sign=\fBUNSIGNED\fP, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Convert from a big-endian byte array\&. "
+.ti -1c
+.RI "\fBInteger\fP (\fBBufferedTransformation\fP &bt, size_t byteCount, \fBSignedness\fP sign=\fBUNSIGNED\fP, \fBByteOrder\fP order=\fBBIG_ENDIAN_ORDER\fP)"
+.br
+.RI "Convert from a big-endian array\&. "
+.ti -1c
+.RI "\fBInteger\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Convert from a BER encoded byte array\&. "
+.ti -1c
+.RI "\fBInteger\fP (\fBRandomNumberGenerator\fP &rng, size_t bitCount)"
+.br
+.RI "Create a random integer\&. "
+.ti -1c
+.RI "\fBInteger\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &min, const \fBInteger\fP &max, \fBRandomNumberType\fP rnType=\fBANY\fP, const \fBInteger\fP &equiv=\fBZero\fP(), const \fBInteger\fP &mod=\fBOne\fP())"
+.br
+.RI "Create a random integer of special form\&. "
+.ti -1c
+.RI "static const \fBInteger\fP &CRYPTOPP_API \fBZero\fP ()"
+.br
+.RI "\fBInteger\fP representing 0\&. "
+.ti -1c
+.RI "static const \fBInteger\fP &CRYPTOPP_API \fBOne\fP ()"
+.br
+.RI "\fBInteger\fP representing 1\&. "
+.ti -1c
+.RI "static const \fBInteger\fP &CRYPTOPP_API \fBTwo\fP ()"
+.br
+.RI "\fBInteger\fP representing 2\&. "
+.ti -1c
+.RI "static \fBInteger\fP CRYPTOPP_API \fBPower2\fP (size_t e)"
+.br
+.RI "Exponentiates to a power of 2\&. "
+.in -1c
+.SS "ENCODE/DECODE"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBMinEncodedSize\fP (\fBSignedness\fP sign=\fBUNSIGNED\fP) const"
+.br
+.RI "Minimum number of bytes to encode this integer\&. "
+.ti -1c
+.RI "void \fBEncode\fP (\fBbyte\fP *output, size_t outputLen, \fBSignedness\fP sign=\fBUNSIGNED\fP) const"
+.br
+.RI "Encode in big-endian format\&. "
+.ti -1c
+.RI "void \fBEncode\fP (\fBBufferedTransformation\fP &bt, size_t outputLen, \fBSignedness\fP sign=\fBUNSIGNED\fP) const"
+.br
+.RI "Encode in big-endian format\&. "
+.ti -1c
+.RI "void \fBDEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode in DER format\&. "
+.ti -1c
+.RI "void \fBDEREncodeAsOctetString\fP (\fBBufferedTransformation\fP &bt, size_t length) const"
+.br
+.RI "Encode absolute value as big-endian octet string\&. "
+.ti -1c
+.RI "size_t \fBOpenPGPEncode\fP (\fBbyte\fP *output, size_t bufferSize) const"
+.br
+.RI "Encode absolute value in OpenPGP format\&. "
+.ti -1c
+.RI "size_t \fBOpenPGPEncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode absolute value in OpenPGP format\&. "
+.ti -1c
+.RI "void \fBDecode\fP (const \fBbyte\fP *input, size_t inputLen, \fBSignedness\fP sign=\fBUNSIGNED\fP)"
+.br
+.RI "Decode from big-endian byte array\&. "
+.ti -1c
+.RI "void \fBDecode\fP (\fBBufferedTransformation\fP &bt, size_t inputLen, \fBSignedness\fP sign=\fBUNSIGNED\fP)"
+.br
+.RI "Decode nonnegative value from big-endian byte array\&. "
+.ti -1c
+.RI "void \fBBERDecode\fP (const \fBbyte\fP *input, size_t inputLen)"
+.br
+.RI "Decode from BER format\&. "
+.ti -1c
+.RI "void \fBBERDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode from BER format\&. "
+.ti -1c
+.RI "void \fBBERDecodeAsOctetString\fP (\fBBufferedTransformation\fP &bt, size_t length)"
+.br
+.RI "Decode nonnegative value from big-endian octet string\&. "
+.ti -1c
+.RI "void \fBOpenPGPDecode\fP (const \fBbyte\fP *input, size_t inputLen)"
+.br
+.RI "Decode from OpenPGP format\&. "
+.ti -1c
+.RI "void \fBOpenPGPDecode\fP (\fBBufferedTransformation\fP &bt)"
+.br
+.RI "Decode from OpenPGP format\&. "
+.in -1c
+.SS "ACCESSORS"
+
+.in +1c
+.ti -1c
+.RI "bool \fBIsConvertableToLong\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is convertable to Long\&. "
+.ti -1c
+.RI "signed long \fBConvertToLong\fP () const"
+.br
+.RI "Convert the \fBInteger\fP to Long\&. "
+.ti -1c
+.RI "unsigned int \fBBitCount\fP () const"
+.br
+.RI "Determines the number of bits required to represent the \fBInteger\fP\&. "
+.ti -1c
+.RI "unsigned int \fBByteCount\fP () const"
+.br
+.RI "Determines the number of bytes required to represent the \fBInteger\fP\&. "
+.ti -1c
+.RI "unsigned int \fBWordCount\fP () const"
+.br
+.RI "Determines the number of words required to represent the \fBInteger\fP\&. "
+.ti -1c
+.RI "bool \fBGetBit\fP (size_t i) const"
+.br
+.RI "Provides the i-th bit of the \fBInteger\fP\&. "
+.ti -1c
+.RI "\fBbyte\fP \fBGetByte\fP (size_t i) const"
+.br
+.RI "Provides the i-th byte of the \fBInteger\fP\&. "
+.ti -1c
+.RI "\fBlword\fP \fBGetBits\fP (size_t i, size_t n) const"
+.br
+.RI "Provides the low order bits of the \fBInteger\fP\&. "
+.ti -1c
+.RI "bool \fBIsZero\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is 0\&. "
+.ti -1c
+.RI "bool \fBNotZero\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is non-0\&. "
+.ti -1c
+.RI "bool \fBIsNegative\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is negative\&. "
+.ti -1c
+.RI "bool \fBNotNegative\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is non-negative\&. "
+.ti -1c
+.RI "bool \fBIsPositive\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is positive\&. "
+.ti -1c
+.RI "bool \fBNotPositive\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is non-positive\&. "
+.ti -1c
+.RI "bool \fBIsEven\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is even parity\&. "
+.ti -1c
+.RI "bool \fBIsOdd\fP () const"
+.br
+.RI "Determines if the \fBInteger\fP is odd parity\&. "
+.in -1c
+.SS "MANIPULATORS"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator+=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Addition Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator\-=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Subtraction Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator*=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Multiplication Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator/=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Division Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator%=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Remainder Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator/=\fP (word t)"
+.br
+.RI "Division Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator%=\fP (word t)"
+.br
+.RI "Remainder Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator<<=\fP (size_t n)"
+.br
+.RI "Left-shift Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator>>=\fP (size_t n)"
+.br
+.RI "Right-shift Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator&=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Bitwise AND Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator|=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Bitwise OR Assignment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator^=\fP (const \fBInteger\fP &t)"
+.br
+.RI "Bitwise XOR Assignment\&. "
+.ti -1c
+.RI "void \fBRandomize\fP (\fBRandomNumberGenerator\fP &rng, size_t bitCount)"
+.br
+.RI "Set this \fBInteger\fP to random integer\&. "
+.ti -1c
+.RI "void \fBRandomize\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &min, const \fBInteger\fP &max)"
+.br
+.RI "Set this \fBInteger\fP to random integer\&. "
+.ti -1c
+.RI "bool \fBRandomize\fP (\fBRandomNumberGenerator\fP &rng, const \fBInteger\fP &min, const \fBInteger\fP &max, \fBRandomNumberType\fP rnType, const \fBInteger\fP &equiv=\fBZero\fP(), const \fBInteger\fP &mod=\fBOne\fP())"
+.br
+.RI "Set this \fBInteger\fP to random integer of special form\&. "
+.ti -1c
+.RI "bool \fBGenerateRandomNoThrow\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Generate a random number\&. "
+.ti -1c
+.RI "void \fBGenerateRandom\fP (\fBRandomNumberGenerator\fP &rng, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Generate a random number\&. "
+.ti -1c
+.RI "void \fBSetBit\fP (size_t n, bool value=1)"
+.br
+.RI "Set the n-th bit to value\&. "
+.ti -1c
+.RI "void \fBSetByte\fP (size_t n, \fBbyte\fP value)"
+.br
+.RI "Set the n-th byte to value\&. "
+.ti -1c
+.RI "void \fBNegate\fP ()"
+.br
+.RI "Reverse the \fBSign\fP of the \fBInteger\fP\&. "
+.ti -1c
+.RI "void \fBSetPositive\fP ()"
+.br
+.RI "Sets the \fBInteger\fP to positive\&. "
+.ti -1c
+.RI "void \fBSetNegative\fP ()"
+.br
+.RI "Sets the \fBInteger\fP to negative\&. "
+.ti -1c
+.RI "void \fBswap\fP (\fBInteger\fP &a)"
+.br
+.RI "Swaps this \fBInteger\fP with another \fBInteger\fP\&. "
+.in -1c
+.SS "UNARY OPERATORS"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator!\fP () const"
+.br
+.RI "Negation\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBoperator+\fP () const"
+.br
+.RI "Addition\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBoperator\-\fP () const"
+.br
+.RI "Subtraction\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator++\fP ()"
+.br
+.RI "Pre-increment\&. "
+.ti -1c
+.RI "\fBInteger\fP & \fBoperator\-\-\fP ()"
+.br
+.RI "Pre-decrement\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBoperator++\fP (int)"
+.br
+.RI "Post-increment\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBoperator\-\-\fP (int)"
+.br
+.RI "Post-decrement\&. "
+.in -1c
+.SS "BINARY OPERATORS"
+
+.in +1c
+.ti -1c
+.RI "int \fBCompare\fP (const \fBInteger\fP &a) const"
+.br
+.RI "Perform signed comparison\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBPlus\fP (const \fBInteger\fP &b) const"
+.br
+.RI "Addition\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBMinus\fP (const \fBInteger\fP &b) const"
+.br
+.RI "Subtraction\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBTimes\fP (const \fBInteger\fP &b) const"
+.br
+.RI "Multiplication\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBDividedBy\fP (const \fBInteger\fP &b) const"
+.br
+.RI "Division\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBModulo\fP (const \fBInteger\fP &b) const"
+.br
+.RI "Remainder\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBDividedBy\fP (word b) const"
+.br
+.RI "Division\&. "
+.ti -1c
+.RI "word \fBModulo\fP (word b) const"
+.br
+.RI "Remainder\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBAnd\fP (const \fBInteger\fP &t) const"
+.br
+.RI "Bitwise AND\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBOr\fP (const \fBInteger\fP &t) const"
+.br
+.RI "Bitwise OR\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBXor\fP (const \fBInteger\fP &t) const"
+.br
+.RI "Bitwise XOR\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBoperator>>\fP (size_t n) const"
+.br
+.RI "Right-shift\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBoperator<<\fP (size_t n) const"
+.br
+.RI "Left-shift\&. "
+.in -1c
+.SS "OTHER ARITHMETIC FUNCTIONS"
+
+.in +1c
+.ti -1c
+.RI "\fBInteger\fP \fBAbsoluteValue\fP () const"
+.br
+.RI "Retrieve the absolute value of this integer\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBDoubled\fP () const"
+.br
+.RI "Add this integer to itself\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBSquared\fP () const"
+.br
+.RI "Multiply this integer by itself\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBSquareRoot\fP () const"
+.br
+.RI "Extract square root\&. "
+.ti -1c
+.RI "bool \fBIsSquare\fP () const"
+.br
+.RI "Determine whether this integer is a perfect square\&. "
+.ti -1c
+.RI "bool \fBIsUnit\fP () const"
+.br
+.RI "Determine if 1 or -1\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBMultiplicativeInverse\fP () const"
+.br
+.RI "Calculate multiplicative inverse\&. "
+.ti -1c
+.RI "\fBInteger\fP \fBInverseMod\fP (const \fBInteger\fP &n) const"
+.br
+.RI "Calculate multiplicative inverse\&. "
+.ti -1c
+.RI "word \fBInverseMod\fP (word n) const"
+.br
+.RI "Calculate multiplicative inverse\&. "
+.ti -1c
+.RI "static void CRYPTOPP_API \fBDivide\fP (\fBInteger\fP &r, \fBInteger\fP &q, const \fBInteger\fP &a, const \fBInteger\fP &d)"
+.br
+.RI "Extended Division\&. "
+.ti -1c
+.RI "static void CRYPTOPP_API \fBDivide\fP (word &r, \fBInteger\fP &q, const \fBInteger\fP &a, word d)"
+.br
+.RI "Extended Division\&. "
+.ti -1c
+.RI "static void CRYPTOPP_API \fBDivideByPowerOf2\fP (\fBInteger\fP &r, \fBInteger\fP &q, const \fBInteger\fP &a, unsigned int n)"
+.br
+.RI "Extended Division\&. "
+.ti -1c
+.RI "static \fBInteger\fP CRYPTOPP_API \fBGcd\fP (const \fBInteger\fP &a, const \fBInteger\fP &n)"
+.br
+.RI "Calculate greatest common divisor\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Member Functions inherited from \fBASN1Object\fP
+.in +1c
+.ti -1c
+.RI "virtual void \fBBEREncode\fP (\fBBufferedTransformation\fP &bt) const"
+.br
+.RI "Encode this object into a \fBBufferedTransformation\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Multiple precision integer with arithmetic operations\&. 
+
+The \fBInteger\fP class can represent positive and negative integers with absolute value less than (256**sizeof(word))\*{(256**sizeof(int))\*} \&.
+
+.PP
+Internally, the library uses a sign magnitude representation, and the class has two data members\&. The first is a IntegerSecBlock (a \fBSecBlock<word>\fP) and it is used to hold the representation\&. The second is a \fBSign\fP (an enumeration), and it is used to track the sign of the \fBInteger\fP\&.
+
+.PP
+For details on how the \fBInteger\fP class initializes its function pointers using \fBInitializeInteger\fP and how it creates \fBInteger::Zero()\fP, \fBInteger::One()\fP, and \fBInteger::Two()\fP, then see the comments at the top of \fRinteger\&.cpp\fP\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBInteger::RandomNumberType\fP"
+
+.PP
+Properties of a random integer\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIANY \fP
+a number with no special properties 
+.TP
+\f(BIPRIME \fP
+a number which is probabilistically prime 
+.SS "enum \fBInteger::Sign\fP"
+
+.PP
+Used internally to represent the integer\&. \fBSign\fP is used internally to represent the integer\&. It is also used in a few API functions\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSetPositive()\fP, \fBSetNegative()\fP, \fBSignedness\fP 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIPOSITIVE \fP
+the value is positive or 0 
+.TP
+\f(BINEGATIVE \fP
+the value is negative 
+.SS "enum \fBInteger::Signedness\fP"
+
+.PP
+Used when importing and exporting integers\&. \fBSignedness\fP is usually used in API functions\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBSign\fP 
+.RE
+.PP
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\f(BIUNSIGNED \fP
+an unsigned value 
+.TP
+\f(BISIGNED \fP
+a signed value 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Integer::Integer (\fBSign\fP sign, \fBlword\fP value)"
+
+.PP
+Convert from lword\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsign\fP enumeration indicating \fBSign\fP 
+.br
+\fIvalue\fP the long word 
+.RE
+.PP
+
+.SS "Integer::Integer (\fBSign\fP sign, word highWord, word lowWord)"
+
+.PP
+Convert from two words\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsign\fP enumeration indicating \fBSign\fP 
+.br
+\fIhighWord\fP the high word 
+.br
+\fIlowWord\fP the low word 
+.RE
+.PP
+
+.SS "Integer::Integer (const char * str, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)\fR [explicit]\fP"
+
+.PP
+Convert from a C-string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP C-string value 
+.br
+\fIorder\fP the \fBByteOrder\fP of the string to be processed
+.RE
+.PP
+\fRstr\fP can be in base 8, 10, or 16\&. Base is determined by a case insensitive suffix of 'o' (8), '\&.' (10), or 'h' (16)\&. No suffix means base 10\&.
+
+.PP
+Byte order was added at Crypto++ 5\&.7 to allow use of little-endian integers with curve25519, \fBPoly1305\fP and Microsoft CAPI\&. 
+.SS "Integer::Integer (const wchar_t * str, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)\fR [explicit]\fP"
+
+.PP
+Convert from a wide C-string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP wide C-string value 
+.br
+\fIorder\fP the \fBByteOrder\fP of the string to be processed
+.RE
+.PP
+\fRstr\fP can be in base 8, 10, or 16\&. Base is determined by a case insensitive suffix of 'o' (8), '\&.' (10), or 'h' (16)\&. No suffix means base 10\&.
+
+.PP
+Byte order was added at Crypto++ 5\&.7 to allow use of little-endian integers with curve25519, \fBPoly1305\fP and Microsoft CAPI\&. 
+.SS "Integer::Integer (const \fBbyte\fP * encodedInteger, size_t byteCount, \fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)"
+
+.PP
+Convert from a big-endian byte array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIencodedInteger\fP big-endian byte array 
+.br
+\fIbyteCount\fP length of the byte array 
+.br
+\fIsign\fP enumeration indicating \fBSignedness\fP 
+.br
+\fIorder\fP the \fBByteOrder\fP of the array to be processed
+.RE
+.PP
+Byte order was added at Crypto++ 5\&.7 to allow use of little-endian integers with curve25519, \fBPoly1305\fP and Microsoft CAPI\&. 
+.SS "Integer::Integer (\fBBufferedTransformation\fP & bt, size_t byteCount, \fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP, \fBByteOrder\fP order = \fR\fBBIG_ENDIAN_ORDER\fP\fP)"
+
+.PP
+Convert from a big-endian array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object with big-endian byte array 
+.br
+\fIbyteCount\fP length of the byte array 
+.br
+\fIsign\fP enumeration indicating \fBSignedness\fP 
+.br
+\fIorder\fP the \fBByteOrder\fP of the data to be processed
+.RE
+.PP
+Byte order was added at Crypto++ 5\&.7 to allow use of little-endian integers with curve25519, \fBPoly1305\fP and Microsoft CAPI\&. 
+.SS "Integer::Integer (\fBBufferedTransformation\fP & bt)\fR [explicit]\fP"
+
+.PP
+Convert from a BER encoded byte array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object with BER encoded byte array 
+.RE
+.PP
+
+.SS "Integer::Integer (\fBRandomNumberGenerator\fP & rng, size_t bitCount)"
+
+.PP
+Create a random integer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fIbitCount\fP the number of bits in the resulting integer
+.RE
+.PP
+The random integer created is uniformly distributed over \fR[0, 2\*{bitCount\*} ]\fP\&. 
+.SS "Integer::Integer (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & min, const \fBInteger\fP & max, \fBRandomNumberType\fP rnType = \fR\fBANY\fP\fP, const \fBInteger\fP & equiv = \fR\fBZero\fP()\fP, const \fBInteger\fP & mod = \fR\fBOne\fP()\fP)"
+
+.PP
+Create a random integer of special form\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fImin\fP the minimum value 
+.br
+\fImax\fP the maximum value 
+.br
+\fIrnType\fP \fBRandomNumberType\fP to specify the type 
+.br
+\fIequiv\fP the equivalence class based on the parameter \fRmod\fP 
+.br
+\fImod\fP the modulus used to reduce the equivalence class 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBRandomNumberNotFound\fP\fP if the set is empty\&.
+.RE
+.PP
+Ideally, the random integer created should be uniformly distributed over \fR{x | min <= x <= max\fP and \fRx\fP is of rnType and \fRx % mod == equiv}\fP\&. However the actual distribution may not be uniform because sequential search is used to find an appropriate number from a random starting point\&.
+
+.PP
+May return (with very small probability) a pseudoprime when a prime is requested and \fRmax > lastSmallPrime*lastSmallPrime\fP\&. \fRlastSmallPrime\fP is declared in \fBnbtheory\&.h\fP\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBInteger\fP Integer::And (const \fBInteger\fP & t) const"
+
+.PP
+Bitwise AND\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this & t\fP
+.RE
+.PP
+\fBAnd()\fP performs a bitwise AND on the operands\&. Missing bits are truncated at the most significant bit positions, so the result is as small as the smaller of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "void Integer::BERDecode (\fBBufferedTransformation\fP & bt)\fR [virtual]\fP"
+
+.PP
+Decode from BER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.PP
+Implements \fBASN1Object\fP\&.
+.SS "void Integer::BERDecode (const \fBbyte\fP * input, size_t inputLen)"
+
+.PP
+Decode from BER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP big-endian byte array 
+.br
+\fIinputLen\fP length of the byte array 
+.RE
+.PP
+
+.SS "void Integer::BERDecodeAsOctetString (\fBBufferedTransformation\fP & bt, size_t length)"
+
+.PP
+Decode nonnegative value from big-endian octet string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIlength\fP length of the byte array 
+.RE
+.PP
+
+.SS "unsigned int Integer::BitCount () const"
+
+.PP
+Determines the number of bits required to represent the \fBInteger\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+number of significant bits
+.RE
+.PP
+BitCount is calculated as \fRfloor(log2(abs(*this))) + 1\fP\&. 
+.SS "unsigned int Integer::ByteCount () const"
+
+.PP
+Determines the number of bytes required to represent the \fBInteger\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+number of significant bytes
+.RE
+.PP
+ByteCount is calculated as \fRceiling(\fBBitCount()\fP/8)\fP\&. 
+.SS "int Integer::Compare (const \fBInteger\fP & a) const"
+
+.PP
+Perform signed comparison\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the \fBInteger\fP to compare 
+.RE
+.PP
+\fBReturn values\fP
+.RS 4
+\fI-1\fP if \fR*this < a\fP 
+.br
+\fI0\fP if \fR*this = a\fP 
+.br
+\fI1\fP if \fR*this > a\fP 
+.RE
+.PP
+
+.SS "signed long Integer::ConvertToLong () const"
+
+.PP
+Convert the \fBInteger\fP to Long\&. 
+.PP
+\fBReturns\fP
+.RS 4
+equivalent signed long if possible, otherwise undefined 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBIsConvertableToLong()\fP 
+.RE
+.PP
+
+.SS "void Integer::Decode (\fBBufferedTransformation\fP & bt, size_t inputLen, \fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP)"
+
+.PP
+Decode nonnegative value from big-endian byte array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIinputLen\fP length of the byte array 
+.br
+\fIsign\fP enumeration indicating \fBSignedness\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fRbt\&.MaxRetrievable() >= inputLen\fP\&. 
+.RE
+.PP
+
+.SS "void Integer::Decode (const \fBbyte\fP * input, size_t inputLen, \fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP)"
+
+.PP
+Decode from big-endian byte array\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP big-endian byte array 
+.br
+\fIinputLen\fP length of the byte array 
+.br
+\fIsign\fP enumeration indicating \fBSignedness\fP 
+.RE
+.PP
+
+.SS "void Integer::DEREncode (\fBBufferedTransformation\fP & bt) const\fR [virtual]\fP"
+
+.PP
+Encode in DER format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object
+.RE
+.PP
+Encodes the \fBInteger\fP using Distinguished Encoding Rules The result is placed into a \fBBufferedTransformation\fP object 
+.PP
+Implements \fBASN1Object\fP\&.
+.SS "void Integer::DEREncodeAsOctetString (\fBBufferedTransformation\fP & bt, size_t length) const"
+
+.PP
+Encode absolute value as big-endian octet string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIlength\fP the number of mytes to decode 
+.RE
+.PP
+
+.SS "void Integer::Divide (\fBInteger\fP & r, \fBInteger\fP & q, const \fBInteger\fP & a, const \fBInteger\fP & d)\fR [static]\fP"
+
+.PP
+Extended Division\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP a reference for the remainder 
+.br
+\fIq\fP a reference for the quotient 
+.br
+\fIa\fP reference to the dividend 
+.br
+\fId\fP reference to the divisor
+.RE
+.PP
+Divide calculates r and q such that (a == d*q + r) && (0 <= r < abs(d))\&. 
+.SS "void Integer::Divide (word & r, \fBInteger\fP & q, const \fBInteger\fP & a, word d)\fR [static]\fP"
+
+.PP
+Extended Division\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP a reference for the remainder 
+.br
+\fIq\fP a reference for the quotient 
+.br
+\fIa\fP reference to the dividend 
+.br
+\fId\fP reference to the divisor
+.RE
+.PP
+Divide calculates r and q such that (a == d*q + r) && (0 <= r < abs(d))\&. This overload uses a faster division algorithm because the divisor is short\&. 
+.SS "void Integer::DivideByPowerOf2 (\fBInteger\fP & r, \fBInteger\fP & q, const \fBInteger\fP & a, unsigned int n)\fR [static]\fP"
+
+.PP
+Extended Division\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIr\fP a reference for the remainder 
+.br
+\fIq\fP a reference for the quotient 
+.br
+\fIa\fP reference to the dividend 
+.br
+\fIn\fP reference to the divisor
+.RE
+.PP
+DivideByPowerOf2 calculates r and q such that (a == d*q + r) && (0 <= r < abs(d))\&. It returns same result as Divide(r, q, a, Power2(n)), but faster\&. This overload uses a faster division algorithm because the divisor is a power of 2\&. 
+.SS "void Integer::Encode (\fBBufferedTransformation\fP & bt, size_t outputLen, \fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP) const"
+
+.PP
+Encode in big-endian format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.br
+\fIoutputLen\fP length of the encoding 
+.br
+\fIsign\fP enumeration indicating \fBSignedness\fP
+.RE
+.PP
+Unsigned means encode absolute value, signed means encode two's complement if negative\&.
+
+.PP
+outputLen can be used to ensure an \fBInteger\fP is encoded to an exact size (rather than a minimum size)\&. An exact size is useful, for example, when encoding to a field element size\&. 
+.SS "void Integer::Encode (\fBbyte\fP * output, size_t outputLen, \fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP) const"
+
+.PP
+Encode in big-endian format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP big-endian byte array 
+.br
+\fIoutputLen\fP length of the byte array 
+.br
+\fIsign\fP enumeration indicating \fBSignedness\fP
+.RE
+.PP
+Unsigned means encode absolute value, signed means encode two's complement if negative\&.
+
+.PP
+outputLen can be used to ensure an \fBInteger\fP is encoded to an exact size (rather than a minimum size)\&. An exact size is useful, for example, when encoding to a field element size\&. 
+.SS "\fBInteger\fP Integer::Gcd (const \fBInteger\fP & a, const \fBInteger\fP & n)\fR [static]\fP"
+
+.PP
+Calculate greatest common divisor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP reference to the first number 
+.br
+\fIn\fP reference to the secind number 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the greatest common divisor \fRa\fP and \fRn\fP\&. 
+.RE
+.PP
+
+.SS "void Integer::GenerateRandom (\fBRandomNumberGenerator\fP & rng, const \fBNameValuePairs\fP & params = \fRg_nullNameValuePairs\fP)\fR [inline]\fP"
+
+.PP
+Generate a random number\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fIparams\fP additional parameters that cannot be passed directly to the function 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBRandomNumberNotFound\fP\fP if a random number is not found
+.RE
+.PP
+GenerateRandom attempts to generate a random number according to the parameters specified in params\&.
+
+.PP
+The example below generates a prime number using \fBNameValuePairs\fP that \fBInteger\fP class recognizes\&. The names are not provided in \fBargnames\&.h\fP\&. 
+.PP
+.nf
+
+   AutoSeededRandomPool prng;
+   \fBAlgorithmParameters\fP params = MakeParameters("BitLength", 2048)
+                                              ("RandomNumberType", \fBInteger::PRIME\fP);
+   \fBInteger\fP x;
+   try { x\&.GenerateRandom(prng, params); }
+   catch (\fBRandomNumberNotFound\fP&) { x = -1; }
+.fi
+.PP
+ 
+.SS "bool Integer::GenerateRandomNoThrow (\fBRandomNumberGenerator\fP & rng, const \fBNameValuePairs\fP & params = \fRg_nullNameValuePairs\fP)"
+
+.PP
+Generate a random number\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fIparams\fP additional parameters that cannot be passed directly to the function 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if a random number was generated, false otherwise
+.RE
+.PP
+GenerateRandomNoThrow attempts to generate a random number according to the parameters specified in params\&. The function does not throw \fBRandomNumberNotFound\fP\&.
+
+.PP
+The example below generates a prime number using \fBNameValuePairs\fP that \fBInteger\fP class recognizes\&. The names are not provided in \fBargnames\&.h\fP\&. 
+.PP
+.nf
+
+   AutoSeededRandomPool prng;
+   \fBAlgorithmParameters\fP params = MakeParameters("BitLength", 2048)
+                                              ("RandomNumberType", \fBInteger::PRIME\fP);
+   \fBInteger\fP x;
+   if (x\&.GenerateRandomNoThrow(prng, params) == false)
+       throw std::runtime_error("Failed to generate prime number");
+.fi
+.PP
+ 
+.SS "bool Integer::GetBit (size_t i) const"
+
+.PP
+Provides the i-th bit of the \fBInteger\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the i-th bit, i=0 being the least significant bit 
+.RE
+.PP
+
+.SS "\fBlword\fP Integer::GetBits (size_t i, size_t n) const"
+
+.PP
+Provides the low order bits of the \fBInteger\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+n lowest bits of \fR*this >> i\fP 
+.RE
+.PP
+
+.SS "\fBbyte\fP Integer::GetByte (size_t i) const"
+
+.PP
+Provides the i-th byte of the \fBInteger\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the i-th byte 
+.RE
+.PP
+
+.SS "\fBInteger\fP Integer::InverseMod (const \fBInteger\fP & n) const"
+
+.PP
+Calculate multiplicative inverse\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP reference to the modulus 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP \fR*this % n\fP\&.
+.RE
+.PP
+InverseMod returns the multiplicative inverse of the \fBInteger\fP \fR*this\fP modulo the \fBInteger\fP \fRn\fP\&. If no \fBInteger\fP exists then \fBInteger\fP 0 is returned\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "word Integer::InverseMod (word n) const"
+
+.PP
+Calculate multiplicative inverse\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP the modulus 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+a word \fR*this % n\fP\&.
+.RE
+.PP
+InverseMod returns the multiplicative inverse of the \fBInteger\fP \fR*this\fP modulo the word \fRn\fP\&. If no \fBInteger\fP exists then word 0 is returned\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "bool Integer::IsConvertableToLong () const"
+
+.PP
+Determines if the \fBInteger\fP is convertable to Long\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if \fR*this\fP can be represented as a signed long 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBConvertToLong()\fP 
+.RE
+.PP
+
+.SS "bool Integer::IsEven () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is even parity\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is even, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::IsNegative () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is negative\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is negative, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::IsOdd () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is odd parity\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is odd, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::IsPositive () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is positive\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is positive, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::IsUnit () const"
+
+.PP
+Determine if 1 or -1\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if this integer is 1 or -1, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::IsZero () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is 0\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is 0, false otherwise 
+.RE
+.PP
+
+.SS "size_t Integer::MinEncodedSize (\fBSignedness\fP sign = \fR\fBUNSIGNED\fP\fP) const"
+
+.PP
+Minimum number of bytes to encode this integer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsign\fP enumeration indicating \fBSignedness\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+The \fBMinEncodedSize()\fP of 0 is 1\&. 
+.RE
+.PP
+
+.SS "\fBInteger\fP Integer::Modulo (const \fBInteger\fP & b) const"
+
+.PP
+Remainder\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "word Integer::Modulo (word b) const"
+
+.PP
+Remainder\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP Integer::MultiplicativeInverse () const"
+
+.PP
+Calculate multiplicative inverse\&. 
+.PP
+\fBReturns\fP
+.RS 4
+MultiplicativeInverse inverse if 1 or -1, otherwise return 0\&. 
+.RE
+.PP
+
+.SS "bool Integer::NotNegative () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is non-negative\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is non-negative, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::NotPositive () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is non-positive\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is non-positive, false otherwise 
+.RE
+.PP
+
+.SS "bool Integer::NotZero () const\fR [inline]\fP"
+
+.PP
+Determines if the \fBInteger\fP is non-0\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the \fBInteger\fP is non-0, false otherwise 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & Integer::One ()\fR [static]\fP"
+
+.PP
+\fBInteger\fP representing 1\&. 
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP representing 1
+.RE
+.PP
+\fBOne()\fP avoids calling constructors for frequently used integers 
+.SS "void Integer::OpenPGPDecode (\fBBufferedTransformation\fP & bt)"
+
+.PP
+Decode from OpenPGP format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+
+.SS "void Integer::OpenPGPDecode (const \fBbyte\fP * input, size_t inputLen)"
+
+.PP
+Decode from OpenPGP format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinput\fP big-endian byte array 
+.br
+\fIinputLen\fP length of the byte array 
+.RE
+.PP
+
+.SS "size_t Integer::OpenPGPEncode (\fBBufferedTransformation\fP & bt) const"
+
+.PP
+Encode absolute value in OpenPGP format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbt\fP \fBBufferedTransformation\fP object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+length of the output
+.RE
+.PP
+OpenPGPEncode places result into a \fBBufferedTransformation\fP object and returns the number of bytes used for the encoding 
+.SS "size_t Integer::OpenPGPEncode (\fBbyte\fP * output, size_t bufferSize) const"
+
+.PP
+Encode absolute value in OpenPGP format\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutput\fP big-endian byte array 
+.br
+\fIbufferSize\fP length of the byte array 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+length of the output
+.RE
+.PP
+OpenPGPEncode places result into the buffer and returns the number of bytes used for the encoding 
+.SS "\fBInteger\fP & Integer::operator%= (const \fBInteger\fP & t)\fR [inline]\fP"
+
+.PP
+Remainder Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this % t\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator%= (word t)\fR [inline]\fP"
+
+.PP
+Remainder Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other word 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this % t\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator&= (const \fBInteger\fP & t)"
+
+.PP
+Bitwise AND Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this & t\fP
+.RE
+.PP
+\fBoperator&=()\fP performs a bitwise AND on \fR*this\fP\&. Missing bits are truncated at the most significant bit positions, so the result is as small as the smaller of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator*= (const \fBInteger\fP & t)\fR [inline]\fP"
+
+.PP
+Multiplication Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this * t\fP 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator+= (const \fBInteger\fP & t)"
+
+.PP
+Addition Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this + t\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator\-= (const \fBInteger\fP & t)"
+
+.PP
+Subtraction Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this - t\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator/= (const \fBInteger\fP & t)\fR [inline]\fP"
+
+.PP
+Division Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this / t\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator/= (word t)\fR [inline]\fP"
+
+.PP
+Division Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other word 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this / t\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator<<= (size_t n)"
+
+.PP
+Left-shift Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP number of bits to shift 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to this \fBInteger\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator= (const \fBInteger\fP & t)"
+
+.PP
+Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of assignment 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator>>= (size_t n)"
+
+.PP
+Right-shift Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIn\fP number of bits to shift 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to this \fBInteger\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator^= (const \fBInteger\fP & t)"
+
+.PP
+Bitwise XOR Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this ^ t\fP
+.RE
+.PP
+\fBoperator^=()\fP performs a bitwise XOR on \fR*this\fP\&. Missing bits are shifted in at the most significant bit positions, so the result is as large as the larger of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "\fBInteger\fP & Integer::operator|= (const \fBInteger\fP & t)"
+
+.PP
+Bitwise OR Assignment\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the second \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this | t\fP
+.RE
+.PP
+\fBoperator|=()\fP performs a bitwise OR on \fR*this\fP\&. Missing bits are shifted in at the most significant bit positions, so the result is as large as the larger of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "\fBInteger\fP Integer::Or (const \fBInteger\fP & t) const"
+
+.PP
+Bitwise OR\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this | t\fP
+.RE
+.PP
+\fBOr()\fP performs a bitwise OR on the operands\&. Missing bits are shifted in at the most significant bit positions, so the result is as large as the larger of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "\fBInteger\fP Integer::Power2 (size_t e)\fR [static]\fP"
+
+.PP
+Exponentiates to a power of 2\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the \fBInteger\fP 2\*{e\*}  
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "void Integer::Randomize (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & min, const \fBInteger\fP & max)"
+
+.PP
+Set this \fBInteger\fP to random integer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fImin\fP the minimum value 
+.br
+\fImax\fP the maximum value
+.RE
+.PP
+The random integer created is uniformly distributed over \fR[min, max]\fP\&. 
+.SS "bool Integer::Randomize (\fBRandomNumberGenerator\fP & rng, const \fBInteger\fP & min, const \fBInteger\fP & max, \fBRandomNumberType\fP rnType, const \fBInteger\fP & equiv = \fR\fBZero\fP()\fP, const \fBInteger\fP & mod = \fR\fBOne\fP()\fP)"
+
+.PP
+Set this \fBInteger\fP to random integer of special form\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fImin\fP the minimum value 
+.br
+\fImax\fP the maximum value 
+.br
+\fIrnType\fP \fBRandomNumberType\fP to specify the type 
+.br
+\fIequiv\fP the equivalence class based on the parameter \fRmod\fP 
+.br
+\fImod\fP the modulus used to reduce the equivalence class 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBRandomNumberNotFound\fP\fP if the set is empty\&.
+.RE
+.PP
+Ideally, the random integer created should be uniformly distributed over \fR{x | min <= x <= max\fP and \fRx\fP is of rnType and \fRx % mod == equiv}\fP\&. However the actual distribution may not be uniform because sequential search is used to find an appropriate number from a random starting point\&.
+
+.PP
+May return (with very small probability) a pseudoprime when a prime is requested and \fRmax > lastSmallPrime*lastSmallPrime\fP\&. \fRlastSmallPrime\fP is declared in \fBnbtheory\&.h\fP\&. 
+.SS "void Integer::Randomize (\fBRandomNumberGenerator\fP & rng, size_t bitCount)"
+
+.PP
+Set this \fBInteger\fP to random integer\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrng\fP \fBRandomNumberGenerator\fP used to generate material 
+.br
+\fIbitCount\fP the number of bits in the resulting integer
+.RE
+.PP
+The random integer created is uniformly distributed over \fR[0, 2\*{bitCount\*} ]\fP\&. 
+.PP
+\fBNote\fP
+.RS 4
+If \fRbitCount\fP is 0, then this \fBInteger\fP is set to 0 (and not 0 or 1)\&. 
+.RE
+.PP
+
+.SS "void Integer::SetBit (size_t n, bool value = \fR1\fP)"
+
+.PP
+Set the n-th bit to value\&. 0-based numbering\&. 
+.SS "void Integer::SetByte (size_t n, \fBbyte\fP value)"
+
+.PP
+Set the n-th byte to value\&. 0-based numbering\&. 
+.SS "\fBInteger\fP Integer::Squared () const\fR [inline]\fP"
+
+.PP
+Multiply this integer by itself\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "\fBInteger\fP Integer::SquareRoot () const"
+
+.PP
+Extract square root\&. if negative return 0, else return floor of square root 
+.SS "\fBInteger\fP Integer::Times (const \fBInteger\fP & b) const"
+
+.PP
+Multiplication\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBa_times_b_mod_c()\fP and \fBa_exp_b_mod_c()\fP 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & Integer::Two ()\fR [static]\fP"
+
+.PP
+\fBInteger\fP representing 2\&. 
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP representing 2
+.RE
+.PP
+\fBTwo()\fP avoids calling constructors for frequently used integers 
+.SS "unsigned int Integer::WordCount () const"
+
+.PP
+Determines the number of words required to represent the \fBInteger\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+number of significant words
+.RE
+.PP
+WordCount is calculated as \fRceiling(\fBByteCount()\fP/sizeof(word))\fP\&. 
+.SS "\fBInteger\fP Integer::Xor (const \fBInteger\fP & t) const"
+
+.PP
+Bitwise XOR\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIt\fP the other \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of \fR*this ^ t\fP
+.RE
+.PP
+\fBXor()\fP performs a bitwise XOR on the operands\&. Missing bits are shifted in at the most significant bit positions, so the result is as large as the larger of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&. 
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0 
+.RE
+.PP
+
+.SS "const \fBInteger\fP & Integer::Zero ()\fR [static]\fP"
+
+.PP
+\fBInteger\fP representing 0\&. 
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP representing 0
+.RE
+.PP
+\fBZero()\fP avoids calling constructors for frequently used integers 
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "CRYPTOPP_DLL friend \fBInteger\fP CRYPTOPP_API a_exp_b_mod_c (const \fBInteger\fP & x, const \fBInteger\fP & e, const \fBInteger\fP & m)\fR [friend]\fP"
+
+.PP
+Modular exponentiation\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP reference to the base 
+.br
+\fIe\fP reference to the exponent 
+.br
+\fIm\fP reference to the modulus 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP \fR(a ^ b) % m\fP\&. 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL friend \fBInteger\fP CRYPTOPP_API a_times_b_mod_c (const \fBInteger\fP & x, const \fBInteger\fP & y, const \fBInteger\fP & m)\fR [friend]\fP"
+
+.PP
+Modular multiplication\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP reference to the first term 
+.br
+\fIy\fP reference to the second term 
+.br
+\fIm\fP reference to the modulus 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+an \fBInteger\fP \fR(a * b) % m\fP\&. 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL std::ostream &CRYPTOPP_API operator<< (std::ostream & out, const \fBInteger\fP & a)\fR [friend]\fP"
+
+.PP
+Insertion operator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIout\fP reference to a std::ostream 
+.br
+\fIa\fP a constant reference to an \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to a std::ostream reference
+.RE
+.PP
+The output integer responds to hex, std::oct, std::hex, std::upper and std::lower\&. The output includes the suffix \fIh\fP (for hex), \fI\fP\&. (\fIdot\fP, for dec) and \fIo\fP (for octal)\&. There is currently no way to suppress the suffix\&.
+
+.PP
+If you want to print an \fBInteger\fP without the suffix or using an arbitrary base, then use \fBIntToString<Integer>()\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBIntToString<Integer>\fP 
+.RE
+.PP
+
+.SS "CRYPTOPP_DLL std::istream &CRYPTOPP_API operator>> (std::istream & in, \fBInteger\fP & a)\fR [friend]\fP"
+
+.PP
+Extraction operator\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIin\fP reference to a std::istream 
+.br
+\fIa\fP reference to an \fBInteger\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+reference to a std::istream reference 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

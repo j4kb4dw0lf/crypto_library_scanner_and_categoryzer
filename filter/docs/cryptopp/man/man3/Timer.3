@@ -1,0 +1,118 @@
+.TH "Timer" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Timer \- High resolution timer\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <hrtimer\&.h>\fP
+.PP
+Inherits \fBTimerBase\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTimer\fP (\fBUnit\fP unit=\fBTimerBase::SECONDS\fP, bool stuckAtZero=false)"
+.br
+.RI "Construct a \fBTimer\fP\&. "
+.ti -1c
+.RI "\fBTimerWord\fP \fBGetCurrentTimerValue\fP ()"
+.br
+.RI "Retrieve the current timer value\&. "
+.ti -1c
+.RI "\fBTimerWord\fP \fBTicksPerSecond\fP ()"
+.br
+.RI "Retrieve ticks per second\&. "
+.in -1c
+
+Public Member Functions inherited from \fBTimerBase\fP
+.in +1c
+.ti -1c
+.RI "\fBTimerBase\fP (\fBUnit\fP unit, bool stuckAtZero)"
+.br
+.RI "Construct a \fBTimerBase\fP\&. "
+.ti -1c
+.RI "void \fBStartTimer\fP ()"
+.br
+.RI "Start the timer\&. "
+.ti -1c
+.RI "double \fBElapsedTimeAsDouble\fP ()"
+.br
+.RI "Retrieve the elapsed time\&. "
+.ti -1c
+.RI "unsigned long \fBElapsedTime\fP ()"
+.br
+.RI "Retrieve the elapsed time\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBTimerBase\fP
+.in +1c
+.ti -1c
+.RI "enum \fBUnit\fP { \fBSECONDS\fP = 0, \fBMILLISECONDS\fP, \fBMICROSECONDS\fP, \fBNANOSECONDS\fP }"
+.br
+.RI "\fBUnit\fP of measure\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+High resolution timer\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBThreadUserTimer\fP 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Timer::Timer (\fBUnit\fP unit = \fR\fBTimerBase::SECONDS\fP\fP, bool stuckAtZero = \fRfalse\fP)\fR [inline]\fP"
+
+.PP
+Construct a \fBTimer\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIunit\fP the unit of measure 
+.br
+\fIstuckAtZero\fP flag 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBTimerWord\fP Timer::GetCurrentTimerValue ()\fR [virtual]\fP"
+
+.PP
+Retrieve the current timer value\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the current timer value 
+.RE
+.PP
+
+.PP
+Implements \fBTimerBase\fP\&.
+.SS "\fBTimerWord\fP Timer::TicksPerSecond ()\fR [virtual]\fP"
+
+.PP
+Retrieve ticks per second\&. 
+.PP
+\fBReturns\fP
+.RS 4
+ticks per second
+.RE
+.PP
+\fBTicksPerSecond()\fP is not the timer resolution\&. It is a conversion factor into seconds\&. 
+.PP
+Implements \fBTimerBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

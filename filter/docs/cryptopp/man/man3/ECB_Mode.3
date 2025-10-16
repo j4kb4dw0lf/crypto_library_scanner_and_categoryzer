@@ -1,0 +1,54 @@
+.TH "ECB_Mode< CIPHER >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECB_Mode< CIPHER > \- ECB block cipher mode of operation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <modes\&.h>\fP
+.PP
+Inherits \fBCipherModeDocumentation\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBCipherModeFinalTemplate_CipherHolder\fP< typename CIPHER::Encryption, \fBECB_OneWay\fP > \fBEncryption\fP"
+.br
+.ti -1c
+.RI "typedef \fBCipherModeFinalTemplate_CipherHolder\fP< typename CIPHER::Decryption, \fBECB_OneWay\fP > \fBDecryption\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSymmetricCipherDocumentation\fP
+.in +1c
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBEncryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.ti -1c
+.RI "typedef \fBSymmetricCipher\fP \fBDecryption\fP"
+.br
+.RI "implements the \fBSymmetricCipher\fP interface "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class CIPHER>
+.br
+struct ECB_Mode< CIPHER >"ECB block cipher mode of operation\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fRModes of Operation\fP on the Crypto++ wiki\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,123 @@
+.TH "DL_Algorithm_LUC_HMP" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_Algorithm_LUC_HMP \- \fBLUC\fP HMP signature algorithm\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <luc\&.h>\fP
+.PP
+Inherits \fBDL_ElgamalLikeSignatureAlgorithm< Integer >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "CRYPTOPP_STATIC_CONSTEXPR const char * \fBStaticAlgorithmName\fP ()"
+.br
+.ti -1c
+.RI "void \fBSign\fP (const \fBDL_GroupParameters\fP< \fBInteger\fP > &params, const \fBInteger\fP &x, const \fBInteger\fP &k, const \fBInteger\fP &e, \fBInteger\fP &r, \fBInteger\fP &s) const"
+.br
+.RI "Sign a message using a private key\&. "
+.ti -1c
+.RI "bool \fBVerify\fP (const \fBDL_GroupParameters\fP< \fBInteger\fP > &params, const \fBDL_PublicKey\fP< \fBInteger\fP > &publicKey, const \fBInteger\fP &e, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Verify a message using a public key\&. "
+.ti -1c
+.RI "size_t \fBRLen\fP (const \fBDL_GroupParameters\fP< \fBInteger\fP > &params) const"
+.br
+.RI "Retrieve R length\&. "
+.in -1c
+
+Public Member Functions inherited from \fBDL_ElgamalLikeSignatureAlgorithm< Integer >\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBInteger\fP \fBRecoverPresignature\fP (const \fBDL_GroupParameters\fP< \fBInteger\fP > &params, const \fBDL_PublicKey\fP< \fBInteger\fP > &publicKey, const \fBInteger\fP &r, const \fBInteger\fP &s) const"
+.br
+.RI "Recover a Presignature\&. "
+.ti -1c
+.RI "virtual size_t \fBSLen\fP (const \fBDL_GroupParameters\fP< \fBInteger\fP > &params) const"
+.br
+.RI "Retrieve S length\&. "
+.ti -1c
+.RI "virtual bool \fBIsDeterministic\fP () const"
+.br
+.RI "Signature scheme flag\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBLUC\fP HMP signature algorithm\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "size_t DL_Algorithm_LUC_HMP::RLen (const \fBDL_GroupParameters\fP< \fBInteger\fP > & params) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Retrieve R length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBDL_ElgamalLikeSignatureAlgorithm< Integer >\fP\&.
+.SS "void DL_Algorithm_LUC_HMP::Sign (const \fBDL_GroupParameters\fP< \fBInteger\fP > & params, const \fBInteger\fP & privateKey, const \fBInteger\fP & k, const \fBInteger\fP & e, \fBInteger\fP & r, \fBInteger\fP & s) const\fR [virtual]\fP"
+
+.PP
+Sign a message using a private key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.br
+\fIprivateKey\fP private key 
+.br
+\fIk\fP signing exponent 
+.br
+\fIe\fP encoded message 
+.br
+\fIr\fP r part of signature 
+.br
+\fIs\fP s part of signature 
+.RE
+.PP
+
+.PP
+Implements \fBDL_ElgamalLikeSignatureAlgorithm< Integer >\fP\&.
+.SS "bool DL_Algorithm_LUC_HMP::Verify (const \fBDL_GroupParameters\fP< \fBInteger\fP > & params, const \fBDL_PublicKey\fP< \fBInteger\fP > & publicKey, const \fBInteger\fP & e, const \fBInteger\fP & r, const \fBInteger\fP & s) const\fR [virtual]\fP"
+
+.PP
+Verify a message using a public key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP GroupParameters 
+.br
+\fIpublicKey\fP public key 
+.br
+\fIe\fP encoded message 
+.br
+\fIr\fP r part of signature 
+.br
+\fIs\fP s part of signature 
+.RE
+.PP
+
+.PP
+Implements \fBDL_ElgamalLikeSignatureAlgorithm< Integer >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

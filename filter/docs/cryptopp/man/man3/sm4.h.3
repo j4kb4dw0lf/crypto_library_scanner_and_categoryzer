@@ -1,0 +1,63 @@
+.TH "/home/mock/cryptopp-master/sm4.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/sm4.h \- Classes for the \fBSM4\fP block cipher\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'config\&.h'\fP
+.br
+\fR#include 'seckey\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSM4_Info\fP"
+.br
+.RI "\fBSM4\fP block cipher information\&. "
+.ti -1c
+.RI "class \fBSM4\fP"
+.br
+.RI "Classes for the \fBSM4\fP block cipher\&. "
+.ti -1c
+.RI "class \fBSM4::Base\fP"
+.br
+.RI "\fBSM4\fP block cipher transformation functions\&. "
+.ti -1c
+.RI "class \fBSM4::Enc\fP"
+.br
+.RI "\fBEncryption\fP transformation\&. "
+.ti -1c
+.RI "class \fBSM4::Dec\fP"
+.br
+.RI "\fBDecryption\fP transformation\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for the \fBSM4\fP block cipher\&.
+
+\fBSM4\fP is a block cipher designed by Xiaoyun Wang, et al\&. The block cipher is part of the Chinese State Cryptography Administration portfolio\&. The cipher was formerly known as SMS4\&.
+
+.PP
+\fBSM4\fP encryption is accelerated on machines with AES-NI\&. Decryption is not accelerated because it is not profitable\&. Thanks to Markku-Juhani Olavi Saarinen for help and the code\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRSMS4 Encryption Algorithm for Wireless Networks\fP, \fRReference implementation using OpenSSL\fP and \fRMarkku-Juhani Olavi Saarinen GitHub\fP\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

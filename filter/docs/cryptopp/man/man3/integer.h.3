@@ -1,0 +1,260 @@
+.TH "/home/mock/cryptopp-master/integer.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/integer.h \- Multiple precision integer with arithmetic operations\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+\fR#include 'stdcpp\&.h'\fP
+.br
+\fR#include <iosfwd>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBInitializeInteger\fP"
+.br
+.RI "Performs static initialization of the \fBInteger\fP class\&. "
+.ti -1c
+.RI "class \fBInteger\fP"
+.br
+.RI "Multiple precision integer with arithmetic operations\&. "
+.ti -1c
+.RI "class \fBInteger::DivideByZero\fP"
+.br
+.RI "\fBException\fP thrown when division by 0 is encountered\&. "
+.ti -1c
+.RI "class \fBInteger::RandomNumberNotFound\fP"
+.br
+.RI "\fBException\fP thrown when a random number cannot be found that satisfies the condition\&. "
+.ti -1c
+.RI "class \fBInteger::OpenPGPDecodeErr\fP"
+.br
+.RI "\fBException\fP thrown when an error is encountered decoding an OpenPGP integer\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBSecBlock\fP< word, \fBAllocatorWithCleanup\fP< word, true > > \fBIntegerSecBlock\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator==\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Comparison\&. "
+.ti -1c
+.RI "bool \fBoperator!=\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Comparison\&. "
+.ti -1c
+.RI "bool \fBoperator>\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Comparison\&. "
+.ti -1c
+.RI "bool \fBoperator>=\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Comparison\&. "
+.ti -1c
+.RI "bool \fBoperator<\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Comparison\&. "
+.ti -1c
+.RI "bool \fBoperator<=\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Comparison\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator+\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Addition\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator\-\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Subtraction\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator*\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Multiplication\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator/\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Division\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator%\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Remainder\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator/\fP (const CryptoPP::Integer &a, CryptoPP::word b)"
+.br
+.RI "Division\&. "
+.ti -1c
+.RI "CryptoPP::word \fBoperator%\fP (const CryptoPP::Integer &a, CryptoPP::word b)"
+.br
+.RI "Remainder\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator&\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Bitwise AND\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator|\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Bitwise OR\&. "
+.ti -1c
+.RI "CryptoPP::Integer \fBoperator^\fP (const CryptoPP::Integer &a, const CryptoPP::Integer &b)"
+.br
+.RI "Bitwise XOR\&. "
+.ti -1c
+.RI "NAMESPACE_END void \fBswap\fP (CryptoPP::Integer &a, CryptoPP::Integer &b)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+Multiple precision integer with arithmetic operations\&.
+
+The \fBInteger\fP class can represent positive and negative integers with absolute value less than (256**sizeof(word))\*{(256**sizeof(int))\*} \&.
+
+.PP
+Internally, the library uses a sign magnitude representation, and the class has two data members\&. The first is a IntegerSecBlock (a \fBSecBlock<word>\fP) and it is used to hold the representation\&. The second is a Sign (an enumeration), and it is used to track the sign of the \fBInteger\fP\&.
+
+.PP
+For details on how the \fBInteger\fP class initializes its function pointers using \fBInitializeInteger\fP and how it creates \fBInteger::Zero()\fP, \fBInteger::One()\fP, and \fBInteger::Two()\fP, then see the comments at the top of \fRinteger\&.cpp\fP\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 1\&.0
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP
+.SS "CryptoPP::Integer operator% (const CryptoPP::Integer & a, const CryptoPP::Integer & b)\fR [inline]\fP"
+
+.PP
+Remainder\&.
+.PP
+\fBSee also\fP
+.RS 4
+a_times_b_mod_c() and a_exp_b_mod_c()
+.RE
+.PP
+
+.SS "CryptoPP::word operator% (const CryptoPP::Integer & a, CryptoPP::word b)\fR [inline]\fP"
+
+.PP
+Remainder\&.
+.PP
+\fBSee also\fP
+.RS 4
+a_times_b_mod_c() and a_exp_b_mod_c()
+.RE
+.PP
+
+.SS "CryptoPP::Integer operator& (const CryptoPP::Integer & a, const CryptoPP::Integer & b)\fR [inline]\fP"
+
+.PP
+Bitwise AND\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first \fBInteger\fP
+.br
+\fIb\fP the second \fBInteger\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of a & b
+.RE
+.PP
+\fBoperator&()\fP performs a bitwise AND on the operands\&. Missing bits are truncated at the most significant bit positions, so the result is as small as the smaller of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "CryptoPP::Integer operator* (const CryptoPP::Integer & a, const CryptoPP::Integer & b)\fR [inline]\fP"
+
+.PP
+Multiplication\&.
+.PP
+\fBSee also\fP
+.RS 4
+a_times_b_mod_c() and a_exp_b_mod_c()
+.RE
+.PP
+
+.SS "CryptoPP::Integer operator^ (const CryptoPP::Integer & a, const CryptoPP::Integer & b)\fR [inline]\fP"
+
+.PP
+Bitwise XOR\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first \fBInteger\fP
+.br
+\fIb\fP the second \fBInteger\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of a ^ b
+.RE
+.PP
+\fBoperator^()\fP performs a bitwise XOR on the operands\&. Missing bits are shifted in at the most significant bit positions, so the result is as large as the larger of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SS "CryptoPP::Integer operator| (const CryptoPP::Integer & a, const CryptoPP::Integer & b)\fR [inline]\fP"
+
+.PP
+Bitwise OR\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIa\fP the first \fBInteger\fP
+.br
+\fIb\fP the second \fBInteger\fP
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the result of a | b
+.RE
+.PP
+\fBoperator|()\fP performs a bitwise OR on the operands\&. Missing bits are shifted in at the most significant bit positions, so the result is as large as the larger of the operands\&.
+
+.PP
+Internally, Crypto++ uses a sign-magnitude representation\&. The library does not attempt to interpret bits, and the result is always POSITIVE\&. If needed, the integer should be converted to a 2's compliment representation before performing the operation\&.
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 6\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

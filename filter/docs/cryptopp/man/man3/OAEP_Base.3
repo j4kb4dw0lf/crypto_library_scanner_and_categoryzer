@@ -1,0 +1,81 @@
+.TH "OAEP_Base" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+OAEP_Base \- \fBOAEP\fP padding base class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <oaep\&.h>\fP
+.PP
+Inherits \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.PP
+Inherited by \fBOAEP< H, MGF >\fP, and \fBOAEP< H, MGF >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBParameterSupported\fP (const char *name) const"
+.br
+.ti -1c
+.RI "size_t \fBMaxUnpaddedLength\fP (size_t paddedLength) const"
+.br
+.RI "max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) "
+.ti -1c
+.RI "void \fBPad\fP (\fBRandomNumberGenerator\fP &rng, const \fBbyte\fP *raw, size_t inputLength, \fBbyte\fP *padded, size_t paddedLength, const \fBNameValuePairs\fP &parameters) const"
+.br
+.ti -1c
+.RI "\fBDecodingResult\fP \fBUnpad\fP (const \fBbyte\fP *padded, size_t paddedLength, \fBbyte\fP *raw, const \fBNameValuePairs\fP &parameters) const"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual unsigned int \fBDigestSize\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBHashTransformation\fP * \fBNewHash\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBMaskGeneratingFunction\fP * \fBNewMGF\fP () const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBOAEP\fP padding base class\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.1 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "size_t OAEP_Base::MaxUnpaddedLength (size_t paddedLength) const\fR [virtual]\fP"
+
+.PP
+max size of unpadded message in bytes, given max size of padded message in bits (1 less than size of modulus) 
+.PP
+Implements \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.SS "void OAEP_Base::Pad (\fBRandomNumberGenerator\fP & rng, const \fBbyte\fP * raw, size_t inputLength, \fBbyte\fP * padded, size_t paddedLength, const \fBNameValuePairs\fP & parameters) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.SS "bool OAEP_Base::ParameterSupported (const char * name) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBPK_EncryptionMessageEncodingMethod\fP\&.
+.SS "\fBDecodingResult\fP OAEP_Base::Unpad (const \fBbyte\fP * padded, size_t paddedLength, \fBbyte\fP * raw, const \fBNameValuePairs\fP & parameters) const\fR [virtual]\fP"
+
+.PP
+Implements \fBPK_EncryptionMessageEncodingMethod\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

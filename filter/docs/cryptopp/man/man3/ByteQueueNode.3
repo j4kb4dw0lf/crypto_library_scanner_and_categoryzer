@@ -1,0 +1,80 @@
+.TH "ByteQueueNode" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ByteQueueNode
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBByteQueueNode\fP (size_t maxSize)"
+.br
+.ti -1c
+.RI "size_t \fBMaxSize\fP () const"
+.br
+.ti -1c
+.RI "size_t \fBCurrentSize\fP () const"
+.br
+.ti -1c
+.RI "bool \fBUsedUp\fP () const"
+.br
+.ti -1c
+.RI "void \fBClear\fP ()"
+.br
+.ti -1c
+.RI "size_t \fBPut\fP (const \fBbyte\fP *begin, size_t length)"
+.br
+.ti -1c
+.RI "size_t \fBPeek\fP (\fBbyte\fP &outByte) const"
+.br
+.ti -1c
+.RI "size_t \fBPeek\fP (\fBbyte\fP *target, size_t copyMax) const"
+.br
+.ti -1c
+.RI "size_t \fBCopyTo\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.ti -1c
+.RI "size_t \fBCopyTo\fP (\fBBufferedTransformation\fP &target, size_t copyMax, const std::string &channel=DEFAULT_CHANNEL) const"
+.br
+.ti -1c
+.RI "size_t \fBGet\fP (\fBbyte\fP &outByte)"
+.br
+.ti -1c
+.RI "size_t \fBGet\fP (\fBbyte\fP *outString, size_t getMax)"
+.br
+.ti -1c
+.RI "size_t \fBTransferTo\fP (\fBBufferedTransformation\fP &target, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.ti -1c
+.RI "size_t \fBTransferTo\fP (\fBBufferedTransformation\fP &target, \fBlword\fP transferMax, const std::string &channel=DEFAULT_CHANNEL)"
+.br
+.ti -1c
+.RI "size_t \fBSkip\fP (size_t skipMax)"
+.br
+.ti -1c
+.RI "\fBbyte\fP \fBoperator[]\fP (size_t i) const"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBByteQueueNode\fP * \fBm_next\fP"
+.br
+.ti -1c
+.RI "\fBSecByteBlock\fP \fBm_buf\fP"
+.br
+.ti -1c
+.RI "size_t \fBm_head\fP"
+.br
+.ti -1c
+.RI "size_t \fBm_tail\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

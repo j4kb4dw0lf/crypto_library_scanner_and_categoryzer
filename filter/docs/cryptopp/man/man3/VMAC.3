@@ -1,0 +1,388 @@
+.TH "VMAC< T_BlockCipher, T_DigestBitSize >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+VMAC< T_BlockCipher, T_DigestBitSize > \- \fBVMAC\fP message authentication code\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <vmac\&.h>\fP
+.PP
+Inherits \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP\&.
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static std::string \fBStaticAlgorithmName\fP ()"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP
+.in +1c
+.ti -1c
+.RI "typedef word64 \fBHashWordType\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "enum \fBIV_Requirement\fP { \fBUNIQUE_IV\fP = 0, \fBRANDOM_IV\fP, \fBUNPREDICTABLE_RANDOM_IV\fP, \fBINTERNALLY_GENERATED_IV\fP, \fBNOT_RESYNCHRONIZABLE\fP }"
+.br
+.RI "Secure IVs requirements as enumerated values\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterfaceImpl< VMAC_Base, SameKeyLengthAs< T_BlockCipher, SimpleKeyingInterface::UNIQUE_IV, T_BlockCipher::BLOCKSIZE > >\fP
+.in +1c
+.ti -1c
+.RI "size_t \fBMinKeyLength\fP () const"
+.br
+.RI "The minimum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBMaxKeyLength\fP () const"
+.br
+.RI "The maximum key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBDefaultKeyLength\fP () const"
+.br
+.RI "The default key length used by the algorithm\&. "
+.ti -1c
+.RI "size_t \fBGetValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Provides a valid key length for the algorithm\&. "
+.ti -1c
+.RI "\fBSimpleKeyingInterface::IV_Requirement\fP \fBIVRequirement\fP () const"
+.br
+.RI "The default IV requirements for the algorithm\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "The initialization vector length for the algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBVMAC_Base\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.ti -1c
+.RI "unsigned int \fBIVSize\fP () const"
+.br
+.RI "Returns length of the IV accepted by this object\&. "
+.ti -1c
+.RI "unsigned int \fBMinIVLength\fP () const"
+.br
+.RI "Provides the minimum size of an IV\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *nonce, int length=\-1)"
+.br
+.RI "Resynchronize with an IV\&. "
+.ti -1c
+.RI "void \fBGetNextIV\fP (\fBRandomNumberGenerator\fP &rng, \fBbyte\fP *IV)"
+.br
+.RI "Retrieves a secure IV for the next message\&. "
+.ti -1c
+.RI "unsigned int \fBDigestSize\fP () const"
+.br
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *userKey, unsigned int keylength, const \fBNameValuePairs\fP &params)"
+.br
+.RI "Sets the key for this object without performing parameter validation\&. "
+.ti -1c
+.RI "void \fBTruncatedFinal\fP (\fBbyte\fP *mac, size_t size)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBBlockSize\fP () const"
+.br
+.RI "Provides the block size of the compression function\&. "
+.ti -1c
+.RI "\fBByteOrder\fP \fBGetByteOrder\fP () const"
+.br
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides input and output data alignment for optimal performance\&. "
+.in -1c
+
+Public Member Functions inherited from \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP
+.in +1c
+.ti -1c
+.RI "\fBIteratedHashBase\fP ()"
+.br
+.RI "Construct an \fBIteratedHashBase\fP\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides the input block size most efficient for this cipher\&. "
+.ti -1c
+.RI "void \fBUpdate\fP (const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates a hash with additional input\&. "
+.ti -1c
+.RI "\fBbyte\fP * \fBCreateUpdateSpace\fP (size_t &size)"
+.br
+.RI "Requests space which can be written into by the caller\&. "
+.ti -1c
+.RI "void \fBRestart\fP ()"
+.br
+.RI "Restart the hash\&. "
+.in -1c
+
+Public Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "virtual bool \fBIsValidKeyLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual void \fBSetKey\fP (const \fBbyte\fP *key, size_t length, const \fBNameValuePairs\fP &params=g_nullNameValuePairs)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithRounds\fP (const \fBbyte\fP *key, size_t length, int rounds)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv, size_t ivLength)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "void \fBSetKeyWithIV\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Sets or reset the key of this object\&. "
+.ti -1c
+.RI "bool \fBIsResynchronizable\fP () const"
+.br
+.RI "Determines if the object can be resynchronized\&. "
+.ti -1c
+.RI "bool \fBCanUseRandomIVs\fP () const"
+.br
+.RI "Determines if the object can use random IVs\&. "
+.ti -1c
+.RI "bool \fBCanUsePredictableIVs\fP () const"
+.br
+.RI "Determines if the object can use random but possibly predictable IVs\&. "
+.ti -1c
+.RI "bool \fBCanUseStructuredIVs\fP () const"
+.br
+.RI "Determines if the object can use structured IVs\&. "
+.ti -1c
+.RI "unsigned int \fBDefaultIVLength\fP () const"
+.br
+.RI "Provides the default size of an IV\&. "
+.ti -1c
+.RI "virtual unsigned int \fBMaxIVLength\fP () const"
+.br
+.RI "Provides the maximum size of an IV\&. "
+.in -1c
+
+Public Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "\fBHashTransformation\fP & \fBRef\fP ()"
+.br
+.RI "Provides a reference to this object\&. "
+.ti -1c
+.RI "virtual void \fBFinal\fP (\fBbyte\fP *digest)"
+.br
+.RI "Computes the hash of the current message\&. "
+.ti -1c
+.RI "unsigned int \fBTagSize\fP () const"
+.br
+.ti -1c
+.RI "virtual void \fBCalculateDigest\fP (\fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerify\fP (const \fBbyte\fP *digest)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyDigest\fP (const \fBbyte\fP *digest, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual void \fBCalculateTruncatedDigest\fP (\fBbyte\fP *digest, size_t digestSize, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and computes the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBTruncatedVerify\fP (const \fBbyte\fP *digest, size_t digestLength)"
+.br
+.RI "Verifies the hash of the current message\&. "
+.ti -1c
+.RI "virtual bool \fBVerifyTruncatedDigest\fP (const \fBbyte\fP *digest, size_t digestLength, const \fBbyte\fP *input, size_t length)"
+.br
+.RI "Updates the hash with additional input and verifies the hash of the current message\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBVMAC_Base\fP
+.in +1c
+.ti -1c
+.RI "const \fBBlockCipher\fP & \fBGetCipher\fP () const"
+.br
+.ti -1c
+.RI "void \fBHashEndianCorrectedBlock\fP (const word64 *data)"
+.br
+.ti -1c
+.RI "size_t \fBHashMultipleBlocks\fP (const word64 *input, size_t length)"
+.br
+.ti -1c
+.RI "void \fBInit\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBStateBuf\fP ()"
+.br
+.ti -1c
+.RI "word64 * \fBDataBuf\fP ()"
+.br
+.ti -1c
+.RI "void \fBVHASH_Update_SSE2\fP (const word64 *data, size_t blocksRemainingInWord64, int tagPart)"
+.br
+.ti -1c
+.RI "template<bool T_128BitTag> void \fBVHASH_Update_Template\fP (const word64 *data, size_t blockRemainingInWord128)"
+.br
+.ti -1c
+.RI "void \fBVHASH_Update\fP (const word64 *data, size_t blocksRemainingInWord128)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBIteratedHashBase< word64, MessageAuthenticationCode >\fP
+.in +1c
+.ti -1c
+.RI "word64 \fBGetBitCountHi\fP () const"
+.br
+.ti -1c
+.RI "word64 \fBGetBitCountLo\fP () const"
+.br
+.ti -1c
+.RI "void \fBPadLastBlock\fP (unsigned int lastBlockSize, \fBbyte\fP padFirst=0x80)"
+.br
+.ti -1c
+.RI "virtual size_t \fBHashMultipleBlocks\fP (const word64 *input, size_t length)"
+.br
+.ti -1c
+.RI "void \fBHashBlock\fP (const HashWordType *input)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBMessageAuthenticationCode\fP
+.in +1c
+.ti -1c
+.RI "const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBSimpleKeyingInterface\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidKeyLength\fP (size_t length)"
+.br
+.RI "Validates the key length\&. "
+.ti -1c
+.RI "void \fBThrowIfResynchronizable\fP ()"
+.br
+.RI "Validates the object\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidIV\fP (const \fBbyte\fP *iv)"
+.br
+.RI "Validates the IV\&. "
+.ti -1c
+.RI "size_t \fBThrowIfInvalidIVLength\fP (int length)"
+.br
+.RI "Validates the IV length\&. "
+.ti -1c
+.RI "const \fBbyte\fP * \fBGetIVAndThrowIfInvalid\fP (const \fBNameValuePairs\fP &params, size_t &size)"
+.br
+.RI "Retrieves and validates the IV\&. "
+.ti -1c
+.RI "void \fBAssertValidKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the key length\&. "
+.in -1c
+
+Protected Member Functions inherited from \fBHashTransformation\fP
+.in +1c
+.ti -1c
+.RI "void \fBThrowIfInvalidTruncatedSize\fP (size_t size) const"
+.br
+.RI "Validates a truncated digest size\&. "
+.in -1c
+
+Protected Attributes inherited from \fBVMAC_Base\fP
+.in +1c
+.ti -1c
+.RI "bool \fBm_is128\fP"
+.br
+.ti -1c
+.RI "bool \fBm_padCached\fP"
+.br
+.ti -1c
+.RI "bool \fBm_isFirstBlock\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBm_L1KeyLength\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T_BlockCipher, int T_DigestBitSize = 128>
+.br
+class VMAC< T_BlockCipher, T_DigestBitSize >"\fBVMAC\fP message authentication code\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT_BlockCipher\fP block cipher 
+.br
+\fIT_DigestBitSize\fP digest size, in bits
+.RE
+.PP
+\fBVMAC\fP is a block cipher-based message authentication code algorithm using a universal hash proposed by Ted Krovetz and Wei Dai in April 2007\&. The algorithm was designed for high performance backed by a formal analysis\&.
+
+.PP
+The implementation is based on Ted Krovetz's public domain vmac\&.c and \fRdraft-krovetz-vmac-01\&.txt\fP\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRVMAC\fP\&. 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.5 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

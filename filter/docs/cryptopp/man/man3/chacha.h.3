@@ -1,0 +1,69 @@
+.TH "/home/mock/cryptopp-master/chacha.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/chacha.h \- Classes for ChaCha8, ChaCha12 and ChaCha20 stream ciphers\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'strciphr\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBChaCha_Info\fP"
+.br
+.RI "\fBChaCha\fP stream cipher information\&. "
+.ti -1c
+.RI "class \fBChaCha_Policy\fP"
+.br
+.RI "\fBChaCha\fP stream cipher implementation\&. "
+.ti -1c
+.RI "struct \fBChaCha\fP"
+.br
+.RI "\fBChaCha\fP stream cipher\&. "
+.ti -1c
+.RI "struct \fBChaChaTLS_Info\fP"
+.br
+.RI "IETF ChaCha20 stream cipher information\&. "
+.ti -1c
+.RI "class \fBChaChaTLS_Policy\fP"
+.br
+.RI "IETF ChaCha20 stream cipher implementation\&. "
+.ti -1c
+.RI "struct \fBChaChaTLS\fP"
+.br
+.RI "IETF ChaCha20 stream cipher\&. "
+.ti -1c
+.RI "struct \fBXChaCha20_Info\fP"
+.br
+.RI "IETF \fBXChaCha20\fP stream cipher information\&. "
+.ti -1c
+.RI "class \fBXChaCha20_Policy\fP"
+.br
+.RI "IETF \fBXChaCha20\fP stream cipher implementation\&. "
+.ti -1c
+.RI "struct \fBXChaCha20\fP"
+.br
+.RI "IETF \fBXChaCha20\fP stream cipher\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for ChaCha8, ChaCha12 and ChaCha20 stream ciphers\&.
+
+Crypto++ provides Bernstein and ECRYPT's \fBChaCha\fP from \fRChaCha, a variant of Salsa20\fP (2008\&.01\&.28)\&. Crypto++ also provides the IETF implementation of \fBChaCha\fP using the \fBChaChaTLS\fP name\&. Bernstein's implementation is \fIslightly\fP different from the TLS working group's implementation for cipher suites \fRTLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256\fP, \fRTLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256\fP, and \fRTLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256\fP\&. Finally, the library provides \fRXChaCha: eXtended-nonce ChaCha and AEAD_XChaCha20_Poly1305 (rev\&. 03)\fP\&.
+.PP
+\fBSince\fP
+.RS 4
+\fBChaCha\fP since Crypto++ 5\&.6\&.4, \fBChaChaTLS\fP and \fBXChaCha20\fP since Crypto++ 8\&.1
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

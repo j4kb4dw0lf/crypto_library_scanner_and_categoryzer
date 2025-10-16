@@ -1,0 +1,67 @@
+.TH "MaskGeneratingFunction" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MaskGeneratingFunction \- Mask generation function interface\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBP1363_MGF1\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBGenerateAndMask\fP (\fBHashTransformation\fP &hash, \fBbyte\fP *output, size_t outputLength, const \fBbyte\fP *input, size_t inputLength, bool mask=true) const =0"
+.br
+.RI "Generate and apply mask\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Mask generation function interface\&. 
+
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBP1363_KDF2\fP, \fBP1363_MGF1\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 2\&.0 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void MaskGeneratingFunction::GenerateAndMask (\fBHashTransformation\fP & hash, \fBbyte\fP * output, size_t outputLength, const \fBbyte\fP * input, size_t inputLength, bool mask = \fRtrue\fP) const\fR [pure virtual]\fP"
+
+.PP
+Generate and apply mask\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIhash\fP \fBHashTransformation\fP derived class 
+.br
+\fIoutput\fP the destination byte array 
+.br
+\fIoutputLength\fP the size of the destination byte array 
+.br
+\fIinput\fP the message to hash 
+.br
+\fIinputLength\fP the size of the message 
+.br
+\fImask\fP flag indicating whether to apply the mask 
+.RE
+.PP
+
+.PP
+Implemented in \fBP1363_MGF1\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

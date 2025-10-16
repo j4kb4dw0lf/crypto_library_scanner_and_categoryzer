@@ -1,0 +1,249 @@
+.TH "KeyDerivationFunction" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+KeyDerivationFunction \- Interface for key derivation functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherits \fBAlgorithm\fP\&.
+.PP
+Inherited by \fBHKDF< T >\fP, \fBPasswordBasedKeyDerivationFunction\fP, and \fBScrypt\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual std::string \fBAlgorithmName\fP () const =0"
+.br
+.RI "Provides the name of this algorithm\&. "
+.ti -1c
+.RI "virtual size_t \fBMinDerivedKeyLength\fP () const"
+.br
+.RI "Determine minimum number of bytes\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxDerivedKeyLength\fP () const"
+.br
+.RI "Determine maximum number of bytes\&. "
+.ti -1c
+.RI "virtual size_t \fBGetValidDerivedLength\fP (size_t keylength) const =0"
+.br
+.RI "Returns a valid key length for the derivation function\&. "
+.ti -1c
+.RI "virtual bool \fBIsValidDerivedLength\fP (size_t keylength) const"
+.br
+.RI "Returns whether keylength is a valid key length\&. "
+.ti -1c
+.RI "virtual size_t \fBDeriveKey\fP (\fBbyte\fP *derived, size_t derivedLen, const \fBbyte\fP *secret, size_t secretLen, const \fBNameValuePairs\fP &params=g_nullNameValuePairs) const =0"
+.br
+.RI "Derive a key from a seed\&. "
+.ti -1c
+.RI "virtual void \fBSetParameters\fP (const \fBNameValuePairs\fP &params)"
+.br
+.RI "Set or change parameters\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithm\fP
+.in +1c
+.ti -1c
+.RI "\fBAlgorithm\fP (bool checkSelfTestStatus=true)"
+.br
+.RI "Interface for all crypto algorithms\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+
+Public Member Functions inherited from \fBClonable\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual const \fBAlgorithm\fP & \fBGetAlgorithm\fP () const =0"
+.br
+.RI "Returns the base class \fBAlgorithm\fP\&. "
+.ti -1c
+.RI "void \fBThrowIfInvalidDerivedKeyLength\fP (size_t length) const"
+.br
+.RI "Validates the derived key length\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for key derivation functions\&. 
+
+
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 7\&.0 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fRKeyDerivationFunction\fP on the Crypto++ wiki 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual std::string KeyDerivationFunction::AlgorithmName () const\fR [pure virtual]\fP"
+
+.PP
+Provides the name of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the standard algorithm name 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBAlgorithm\fP\&.
+.PP
+Implemented in \fBHKDF< T >\fP, \fBPKCS12_PBKDF< T >\fP, \fBPKCS5_PBKDF1< T >\fP, \fBPKCS5_PBKDF2_HMAC< T >\fP, and \fBScrypt\fP\&.
+.SS "virtual size_t KeyDerivationFunction::DeriveKey (\fBbyte\fP * derived, size_t derivedLen, const \fBbyte\fP * secret, size_t secretLen, const \fBNameValuePairs\fP & params = \fRg_nullNameValuePairs\fP) const\fR [pure virtual]\fP"
+
+.PP
+Derive a key from a seed\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIderived\fP the derived output buffer 
+.br
+\fIderivedLen\fP the size of the derived buffer, in bytes 
+.br
+\fIsecret\fP the seed input buffer 
+.br
+\fIsecretLen\fP the size of the secret buffer, in bytes 
+.br
+\fIparams\fP additional initialization parameters to configure this object 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the number of iterations performed 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidDerivedKeyLength\fP\fP if \fRderivedLen\fP is invalid for the scheme
+.RE
+.PP
+\fBDeriveKey()\fP provides a standard interface to derive a key from a secret seed and other parameters\&. Each class that derives from \fBKeyDerivationFunction\fP provides an overload that accepts most parameters used by the derivation function\&.
+
+.PP
+the number of iterations performed by \fBDeriveKey()\fP may be 1\&. For example, a scheme like \fBHKDF\fP does not use the iteration count so it returns 1\&. 
+.PP
+Implemented in \fBHKDF< T >\fP, \fBPKCS12_PBKDF< T >\fP, \fBPKCS5_PBKDF1< T >\fP, \fBPKCS5_PBKDF2_HMAC< T >\fP, and \fBScrypt\fP\&.
+.SS "virtual const \fBAlgorithm\fP & KeyDerivationFunction::GetAlgorithm () const\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Returns the base class \fBAlgorithm\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the base class \fBAlgorithm\fP 
+.RE
+.PP
+
+.PP
+Implemented in \fBHKDF< T >\fP, \fBPKCS12_PBKDF< T >\fP, \fBPKCS5_PBKDF1< T >\fP, \fBPKCS5_PBKDF2_HMAC< T >\fP, and \fBScrypt\fP\&.
+.SS "virtual size_t KeyDerivationFunction::GetValidDerivedLength (size_t keylength) const\fR [pure virtual]\fP"
+
+.PP
+Returns a valid key length for the derivation function\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the size of the derived key, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the valid key length, in bytes 
+.RE
+.PP
+
+.PP
+Implemented in \fBHKDF< T >\fP, \fBPKCS12_PBKDF< T >\fP, \fBPKCS5_PBKDF1< T >\fP, \fBPKCS5_PBKDF2_HMAC< T >\fP, and \fBScrypt\fP\&.
+.SS "virtual bool KeyDerivationFunction::IsValidDerivedLength (size_t keylength) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Returns whether keylength is a valid key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkeylength\fP the requested keylength 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true if the derived keylength is valid, false otherwise
+.RE
+.PP
+Internally the function calls GetValidKeyLength() 
+.SS "size_t KeyDerivationFunction::MaxDerivedKeyLength () const\fR [virtual]\fP"
+
+.PP
+Determine maximum number of bytes\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Maximum number of bytes which can be derived 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBHKDF< T >\fP, \fBPKCS12_PBKDF< T >\fP, \fBPKCS5_PBKDF1< T >\fP, \fBPKCS5_PBKDF2_HMAC< T >\fP, and \fBScrypt\fP\&.
+.SS "size_t KeyDerivationFunction::MinDerivedKeyLength () const\fR [virtual]\fP"
+
+.PP
+Determine minimum number of bytes\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Minimum number of bytes which can be derived 
+.RE
+.PP
+
+.SS "void KeyDerivationFunction::SetParameters (const \fBNameValuePairs\fP & params)\fR [virtual]\fP"
+
+.PP
+Set or change parameters\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparams\fP additional initialization parameters to configure this object
+.RE
+.PP
+\fBSetParameters()\fP is useful for setting common parameters when an object is reused\&. Some derivation function classes may choose to implement it\&. 
+.SS "void KeyDerivationFunction::ThrowIfInvalidDerivedKeyLength (size_t length) const\fR [protected]\fP"
+
+.PP
+Validates the derived key length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlength\fP the size of the derived key material, in bytes 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBInvalidKeyLength\fP\fP if the key length is invalid 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

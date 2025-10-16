@@ -1,0 +1,58 @@
+.TH "DL_Base< KI >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DL_Base< KI > \- Discrete Log (DL) base interface\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <pubkey\&.h>\fP
+.PP
+Inherited by \fBDL_CryptoSystemBase< PK, KI >\fP\&.
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "typedef KI \fBKeyInterface\fP"
+.br
+.ti -1c
+.RI "typedef KI::Element \fBElement\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "const \fBDL_GroupParameters\fP< Element > & \fBGetAbstractGroupParameters\fP () const"
+.br
+.ti -1c
+.RI "\fBDL_GroupParameters\fP< Element > & \fBAccessAbstractGroupParameters\fP ()"
+.br
+.ti -1c
+.RI "virtual KeyInterface & \fBAccessKeyInterface\fP ()=0"
+.br
+.ti -1c
+.RI "virtual const KeyInterface & \fBGetKeyInterface\fP () const =0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class KI>
+.br
+class DL_Base< KI >"Discrete Log (DL) base interface\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIKI\fP public or private key interface 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

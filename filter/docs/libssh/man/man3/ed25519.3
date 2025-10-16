@@ -1,0 +1,58 @@
+.TH "ed25519" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ed25519 \- ed25519 API
+.PP
+ \- API for DJB's ed25519\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBED25519_PK_LEN\fP   32"
+.br
+.ti -1c
+.RI "#define \fBED25519_SK_LEN\fP   64"
+.br
+.ti -1c
+.RI "#define \fBED25519_SIG_LEN\fP   64"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef uint8_t \fBed25519_pubkey\fP[ED25519_PK_LEN]"
+.br
+.ti -1c
+.RI "typedef uint8_t \fBed25519_privkey\fP[ED25519_SK_LEN]"
+.br
+.ti -1c
+.RI "typedef uint8_t \fBed25519_signature\fP[ED25519_SIG_LEN]"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBcrypto_sign_ed25519_keypair\fP (ed25519_pubkey pk, ed25519_privkey sk)"
+.br
+.ti -1c
+.RI "int \fBcrypto_sign_ed25519\fP (unsigned char *sm, uint64_t *smlen, const unsigned char *m, uint64_t mlen, const ed25519_privkey sk)"
+.br
+.ti -1c
+.RI "int \fBcrypto_sign_ed25519_open\fP (unsigned char *m, uint64_t *mlen, const unsigned char *sm, uint64_t smlen, const ed25519_pubkey pk)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+API for DJB's ed25519\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

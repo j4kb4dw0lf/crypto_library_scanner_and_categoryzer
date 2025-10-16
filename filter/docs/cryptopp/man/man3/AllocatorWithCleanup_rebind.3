@@ -1,0 +1,42 @@
+.TH "AllocatorWithCleanup< T, T_Align16 >::rebind< V >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AllocatorWithCleanup< T, T_Align16 >::rebind< V > \- Template class member Rebind\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <secblock\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBAllocatorWithCleanup\fP< V, T_Align16 > \fBother\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, bool T_Align16 = false>
+.br
+template<class V>
+.br
+struct AllocatorWithCleanup< T, T_Align16 >::rebind< V >"Template class member Rebind\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIV\fP bound class or type
+.RE
+.PP
+Rebind allows a container class to allocate a different type of object to store elements\&. For example, a std::list will allocate std::list_node to store elements in the list\&.
+
+.PP
+VS\&.NET STL enforces the policy of "All STL-compliant allocators have to provide a template class member called rebind"\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

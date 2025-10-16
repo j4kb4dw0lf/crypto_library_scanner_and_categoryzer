@@ -1,0 +1,337 @@
+.TH "ssh_session_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_session_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_common_struct\fP \fBcommon\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_socket_struct\fP * \fBsocket\fP"
+.br
+.ti -1c
+.RI "char * \fBserverbanner\fP"
+.br
+.ti -1c
+.RI "char * \fBclientbanner\fP"
+.br
+.ti -1c
+.RI "int \fBprotoversion\fP"
+.br
+.ti -1c
+.RI "int \fBserver\fP"
+.br
+.ti -1c
+.RI "int \fBclient\fP"
+.br
+.ti -1c
+.RI "int \fBopenssh\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBsend_seq\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBrecv_seq\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_timestamp\fP \fBlast_rekey_time\fP"
+.br
+.ti -1c
+.RI "bool \fBproxy_root\fP"
+.br
+.ti -1c
+.RI "int \fBconnected\fP"
+.br
+.ti -1c
+.RI "int \fBalive\fP"
+.br
+.ti -1c
+.RI "int \fBflags\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBextensions\fP"
+.br
+.ti -1c
+.RI "\fBssh_string\fP \fBbanner\fP"
+.br
+.ti -1c
+.RI "char * \fBpeer_discon_msg\fP"
+.br
+.ti -1c
+.RI "char * \fBdisconnect_message\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBin_buffer\fP"
+.br
+.ti -1c
+.RI "\fBPACKET\fP \fBin_packet\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBout_buffer\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBout_queue\fP"
+.br
+.ti -1c
+.RI "enum ssh_pending_call_e \fBpending_call_state\fP"
+.br
+.ti -1c
+.RI "enum ssh_session_state_e \fBsession_state\fP"
+.br
+.ti -1c
+.RI "enum ssh_packet_state_e \fBpacket_state\fP"
+.br
+.ti -1c
+.RI "enum ssh_dh_state_e \fBdh_handshake_state\fP"
+.br
+.ti -1c
+.RI "enum ssh_channel_request_state_e \fBglobal_req_state\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_agent_state_struct\fP * \fBagent_state\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   struct \fBssh_auth_auto_state_struct\fP * \fBauto_state\fP"
+.br
+.ti -1c
+.RI "   enum ssh_auth_service_state_e \fBservice_state\fP"
+.br
+.ti -1c
+.RI "   enum ssh_auth_state_e \fBstate\fP"
+.br
+.ti -1c
+.RI "   uint32_t \fBsupported_methods\fP"
+.br
+.ti -1c
+.RI "   uint32_t \fBcurrent_method\fP"
+.br
+.ti -1c
+.RI "} \fBauth\fP"
+.br
+.ti -1c
+.RI "bool \fBsend_first_kex_follows\fP"
+.br
+.ti -1c
+.RI "bool \fBfirst_kex_follows_guess_wrong\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBin_hashbuf\fP"
+.br
+.ti -1c
+.RI "\fBssh_buffer\fP \fBout_hashbuf\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_crypto_struct\fP * \fBcurrent_crypto\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_crypto_struct\fP * \fBnext_crypto\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBchannels\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBmaxchannel\fP"
+.br
+.ti -1c
+.RI "\fBssh_agent\fP \fBagent\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_kbdint_struct\fP * \fBkbdint\fP"
+.br
+.ti -1c
+.RI "struct ssh_gssapi_struct * \fBgssapi\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   \fBssh_key\fP \fBrsa_key\fP"
+.br
+.ti -1c
+.RI "   \fBssh_key\fP \fBecdsa_key\fP"
+.br
+.ti -1c
+.RI "   \fBssh_key\fP \fBed25519_key\fP"
+.br
+.ti -1c
+.RI "   enum ssh_keytypes_e \fBhostkey\fP"
+.br
+.ti -1c
+.RI "   enum ssh_digest_e \fBhostkey_digest\fP"
+.br
+.ti -1c
+.RI "} \fBsrv\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBssh_message_list\fP"
+.br
+.ti -1c
+.RI "int(* \fBssh_message_callback\fP )(struct \fBssh_session_struct\fP *session, \fBssh_message\fP msg, void *userdata)"
+.br
+.ti -1c
+.RI "void * \fBssh_message_callback_data\fP"
+.br
+.ti -1c
+.RI "\fBssh_server_callbacks\fP \fBserver_callbacks\fP"
+.br
+.ti -1c
+.RI "void(* \fBssh_connection_callback\fP )(struct \fBssh_session_struct\fP *session)"
+.br
+.ti -1c
+.RI "struct \fBssh_packet_callbacks_struct\fP \fBdefault_packet_callbacks\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_list\fP * \fBpacket_callbacks\fP"
+.br
+.ti -1c
+.RI "struct \fBssh_socket_callbacks_struct\fP \fBsocket_callbacks\fP"
+.br
+.ti -1c
+.RI "\fBssh_poll_ctx\fP \fBdefault_poll_ctx\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   struct \fBssh_list\fP * \fBidentity\fP"
+.br
+.ti -1c
+.RI "   struct \fBssh_list\fP * \fBidentity_non_exp\fP"
+.br
+.ti -1c
+.RI "   struct \fBssh_list\fP * \fBcertificate\fP"
+.br
+.ti -1c
+.RI "   struct \fBssh_list\fP * \fBcertificate_non_exp\fP"
+.br
+.ti -1c
+.RI "   struct \fBssh_list\fP * \fBproxy_jumps\fP"
+.br
+.ti -1c
+.RI "   struct \fBssh_list\fP * \fBproxy_jumps_user_cb\fP"
+.br
+.ti -1c
+.RI "   char * \fBusername\fP"
+.br
+.ti -1c
+.RI "   char * \fBhost\fP"
+.br
+.ti -1c
+.RI "   char * \fBbindaddr\fP"
+.br
+.ti -1c
+.RI "   char * \fBsshdir\fP"
+.br
+.ti -1c
+.RI "   char * \fBknownhosts\fP"
+.br
+.ti -1c
+.RI "   char * \fBglobal_knownhosts\fP"
+.br
+.ti -1c
+.RI "   char * \fBwanted_methods\fP [SSH_KEX_METHODS]"
+.br
+.ti -1c
+.RI "   char * \fBpubkey_accepted_types\fP"
+.br
+.ti -1c
+.RI "   char * \fBProxyCommand\fP"
+.br
+.ti -1c
+.RI "   char * \fBagent_socket\fP"
+.br
+.ti -1c
+.RI "   unsigned long \fBtimeout\fP"
+.br
+.ti -1c
+.RI "   unsigned long \fBtimeout_usec\fP"
+.br
+.ti -1c
+.RI "   uint16_t \fBport\fP"
+.br
+.ti -1c
+.RI "   socket_t \fBfd\fP"
+.br
+.ti -1c
+.RI "   int \fBStrictHostKeyChecking\fP"
+.br
+.ti -1c
+.RI "   char \fBcompressionlevel\fP"
+.br
+.ti -1c
+.RI "   char * \fBgss_server_identity\fP"
+.br
+.ti -1c
+.RI "   char * \fBgss_client_identity\fP"
+.br
+.ti -1c
+.RI "   int \fBgss_delegate_creds\fP"
+.br
+.ti -1c
+.RI "   int \fBflags\fP"
+.br
+.ti -1c
+.RI "   int \fBexp_flags\fP"
+.br
+.ti -1c
+.RI "   int \fBnodelay\fP"
+.br
+.ti -1c
+.RI "   bool \fBconfig_processed\fP"
+.br
+.ti -1c
+.RI "   uint8_t \fBoptions_seen\fP [SOC_MAX]"
+.br
+.ti -1c
+.RI "   uint64_t \fBrekey_data\fP"
+.br
+.ti -1c
+.RI "   uint32_t \fBrekey_time\fP"
+.br
+.ti -1c
+.RI "   int \fBrsa_min_size\fP"
+.br
+.ti -1c
+.RI "   bool \fBidentities_only\fP"
+.br
+.ti -1c
+.RI "   int \fBcontrol_master\fP"
+.br
+.ti -1c
+.RI "   char * \fBcontrol_path\fP"
+.br
+.ti -1c
+.RI "} \fBopts\fP"
+.br
+.ti -1c
+.RI "struct {"
+.br
+.ti -1c
+.RI "   char * \fBcustombanner\fP"
+.br
+.ti -1c
+.RI "   char * \fBmoduli_file\fP"
+.br
+.ti -1c
+.RI "} \fBserver_opts\fP"
+.br
+.ti -1c
+.RI "\fBssh_counter\fP \fBsocket_counter\fP"
+.br
+.ti -1c
+.RI "\fBssh_counter\fP \fBraw_counter\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

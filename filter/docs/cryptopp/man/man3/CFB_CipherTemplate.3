@@ -1,0 +1,248 @@
+.TH "CFB_CipherTemplate< BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFB_CipherTemplate< BASE > \- Base class for feedback based stream ciphers with \fBSymmetricCipher\fP interface\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherits BASE\&.
+.PP
+Inherited by \fBCFB_DecryptionTemplate< BASE >\fP, and \fBCFB_EncryptionTemplate< BASE >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef BASE::PolicyInterface \fBPolicyInterface\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBProcessData\fP (\fBbyte\fP *outString, const \fBbyte\fP *inString, size_t length)"
+.br
+.RI "Apply keystream to data\&. "
+.ti -1c
+.RI "void \fBResynchronize\fP (const \fBbyte\fP *iv, int length=\-1)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "unsigned int \fBGetOptimalNextBlockSize\fP () const"
+.br
+.RI "Provides number of ideal bytes to process\&. "
+.ti -1c
+.RI "unsigned int \fBOptimalDataAlignment\fP () const"
+.br
+.RI "Provides number of ideal data alignment\&. "
+.ti -1c
+.RI "bool \fBIsRandomAccess\fP () const"
+.br
+.RI "Flag indicating random access\&. "
+.ti -1c
+.RI "bool \fBIsSelfInverting\fP () const"
+.br
+.RI "Determines if the cipher is self inverting\&. "
+.ti -1c
+.RI "std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBCombineMessageAndShiftRegister\fP (\fBbyte\fP *output, \fBbyte\fP *reg, const \fBbyte\fP *message, size_t length)=0"
+.br
+.ti -1c
+.RI "void \fBUncheckedSetKey\fP (const \fBbyte\fP *key, unsigned int length, const \fBNameValuePairs\fP &params)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBm_leftOver\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE>
+.br
+class CFB_CipherTemplate< BASE >"Base class for feedback based stream ciphers with \fBSymmetricCipher\fP interface\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP \fBAbstractPolicyHolder\fP base class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE> std::string \fBCFB_CipherTemplate\fP< BASE >::AlgorithmProvider () const\fR [inline]\fP"
+
+.PP
+Retrieve the provider of this algorithm\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the algorithm provider
+.RE
+.PP
+The algorithm provider can be a name like "C++", "SSE", "NEON", "AESNI", "ARMv8" and "Power8"\&. C++ is standard C++ code\&. Other labels, like SSE, usually indicate a specialized implementation using instructions from a higher instruction set architecture (ISA)\&. Future labels may include external hardware like a hardware security module (HSM)\&.
+
+.PP
+Generally speaking Wei Dai's original IA-32 ASM code falls under "SSE2"\&. Labels like "SSSE3" and "SSE4\&.1" follow after Wei's code and use intrinsics instead of ASM\&.
+
+.PP
+Algorithms which combine different instructions or ISAs provide the dominant one\&. For example on x86 \fRAES/GCM\fP returns "AESNI" rather than "CLMUL" or "AES+SSE4\&.1" or "AES+CLMUL" or "AES+SSE4\&.1+CLMUL"\&. 
+.PP
+\fBNote\fP
+.RS 4
+Provider is not universally implemented yet\&. 
+.RE
+.PP
+
+.SS "template<class BASE> unsigned int \fBCFB_CipherTemplate\fP< BASE >::GetOptimalNextBlockSize () const\fR [inline]\fP"
+
+.PP
+Provides number of ideal bytes to process\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the ideal number of bytes to process
+.RE
+.PP
+Internally, the default implementation returns remaining unprocessed bytes 
+.PP
+\fBSee also\fP
+.RS 4
+GetBytesPerIteration() and \fBOptimalBlockSize()\fP 
+.RE
+.PP
+
+.SS "template<class BASE> bool \fBCFB_CipherTemplate\fP< BASE >::IsRandomAccess () const\fR [inline]\fP"
+
+.PP
+Flag indicating random access\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the cipher is seekable, false otherwise 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+Seek() 
+.RE
+.PP
+
+.SS "template<class BASE> bool \fBCFB_CipherTemplate\fP< BASE >::IsSelfInverting () const\fR [inline]\fP"
+
+.PP
+Determines if the cipher is self inverting\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the stream cipher is self inverting, false otherwise 
+.RE
+.PP
+
+.SS "template<class BASE> unsigned int \fBCFB_CipherTemplate\fP< BASE >::OptimalBlockSize () const\fR [inline]\fP"
+
+.PP
+Provides number of ideal bytes to process\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the ideal number of bytes to process
+.RE
+.PP
+Internally, the default implementation returns GetBytesPerIteration() 
+.PP
+\fBSee also\fP
+.RS 4
+GetBytesPerIteration() and \fBGetOptimalNextBlockSize()\fP 
+.RE
+.PP
+
+.SS "template<class BASE> unsigned int \fBCFB_CipherTemplate\fP< BASE >::OptimalDataAlignment () const\fR [inline]\fP"
+
+.PP
+Provides number of ideal data alignment\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the ideal data alignment, in bytes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetAlignment() and \fBOptimalBlockSize()\fP 
+.RE
+.PP
+
+.SS "template<class BASE> void \fBCFB_CipherTemplate\fP< BASE >::ProcessData (\fBbyte\fP * outString, const \fBbyte\fP * inString, size_t length)"
+
+.PP
+Apply keystream to data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutString\fP a buffer to write the transformed data 
+.br
+\fIinString\fP a buffer to read the data 
+.br
+\fIlength\fP the size of the buffers, in bytes
+.RE
+.PP
+This is the primary method to operate a stream cipher\&. For example: 
+.PP
+.nf
+
+    size_t size = 30;
+    byte plain[size] = "Do or do not; there is no try";
+    byte cipher[size];
+    \&.\&.\&.
+    ChaCha20 chacha(key, keySize);
+    chacha\&.ProcessData(cipher, plain, size);
+.fi
+.PP
+
+.PP
+You should use distinct buffers for inString and outString\&. If the buffers are the same, then the data will be copied to an internal buffer to avoid GCC alias violations\&. The internal copy will impact performance\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fRIssue 1088, 36% loss of performance with AES\fP, \fRIssue 1010, HIGHT cipher troubles with FileSource\fP 
+.RE
+.PP
+
+.SS "template<class BASE> void \fBCFB_CipherTemplate\fP< BASE >::Resynchronize (const \fBbyte\fP * iv, int length = \fR\-1\fP)"
+
+.PP
+Resynchronize the cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIiv\fP a byte array used to resynchronize the cipher 
+.br
+\fIlength\fP the size of the IV array 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,189 @@
+.TH "PK_SignatureScheme" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PK_SignatureScheme \- Interface for public-key signers and verifiers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBPK_Signer\fP, and \fBPK_Verifier\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBInvalidKeyLength\fP"
+.br
+.RI "\fBException\fP throw when the private or public key has a length that can't be used\&. "
+.ti -1c
+.RI "class \fBKeyTooShort\fP"
+.br
+.RI "\fBException\fP throw when the private or public key is too short to sign or verify\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual size_t \fBSignatureLength\fP () const =0"
+.br
+.RI "Provides the signature length if it only depends on the key\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxSignatureLength\fP (size_t recoverablePartLength=0) const"
+.br
+.RI "Provides the maximum signature length produced given the length of the recoverable message part\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLength\fP () const =0"
+.br
+.RI "Provides the length of longest message that can be recovered\&. "
+.ti -1c
+.RI "virtual size_t \fBMaxRecoverableLengthFromSignatureLength\fP (size_t signatureLength) const =0"
+.br
+.RI "Provides the length of longest message that can be recovered from a signature of given length\&. "
+.ti -1c
+.RI "virtual bool \fBIsProbabilistic\fP () const =0"
+.br
+.RI "Determines whether a signature scheme requires a random number generator\&. "
+.ti -1c
+.RI "virtual bool \fBAllowNonrecoverablePart\fP () const =0"
+.br
+.RI "Determines whether the non-recoverable message part can be signed\&. "
+.ti -1c
+.RI "virtual bool \fBSignatureUpfront\fP () const"
+.br
+.RI "Determines whether the signature must be input before the message\&. "
+.ti -1c
+.RI "virtual bool \fBRecoverablePartFirst\fP () const =0"
+.br
+.RI "Determines whether the recoverable part must be input before the non-recoverable part\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for public-key signers and verifiers\&. 
+
+This class provides an interface common to signers and verifiers for querying scheme properties 
+.PP
+\fBSee also\fP
+.RS 4
+\fBDL_SignatureSchemeBase\fP, \fBTF_SignatureSchemeBase\fP, \fBDL_SignerBase\fP, \fBTF_SignerBase\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual bool PK_SignatureScheme::AllowNonrecoverablePart () const\fR [pure virtual]\fP"
+
+.PP
+Determines whether the non-recoverable message part can be signed\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the non-recoverable message part can be signed 
+.RE
+.PP
+
+.PP
+Implemented in \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< T > >\fP, \fBed25519Signer\fP, and \fBed25519Verifier\fP\&.
+.SS "virtual bool PK_SignatureScheme::IsProbabilistic () const\fR [pure virtual]\fP"
+
+.PP
+Determines whether a signature scheme requires a random number generator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature scheme requires a \fBRandomNumberGenerator()\fP to sign
+.RE
+.PP
+if \fBIsProbabilistic()\fP returns false, then \fBNullRNG()\fP can be passed to functions that take \fBRandomNumberGenerator()\fP\&. 
+.PP
+Implemented in \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< T > >\fP, \fBed25519Signer\fP, and \fBed25519Verifier\fP\&.
+.SS "virtual size_t PK_SignatureScheme::MaxRecoverableLength () const\fR [pure virtual]\fP"
+
+.PP
+Provides the length of longest message that can be recovered\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the length of longest message that can be recovered, in bytes
+.RE
+.PP
+\fBMaxRecoverableLength()\fP returns the length of longest message that can be recovered, or 0 if this signature scheme does not support message recovery\&. 
+.PP
+Implemented in \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< T > >\fP, \fBed25519Signer\fP, and \fBed25519Verifier\fP\&.
+.SS "virtual size_t PK_SignatureScheme::MaxRecoverableLengthFromSignatureLength (size_t signatureLength) const\fR [pure virtual]\fP"
+
+.PP
+Provides the length of longest message that can be recovered from a signature of given length\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsignatureLength\fP the length of the signature, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the length of longest message that can be recovered from a signature of given length, in bytes
+.RE
+.PP
+\fBMaxRecoverableLengthFromSignatureLength()\fP returns the length of longest message that can be recovered from a signature of given length, or 0 if this signature scheme does not support message recovery\&. 
+.PP
+Implemented in \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< T > >\fP, \fBed25519Signer\fP, and \fBed25519Verifier\fP\&.
+.SS "virtual size_t PK_SignatureScheme::MaxSignatureLength (size_t recoverablePartLength = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides the maximum signature length produced given the length of the recoverable message part\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrecoverablePartLength\fP the length of the recoverable message part, in bytes 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the maximum signature length produced for a given length of recoverable message part, in bytes
+.RE
+.PP
+\fBMaxSignatureLength()\fP returns the maximum signature length produced given the length of the recoverable message part\&. 
+.SS "virtual bool PK_SignatureScheme::RecoverablePartFirst () const\fR [pure virtual]\fP"
+
+.PP
+Determines whether the recoverable part must be input before the non-recoverable part\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the recoverable part must be input before the non-recoverable part during signing
+.RE
+.PP
+\fBRecoverablePartFirst()\fP determines whether you must input the recoverable part before the non-recoverable part during signing 
+.PP
+Implemented in \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< T > >\fP, \fBed25519Signer\fP, and \fBed25519Verifier\fP\&.
+.SS "virtual size_t PK_SignatureScheme::SignatureLength () const\fR [pure virtual]\fP"
+
+.PP
+Provides the signature length if it only depends on the key\&. 
+.PP
+\fBReturns\fP
+.RS 4
+the signature length if it only depends on the key, in bytes
+.RE
+.PP
+\fBSignatureLength()\fP returns the signature length if it only depends on the key, otherwise 0\&. 
+.PP
+Implemented in \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Signer, DL_PrivateKey< T > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< SCHEME_OPTIONS::Element > >\fP, \fBDL_SignatureSchemeBase< PK_Verifier, DL_PublicKey< T > >\fP, \fBed25519Signer\fP, and \fBed25519Verifier\fP\&.
+.SS "virtual bool PK_SignatureScheme::SignatureUpfront () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Determines whether the signature must be input before the message\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the signature must be input before the message during verifcation
+.RE
+.PP
+if \fBSignatureUpfront()\fP returns true, then you must input the signature before the message during verification\&. Otherwise you can input the signature at anytime\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

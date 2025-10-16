@@ -1,0 +1,57 @@
+.TH "BlockGetAndPut< T, B, GA, PA >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BlockGetAndPut< T, B, GA, PA > \- Access a block of memory\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <misc\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBPutBlock\fP< T, B, PA > \fBPut\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBGetBlock\fP< T, B, GA > \fBGet\fP (const void *block)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class T, class B, bool GA = false, bool PA = false>
+.br
+struct BlockGetAndPut< T, B, GA, PA >"Access a block of memory\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP class or type 
+.br
+\fIB\fP enumeration indicating endianness 
+.br
+\fIGA\fP flag indicating alignment for the Get operation 
+.br
+\fIPA\fP flag indicating alignment for the Put operation
+.RE
+.PP
+\fBGetBlock()\fP provides alternate write access to a block of memory\&. The enumeration B is \fBBigEndian\fP or \fBLittleEndian\fP\&. The flag A indicates if the memory block is aligned for class or type T\&. 
+.PP
+\fBSee also\fP
+.RS 4
+\fBGetBlock()\fP and \fBPutBlock()\fP\&. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

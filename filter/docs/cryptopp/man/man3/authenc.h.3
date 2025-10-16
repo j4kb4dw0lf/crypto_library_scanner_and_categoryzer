@@ -1,0 +1,45 @@
+.TH "/home/mock/cryptopp-master/authenc.h" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/mock/cryptopp-master/authenc.h \- Classes for authenticated encryption modes of operation\&.
+
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'cryptlib\&.h'\fP
+.br
+\fR#include 'secblock\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBAuthenticatedSymmetricCipherBase\fP"
+.br
+.RI "Base class for authenticated encryption modes of operation\&. "
+.in -1c
+.SH "Detailed Description"
+.PP
+Classes for authenticated encryption modes of operation\&.
+
+Authenticated encryption (AE) schemes combine confidentiality and authenticity into a single mode of operation They gained traction in the early 2000's because manually combining them was error prone for the typical developer\&. Around that time, the desire to authenticate but not ecrypt additional data (AAD) was also identified\&. When both features are available from a scheme, the system is referred to as an AEAD scheme\&.
+
+.PP
+Crypto++ provides four authenticated encryption modes of operation - \fBCCM\fP, \fBEAX\fP, \fBGCM\fP and OCB mode\&. All modes derive from \fBAuthenticatedSymmetricCipherBase()\fP and the motivation for the API, like calling AAD a "header", can be found in Bellare, Rogaway and Wagner's \fRThe EAX Mode of Operation\fP\&. The \fBEAX\fP paper suggested a basic API to help standardize AEAD schemes in software and promote adoption of the modes\&.
+.PP
+\fBSee also\fP
+.RS 4
+\fRAuthenticated Encryption\fP on the Crypto++ wiki\&.
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 5\&.6\&.0
+.RE
+.PP
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,37 @@
+.TH "ssh_mac_ctx_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_mac_ctx_struct
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "enum ssh_kdf_digest \fBdigest_type\fP"
+.br
+.ti -1c
+.RI "union {"
+.br
+.ti -1c
+.RI "   SHACTX \fBsha1_ctx\fP"
+.br
+.ti -1c
+.RI "   SHA256CTX \fBsha256_ctx\fP"
+.br
+.ti -1c
+.RI "   SHA384CTX \fBsha384_ctx\fP"
+.br
+.ti -1c
+.RI "   SHA512CTX \fBsha512_ctx\fP"
+.br
+.ti -1c
+.RI "} \fBctx\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

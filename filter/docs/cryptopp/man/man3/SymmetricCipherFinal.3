@@ -1,0 +1,135 @@
+.TH "SymmetricCipherFinal< BASE, INFO >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SymmetricCipherFinal< BASE, INFO > \- \fBSymmetricCipher\fP implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherits \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BASE, BASE >, BASE >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSymmetricCipherFinal\fP ()"
+.br
+.RI "Construct a stream cipher\&. "
+.ti -1c
+.RI "\fBSymmetricCipherFinal\fP (const \fBbyte\fP *key)"
+.br
+.RI "Construct a stream cipher\&. "
+.ti -1c
+.RI "\fBSymmetricCipherFinal\fP (const \fBbyte\fP *key, size_t length)"
+.br
+.RI "Construct a stream cipher\&. "
+.ti -1c
+.RI "\fBSymmetricCipherFinal\fP (const \fBbyte\fP *key, size_t length, const \fBbyte\fP *iv)"
+.br
+.RI "Construct a stream cipher\&. "
+.ti -1c
+.RI "\fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Clone a \fBSymmetricCipher\fP\&. "
+.in -1c
+
+Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BASE, BASE >, BASE >\fP
+.in +1c
+.ti -1c
+.RI "std::string \fBAlgorithmName\fP () const"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Public Member Functions inherited from \fBAlgorithmImpl< SimpleKeyingInterfaceImpl< BASE, BASE >, BASE >\fP
+.in +1c
+.ti -1c
+.RI "static std::string CRYPTOPP_API \fBStaticAlgorithmName\fP ()"
+.br
+.RI "The algorithm name\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class BASE, class INFO = BASE>
+.br
+class SymmetricCipherFinal< BASE, INFO >"\fBSymmetricCipher\fP implementation\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIBASE\fP \fBAbstractPolicyHolder\fP derived base class 
+.br
+\fIINFO\fP \fBAbstractPolicyHolder\fP derived information class 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+Weak::ARC4, ChaCha8, ChaCha12, ChaCha20, \fBSalsa20\fP, \fBSEAL\fP, \fBSosemanuk\fP, WAKE 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<class BASE, class INFO = BASE> \fBSymmetricCipherFinal\fP< BASE, INFO >\fB::SymmetricCipherFinal\fP (const \fBbyte\fP * key)\fR [inline]\fP"
+
+.PP
+Construct a stream cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher
+.RE
+.PP
+This overload uses DEFAULT_KEYLENGTH 
+.SS "template<class BASE, class INFO = BASE> \fBSymmetricCipherFinal\fP< BASE, INFO >\fB::SymmetricCipherFinal\fP (const \fBbyte\fP * key, size_t length)\fR [inline]\fP"
+
+.PP
+Construct a stream cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.RE
+.PP
+
+.SS "template<class BASE, class INFO = BASE> \fBSymmetricCipherFinal\fP< BASE, INFO >\fB::SymmetricCipherFinal\fP (const \fBbyte\fP * key, size_t length, const \fBbyte\fP * iv)\fR [inline]\fP"
+
+.PP
+Construct a stream cipher\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP a byte array used to key the cipher 
+.br
+\fIlength\fP the size of the key array 
+.br
+\fIiv\fP a byte array used as an initialization vector 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<class BASE, class INFO = BASE> \fBClonable\fP * \fBSymmetricCipherFinal\fP< BASE, INFO >::Clone () const\fR [inline]\fP"
+
+.PP
+Clone a \fBSymmetricCipher\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a new \fBSymmetricCipher\fP based on this object 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

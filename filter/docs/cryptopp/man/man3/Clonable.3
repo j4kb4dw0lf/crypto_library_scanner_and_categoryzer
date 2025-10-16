@@ -1,0 +1,81 @@
+.TH "Clonable" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Clonable \- Namespace containing NaCl library functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <cryptlib\&.h>\fP
+.PP
+Inherited by \fBAlgorithm\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBClonable\fP * \fBClone\fP () const"
+.br
+.RI "Copies this object\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Namespace containing NaCl library functions\&. 
+
+TweetNaCl is a compact and portable reimplementation of the NaCl library\&.
+
+.PP
+Namespace containing testing and benchmark classes\&.
+
+.PP
+\fBSource\fP files for classes in the Test namespaces include \fRtest\&.cpp\fP, \fRvalidat#\&.cpp\fP and \fRbench#\&.cpp\fP\&.
+
+.PP
+Interface for cloning objects 
+.PP
+\fBNote\fP
+.RS 4
+this is \fInot\fP implemented by most classes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBClonableImpl\fP, \fBNotCopyable\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBClonable\fP * Clonable::Clone () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Copies this object\&. 
+.PP
+\fBReturns\fP
+.RS 4
+a copy of this object 
+.RE
+.PP
+\fBExceptions\fP
+.RS 4
+\fI\fBNotImplemented\fP\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+this is \fInot\fP implemented by most classes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBNotCopyable\fP 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBClonableImpl< MD4, AlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, MD4 > >\fP, \fBClonableImpl< MD5, AlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, MD5 > >\fP, \fBClonableImpl< MessageAuthenticationCodeFinal< DMAC_Base< T > >, MessageAuthenticationCodeImpl< DMAC_Base< T > > >\fP, \fBClonableImpl< MessageAuthenticationCodeFinal< Poly1305_Base< T > >, MessageAuthenticationCodeImpl< Poly1305_Base< T > > >\fP, \fBClonableImpl< RIPEMD128, AlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD128 > >\fP, \fBClonableImpl< RIPEMD160, AlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD160 > >\fP, \fBClonableImpl< RIPEMD256, AlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD256 > >\fP, \fBClonableImpl< RIPEMD320, AlgorithmImpl< IteratedHash< word32, LittleEndian, T_BlockSize >, RIPEMD320 > >\fP, \fBClonableImpl< SHA1, AlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SHA1 > >\fP, \fBClonableImpl< SHA224, AlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SHA224 > >\fP, \fBClonableImpl< SHA256, AlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SHA256 > >\fP, \fBClonableImpl< SHA384, AlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, SHA384 > >\fP, \fBClonableImpl< SHA512, AlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, SHA512 > >\fP, \fBClonableImpl< SM3, AlgorithmImpl< IteratedHash< word32, BigEndian, T_BlockSize >, SM3 > >\fP, \fBClonableImpl< T_Transform, AlgorithmImpl< IteratedHash< T_HashWordType, T_Endianness, T_BlockSize >, T_Transform > >\fP, \fBClonableImpl< Tiger, AlgorithmImpl< IteratedHash< word64, LittleEndian, T_BlockSize >, Tiger > >\fP, and \fBClonableImpl< Whirlpool, AlgorithmImpl< IteratedHash< word64, BigEndian, T_BlockSize >, Whirlpool > >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

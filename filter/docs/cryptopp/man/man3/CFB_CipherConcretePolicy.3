@@ -1,0 +1,147 @@
+.TH "CFB_CipherConcretePolicy< WT, W, BASE >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CFB_CipherConcretePolicy< WT, W, BASE > \- Base class for feedback based stream ciphers\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <strciphr\&.h>\fP
+.PP
+Inherits \fBCFB_CipherAbstractPolicy\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBRegisterOutput\fP"
+.br
+.RI "Provides alternate access to a feedback register\&. "
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef WT \fBWordType\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBGetAlignment\fP () const"
+.br
+.RI "Provides data alignment requirements\&. "
+.ti -1c
+.RI "unsigned int \fBGetBytesPerIteration\fP () const"
+.br
+.RI "Provides number of bytes operated upon during an iteration\&. "
+.ti -1c
+.RI "bool \fBCanIterate\fP () const"
+.br
+.RI "Flag indicating iteration support\&. "
+.ti -1c
+.RI "void \fBTransformRegister\fP ()"
+.br
+.RI "Perform one iteration in the forward direction\&. "
+.in -1c
+
+Public Member Functions inherited from \fBCFB_CipherAbstractPolicy\fP
+.in +1c
+.ti -1c
+.RI "virtual \fBbyte\fP * \fBGetRegisterBegin\fP ()=0"
+.br
+.RI "Access the feedback register\&. "
+.ti -1c
+.RI "virtual void \fBIterate\fP (\fBbyte\fP *output, const \fBbyte\fP *input, \fBCipherDir\fP dir, size_t iterationCount)"
+.br
+.RI "Iterate the cipher\&. "
+.ti -1c
+.RI "virtual void \fBCipherSetKey\fP (const \fBNameValuePairs\fP &params, const \fBbyte\fP *key, size_t length)=0"
+.br
+.RI "Key the cipher\&. "
+.ti -1c
+.RI "virtual void \fBCipherResynchronize\fP (const \fBbyte\fP *iv, size_t length)"
+.br
+.RI "Resynchronize the cipher\&. "
+.ti -1c
+.RI "virtual std::string \fBAlgorithmProvider\fP () const"
+.br
+.RI "Retrieve the provider of this algorithm\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy>
+.br
+struct CFB_CipherConcretePolicy< WT, W, BASE >"Base class for feedback based stream ciphers\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIWT\fP word type 
+.br
+\fIW\fP count of words 
+.br
+\fIBASE\fP \fBCFB_CipherAbstractPolicy\fP derived base class 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy> bool \fBCFB_CipherConcretePolicy\fP< WT, W, BASE >::CanIterate () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Flag indicating iteration support\&. 
+.PP
+\fBReturns\fP
+.RS 4
+true if the cipher supports iteration, false otherwise 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBCFB_CipherAbstractPolicy\fP\&.
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy> unsigned int \fBCFB_CipherConcretePolicy\fP< WT, W, BASE >::GetAlignment () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides data alignment requirements\&. 
+.PP
+\fBReturns\fP
+.RS 4
+data alignment requirements, in bytes
+.RE
+.PP
+Internally, the default implementation returns 1\&. If the stream cipher is implemented using an SSE2 ASM or intrinsics, then the value returned is usually 16\&. 
+.PP
+Implements \fBCFB_CipherAbstractPolicy\fP\&.
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy> unsigned int \fBCFB_CipherConcretePolicy\fP< WT, W, BASE >::GetBytesPerIteration () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Provides number of bytes operated upon during an iteration\&. 
+.PP
+\fBReturns\fP
+.RS 4
+bytes operated upon during an iteration, in bytes 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+GetOptimalBlockSize() 
+.RE
+.PP
+
+.PP
+Implements \fBCFB_CipherAbstractPolicy\fP\&.
+.SS "template<typename WT, unsigned int W, class BASE = CFB_CipherAbstractPolicy> void \fBCFB_CipherConcretePolicy\fP< WT, W, BASE >::TransformRegister ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Perform one iteration in the forward direction\&. 
+.PP
+Implements \fBCFB_CipherAbstractPolicy\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

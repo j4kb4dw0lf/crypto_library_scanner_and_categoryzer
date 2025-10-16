@@ -1,0 +1,80 @@
+.TH "GF256" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GF256 \- GF(256) with polynomial basis\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <gf256\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBbyte\fP \fBElement\fP"
+.br
+.ti -1c
+.RI "typedef int \fBRandomizationParameter\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGF256\fP (\fBbyte\fP modulus)"
+.br
+.ti -1c
+.RI "Element \fBRandomElement\fP (\fBRandomNumberGenerator\fP &rng, int ignored=0) const"
+.br
+.ti -1c
+.RI "bool \fBEqual\fP (Element a, Element b) const"
+.br
+.ti -1c
+.RI "Element \fBZero\fP () const"
+.br
+.ti -1c
+.RI "Element \fBAdd\fP (Element a, Element b) const"
+.br
+.ti -1c
+.RI "Element & \fBAccumulate\fP (Element &a, Element b) const"
+.br
+.ti -1c
+.RI "Element \fBInverse\fP (Element a) const"
+.br
+.ti -1c
+.RI "Element \fBSubtract\fP (Element a, Element b) const"
+.br
+.ti -1c
+.RI "Element & \fBReduce\fP (Element &a, Element b) const"
+.br
+.ti -1c
+.RI "Element \fBDouble\fP (Element a) const"
+.br
+.ti -1c
+.RI "Element \fBOne\fP () const"
+.br
+.ti -1c
+.RI "Element \fBMultiply\fP (Element a, Element b) const"
+.br
+.ti -1c
+.RI "Element \fBSquare\fP (Element a) const"
+.br
+.ti -1c
+.RI "bool \fBIsUnit\fP (Element a) const"
+.br
+.ti -1c
+.RI "Element \fBMultiplicativeInverse\fP (Element a) const"
+.br
+.ti -1c
+.RI "Element \fBDivide\fP (Element a, Element b) const"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+GF(256) with polynomial basis\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

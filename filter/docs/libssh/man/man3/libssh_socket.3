@@ -1,0 +1,145 @@
+.TH "libssh_socket" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_socket \- The SSH socket functions\&.
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBssh_socket_struct\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBssh_socket_states_e\fP { \fBSSH_SOCKET_NONE\fP, \fBSSH_SOCKET_CONNECTING\fP, \fBSSH_SOCKET_CONNECTED\fP, \fBSSH_SOCKET_EOF\fP, \fBSSH_SOCKET_ERROR\fP, \fBSSH_SOCKET_CLOSED\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBssh_socket_init\fP (void)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_cleanup\fP (void)"
+.br
+.RI "Cleanup the socket system\&. "
+.ti -1c
+.RI "\fBssh_socket\fP \fBssh_socket_new\fP (\fBssh_session\fP session)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_reset\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_set_callbacks\fP (\fBssh_socket\fP s, \fBssh_socket_callbacks\fP callbacks)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_set_connected\fP (\fBssh_socket\fP s, struct \fBssh_poll_handle_struct\fP *p)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_pollcallback\fP (struct \fBssh_poll_handle_struct\fP *p, socket_t fd, int revents, void *v_s)"
+.br
+.RI "SSH poll callback\&. This callback will be used when an event caught on the socket\&. "
+.ti -1c
+.RI "\fBssh_poll_handle\fP \fBssh_socket_get_poll_handle\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_free\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_unix\fP (\fBssh_socket\fP s, const char *path)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_close\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_set_fd\fP (\fBssh_socket\fP s, socket_t fd)"
+.br
+.ti -1c
+.RI "socket_t \fBssh_socket_get_fd\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_is_open\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_fd_isset\fP (\fBssh_socket\fP s, fd_set *set)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_fd_set\fP (\fBssh_socket\fP s, fd_set *set, socket_t *max_fd)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_write\fP (\fBssh_socket\fP s, const void *buffer, uint32_t len)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_nonblocking_flush\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_set_write_wontblock\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_set_read_wontblock\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "void \fBssh_socket_set_except\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_data_available\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_data_writable\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_buffered_write_bytes\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_get_status\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_get_poll_flags\fP (\fBssh_socket\fP s)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_set_nonblocking\fP (socket_t fd)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_set_blocking\fP (socket_t fd)"
+.br
+.ti -1c
+.RI "int \fBssh_socket_connect\fP (\fBssh_socket\fP s, const char *host, uint16_t port, const char *bind_addr)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for handling sockets\&. 
+.SH "Function Documentation"
+.PP 
+.SS "int ssh_socket_pollcallback (struct \fBssh_poll_handle_struct\fP * p, socket_t fd, int revents, void * v_s)"
+
+.PP
+SSH poll callback\&. This callback will be used when an event caught on the socket\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP Poll object this callback belongs to\&. 
+.br
+\fIfd\fP The raw socket\&. 
+.br
+\fIrevents\fP The current poll events on the socket\&. 
+.br
+\fIv_s\fP Userdata to be passed to the callback function, in this case the socket object\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+0 on success, < 0 when the poll object has been removed from its poll context\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

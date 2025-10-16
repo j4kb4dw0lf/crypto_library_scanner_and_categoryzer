@@ -1,0 +1,78 @@
+.TH "libssh_error" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+libssh_error \- The SSH error functions
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fB_ssh_set_error\fP (void *error, int code, const char *function, const char *descr,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "void \fB_ssh_set_error_oom\fP (void *error, const char *function)"
+.br
+.ti -1c
+.RI "void \fB_ssh_set_error_invalid\fP (void *error, const char *function)"
+.br
+.ti -1c
+.RI "void \fBssh_reset_error\fP (void *error)"
+.br
+.ti -1c
+.RI "const char * \fBssh_get_error\fP (void *error)"
+.br
+.RI "Retrieve the error text message from the last error\&. "
+.ti -1c
+.RI "int \fBssh_get_error_code\fP (void *error)"
+.br
+.RI "Retrieve the error code from the last error\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Functions for error handling\&. 
+.SH "Function Documentation"
+.PP 
+.SS "const char * ssh_get_error (void * error)"
+
+.PP
+Retrieve the error text message from the last error\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP An ssh_session or ssh_bind\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A static string describing the error\&. 
+.RE
+.PP
+
+.SS "int ssh_get_error_code (void * error)"
+
+.PP
+Retrieve the error code from the last error\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIerror\fP An ssh_session or ssh_bind\&.
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+SSH_NO_ERROR No error occurred
+.br
+ SSH_REQUEST_DENIED The last request was denied but situation is recoverable
+.br
+ SSH_FATAL A fatal error occurred\&. This could be an unexpected disconnection
+.br
+ Other error codes are internal but can be considered the same as SSH_FATAL\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

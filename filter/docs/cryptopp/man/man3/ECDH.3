@@ -1,0 +1,49 @@
+.TH "ECDH< EC, COFACTOR_OPTION >" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ECDH< EC, COFACTOR_OPTION > \- Elliptic Curve Diffie-Hellman\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <eccrypto\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "typedef \fBDH_Domain\fP< \fBDL_GroupParameters_EC\fP< EC >, COFACTOR_OPTION > \fBDomain\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<class EC, class COFACTOR_OPTION = typename DL_GroupParameters_EC<EC>::DefaultCofactorOption>
+.br
+struct ECDH< EC, COFACTOR_OPTION >"Elliptic Curve Diffie-Hellman\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIEC\fP elliptic curve field 
+.br
+\fICOFACTOR_OPTION\fP cofactor multiplication option 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+\fBCofactorMultiplicationOption\fP, \fRElliptic Curve Diffie-Hellman, AKA ECDH\fP 
+.RE
+.PP
+\fBSince\fP
+.RS 4
+Crypto++ 3\&.0 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.

@@ -1,0 +1,36 @@
+.TH "ssh_bind_callbacks_struct" 3 "My Project" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ssh_bind_callbacks_struct \- These are the callbacks exported by the ssh_bind structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <server\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.ti -1c
+.RI "\fBssh_bind_incoming_connection_callback\fP \fBincoming_connection\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+These are the callbacks exported by the ssh_bind structure\&. 
+
+They are called by the server module when events appear on the network\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBssh_bind_incoming_connection_callback\fP ssh_bind_callbacks_struct::incoming_connection"
+A new connection is available\&. 
+.SS "size_t ssh_bind_callbacks_struct::size"
+DON'T SET THIS use \fBssh_callbacks_init()\fP instead\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for My Project from the source code\&.
